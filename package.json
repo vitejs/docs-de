@@ -1,0 +1,47 @@
+{
+  "name": "vite-docs-template",
+  "version": "1.0.0",
+  "description": "Vite docs template",
+  "main": "docs/index.md",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "18"
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitejs/docs-template.git"
+  },
+  "keywords": [
+    "vite",
+    "docs",
+    "translation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vitejs/docs-template/issues"
+  },
+  "homepage": "https://github.com/vitejs/docs-template#readme",
+  "dependencies": {
+    "search-insights": "^2.6.0",
+    "vitepress": "^1.0.0-alpha.46"
+  },
+  "devDependencies": {
+    "@algolia/client-search": "^4.13.1",
+    "@types/node": "18.17.15",
+    "@types/react": "^18.0.15",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
