@@ -1,6 +1,7 @@
 
-# 🇩🇪 German Translation of Vite-Docs: https://vite-docs-de.netlify.app/
+# 🇩🇪 [German Translation of vitejs.dev](https://vite-docs-de.netlify.app/)
 
+#### Feel free to [contribute by creating Pull Requests](https://github.com/rojadesign/vite-docs-de/pulls)!
 ---
 
 <p align="center">
