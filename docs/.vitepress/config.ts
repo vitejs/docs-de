@@ -100,7 +100,7 @@ export default defineConfig({
 
     editLink: {
       pattern: 'https://github.com/vitejs/vite/edit/main/docs/:path',
-      text: 'Suggest changes to this page',
+      text: 'Änderungen für diese Seite vorschlagen',
     },
 
     socialLinks: [
@@ -125,16 +125,16 @@ export default defineConfig({
     },
 
     footer: {
-      message: `Released under the MIT License. (${commitRef})`,
+      message: `Veröffentlicht unter der MIT-Lizenz. (${commitRef})`,
       copyright: 'Copyright © 2019-present Evan You & Vite Contributors',
     },
 
     nav: [
-      { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
-      { text: 'Config', link: '/config/', activeMatch: '/config/' },
+      { text: 'Leitfaden', link: '/guide/', activeMatch: '/guide/' },
+      { text: 'Konfiguration', link: '/config/', activeMatch: '/config/' },
       { text: 'Plugins', link: '/plugins/', activeMatch: '/plugins/' },
       {
-        text: 'Resources',
+        text: 'Ressourcen',
         items: [
           { text: 'Team', link: '/team' },
           { text: 'Releases', link: '/releases' },
@@ -165,7 +165,7 @@ export default defineConfig({
                 link: 'https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md',
               },
               {
-                text: 'Contributing',
+                text: 'Beitragen',
                 link: 'https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md',
               },
             ],
@@ -181,14 +181,14 @@ export default defineConfig({
     sidebar: {
       '/guide/': [
         {
-          text: 'Guide',
+          text: 'Leitfaden',
           items: [
             {
-              text: 'Why Vite',
+              text: 'Wieso Vite',
               link: '/guide/why',
             },
             {
-              text: 'Getting Started',
+              text: 'Starten',
               link: '/guide/',
             },
             {
@@ -200,7 +200,7 @@ export default defineConfig({
               link: '/guide/cli',
             },
             {
-              text: 'Using Plugins',
+              text: 'Plugins verwenden',
               link: '/guide/using-plugins',
             },
             {
@@ -208,43 +208,43 @@ export default defineConfig({
               link: '/guide/dep-pre-bundling',
             },
             {
-              text: 'Static Asset Handling',
+              text: 'Statische Asset-Handhabung',
               link: '/guide/assets',
             },
             {
-              text: 'Building for Production',
+              text: 'Produktives Builden',
               link: '/guide/build',
             },
             {
-              text: 'Deploying a Static Site',
+              text: 'Bereitstellen einer statischen Website',
               link: '/guide/static-deploy',
             },
             {
-              text: 'Env Variables and Modes',
+              text: 'Entwicklungsvariablen und Modi',
               link: '/guide/env-and-mode',
             },
             {
-              text: 'Server-Side Rendering (SSR)',
+              text: 'Serverseitiges Rendering (SSR)',
               link: '/guide/ssr',
             },
             {
-              text: 'Backend Integration',
+              text: 'Backend-Integration',
               link: '/guide/backend-integration',
             },
             {
-              text: 'Comparisons',
+              text: 'Vergleiche',
               link: '/guide/comparisons',
             },
             {
-              text: 'Troubleshooting',
+              text: 'Fehlersuche',
               link: '/guide/troubleshooting',
             },
             {
-              text: 'Philosophy',
+              text: 'Philosophie',
               link: '/guide/philosophy',
             },
             {
-              text: 'Migration from v3',
+              text: 'Migration von v3',
               link: '/guide/migration',
             },
           ],
@@ -265,7 +265,7 @@ export default defineConfig({
               link: '/guide/api-javascript',
             },
             {
-              text: 'Config Reference',
+              text: 'Referenzen zur Konfiguration',
               link: '/config/',
             },
           ],
@@ -273,38 +273,38 @@ export default defineConfig({
       ],
       '/config/': [
         {
-          text: 'Config',
+          text: 'Konfiguration',
           items: [
             {
-              text: 'Configuring Vite',
+              text: 'Vite konfigurieren',
               link: '/config/',
             },
             {
-              text: 'Shared Options',
+              text: 'Gemeinsame Optionen',
               link: '/config/shared-options',
             },
             {
-              text: 'Server Options',
+              text: 'Server-Optionen',
               link: '/config/server-options',
             },
             {
-              text: 'Build Options',
+              text: 'Build-Optionen',
               link: '/config/build-options',
             },
             {
-              text: 'Preview Options',
+              text: 'Vorschau-Optionen',
               link: '/config/preview-options',
             },
             {
-              text: 'Dep Optimization Options',
+              text: 'Optionen zur Optimierung der Abhängigkeiten',
               link: '/config/dep-optimization-options',
             },
             {
-              text: 'SSR Options',
+              text: 'SSR Optionen',
               link: '/config/ssr-options',
             },
             {
-              text: 'Worker Options',
+              text: 'Worker-Optionen',
               link: '/config/worker-options',
             },
           ],
