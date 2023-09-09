@@ -27,21 +27,21 @@ hero:
 
 features:
   - icon: 💡
-    title: Instant Server Start
-    details: On demand file serving over native ESM, no bundling required!
+    title: Sofortiger Server-Start
+    details: Dateien werden bei Bedarf über natives ESM bereitgestellt - kein Bundling erforderlich!
   - icon: ⚡️
-    title: Lightning Fast HMR
-    details: Hot Module Replacement (HMR) that stays fast regardless of app size.
+    title: Blitzschnelles HMR
+    details: Hot Module Replacement (HMR), das unabhängig von der Größe der Anwendung schnell bleibt.
   - icon: 🛠️
-    title: Rich Features
-    details: Out-of-the-box support for TypeScript, JSX, CSS and more.
+    title: Reich an Funktionen
+    details: Sofort verfügbare Unterstützung für TypeScript, JSX, CSS und mehr.
   - icon: 📦
-    title: Optimized Build
-    details: Pre-configured Rollup build with multi-page and library mode support.
+    title: Optimierter Build-Prozess
+    details: Vorkonfigurierter Rollup-Build mit Unterstützung für Mehrseiten- und Bibliotheksmodus.
   - icon: 🔩
-    title: Universal Plugins
-    details: Rollup-superset plugin interface shared between dev and build.
+    title: Universelle Plugins
+    details: Rollup-Superset-Plugin-Schnittstelle, die von dev und build gemeinsam genutzt wird.
   - icon: 🔑
-    title: Fully Typed APIs
-    details: Flexible programmatic APIs with full TypeScript typing.
+    title: Vollständig typisierte APIs
+    details: Flexible programmatische APIs mit vollständiger TypeScript-Typisierung.
 ---
