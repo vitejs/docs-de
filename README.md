@@ -31,11 +31,11 @@
 
 Vite (französisches Wort für "schnell", ausgesprochen [`/vit/`](https://cdn.jsdelivr.net/gh/vitejs/vite@main/docs/public/vite.mp3), wie "veet") ist eine neue Art von Frontend-Build-Tool, das die Erfahrung bei der Frontend-Entwicklung erheblich verbessert. Es besteht aus zwei Hauptbestandteilen:
 
-- Ein Entwicklungsserver, der Ihre Quelldateien über [native ES-Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), mit [umfangreichen integrierten Funktionen](https://vitejs.dev/guide/features.html) und erstaunlich schnellem [Hot Module Replacement (HMR)](https://vitejs.dev/guide/features.html#hot-module-replacement) bereitstellt.
+- Einem Entwicklungsserver, der Ihre Quelldateien über [native ES-Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), mit [umfangreichen integrierten Funktionen](https://vitejs.dev/guide/features.html) und erstaunlich schnellem [Hot Module Replacement (HMR)](https://vitejs.dev/guide/features.html#hot-module-replacement) bereitstellt.
 
-- Ein [Build-Befehl] (https://vitejs.dev/guide/build.html), der Ihren Code mit [Rollup] (https://rollupjs.org) bundled und so vorkonfiguriert ist, dass er hochoptimierte statische Assets für die Produktion ausgibt.
+- Einem [Build-Befehl](https://vitejs.dev/guide/build.html), der Ihren Code mit [Rollup](https://rollupjs.org) bündelt und so vorkonfiguriert ist, dass er hochoptimierte statische Assets für die Produktion ausgibt.
 
-Darüber hinaus ist Vite über seine [Plugin-API] (https://vitejs.dev/guide/api-plugin.html) und [JavaScript-API] (https://vitejs.dev/guide/api-javascript.html) mit vollständiger Typisierungsunterstützung in hohem Maße erweiterbar.
+Darüber hinaus ist Vite über seine [Plugin-API](https://vitejs.dev/guide/api-plugin.html) und [JavaScript-API](https://vitejs.dev/guide/api-javascript.html) mit vollständiger Typisierungsunterstützung in hohem Maße erweiterbar.
 
 [Lesen Sie die Dokumentation, um mehr zu erfahren](https://vitejs.dev).
 
