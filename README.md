@@ -1,6 +1,5 @@
 
-<!-- You can remove the following notice from your fork -->
-## This repo is a template for [Vite.js docs translation repositories](https://github.com/vitejs?q=docs). See [guide](/.github/CONTRIBUTING.md).
+# 🇩🇪 German Translation of Vite-Docs: https://vite-docs-de.netlify.app/
 
 ---
 
