@@ -61,4 +61,4 @@ Abgesehen davon hat `esbuild` in den letzten Jahren große Fortschritte gemacht,
 
 ## Wie unterscheidet sich Vite von X?
 
-Im Abschnitt [Vergleiche](./Vergleiche) finden Sie weitere Einzelheiten darüber, wie sich Vite von anderen ähnlichen Tools unterscheidet.
+Im Abschnitt [Vergleiche](./comparisons) finden Sie weitere Einzelheiten darüber, wie sich Vite von anderen ähnlichen Tools unterscheidet.
