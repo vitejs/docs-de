@@ -3,3 +3,5 @@ node_modules
 docs/.vitepress/dist
 docs/.vitepress/temp
 .vscode
+.DS_Store
+/docs/.vitepress/cache
