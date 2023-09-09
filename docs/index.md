@@ -39,7 +39,7 @@ features:
     title: Optimierter Build-Prozess
     details: Vorkonfigurierter Rollup-Build mit Unterstützung für Mehrseiten- und Bibliotheksmodus.
   - icon: 🔩
-    title: Universelle Plugins
+    title: Universelle Plugin-Schnittstelle
     details: Rollup-Superset-Plugin-Schnittstelle, die von dev und build gemeinsam genutzt wird.
   - icon: 🔑
     title: Vollständig typisierte APIs
