@@ -1,3 +1,7 @@
+---
+outline: [2, 3]
+---
+
 # Funktionen
 
 Auf grundlegender Ebene ist die Entwicklung mit Vite nicht sehr unterschiedlich von der Verwendung eines statischen Dateiservers. Allerdings bietet Vite viele Verbesserungen gegenüber nativen ESM-Imports, um verschiedene Funktionen zu unterstützen, die in typischen Konfigurationen mit Build-Tools zu finden sind.
