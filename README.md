@@ -20,7 +20,7 @@
 
 # Vite ⚡
 
-> Das Frontend-Tool der nächsten Generation
+> Frontend-Tooling der nächsten Generation
 
 - 💡 Sofortiger Server-Start
 - ⚡️ Blitzschnelles HMR
