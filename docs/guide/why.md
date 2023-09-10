@@ -2,7 +2,7 @@
 outline: [2, 3]
 ---
 
-# Wieso Vite
+# Wieso Vite?
 
 ## Die Problematiken
 

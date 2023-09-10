@@ -191,7 +191,7 @@ export default defineConfig({
           text: 'Leitfaden',
           items: [
             {
-              text: 'Wieso Vite',
+              text: 'Wieso Vite?',
               link: '/guide/why',
             },
             {
