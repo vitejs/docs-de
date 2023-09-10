@@ -11,7 +11,7 @@ const commitRef = process.env.COMMIT_REF?.slice(0, 8) || 'dev'
 
 const deployType = (() => {
   switch (deployURL) {
-    case 'https://main--vite-docs-main.netlify.app':
+    case 'https://vite-docs-de.netlify.app':
       return 'main'
     case '':
       return 'local'
@@ -35,26 +35,26 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
     case 'local':
       return [
         {
-          text: 'Vite 4 Docs (release)',
+          text: 'Vite 4 Dokumentation (release)',
           link: 'https://vitejs.dev',
         },
         {
-          text: 'Vite 3 Docs',
+          text: 'Vite 3 Dokumentation',
           link: 'https://v3.vitejs.dev',
         },
         {
-          text: 'Vite 2 Docs',
+          text: 'Vite 2 Dokumentation',
           link: 'https://v2.vitejs.dev',
         },
       ]
     case 'release':
       return [
         {
-          text: 'Vite 3 Docs',
+          text: 'Vite 3 Dokumentation',
           link: 'https://v3.vitejs.dev',
         },
         {
-          text: 'Vite 2 Docs',
+          text: 'Vite 2 Dokumentation',
           link: 'https://v2.vitejs.dev',
         },
       ]
@@ -87,7 +87,8 @@ export default defineConfig({
   ],
 
   locales: {
-    root: { label: 'English' },
+    root: { label: 'Deutsch' },
+    en: { label: 'English', link: 'https://vitejs.dev' },
     zh: { label: '简体中文', link: 'https://cn.vitejs.dev' },
     ja: { label: '日本語', link: 'https://ja.vitejs.dev' },
     es: { label: 'Español', link: 'https://es.vitejs.dev' },
@@ -122,6 +123,12 @@ export default defineConfig({
     carbonAds: {
       code: 'CEBIEK3N',
       placement: 'vitejsdev',
+    },
+
+    outlineTitle: 'Auf dieser Seite',
+    docFooter: {
+      prev: 'Vorherige Seite',
+      next: 'Nächste Seite',
     },
 
     footer: {
