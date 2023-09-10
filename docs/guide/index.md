@@ -1,4 +1,4 @@
-# Getting Started
+# Erste Schritte
 
 <audio id="vite-audio">
   <source src="/vite.mp3" type="audio/mpeg">
