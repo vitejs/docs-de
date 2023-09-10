@@ -35,7 +35,7 @@ Vite uses [dotenv](https://github.com/motdotla/dotenv) to load additional enviro
 .env.[mode].local   # only loaded in specified mode, ignored by git
 ```
 
-:::tip Env Loading Priorities
+:::tip Prioritäten der Entwicklungsumgebungen
 
 An env file for a specific mode (e.g. `.env.production`) will take higher priority than a generic one (e.g. `.env`).
 

@@ -89,7 +89,7 @@ Imported or referenced assets that are smaller than this threshold will be inlin
 
 Git LFS placeholders are automatically excluded from inlining because they do not contain the content of the file they represent.
 
-::: tip Note
+::: :::tip ANMERKUNG
 If you specify `build.lib`, `build.assetsInlineLimit` will be ignored and assets will always be inlined, regardless of file size or being a Git LFS placeholder.
 :::
 
@@ -102,7 +102,7 @@ Enable/disable CSS code splitting. When enabled, CSS imported in async JS chunks
 
 If disabled, all CSS in the entire project will be extracted into a single CSS file.
 
-::: tip Note
+::: :::tip ANMERKUNG
 If you specify `build.lib`, `build.cssCodeSplit` will be `false` as default.
 :::
 

@@ -65,17 +65,17 @@ export function useSponsor() {
 function mapSponsors(sponsors: Sponsors) {
   return [
     {
-      tier: 'Special Sponsors',
+      tier: 'Besondere Sponsoren',
       size: 'big',
       items: viteSponsors['special'],
     },
     {
-      tier: 'Platinum Sponsors',
+      tier: 'Platinum Sponsoren',
       size: 'big',
       items: mapImgPath(sponsors['platinum']),
     },
     {
-      tier: 'Gold Sponsors',
+      tier: 'Gold Sponsoren',
       size: 'medium',
       items: viteSponsors['gold'].concat(mapImgPath(sponsors['gold'])),
     },

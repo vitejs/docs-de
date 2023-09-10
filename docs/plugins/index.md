@@ -1,6 +1,6 @@
 # Plugins
 
-:::tip NOTE
+:::tip ANMERKUNG
 Vite zielt darauf ab, Out-of-the-Box-Unterstützung für gängige Webentwicklungsmuster zu bieten. Bevor Sie nach einem Vite- oder kompatiblen Rollup-Plugin suchen, sollten Sie sich den [Features Guide](../guide/features.md) ansehen. Viele der Fälle, in denen ein Plugin für ein Rollup-Projekt benötigt wird, sind bereits in Vite abgedeckt.
 :::
 

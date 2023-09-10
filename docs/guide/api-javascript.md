@@ -34,7 +34,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 })()
 ```
 
-::: tip NOTE
+::: :::tip ANMERKUNG
 When using `createServer` and `build` in the same Node.js process, both functions rely on `process.env.NODE_ENV` to work properly, which also depends on the `mode` config option. To prevent conflicting behavior, set `process.env.NODE_ENV` or the `mode` of the two APIs to `development`. Otherwise, you can spawn a child process to run the APIs separately.
 :::
 
@@ -269,7 +269,7 @@ function mergeConfig(
 
 Deeply merge two Vite configs. `isRoot` represents the level within the Vite config which is being merged. For example, set `false` if you're merging two `build` options.
 
-::: tip NOTE
+::: :::tip ANMERKUNG
 `mergeConfig` accepts only config in object form. If you have a config in callback form, you should call it before passing into `mergeConfig`.
 
 You can use the `defineConfig` helper to merge a config in callback form with another config:

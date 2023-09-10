@@ -18,7 +18,7 @@ const { data } = useSponsor()
       target="_blank"
       rel="noreferrer"
     >
-      Sponsor Vite
+      Vite sponsern
     </a>
     <a
       class="sponsor"
@@ -26,7 +26,7 @@ const { data } = useSponsor()
       target="_blank"
       rel="noreferrer"
     >
-      Sponsor Evan You
+      Evan You sponsern
     </a>
   </div>
 </template>

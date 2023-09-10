@@ -1,6 +1,6 @@
 # Server-Side Rendering
 
-:::tip Note
+:::tip ANMERKUNG
 SSR specifically refers to front-end frameworks (for example React, Preact, Vue, and Svelte) that support running the same application in Node.js, pre-rendering it to HTML, and finally hydrating it on the client. If you are looking for integration with traditional server-side frameworks, check out the [Backend Integration guide](./backend-integration) instead.
 
 The following guide also assumes prior experience working with SSR in your framework of choice, and will only focus on Vite-specific integration details.
@@ -10,7 +10,7 @@ The following guide also assumes prior experience working with SSR in your frame
 This is a low-level API meant for library and framework authors. If your goal is to create an application, make sure to check out the higher-level SSR plugins and tools at [Awesome Vite SSR section](https://github.com/vitejs/awesome-vite#ssr) first. That said, many applications are successfully built directly on top of Vite's native low-level API.
 :::
 
-:::tip Help
+:::tip HILFE
 If you have questions, the community is usually helpful at [Vite Discord's #ssr channel](https://discord.gg/PkbxgzPhJv).
 :::
 
@@ -244,7 +244,7 @@ export function mySSRPlugin() {
 
 The options object in `load` and `transform` is optional, rollup is not currently using this object but may extend these hooks with additional metadata in the future.
 
-:::tip Note
+:::tip ANMERKUNG
 Before Vite 2.7, this was informed to plugin hooks with a positional `ssr` param instead of using the `options` object. All major frameworks and plugins are updated but you may find outdated posts using the previous API.
 :::
 
@@ -263,7 +263,7 @@ In some cases like `webworker` runtimes, you might want to bundle your SSR build
 
 The CLI commands `$ vite dev` and `$ vite preview` can also be used for SSR apps. You can add your SSR middlewares to the development server with [`configureServer`](/guide/api-plugin#configureserver) and to the preview server with [`configurePreviewServer`](/guide/api-plugin#configurepreviewserver).
 
-:::tip Note
+:::tip ANMERKUNG
 Use a post hook so that your SSR middleware runs _after_ Vite's middlewares.
 :::
 
