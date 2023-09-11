@@ -1,22 +1,22 @@
-# Worker Options
+# Worker-Optionen
 
-Options related to Web Workers.
+Optionen in Bezug auf Web Worker.
 
 ## worker.format
 
 - **Type:** `'es' | 'iife'`
 - **Default:** `'iife'`
 
-Output format for worker bundle.
+Ausgabeformat für Worker-Bundle.
 
 ## worker.plugins
 
 - **Type:** [`(Plugin | Plugin[])[]`](./shared-options#plugins)
 
-Vite plugins that apply to worker bundle. Note that [config.plugins](./shared-options#plugins) only applies to workers in dev, it should be configured here instead for build.
+Angabe der Plugins, die für das Worker-Bundle gelten. Beachten Sie, dass [config.plugins](./shared-options#plugins) nur für Worker in Dev gilt, es sollte stattdessen hier für Build konfiguriert werden.
 
 ## worker.rollupOptions
 
 - **Type:** [`RollupOptions`](https://rollupjs.org/configuration-options/)
 
-Rollup options to build worker bundle.
+Rollup-Optionen für die Erstellung des Worker-Bundles.
