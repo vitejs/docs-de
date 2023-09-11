@@ -1,21 +1,21 @@
-# Comparisons
+# Vergleiche
 
 ## WMR
 
-[WMR](https://github.com/preactjs/wmr) by the Preact team provides a similar feature set, and Vite 2.0's support for Rollup's plugin interface is inspired by it.
+[WMR](https://github.com/preactjs/wmr) vom Preact-Team bietet einen ähnlichen Funktionsumfang, und die Unterstützung von Vite 2.0 für die Plugin-Schnittstelle von Rollup ist davon inspiriert.
 
-WMR is mainly designed for [Preact](https://preactjs.com/) projects, and offers more integrated features such as pre-rendering. In terms of scope, it's closer to a Preact meta framework, with the same emphasis on compact size as Preact itself. If you are using Preact, WMR is likely going to offer a more fine-tuned experience.
+WMR wurde hauptsächlich für [Preact](https://preactjs.com/) Projekte entwickelt und bietet mehr integrierte Funktionen wie Pre-Rendering. Vom Umfang her ist es eher ein Preact-Meta-Framework, mit der gleichen Betonung auf kompakter Größe wie Preact selbst. Wenn Sie Preact verwenden, bietet WMR wahrscheinlich eine besser abgestimmte Erfahrung.
 
 ## @web/dev-server
 
-[@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) (previously `es-dev-server`) is a great project and Vite 1.0's Koa-based server setup was inspired by it.
+[@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) (vorher `es-dev-server`) ist ein großartiges Projekt und die Koa-basierte Servereinrichtung von Vite 1.0 wurde davon inspiriert.
 
-`@web/dev-server` is a bit lower-level in terms of scope. It does not provide official framework integrations, and requires manually setting up a Rollup configuration for the production build.
+`@web/dev-server` ist vom Umfang her etwas weniger umfangreich. Er bietet keine offiziellen Framework-Integrationen und erfordert das manuelle Einrichten einer Rollup-Konfiguration für den Produktions-Build.
 
-Overall, Vite is a more opinionated / higher-level tool that aims to provide a more out-of-the-box workflow. That said, the `@web` umbrella project contains many other excellent tools that may benefit Vite users as well.
+Alles in allem ist Vite ein eher meinungsbildendes / übergeordnetes Tool, das darauf abzielt, einen sofort einsetzbaren Workflow zu bieten. Abgesehen davon enthält das `@web`-Schirmprojekt viele andere hervorragende Tools, die auch für Vite-Benutzer von Nutzen sein können.
 
 ## Snowpack
 
-[Snowpack](https://www.snowpack.dev/) was also a no-bundle native ESM dev server, very similar in scope to Vite. The project is no longer being maintained. The Snowpack team is now working on [Astro](https://astro.build/), a static site builder powered by Vite. The Astro team is now an active player in the ecosystem, and they are helping to improve Vite.
+[Snowpack](https://www.snowpack.dev/) war ebenfalls ein nativer ESM-Entwicklungsserver ohne Bündel, der Vite sehr ähnlich ist. Das Projekt wird nicht mehr gepflegt. Das Snowpack-Team arbeitet jetzt an [Astro](https://astro.build/), einem Static Site Builder, der auf Vite basiert. Das Astro-Team ist jetzt ein aktiver Akteur im Ökosystem und hilft bei der Verbesserung von Vite.
 
-Aside from different implementation details, the two projects shared a lot in terms of technical advantages over traditional tooling. Vite's dependency pre-bundling is also inspired by Snowpack v1 (now [`esinstall`](https://github.com/snowpackjs/snowpack/tree/main/esinstall)). Some of the main differences between the two projects are listed in [the v2 Comparisons Guide](https://v2.vitejs.dev/guide/comparisons).
+Abgesehen von unterschiedlichen Implementierungsdetails haben die beiden Projekte viele technische Vorteile gegenüber herkömmlichen Werkzeugen. Die Vorbündelung von Abhängigkeiten in Vite ist auch von Snowpack v1 (jetzt [`esinstall`](https://github.com/snowpackjs/snowpack/tree/main/esinstall)) inspiriert. Einige der Hauptunterschiede zwischen den beiden Projekten sind in [the v2 Comparisons Guide](https://v2.vitejs.dev/guide/comparisons) aufgeführt.
