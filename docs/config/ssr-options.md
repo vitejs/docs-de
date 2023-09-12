@@ -1,25 +1,25 @@
-# SSR Options
+# SSR Optionen
 
 ## ssr.external
 
 - **Type:** `string[]`
 - **Related:** [SSR Externals](/guide/ssr#ssr-externals)
 
-Force externalize dependencies for SSR.
+Erzwingen Sie die Externalisierung von Abhängigkeiten für SSR.
 
 ## ssr.noExternal
 
 - **Type:** `string | RegExp | (string | RegExp)[] | true`
 - **Related:** [SSR Externals](/guide/ssr#ssr-externals)
 
-Prevent listed dependencies from being externalized for SSR. If `true`, no dependencies are externalized.
+Verhindert, dass aufgelistete Abhängigkeiten für SSR externalisiert werden. Wenn `true`, werden keine Abhängigkeiten externalisiert.
 
 ## ssr.target
 
 - **Type:** `'node' | 'webworker'`
 - **Default:** `node`
 
-Build target for the SSR server.
+Build-Ziel für den SSR-Server.
 
 ## ssr.format
 
@@ -27,4 +27,4 @@ Build target for the SSR server.
 - **Type:** `'esm' | 'cjs'`
 - **Default:** `esm`
 
-Build format for the SSR server. Since Vite v3 the SSR build generates ESM by default. `'cjs'` can be selected to generate a CJS build, but it isn't recommended. The option is left marked as experimental to give users more time to update to ESM. CJS builds require complex externalization heuristics that aren't present in the ESM format.
+Build-Format für den SSR-Server. Seit Vite v3 erzeugt der SSR-Build standardmäßig ESM. Die Option "cjs" kann ausgewählt werden, um einen CJS-Build zu erzeugen, wird aber nicht empfohlen. Die Option ist als experimentell gekennzeichnet, um den Benutzern mehr Zeit für die Aktualisierung auf ESM zu geben. CJS-Builds erfordern komplexe Externalisierungsheuristiken, die im ESM-Format nicht vorhanden sind.
