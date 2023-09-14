@@ -1,7 +1,3 @@
----
-outline: [2, 3]
----
-
 # Wieso Vite?
 
 ## Die Problematiken

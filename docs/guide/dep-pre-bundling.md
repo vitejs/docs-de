@@ -1,7 +1,3 @@
----
-outline: [2, 3]
----
-
 # Vorbündeln von Abhängigkeiten
 
 Wenn Sie `vite` zum ersten Mal ausführen, verpackt Vite Ihre Projektabhängigkeiten, bevor Ihre Website lokal geladen wird. Dies geschieht standardmäßig automatisch und transparent.

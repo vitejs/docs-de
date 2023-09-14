@@ -1,7 +1,3 @@
----
-outline: [2, 3]
----
-
 # Umgang mit statischen Assets
 
 - Verwandt: [Öffentlicher Basispfad](./build#public-base-path)

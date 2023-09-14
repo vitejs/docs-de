@@ -345,10 +345,14 @@ export default defineConfig({
             {
               text: 'Worker-Optionen',
               link: '/config/worker-options'
-            }
-          ]
-        }
-      ]
-    }
-  }
+            },
+          ],
+        },
+      ],
+    },
+
+    outline: {
+      level: [2, 3],
+    },
+  },
 })
