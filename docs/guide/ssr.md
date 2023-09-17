@@ -264,11 +264,3 @@ Die CLI-Befehle `$ vite dev` und `$ vite preview` können auch für SSR-Anwendun
 :::tip HINWEIS
 Verwenden Sie einen Post-Hook, damit Ihre SSR-Middleware _nach_ den Mittelwaren von Vite ausgeführt wird.
 :::
-
-## SSR-Format
-
-Standardmäßig generiert Vite das SSR-Bundle in ESM. Es gibt experimentelle Unterstützung für die Konfiguration von `ssr.format`, aber es wird nicht empfohlen. Zukünftige Bemühungen in Bezug auf die SSR-Entwicklung werden auf ESM basieren, und CommonJS bleibt aus Gründen der Abwärtskompatibilität verfügbar. Wenn die Verwendung von ESM für SSR in Ihrem Projekt nicht möglich ist, können Sie `legacy.buildSsrCjsExternalHeuristics: true` setzen, um ein CJS-Bundle zu generieren, das dieselben [Externalisierung-Heuristiken von Vite v2](https://v2.vitejs.dev/guide/ssr.html#ssr-externals) verwendet.
-
-:::warning Warnung
-Die experimentellen Optionen `legacy.buildSsrCjsExternalHeuristics` und `ssr.format: 'cjs'` werden in Vite 5 entfernt. Weitere Informationen und Feedback finden Sie in dieser Diskussion](https://github.com/vitejs/vite/discussions/13816).
-:::
