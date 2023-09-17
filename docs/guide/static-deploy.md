@@ -208,7 +208,7 @@ Erfahren Sie mehr über die [Git-Integration von Vercel](https://vercel.com/docs
 1. Installieren Sie das [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/get-started/).
 2. Authentifizieren Sie Wrangler mit Ihrem Cloudflare-Konto, indem Sie `wrangler login` ausführen.
 3. Führen Sie Ihren Build-Befehl aus.
-4. Bereitstellen Sie mit `npx wrangler pages publish dist`.
+4. Stellen Sie es mit `npx wrangler pages deploy dist` bereit.
 
 ```bash
 # Installieren Sie das Wrangler CLI
