@@ -12,7 +12,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    // vite.config.js
    export default defineConfig({
      build: {
-       // Generiere manifest.json in outDir
+       // generiert .vite/manifest.json in outDir
        manifest: true,
        rollupOptions: {
          // Überschreibe den Standard-.html-Einstieg
@@ -56,7 +56,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    </script>
    ```
 
-3. Für die Produktion: Nach Ausführung von `vite build` wird eine Datei `manifest.json` neben anderen Asset-Dateien generiert. Eine Beispieldatei für das Manifest sieht so aus:
+3. Für die Produktion: Nach Ausführung von `vite build` wird eine Datei `.vite/manifest.json` neben anderen Asset-Dateien generiert. Eine Beispieldatei für das Manifest sieht so aus:
 
    ```json
    {

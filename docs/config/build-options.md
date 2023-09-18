@@ -163,7 +163,7 @@ Bauen Sie als Bibliothek. `entry` ist erforderlich, da die Bibliothek HTML nicht
 - **Standard:** `false`
 - **Verwandt:** [Backend-Integration](/guide/backend-integration)
 
-Wenn auf `true` gesetzt, wird der Build auch eine `manifest.json`-Datei generieren, die eine Zuordnung von nicht gehashten Asset-Dateinamen zu ihren gehashten Versionen enthält, die dann von einem Server-Framework verwendet werden kann, um die richtigen Asset-Links zu rendern. Wenn der Wert eine Zeichenkette ist, wird er als Name der Manifestdatei verwendet.
+Wenn auf `true` gesetzt, wird der Build auch eine `.vite/manifest.json`-Datei generieren, die eine Zuordnung von nicht gehashten Asset-Dateinamen zu ihren gehashten Versionen enthält, die dann von einem Server-Framework verwendet werden kann, um die richtigen Asset-Links zu rendern. Wenn der Wert eine Zeichenkette ist, wird er als Name der Manifestdatei verwendet.
 
 ## build.ssrManifest
 
