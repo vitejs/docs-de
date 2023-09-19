@@ -176,7 +176,7 @@ Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann igno
 
 ## server.watch
 
-- **Typ:** `object`
+- **Typ:** `object | null`
 
 Optionen für den Dateisystem-Watcher, die an [chokidar](https://github.com/paulmillr/chokidar#api) weitergegeben werden.
 
@@ -196,6 +196,8 @@ export default defineConfig({
   }
 })
 ```
+
+Wenn auf `null` gesetzt, dann werden keine Dateien überwacht. `server.watcher` stellt einen kompatiblen Ereignis-Emitter zur Verfügung, aber der Aufruf von `add` oder `unwatch` hat keine Wirkung.
 
 ::: warning Verwendung von Vite unter Windows Subsystem for Linux (WSL) 2
 
