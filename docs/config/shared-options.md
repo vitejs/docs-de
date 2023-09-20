@@ -49,7 +49,7 @@ Because it's implemented as straightforward text replacements without any syntax
 For example, `process.env.FOO` and `__APP_VERSION__` are good fits. But `process` or `global` should not be put into this option. Variables can be shimmed or polyfilled instead.
 :::
 
-::: :::tip ANMERKUNG
+:::tip ANMERKUNG
 For TypeScript users, make sure to add the type declarations in the `env.d.ts` or `vite-env.d.ts` file to get type checks and Intellisense.
 
 Example:
@@ -61,7 +61,7 @@ declare const __APP_VERSION__: string
 
 :::
 
-::: :::tip ANMERKUNG
+:::tip ANMERKUNG
 Since dev and build implement `define` differently, we should avoid some use cases to avoid inconsistency.
 
 Example:
