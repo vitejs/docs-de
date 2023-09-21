@@ -17,6 +17,49 @@
     "build-tool",
     "vite"
   ],
+  "main": "./dist/node/index.js",
+  "types": "./dist/node/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/node/index.d.ts",
+        "default": "./dist/node/index.js"
+      },
+      "require": {
+        "types": "./index.d.cts",
+        "default": "./index.cjs"
+      }
+    },
+    "./client": {
+      "types": "./client.d.ts"
+    },
+    "./dist/client/*": "./dist/client/*",
+    "./types/*": {
+      "types": "./types/*"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "client.d.ts",
+    "index.cjs",
+    "index.d.cts",
+    "types"
+  ],
+  "engines": {
+    "node": "^18.0.0 || >=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitejs/vite.git",
+    "directory": "packages/vite"
+  },
+  "bugs": {
+    "url": "https://github.com/vitejs/vite/issues"
+  },
+  "homepage": "https://github.com/vitejs/vite/tree/main/#readme",
+  "funding": "https://github.com/vitejs/vite?sponsor=1",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "postinstall": "simple-git-hooks",
