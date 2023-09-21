@@ -6,7 +6,7 @@ head:
       content: website
   - - meta
     - property: og:title
-      content: Announcing Vite 3
+      content: Ankündigung von Vite 3
   - - meta
     - property: og:image
       content: https://vitejs.dev/og-image-announcing-vite3.png
@@ -15,49 +15,49 @@ head:
       content: https://vitejs.dev/blog/announcing-vite3
   - - meta
     - property: og:description
-      content: Vite 3 Release Announcement
+      content: Ankündigung der Veröffentlichung von Vite 3
   - - meta
     - name: twitter:card
       content: summary_large_image
 ---
 
-# Vite 3.0 is out!
+# Vite 3.0 ist da!
 
-_July 23, 2022_ - Check out the [Vite 4.0 announcement](./announcing-vite4.md)
+_23. Juli 2022_ - Schauen Sie sich die [Ankündigung von Vite 4.0](./announcing-vite4.md) an.
 
-In February last year, [Evan You](https://twitter.com/youyuxi) released Vite 2. Since then, its adoption has grown non-stop, reaching more than 1 million npm downloads per week. A sprawling ecosystem rapidly formed after the release. Vite is powering a renewed innovation race in Web frameworks. [Nuxt 3](https://v3.nuxtjs.org/) uses Vite by default. [SvelteKit](https://kit.svelte.dev/), [Astro](https://astro.build/), [Hydrogen](https://hydrogen.shopify.dev/), and [SolidStart](https://docs.solidjs.com/start) are all built with Vite. [Laravel has now decided to use Vite by default](https://laravel.com/docs/9.x/vite). [Vite Ruby](https://vite-ruby.netlify.app/) shows how Vite can improve Rails DX. [Vitest](https://vitest.dev) is making strides as a Vite-native alternative to Jest. Vite is behind [Cypress](https://docs.cypress.io/guides/component-testing/writing-your-first-component-test) and [Playwright](https://playwright.dev/docs/test-components)'s new Component Testing features, Storybook has [Vite as an official builder](https://github.com/storybookjs/builder-vite). And [the list goes on](https://patak.dev/vite/ecosystem.html). Maintainers from most of these projects got involved in improving the Vite core itself, working closely with the Vite [team](https://vitejs.dev/team) and other contributors.
+Im Februar letzten Jahres veröffentlichte [Evan You](https://twitter.com/youyuxi) Vite 2. Seitdem hat seine Verbreitung stetig zugenommen und erreicht mehr als 1 Million npm-Downloads pro Woche. Nach der Veröffentlichung bildete sich schnell ein weitläufiges Ökosystem. Vite treibt ein erneuertes Rennen um Innovationen in Web-Frameworks an. [Nuxt 3](https://v3.nuxtjs.org/) verwendet standardmäßig Vite. [SvelteKit](https://kit.svelte.dev/), [Astro](https://astro.build/), [Hydrogen](https://hydrogen.shopify.dev/) und [SolidStart](https://docs.solidjs.com/start) wurden alle mit Vite erstellt. [Laravel hat sich nun entschieden, standardmäßig Vite zu verwenden](https://laravel.com/docs/9.x/vite). [Vite Ruby](https://vite-ruby.netlify.app/) zeigt, wie Vite die Entwicklererfahrung von Rails verbessern kann. [Vitest](https://vitest.dev) macht als Vite-native Alternative zu Jest Fortschritte. Vite steht hinter den neuen Komponententestfunktionen von [Cypress](https://docs.cypress.io/guides/component-testing/writing-your-first-component-test) und [Playwright](https://playwright.dev/docs/test-components), Storybook hat [Vite als offiziellen Builder](https://github.com/storybookjs/builder-vite). Und [die Liste geht weiter](https://patak.dev/vite/ecosystem.html). Die Betreuer dieser Projekte waren an der Verbesserung des Vite-Kerns beteiligt und arbeiteten eng mit dem Vite [Team](https://vitejs.dev/team) und anderen Beitragenden zusammen.
 
-![Vite 3 Announcement Cover Image](/og-image-announcing-vite3.png)
+![Titelbild der Ankündigung von Vite 3](/og-image-announcing-vite3.png)
 
-Today, 16 months from the v2 launch we are happy to announce the release of Vite 3. We decided to release a new Vite major at least every year to align with [Node.js's EOL](https://nodejs.org/en/about/releases/), and take the opportunity to review Vite's API regularly with a short migration path for projects in the ecosystem.
+Heute, 16 Monate nach dem Start von V2, freuen wir uns, die Veröffentlichung von Vite 3 anzukündigen. Wir haben uns entschieden, mindestens einmal im Jahr eine neue Vite-Version zu veröffentlichen, um sie mit dem [Ende des Lebenszyklus von Node.js](https://nodejs.org/en/about/releases/) abzustimmen, und die Gelegenheit zu nutzen, Vites API regelmäßig mit einem kurzen Migrationspfad für Projekte im Ökosystem zu überprüfen.
 
-Quick links:
+Schnellzugriffe:
 
-- [Docs](/)
-- [Migration Guide](https://v3.vitejs.dev/guide/migration.html)
-- [Changelog](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#300-2022-07-13)
+- [Dokumentation](/)
+- [Migrationsleitfaden](https://v3.vitejs.dev/guide/migration.html)
+- [Änderungsprotokoll](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#300-2022-07-13)
 
-If you are new to Vite, we recommend reading the [Why Vite Guide](https://vitejs.dev/guide/why.html). Then check out [the Getting Started](https://vitejs.dev/guide/) and [Features guide](https://vitejs.dev/guide/features) to see what Vite provides out of the box. As usual, contributions are welcome at [GitHub](https://github.com/vitejs/vite). More than [600 collaborators](https://github.com/vitejs/vite/graphs/contributors) have helped improve Vite so far. Follow the updates on [Twitter](https://twitter.com/vite_js), or join discussions with other Vite users on our [Discord chat server](http://chat.vitejs.dev/).
+Wenn Sie neu bei Vite sind, empfehlen wir Ihnen, den [Leitfaden "Warum Vite"](https://vitejs.dev/guide/why.html) zu lesen. Werfen Sie dann einen Blick auf den [Einstieg](https://vitejs.dev/guide/) und den [Funktionsleitfaden](https://vitejs.dev/guide/features), um zu sehen, was Vite von Anfang an bietet. Beiträge sind wie immer auf [GitHub](https://github.com/vitejs/vite) willkommen. Bisher haben mehr als [600 Mitwirkende](https://github.com/vitejs/vite/graphs/contributors) dazu beigetragen, Vite zu verbessern. Folgen Sie den Updates auf [Twitter](https://twitter.com/vite_js) oder nehmen Sie an Diskussionen mit anderen Vite-Nutzern auf unserem [Discord-Chat-Server](http://chat.vitejs.dev/) teil.
 
-## New Documentation
+## Neue Dokumentation
 
-Go to [vitejs.dev](https://vitejs.dev) to enjoy the new v3 docs. Vite is now using the new [VitePress](https://vitepress.vuejs.org) default theme, with a stunning dark mode between other features.
+Gehen Sie zu [vitejs.dev](https://vitejs.dev), um die neuen V3-Dokumente zu genießen. Vite verwendet jetzt das neue Standardthema von [VitePress](https://vitepress.vuejs.org) mit einem atemberaubenden Dark Mode und anderen Funktionen.
 
-[![Vite documentation frontpage](../images/v3-docs.png)](https://vitejs.dev)
+[![Titelseite der Vite-Dokumentation](../images/v3-docs.png)](https://vitejs.dev)
 
-Several projects in the ecosystem have already migrated to it (see [Vitest](https://vitest.dev), [vite-plugin-pwa](https://vite-plugin-pwa.netlify.app/), and [VitePress](https://vitepress.vuejs.org/) itself).
+Mehrere Projekte im Ökosystem sind bereits auf sie umgestiegen (siehe [Vitest](https://vitest.dev), [vite-plugin-pwa](https://vite-plugin-pwa.netlify.app/) und [VitePress](https://vitepress.vuejs.org/) selbst).
 
-If you need to access the Vite 2 docs, they will remain online at [v2.vitejs.dev](https://v2.vitejs.dev). There is also a new [main.vitejs.dev](https://main.vitejs.dev) subdomain, where each commit to Vite’s main branch is auto deployed. This is useful when testing beta versions or contributing to the core’s development.
+Wenn Sie auf die Vite-2-Dokumentation zugreifen müssen, bleibt sie unter [v2.vitejs.dev](https://v2.vitejs.dev) online verfügbar. Es gibt auch eine neue Unterdomäne [main.vitejs.dev](https://main.vitejs.dev), auf der jeder Commit im Hauptzweig von Vite automatisch bereitgestellt wird. Dies ist nützlich, wenn Sie Beta-Versionen testen oder zur Entwicklung des Kerns beitragen.
 
-There is also now an official Spanish translation, that has been added to the previous Chinese and Japanese translations:
+Es gibt jetzt auch eine offizielle spanische Übersetzung, die zu den bisherigen chinesischen und japanischen Übersetzungen hinzugefügt wurde:
 
 - [简体中文](https://cn.vitejs.dev/)
 - [日本語](https://ja.vitejs.dev/)
 - [Español](https://es.vitejs.dev/)
 
-## Create Vite Starter Templates
+## Erstellung von Vite Startervorlagen
 
-[create-vite](/guide/#trying-vite-online) templates have been a great tool to quickly test Vite with your favorite framework. In Vite 3, all of the templates got a new theme in line with the new docs. Open them online and start playing with Vite 3 now:
+Die [create-vite](/guide/#trying-vite-online)-Vorlagen sind ein großartiges Werkzeug, um Vite schnell mit Ihrem Lieblingsframework zu testen. In Vite 3 haben alle Vorlagen ein neues Thema im Einklang mit den neuen Dokumenten erhalten. Öffnen Sie sie online und beginnen Sie jetzt mit Vite 3 zu experimentieren:
 
 <div class="stackblitz-links">
 <a target="_blank" href="https://vite.new"><img width="75" height="75" src="../images/vite.svg" alt="Vite logo"></a>
@@ -97,9 +97,9 @@ There is also now an official Spanish translation, that has been added to the pr
 }
 </style>
 
-The theme is now shared by all templates. This should help better convey the scope for these starters as minimal templates to get started with Vite. For more complete solutions including linting, testing setup, and other features, there are official Vite-powered templates for some frameworks like [create-vue](https://github.com/vuejs/create-vue) and [create-svelte](https://github.com/sveltejs/kit). There is a community-maintained list of templates at [Awesome Vite](https://github.com/vitejs/awesome-vite#templates).
+Das Thema wird nun von allen Vorlagen gemeinsam genutzt. Dies sollte helfen, den Umfang dieser Startervorlagen als minimale Vorlagen für den Einstieg mit Vite besser zu vermitteln. Für umfassendere Lösungen, einschließlich Linting, Testeinrichtung und anderen Funktionen, gibt es offizielle Vite-basierte Vorlagen für einige Frameworks wie [create-vue](https://github.com/vuejs/create-vue) und [create-svelte](https://github.com/sveltejs/kit). Es gibt eine von der Community gepflegte Liste von Vorlagen unter [Awesome Vite](https://github.com/vitejs/awesome-vite#templates).
 
-## Dev Improvements
+## Entwicklungsverbesserungen
 
 ### Vite CLI
 
@@ -110,20 +110,20 @@ The theme is now shared by all templates. This should help better convey the sco
   <span style="color:green"><b>➜</b></span>  <span style="color:gray"><b>Network</b>: use --host to expose</span>
 </pre>
 
-Apart from the CLI’s aesthetics improvements, you’ll notice that the default dev server port is now 5173 and the preview server listening at 4173. This change ensures Vite will avoid collisions with other tools.
+Neben den ästhetischen Verbesserungen der CLI werden Sie feststellen, dass der Standardentwicklungsserverport jetzt 5173 und der Vorschau-Serverport 4173 ist. Diese Änderung stellt sicher, dass Vite keine Konflikte mit anderen Tools verursacht.
 
-### Improved WebSocket Connection Strategy
+### Verbesserte WebSocket-Verbindungstrategie
 
-One of the pain points of Vite 2 was configuring the server when running behind a proxy. Vite 3 changes the default connection scheme so it works out of the box in most scenarios. All these setups are now tested as part of the Vite Ecosystem CI through [`vite-setup-catalogue`](https://github.com/sapphi-red/vite-setup-catalogue).
+Ein Schmerzpunkt von Vite 2 war die Konfiguration des Servers beim Betrieb hinter einem Proxy. Vite 3 ändert das Standardverbindungsschema, sodass es in den meisten Szenarien von Anfang an funktioniert. Alle diese Setups werden nun als Teil des Vite-Ecosystem-CI durch [`vite-setup-catalogue`](https://github.com/sapphi-red/vite-setup-catalogue) getestet.
 
-### Cold Start Improvements
+### Verbesserungen bei Kaltstarts
 
-Vite now avoids full reload during cold start when imports are injected by plugins while crawling the initial statically imported modules ([#8869](https://github.com/vitejs/vite/issues/8869)).
+Vite vermeidet jetzt während eines Kaltstarts einen vollständigen Neustart, wenn Imports durch Plugins injiziert werden, während die anfänglich statisch importierten Module durchsucht werden ([#8869](https://github.com/vitejs/vite/issues/8869)).
 
 <details>
-  <summary><b>Click to learn more</b></summary>
+  <summary><b>Hier klicken, um mehr zu erfahren</b></summary>
 
-In Vite 2.9, both the scanner and optimizer were run in the background. In the best scenario, where the scanner would find every dependency, no reload was needed in cold start. But if the scanner missed a dependency, a new optimization phase and then a reload were needed. Vite was able to avoid some of these reloads in v2.9, as we detected if the new optimized chunks were compatible with the ones the browser had. But if there was a common dep, the sub-chunks could change and a reload was required to avoid duplicated state. In Vite 3, the optimized deps aren't handed to the browser until the crawling of static imports is done. A quick optimization phase is issued if there is a missing dep (for example, injected by a plugin), and only then, the bundled deps are sent. So, a page reload is no longer needed for these cases.
+In Vite 2.9 wurden sowohl der Scanner als auch der Optimierer im Hintergrund ausgeführt. Im besten Fall, in dem der Scanner jede Abhängigkeit gefunden hätte, war kein Neustart während eines Kaltstarts erforderlich. Aber wenn der Scanner eine Abhängigkeit verpasste, war eine neue Optimierungsphase und dann ein Neustart erforderlich. Vite konnte einige dieser Neustarts in v2.9 vermeiden, indem er erkannte, ob die neuen optimierten Chunks mit denjenigen kompatibel waren, die der Browser hatte. Aber wenn es eine gemeinsame Abhängigkeit gab, konnten sich die Unterchunks ändern, und ein Neustart war erforderlich, um doppelte Zustände zu vermeiden. In Vite 3 werden die optimierten Abhängigkeiten dem Browser erst übergeben, wenn das Durchsuchen der statischen Imports abgeschlossen ist. Eine schnelle Optimierungsphase wird ausgelöst, wenn eine Abhängigkeit fehlt (z. B. durch ein Plugin injiziert), und erst dann werden die gebündelten Abhängigkeiten gesendet. Ein Seitenneustart ist also nicht mehr erforderlich.
 
 </details>
 
@@ -131,41 +131,41 @@ In Vite 2.9, both the scanner and optimizer were run in the background. In the b
 
 ### import.meta.glob
 
-`import.meta.glob` support was rewritten. Read about the new features in the [Glob Import Guide](/guide/features.html#glob-import):
+Die Unterstützung für `import.meta.glob` wurde neu geschrieben. Lesen Sie mehr über die neuen Funktionen in der [Glob Import Guide](/guide/features.html#glob-import):
 
-[Multiple Patterns](/guide/features.html#multiple-patterns) can be passed as an array
+[Mehrere Muster](/guide/features.html#multiple-patterns) können als Array übergeben werden
 
 ```js
 import.meta.glob(['./dir/*.js', './another/*.js'])
 ```
 
-[Negative Patterns](/guide/features.html#negative-patterns) are now supported (prefixed with `!`) to ignore some specific files
+[Negative Muster](/guide/features.html#negative-patterns) werden jetzt unterstützt (mit `!`), um bestimmte Dateien zu ignorieren
 
 ```js
 import.meta.glob(['./dir/*.js', '!**/bar.js'])
 ```
 
-[Named Imports](/guide/features.html#named-imports) can be specified to improve tree-shaking
+[Benannte Imports](/guide/features.html#named-imports) können angegeben werden, um das Tree-Shaking zu verbessern
 
 ```js
 import.meta.glob('./dir/*.js', { import: 'setup' })
 ```
 
-[Custom Queries](/guide/features.html#custom-queries) can be passed to attach metadata
+[Benutzerdefinierte Abfragen](/guide/features.html#custom-queries) können übergeben werden, um Metadaten anzuhängen
 
 ```js
 import.meta.glob('./dir/*.js', { query: { custom: 'data' } })
 ```
 
-[Eager Imports](/guide/features.html#glob-import) is now passed as a flag
+[Eager Imports](/guide/features.html#glob-import) wird jetzt als Flag übergeben
 
 ```js
 import.meta.glob('./dir/*.js', { eager: true })
 ```
 
-### Aligning WASM Import with Future Standards
+### Abstimmung der WASM-Importe auf zukünftige Standards
 
-The WebAssembly import API has been revised to avoid collisions with future standards and to make it more flexible:
+Die WebAssembly-Import-API wurde überarbeitet, um Kollisionen mit zukünftigen Standards zu vermeiden und flexibler zu gestalten:
 
 ```js
 import init from './example.wasm?init'
@@ -175,37 +175,37 @@ init().then((instance) => {
 })
 ```
 
-Learn more in the [WebAssembly guide](/guide/features.html#webassembly)
+Erfahren Sie mehr im [WebAssembly-Guide](/guide/features.html#webassembly)
 
-## Build Improvements
+## Verbesserungen beim Erstellen
 
-### ESM SSR Build by Default
+### ESM-SSR-Build standardmäßig
 
-Most SSR frameworks in the ecosystem were already using ESM builds. So, Vite 3 makes ESM the default format for SSR builds. This allows us to streamline previous [SSR externalization heuristics](https://vitejs.dev/guide/ssr.html#ssr-externals), externalizing dependencies by default.
+Die meisten SSR-Frameworks im Ökosystem verwendeten bereits ESM-Builds. Daher macht Vite 3 ESM zum Standardformat für SSR-Builds. Dies ermöglicht es uns, die bisherige [SSR-Externalisierungsheuristik](https://vitejs.dev/guide/ssr.html#ssr-externals) zu optimieren, indem Abhängigkeiten standardmäßig externalisiert werden.
 
-### Improved Relative Base Support
+### Verbesserte Unterstützung für relative Basis
 
-Vite 3 now properly supports relative base (using `base: ''`), allowing built assets to be deployed to different bases without re-building. This is useful when the base isn't known at build time, for example when deploying to content-addressable networks like [IPFS](https://ipfs.io/).
+Vite 3 unterstützt jetzt eine relative Basis (mit `base: ''`) ordnungsgemäß, sodass erstellte Ressourcen ohne erneutes Erstellen an verschiedene Basen bereitgestellt werden können. Dies ist nützlich, wenn die Basis zur Build-Zeit nicht bekannt ist, beispielsweise beim Bereitstellen auf inhaltsadressierbaren Netzwerken wie [IPFS](https://ipfs.io/).
 
-## Experimental Features
+## Experimentelle Funktionen
 
-### Built Asset Paths fine-grained Control (Experimental)
+### Feinere Steuerung der Build-Asset-Pfade (experimentell)
 
-There are other deploy scenarios where this isn't enough. For example, if the generated hashed assets need to be deployed to a different CDN from the public files, then finer-grained control is required over path generation at build time. Vite 3 provides an experimental API to modify the built file paths. Check [Build Advanced Base Options](/guide/build.html#advanced-base-options) for more information.
+Es gibt andere Bereitstellungsszenarien, in denen dies nicht ausreicht. Wenn beispielsweise die generierten gehashten Assets auf einen anderen CDN als die öffentlichen Dateien bereitgestellt werden müssen, ist eine feinere Steuerung der Pfadgenerierung zur Build-Zeit erforderlich. Vite 3 bietet eine experimentelle API zur Modifizierung der erstellten Dateipfade. Weitere Informationen finden Sie unter [Erweiterte Basiseinstellungen erstellen](/guide/build.html#advanced-base-options).
 
-### Esbuild Deps Optimization at Build Time (Experimental)
+### Esbuild-Abhängigkeitsoptimierung zur Build-Zeit (experimentell)
 
-One of the main differences between dev and build time is how Vite handles dependencies. During build time, [`@rollup/plugin-commonjs`](https://github.com/rollup/plugins/tree/master/packages/commonjs) is used to allow importing CJS only dependencies (like React). When using the dev server, esbuild is used instead to pre-bundle and optimize dependencies, and an inline interop scheme is applied while transforming user code importing CJS deps. During the development of Vite 3, we introduced the changes needed to also allow the use of [esbuild to optimize dependencies during build time](https://v3.vitejs.dev/guide/migration.html#using-esbuild-deps-optimization-at-build-time). [`@rollup/plugin-commonjs`](https://github.com/rollup/plugins/tree/master/packages/commonjs) can then be avoided, making dev and build time work in the same way.
+Einer der Hauptunterschiede zwischen Entwicklungs- und Build-Zeit besteht darin, wie Vite Abhängigkeiten behandelt. Während der Build-Zeit wird [`@rollup/plugin-commonjs`](https://github.com/rollup/plugins/tree/master/packages/commonjs) verwendet, um das Importieren von CJS-Only-Abhängigkeiten (wie React) zu ermöglichen. Bei Verwendung des Entwicklungsservers wird stattdessen Esbuild verwendet, um Abhängigkeiten vorzubündeln und zu optimieren, und es wird ein Inline-Interop-Schema angewendet, während der Benutzercode, der CJS-Abhängigkeiten importiert, transformiert wird. Während der Entwicklung von Vite 3 haben wir die Änderungen eingeführt, die erforderlich sind, um auch die Verwendung der [Esbuild-Abhängigkeitsoptimierung zur Build-Zeit](https://v3.vitejs.dev/guide/migration.html#using-esbuild-deps-optimization-at-build-time) zu ermöglichen. [`@rollup/plugin-commonjs`](https://github.com/rollup/plugins/tree/master/packages/commonjs) kann dann vermieden werden, um Entwicklungs- und Build-Zeit auf die gleiche Weise arbeiten zu lassen.
 
-Given that Rollup v3 will be out in the next months, and we're going to follow up with another Vite major, we've decided to make this mode optional to reduce v3 scope and give Vite and the ecosystem more time to work out possible issues with the new CJS interop approach during build time. Frameworks may switch to using esbuild deps optimization during build time by default at their own pace before Vite 4.
+Da Rollup v3 in den nächsten Monaten veröffentlicht wird und wir einen weiteren Vite-Major veröffentlichen werden, haben wir beschlossen, diesen Modus optional zu machen, um den Vite 3-Bereich zu reduzieren und Vite und dem Ökosystem mehr Zeit zu geben, mögliche Probleme mit dem neuen CJS-Interop-Ansatz zur Build-Zeit zu beheben. Frameworks können zur Verwendung der Esbuild-Abhängigkeitsoptimierung zur Build-Zeit standardmäßig in ihrem eigenen Tempo wechseln, bevor Vite 4 erscheint.
 
-### HMR Partial Accept (Experimental)
+### HMR Partial Accept (experimentell)
 
-There is opt-in support for [HMR Partial Accept](https://github.com/vitejs/vite/pull/7324). This feature could unlock finer-grained HMR for framework components that export several bindings in the same module. You can learn more at [the discussion for this proposal](https://github.com/vitejs/vite/discussions/7309).
+Es gibt die Möglichkeit zur Aktivierung der [teilweisen HMR-Akzeptanz (HMR Partial Accept)](https://github.com/vitejs/vite/pull/7324). Diese Funktion könnte eine feinere HMR für Framework-Komponenten ermöglichen, die mehrere Bindungen im selben Modul exportieren. Weitere Informationen finden Sie in [der Diskussion zu diesem Vorschlag](https://github.com/vitejs/vite/discussions/7309).
 
-## Bundle Size Reduction
+## Reduzierung der Bundle-Größe
 
-Vite cares about its publish and install footprint; a fast installation of a new app is a feature. Vite bundles most of its dependencies and tries to use modern lightweight alternatives where possible. Continuing with this ongoing goal, Vite 3 publish size is 30% smaller than v2.
+Vite legt Wert auf den Veröffentlichungs- und Installations-Fußabdruck; eine schnelle Installation einer neuen Anwendung ist ein Merkmal. Vite bündelt die meisten seiner Abhängigkeiten und versucht, moderne, leichtgewichtige Alternativen zu verwenden, wo immer möglich. Im Rahmen dieses fortlaufenden Ziels ist die Veröffentlichungsgröße von Vite 3 um 30 % kleiner als die von Vite 2.
 
 |             | Publish Size | Install Size |
 | ----------- | :----------: | :----------: |
@@ -213,60 +213,60 @@ Vite cares about its publish and install footprint; a fast installation of a new
 | Vite 3.0.0  |    3.05MB    |    17.8MB    |
 | Reduction   |     -30%     |     -7%      |
 
-In part, this reduction was possible by making some dependencies that most users weren't needing optional. First, [Terser](https://github.com/terser/terser) is no longer installed by default. This dependency was no longer needed since we already made esbuild the default minifier for both JS and CSS in Vite 2. If you use `build.minify: 'terser'`, you'll need to install it (`npm add -D terser`). We also moved [node-forge](https://github.com/digitalbazaar/forge) out of the monorepo, implementing support for automatic https certificate generation as a new plugin: [`@vitejs/plugin-basic-ssl`](https://v3.vitejs.dev/guide/migration.html#automatic-https-certificate-generation). Since this feature only creates untrusted certificates that are not added to the local store, it didn't justify the added size.
+Ein Teil dieser Reduzierung wurde durch die Möglichkeit erreicht, einige Abhängigkeiten, die die meisten Benutzer nicht benötigten, optional zu machen. Erstens wird [Terser](https://github.com/terser/terser) nicht mehr standardmäßig installiert. Diese Abhängigkeit war nicht mehr erforderlich, da wir bereits in Vite 2 esbuild als den Standard-Minifizierer für JS und CSS verwendet haben. Wenn Sie `build.minify: 'terser'` verwenden, müssen Sie es jetzt manuell installieren (`npm add -D terser`). Außerdem haben wir [node-forge](https://github.com/digitalbazaar/forge) aus dem Monorepo entfernt und Unterstützung für die automatische Generierung von HTTPS-Zertifikaten als neues Plugin hinzugefügt: [`@vitejs/plugin-basic-ssl`](https://v3.vitejs.dev/guide/migration.html#automatic-https-certificate-generation). Da diese Funktion nur nicht vertrauenswürdige Zertifikate erstellt, die nicht im lokalen Speicher abgelegt werden, rechtfertigte sie nicht die zusätzliche Größe.
 
-## Bug Fixing
+## Fehlerbehebung
 
-A triaging marathon was spearheaded by [@bluwyoo](https://twitter.com/bluwyoo), [@sapphi_red](https://twitter.com/sapphi_red), that recently joined the Vite team. During the past three months, the Vite open issues were reduced from 770 to 400. And this dive was achieved while the newly open PRs were at an all-time high. At the same time, [@haoqunjiang](https://twitter.com/haoqunjiang) had also curated a comprehensive [overview of Vite issues](https://github.com/vitejs/vite/discussions/8232).
+Eine Triagierungsmarathon wurde von [@bluwyoo](https://twitter.com/bluwyoo), [@sapphi_red](https://twitter.com/sapphi_red) angeführt, die kürzlich dem Vite-Team beigetreten sind. In den letzten drei Monaten wurden die offenen Vite-Probleme von 770 auf 400 reduziert. Dieser Tauchgang wurde erreicht, während die neu eröffneten Pull-Anfragen auf einem Allzeithoch waren. Gleichzeitig hat [@haoqunjiang](https://twitter.com/haoqunjiang) eine umfassende [Übersicht über Vite-Probleme](https://github.com/vitejs/vite/discussions/8232) kuratiert.
 
-[![Graph of open issues and pull requests in Vite](../images/v3-open-issues-and-PRs.png)](https://www.repotrends.com/vitejs/vite)
+[![Diagramm der offenen Probleme und Pull-Anfragen in Vite](../images/v3-open-issues-and-PRs.png)](https://www.repotrends.com/vitejs/vite)
 
-[![Graph of new issues and pull requests in Vite](../images/v3-new-open-issues-and-PRs.png)](https://www.repotrends.com/vitejs/vite)
+[![Diagramm der neuen Probleme und Pull-Anfragen in Vite](../images/v3-new-open-issues-and-PRs.png)](https://www.repotrends.com/vitejs/vite)
 
-## Compatibility Notes
+## Kompatibilitätsnotizen
 
-- Vite no longer supports Node.js 12 / 13 / 15, which reached its EOL. Node.js 14.18+ / 16+ is now required.
-- Vite is now published as ESM, with a CJS proxy to the ESM entry for compatibility.
-- The Modern Browser Baseline now targets browsers which support the [native ES Modules](https://caniuse.com/es6-module), [native ESM dynamic import](https://caniuse.com/es6-module-dynamic-import), and [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta) features.
-- JS file extensions in SSR and library mode now use a valid extension (`js`, `mjs`, or `cjs`) for output JS entries and chunks based on their format and the package type.
+- Vite unterstützt nicht mehr Node.js 12 / 13 / 15, da sie das Ende ihres Lebenszyklus erreicht haben. Node.js 14.18+ / 16+ wird jetzt benötigt.
+- Vite wird jetzt als ESM (ECMAScript-Modul) veröffentlicht, mit einem CJS-Proxy zum ESM-Eintrag für die Kompatibilität.
+- Die Baseline für moderne Browser zielt jetzt auf Browser ab, die die [native ES-Module](https://caniuse.com/es6-module), [nativen ESM-Dynamic Import](https://caniuse.com/es6-module-dynamic-import) und [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta)-Funktionen unterstützen.
+- Die Dateierweiterungen für JS in SSR (Server-Side Rendering) und Bibliotheksmodus verwenden jetzt eine gültige Erweiterung (`js`, `mjs` oder `cjs`) für Ausgabe-JS-Einträge und -Chunks basierend auf ihrem Format und dem Pakettyp.
 
-Learn more in the [Migration Guide](https://v3.vitejs.dev/guide/migration.html).
+Erfahren Sie mehr im [Migrationsleitfaden](https://v3.vitejs.dev/guide/migration.html).
 
-## Upgrades to Vite Core
+## Upgrades für Vite Core
 
-While working towards Vite 3, we also improved the contributing experience for collaborators to [Vite Core](https://github.com/vitejs/vite).
+Während der Arbeit an Vite 3 haben wir auch die Mitarbeits-Erfahrung für Mitarbeiter am [Vite Core](https://github.com/vitejs/vite) verbessert.
 
-- Unit and E2E tests have been migrated to [Vitest](https://vitest.dev), providing a faster and more stable DX. This move also works as dog fooding for an important infrastructure project in the ecosystem.
-- VitePress build is now tested as part of CI.
-- Vite upgraded to [pnpm 7](https://pnpm.io/), following the rest of the ecosystem.
-- Playgrounds have been moved to [`/playgrounds`](https://github.com/vitejs/vite/tree/main/playground) out of packages directory.
-- The packages and playgrounds are now `"type": "module"`.
-- Plugins are now bundled using [unbuild](https://github.com/unjs/unbuild), and [plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx) and [plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) were moved to TypeScript.
+- Unit- und E2E-Tests wurden zu [Vitest](https://vitest.dev) migriert, was eine schnellere und stabilere DX (Entwicklererfahrung) bietet. Dieser Schritt diente auch als Eigenanwendung für ein wichtiges Infrastrukturprojekt in der Vite-Ökosystem.
+- Der VitePress-Build wird jetzt im Rahmen der CI getestet.
+- Vite wurde auf [pnpm 7](https://pnpm.io/) aktualisiert, um dem Rest des Ökosystems zu folgen.
+- Die Playgrounds wurden aus dem Verzeichnis "packages" in [`/playgrounds`](https://github.com/vitejs/vite/tree/main/playground) verschoben.
+- Die Pakete und Playgrounds haben jetzt `"type": "module"`.
+- Plugins werden jetzt mit [unbuild](https://github.com/unjs/unbuild) gebündelt, und [plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx) und [plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) wurden auf TypeScript umgestellt.
 
-## The Ecosystem is Ready for v3
+## Das Ökosystem ist bereit für Vite 3
 
-We have worked closely with projects in the ecosystem to ensure that frameworks powered by Vite are ready for Vite 3. [vite-ecosystem-ci](https://github.com/vitejs/vite-ecosystem-ci) allows us to run the CI's from the leading players in the ecosystem against Vite's main branch and receive timely reports before introducing a regression. Today's release should soon be compatible with most projects using Vite.
+Wir haben eng mit Projekten im Ökosystem zusammengearbeitet, um sicherzustellen, dass Frameworks, die von Vite angetrieben werden, bereit für Vite 3 sind. [vite-ecosystem-ci](https://github.com/vitejs/vite-ecosystem-ci) ermöglicht es uns, die CI's der führenden Player im Ökosystem gegen den Hauptzweig von Vite auszuführen und zeitnahe Berichte zu erhalten, bevor eine Regression eingeführt wird. Die heutige Veröffentlichung sollte bald mit den meisten Projekten, die Vite verwenden, kompatibel sein.
 
-## Acknowledgments
+## Danksagungen
 
-Vite 3 is the result of the aggregate effort of members of the [Vite Team](/team) working together with ecosystem project maintainers and other collaborators to Vite core.
+Vite 3 ist das Ergebnis der gemeinsamen Anstrengungen der Mitglieder des [Vite Teams](/team), die zusammen mit den Ökosystem-Projektwartungsmitarbeitern und anderen Mitarbeitern am Vite-Kern gearbeitet haben.
 
-We want to thank everyone that have implemented features, and fixes, given feedback, and have been involved in Vite 3:
+Wir möchten allen danken, die Funktionen und Fehler implementiert, Feedback gegeben und an Vite 3 gearbeitet haben:
 
-- Vite team members [@youyuxi](https://twitter.com/youyuxi), [@patak_dev](https://twitter.com/patak_dev), [@antfu7](https://twitter.com/antfu7), [@bluwyoo](https://twitter.com/bluwyoo), [@sapphi_red](https://twitter.com/sapphi_red), [@haoqunjiang](https://twitter.com/haoqunjiang), [@poyoho](https://github.com/poyoho), [@Shini_92](https://twitter.com/Shini_92), and [@retropragma](https://twitter.com/retropragma).
-- [@benmccann](https://github.com/benmccann), [@danielcroe](https://twitter.com/danielcroe), [@brillout](https://twitter.com/brillout), [@sheremet_va](https://twitter.com/sheremet_va), [@userquin](https://twitter.com/userquin), [@enzoinnocenzi](https://twitter.com/enzoinnocenzi), [@maximomussini](https://twitter.com/maximomussini), [@IanVanSchooten](https://twitter.com/IanVanSchooten), the [Astro team](https://astro.build/), and all other maintainers of frameworks and plugins in the ecosystem in that helped shape v3.
-- [@dominikg](https://github.com/dominikg) for his work on vite-ecosystem-ci.
-- [@ZoltanKochan](https://twitter.com/ZoltanKochan) for his work on [pnpm](https://pnpm.io/), and for his responsiveness when we needed support with it.
-- [@rixo](https://github.com/rixo) for HMR Partial Accept support.
-- [@KiaKing85](https://twitter.com/KiaKing85) for getting the theme ready for the Vite 3 release, and [@\_brc_dd](https://twitter.com/_brc_dd) for working on the VitePress internals.
-- [@CodingWithCego](https://twitter.com/CodingWithCego) for the new Spanish translation, and [@ShenQingchuan](https://twitter.com/ShenQingchuan), [@hiro-lapis](https://github.com/hiro-lapis) and others in the Chinese and Japanese translations teams for keeping the translated docs up to date.
+- Vite Team-Mitglieder [@youyuxi](https://twitter.com/youyuxi), [@patak_dev](https://twitter.com/patak_dev), [@antfu7](https://twitter.com/antfu7), [@bluwyoo](https://twitter.com/bluwyoo), [@sapphi_red](https://twitter.com/sapphi_red), [@haoqunjiang](https://twitter.com/haoqunjiang), [@poyoho](https://github.com/poyoho), [@Shini_92](https://twitter.com/Shini_92), und [@retropragma](https://twitter.com/retropragma).
+- [@benmccann](https://github.com/benmccann), [@danielcroe](https://twitter.com/danielcroe), [@brillout](https://twitter.com/brillout), [@sheremet_va](https://twitter.com/sheremet_va), [@userquin](https://twitter.com/userquin), [@enzoinnocenzi](https://twitter.com/enzoinnocenzi), [@maximomussini](https://twitter.com/maximomussini), [@IanVanSchooten](https://twitter.com/IanVanSchooten), das [Astro team](https://astro.build/), und alle anderen Wartungsbetreuer von Frameworks und Plugins im Ökosystem, die dazu beigetragen haben, Vite 3 zu gestalten.
+- [@dominikg](https://github.com/dominikg) für seine Arbeit am vite-ecosystem-ci.
+- [@ZoltanKochan](https://twitter.com/ZoltanKochan) für seine Arbeit an [pnpm](https://pnpm.io/), und für seine schnelle Reaktionsfähigkeit, als wir Unterstützung benötigten.
+- [@rixo](https://github.com/rixo) für den Support von HMR Partial Accept.
+- [@KiaKing85](https://twitter.com/KiaKing85) für die Vorbereitung des Themes für die Vite 3-Veröffentlichung und [@\_brc_dd](https://twitter.com/_brc_dd) für die Arbeit an den internen VitePress-Teilen.
+- [@CodingWithCego](https://twitter.com/CodingWithCego) für die neue spanische Übersetzung und [@ShenQingchuan](https://twitter.com/ShenQingchuan), [@hiro-lapis](https://github.com/hiro-lapis) und andere Mitglieder der Übersetzungsteams für Chinesisch und Japanisch, die die übersetzten Dokumente auf dem neuesten Stand gehalten haben.
 
-We also want to thank individuals and companies sponsoring the Vite team, and companies investing in Vite development: some of [@antfu7](https://twitter.com/antfu7)'s work on Vite and the ecosystem is part of his job at [Nuxt Labs](https://nuxtlabs.com/), and [StackBlitz](https://stackblitz.com/) hired [@patak_dev](https://twitter.com/patak_dev) to work full time on Vite.
+Wir möchten auch Einzelpersonen und Unternehmen danken, die das Vite-Team sponsorn, sowie Unternehmen, die in die Entwicklung von Vite investieren: Ein Teil der Arbeit von [@antfu7](https://twitter.com/antfu7) an Vite und dem Ökosystem ist Teil seiner Arbeit bei [Nuxt Labs](https://nuxtlabs.com/), und [StackBlitz](https://stackblitz.com/) hat [@patak_dev](https://twitter.com/patak_dev) eingestellt, um Vollzeit an Vite zu arbeiten.
 
-## What's Next
+## Nächste Schritte
 
-We'll take the following months to ensure a smooth transition for all the projects built on top of Vite. So the first minors will be focused on continuing our triaging efforts with a focus on newly opened issues.
+In den kommenden Monaten werden wir sicherstellen, dass der Übergang für alle Projekte, die auf Vite aufbauen, reibungslos verläuft. Daher werden die ersten Updates darauf ausgerichtet sein, unsere Bemühungen zur Problemanalyse fortzusetzen, insbesondere bei den neu eröffneten Problemen.
 
-The Rollup team is [working on its next major](https://twitter.com/lukastaegert/status/1544186847399743488), to be released in the following months. Once the Rollup plugins ecosystem has time to update, we'll follow up with a new Vite major. This will give us another opportunity to introduce more significant changes this year, which we could take to stabilize some of the experimental features introduced in this release.
+Das Rollup-Team [arbeitet an seiner nächsten Hauptversion](https://twitter.com/lukastaegert/status/1544186847399743488), die in den kommenden Monaten veröffentlicht wird. Sobald das Rollup-Plugin-Ökosystem Zeit für Aktualisierungen hatte, werden wir mit einem neuen Vite-Hauptrelease nachziehen. Dies wird uns eine weitere Gelegenheit bieten, in diesem Jahr weitere bedeutende Änderungen einzuführen, mit denen wir einige der experimentellen Funktionen stabilisieren können, die in dieser Version eingeführt wurden.
 
-If you are interested in helping improve Vite, the best way to get on board is to help with triaging issues. Join [our Discord](https://chat.vitejs.dev) and look for the `#contributing` channel. Or get involved in our `#docs`, `#help` others, or create plugins. We are just getting started. There are many open ideas to keep improving Vite's DX.
+Wenn Sie daran interessiert sind, Vite zu verbessern, ist der beste Weg, sich zu beteiligen, die Unterstützung bei der Problemanalyse. Treten Sie unserem [Discord](https://chat.vitejs.dev) bei und suchen Sie den Kanal `#contributing`. Oder beteiligen Sie sich an unseren `#docs`, helfen Sie in `#help` anderen oder erstellen Sie Plugins. Wir stehen erst am Anfang. Es gibt viele offene Ideen, um die Entwicklererfahrung (DX) von Vite weiter zu verbessern.
