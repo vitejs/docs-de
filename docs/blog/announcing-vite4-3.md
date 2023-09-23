@@ -27,20 +27,20 @@ _April 20, 2023_
 
 ![Vite 4.3 Announcement Cover Image](/og-image-announcing-vite4-3.png)
 
-Quick links:
+Schnellzugriffe:
 
-- Docs: [English](/), [简体中文](https://cn.vitejs.dev/), [日本語](https://ja.vitejs.dev/), [Español](https://es.vitejs.dev/), [Português](https://pt.vitejs.dev/)
-- [Vite 4.3 Changelog](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#430-2023-04-20)
+- Dokumentationen: [Englisch](/), [简体中文](https://cn.vitejs.dev/), [日本語](https://ja.vitejs.dev/), [Español](https://es.vitejs.dev/), [Português](https://pt.vitejs.dev/)
+- [Vite 4.3 Änderungsprotokoll](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#430-2023-04-20)
 
-## Performance Improvements
+## Leistungsverbesserungen
 
-In this minor, we focused on improving the dev server performance. The resolve logic got streamlined, improving hot paths and implementing smarter caching for finding `package.json`, TS config files, and resolved URL in general.
+In diesem Update haben wir uns darauf konzentriert, die Leistung des Entwicklungsservers zu verbessern. Die Auflösungslogik wurde optimiert, wodurch Hot Paths verbessert und intelligenteres Caching für das Auffinden von `package.json`, TS-Konfigurationsdateien und allgemein aufgelösten URLs implementiert wurde.
 
-You can read a detailed walkthrough of the performance work done in this blog post by one of Vite Contributors: [How we made Vite 4.3 faaaaster 🚀](https://sun0day.github.io/blog/vite/why-vite4_3-is-faster.html).
+Eine ausführliche Übersicht über die in diesem Blogbeitrag eines Vite-Mitwirkenden durchgeführten Leistungsarbeiten finden Sie hier: [Wie wir Vite 4.3 schneller gemacht haben 🚀](https://sun0day.github.io/blog/vite/why-vite4_3-is-faster.html).
 
-This sprint resulted in speed improvements across the board compared to Vite 4.2.
+Dieser Entwicklungssprint führte zu Geschwindigkeitsverbesserungen in allen Bereichen im Vergleich zu Vite 4.2.
 
-These are the performance improvements as measured by [sapphi-red/performance-compare](https://github.com/sapphi-red/performance-compare), which tests an app with 1000 React Components cold and warm dev server startup time as well as HMR times for a root and a leaf component:
+Dies sind die Leistungsverbesserungen, wie sie von [sapphi-red/performance-compare](https://github.com/sapphi-red/performance-compare) gemessen wurden, das eine App mit 1000 React-Komponenten auf Kalt- und Warmstartzeit des Entwicklungsservers sowie HMR-Zeiten für eine Root- und eine Leaf-Komponente testet:
 
 | **Vite (babel)**   |  Vite 4.2 | Vite 4.3 | Improvement |
 | :----------------- | --------: | -------: | ----------: |
@@ -60,27 +60,27 @@ These are the performance improvements as measured by [sapphi-red/performance-co
 
 ![Vite 4.3 vs 4.2 HMR time comparison](/vite4-3-hmr-time.png)
 
-You can read more information about the benchmark [here](https://gist.github.com/sapphi-red/25be97327ee64a3c1dce793444afdf6e). Specs and Versions for this performance run:
+Mehr Informationen zu diesem Benchmark finden Sie [hier](https://gist.github.com/sapphi-red/25be97327ee64a3c1dce793444afdf6e). Spezifikationen und Versionen für diesen Leistungstest:
 
-- CPU: Ryzen 9 5900X, Memory: DDR4-3600 32GB, SSD: WD Blue SN550 NVME SSD
+- CPU: Ryzen 9 5900X, Speicher: DDR4-3600 32GB, SSD: WD Blue SN550 NVME SSD
 - Windows 10 Pro 21H2 19044.2846
 - Node.js 18.16.0
-- Vite and React Plugin versions
+- Vite- und React-Plugin-Versionen
   - Vite 4.2 (babel): Vite 4.2.1 + plugin-react 3.1.0
   - Vite 4.3 (babel): Vite 4.3.0 + plugin-react 4.0.0-beta.1
   - Vite 4.2 (swc): Vite 4.2.1 + plugin-react-swc 3.2.0
   - Vite 4.3 (swc): Vite 4.3.0 + plugin-react-swc 3.3.0
 
-Early adopters have also reported seeing 1.5x-2x dev startup time improvement on real apps while testing the Vite 4.3 beta. We'd love to know the results for your apps.
+Frühzeitige Anwender haben auch berichtet, dass sie eine Verbesserung der Entwicklungsstartzeit von 1,5x-2x bei echten Apps beim Testen der Vite 4.3 Beta festgestellt haben. Wir würden gerne die Ergebnisse für Ihre Apps erfahren.
 
 ## Profiling
 
-We'll continue to work on Vite's performance. We're working on an official [Benchmark tool](https://github.com/vitejs/vite-benchmark) for Vite that let us get performance metrics for each Pull Request.
+Wir werden weiterhin an der Leistung von Vite arbeiten. Wir arbeiten an einem offiziellen [Benchmark-Tool](https://github.com/vitejs/vite-benchmark) für Vite, das es uns ermöglicht, Leistungsmetriken für jeden Pull Request zu erhalten.
 
-And [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) now has more performance-related features to help you identify which plugins or middlewares are the bottleneck for your applications.
+Und [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) verfügt jetzt über weitere leistungsbezogene Funktionen, um Ihnen dabei zu helfen, herauszufinden, welche Plugins oder Middleware für Ihre Anwendungen den Flaschenhals darstellen.
 
-Using `vite --profile` (and then pressing `p`) once the page loads will save a CPU profile of the dev server startup. You can open them in an app as [speedscope](https://www.speedscope.app/) to identify performance issues. And you can share your findings with the Vite Team in a [Discussion](https://github.com/vitejs/vite/discussions) or in [Vite's Discord](https://chat.vitejs.dev).
+Durch Verwenden von `vite --profile` (und dann Drücken von `p`) nach dem Laden der Seite wird ein CPU-Profil des Startvorgangs des Entwicklungsservers gespeichert. Sie können sie in einer Anwendung wie [speedscope](https://www.speedscope.app/) öffnen, um Leistungsprobleme zu identifizieren. Und Sie können Ihre Erkenntnisse mit dem Vite-Team in einer [Diskussion](https://github.com/vitejs/vite/discussions) oder im [Vite-Discord](https://chat.vitejs.dev) teilen.
 
-## Next Steps
+## Nächste Schritte
 
-We decided to do a single Vite Major this year aligning with the [EOL of Node.js 16](https://endoflife.date/nodejs) in September, dropping support for both Node.js 14 and 16 in it. If you would like to get involved, we started a [Vite 5 Discussion](https://github.com/vitejs/vite/discussions/12466) to gather early feedback.
+Wir haben uns entschieden, in diesem Jahr nur eine Vite-Major-Version herauszubringen, die mit dem [Ende des Lebenszyklus von Node.js 16](https://endoflife.date/nodejs) im September übereinstimmt, und die Unterstützung für Node.js 14 und 16 in dieser Version fallen zu lassen. Wenn Sie sich beteiligen möchten, haben wir eine [Diskussion zu Vite 5](https://github.com/vitejs/vite/discussions/12466) gestartet, um frühzeitiges Feedback zu sammeln.
