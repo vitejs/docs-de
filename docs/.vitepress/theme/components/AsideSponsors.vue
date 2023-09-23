@@ -10,7 +10,7 @@ const sponsors = computed(() => {
     data?.value.map((sponsor) => {
       return {
         size: sponsor.size === 'big' ? 'mini' : 'xmini',
-        items: sponsor.items,
+        items: sponsor.items
       }
     }) ?? []
   )
@@ -21,9 +21,9 @@ const sponsors = computed(() => {
   <a class="viteconf" href="https://viteconf.org/23" target="_blank">
     <img width="22" height="22" src="/viteconf.svg" />
     <span>
-      <p class="extra-info">Free Online Conference</p>
-      <p class="heading">ViteConf 23 - Oct 5</p>
-      <p class="extra-info">Get your ticket now!</p>
+      <p class="extra-info">Kostenlose Online-Konferenz</p>
+      <p class="heading">ViteConf 23 - 5. Oktober</p>
+      <p class="extra-info">Holen Sie sich jetzt Ihr Ticket!</p>
     </span>
   </a>
   <VPDocAsideSponsors v-if="data" :data="sponsors" />
