@@ -21,9 +21,9 @@ head:
       content: summary_large_image
 ---
 
-# Vite 4.3 is out!
+# Vite 4.3 ist da!
 
-_April 20, 2023_
+_20. April 2023_
 
 ![Vite 4.3 Announcement Cover Image](/og-image-announcing-vite4-3.png)
 
