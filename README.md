@@ -50,9 +50,9 @@ Darüber hinaus ist Vite über seine [Plugin-API](https://vitejs.dev/guide/api-p
 | [@vitejs/plugin-legacy](packages/plugin-legacy)   | [![plugin-legacy version](https://img.shields.io/npm/v/@vitejs/plugin-legacy.svg?label=%20)](packages/plugin-legacy/CHANGELOG.md)    |
 | [create-vite](packages/create-vite)               | [![create-vite version](https://img.shields.io/npm/v/create-vite.svg?label=%20)](packages/create-vite/CHANGELOG.md)                  |
 
-## Beitragen und unterstützen
+## Beitragen
 
-Siehe [Leitfaden zum Beitragen](https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md).
+Siehe [Vite Beitragshandbuch](https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md).
 
 ## Lizenz
 
