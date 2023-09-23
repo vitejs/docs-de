@@ -14,10 +14,7 @@ jobs:
           access-token: ${{ secrets.GITHUB_TOKEN }}
           username: github-actions
           email: "action@github.com"
-
-          # TODO: Replace this with your own repo URL
-          upstream-repo: https://github.com/tony19/vite-docs-template.git
-          # TODO: Replace this with your own repo's branch name
+          upstream-repo: https://github.com/rojadesign/vite-docs-de.git
           upstream-repo-branch: main
 
           head-repo: https://github.com/vitejs/vite
