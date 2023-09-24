@@ -1,85 +1,85 @@
-# Preview Options
+# Vorschau-Optionen
 
 ## preview.host
 
-- **Type:** `string | boolean`
-- **Default:** [`server.host`](./server-options#server-host)
+- **Typ:** `string | boolean`
+- **Standardwert:** [`server.host`](./server-options#server-host)
 
-Specify which IP addresses the server should listen on.
-Set this to `0.0.0.0` or `true` to listen on all addresses, including LAN and public addresses.
+Geben Sie an, auf welchen IP-Adressen der Server lauschen soll.
+Setzen Sie dies auf `0.0.0.0` oder `true`, um auf allen Adressen zu lauschen, einschließlich LAN- und öffentlicher Adressen.
 
-This can be set via the CLI using `--host 0.0.0.0` or `--host`.
+Dies kann über die Befehlszeile mit `--host 0.0.0.0` oder `--host` festgelegt werden.
 
 :::tip ANMERKUNG
 
-There are cases when other servers might respond instead of Vite.
-See [`server.host`](./server-options#server-host) for more details.
+Es gibt Fälle, in denen andere Server anstelle von Vite antworten könnten.
+Weitere Details finden Sie unter [`server.host`](./server-options#server-host).
 
 :::
 
 ## preview.port
 
-- **Type:** `number`
-- **Default:** `4173`
+- **Typ:** `number`
+- **Standardwert:** `4173`
 
-Specify server port. Note if the port is already being used, Vite will automatically try the next available port so this may not be the actual port the server ends up listening on.
+Legen Sie den Serverport fest. Beachten Sie, dass Vite automatisch den nächsten verfügbaren Port versucht, wenn der Port bereits verwendet wird. Daher muss dies nicht unbedingt der tatsächliche Port sein, auf dem der Server lauscht.
 
-**Example:**
+**Beispiel:**
 
 ```js
 export default defineConfig({
   server: {
-    port: 3030,
+    port: 3030
   },
   preview: {
-    port: 8080,
-  },
+    port: 8080
+  }
 })
 ```
 
 ## preview.strictPort
 
-- **Type:** `boolean`
-- **Default:** [`server.strictPort`](./server-options#server-strictport)
+- **Typ:** `boolean`
+- **Standardwert:** [`server.strictPort`](./server-options#server-strictport)
 
-Set to `true` to exit if port is already in use, instead of automatically trying the next available port.
+Setzen Sie dies auf `true`, um den Vorgang zu beenden, wenn der Port bereits verwendet wird, anstatt automatisch den nächsten verfügbaren Port zu versuchen.
 
 ## preview.https
 
-- **Type:** `boolean | https.ServerOptions`
-- **Default:** [`server.https`](./server-options#server-https)
+- **Typ:** `boolean | https.ServerOptions`
+- **Standardwert:** [`server.https`](./server-options#server-https)
 
-Enable TLS + HTTP/2. Note this downgrades to TLS only when the [`server.proxy` option](./server-options#server-proxy) is also used.
+Aktivieren Sie TLS + HTTP/2. Beachten Sie, dass dies auf TLS allein downgradet, wenn auch die [`server.proxy`-Option](./server-options#server-proxy) verwendet wird.
 
-The value can also be an [options object](https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener) passed to `https.createServer()`.
+Der Wert kann auch ein [Optionsobjekt](https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener) sein, das an `https.createServer()` übergeben wird.
 
 ## preview.open
 
-- **Type:** `boolean | string`
-- **Default:** [`server.open`](./server-options#server-open)
+- **Typ:** `boolean | string`
+- **Standardwert:** [`server.open`](./server-options#server-open)
 
-Automatically open the app in the browser on server start. When the value is a string, it will be used as the URL's pathname. If you want to open the server in a specific browser you like, you can set the env `process.env.BROWSER` (e.g. `firefox`). You can also set `process.env.BROWSER_ARGS` to pass additional arguments (e.g. `--incognito`).
+Öffnen Sie die App automatisch im Browser beim Start des Servers. Wenn der Wert ein String ist, wird er als Pfadname der URL verwendet. Wenn Sie den Server in einem bestimmten Browser öffnen möchten, können Sie die Umgebungsvariable `process.env.BROWSER` setzen (z.B. `firefox`). Sie können auch `process.env.BROWSER_ARGS` setzen, um zusätzliche Argumente zu übergeben (z.B. `--incognito`).
 
-`BROWSER` and `BROWSER_ARGS` are also special environment variables you can set in the `.env` file to configure it. See [the `open` package](https://github.com/sindresorhus/open#app) for more details.
+`BROWSER` und `BROWSER_ARGS` sind auch spezielle Umgebungsvariablen, die Sie in der `.env`-Datei konfigurieren können. Weitere Details finden Sie in [dem `open`-Paket](https://github.com/sindresorhus/open#app).
 
 ## preview.proxy
 
-- **Type:** `Record<string, string | ProxyOptions>`
-- **Default:** [`server.proxy`](./server-options#server-proxy)
+- **Typ:** `Record<string, string | ProxyOptions>`
+- **Standardwert:** [`server.proxy`](./server-options#server-proxy)
 
-Configure custom proxy rules for the preview server. Expects an object of `{ key: options }` pairs. If the key starts with `^`, it will be interpreted as a `RegExp`. The `configure` option can be used to access the proxy instance.
+Konfigurieren Sie benutzerdefinierte Proxyregeln für den Vorschau-Server. Erwartet ein Objekt von `{ Schlüssel: Optionen }`-Paaren. Wenn der Schlüssel mit `^` beginnt, wird er als `RegExp` interpretiert. Die `configure`-Option kann verwendet werden, um auf die Proxyinstanz zuzugreifen.
 
-Uses [`http-proxy`](https://github.com/http-party/node-http-proxy). Full options [here](https://github.com/http-party/node-http-proxy#options).
+Verwendet [`http-proxy`](https://github.com/http-party/node-http-proxy). Vollständige Optionen [hier](https://github.com/http-party/node-http-proxy#options).
 
 ## preview.cors
 
-- **Type:** `boolean | CorsOptions`
-- **Default:** [`server.cors`](./server-options#server-cors)
+- **Typ:** `boolean | CorsOptions`
+- **Standardwert:** [`server.cors`](./server-options#server-cors)
 
-Configure CORS for the preview server. This is enabled by default and allows any origin. Pass an [options object](https://github.com/expressjs/cors#configuration-options) to fine tune the behavior or `false` to disable.
+Konfigurieren Sie CORS für den Vorschau-Server. Dies ist standardmäßig aktiviert und erlaubt jede Herkunft. Übergeben Sie ein [Optionsobjekt](https://github.com/expressjs/cors#configuration-options), um das Verhalten fein abzustimmen, oder `false`, um es zu deaktivieren.
 
 ## preview.headers
 
-- **Type:** `OutgoingHttpHeaders`
+- **Typ:** `OutgoingHttpHeaders`
 
-Specify server response headers.
+Legen Sie Serverantwort-Header fest.
