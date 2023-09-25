@@ -180,24 +180,15 @@ Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann igno
 
 Optionen für den Dateisystem-Watcher, die an [chokidar](https://github.com/paulmillr/chokidar#api) weitergegeben werden.
 
-Der Vite-Server-Watcher überspringt standardmäßig die Verzeichnisse `.git/` und `node_modules/`. Wenn Sie ein Paket innerhalb von `node_modules/` überwachen möchten, können Sie ein negiertes Glob-Muster an `server.watch.ignored` übergeben. Das bedeutet:
-
-```js
-export default defineConfig({
-  server: {
-    watch: {
-      ignored: ['!**/node_modules/your-package-name/**']
-    }
-  },
-  // Das überwachte Paket muss von der Optimierung ausgeschlossen werden,
-  // damit es im Abhängigkeitsgraphen erscheinen und eine Hot-Reload auslösen kann.
-  optimizeDeps: {
-    exclude: ['your-package-name']
-  }
-})
-```
+Der Vite Server Watcher überwacht das `root` und überspringt standardmäßig die Verzeichnisse `.git/` und `node_modules/`. Wenn eine überwachte Datei aktualisiert wird, wendet Vite das HMR an und aktualisiert die Seite nur bei Bedarf.
 
 Wenn auf `null` gesetzt, dann werden keine Dateien überwacht. `server.watcher` stellt einen kompatiblen Ereignis-Emitter zur Verfügung, aber der Aufruf von `add` oder `unwatch` hat keine Wirkung.
+
+::: warning Überwachen von Dateien in `node_modules`
+
+Es ist derzeit nicht möglich, Dateien und Pakete in `node_modules` zu überwachen. Für weitere Fortschritte und Umwege hierzu können Sie [issue #8619](https://github.com/vitejs/vite/issues/8619) verfolgen.
+
+:::
 
 ::: warning Verwendung von Vite unter Windows Subsystem for Linux (WSL) 2
 
