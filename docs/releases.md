@@ -4,7 +4,7 @@ Vite-Veröffentlichungen folgen dem [Semantischen Versionierungsprinzip (Semanti
 
 Ein vollständiges Änderungsprotokoll vergangener Veröffentlichungen finden Sie [auf GitHub](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md).
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 Die nächste Hauptversion von Vite wird nach dem Ende des Lebenszyklus (EOL) von Node 16 im September veröffentlicht.
 
 Schauen Sie sich die [Diskussion zu Vite 5](https://github.com/vitejs/vite/discussions/12466) für weitere Informationen an.

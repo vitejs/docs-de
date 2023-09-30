@@ -49,7 +49,7 @@ Da es sich um einfache Textersetzung ohne Syntaxanalyse handelt, empfehlen wir, 
 Beispielsweise sind `process.env.FOO` und `__APP_VERSION__` gute Passformen. Aber `process` oder `global` sollten nicht in diese Option aufgenommen werden. Variablen können stattdessen geschimmt oder polygefüllt werden.
 :::
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 Für TypeScript-Benutzer stellen Sie sicher, dass Sie die Typerklärungen in der Datei `env.d.ts` oder `vite-env.d.ts` hinzufügen, um Typprüfungen und Intellisense zu erhalten.
 
 Beispiel:
@@ -61,7 +61,7 @@ declare const __APP_VERSION__: string
 
 :::
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 Da `define` in der Entwicklung und im Build unterschiedlich implementiert ist, sollten wir einige Verwendungsfälle vermeiden, um Inkonsistenzen zu vermeiden.
 
 Beispiel:

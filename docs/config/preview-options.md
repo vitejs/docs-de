@@ -10,7 +10,7 @@ Setzen Sie dies auf `0.0.0.0` oder `true`, um auf allen Adressen zu lauschen, ei
 
 Dies kann über die Befehlszeile mit `--host 0.0.0.0` oder `--host` festgelegt werden.
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 
 Es gibt Fälle, in denen andere Server anstelle von Vite antworten könnten.
 Weitere Details finden Sie unter [`server.host`](./server-options#server-host).

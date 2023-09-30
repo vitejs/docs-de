@@ -553,7 +553,7 @@ export default defineConfig({
 })
 ```
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 We recommend **always prefixing** your event names to avoid collisions with other plugins.
 :::
 

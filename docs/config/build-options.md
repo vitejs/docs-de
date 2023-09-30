@@ -91,7 +91,7 @@ Git LFS-Platzhalter werden automatisch von der Einbettung ausgeschlossen, da sie
 
 halt der Datei, die sie repräsentieren, nicht enthalten.
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 Wenn Sie `build.lib` angeben, wird `build.assetsInlineLimit` ignoriert und Assets werden unabhängig von ihrer Größe oder ob es sich um einen Git LFS-Platzhalter handelt, immer eingebettet.
 :::
 
@@ -104,7 +104,7 @@ Aktivieren/Deaktivieren des Aufteilens von CSS-Code. Wenn diese Option aktiviert
 
 Wenn deaktiviert, wird das gesamte CSS im gesamten Projekt in eine einzelne CSS-Datei extrahiert.
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 Wenn Sie `build.lib` angeben, wird `build.cssCodeSplit` standardmäßig auf `false` gesetzt.
 :::
 

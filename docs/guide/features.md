@@ -252,7 +252,7 @@ import styles from './foo.css' // will be injected into the page
 import otherStyles from './bar.css?inline' // will not be injected
 ```
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 Default and named imports from CSS files (e.g `import style from './foo.css'`) are deprecated since Vite 4. Use the `?inline` query instead.
 :::
 
@@ -270,7 +270,7 @@ To configure CSS Modules, you'll use [`css.lightningcss.cssModules`](https://lig
 
 By default, Vite uses esbuild to minify CSS. Lightning CSS can also be used as the CSS minifier with [`build.cssMinify: 'lightningcss'`](../config/build-options.md#build-cssminify).
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 [CSS Pre-processors](#css-pre-processors) aren't supported when using Lightning CSS.
 :::
 
@@ -527,7 +527,7 @@ init({
 
 In the production build, `.wasm` files smaller than `assetInlineLimit` will be inlined as base64 strings. Otherwise, they will be treated as a [static asset](./assets) and fetched on-demand.
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 [ES Module Integration Proposal for WebAssembly](https://github.com/WebAssembly/esm-integration) is not currently supported.
 Use [`vite-plugin-wasm`](https://github.com/Menci/vite-plugin-wasm) or other community plugins to handle this.
 :::

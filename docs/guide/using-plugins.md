@@ -30,7 +30,7 @@ Falsy plugins will be ignored, which can be used to easily activate or deactivat
 
 ## Finding Plugins
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 Vite aims to provide out-of-the-box support for common web development patterns. Before searching for a Vite or compatible Rollup plugin, check out the [Features Guide](../guide/features.md). A lot of the cases where a plugin would be needed in a Rollup project are already covered in Vite.
 :::
 

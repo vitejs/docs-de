@@ -10,7 +10,7 @@ Setzen Sie dies auf `0.0.0.0` oder `true`, um auf allen Adressen zu lauschen, ei
 
 Dies kann über die CLI mit `--host 0.0.0.0` oder `--host` festgelegt werden.
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 
 Es gibt Fälle, in denen andere Server möglicherweise anstelle von Vite antworten.
 
@@ -158,7 +158,7 @@ Wenn `server.hmr.server` definiert ist, wird Vite die HMR-Verbindungsanfragen ü
 
 Schauen Sie sich [`vite-setup-catalogue`](https://github.com/sapphi-red/vite-setup-catalogue) für einige Beispiele an.
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 
 Mit der Standardkonfiguration wird erwartet, dass Reverse-Proxys vor Vite WebSocket-Proxying unterstützen. Wenn der Vite HMR-Client keine Verbindung zum WebSocket herstellen kann, fällt der Client auf die direkte Verbindung zum Vite HMR-Server zurück und umgeht die Reverse-Proxys:
 
@@ -346,6 +346,6 @@ export default defineConfig({
 };
 ```
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 [`server.sourcemapIgnoreList`](#server-sourcemapignorelist) und [`build.rollupOptions.output.sourcemapIgnoreList`](https://rollupjs.org/configuration-options/#output-sourcemapignorelist) müssen unabhängig voneinander festgelegt werden. `server.sourcemapIgnoreList` ist eine serverseitige Konfiguration und erhält ihren Standardwert nicht aus den definierten Rollup-Optionen.
 :::

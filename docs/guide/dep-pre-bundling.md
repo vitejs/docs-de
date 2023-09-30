@@ -25,7 +25,7 @@ Dies ist Vite, das das ausführt, was wir als "Abhängigkeitsvorverpackung" beze
 
    Durch die Vorverpackung von `lodash-es` in ein einzelnes Modul benötigen wir jetzt nur noch eine HTTP-Anfrage!
 
-:::tip ANMERKUNG
+:::tip HINWEIS
 Die Abhängigkeitsvorverpackung gilt nur im Entwicklungsmodus und verwendet `esbuild`, um Abhängigkeiten in ESM umzuwandeln. In Produktions-Builds wird stattdessen `@rollup/plugin-commonjs` verwendet.
 :::
 
