@@ -1,22 +1,22 @@
-# Server Options
+# Server-Optionen
 
 ## server.host
 
-- **Type:** `string | boolean`
-- **Default:** `'localhost'`
+- **Typ:** `string | boolean`
+- **Standardwert:** `'localhost'`
 
-Specify which IP addresses the server should listen on.
-Set this to `0.0.0.0` or `true` to listen on all addresses, including LAN and public addresses.
+Geben Sie an, auf welchen IP-Adressen der Server lauschen soll.
+Setzen Sie dies auf `0.0.0.0` oder `true`, um auf allen Adressen zu lauschen, einschließlich LAN- und öffentlichen Adressen.
 
-This can be set via the CLI using `--host 0.0.0.0` or `--host`.
+Dies kann über die CLI mit `--host 0.0.0.0` oder `--host` festgelegt werden.
 
 :::tip ANMERKUNG
 
-There are cases when other servers might respond instead of Vite.
+Es gibt Fälle, in denen andere Server möglicherweise anstelle von Vite antworten.
 
-The first case is when `localhost` is used. Node.js under v17 reorders the result of DNS-resolved addresses by default. When accessing `localhost`, browsers use DNS to resolve the address and that address might differ from the address which Vite is listening to. Vite prints the resolved address when it differs.
+Der erste Fall tritt auf, wenn `localhost` verwendet wird. Node.js unter v17 ordnet die Ergebnisse der DNS-aufgelösten Adressen standardmäßig neu an. Beim Zugriff auf `localhost` verwenden Browser DNS, um die Adresse aufzulösen, und diese Adresse kann von der Adresse abweichen, auf die Vite hört. Vite gibt die aufgelöste Adresse aus, wenn sie sich unterscheidet.
 
-You can set [`dns.setDefaultResultOrder('verbatim')`](https://nodejs.org/api/dns.html#dns_dns_setdefaultresultorder_order) to disable the reordering behavior. Vite will then print the address as `localhost`.
+Sie können [`dns.setDefaultResultOrder('verbatim')`](https://nodejs.org/api/dns.html#dns_dns_setdefaultresultorder_order) festlegen, um das Neuanordnungsverhalten zu deaktivieren. Vite gibt die Adresse dann als `localhost` aus.
 
 ```js
 // vite.config.js
@@ -26,200 +26,200 @@ import dns from 'dns'
 dns.setDefaultResultOrder('verbatim')
 
 export default defineConfig({
-  // omit
+  // ausgelassen
 })
 ```
 
-The second case is when wildcard hosts (e.g. `0.0.0.0`) are used. This is because servers listening on non-wildcard hosts take priority over those listening on wildcard hosts.
+Der zweite Fall tritt auf, wenn Platzhalterhosts (z. B. `0.0.0.0`) verwendet werden. Dies liegt daran, dass Server, die auf Nicht-Platzhalterhosts lauschen, Vorrang vor denen haben, die auf Platzhalterhosts lauschen.
 
 :::
 
-::: tip Accessing the server on WSL2 from your LAN
+::: tip Zugriff auf den Server in WSL2 von Ihrem LAN aus
 
-When running Vite on WSL2, it is not sufficient to set `host: true` to access the server from your LAN.
-See [the WSL document](https://learn.microsoft.com/en-us/windows/wsl/networking#accessing-a-wsl-2-distribution-from-your-local-area-network-lan) for more details.
+Wenn Sie Vite unter WSL2 ausführen, reicht es nicht aus, `host: true` festzulegen, um auf den Server von Ihrem LAN aus zuzugreifen.
+Weitere Informationen finden Sie im [WSL-Dokument](https://learn.microsoft.com/en-us/windows/wsl/networking#accessing-a-wsl-2-distribution-from-your-local-area-network-lan).
 
 :::
 
 ## server.port
 
-- **Type:** `number`
-- **Default:** `5173`
+- **Typ:** `number`
+- **Standardwert:** `5173`
 
-Specify server port. Note if the port is already being used, Vite will automatically try the next available port so this may not be the actual port the server ends up listening on.
+Geben Sie den Serverport an. Beachten Sie, dass Vite automatisch den nächsten verfügbaren Port ausprobiert, wenn der Port bereits verwendet wird. Daher ist dies möglicherweise nicht der tatsächliche Port, auf den der Server hört.
 
 ## server.strictPort
 
-- **Type:** `boolean`
+- **Typ:** `boolean`
 
-Set to `true` to exit if port is already in use, instead of automatically trying the next available port.
+Legen Sie fest, dass der Server bei Verwendung des Ports bereits in Verwendung ist, anstatt automatisch den nächsten verfügbaren Port auszuprobieren.
 
 ## server.https
 
-- **Type:** `boolean | https.ServerOptions`
+- **Typ:** `boolean | https.ServerOptions`
 
-Enable TLS + HTTP/2. Note this downgrades to TLS only when the [`server.proxy` option](#server-proxy) is also used.
+Aktivieren Sie TLS + HTTP/2. Beachten Sie, dass dies auf TLS herabgestuft wird, wenn die [`server.proxy`-Option](#server-proxy) ebenfalls verwendet wird.
 
-The value can also be an [options object](https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener) passed to `https.createServer()`.
+Der Wert kann auch ein [Optionsobjekt](https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener) sein, das an `https.createServer()` übergeben wird.
 
-A valid certificate is needed. For a basic setup, you can add [@vitejs/plugin-basic-ssl](https://github.com/vitejs/vite-plugin-basic-ssl) to the project plugins, which will automatically create and cache a self-signed certificate. But we recommend creating your own certificates.
+Ein gültiges Zertifikat ist erforderlich. Für eine grundlegende Einrichtung können Sie [@vitejs/plugin-basic-ssl](https://github.com/vitejs/vite-plugin-basic-ssl) zu den Projekt-Plugins hinzufügen, das automatisch ein selbstsigniertes Zertifikat erstellt und zwischenspeichert. Wir empfehlen jedoch, eigene Zertifikate zu erstellen.
 
 ## server.open
 
-- **Type:** `boolean | string`
+- **Typ:** `boolean | string`
 
-Automatically open the app in the browser on server start. When the value is a string, it will be used as the URL's pathname. If you want to open the server in a specific browser you like, you can set the env `process.env.BROWSER` (e.g. `firefox`). You can also set `process.env.BROWSER_ARGS` to pass additional arguments (e.g. `--incognito`).
+Öffnen Sie die App automatisch im Browser beim Start des Servers. Wenn der Wert eine Zeichenfolge ist, wird er als Pfadname der URL verwendet. Wenn Sie den Server in einem bestimmten Browser öffnen möchten, den Sie mögen, können Sie die Umgebungsvariable `process.env.BROWSER` festlegen (z. B. `firefox`). Sie können auch `process.env.BROWSER_ARGS` festlegen, um zusätzliche Argumente zu übergeben (z. B. `--incognito`).
 
-`BROWSER` and `BROWSER_ARGS` are also special environment variables you can set in the `.env` file to configure it. See [the `open` package](https://github.com/sindresorhus/open#app) for more details.
+`BROWSER` und `BROWSER_ARGS` sind auch spezielle Umgebungsvariablen, die in der `.env`-Datei festgelegt werden können, um sie zu konfigurieren. Weitere Details finden Sie in [dem `open`-Paket](https://github.com/sindresorhus/open#app).
 
-**Example:**
+**Beispiel:**
 
 ```js
 export default defineConfig({
   server: {
-    open: '/docs/index.html',
-  },
+    open: '/docs/index.html'
+  }
 })
 ```
 
 ## server.proxy
 
-- **Type:** `Record<string, string | ProxyOptions>`
+- **Typ:** `Record<string, string | ProxyOptions>`
 
-Configure custom proxy rules for the dev server. Expects an object of `{ key: options }` pairs. Any requests that request path starts with that key will be proxied to that specified target. If the key starts with `^`, it will be interpreted as a `RegExp`. The `configure` option can be used to access the proxy instance.
+Konfigurieren Sie benutzerdefinierte Proxyregeln für den Entwicklungsserver. Erwartet ein Objekt mit `{ Schlüssel: Optionen }`-Paaren. Alle Anfragen, die mit diesem Schlüssel beginnen, werden an das angegebene Ziel weitergeleitet. Wenn der Schlüssel mit `^` beginnt, wird er als `RegExp` interpretiert. Die Option `configure` kann verwendet werden, um auf die Proxyinstanz zuzugreifen.
 
-Note that if you are using non-relative [`base`](/config/shared-options.md#base), you must prefix each key with that `base`.
+Beachten Sie, dass bei Verwendung von nicht relativem [`base`](/config/shared-options.md#base) jeder Schlüssel mit diesem `base` vorangestellt werden muss.
 
-Extends [`http-proxy`](https://github.com/http-party/node-http-proxy#options). Additional options are [here](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/server/middlewares/proxy.ts#L12).
+Erweitert [`http-proxy`](https://github.com/http-party/node-http-proxy#options). Weitere Optionen finden Sie [hier](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/server/middlewares/proxy.ts#L12).
 
-In some cases, you might also want to configure the underlying dev server (e.g. to add custom middlewares to the internal [connect](https://github.com/senchalabs/connect) app). In order to do that, you need to write your own [plugin](/guide/using-plugins.html) and use [configureServer](/guide/api-plugin.html#configureserver) function.
+In einigen Fällen möchten Sie möglicherweise auch den zugrunde liegenden Entwicklungsserver konfigurieren (z. B. um benutzerdefinierte Middlewares zur internen [connect](https://github.com/senchalabs/connect)-App hinzuzufügen). Um dies zu tun, müssen Sie Ihr eigenes [Plugin](/guide/using-plugins.html) schreiben und die Funktion [configureServer](/guide/api-plugin.html#configureserver) verwenden.
 
-**Example:**
+**Beispiel:**
 
 ```js
 export default defineConfig({
   server: {
     proxy: {
-      // string shorthand: http://localhost:5173/foo -> http://localhost:4567/foo
+      // Zeichenfolgen-Schnellzugriff: http://localhost:5173/foo -> http://localhost:4567/foo
       '/foo': 'http://localhost:4567',
-      // with options: http://localhost:5173/api/bar-> http://jsonplaceholder.typicode.com/bar
+      // Mit Optionen: http://localhost:5173/api/bar-> http://jsonplaceholder.typicode.com/bar
       '/api': {
         target: 'http://jsonplaceholder.typicode.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, '')
       },
-      // with RegEx: http://localhost:5173/fallback/ -> http://jsonplaceholder.typicode.com/
+      // Mit RegEx: http://localhost:5173/fallback/ -> http://jsonplaceholder.typicode.com/
       '^/fallback/.*': {
         target: 'http://jsonplaceholder.typicode.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/fallback/, ''),
+        rewrite: (path) => path.replace(/^\/fallback/, '')
       },
-      // Using the proxy instance
+      // Verwendung der Proxyinstanz
       '/api': {
         target: 'http://jsonplaceholder.typicode.com',
         changeOrigin: true,
         configure: (proxy, options) => {
-          // proxy will be an instance of 'http-proxy'
-        },
+          // proxy wird eine Instanz von 'http-proxy' sein
+        }
       },
-      // Proxying websockets or socket.io: ws://localhost:5173/socket.io -> ws://localhost:5174/socket.io
+      // Proxying von Websockets oder socket.io: ws://localhost:5173/socket.io -> ws://localhost:5174/socket.io
       '/socket.io': {
         target: 'ws://localhost:5174',
-        ws: true,
-      },
-    },
-  },
+        ws: true
+      }
+    }
+  }
 })
 ```
 
 ## server.cors
 
-- **Type:** `boolean | CorsOptions`
+- **Typ:** `boolean | CorsOptions`
 
-Configure CORS for the dev server. This is enabled by default and allows any origin. Pass an [options object](https://github.com/expressjs/cors#configuration-options) to fine tune the behavior or `false` to disable.
+Konfigurieren Sie CORS für den Entwicklungsserver. Dies ist standardmäßig aktiviert und erlaubt jeden Ursprung. Übergeben Sie ein [Optionsobjekt](https://github.com/expressjs/cors#configuration-options), um das Verhalten fein abzustimmen, oder `false`, um es zu deaktivieren.
 
 ## server.headers
 
-- **Type:** `OutgoingHttpHeaders`
+- **Typ:** `OutgoingHttpHeaders`
 
-Specify server response headers.
+Legen Sie die Serverantwortheader fest.
 
 ## server.hmr
 
-- **Type:** `boolean | { protocol?: string, host?: string, port?: number, path?: string, timeout?: number, overlay?: boolean, clientPort?: number, server?: Server }`
+- **Typ:** `boolean | { protocol?: string, host?: string, port?: number, path?: string, timeout?: number, overlay?: boolean, clientPort?: number, server?: Server }`
 
-Disable or configure HMR connection (in cases where the HMR websocket must use a different address from the http server).
+Deaktivieren oder konfigurieren Sie die HMR-Verbindung (in Fällen, in denen das HMR-WebSocket eine andere Adresse als der HTTP-Server verwenden muss).
 
-Set `server.hmr.overlay` to `false` to disable the server error overlay.
+Legen Sie `server.hmr.overlay` auf `false`, um das Serverfehler-Overlay zu deaktivieren.
 
-`clientPort` is an advanced option that overrides the port only on the client side, allowing you to serve the websocket on a different port than the client code looks for it on.
+`clientPort` ist eine erweiterte Option, die den Port nur auf der Clientseite überschreibt und es Ihnen ermöglicht, das WebSocket auf einem anderen Port als der Clientcode danach suchen lässt.
 
-When `server.hmr.server` is defined, Vite will process the HMR connection requests through the provided server. If not in middleware mode, Vite will attempt to process HMR connection requests through the existing server. This can be helpful when using self-signed certificates or when you want to expose Vite over a network on a single port.
+Wenn `server.hmr.server` definiert ist, wird Vite die HMR-Verbindungsanfragen über den bereitgestellten Server verarbeiten. Wenn sich Vite nicht im Middleware-Modus befindet, wird Vite versuchen, HMR-Verbindungsanfragen über den vorhandenen Server zu verarbeiten. Dies kann hilfreich sein, wenn Sie selbstsignierte Zertifikate verwenden oder Vite über ein Netzwerk auf einem einzelnen Port verfügbar machen möchten.
 
-Check out [`vite-setup-catalogue`](https://github.com/sapphi-red/vite-setup-catalogue) for some examples.
+Schauen Sie sich [`vite-setup-catalogue`](https://github.com/sapphi-red/vite-setup-catalogue) für einige Beispiele an.
 
 :::tip ANMERKUNG
 
-With the default configuration, reverse proxies in front of Vite are expected to support proxying WebSocket. If the Vite HMR client fails to connect WebSocket, the client will fall back to connecting the WebSocket directly to the Vite HMR server bypassing the reverse proxies:
+Mit der Standardkonfiguration wird erwartet, dass Reverse-Proxys vor Vite WebSocket-Proxying unterstützen. Wenn der Vite HMR-Client keine Verbindung zum WebSocket herstellen kann, fällt der Client auf die direkte Verbindung zum Vite HMR-Server zurück und umgeht die Reverse-Proxys:
 
 ```
-Direct websocket connection fallback. Check out https://vitejs.dev/config/server-options.html#server-hmr to remove the previous connection error.
+Direkter WebSocket-Verbindungsrückfall. Weitere Informationen finden Sie unter https://vitejs.dev/config/server-options.html#server-hmr, um den vorherigen Verbindungsfehler zu entfernen.
 ```
 
-The error that appears in the Browser when the fallback happens can be ignored. To avoid the error by directly bypassing reverse proxies, you could either:
+Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann ignoriert werden. Um den Fehler zu vermeiden, indem Sie die Reverse-Proxys direkt umgehen, können Sie entweder:
 
-- configure the reverse proxy to proxy WebSocket too
-- set [`server.strictPort = true`](#server-strictport) and set `server.hmr.clientPort` to the same value with `server.port`
-- set `server.hmr.port` to a different value from [`server.port`](#server-port)
+- Konfigurieren Sie den Reverse-Proxy so, dass er auch WebSocket proxyt
+- Setzen Sie [`server.strictPort = true`](#server-strictport) und legen Sie `server.hmr.clientPort` auf denselben Wert wie `server.port`
+- Legen Sie `server.hmr.port` auf einen anderen Wert als [`server.port`](#server-port)
 
 :::
 
 ## server.watch
 
-- **Type:** `object`
+- **Typ:** `object`
 
-File system watcher options to pass on to [chokidar](https://github.com/paulmillr/chokidar#api).
+Optionen für den Dateisystem-Watcher, die an [chokidar](https://github.com/paulmillr/chokidar#api) weitergegeben werden.
 
-The Vite server watcher skips `.git/` and `node_modules/` directories by default. If you want to watch a package inside `node_modules/`, you can pass a negated glob pattern to `server.watch.ignored`. That is:
+Der Vite-Server-Watcher überspringt standardmäßig die Verzeichnisse `.git/` und `node_modules/`. Wenn Sie ein Paket innerhalb von `node_modules/` überwachen möchten, können Sie ein negiertes Glob-Muster an `server.watch.ignored` übergeben. Das bedeutet:
 
 ```js
 export default defineConfig({
   server: {
     watch: {
-      ignored: ['!**/node_modules/your-package-name/**'],
-    },
+      ignored: ['!**/node_modules/your-package-name/**']
+    }
   },
-  // The watched package must be excluded from optimization,
-  // so that it can appear in the dependency graph and trigger hot reload.
+  // Das überwachte Paket muss von der Optimierung ausgeschlossen werden,
+  // damit es im Abhängigkeitsgraphen erscheinen und eine Hot-Reload auslösen kann.
   optimizeDeps: {
-    exclude: ['your-package-name'],
-  },
+    exclude: ['your-package-name']
+  }
 })
 ```
 
-::: warning Using Vite on Windows Subsystem for Linux (WSL) 2
+::: warning Verwendung von Vite unter Windows Subsystem for Linux (WSL) 2
 
-When running Vite on WSL2, file system watching does not work when a file is edited by Windows applications (non-WSL2 process). This is due to [a WSL2 limitation](https://github.com/microsoft/WSL/issues/4739). This also applies to running on Docker with a WSL2 backend.
+Wenn Sie Vite unter WSL2 ausführen, funktioniert das Dateisystem-Watching nicht, wenn eine Datei von Windows-Anwendungen (nicht WSL2-Prozess) bearbeitet wird. Dies liegt an [einer WSL2-Beschränkung](https://github.com/microsoft/WSL/issues/4739). Dies gilt auch für die Verwendung von Docker mit einem WSL2-Backend.
 
-To fix it, you could either:
+Um das Problem zu beheben, können Sie Folgendes tun:
 
-- **Recommended**: Use WSL2 applications to edit your files.
-  - It is also recommended to move the project folder outside of a Windows filesystem. Accessing Windows filesystem from WSL2 is slow. Removing that overhead will improve performance.
-- Set `{ usePolling: true }`.
-  - Note that [`usePolling` leads to high CPU utilization](https://github.com/paulmillr/chokidar#performance).
+- **Empfohlen**: Verwenden Sie WSL2-Anwendungen zum Bearbeiten Ihrer Dateien.
+  - Es wird auch empfohlen, den Projektordner aus einem Windows-Dateisystem zu verschieben. Der Zugriff auf Windows-Dateisysteme von WSL2 aus ist langsam. Durch Entfernen dieses Overheads wird die Leistung verbessert.
+- Setzen Sie `{ usePolling: true }`.
+  - Beachten Sie, dass [`usePolling` zu hoher CPU-Auslastung führt](https://github.com/paulmillr/chokidar#performance).
 
 :::
 
 ## server.middlewareMode
 
-- **Type:** `boolean`
-- **Default:** `false`
+- **Typ:** `boolean`
+- **Standardwert:** `false`
 
-Create Vite server in middleware mode.
+Erstellen Sie den Vite-Server im Middleware-Modus.
 
-- **Related:** [appType](./shared-options#apptype), [SSR - Setting Up the Dev Server](/guide/ssr#setting-up-the-dev-server)
+- **Verwandte Themen:** [appType](./shared-options#apptype), [SSR - Einrichten des Entwicklungsservers](/guide/ssr#setting-up-the-dev-server)
 
-- **Example:**
+- **Beispiel:**
 
 ```js
 import express from 'express'
@@ -228,19 +228,19 @@ import { createServer as createViteServer } from 'vite'
 async function createServer() {
   const app = express()
 
-  // Create Vite server in middleware mode
+  // Erstellen Sie den Vite-Server im Middleware-Modus
   const vite = await createViteServer({
     server: { middlewareMode: true },
-    appType: 'custom', // don't include Vite's default HTML handling middlewares
+    appType: 'custom' // Vites Standard-HTML-Handling-Middlewares nicht einschließen
   })
-  // Use vite's connect instance as middleware
+  // Verwenden Sie Vites Connect-Instanz als Middleware
   app.use(vite.middlewares)
 
   app.use('*', async (req, res) => {
-    // Since `appType` is `'custom'`, should serve response here.
-    // Note: if `appType` is `'spa'` or `'mpa'`, Vite includes middlewares to handle
-    // HTML requests and 404s so user middlewares should be added
-    // before Vite's middlewares to take effect instead
+    // Da `appType` `'custom'` ist, sollte die Antwort hier bedient werden.
+    // Hinweis: Wenn `appType` `'spa'` oder `'mpa'` ist, fügt Vite Middlewares hinzu, um
+    // HTML-Anfragen und 404er zu behandeln, sodass Benutzer-Middlewares hinzugefügt werden sollten
+    // vor Vites Middlewares, um wirksam zu werden.
   })
 }
 
@@ -249,40 +249,40 @@ createServer()
 
 ## server.fs.strict
 
-- **Type:** `boolean`
-- **Default:** `true` (enabled by default since Vite 2.7)
+- **Typ:** `boolean`
+- **Standardwert:** `true` (standardmäßig aktiviert seit Vite 2.7)
 
-Restrict serving files outside of workspace root.
+Beschränken Sie das Servieren von Dateien außerhalb des Arbeitsbereichs.
 
 ## server.fs.allow
 
-- **Type:** `string[]`
+- **Typ:** `string[]`
 
-Restrict files that could be served via `/@fs/`. When `server.fs.strict` is set to `true`, accessing files outside this directory list that aren't imported from an allowed file will result in a 403.
+Beschränken Sie Dateien, die über `/@fs/` serviert werden können. Wenn `server.fs.strict` auf `true` gesetzt ist, führt der Zugriff auf Dateien außerhalb dieser Verzeichnisliste, die nicht von einer erlaubten Datei importiert werden, zu einem 403-Fehler.
 
-Both directories and files can be provided.
+Sowohl Verzeichnisse als auch Dateien können angegeben werden.
 
-Vite will search for the root of the potential workspace and use it as default. A valid workspace met the following conditions, otherwise will fall back to the [project root](/guide/#index-html-and-project-root).
+Vite sucht nach dem Stammverzeichnis des potenziellen Arbeitsbereichs und verwendet es als Standardwert. Ein gültiger Arbeitsbereich erfüllt die folgenden Bedingungen, andernfalls wird auf das [Projektstammverzeichnis](/guide/#index-html-and-project-root) zurückgegriffen.
 
-- contains `workspaces` field in `package.json`
-- contains one of the following file
+- enthält das Feld `workspaces` in `package.json`
+- enthält eine der folgenden Dateien
   - `lerna.json`
   - `pnpm-workspace.yaml`
 
-Accepts a path to specify the custom workspace root. Could be a absolute path or a path relative to [project root](/guide/#index-html-and-project-root). For example:
+Akzeptiert einen Pfad, um das benutzerdefinierte Arbeitsverzeichnis anzugeben. Dies kann ein absoluter Pfad oder ein Pfad relativ zum [Projektstammverzeichnis](/guide/#index-html-and-project-root) sein. Zum Beispiel:
 
 ```js
 export default defineConfig({
   server: {
     fs: {
-      // Allow serving files from one level up to the project root
-      allow: ['..'],
-    },
-  },
+      // Erlaube das Servieren von Dateien vom Stammverzeichnis des Projekts bis zu einer Ebene höher
+      allow: ['..']
+    }
+  }
 })
 ```
 
-When `server.fs.allow` is specified, the auto workspace root detection will be disabled. To extend the original behavior, a utility `searchForWorkspaceRoot` is exposed:
+Wenn `server.fs.allow` angegeben ist, wird die automatische Suche nach dem Arbeitsbereichsstamm deaktiviert. Um das ursprüngliche Verhalten zu erweitern, wird ein Dienstprogramm `searchForWorkspaceRoot` zur Verfügung gestellt:
 
 ```js
 import { defineConfig, searchForWorkspaceRoot } from 'vite'
@@ -291,54 +291,54 @@ export default defineConfig({
   server: {
     fs: {
       allow: [
-        // search up for workspace root
+        // Suchen Sie nach dem Arbeitsbereichsstamm
         searchForWorkspaceRoot(process.cwd()),
-        // your custom rules
+        // Ihre benutzerdefinierten Regeln
         '/path/to/custom/allow_directory',
-        '/path/to/custom/allow_file.demo',
-      ],
-    },
-  },
+        '/path/to/custom/allow_file.demo'
+      ]
+    }
+  }
 })
 ```
 
 ## server.fs.deny
 
-- **Type:** `string[]`
-- **Default:** `['.env', '.env.*', '*.{crt,pem}']`
+- **Typ:** `string[]`
+- **Standardwert:** `['.env', '.env.*', '*.{crt,pem}']`
 
-Blocklist for sensitive files being restricted to be served by Vite dev server. This will have higher priority than [`server.fs.allow`](#server-fs-allow). [picomatch patterns](https://github.com/micromatch/picomatch#globbing-features) are supported.
+Blockliste für sensitive Dateien, die vom Vite-Entwicklungsserver nicht serviert werden dürfen. Dies hat eine höhere Priorität als [`server.fs.allow`](#server-fs-allow). [Picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features) werden unterstützt.
 
 ## server.origin
 
-- **Type:** `string`
+- **Typ:** `string`
 
-Defines the origin of the generated asset URLs during development.
+Definiert den Ursprung der generierten Asset-URLs während der Entwicklung.
 
 ```js
 export default defineConfig({
   server: {
-    origin: 'http://127.0.0.1:8080',
-  },
+    origin: 'http://127.0.0.1:8080'
+  }
 })
 ```
 
 ## server.sourcemapIgnoreList
 
-- **Type:** `false | (sourcePath: string, sourcemapPath: string) => boolean`
-- **Default:** `(sourcePath) => sourcePath.includes('node_modules')`
+- **Typ:** `false | (sourcePath: string, sourcemapPath: string) => boolean`
+- **Standardwert:** `(sourcePath) => sourcePath.includes('node_modules')`
 
-Whether or not to ignore source files in the server sourcemap, used to populate the [`x_google_ignoreList` source map extension](https://developer.chrome.com/blog/devtools-better-angular-debugging/#the-x_google_ignorelist-source-map-extension).
+Gibt an, ob Quelldateien in der Server-Sourcemap ignoriert werden sollen, die verwendet wird, um die [`x_google_ignoreList`-Source-Map-Erweiterung](https://developer.chrome.com/blog/devtools-better-angular-debugging/#the-x_google_ignorelist-source-map-extension) zu füllen.
 
-`server.sourcemapIgnoreList` is the equivalent of [`build.rollupOptions.output.sourcemapIgnoreList`](https://rollupjs.org/configuration-options/#output-sourcemapignorelist) for the dev server. A difference between the two config options is that the rollup function is called with a relative path for `sourcePath` while `server.sourcemapIgnoreList` is called with an absolute path. During dev, most modules have the map and the source in the same folder, so the relative path for `sourcePath` is the file name itself. In these cases, absolute paths makes it convenient to be used instead.
+`server.sourcemapIgnoreList` entspricht [`build.rollupOptions.output.sourcemapIgnoreList`](https://rollupjs.org/configuration-options/#output-sourcemapignorelist) für den Entwicklungsserver. Ein Unterschied zwischen den beiden Konfigurationsoptionen besteht darin, dass die Rollup-Funktion für `sourcePath` einen relativen Pfad aufruft, während `server.sourcemapIgnoreList` mit einem absoluten Pfad aufgerufen wird. Während der Entwicklung haben die meisten Module die Karte und die Quelle im selben Verzeichnis, sodass der relative Pfad für `sourcePath` der Dateiname selbst ist. In diesen Fällen erleichtern absolute Pfade ihre Verwendung.
 
-By default, it excludes all paths containing `node_modules`. You can pass `false` to disable this behavior, or, for full control, a function that takes the source path and sourcemap path and returns whether to ignore the source path.
+Standardmäßig werden alle Pfade, die `node_modules` enthalten, ausgeschlossen. Sie können `false` übergeben, um dieses Verhalten zu deaktivieren, oder, um die volle Kontrolle zu haben, eine Funktion, die den Quellpfad und den Sourcemap-Pfad akzeptiert und zurückgibt, ob der Quellpfad ignoriert werden soll.
 
 ```js
 export default defineConfig({
   server: {
-    // This is the default value, and will add all files with node_modules
-    // in their paths to the ignore list.
+    // Dies ist der Standardwert und wird alle Dateien mit 'node_modules'
+    // in ihrem Pfad zur Ignorierungsliste hinzufügen.
     sourcemapIgnoreList(sourcePath, sourcemapPath) {
       return sourcePath.includes('node_modules')
     }
@@ -347,5 +347,5 @@ export default defineConfig({
 ```
 
 :::tip ANMERKUNG
-[`server.sourcemapIgnoreList`](#server-sourcemapignorelist) and [`build.rollupOptions.output.sourcemapIgnoreList`](https://rollupjs.org/configuration-options/#output-sourcemapignorelist) need to be set independently. `server.sourcemapIgnoreList` is a server only config and doesn't get its default value from the defined rollup options.
+[`server.sourcemapIgnoreList`](#server-sourcemapignorelist) und [`build.rollupOptions.output.sourcemapIgnoreList`](https://rollupjs.org/configuration-options/#output-sourcemapignorelist) müssen unabhängig voneinander festgelegt werden. `server.sourcemapIgnoreList` ist eine serverseitige Konfiguration und erhält ihren Standardwert nicht aus den definierten Rollup-Optionen.
 :::
