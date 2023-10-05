@@ -1,50 +1,50 @@
-# Backend Integration
+# Backend-Integration
 
-:::tip HINWEIS
-If you want to serve the HTML using a traditional backend (e.g. Rails, Laravel) but use Vite for serving assets, check for existing integrations listed in [Awesome Vite](https://github.com/vitejs/awesome-vite#integrations-with-backends).
+::: tip HINWEIS
+Wenn Sie die HTML-Dateien mit einem traditionellen Backend (z. B. Rails, Laravel) bereitstellen und gleichzeitig Vite zur Bereitstellung von Assets verwenden möchten, überprüfen Sie vorhandene Integrationen in [Awesome Vite](https://github.com/vitejs/awesome-vite#integrations-with-backends).
 
-If you need a custom integration, you can follow the steps in this guide to configure it manually
+Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritten in dieser Anleitung folgen, um sie manuell zu konfigurieren.
 :::
 
-1. In your Vite config, configure the entry and enable build manifest:
+1. In Ihrer Vite-Konfiguration konfigurieren Sie den Einstiegspunkt und aktivieren das Build-Manifest:
 
    ```js
    // vite.config.js
    export default defineConfig({
      build: {
-       // generate manifest.json in outDir
+       // Generiere manifest.json in outDir
        manifest: true,
        rollupOptions: {
-         // overwrite default .html entry
-         input: '/path/to/main.js',
-       },
-     },
+         // Überschreibe den Standard-.html-Einstieg
+         input: '/path/to/main.js'
+       }
+     }
    })
    ```
 
-   If you haven't disabled the [module preload polyfill](/config/build-options.md#build-polyfillmodulepreload), you also need to import the polyfill in your entry
+   Wenn Sie das [Module-Preload-Polyfill](/config/build-options.md#build-polyfillmodulepreload) nicht deaktiviert haben, müssen Sie auch das Polyfill in Ihrem Einstiegspunkt importieren:
 
    ```js
-   // add the beginning of your app entry
+   // am Anfang Ihres Anwendungseinstiegspunkts
    import 'vite/modulepreload-polyfill'
    ```
 
-2. For development, inject the following in your server's HTML template (substitute `http://localhost:5173` with the local URL Vite is running at):
+2. Für die Entwicklung fügen Sie Folgendes in das HTML-Template Ihres Servers ein (ersetzen Sie `http://localhost:5173` durch die lokale URL, unter der Vite ausgeführt wird):
 
    ```html
-   <!-- if development -->
+   <!-- wenn Entwicklung -->
    <script type="module" src="http://localhost:5173/@vite/client"></script>
    <script type="module" src="http://localhost:5173/main.js"></script>
    ```
 
-   In order to properly serve assets, you have two options:
+   Um Assets ordnungsgemäß bereitzustellen, haben Sie zwei Optionen:
 
-   - Make sure the server is configured to proxy static assets requests to the Vite server
-   - Set [`server.origin`](/config/server-options.md#server-origin) so that generated asset URLs will be resolved using the back-end server URL instead of a relative path
+   - Stellen Sie sicher, dass der Server so konfiguriert ist, dass er Anfragen nach statischen Assets an den Vite-Server weiterleitet.
+   - Legen Sie [`server.origin`](/config/server-options.md#server-origin) fest, damit generierte Asset-URLs mithilfe der URL des Backend-Servers anstelle eines relativen Pfads aufgelöst werden.
 
-   This is needed for assets such as images to load properly.
+   Dies ist erforderlich, damit Assets wie Bilder ordnungsgemäß geladen werden.
 
-   Note if you are using React with `@vitejs/plugin-react`, you'll also need to add this before the above scripts, since the plugin is not able to modify the HTML you are serving (substitute `http://localhost:5173` with the local URL Vite is running at):
+   Beachten Sie, dass Sie, wenn Sie React mit `@vitejs/plugin-react` verwenden, dies auch vor den oben genannten Skripten hinzufügen müssen, da das Plugin nicht in der Lage ist, den von Ihnen bereitgestellten HTML-Code zu ändern (ersetzen Sie `http://localhost:5173` durch die lokale URL, unter der Vite ausgeführt wird):
 
    ```html
    <script type="module">
@@ -56,7 +56,7 @@ If you need a custom integration, you can follow the steps in this guide to conf
    </script>
    ```
 
-3. For production: after running `vite build`, a `manifest.json` file will be generated alongside other asset files. An example manifest file looks like this:
+3. Für die Produktion: Nach Ausführung von `vite build` wird eine Datei `manifest.json` neben anderen Asset-Dateien generiert. Eine Beispieldatei für das Manifest sieht so aus:
 
    ```json
    {
@@ -80,15 +80,15 @@ If you need a custom integration, you can follow the steps in this guide to conf
    }
    ```
 
-   - The manifest has a `Record<name, chunk>` structure
-   - For entry or dynamic entry chunks, the key is the relative src path from project root.
-   - For non entry chunks, the key is the base name of the generated file prefixed with `_`.
-   - Chunks will contain information on its static and dynamic imports (both are keys that map to the corresponding chunk in the manifest), and also its corresponding CSS and asset files (if any).
+   - Das Manifest hat eine Struktur `Record<Name, Chunk>`.
+   - Für Einstiegs- oder dynamische Einstiegschunks ist der Schlüssel der relative Quellpfad vom Projektstamm aus.
+   - Für Nicht-Einstiegschunks ist der Schlüssel der Basename der generierten Datei mit einem `_`-Präfix.
+   - Chunks enthalten Informationen zu ihren statischen und dynamischen Importen (beide sind Schlüssel, die auf den entsprechenden Chunk im Manifest verweisen), sowie ihre zugehörigen CSS- und Asset-Dateien (falls vorhanden).
 
-   You can use this file to render links or preload directives with hashed filenames (note: the syntax here is for explanation only, substitute with your server templating language):
+   Sie können diese Datei verwenden, um Links oder Preload-Anweisungen mit gehashten Dateinamen zu generieren (Hinweis: Die hier gezeigte Syntax dient nur zur Erklärung, ersetzen Sie sie durch Ihre Server-Template-Sprache):
 
    ```html
-   <!-- if production -->
+   <!-- wenn Produktion -->
    <link rel="stylesheet" href="/assets/{{ manifest['main.js'].css }}" />
    <script type="module" src="/assets/{{ manifest['main.js'].file }}"></script>
    ```
