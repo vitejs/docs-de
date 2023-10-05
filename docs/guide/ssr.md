@@ -257,6 +257,10 @@ In einigen Fällen, wie bei `webworker`-Laufzeiten, möchten Sie Ihren SSR-Build
 - Alle Abhängigkeiten werden als `noExternal` behandelt.
 - Ein Fehler wird ausgelöst, wenn Node.js-Standardmodule importiert werden.
 
+## SSR Resolve Conditions
+
+By default package entry resolution will use the conditions set in [`resolve.conditions`](../config/shared-options.md#resolve-conditions) for the SSR build. You can use [`ssr.resolve.conditions`](../config/ssr-options.md#ssr-resolve-conditions) and [`ssr.resolve.externalConditions`](../config/ssr-options.md#ssr-resolve-externalconditions) to customize this behavior.
+
 ## Vite CLI
 
 Die CLI-Befehle `$ vite dev` und `$ vite preview` können auch für SSR-Anwendungen verwendet werden. Sie können Ihre SSR-Middleware dem Entwicklungsserver mit [`configureServer`](/guide/api-plugin#configureserver) und dem Vorschau-Server mit [`configurePreviewServer`](/guide/api-plugin#configurepreviewserver) hinzufügen.
