@@ -1,69 +1,69 @@
 # Features
 
-At the very basic level, developing using Vite is not that much different from using a static file server. However, Vite provides many enhancements over native ESM imports to support various features that are typically seen in bundler-based setups.
+Auf grundlegender Ebene ist die Entwicklung mit Vite nicht sehr unterschiedlich von der Verwendung eines statischen Dateiservers. Allerdings bietet Vite viele Verbesserungen gegenüber nativen ESM-Imports, um verschiedene Funktionen zu unterstützen, die in typischen Konfigurationen mit Build-Tools zu finden sind.
 
-## NPM Dependency Resolving and Pre-Bundling
+## Auflösen und Vorab-Bündeln von NPM-Abhängigkeiten
 
-Native ES imports do not support bare module imports like the following:
+Native ES-Imports unterstützen keine sogenannten "bare module imports" wie folgendes Beispiel:
 
 ```js
 import { someMethod } from 'my-dep'
 ```
 
-The above will throw an error in the browser. Vite will detect such bare module imports in all served source files and perform the following:
+Dieser Code führt im Browser zu einem Fehler. Vite erkennt solche "bare module imports" in allen bereitgestellten Quelldateien und führt die folgenden Schritte aus:
 
-1. [Pre-bundle](./dep-pre-bundling) them to improve page loading speed and convert CommonJS / UMD modules to ESM. The pre-bundling step is performed with [esbuild](http://esbuild.github.io/) and makes Vite's cold start time significantly faster than any JavaScript-based bundler.
+1. [Vorab-Bündeln](./dep-pre-bundling), um die Ladezeit der Seite zu verbessern und CommonJS / UMD-Module in ESM umzuwandeln. Der Vorab-Bündelungsschritt wird mit [esbuild](http://esbuild.github.io/) durchgeführt und macht Vites Startzeit deutlich schneller als bei jedem auf JavaScript basierenden Build-Tool.
 
-2. Rewrite the imports to valid URLs like `/node_modules/.vite/deps/my-dep.js?v=f3sf2ebd` so that the browser can import them properly.
+2. Ändern der Imports in gültige URLs wie `/node_modules/.vite/deps/my-dep.js?v=f3sf2ebd`, damit der Browser sie ordnungsgemäß importieren kann.
 
-**Dependencies are Strongly Cached**
+**Abhängigkeiten werden stark zwischengespeichert**
 
-Vite caches dependency requests via HTTP headers, so if you wish to locally edit/debug a dependency, follow the steps [here](./dep-pre-bundling#browser-cache).
+Vite zwischenspeichert Abhängigkeitsanfragen über HTTP-Header. Wenn Sie also eine Abhängigkeit lokal bearbeiten/fehlerbeheben möchten, befolgen Sie die Schritte [hier](./dep-pre-bundling#browser-cache).
 
-## Hot Module Replacement
+## Hot Module Replacement (HMR)
 
-Vite provides an [HMR API](./api-hmr) over native ESM. Frameworks with HMR capabilities can leverage the API to provide instant, precise updates without reloading the page or blowing away application state. Vite provides first-party HMR integrations for [Vue Single File Components](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue) and [React Fast Refresh](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react). There are also official integrations for Preact via [@prefresh/vite](https://github.com/JoviDeCroock/prefresh/tree/main/packages/vite).
+Vite bietet eine [HMR-API](./api-hmr) über nativen ESM. Frameworks mit HMR-Fähigkeiten können diese API nutzen, um sofortige und präzise Aktualisierungen ohne Neuladen der Seite oder Verlust des Anwendungsstatus bereitzustellen. Vite bietet First-Party-HMR-Integrationen für [Vue Single File Components](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue) und [React Fast Refresh](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react). Es gibt auch offizielle Integrationen für Preact über [@prefresh/vite](https://github.com/JoviDeCroock/prefresh/tree/main/packages/vite).
 
-Note you don't need to manually set these up - when you [create an app via `create-vite`](./), the selected templates would have these pre-configured for you already.
+Beachten Sie, dass Sie diese nicht manuell einrichten müssen - wenn Sie [eine App über `create-vite`](./) erstellen, sind diese Vorlagen bereits für Sie vorconfiguriert.
 
 ## TypeScript
 
-Vite supports importing `.ts` files out of the box.
+Vite unterstützt das Importieren von `.ts`-Dateien von Haus aus.
 
-### Transpile Only
+### Nur Transpilation
 
-Note that Vite only performs transpilation on `.ts` files and does **NOT** perform type checking. It assumes type checking is taken care of by your IDE and build process.
+Beachten Sie, dass Vite nur Transpilierung für `.ts`-Dateien durchführt und **keine** Typüberprüfung durchführt. Es geht davon aus, dass die Typüberprüfung von Ihrer IDE und Ihrem Build-Prozess durchgeführt wird.
 
-The reason Vite does not perform type checking as part of the transform process is because the two jobs work fundamentally differently. Transpilation can work on a per-file basis and aligns perfectly with Vite's on-demand compile model. In comparison, type checking requires knowledge of the entire module graph. Shoe-horning type checking into Vite's transform pipeline will inevitably compromise Vite's speed benefits.
+Der Grund, warum Vite die Typüberprüfung nicht im Rahmen des Transformationsprozesses durchführt, ist, dass diese beiden Aufgaben grundlegend unterschiedlich arbeiten. Transpilation kann auf Dateiebene arbeiten und passt perfekt zum on-demand-Kompiliermodell von Vite. Im Vergleich dazu erfordert die Typüberprüfung Kenntnisse über den gesamten Modulgraphen. Das Hineinzwängen der Typüberprüfung in den Transformationsprozess von Vite wird zwangsläufig die Geschwindigkeitsvorteile von Vite beeinträchtigen.
 
-Vite's job is to get your source modules into a form that can run in the browser as fast as possible. To that end, we recommend separating static analysis checks from Vite's transform pipeline. This principle applies to other static analysis checks such as ESLint.
+Vites Aufgabe ist es, Ihre Quellmodule so schnell wie möglich in eine Form zu bringen, die im Browser ausgeführt werden kann. Zu diesem Zweck empfehlen wir, statische Analyseprüfungen aus dem Transformationsprozess von Vite auszulagern. Dieses Prinzip gilt auch für andere statische Analyseprüfungen wie ESLint.
 
-- For production builds, you can run `tsc --noEmit` in addition to Vite's build command.
+- Für Production-Builds können Sie den Befehl `tsc --noEmit` zusätzlich zum Build-Befehl von Vite ausführen.
 
-- During development, if you need more than IDE hints, we recommend running `tsc --noEmit --watch` in a separate process, or use [vite-plugin-checker](https://github.com/fi3ework/vite-plugin-checker) if you prefer having type errors directly reported in the browser.
+- Während der Entwicklung, wenn Sie mehr als nur IDE-Hinweise benötigen, empfehlen wir das Ausführen von `tsc --noEmit --watch` in einem separaten Prozess oder die Verwendung von [vite-plugin-checker](https://github.com/fi3ework/vite-plugin-checker), wenn Sie Typfehler direkt im Browser gemeldet haben möchten.
 
-Vite uses [esbuild](https://github.com/evanw/esbuild) to transpile TypeScript into JavaScript which is about 20~30x faster than vanilla `tsc`, and HMR updates can reflect in the browser in under 50ms.
+Vite verwendet [esbuild](https://github.com/evanw/esbuild), um TypeScript in JavaScript zu transpilieren, was etwa 20-30-mal schneller ist als das native `tsc`, und HMR-Updates können in weniger als 50 ms im Browser reflektiert werden.
 
-Use the [Type-Only Imports and Export](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#type-only-imports-and-export) syntax to avoid potential problems like type-only imports being incorrectly bundled, for example:
+Verwenden Sie die [Type-Only Imports and Export](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#type-only-imports-and-export)-Syntax, um potenzielle Probleme wie falsche Bündelung von nur-Typ-Imports zu vermeiden, zum Beispiel:
 
 ```ts
 import type { T } from 'only/types'
 export type { T }
 ```
 
-### TypeScript Compiler Options
+### TypeScript Compiler-Optionen
 
-Some configuration fields under `compilerOptions` in `tsconfig.json` require special attention.
+Einige Konfigurationsfelder unter `compilerOptions` in `tsconfig.json` erfordern besondere Aufmerksamkeit.
 
 #### `isolatedModules`
 
-Should be set to `true`.
+Sollte auf `true` gesetzt werden.
 
-It is because `esbuild` only performs transpilation without type information, it doesn't support certain features like const enum and implicit type-only imports.
+Der Grund dafür ist, dass `esbuild` nur die Transpilierung ohne Typinformationen durchführt und bestimmte Funktionen wie `const enum` und implizite nur-Typen-Imports nicht unterstützt.
 
-You must set `"isolatedModules": true` in your `tsconfig.json` under `compilerOptions`, so that TS will warn you against the features that do not work with isolated transpilation.
+Sie müssen `"isolatedModules": true` in Ihrer `tsconfig.json` unter `compilerOptions` festlegen, damit TypeScript Sie vor den Funktionen warnt, die nicht mit isolierter Transpilierung funktionieren.
 
-However, some libraries (e.g. [`vue`](https://github.com/vuejs/core/issues/1228)) don't work well with `"isolatedModules": true`. You can use `"skipLibCheck": true` to temporarily suppress the errors until it is fixed upstream.
+Einige Bibliotheken (z.B. [`vue`](https://github.com/vuejs/core/issues/1228)) funktionieren jedoch nicht gut mit `"isolatedModules": true`. In solchen Fällen können Sie `"skipLibCheck": true` verwenden, um die Fehler vorübergehend zu unterdrücken, bis sie behoben sind.
 
 #### `useDefineForClassFields`
 
@@ -156,8 +156,8 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   esbuild: {
     jsxFactory: 'h',
-    jsxFragment: 'Fragment',
-  },
+    jsxFragment: 'Fragment'
+  }
 })
 ```
 
@@ -171,8 +171,8 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   esbuild: {
-    jsxInject: `import React from 'react'`,
-  },
+    jsxInject: `import React from 'react'`
+  }
 })
 ```
 
@@ -332,7 +332,7 @@ The above will be transformed into the following:
 // code produced by vite
 const modules = {
   './dir/foo.js': () => import('./dir/foo.js'),
-  './dir/bar.js': () => import('./dir/bar.js'),
+  './dir/bar.js': () => import('./dir/bar.js')
 }
 ```
 
@@ -360,7 +360,7 @@ import * as __glob__0_0 from './dir/foo.js'
 import * as __glob__0_1 from './dir/bar.js'
 const modules = {
   './dir/foo.js': __glob__0_0,
-  './dir/bar.js': __glob__0_1,
+  './dir/bar.js': __glob__0_1
 }
 ```
 
@@ -378,7 +378,7 @@ The above will be transformed into the following:
 // code produced by vite
 const modules = {
   './dir/foo.js': 'export default "foo"\n',
-  './dir/bar.js': 'export default "bar"\n',
+  './dir/bar.js': 'export default "bar"\n'
 }
 ```
 
@@ -403,7 +403,7 @@ const modules = import.meta.glob(['./dir/*.js', '!**/bar.js'])
 ```js
 // code produced by vite
 const modules = {
-  './dir/foo.js': () => import('./dir/foo.js'),
+  './dir/foo.js': () => import('./dir/foo.js')
 }
 ```
 
@@ -419,7 +419,7 @@ const modules = import.meta.glob('./dir/*.js', { import: 'setup' })
 // code produced by vite
 const modules = {
   './dir/foo.js': () => import('./dir/foo.js').then((m) => m.setup),
-  './dir/bar.js': () => import('./dir/bar.js').then((m) => m.setup),
+  './dir/bar.js': () => import('./dir/bar.js').then((m) => m.setup)
 }
 ```
 
@@ -428,7 +428,7 @@ When combined with `eager` it's even possible to have tree-shaking enabled for t
 ```ts
 const modules = import.meta.glob('./dir/*.js', {
   import: 'setup',
-  eager: true,
+  eager: true
 })
 ```
 
@@ -438,7 +438,7 @@ import { setup as __glob__0_0 } from './dir/foo.js'
 import { setup as __glob__0_1 } from './dir/bar.js'
 const modules = {
   './dir/foo.js': __glob__0_0,
-  './dir/bar.js': __glob__0_1,
+  './dir/bar.js': __glob__0_1
 }
 ```
 
@@ -447,7 +447,7 @@ Set `import` to `default` to import the default export.
 ```ts
 const modules = import.meta.glob('./dir/*.js', {
   import: 'default',
-  eager: true,
+  eager: true
 })
 ```
 
@@ -457,7 +457,7 @@ import __glob__0_0 from './dir/foo.js'
 import __glob__0_1 from './dir/bar.js'
 const modules = {
   './dir/foo.js': __glob__0_0,
-  './dir/bar.js': __glob__0_1,
+  './dir/bar.js': __glob__0_1
 }
 ```
 
@@ -467,7 +467,7 @@ You can also use the `query` option to provide custom queries to imports for oth
 
 ```ts
 const modules = import.meta.glob('./dir/*.js', {
-  query: { foo: 'bar', bar: true },
+  query: { foo: 'bar', bar: true }
 })
 ```
 
@@ -475,7 +475,7 @@ const modules = import.meta.glob('./dir/*.js', {
 // code produced by vite:
 const modules = {
   './dir/foo.js': () => import('./dir/foo.js?foo=bar&bar=true'),
-  './dir/bar.js': () => import('./dir/bar.js?foo=bar&bar=true'),
+  './dir/bar.js': () => import('./dir/bar.js?foo=bar&bar=true')
 }
 ```
 
@@ -518,8 +518,8 @@ init({
   imports: {
     someFunc: () => {
       /* ... */
-    },
-  },
+    }
+  }
 }).then(() => {
   /* ... */
 })
@@ -542,7 +542,7 @@ import wasmUrl from 'foo.wasm?url'
 const main = async () => {
   const responsePromise = fetch(wasmUrl)
   const { module, instance } = await WebAssembly.instantiateStreaming(
-    responsePromise,
+    responsePromise
   )
   /* ... */
 }
@@ -587,7 +587,7 @@ The worker constructor also accepts options, which can be used to create "module
 
 ```ts
 const worker = new Worker(new URL('./worker.js', import.meta.url), {
-  type: 'module',
+  type: 'module'
 })
 ```
 
