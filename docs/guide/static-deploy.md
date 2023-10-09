@@ -221,7 +221,7 @@ $ wrangler login
 $ npm run build
 
 # Erstellen Sie eine neue Bereitstellung
-$ npx wrangler pages publish dist
+$ npx wrangler pages deploy dist
 ```
 
 Nachdem Ihre Dateien hochgeladen wurden, gibt Ihnen Wrangler eine Vorschau-URL zum Überprüfen Ihrer Website. Wenn Sie sich im Cloudflare Pages-Dashboard anmelden, sehen Sie Ihr neues Projekt.
