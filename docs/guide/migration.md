@@ -41,7 +41,7 @@ Diese Änderung verhindert, dass Vite OS-spezifische Verknüpfungen verschluckt 
 
 ## Entfernte veraltete APIs
 
-- Standardexports von CSS-Dateien (z.B. `import style from './foo.css'`): Verwenden Sie stattdessen die Abfrage `?inline`
+- Standardexports von CSS-Dateien (z.B. `import style from './foo.css'`): Verwenden Sie stattdessen die `?inline`-Query-Komponente
 - `import.meta.globEager`: Verwenden Sie stattdessen `import.meta.glob('*', { eager: true })`
 - `ssr.format: 'cjs`' und `legacy.buildSsrCjsExternalHeuristics` ([#13816](https://github.com/vitejs/vite/discussions/13816))
 
