@@ -42,8 +42,8 @@ type ResolveModulePreloadDependenciesFn = (
   deps: string[],
   context: {
     importer: string
-  }
-) => (string | { runtime?: string })[]
+  },
+) => string[]
 ```
 
 Die `resolveDependencies`-Funktion wird für jedes dynamische Importieren mit einer Liste der Chunks, von denen es abhängt, aufgerufen, und sie wird auch für jeden in den Eingabe-HTML-Dateien importierten Chunk aufgerufen. Es kann ein neues Abhängigkeiten-Array zurückgegeben werden, das diese gefilterten oder weiteren Abhängigkeiten enthält und deren Pfade geändert wurden. Die Pfade in `deps` sind relativ zum `build.outDir`. Das Zurückgeben eines relativen Pfads zum `hostId` für `hostType === 'js'` ist erlaubt, in diesem Fall wird `new URL(dep, import.meta.url)` verwendet, um einen absoluten Pfad zu erhalten, wenn dieses Modul-Preload im HTML-Header eingefügt wird.
