@@ -1,73 +1,73 @@
-# Migration from v3
+# Migration von v3
 
 ## Rollup 3
 
-Vite is now using [Rollup 3](https://github.com/vitejs/vite/issues/9870), which allowed us to simplify Vite's internal asset handling and has many improvements. See the [Rollup 3 release notes here](https://github.com/rollup/rollup/releases/tag/v3.0.0).
+Vite verwendet jetzt [Rollup 3](https://github.com/vitejs/vite/issues/9870), das es uns ermöglichte, die interne Handhabung von Vite zu vereinfachen und viele Verbesserungen vorzunehmen. Siehe die [Rollup 3 Release Notes hier](https://github.com/rollup/rollup/releases/tag/v3.0.0).
 
-Rollup 3 is mostly compatible with Rollup 2. If you are using custom [`rollupOptions`](../config/build-options.md#rollup-options) in your project and encounter issues, refer to the [Rollup migration guide](https://rollupjs.org/migration/) to upgrade your config.
+Rollup 3 ist größtenteils kompatibel mit Rollup 2. Wenn Sie in Ihrem Projekt benutzerdefinierte [`rollupOptions`](../config/build-options.md#rollup-options) verwenden und auf Probleme stoßen, lesen Sie die [Rollup-Migrationsanleitung](https://rollupjs.org/migration/), um Ihre Konfiguration zu aktualisieren.
 
-## Modern Browser Baseline change
+## Modern Browser Baseline Änderung
 
-The modern browser build now targets `safari14` by default for wider ES2020 compatibility (bumped from `safari13`). This means that modern builds can now use [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) and that the [nullish coalescing operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing) isn't transpiled anymore. If you need to support older browsers, you can add [`@vitejs/plugin-legacy`](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) as usual.
+Der moderne Browser-Build zielt nun standardmäßig auf `safari14` für eine breitere ES2020-Kompatibilität (von `safari13`). Das bedeutet, dass moderne Builds nun [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) verwenden können und dass der [nullish coalescing operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing) nicht mehr transpiliert wird. Wenn Sie ältere Browser unterstützen müssen, können Sie [`@vitejs/plugin-legacy`](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) wie gewohnt hinzufügen.
 
-## General Changes
+## Allgemeine Änderungen
 
-### Encoding
+### Kodierung
 
-The build default charset is now utf8 (see [#10753](https://github.com/vitejs/vite/issues/10753) for details).
+Der Standardzeichensatz für die Erstellung ist jetzt utf8 (siehe [#10753](https://github.com/vitejs/vite/issues/10753) für Details).
 
-### Importing CSS as a String
+### Importieren von CSS als String
 
-In Vite 3, importing the default export of a `.css` file could introduce a double loading of CSS.
+In Vite 3 konnte es beim Importieren des Standard-Exports einer "css"-Datei zu einem doppelten Laden von CSS kommen.
 
 ```ts
 import cssString from './global.css'
 ```
 
-This double loading could occur since a `.css` file will be emitted and it's likely that the CSS string will also be used by the application code — for example, injected by the framework runtime. From Vite 4, the `.css` default export [has been deprecated](https://github.com/vitejs/vite/issues/11094). The `?inline` query suffix modifier needs to be used in this case, as that doesn't emit the imported `.css` styles.
+Dieses doppelte Laden könnte auftreten, da eine "css"-Datei ausgegeben wird und es wahrscheinlich ist, dass die CSS-Zeichenkette auch vom Anwendungscode verwendet wird - zum Beispiel durch die Laufzeit des Frameworks. Ab Vite 4 wurde der `.css`-Standard-Export [veraltet](https://github.com/vitejs/vite/issues/11094). Der Abfragesuffix-Modifikator "inline" muss in diesem Fall verwendet werden, da er die importierten "css"-Stile nicht ausgibt.
 
 ```ts
 import stuff from './global.css?inline'
 ```
 
-### Production Builds by Default
+### Production Builds als Standard
 
-`vite build` will now always build for production regardless of the `--mode` passed. Previously, changing `mode` to other than `production` would result in a development build. If you wish to still build for development, you can set `NODE_ENV=development` in the `.env.{mode}` file.
+`vite build` wird nun immer für die Produktion bauen, unabhängig von dem übergebenen `--mode`. Zuvor führte das Ändern von `mode` in einen anderen Modus als `production` zu einem Entwicklungs-Build. Wenn Sie weiterhin für die Entwicklung bauen wollen, können Sie `NODE_ENV=development` in der Datei `.env.{mode}` setzen.
 
-In part of this change, `vite dev` and `vite build` will not override `process.env.NODE_ENV` anymore if it is already defined. So if you've set `process.env.NODE_ENV = 'development'` before building, it will also build for development. This gives more control when running multiple builds or dev servers in parallel.
+Als Teil dieser Änderung werden `vite dev` und `vite build` nicht mehr `process.env.NODE_ENV` überschreiben, wenn es bereits definiert ist. Wenn Sie also `process.env.NODE_ENV = 'development'` vor dem Bauen gesetzt haben, wird es auch für die Entwicklung gebaut. Dies gibt mehr Kontrolle, wenn mehrere Builds oder Dev-Server parallel laufen.
 
-See the updated [`mode` documentation](https://vitejs.dev/guide/env-and-mode.html#modes) for more details.
+Siehe die aktualisierte [`mode` Dokumentation] (https://vitejs.dev/guide/env-and-mode.html#modes) für weitere Details.
 
-### Environment Variables
+### Umgebungsvariablen
 
-Vite now uses `dotenv` 16 and `dotenv-expand` 9 (previously `dotenv` 14 and `dotenv-expand` 5). If you have a value including `#` or `` ` ``, you will need to wrap them with quotes.
+Vite verwendet jetzt `dotenv` 16 und `dotenv-expand` 9 (vorher `dotenv` 14 und `dotenv-expand` 5). Wenn Sie einen Wert haben, der `#` oder `` ` `` enthält, müssen Sie diese mit Anführungszeichen umschließen.
 
 ```diff
 -VITE_APP=ab#cd`ef
 +VITE_APP="ab#cd`ef"
 ```
 
-For more details, see the [`dotenv`](https://github.com/motdotla/dotenv/blob/master/CHANGELOG.md) and [`dotenv-expand` changelog](https://github.com/motdotla/dotenv-expand/blob/master/CHANGELOG.md).
+Für weitere Details siehe [`dotenv`](https://github.com/motdotla/dotenv/blob/master/CHANGELOG.md) und [`dotenv-expand` changelog](https://github.com/motdotla/dotenv-expand/blob/master/CHANGELOG.md).
 
-## Advanced
+## Erweitert
 
-There are some changes which only affect plugin/tool creators.
+Es gibt einige Änderungen, die nur Plugin/Tool-Ersteller betreffen.
 
 - [[#11036] feat(client)!: remove never implemented hot.decline](https://github.com/vitejs/vite/issues/11036)
-  - use `hot.invalidate` instead
-- [[#9669] feat: align object interface for `transformIndexHtml` hook](https://github.com/vitejs/vite/issues/9669)
-  - use `order` instead of `enforce`
+  - verwende stattdessen `hot.invalidate`
+- [[#9669] feat: Objekt-Schnittstelle für `transformIndexHtml`-Hook anpassen](https://github.com/vitejs/vite/issues/9669)
+  - benutze `order` anstelle von `enforce`
 
-Also there are other breaking changes which only affect few users.
+Außerdem gibt es weitere Änderungen, die nur wenige Benutzer betreffen.
 
-- [[#11101] feat(ssr)!: remove dedupe and mode support for CJS](https://github.com/vitejs/vite/pull/11101)
-  - You should migrate to the default ESM mode for SSR, CJS SSR support may be removed in the next Vite major.
-- [[#10475] feat: handle static assets in case-sensitive manner](https://github.com/vitejs/vite/pull/10475)
-  - Your project shouldn't rely on an OS ignoring file names casing.
-- [[#10996] fix!: make `NODE_ENV` more predictable](https://github.com/vitejs/vite/pull/10996)
-  - Refer to the PR for an explanation about this change.
-- [[#10903] refactor(types)!: remove facade type files](https://github.com/vitejs/vite/pull/10903)
+- [[#11101] feat(ssr)!: dedupe und mode Unterstützung für CJS entfernen](https://github.com/vitejs/vite/pull/11101)
+  - Sie sollten auf den Standard-ESM-Modus für SSR migrieren, die Unterstützung für CJS SSR könnte im nächsten Vite-Major entfernt werden.
+- [[#10475] feat: Behandlung statischer Assets unter Berücksichtigung der Groß-/Kleinschreibung](https://github.com/vitejs/vite/pull/10475)
+  - Ihr Projekt sollte sich nicht darauf verlassen, dass ein Betriebssystem die Groß- und Kleinschreibung von Dateinamen ignoriert.
+- [[#10996] fix!: `NODE_ENV` berechenbarer machen](https://github.com/vitejs/vite/pull/10996)
+  - Siehe den PR für eine Erklärung dieser Änderung.
+- [[#10903] refactor(types)!: Fassadentypdateien entfernen](https://github.com/vitejs/vite/pull/10903)
 
-## Migration from v2
+## Migration von v2
 
-Check the [Migration from v2 Guide](https://v3.vitejs.dev/guide/migration.html) in the Vite v3 docs first to see the needed changes to port your app to Vite v3, and then proceed with the changes on this page.
+Schauen Sie sich zuerst den [Migration from v2 Guide](https://v3.vitejs.dev/guide/migration.html) in den Vite v3 Dokumenten an, um zu sehen, welche Änderungen notwendig sind, um Ihre Anwendung auf Vite v3 zu portieren, und fahren Sie dann mit den Änderungen auf dieser Seite fort.
