@@ -37,6 +37,10 @@ interface ViteHotContext {
     event: T,
     cb: (payload: InferCustomEventPayload<T>) => void
   ): void
+  off<T extends string>(
+    event: T,
+    cb: (payload: InferCustomEventPayload<T>) => void,
+  ): void
   send<T extends string>(event: T, data?: InferCustomEventPayload<T>): void
 }
 ```
@@ -180,6 +184,10 @@ Folgende HMR-Ereignisse werden automatisch von Vite ausgelöst:
 - `'vite:ws:connect'` wenn die WebSocket-Verbindung (wieder-)hergestellt wird
 
 Benutzerdefinierte HMR-Ereignisse können auch von Plugins gesendet werden. Weitere Informationen finden Sie unter [handleHotUpdate](./api-plugin#handlehotupdate).
+
+## `hot.off(event, cb)`
+
+Remove callback from the event listeners
 
 ## `hot.send(event, data)`
 
