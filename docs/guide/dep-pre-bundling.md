@@ -52,10 +52,6 @@ export default defineConfig({
 
 Wenn Sie Änderungen an der verknüpften Abhängigkeit vornehmen, starten Sie den Entwicklungsserver mit der Befehlszeilenoption `--force`, damit die Änderungen wirksam werden.
 
-::: warning Deduplizierung
-Aufgrund von Unterschieden bei der Auflösung von verknüpften Abhängigkeiten können transitive Abhängigkeiten falsch dedupliziert werden, was zu Problemen bei der Laufzeitnutzung führen kann. Wenn Sie auf dieses Problem stoßen, verwenden Sie `npm pack` auf der verknüpften Abhängigkeit, um es zu beheben.
-:::
-
 ## Anpassen des Verhaltens
 
 Die Standard-Abhängigkeitserkennungsheuristik ist nicht immer wünschenswert. In Fällen, in denen Sie Abhängigkeiten ausdrücklich in die Liste aufnehmen oder ausschließen möchten, verwenden Sie die [`optimizeDeps`-Konfigurationsoptionen](/config/dep-optimization-options.md).
