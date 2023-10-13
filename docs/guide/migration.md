@@ -39,6 +39,29 @@ CLI-Verknüpfungen, wie z.B. `r`, um den Dev-Server neu zu starten, erfordern nu
 
 Diese Änderung verhindert, dass Vite OS-spezifische Verknüpfungen verschluckt und steuert, was eine bessere Kompatibilität bei der Kombination des Vite-Dev-Servers mit anderen Prozessen ermöglicht und die [früheren Einschränkungen](https://github.com/vitejs/vite/pull/14342) vermeidet.
 
+### `resolvePackageEntry` und `resolvePackageData` APIs entfernen
+
+Die `resolvePackageEntry` und `resolvePackageData` APIs werden entfernt, da sie die Interna von Vite offenlegen und in der Vergangenheit potentielle Optimierungen von Vite 4.3 blockiert haben. Diese APIs können z.B. durch Pakete von Drittanbietern ersetzt werden:
+
+- `resolvePackageEntry`: [`import.meta.resolve`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve) oder das Paket [`import-meta-resolve`](https://github.com/wooorm/import-meta-resolve).
+- `resolvePackageData`: Dasselbe wie oben, und crawlen Sie das Paketverzeichnis, um die Wurzel `package.json` zu erhalten. Oder verwenden Sie das Gemeinschaftspaket [`vitefu`](https://github.com/svitejs/vitefu).
+
+```js
+import { resolve } from 'import-meta-env'
+import { findDepPkgJsonPath } from 'vitefu'
+import fs from 'node:fs'
+
+const pkg = 'my-lib'
+const basedir = process.cwd()
+
+// `resolvePackageEntry`:
+const packageEntry = resolve(pkg, basedir)
+
+// `resolvePackageData`:
+const packageJsonPath = findDepPkgJsonPath(pkg, basedir)
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'))
+```
+
 ## Entfernte veraltete APIs
 
 - Standardexports von CSS-Dateien (z.B. `import style from './foo.css'`): Verwenden Sie stattdessen die `?inline`-Query-Komponente
