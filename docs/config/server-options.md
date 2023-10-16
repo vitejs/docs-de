@@ -174,6 +174,34 @@ Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann igno
 
 :::
 
+## server.warmup
+
+- **Typ:** `{ clientFiles?: string[], ssrFiles?: string[] }`
+
+Aufwärmen der zu transformierenden Dateien und Zwischenspeichern der Ergebnisse im Voraus. Dies verbessert das anfängliche Laden der Seite bei Serverstarts und verhindert Transformations-Wasserfälle.
+
+Die Optionen `clientFiles` und `ssrFiles` akzeptieren ein Array von Dateipfaden oder glob-Mustern relativ zum `root`. Achten Sie darauf, nur Dateien hinzuzufügen, die Hot Code sind, da sonst das Hinzufügen von zu vielen Dateien den Transformationsprozess verlangsamen kann.
+
+Um zu verstehen, warum Warmup nützlich sein kann, ist hier ein Beispiel. Gegeben sei dieser Moduldiagramm, bei dem die linke Datei die rechte Datei importiert:
+
+```
+main.js -> Component.vue -> big-file.js -> large-data.json
+```
+
+Die importierten IDs können nur bekannt sein, nachdem die Datei transformiert wurde. Wenn also `Component.vue` einige Zeit zum Transformieren braucht, muss `big-file.js` warten, bis es an der Reihe ist, und so weiter. Dies verursacht einen internen Wasserfall.
+
+Durch Aufwärmen von "big-file.js" oder anderen Dateien, von denen Sie wissen, dass sie in Ihrer Anwendung einen heißen Pfad haben, werden sie zwischengespeichert und können sofort bedient werden.
+
+```js
+export default defineConfig({
+  server: {
+    warmup: {
+      clientFiles: ['./src/big-file.js', './src/components/*.vue'],
+    },
+  },
+})
+```
+
 ## server.watch
 
 - **Typ:** `object | null`
