@@ -427,6 +427,7 @@ export function importAnalysisPlugin(config: ResolvedConfig): Plugin {
             // so use imports[index].n to get the unescaped string
             n: specifier,
             a: assertIndex,
+            a: attributeIndex,
           } = importSpecifier
 
           const rawUrl = source.slice(start, end)
@@ -470,8 +471,8 @@ export function importAnalysisPlugin(config: ResolvedConfig): Plugin {
 
           const isDynamicImport = dynamicIndex > -1
 
-          // strip import assertions as we can process them ourselves
-          if (!isDynamicImport && assertIndex > -1) {
+          // strip import attributes as we can process them ourselves
+          if (!isDynamicImport && attributeIndex > -1) {
             str().remove(end + 1, expEnd)
           }
 
