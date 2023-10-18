@@ -30,7 +30,7 @@ Für andere Projekte gibt es einige allgemeine Ansätze:
 - **Behalten Sie CJS als Standard und wählen Sie bei Bedarf ESM aus:** Wenn die `package.json` des Projekts nicht `"type": "module"` enthält, werden alle `*.js`-Dateien als CJS interpretiert. Sie können eine Datei mit der Erweiterung `.mjs` umbenennen, um stattdessen ESM zu verwenden.
 - **Importieren Sie Vite dynamisch:** Wenn Sie weiterhin CJS verwenden müssen, können Sie Vite dynamisch mit `import('vite')` importieren. Dies erfordert, dass Ihr Code in einem `async`-Kontext geschrieben ist, sollte aber immer noch gut beherrschbar sein, da die Vite-API größtenteils asynchron ist.
 
-Weitere Informationen finden Sie im [Problembehandlungsleitfaden](https://vitejs.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated).
+Weitere Informationen finden Sie im [Leitfaden zur Problembehandlung](/guide/troubleshooting.html#vite-cjs-node-api-deprecated).
 
 ## Allgemeine Änderungen
 
