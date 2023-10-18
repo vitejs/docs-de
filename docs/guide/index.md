@@ -133,7 +133,7 @@ In einem Projekt, in dem Vite installiert ist, können Sie das `vite`-Binary in 
 }
 ```
 
-Sie können zusätzliche CLI-Optionen wie `--port` oder `--https` angeben. Eine vollständige Liste der CLI-Optionen erhalten Sie, wenn Sie `npx vite --help` in Ihrem Projekt ausführen.
+Sie können zusätzliche CLI-Optionen wie `--port` oder `--open` angeben. Eine vollständige Liste der CLI-Optionen erhalten Sie, wenn Sie `npx vite --help` in Ihrem Projekt ausführen.
 
 Erfahren Sie mehr über die [Befehlszeilenschnittstelle](./cli.md)
 

@@ -50,6 +50,11 @@ CLI-Verknüpfungen, wie z.B. `r`, um den Dev-Server neu zu starten, erfordern nu
 
 Diese Änderung verhindert, dass Vite OS-spezifische Verknüpfungen verschluckt und steuert, was eine bessere Kompatibilität bei der Kombination des Vite-Dev-Servers mit anderen Prozessen ermöglicht und die [früheren Einschränkungen](https://github.com/vitejs/vite/pull/14342) vermeidet.
 
+### Entfernen Sie `--https` und `https: true`.
+
+Das `--https` Flag setzt `https: true`. Diese Konfiguration war dafür gedacht, zusammen mit der automatischen https-Zertifizierungsfunktion verwendet zu werden, die [in Vite 3](https://v3.vitejs.dev/guide/migration.html#automatic-https-certificate-generation) abgeschafft wurde. Diese Konfiguration ist nicht mehr sinnvoll, da sie Vite dazu bringt, einen HTTPS-Server ohne Zertifikat zu starten.
+Sowohl [`@vitejs/plugin-basic-ssl`](https://github.com/vitejs/vite-plugin-basic-ssl) als auch [`vite-plugin-mkcert`](https://github.com/liuweiGL/vite-plugin-mkcert) setzen die `https`-Einstellung unabhängig vom `https`-Wert, also können Sie einfach `--https` und `https: true` entfernen.
+
 ### `resolvePackageEntry` und `resolvePackageData` APIs entfernen
 
 Die `resolvePackageEntry` und `resolvePackageData` APIs werden entfernt, da sie die Interna von Vite offenlegen und in der Vergangenheit potentielle Optimierungen von Vite 4.3 blockiert haben. Diese APIs können z.B. durch Pakete von Drittanbietern ersetzt werden:
