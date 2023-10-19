@@ -34,6 +34,32 @@ Weitere Informationen finden Sie im [Leitfaden zur Problembehandlung](/guide/tro
 
 ## Allgemeine Änderungen
 
+### Der Wert der externalisierten SSR-Module entspricht jetzt dem Produktionswert.
+
+In Vite 4 werden externalisierte SSR-Module mit `.default` und `.__esModule` umhüllt, um die Interoperabilität zu verbessern. Dies entspricht jedoch nicht dem Verhalten in der Produktion, wenn sie von der Laufzeitumgebung (z.B. Node.js) geladen werden, was zu schwer zu fangenden Inkonsistenzen führt. Standardmäßig werden alle direkten Projektabhängigkeiten von SSR externalisiert.
+
+Vite 5 entfernt nun die Handhabung von `.default` und `.__esModule`, um dem Produktionsverhalten zu entsprechen. In der Praxis sollte dies keine Auswirkungen auf ordnungsgemäß verpackte Abhängigkeiten haben, aber wenn Sie auf neue Probleme beim Laden von Modulen stoßen, können Sie diese Umstrukturierungen ausprobieren:
+
+```js
+// Before:
+import { foo } from 'bar'
+
+// After:
+import _bar from 'bar'
+const { foo } = _bar
+```
+
+```js
+// Before:
+import foo from 'bar'
+
+// After:
+import * as _foo from 'bar'
+const foo = _foo.default
+```
+
+Beachten Sie, dass diese Änderungen dem Verhalten von Node.js entsprechen, so dass Sie die Importe auch in Node.js ausführen können, um sie zu testen. Wenn Sie es vorziehen, das bisherige Verhalten beizubehalten, können Sie `legacy.proxySsrExternalModules` auf `true` setzen.
+
 ### `worker.plugins` ist jetzt eine Funktion
 
 In Vite 4 akzeptierte `worker.plugins` ein Array von Plugins (`(Plugin | Plugin[])[]`). Ab Vite 5 muss es als Funktion konfiguriert werden, die ein Array von Plugins zurückgibt (`() => (Plugin | Plugin[])[]`). Diese Änderung ist erforderlich, damit parallele Worker-Builds konsistenter und vorhersehbarer ablaufen.
