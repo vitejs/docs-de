@@ -11,9 +11,10 @@ Ausgabeformat für Worker-Bundle.
 
 ## worker.plugins
 
-- **Type:** [`(Plugin | Plugin[])[]`](./shared-options#plugins)
+- **Type:** [`() => (Plugin | Plugin[])[]`](./shared-options#plugins)
 
-Angabe der Plugins, die für das Worker-Bundle gelten. Beachten Sie, dass [config.plugins](./shared-options#plugins) nur für Worker in Dev gilt, es sollte stattdessen hier für Build konfiguriert werden.
+Vite-Plugins, die für die Worker-Bundles gelten. Beachten Sie, dass [config.plugins](./shared-options#plugins) nur für Worker in dev gilt, es sollte stattdessen hier für build konfiguriert werden.
+Die Funktion sollte neue Plugin-Instanzen zurückgeben, wie sie in parallelen Rollup-Worker-Builds verwendet werden. Daher wird die Änderung der `config.worker`-Optionen im `config`-Hook ignoriert.
 
 ## worker.rollupOptions
 

@@ -34,6 +34,10 @@ Weitere Informationen finden Sie im [Leitfaden zur Problembehandlung](/guide/tro
 
 ## Allgemeine Änderungen
 
+### `worker.plugins` ist jetzt eine Funktion
+
+In Vite 4 akzeptierte `worker.plugins` ein Array von Plugins (`(Plugin | Plugin[])[]`). Ab Vite 5 muss es als Funktion konfiguriert werden, die ein Array von Plugins zurückgibt (`() => (Plugin | Plugin[])[]`). Diese Änderung ist erforderlich, damit parallele Worker-Builds konsistenter und vorhersehbarer ablaufen.
+
 ### Pfad mit `.` kann jetzt auf index.html zurückfallen
 
 In Vite 4 wurde bei Zugriff auf einen Pfad, der `.` enthält, auch wenn `appType` auf `'SPA'` (Standard) eingestellt war, nicht auf index.html zurückgefallen. Ab Vite 5 wird auf index.html zurückgefallen.
