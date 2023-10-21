@@ -15,7 +15,7 @@ export const core = [
   {
     avatar: 'https://www.github.com/patak-dev.png',
     name: 'Patak',
-    title: 'A collaborative being',
+    title: 'Ein kollaboratives Wesen',
     org: 'StackBlitz',
     orgLink: 'https://stackblitz.com/',
     desc: 'Core team member of Vite. Team member of Vue.',
@@ -100,7 +100,7 @@ export const core = [
   {
     avatar: 'https://github.com/poyoho.png',
     name: 'yoho',
-    title: 'Frontend-Entwickler.',
+    title: 'Frontend-Entwickler',
     desc: 'Frontend. Mitglied des Vite-Teams.',
     links: [
       { icon: 'github', link: 'https://github.com/poyoho' },
@@ -118,7 +118,7 @@ export const core = [
   {
     avatar: 'https://github.com/dominikg.png',
     name: 'Dominik G.',
-    title: 'Resident CI-Experte.',
+    title: 'Resident CI-Experte',
     desc: 'Teammitglied von Vite und Svelte.',
     links: [
       { icon: 'github', link: 'https://github.com/dominikg' },
