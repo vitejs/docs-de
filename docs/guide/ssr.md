@@ -211,7 +211,7 @@ Wenn die Routen und die für bestimmte Routen benötigten Daten im Voraus bekann
 
 Abhängigkeiten werden standardmäßig von Vites SSR-Transformationsmodul-System "externalisiert", wenn SSR ausgeführt wird. Dies beschleunigt sowohl die Entwicklung als auch das Builden.
 
-Wenn eine Abhängigkeit von Vites Pipeline transformiert werden muss, beispielsweise, weil Vite-Features in ihnen untransformiert verwendet werden, können sie zu [`ssr.noExternal`](../config/ssr-options.md#ssr-noexternal) hinzugefügt werden.
+Wenn eine Abhängigkeit von Vites Pipeline transformiert werden muss, beispielsweise, weil Vite-Funktionen in ihnen untransformiert verwendet werden, können sie zu [`ssr.noExternal`](../config/ssr-options.md#ssr-noexternal) hinzugefügt werden.
 
 Verknüpfte Abhängigkeiten werden standardmäßig nicht externalisiert, um von Vites HMR zu profitieren. Wenn dies nicht gewünscht ist, beispielsweise, um Abhängigkeiten zu testen, als wären sie nicht verknüpft, können Sie sie zu [`ssr.external`](../config/ssr-options.md#ssr-external) hinzufügen.
 
