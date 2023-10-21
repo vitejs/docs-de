@@ -231,7 +231,7 @@ export default defineConfig({
               link: '/guide/'
             },
             {
-              text: 'Features',
+              text: 'Funktionen',
               link: '/guide/features'
             },
             {

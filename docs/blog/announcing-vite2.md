@@ -54,7 +54,7 @@ Vite SSR wird als Low-Level-Feature bereitgestellt und wir erwarten, dass Framew
 
 ### Opt-in-Unterstützung für ältere Browser
 
-Vite zielt standardmäßig auf moderne Browser mit nativer ESM-Unterstützung ab, aber Sie können sich auch für die Unterstützung von Legacy-Browsern über das offizielle [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) entscheiden. Das Plugin generiert automatisch duale Modern/Legacy-Bundles und liefert das richtige Bundle basierend auf der Erkennung von Browser-Features, um effizienteren Code in modernen Browsern, die diese unterstützen, zu gewährleisten.
+Vite zielt standardmäßig auf moderne Browser mit nativer ESM-Unterstützung ab, aber Sie können sich auch für die Unterstützung von Legacy-Browsern über das offizielle [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) entscheiden. Das Plugin generiert automatisch duale Modern/Legacy-Bundles und liefert das richtige Bundle basierend auf der Erkennung von Browser-Funktionen, um effizienteren Code in modernen Browsern, die diese unterstützen, zu gewährleisten.
 
 ## Probieren Sie es aus!
 

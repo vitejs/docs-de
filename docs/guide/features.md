@@ -1,4 +1,4 @@
-# Features
+# Funktionen
 
 Auf grundlegender Ebene ist die Entwicklung mit Vite nicht sehr unterschiedlich von der Verwendung eines statischen Dateiservers. Allerdings bietet Vite viele Verbesserungen gegenüber nativen ESM-Imports, um verschiedene Funktionen zu unterstützen, die in typischen Konfigurationen mit Build-Tools zu finden sind.
 
@@ -145,7 +145,7 @@ Vite bietet First-Class Vue Support:
 
 .jsx"- und "tsx"-Dateien werden ebenfalls von Haus aus unterstützt. JSX Transpilierung wird auch über [esbuild](https://esbuild.github.io) gehandhabt.
 
-Vue-Benutzer sollten das offizielle [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx) Plugin verwenden, das Vue 3-spezifische Features wie HMR, globale Komponentenauflösung, Direktiven und Slots bietet.
+Vue-Benutzer sollten das offizielle [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx) Plugin verwenden, das Vue 3-spezifische Funktionen wie HMR, globale Komponentenauflösung, Direktiven und Slots bietet.
 
 Wenn JSX nicht mit React oder Vue verwendet wird, können eigene `jsxFactory` und `jsxFragment` mit der [`esbuild` Option](/config/shared-options.md#esbuild) konfiguriert werden. Zum Beispiel für Preact:
 
