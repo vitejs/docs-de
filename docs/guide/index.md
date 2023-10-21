@@ -24,7 +24,7 @@ Der Standard-Build zielt auf Browser ab, die [native ES Module](https://caniuse.
 
 ## Vite online ausprobieren
 
-Sie können Vite online auf [StackBlitz] (https://vite.new/) ausprobieren. Es führt das Vite-basierte Build-Setup direkt im Browser aus, so dass es fast identisch mit dem lokalen Setup ist, aber keine Installation auf Ihrem Rechner erfordert. Sie können zu `vite.new/{template}` navigieren, um das zu verwendende Framework auszuwählen.
+Sie können Vite online auf [StackBlitz](https://vite.new/) ausprobieren. Es führt das Vite-basierte Build-Setup direkt im Browser aus, so dass es fast identisch mit dem lokalen Setup ist, aber keine Installation auf Ihrem Rechner erfordert. Sie können zu `vite.new/{template}` navigieren, um das zu verwendende Framework auszuwählen.
 
 Folgende Vorlagen werden unterstützt:
 
