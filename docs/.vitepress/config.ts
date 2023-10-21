@@ -243,7 +243,7 @@ export default defineConfig({
               link: '/guide/using-plugins'
             },
             {
-              text: 'Dependency Pre-Bundling',
+              text: 'Vorbündeln von Abhängigkeiten',
               link: '/guide/dep-pre-bundling'
             },
             {
@@ -339,7 +339,7 @@ export default defineConfig({
               link: '/config/dep-optimization-options'
             },
             {
-              text: 'SSR Optionen',
+              text: 'SSR-Optionen',
               link: '/config/ssr-options'
             },
             {
