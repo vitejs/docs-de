@@ -110,7 +110,7 @@ Beim Aliasieren von Dateisystempfaden sollten immer absolute Pfade verwendet wer
 
 Fortgeschrittene benutzerdefinierte Auflösung kann über [Plugins](/guide/api-plugin) erreicht werden.
 
-::: Warnung Verwendung mit SSR
+::: warning Verwendung mit SSR
 Wenn Sie Aliase für [SSR-externe Abhängigkeiten](/guide/ssr.md#ssr-externals) konfiguriert haben, möchten Sie möglicherweise die tatsächlichen `node_modules`-Pakete als Alias festlegen. Sowohl [Yarn](https://classic.yarnpkg.com/en/docs/cli/add/#toc-yarn-add-alias) als auch [pnpm](https://pnpm.io/aliases/) unterstützen das Aliasieren über das Präfix `npm:`.
 :::
 
