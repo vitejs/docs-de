@@ -615,7 +615,7 @@ Wenn Sie den Worker als URL abrufen möchten, fügen Sie die Abfrage `url` hinzu
 import MyWorker from './worker?worker&url'
 ```
 
-Siehe [Worker Options](/config/worker-options.md) für Details zur Konfiguration der Bündelung aller Worker.
+Siehe [Worker-Optionen](/config/worker-options.md) für Details zur Konfiguration der Bündelung aller Worker.
 
 ## Build-Optimierungen
 
