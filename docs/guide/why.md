@@ -26,7 +26,7 @@ Vite verbessert die Startzeit des Entwicklungsservers, indem es zunächst die Mo
 
 - Der **Quellcode** enthält oft Nicht-Plain-JavaScript, das umgewandelt werden muss (z. B. JSX, CSS oder Vue/Svelte-Komponenten), und wird sehr oft bearbeitet werden. Außerdem muss nicht der gesamte Quellcode gleichzeitig geladen werden (z. B. bei routenbasiertem Code-Splitting).
 
-  Vite liefert den Quellcode über [native ESM] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules). Dies bedeutet im Wesentlichen, dass der Browser einen Teil der Arbeit eines Bundlers übernehmen kann: Vite muss den Quellcode nur bei Bedarf transformieren und bereitstellen, wenn der Browser ihn anfordert. Code hinter bedingten dynamischen Importen wird nur verarbeitet, wenn er tatsächlich auf dem aktuellen Bildschirm verwendet wird.
+  Vite liefert den Quellcode über [native ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules). Dies bedeutet im Wesentlichen, dass der Browser einen Teil der Arbeit eines Bundlers übernehmen kann: Vite muss den Quellcode nur bei Bedarf transformieren und bereitstellen, wenn der Browser ihn anfordert. Code hinter bedingten dynamischen Importen wird nur verarbeitet, wenn er tatsächlich auf dem aktuellen Bildschirm verwendet wird.
 
 <script setup>
 import bundlerSvg from '../images/bundler.svg?raw'

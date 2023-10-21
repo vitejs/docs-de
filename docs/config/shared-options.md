@@ -184,7 +184,7 @@ Liste der Dateierweiterungen, die für Importe ohne Erweiterungen ausprobiert we
 
 Durch Aktivieren dieser Einstellung bestimmt Vite die Dateiidentität anhand des ursprünglichen Dateipfads (d. h. des Pfads ohne das Folgen von Symbolischen Links), anstelle des realen Dateipfads (d. h. des Pfads nach dem Folgen von Symbolischen Links).
 
-- **Verwandt:** [esbuild#preserve-symlinks](https://esbuild.github.io/api/#preserve-symlinks), [webpack#resolve.symlinks] (https://webpack.js.org/configuration/resolve/#resolvesymlinks)
+- **Verwandt:** [esbuild#preserve-symlinks](https://esbuild.github.io/api/#preserve-symlinks), [webpack#resolve.symlinks](https://webpack.js.org/configuration/resolve/#resolvesymlinks)
 
 ## css.modules
 

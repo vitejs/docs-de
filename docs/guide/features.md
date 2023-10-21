@@ -67,7 +67,7 @@ Einige Bibliotheken (z.B. [`vue`](https://github.com/vuejs/core/issues/1228)) fu
 
 #### `useDefineForClassFields`
 
-Ab Vite 2.5.0 wird der Standardwert `true` sein, wenn das TypeScript-Ziel `ESNext` oder `ES2022` oder neuer ist. Es ist konsistent mit dem [Verhalten von `tsc` 4.3.2 und später] (https://github.com/microsoft/TypeScript/pull/42663). Es ist auch das Standardverhalten der ECMAScript-Laufzeit.
+Ab Vite 2.5.0 wird der Standardwert `true` sein, wenn das TypeScript-Ziel `ESNext` oder `ES2022` oder neuer ist. Es ist konsistent mit dem [Verhalten von `tsc` 4.3.2 und später](https://github.com/microsoft/TypeScript/pull/42663). Es ist auch das Standardverhalten der ECMAScript-Laufzeit.
 
 Aber es kann für diejenigen, die von anderen Programmiersprachen oder älteren Versionen von TypeScript kommen, kontraintuitiv sein.
 Weitere Informationen über den Übergang finden Sie in den [TypeScript 3.7 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier).
@@ -553,7 +553,7 @@ main()
 ### Abrufen des Moduls in Node.js
 
 In SSR kann das `fetch()` Ereignis als Teil des `?init` Imports mit `TypeError: Ungültige URL` fehlschlagen.
-Siehe das Problem [Support wasm in SSR] (https://github.com/vitejs/vite/issues/8882).
+Siehe das Problem [Support wasm in SSR](https://github.com/vitejs/vite/issues/8882).
 
 Hier ist eine Alternative, vorausgesetzt, die Projektbasis ist das aktuelle Verzeichnis:
 

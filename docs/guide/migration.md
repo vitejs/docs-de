@@ -36,7 +36,7 @@ import stuff from './global.css?inline'
 
 Als Teil dieser Änderung werden `vite dev` und `vite build` nicht mehr `process.env.NODE_ENV` überschreiben, wenn es bereits definiert ist. Wenn Sie also `process.env.NODE_ENV = 'development'` vor dem Bauen gesetzt haben, wird es auch für die Entwicklung gebaut. Dies gibt mehr Kontrolle, wenn mehrere Builds oder Dev-Server parallel laufen.
 
-Siehe die aktualisierte [`mode` Dokumentation] (https://vitejs.dev/guide/env-and-mode.html#modes) für weitere Details.
+Siehe die aktualisierte [`mode` Dokumentation](https://vitejs.dev/guide/env-and-mode.html#modes) für weitere Details.
 
 ### Umgebungsvariablen
 
