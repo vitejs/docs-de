@@ -1,10 +1,10 @@
-# Using Plugins
+# Die Verwendung von Plugins
 
-Vite can be extended using plugins, which are based on Rollup's well-designed plugin interface with a few extra Vite-specific options. This means that Vite users can rely on the mature ecosystem of Rollup plugins, while also being able to extend the dev server and SSR functionality as needed.
+Vite kann mithilfe von Plugins erweitert werden, die auf der gut durchdachten Plugin-Schnittstelle von Rollup basieren und einige zusätzliche Vite-spezifische Optionen bieten. Dies bedeutet, dass Vite-Benutzer auf das etablierte Ökosystem von Rollup-Plugins zurückgreifen können, während sie gleichzeitig den Dev-Server und die SSR-Funktionalität nach Bedarf erweitern können.
 
-## Adding a Plugin
+## Hinzufügen eines Plugins
 
-To use a plugin, it needs to be added to the `devDependencies` of the project and included in the `plugins` array in the `vite.config.js` config file. For example, to provide support for legacy browsers, the official [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) can be used:
+Um ein Plugin zu verwenden, muss es zu den `devDependencies` des Projekts hinzugefügt und im `plugins`-Array in der `vite.config.js`-Konfigurationsdatei aufgenommen werden. Zum Beispiel kann das offizielle [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) verwendet werden, um Unterstützung für veraltete Browser bereitzustellen:
 
 ```
 $ npm add -D @vitejs/plugin-legacy
@@ -18,33 +18,33 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [
     legacy({
-      targets: ['defaults', 'not IE 11'],
-    }),
-  ],
+      targets: ['defaults', 'not IE 11']
+    })
+  ]
 })
 ```
 
-`plugins` also accepts presets including several plugins as a single element. This is useful for complex features (like framework integration) that are implemented using several plugins. The array will be flattened internally.
+`plugins` akzeptiert auch Presets, die mehrere Plugins als ein einzelnes Element enthalten. Dies ist nützlich für komplexe Funktionen (wie Framework-Integration), die mit mehreren Plugins implementiert werden. Das Array wird intern abgeflacht.
 
-Falsy plugins will be ignored, which can be used to easily activate or deactivate plugins.
+Falsche Plugins werden ignoriert, was dazu verwendet werden kann, Plugins einfach zu aktivieren oder zu deaktivieren.
 
-## Finding Plugins
+## Plugins finden
 
 :::tip HINWEIS
-Vite aims to provide out-of-the-box support for common web development patterns. Before searching for a Vite or compatible Rollup plugin, check out the [Features Guide](../guide/features.md). A lot of the cases where a plugin would be needed in a Rollup project are already covered in Vite.
+Vite zielt darauf ab, Out-of-the-Box-Unterstützung für gängige Webentwicklungsmuster bereitzustellen. Bevor Sie nach einem Vite- oder kompatiblen Rollup-Plugin suchen, werfen Sie einen Blick in den [Feature-Guide](../guide/features.md). Viele der Fälle, in denen ein Plugin in einem Rollup-Projekt benötigt wird, sind bereits in Vite abgedeckt.
 :::
 
-Check out the [Plugins section](../plugins/) for information about official plugins. Community plugins are listed in [awesome-vite](https://github.com/vitejs/awesome-vite#plugins). For compatible Rollup plugins, check out [Vite Rollup Plugins](https://vite-rollup-plugins.patak.dev) for a list of compatible official Rollup plugins with usage instructions or the [Rollup Plugin Compatibility section](../guide/api-plugin#rollup-plugin-compatibility) in case it is not listed there.
+Schauen Sie sich den [Plugins-Bereich](../plugins/) für Informationen über offizielle Plugins an. Community-Plugins sind in [awesome-vite](https://github.com/vitejs/awesome-vite#plugins) aufgeführt. Für kompatible Rollup-Plugins schauen Sie in [Vite Rollup Plugins](https://vite-rollup-plugins.patak.dev), um eine Liste kompatibler offizieller Rollup-Plugins mit Verwendungshinweisen zu erhalten, oder in den [Rollup Plugin Compatibility](../guide/api-plugin#rollup-plugin-compatibility)-Abschnitt, falls sie dort nicht aufgeführt sind.
 
-You can also find plugins that follow the [recommended conventions](./api-plugin.md#conventions) using a [npm search for vite-plugin](https://www.npmjs.com/search?q=vite-plugin&ranking=popularity) for Vite plugins or a [npm search for rollup-plugin](https://www.npmjs.com/search?q=rollup-plugin&ranking=popularity) for Rollup plugins.
+Sie können auch Plugins finden, die den [empfohlenen Konventionen](./api-plugin.md#conventions) folgen, indem Sie eine [npm-Suche nach vite-plugin](https://www.npmjs.com/search?q=vite-plugin&ranking=popularity) für Vite-Plugins oder eine [npm-Suche nach rollup-plugin](https://www.npmjs.com/search?q=rollup-plugin&ranking=popularity) für Rollup-Plugins verwenden.
 
-## Enforcing Plugin Ordering
+## Erzwingen der Plugin-Reihenfolge
 
-For compatibility with some Rollup plugins, it may be needed to enforce the order of the plugin or only apply at build time. This should be an implementation detail for Vite plugins. You can enforce the position of a plugin with the `enforce` modifier:
+Für die Kompatibilität mit einigen Rollup-Plugins kann es notwendig sein, die Reihenfolge des Plugins zu erzwingen oder es nur zur Build-Zeit anzuwenden. Dies sollte ein Implementierungsdetail für Vite-Plugins sein. Sie können die Position eines Plugins mit dem `enforce`-Modifikator erzwingen:
 
-- `pre`: invoke plugin before Vite core plugins
-- default: invoke plugin after Vite core plugins
-- `post`: invoke plugin after Vite build plugins
+- `pre`: Plugin vor den Vite-Kernplugins aufrufen
+- default: Plugin nach den Vite-Kernplugins aufrufen
+- `post`: Plugin nach den Vite-Build-Plugins aufrufen
 
 ```js
 // vite.config.js
@@ -55,17 +55,17 @@ export default defineConfig({
   plugins: [
     {
       ...image(),
-      enforce: 'pre',
-    },
-  ],
+      enforce: 'pre'
+    }
+  ]
 })
 ```
 
-Check out [Plugins API Guide](./api-plugin.md#plugin-ordering) for detailed information, and look out for the `enforce` label and usage instructions for popular plugins in the [Vite Rollup Plugins](https://vite-rollup-plugins.patak.dev) compatibility listing.
+Schauen Sie in den [Plugins API Guide](./api-plugin.md#plugin-ordering) für detaillierte Informationen und suchen Sie nach dem `enforce`-Label und den Verwendungshinweisen für beliebte Plugins in der [Vite Rollup Plugins](https://vite-rollup-plugins.patak.dev)-Kompatibilitätsliste.
 
-## Conditional Application
+## Bedingte Anwendung
 
-By default, plugins are invoked for both serve and build. In cases where a plugin needs to be conditionally applied only during serve or build, use the `apply` property to only invoke them during `'build'` or `'serve'`:
+Standardmäßig werden Plugins sowohl für den Dev-Server als auch für den Build aufgerufen. In Fällen, in denen ein Plugin nur während des Dev-Servers oder des Builds bedingt angewendet werden muss, verwenden Sie die `apply`-Eigenschaft, um sie nur während des `'build'` oder `'serve'` aufzurufen:
 
 ```js
 // vite.config.js
@@ -76,12 +76,12 @@ export default defineConfig({
   plugins: [
     {
       ...typescript2(),
-      apply: 'build',
-    },
-  ],
+      apply: 'build'
+    }
+  ]
 })
 ```
 
-## Building Plugins
+## Erstellen von Plugins
 
-Check out the [Plugins API Guide](./api-plugin.md) for documentation about creating plugins.
+Werfen Sie einen Blick in den [Plugins API Guide](./api-plugin.md) für Dokumentation zur Erstellung von Plugins.
