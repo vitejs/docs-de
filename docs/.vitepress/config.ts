@@ -275,7 +275,7 @@ export default defineConfig({
               link: '/guide/comparisons'
             },
             {
-              text: 'Fehlersuche',
+              text: 'Fehlerbehebung',
               link: '/guide/troubleshooting'
             },
             {

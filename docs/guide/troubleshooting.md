@@ -4,7 +4,7 @@ Siehe [Rollup-Fehlerbehebungshandbuch](https://rollupjs.org/troubleshooting/) f�
 
 Wenn die hier vorgeschlagenen Lösungen nicht funktionieren, versuchen Sie, Ihre Fragen in [GitHub-Diskussionen](https://github.com/vitejs/vite/discussions) zu posten oder im `#help`-Kanal von [Vite Land Discord](https://chat.vitejs.dev) zu stellen.
 
-## Befehlszeile (CLI)
+## Befehlszeilenschnittstelle (CLI)
 
 ### `Fehler: Modul 'C:\foo\bar&baz\vite\bin\vite.js' nicht gefunden`
 
@@ -15,7 +15,7 @@ Sie müssen entweder:
 - Zu einem anderen Paketmanager wechseln (z.B. `pnpm`, `yarn`)
 - Entfernen Sie das `&` aus dem Pfad zu Ihrem Projekt
 
-## Konfiguration (Config)
+## Konfiguration
 
 ### Dieses Paket ist nur für ESM (ECMAScript Module) geeignet
 
@@ -32,7 +32,7 @@ Wir empfehlen, Ihre Konfiguration in ESM zu konvertieren, indem Sie entweder:
 - `"type": "module"` zum nächsten `package.json` hinzufügen
 - `vite.config.js`/`vite.config.ts` in `vite.config.mjs`/`vite.config.mts` umbenennen
 
-## Entwicklungsserver (Dev Server)
+## Entwicklungsserver
 
 ### Anfragen sind dauerhaft blockiert
 
@@ -88,7 +88,7 @@ security add-trusted-cert -d -r trustRoot -k ~/Library/Keychains/login.keychain-
 
 Oder Sie importieren es in die Keychain Access-App und aktualisieren das Vertrauen in Ihr Zertifikat auf "Immer vertrauen".
 
-### 431 Request Header Fields Too Large (431 Anforderungshauptkopffelder zu groß)
+### 431 Request Header Fields Too Large
 
 Wenn der Server / WebSocket-Server einen großen HTTP-Header erhält, wird die Anforderung verworfen, und die folgende Warnung wird angezeigt.
 
@@ -144,7 +144,7 @@ Sie müssen auf die Datei mit dem `http`-Protokoll zugreifen. Der einfachste Weg
 
 Der Hash-Wert, der zum Ungültigmachen optimierter Abhängigkeiten verwendet wird, hängt von den Inhalten des Paketsperrverzeichnisses, den auf Abhängigkeiten angewendeten Patches und den Optionen in der Vite-Konfigurationsdatei ab, die sich auf das Bündeln von Node-Modulen auswirken. Dies bedeutet, dass Vite erkennt, wenn eine Abhängigkeit mit einer Funktion wie [npm overrides](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides) überschrieben wird, und Ihre Abhängigkeiten beim nächsten Serverstart erneut bündelt. Vite wird die Abhängigkeiten nicht ungültig machen, wenn Sie eine Funktion wie [npm link](https://docs.npmjs.com/cli/v9/commands/npm-link) verwenden. Wenn Sie eine Abhängigkeit verknüpfen oder entknüpfen, müssen Sie beim nächsten Serverstart eine erneute Optimierung erzwingen, indem Sie `vite --force` verwenden. Wir empfehlen stattdessen die Verwendung von Überschreibungen, die jetzt von jedem Paketmanager unterstützt werden (siehe auch [pnpm overrides](https://pnpm.io/package_json#pnpmoverrides) und [yarn resolutions](https://yarnpkg.com/configuration/manifest/#resolutions)).
 
-## Leistungsengpässe (Performance bottlenecks)
+## Leistungsengpässe
 
 Wenn Sie unter langsamen Ladezeiten aufgrund von Leistungsengpässen in Ihrer Anwendung leiden, können Sie den integrierten Node.js-Inspektor mit Ihrem Vite-Entwicklungsserver starten oder beim Erstellen Ihrer Anwendung, um ein CPU-Profil zu erstellen:
 
@@ -168,7 +168,7 @@ Der Node.js-Inspektor erstellt ein CPU-Profil mit dem Namen `vite-profile-0.cpup
 
 Sie können [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) installieren, mit dem Sie den Zwischenzustand von Vite-Plugins inspizieren und identifizieren können, welche Plugins oder Middleware in Ihren Anwendungen Engpässe darstellen. Das Plugin kann sowohl im Entwicklungs- als auch im Build-Modus verwendet werden. Weitere Details finden Sie in der Readme-Datei.
 
-## Sonstiges (Others)
+## Sonstiges
 
 ### Modul für die Browserkompatibilität externalisiert
 
