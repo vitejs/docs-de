@@ -138,7 +138,7 @@ Wenn die HTML-Dateiausgabe mit dem `file`-Protokoll geöffnet wurde, werden die 
 
 Sie müssen auf die Datei mit dem `http`-Protokoll zugreifen. Der einfachste Weg, dies zu erreichen, ist das Ausführen von `npx vite preview`.
 
-## Optimisierte Abhängigkeiten (Optimized Dependencies)
+## Optimisierte Abhängigkeiten
 
 ### Veraltete vorbündelte Abhängigkeiten bei Verknüpfung mit einem lokalen Paket
 
