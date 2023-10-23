@@ -130,8 +130,10 @@ Es gibt auch andere Änderungen, die nur einige Benutzer betreffen.
   - Entfernt versehentlich exportierte interne APIs: `isDepsOptimizerEnabled` und `getDepOptimizationConfig`
   - Entfernt exportierte interne Typen: `DepOptimizationResult`, `DepOptimizationProcessing` und `DepsOptimizer`
   - Umbenennung des Typs `ResolveWorkerOptions` in `ResolvedWorkerOptions`
-- [[#5657] fix: Rückgabe von 404 für Ressourcenanfragen außerhalb des Basispfads](https://github.com/vitejs/vite/pull/5657)
+- [[#5657] fix!: return 404 for resources requests outside the base path](https://github.com/vitejs/vite/pull/5657)
   - In der Vergangenheit hat Vite auf Anfragen außerhalb des Basispfades ohne `Accept: text/html` geantwortet, als ob sie mit dem Basispfad angefordert worden wären. Vite tut dies nicht mehr und antwortet stattdessen mit 404.
+- [[#14723] fix(resolve)!: remove special .mjs handling](https://github.com/vitejs/vite/pull/14723)
+  - In der Vergangenheit hat Vite, wenn ein "exports"-Feld einer Bibliothek auf eine "mjs"-Datei verweist, immer noch versucht, die "browser"- und "module"-Felder abzugleichen, um die Kompatibilität mit bestimmten Bibliotheken zu gewährleisten. Dieses Verhalten wird nun entfernt, um es mit dem Algorithmus zur Auflösung von Exporten in Einklang zu bringen.
 
 ## Migration von v3
 
