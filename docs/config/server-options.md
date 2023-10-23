@@ -177,26 +177,20 @@ Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann igno
 ## server.warmup
 
 - **Typ:** `{ clientFiles?: string[], ssrFiles?: string[] }`
+- **Verwandt:** [Aufwärmen häufig verwendeter Dateien](/guide/performance.html#warm-up-frequently-used-files)
 
 Aufwärmen der zu transformierenden Dateien und Zwischenspeichern der Ergebnisse im Voraus. Dies verbessert das anfängliche Laden der Seite bei Serverstarts und verhindert Transformations-Wasserfälle.
 
-Die Optionen `clientFiles` und `ssrFiles` akzeptieren ein Array von Dateipfaden oder glob-Mustern relativ zum `root`. Achten Sie darauf, nur Dateien hinzuzufügen, die Hot Code sind, da sonst das Hinzufügen von zu vielen Dateien den Transformationsprozess verlangsamen kann.
+`clientFiles` sind Dateien, die nur im Client verwendet werden, während `ssrFiles` Dateien sind, die nur in SSR verwendet werden. Sie akzeptieren ein Array von Dateipfaden oder [`fast-glob`](https://github.com/mrmlnc/fast-glob) Mustern relativ zum `root`.
 
-Um zu verstehen, warum Warmup nützlich sein kann, ist hier ein Beispiel. Gegeben sei dieser Moduldiagramm, bei dem die linke Datei die rechte Datei importiert:
-
-```
-main.js -> Component.vue -> big-file.js -> large-data.json
-```
-
-Die importierten IDs können nur bekannt sein, nachdem die Datei transformiert wurde. Wenn also `Component.vue` einige Zeit zum Transformieren braucht, muss `big-file.js` warten, bis es an der Reihe ist, und so weiter. Dies verursacht einen internen Wasserfall.
-
-Durch Aufwärmen von "big-file.js" oder anderen Dateien, von denen Sie wissen, dass sie in Ihrer Anwendung einen heißen Pfad haben, werden sie zwischengespeichert und können sofort bedient werden.
+Stellen Sie sicher, dass Sie nur Dateien hinzufügen, die häufig verwendet werden, um den Vite Dev Server beim Start nicht zu überlasten.
 
 ```js
 export default defineConfig({
   server: {
     warmup: {
-      clientFiles: ['./src/big-file.js', './src/components/*.vue'],
+      clientFiles: ['./src/components/*.vue', './src/utils/big-utils.js'],
+      ssrFiles: ['./src/server/modules/*.js'],
     },
   },
 })
