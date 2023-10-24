@@ -115,7 +115,7 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
              path: './dist'
          - name: Deploy to GitHub Pages
            id: deployment
-           uses: actions/deploy-pages@v1
+           uses: actions/deploy-pages@v2
    ```
 
 ## GitLab Pages und GitLab CI
