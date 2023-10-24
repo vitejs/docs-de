@@ -156,19 +156,9 @@ Die Verwendung von Exportschlüsseln, die mit "/" enden, ist von Node veraltet u
 ## resolve.mainFields
 
 - **Typ:** `string[]`
-- **Standardwert:** `['module', 'jsnext:main', 'jsnext']`
+- **Standardwert:** `['browser', 'module', 'jsnext:main', 'jsnext']`
 
-Liste der Felder in `package.json`, die beim Auflösen des Einstiegspunkts eines Pakets ausprobiert werden sollen. Beachten Sie, dass dies eine niedrigere Priorität als bedingte Exports hat, die aus dem Feld `exports` aufgelöst werden: Wenn ein Einstiegspunkt erfolgreich aus `exports` aufgelöst wird, wird das Hauptfeld ignoriert.
-
-## resolve.browserField
-
-- **Typ:** `boolean`
-- **Standardwert:** `true`
-- **Veraltet**
-
-Ob die Auflösung auf das `browser`-Feld aktiviert werden soll.
-
-In Zukunft wird der Standardwert von `resolve.mainFields` `['browser', 'module', 'jsnext:main', 'jsnext']` sein, und diese Option wird entfernt.
+Liste der Felder in `package.json`, die bei der Auflösung des Einstiegspunktes eines Pakets zu versuchen sind. Beachten Sie, dass dies einen geringeren Vorrang hat als bedingte Exporte, die aus dem Feld `exports` aufgelöst werden: Wenn ein Einstiegspunkt erfolgreich aus `exports` aufgelöst wird, wird das Hauptfeld ignoriert.
 
 ## resolve.extensions
 

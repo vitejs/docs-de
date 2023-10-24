@@ -69,14 +69,9 @@ const debug = createDebugger('vite:resolve-details', {
 
 export interface ResolveOptions {
   /**
-   * @default ['module', 'jsnext:main', 'jsnext']
+   * @default ['browser', 'module', 'jsnext:main', 'jsnext']
    */
   mainFields?: string[]
-  /**
-   * @deprecated In future, `mainFields` should be used instead.
-   * @default true
-   */
-  browserField?: boolean
   conditions?: string[]
   /**
    * @default ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']
@@ -281,7 +276,7 @@ export function resolvePlugin(resolveOptions: InternalResolveOptions): Plugin {
 
         if (
           targetWeb &&
-          options.browserField &&
+          options.mainFields.includes('browser') &&
           (res = tryResolveBrowserMapping(fsPath, importer, options, true))
         ) {
           return res
@@ -365,7 +360,7 @@ export function resolvePlugin(resolveOptions: InternalResolveOptions): Plugin {
 
         if (
           targetWeb &&
-          options.browserField &&
+          options.mainFields.includes('browser') &&
           (res = tryResolveBrowserMapping(
             id,
             importer,
@@ -984,7 +979,7 @@ export function resolvePackageEntry(
     }
 
     // handle edge case with browser and module field semantics
-    if (!entryPoint && targetWeb && options.browserField) {
+    if (!entryPoint && targetWeb && options.mainFields.includes('browser')) {
       // check browser field
       // https://github.com/defunctzombie/package-browser-field-spec
       const browserEntry =
@@ -1055,7 +1050,11 @@ export function resolvePackageEntry(
       } else {
         // resolve object browser field in package.json
         const { browser: browserField } = data
-        if (targetWeb && options.browserField && isObject(browserField)) {
+        if (
+          targetWeb &&
+          options.mainFields.includes('browser') &&
+          isObject(browserField)
+        ) {
           entry = mapWithBrowserField(entry, browserField) || entry
         }
       }
@@ -1175,7 +1174,11 @@ function resolveDeepImport(
           `${path.join(dir, 'package.json')}.`,
       )
     }
-  } else if (targetWeb && options.browserField && isObject(browserField)) {
+  } else if (
+    targetWeb &&
+    options.mainFields.includes('browser') &&
+    isObject(browserField)
+  ) {
     // resolve without postfix (see #7098)
     const { file, postfix } = splitFileAndPostfix(relativeId)
     const mapped = mapWithBrowserField(file, browserField)

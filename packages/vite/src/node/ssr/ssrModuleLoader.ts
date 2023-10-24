@@ -147,7 +147,6 @@ async function instantiateModule(
 
   const resolveOptions: NodeImportResolveOptions = {
     mainFields: ['main'],
-    browserField: true,
     conditions: [],
     overrideConditions: [...overrideConditions, 'production', 'development'],
     extensions: ['.js', '.cjs', '.json'],
