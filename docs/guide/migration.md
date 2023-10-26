@@ -32,6 +32,42 @@ Für andere Projekte gibt es einige allgemeine Ansätze:
 
 Weitere Informationen finden Sie im [Leitfaden zur Problembehandlung](/guide/troubleshooting.html#vite-cjs-node-api-deprecated).
 
+## Überarbeitung der `define` und `import.meta.env.*` Ersetzungsstrategie
+
+In Vite 4 verwenden die Funktionen `define` und `import.meta.env.*` unterschiedliche Ersetzungsstrategien in Dev und Build:
+
+- In dev werden beide Funktionen als globale Variablen in `globalThis` bzw. `import.meta` injiziert.
+- In der Build-Version werden beide Merkmale statisch durch einen Regex ersetzt.
+
+Dies führt zu einer Inkonsistenz zwischen Dev und Build, wenn man versucht, auf die Variablen zuzugreifen, und manchmal sogar zu fehlgeschlagenen Builds. Zum Beispiel:
+
+```js
+// vite.config.js
+export default defineConfig({
+  define: {
+    __APP_VERSION__: JSON.stringify('1.0.0'),
+  },
+})
+```
+
+```js
+const data = { __APP_VERSION__ }
+// dev: { __APP_VERSION__: "1.0.0" } ✅
+// build: { "1.0.0" } ❌
+
+const docs = 'I like import.meta.env.MODE'
+// dev: "I like import.meta.env.MODE" ✅
+// build: "I like "production"" ❌
+```
+
+Vite 5 behebt dies, indem `esbuild` die Ersetzungen in Builds handhabt, was dem Verhalten von Dev entspricht.
+
+Diese Änderung sollte sich auf die meisten Setups nicht auswirken, da es bereits dokumentiert ist, dass `define`-Werte der Syntax von esbuild folgen sollten:
+
+> Um mit dem esbuild-Verhalten konsistent zu sein, müssen Ausdrücke entweder ein JSON-Objekt (null, boolean, number, string, array, or object) oder ein einzelner Bezeichner sein.
+
+Wenn Sie es jedoch vorziehen, Werte weiterhin statisch direkt zu ersetzen, können Sie [`@rollup/plugin-replace`](https://github.com/rollup/plugins/tree/master/packages/replace) verwenden.
+
 ## Allgemeine Änderungen
 
 ### Der Wert der externalisierten SSR-Module entspricht jetzt dem Produktionswert.
