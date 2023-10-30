@@ -659,8 +659,6 @@ export async function resolveConfig(
   const server = resolveServerOptions(resolvedRoot, config.server, logger)
   const ssr = resolveSSROptions(config.ssr, resolveOptions.preserveSymlinks)
 
-  const middlewareMode = config?.server?.middlewareMode
-
   const optimizeDeps = config.optimizeDeps || {}
 
   const BASE_URL = resolvedBase
@@ -785,7 +783,7 @@ export async function resolveConfig(
       },
     },
     worker: resolvedWorkerOptions,
-    appType: config.appType ?? (middlewareMode === 'ssr' ? 'custom' : 'spa'),
+    appType: config.appType ?? 'spa',
     experimental: {
       importGlobRestoreExtension: false,
       hmrPartialAccept: false,
@@ -813,37 +811,6 @@ export async function resolveConfig(
       .map((hook) => hook(resolved)),
   )
 
-  // validate config
-
-  if (middlewareMode === 'ssr') {
-    logger.warn(
-      colors.yellow(
-        `Setting server.middlewareMode to 'ssr' is deprecated, set server.middlewareMode to \`true\`${
-          config.appType === 'custom' ? '' : ` and appType to 'custom'`
-        } instead`,
-      ),
-    )
-  } else if (middlewareMode === 'html') {
-    logger.warn(
-      colors.yellow(
-        `Setting server.middlewareMode to 'html' is deprecated, set server.middlewareMode to \`true\` instead`,
-      ),
-    )
-  }
-
-  if (
-    config.server?.force &&
-    !isBuild &&
-    config.optimizeDeps?.force === undefined
-  ) {
-    resolved.optimizeDeps.force = true
-    logger.warn(
-      colors.yellow(
-        `server.force is deprecated, use optimizeDeps.force instead`,
-      ),
-    )
-  }
-
   debug?.(`using resolved config: %O`, {
     ...resolved,
     plugins: resolved.plugins.map((p) => p.name),
@@ -852,6 +819,8 @@ export async function resolveConfig(
       plugins: `() => plugins`,
     },
   })
+
+  // validate config
 
   if (config.build?.terserOptions && config.build.minify !== 'terser') {
     logger.warn(
