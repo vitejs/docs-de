@@ -136,6 +136,31 @@ CLI-Verknüpfungen, wie z.B. `r`, um den Dev-Server neu zu starten, erfordern nu
 
 Diese Änderung verhindert, dass Vite OS-spezifische Verknüpfungen verschluckt und steuert, was eine bessere Kompatibilität bei der Kombination des Vite-Dev-Servers mit anderen Prozessen ermöglicht und die [früheren Einschränkungen](https://github.com/vitejs/vite/pull/14342) vermeidet.
 
+### Update `experimentalDecorators` und `useDefineForClassFields` TypeScript Verhalten
+
+Vite 5 verwendet esbuild 0.19 und entfernt die Kompatibilitätsschicht für esbuild 0.18, was die Handhabung von `experimentalDecorators` und `useDefineForClassFields` verändert.
+
+- **`experimentalDecorators` ist standardmäßig nicht aktiviert**
+
+  Sie müssen `compilerOptions.experimentalDecorators` in `tsconfig.json` auf `true` setzen, um Dekoratoren zu verwenden.
+
+- **`useDefineForClassFields` Voreinstellungen hängen vom TypeScript `target` Wert ab**
+
+  Wenn `target` nicht `ESNext` oder `ES2022` oder neuer ist, oder wenn es keine `tsconfig.json` Datei gibt, wird `useDefineForClassFields` standardmäßig auf `false` gesetzt, was mit dem Standard `esbuild.target` Wert von `esnext` problematisch sein kann. Es kann zu [statischen Initialisierungsblöcken](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks#browser_compatibility) transpilieren, was von Ihrem Browser möglicherweise nicht unterstützt wird.
+
+  Es wird daher empfohlen, `target` auf `ESNext` oder `ES2022` oder neuer zu setzen, oder `useDefineForClassFields` explizit auf `true` zu setzen, wenn Sie `tsconfig.json` konfigurieren.
+
+```jsonc
+{
+  "compilerOptions": {
+    // Setzen Sie dies auf "true", wenn Sie Decorators verwenden
+    "experimentalDecorators": true,
+    // Setzen Sie dies auf "true", wenn Sie Parsing-Fehler in Ihrem Browser erhalten
+    "useDefineForClassFields": true
+  }
+}
+```
+
 ### Entfernen Sie `--https` und `https: true`.
 
 Das `--https` Flag setzt `https: true`. Diese Konfiguration war dafür gedacht, zusammen mit der automatischen https-Zertifizierungsfunktion verwendet zu werden, die [in Vite 3](https://v3.vitejs.dev/guide/migration.html#automatic-https-certificate-generation) abgeschafft wurde. Diese Konfiguration ist nicht mehr sinnvoll, da sie Vite dazu bringt, einen HTTPS-Server ohne Zertifikat zu starten.
