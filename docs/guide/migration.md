@@ -102,9 +102,29 @@ In Vite 4 akzeptierte `worker.plugins` ein Array von Plugins (`(Plugin | Plugin[
 
 ### Pfad mit `.` kann jetzt auf index.html zurückfallen
 
-In Vite 4 wurde bei Zugriff auf einen Pfad, der `.` enthält, auch wenn `appType` auf `'SPA'` (Standard) eingestellt war, nicht auf index.html zurückgefallen. Ab Vite 5 wird auf index.html zurückgefallen.
+In Vite 4 wurde bei Zugriff auf einen Pfad, der `.` enthält, auch wenn `appType` auf `'spa'` (Standard) eingestellt war, nicht auf index.html zurückgefallen. Ab Vite 5 wird auf index.html zurückgefallen.
 
-Beachten Sie, dass der Browser keine 404-Fehlermeldung mehr in der Konsole anzeigt, wenn Sie den Bildpfad auf eine nicht existierende Datei verweisen (z.B. `<img src="./file-does-not-exist.png">`).
+Beachten Sie, dass der Browser keine 404-Fehlermeldung mehr in der Konsole anzeigt, wenn Sie den Bildpfad auf eine nicht existierende Datei zeigen (z.B. `<img src="./file-does-not-exist.png">`).
+
+### Angleichung des Verhaltens bei der HTML-Ausgabe von Dev und Preview
+
+In Vite 4 servieren die Dev- und Preview-Server HTML auf der Grundlage der Verzeichnisstruktur und des abschließenden Schrägstrichs unterschiedlich. Dies führt zu Inkonsistenzen beim Testen Ihrer erstellten Anwendung. In Vite 5 wird das Verhalten bei folgender Dateistruktur in ein einziges Verhalten umgewandelt (siehe unten):
+
+```
+├── index.html
+├── file.html
+└── dir
+    └── index.html
+```
+
+| Anfrage           | Vorher (dev)                 | Vorher (preview)  | Nachher (dev & preview)      |
+| ----------------- | ---------------------------- | ----------------- | ---------------------------- |
+| `/dir/index.html` | `/dir/index.html`            | `/dir/index.html` | `/dir/index.html`            |
+| `/dir`            | `/index.html` (SPA fallback) | `/dir/index.html` | `/dir.html` (SPA fallback)   |
+| `/dir/`           | `/dir/index.html`            | `/dir/index.html` | `/dir/index.html`            |
+| `/file.html`      | `/file.html`                 | `/file.html`      | `/file.html`                 |
+| `/file`           | `/index.html` (SPA fallback) | `/file.html`      | `/file.html`                 |
+| `/file/`          | `/index.html` (SPA fallback) | `/file.html`      | `/index.html` (SPA fallback) |
 
 ### Manifestdateien werden standardmäßig im Verzeichnis `.vite` generiert
 
