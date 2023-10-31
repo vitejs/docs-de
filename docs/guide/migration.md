@@ -13,7 +13,7 @@ Vite verwendet nun Rollup 4, welches auch seine Änderungen mit sich bringt:
 - Für Vite-Plugins ist die Option `this.resolve` `skipSelf` nun standardmäßig `true`.
 - Für Vite-Plugins unterstützt `this.parse` jetzt nur noch die Option `allowReturnOutsideFunction`.
 
-Lesen Sie die vollständigen Änderungen in [Rollup's release notes] (https://github.com/rollup/rollup/releases/tag/v4.0.0) für Build-bezogene Änderungen in `build.rollupOptions`.
+Lesen Sie die vollständigen Änderungen in [Rollup's release notes](https://github.com/rollup/rollup/releases/tag/v4.0.0) für Build-bezogene Änderungen in [`build.rollupOptions`](/config/build-options.md#build-rollupoptions).
 
 ## Veraltete CJS Node API
 
@@ -34,7 +34,7 @@ Weitere Informationen finden Sie im [Leitfaden zur Problembehandlung](/guide/tro
 
 ## Überarbeitung der `define` und `import.meta.env.*` Ersetzungsstrategie
 
-In Vite 4 verwenden die Funktionen `define` und `import.meta.env.*` unterschiedliche Ersetzungsstrategien in Dev und Build:
+In Vite 4 verwenden die Funktionen [`define`](/config/shared-options.md#define) und [`import.meta.env.*`](/guide/env-and-mode.md#env-variables) unterschiedliche Ersetzungsstrategien in dev und build:
 
 - In dev werden beide Funktionen als globale Variablen in `globalThis` bzw. `import.meta` injiziert.
 - In der Build-Version werden beide Merkmale statisch durch einen Regex ersetzt.
@@ -98,11 +98,11 @@ Beachten Sie, dass diese Änderungen dem Verhalten von Node.js entsprechen, so d
 
 ### `worker.plugins` ist jetzt eine Funktion
 
-In Vite 4 akzeptierte `worker.plugins` ein Array von Plugins (`(Plugin | Plugin[])[]`). Ab Vite 5 muss es als Funktion konfiguriert werden, die ein Array von Plugins zurückgibt (`() => (Plugin | Plugin[])[]`). Diese Änderung ist erforderlich, damit parallele Worker-Builds konsistenter und vorhersehbarer ablaufen.
+In Vite 4 akzeptierte [`worker.plugins`](/config/worker-options.md#worker-plugins) ein Array von Plugins (`(Plugin | Plugin[])[]`). Ab Vite 5 muss sie als Funktion konfiguriert werden, die ein Array von Plugins zurückgibt (`() => (Plugin | Plugin[])[]`). Diese Änderung ist erforderlich, damit parallele Worker-Builds konsistenter und vorhersehbarer ablaufen.
 
 ### Pfad mit `.` kann jetzt auf index.html zurückfallen
 
-In Vite 4 wurde bei Zugriff auf einen Pfad, der `.` enthält, auch wenn `appType` auf `'spa'` (Standard) eingestellt war, nicht auf index.html zurückgefallen. Ab Vite 5 wird auf index.html zurückgefallen.
+In Vite 4 wurde beim Zugriff auf einen Pfad in dev, der `.` enthielt, nicht auf index.html zurückgegriffen, selbst wenn [`appType`](/config/shared-options.md#apptype) auf `'spa'` (Standard) gesetzt war. Ab Vite 5 wird es auf index.html zurückgreifen.
 
 Beachten Sie, dass der Browser keine 404-Fehlermeldung mehr in der Konsole anzeigt, wenn Sie den Bildpfad auf eine nicht existierende Datei zeigen (z.B. `<img src="./file-does-not-exist.png">`).
 
@@ -128,7 +128,7 @@ In Vite 4 servieren die Dev- und Preview-Server HTML auf der Grundlage der Verze
 
 ### Manifestdateien werden standardmäßig im Verzeichnis `.vite` generiert
 
-In Vite 4 wurden die Manifestdateien (`build.manifest`, `build.ssrManifest`) standardmäßig im Stammverzeichnis von `build.outDir` generiert. Ab Vite 5 werden diese standardmäßig im Verzeichnis `.vite` im Verzeichnis `build.outDir` generiert.
+In Vite 4 wurden die Manifestdateien ([`build.manifest`](/config/build-options.md#build-manifest), [`build.ssrManifest`](/config/build-options.md#build-ssrmanifest)) standardmäßig im Stammverzeichnis von [`build.outDir`](/config/build-options.md#build-outdir) erzeugt. Ab Vite 5 werden diese standardmäßig im Verzeichnis `.vite` im `build.outDir` erzeugt.
 
 ### CLI-Verknüpfungen erfordern eine zusätzliche Eingabetaste
 
@@ -138,7 +138,7 @@ Diese Änderung verhindert, dass Vite OS-spezifische Verknüpfungen verschluckt 
 
 ### Update `experimentalDecorators` und `useDefineForClassFields` TypeScript Verhalten
 
-Vite 5 verwendet esbuild 0.19 und entfernt die Kompatibilitätsschicht für esbuild 0.18, was die Handhabung von `experimentalDecorators` und `useDefineForClassFields` verändert.
+Vite 5 verwendet esbuild 0.19 und entfernt die Kompatibilitätsschicht für esbuild 0.18, was die Handhabung von [`experimentalDecorators`](https://www.typescriptlang.org/tsconfig#experimentalDecorators) und [`useDefineForClassFields`](https://www.typescriptlang.org/tsconfig#useDefineForClassFields) ändert.
 
 - **`experimentalDecorators` ist standardmäßig nicht aktiviert**
 
@@ -217,7 +217,7 @@ Es gibt auch andere Änderungen, die nur einige Benutzer betreffen.
 - [[#14723] fix(resolve)!: remove special .mjs handling](https://github.com/vitejs/vite/pull/14723)
   - In der Vergangenheit hat Vite, wenn ein "exports"-Feld einer Bibliothek auf eine "mjs"-Datei verweist, immer noch versucht, die "browser"- und "module"-Felder abzugleichen, um die Kompatibilität mit bestimmten Bibliotheken zu gewährleisten. Dieses Verhalten wird nun entfernt, um es mit dem Algorithmus zur Auflösung von Exporten in Einklang zu bringen.
 - [[#14733] feat(resolve)!: remove `resolve.browserField`](https://github.com/vitejs/vite/pull/14733)
-  - Das `resolve.browserField` ist seit Vite 3 veraltet zugunsten einer aktualisierten Vorgabe von `['browser', 'module', 'jsnext:main', 'jsnext']` für `resolve.mainFields`.
+  - `resolve.browserField` ist seit Vite 3 veraltet zugunsten eines aktualisierten Standards von `['browser', 'module', 'jsnext:main', 'jsnext']` für [`resolve.mainFields`](/config/shared-options.md#resolve-mainfields).
 
 ## Migration von v3
 
