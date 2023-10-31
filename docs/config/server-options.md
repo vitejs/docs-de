@@ -56,7 +56,7 @@ Legen Sie fest, dass der Server bei Verwendung des Ports bereits in Verwendung i
 
 ## server.https
 
-- **Typ:** `boolean | https.ServerOptions`
+- **Typ:** `https.ServerOptions`
 
 Aktivieren Sie TLS + HTTP/2. Beachten Sie, dass dies auf TLS herabgestuft wird, wenn die [`server.proxy`-Option](#server-proxy) ebenfalls verwendet wird.
 
