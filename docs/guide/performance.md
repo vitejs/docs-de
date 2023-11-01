@@ -12,13 +12,15 @@ Die internen und offiziellen Plugins von Vite sind optimiert, um so wenig wie m�
 
 Die Leistung von Community-Plugins liegt jedoch außerhalb der Kontrolle von Vite und kann sich auf das Entwicklererlebnis auswirken. Hier sind einige Dinge, auf die Sie achten sollten, wenn Sie zusätzliche Vite-Plugins verwenden:
 
-1. Die Hooks `buildStart`, `config` und `configResolved` sollten keine langwierigen und umfangreichen Operationen ausführen. Diese Hooks werden während des Startvorgangs des Entwicklungsservers erwartet, was dazu führt, dass der Zugriff auf die Website im Browser verzögert wird.
+1. Große Abhängigkeiten, die nur in bestimmten Fällen verwendet werden, sollten dynamisch importiert werden, um die Startzeit von Node.js zu reduzieren. Beispiel-Refactors: [vite-plugin-react#212](https://github.com/vitejs/vite-plugin-react/pull/212) und [vite-plugin-pwa#224](https://github.com/vite-pwa/vite-plugin-pwa/pull/244).
 
-2. Die Hooks `resolveId`, `load` und `transform` können dazu führen, dass einige Dateien langsamer geladen werden als andere. Obwohl dies manchmal unvermeidlich ist, lohnt es sich dennoch, nach möglichen Bereichen zur Optimierung zu suchen. Zum Beispiel, überprüfen Sie, ob der `code` ein bestimmtes Schlüsselwort enthält oder ob die `id` zu einer bestimmten Erweiterung passt, bevor die vollständige Transformation durchgeführt wird.
+2. Die `buildStart`, `config`, und `configResolved` Hooks sollten keine langen und umfangreichen Operationen ausführen. Diese Hooks werden während des Starts des Dev-Servers erwartet, was den Zugriff auf die Site im Browser verzögert.
 
-Je länger es dauert, eine Datei zu transformieren, desto bedeutender wird der Anfrage-Verlauf sein, wenn die Website im Browser geladen wird.
+3. Die `resolveId`-, `load`- und `transform`-Hooks können dazu führen, dass einige Dateien langsamer geladen werden als andere. Auch wenn dies manchmal unvermeidbar ist, lohnt es sich, nach möglichen Optimierungsbereichen zu suchen. Zum Beispiel kann man prüfen, ob der `code` ein bestimmtes Schlüsselwort enthält oder die `id` mit einer bestimmten Erweiterung übereinstimmt, bevor man die vollständige Transformation durchführt.
 
-Sie können die Dauer, die benötigt wird, um eine Datei zu transformieren, mit `DEBUG="vite:plugin-transform" vite` oder [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) überprüfen. Beachten Sie jedoch, dass asynchrone Operationen dazu neigen, ungenaue Zeitmessungen bereitzustellen, daher sollten Sie die Zahlen als grobe Schätzung behandeln, aber sie sollten immer noch die kostspieligeren Operationen aufzeigen.
+   The longer it takes to transform a file, the more significant the request waterfall will be when loading the site in the browser.
+
+   You can inspect the duration it takes to transform a file using `DEBUG="vite:plugin-transform" vite` or [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect). Note that as asynchronous operations tend to provide inaccurate timings, you should treat the numbers as a rough estimate, but it should still reveal the more expensive operations.
 
 ::: Tipp Profiling
 Sie können `vite --profile` ausführen, die Website besuchen und in Ihrem Terminal `p + Enter` drücken, um ein `.cpuprofile` aufzuzeichnen. Ein Tool wie [speedscope](https://www.speedscope.app) kann dann verwendet werden, um das Profil zu überprüfen und Engpässe zu identifizieren. Sie können die Profile auch [mit dem Vite-Team teilen](https://chat.vitejs.dev), um bei der Identifizierung von Leistungsproblemen zu helfen.
