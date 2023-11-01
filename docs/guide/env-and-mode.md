@@ -12,17 +12,7 @@ Vite stellt Umgebungsvariablen im speziellen **`import.meta.env`** Objekt zur Ve
 
 - **`import.meta.env.DEV`**: {boolean} ob die App im Entwicklungsmodus läuft (immer das Gegenteil von `import.meta.env.PROD`).
 
-- **`import.meta.env.SSR`**: {boolean} ob die App im [Servermodus](./ssr.md#conditional-logic) läuft.
-
-### Ersetzung während der Produktion
-
-Während der Produktion werden diese Umgebungsvariablen **statisch ersetzt**. Es ist daher immer notwendig, auf sie mit dem vollen statischen String zu verweisen. Zum Beispiel wird dynamischer Zugriff wie `import.meta.env[key]` nicht funktionieren.
-
-Es werden auch diese Zeichenfolgen in JavaScript-Zeichenfolgen und Vue-Vorlagen ersetzt. Dies sollte ein seltener Fall sein, aber es kann unbeabsichtigt auftreten. Sie können Fehler wie `Fehlendes Semikolon` oder `Unerwartetes Token` in diesem Fall sehen, zum Beispiel wenn `"process.env.NODE_ENV"` in `""development": "` transformiert wird. Es gibt Möglichkeiten, dieses Verhalten zu umgehen:
-
-- Für JavaScript-Zeichenfolgen können Sie die Zeichenfolge mit einem Unicode-Nullbreitenraum unterteilen, z.B. `'import.meta\u200b.env.MODE'`.
-
-- Für Vue-Vorlagen oder anderen HTML-Code, der in JavaScript-Zeichenfolgen kompiliert wird, können Sie das [`<wbr>`-Tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/wbr) verwenden, z.B. `import.meta.<wbr>env.MODE`.
+- **`import.meta.env.SSR`**: {boolean}, ob die Anwendung auf dem [Server](./ssr.md#conditional-logic) läuft.
 
 ## `.env` Dateien
 
