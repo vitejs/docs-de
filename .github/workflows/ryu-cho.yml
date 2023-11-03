@@ -3,7 +3,7 @@ name: ryu-cho
 on:
   # Schedule the interval of the checks.
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: "*/5 * * * *"
 
 jobs:
   ryu-cho:
@@ -13,13 +13,13 @@ jobs:
       - uses: vuejs-translations/ryu-cho@v1
         with:
           # GitHub access token. Required.
-          access-token: ${{ secrets.GITHUB_TOKEN }}
+          access-token: ${{ secrets.ACCESS_TOKEN }}
 
           # Git user name to use when making issues and PRs. Required.
-          username: github-actions
+          username: vite/vitejs
 
           # Git email address to use when making issues and PRs. Required.
-          email: "action@github.com"
+          email: "s0apii.ra@googlemail.com"
 
           # The url for the upstream repo. This is the repository that you
           # set up Ryu-Cho. Required.
