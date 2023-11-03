@@ -244,11 +244,13 @@ interface PreviewServer {
 async function resolveConfig(
   inlineConfig: InlineConfig,
   command: 'build' | 'serve',
-  defaultMode = 'development'
+  defaultMode = 'development',
+  defaultNodeEnv = 'development',
+  isPreview = false,
 ): Promise<ResolvedConfig>
 ```
 
-Der Wert `command` ist in der Entwicklung `serve` (in der CLI sind `vite`, `vite dev` und `vite serve` Alias).
+Der "Command"-Wert ist "Serve" in Dev und Preview, und "Build" in Build.
 
 ## `mergeConfig`
 

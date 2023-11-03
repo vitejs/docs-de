@@ -221,6 +221,8 @@ Es gibt auch andere Änderungen, die nur einige Benutzer betreffen.
   - In der Vergangenheit hat Vite, wenn ein "exports"-Feld einer Bibliothek auf eine "mjs"-Datei verweist, immer noch versucht, die "browser"- und "module"-Felder abzugleichen, um die Kompatibilität mit bestimmten Bibliotheken zu gewährleisten. Dieses Verhalten wird nun entfernt, um es mit dem Algorithmus zur Auflösung von Exporten in Einklang zu bringen.
 - [[#14733] feat(resolve)!: remove `resolve.browserField`](https://github.com/vitejs/vite/pull/14733)
   - `resolve.browserField` ist seit Vite 3 veraltet zugunsten eines aktualisierten Standards von `['browser', 'module', 'jsnext:main', 'jsnext']` für [`resolve.mainFields`](/config/shared-options.md#resolve-mainfields).
+- [[#14855] feat!: add isPreview to ConfigEnv and resolveConfig](https://github.com/vitejs/vite/pull/14855)
+  - Umbenennung von `ssrBuild` in `isSsrBuild` im `ConfigEnv` Objekt.
 
 ## Migration von v3
 

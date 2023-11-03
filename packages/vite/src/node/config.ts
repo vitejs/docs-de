@@ -80,10 +80,8 @@ const promisifiedRealpath = promisify(fs.realpath)
 export interface ConfigEnv {
   command: 'build' | 'serve'
   mode: string
-  /**
-   * @experimental
-   */
-  ssrBuild?: boolean
+  isSsrBuild?: boolean
+  isPreview?: boolean
 }
 
 /**
@@ -405,6 +403,7 @@ export async function resolveConfig(
   command: 'build' | 'serve',
   defaultMode = 'development',
   defaultNodeEnv = 'development',
+  isPreview = false,
 ): Promise<ResolvedConfig> {
   let config = inlineConfig
   let configFileDependencies: string[] = []
@@ -418,10 +417,11 @@ export async function resolveConfig(
     process.env.NODE_ENV = defaultNodeEnv
   }
 
-  const configEnv = {
+  const configEnv: ConfigEnv = {
     mode,
     command,
-    ssrBuild: !!config.build?.ssr,
+    isSsrBuild: !!config.build?.ssr,
+    isPreview,
   }
 
   let { configFile } = config

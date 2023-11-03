@@ -48,10 +48,10 @@ Vite unterstützt auch direkt TS-Konfigurationsdateien. Sie können `vite.config
 
 ## Bedingte Konfigurationen
 
-Wenn die Konfiguration Optionen bedingt bestimmen muss, basierend auf dem Befehl (`dev`/`serve` oder `build`), dem [mode](/guide/env-and-mode), der verwendet wird, oder wenn es ein SSR-Build ist (`ssrBuild`), kann sie stattdessen eine Funktion exportieren:
+Wenn die Konfiguration Optionen basierend auf dem Befehl (`serve` oder `build`), dem [mode](/guide/env-and-mode), der verwendet wird, wenn es ein SSR-Build ist (`isSsrBuild`) oder eine Vorschau des Builds ist (`isPreview`), bestimmen muss, kann sie stattdessen eine Funktion exportieren:
 
 ```js
-export default defineConfig(({ command, mode, ssrBuild }) => {
+export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
   if (command === 'serve') {
     return {
       // dev specific config
@@ -67,7 +67,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 
 Es ist wichtig zu beachten, dass in der API von Vite der `command` Wert `serve` während der Entwicklung (in der Cli sind `vite`, `vite dev` und `vite serve` Aliase) und `build` bei der Erstellung für die Produktion (`vite build`) ist.
 
-`ssrBuild` ist experimentell. Es ist nur während des Builds anstelle eines allgemeineren `ssr`-Flags verfügbar, weil während der Entwicklung die Konfiguration von einem einzigen Server geteilt wird, der SSR- und Nicht-SSR-Anfragen bearbeitet. Der Wert könnte bei Tools, die keine separaten Befehle für den Browser und den SSR-Build haben, "undefiniert" sein, daher ist ein expliziter Vergleich mit "true" und "false" erforderlich.
+`isSsrBuild` und `isPreview` sind zusätzliche optionale Flags, um die Art der `build` bzw. `serve` Befehle zu unterscheiden. Einige Werkzeuge, die die Vite-Konfiguration laden, unterstützen diese Flags möglicherweise nicht und übergeben stattdessen `undefined`. Daher wird empfohlen, explizite Vergleiche gegen `true` und `false` zu verwenden.
 
 ## Asynchrone Konfiguration
 
