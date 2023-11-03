@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: vuejs-translations/ryu-cho@v1
         with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
+          access-token: ${{ secrets.ACCESS_TOKEN }}
           username: github-actions
           email: "action@github.com"
           upstream-repo: https://github.com/rojadesign/vite-docs-de.git
