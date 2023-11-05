@@ -120,7 +120,7 @@ In Vite 4 servieren die Dev- und Preview-Server HTML auf der Grundlage der Verze
 | Anfrage           | Vorher (dev)                 | Vorher (preview)  | Nachher (dev & preview)      |
 | ----------------- | ---------------------------- | ----------------- | ---------------------------- |
 | `/dir/index.html` | `/dir/index.html`            | `/dir/index.html` | `/dir/index.html`            |
-| `/dir`            | `/index.html` (SPA fallback) | `/dir/index.html` | `/dir.html` (SPA fallback)   |
+| `/dir`            | `/index.html` (SPA fallback) | `/dir/index.html` | `/index.html` (SPA fallback) |
 | `/dir/`           | `/dir/index.html`            | `/dir/index.html` | `/dir/index.html`            |
 | `/file.html`      | `/file.html`                 | `/file.html`      | `/file.html`                 |
 | `/file`           | `/index.html` (SPA fallback) | `/file.html`      | `/file.html`                 |
@@ -128,7 +128,9 @@ In Vite 4 servieren die Dev- und Preview-Server HTML auf der Grundlage der Verze
 
 ### Manifestdateien werden standardmäßig im Verzeichnis `.vite` generiert
 
-In Vite 4 wurden die Manifestdateien ([`build.manifest`](/config/build-options.md#build-manifest), [`build.ssrManifest`](/config/build-options.md#build-ssrmanifest)) standardmäßig im Stammverzeichnis von [`build.outDir`](/config/build-options.md#build-outdir) erzeugt. Ab Vite 5 werden diese standardmäßig im Verzeichnis `.vite` im `build.outDir` erzeugt.
+In Vite 4 wurden die Manifestdateien ([`build.manifest`](/config/build-options.md#build-manifest) und [`build.ssrManifest`](/config/build-options.md#build-ssrmanifest)) standardmäßig im Stammverzeichnis von [`build.outDir`](/config/build-options.md#build-outdir) erzeugt.
+
+Ab Vite 5 werden sie standardmäßig im Verzeichnis `.vite` im `build.outDir` erzeugt. Diese Änderung trägt dazu bei, dass öffentliche Dateien mit denselben Manifest-Dateinamen nicht mehr in Konflikt geraten, wenn sie in das `build.outDir` kopiert werden.
 
 ### CLI-Verknüpfungen erfordern eine zusätzliche Eingabetaste
 
@@ -163,8 +165,9 @@ Vite 5 verwendet esbuild 0.19 und entfernt die Kompatibilitätsschicht für esbu
 
 ### Entfernen Sie `--https` und `https: true`.
 
-Das `--https` Flag setzt `https: true`. Diese Konfiguration war dafür gedacht, zusammen mit der automatischen https-Zertifizierungsfunktion verwendet zu werden, die [in Vite 3](https://v3.vitejs.dev/guide/migration.html#automatic-https-certificate-generation) abgeschafft wurde. Diese Konfiguration ist nicht mehr sinnvoll, da sie Vite dazu bringt, einen HTTPS-Server ohne Zertifikat zu starten.
-Sowohl [`@vitejs/plugin-basic-ssl`](https://github.com/vitejs/vite-plugin-basic-ssl) als auch [`vite-plugin-mkcert`](https://github.com/liuweiGL/vite-plugin-mkcert) setzen die `https`-Einstellung unabhängig vom `https`-Wert, also können Sie einfach `--https` und `https: true` entfernen.
+Das `--https` Flag setzt intern `server.https: true` und `preview.https: true`. Diese Konfiguration war dafür gedacht, zusammen mit der automatischen https-Zertifizierungsfunktion verwendet zu werden, die [in Vite 3](https://v3.vitejs.dev/guide/migration.html#automatic-https-certificate-generation) eingestellt wurde. Daher ist diese Konfiguration nicht mehr nützlich, da sie einen Vite-HTTPS-Server ohne Zertifikat starten wird.
+
+Wenn Sie [`@vitejs/plugin-basic-ssl`](https://github.com/vitejs/vite-plugin-basic-ssl) oder [`vite-plugin-mkcert`](https://github.com/liuweiGL/vite-plugin-mkcert) verwenden, setzen sie die `https`-Konfiguration bereits intern, so dass Sie `--https`, `server.https: true` und `preview.https: true` in Ihrem Setup entfernen können.
 
 ### `resolvePackageEntry` und `resolvePackageData` APIs entfernen
 
