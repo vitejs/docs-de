@@ -291,7 +291,7 @@ export default defineConfig({
               link: '/guide/philosophy'
             },
             {
-              text: 'Migration from v4',
+              text: 'Migration von v4',
               link: '/guide/migration',
             },
           ],
