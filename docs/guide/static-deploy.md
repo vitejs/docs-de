@@ -329,3 +329,7 @@ Bereiten Sie Ihre statische Website mit [Flightcontrol](https://www.flightcontro
 ## AWS Amplify Hosting
 
 Bereiten Sie Ihre statische Website mit [AWS Amplify Hosting](https://aws.amazon.com/amplify/hosting/) bereit, indem Sie diesen [Anweisungen](https://docs.amplify.aws/guides/hosting/vite/q/platform/js/) folgen.
+
+## Kinsta Hosting statischer Websites
+
+Sie können Ihre Vite-Anwendung als statische Website auf [Kinsta](https://kinsta.com/static-site-hosting/) bereitstellen, indem Sie diese [Anweisungen](https://kinsta.com/docs/react-vite-example/) befolgen.
