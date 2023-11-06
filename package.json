@@ -1,7 +1,7 @@
 {
-  "name": "vite-docs-template",
+  "name": "vite-docs-de",
   "version": "1.0.0",
-  "description": "Vite docs template",
+  "description": "Deutsche Übersetzung der Vite Dokumentation",
   "main": "docs/index.md",
   "directories": {
     "doc": "docs"
@@ -21,19 +21,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vitejs/docs-template.git"
+    "url": "git+https://github.com/vitejs/docs-de.git"
   },
   "keywords": [
     "vite",
     "docs",
     "translation"
   ],
-  "author": "",
+  "author": "rojadesign",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vitejs/docs-template/issues"
+    "url": "https://github.com/vitejs/docs-de/issues"
   },
-  "homepage": "https://github.com/vitejs/docs-template#readme",
+  "homepage": "https://github.com/vitejs/docs-de#readme",
   "dependencies": {
     "search-insights": "^2.6.0",
     "vitepress": "^1.0.0-alpha.46"
