@@ -207,6 +207,8 @@ Es gibt einige Änderungen, die nur Auswirkungen auf Plugin- oder Tool-Ersteller
   - The `configurePreviewServer` hook now accepts the `PreviewServer` type instead of `PreviewServerForHook` type.
 - [[#14818] refactor(preview)!: use base middleware](https://github.com/vitejs/vite/pull/14818)
   - Middlewares added from the returned function in `configurePreviewServer` now does not have access to the `base` when comparing the `req.url` value. This aligns the behaviour with the dev server. You can check the `base` from the `configResolved` hook if needed.
+- [[#14834] fix(types)!: expose httpServer with Http2SecureServer union](https://github.com/vitejs/vite/pull/14834)
+  - `http.Server | http2.Http2SecureServer` wird jetzt anstelle von `http.Server` dort verwendet, wo es geeignet ist.
 
 Es gibt auch andere Änderungen, die nur einige Benutzer betreffen.
 
