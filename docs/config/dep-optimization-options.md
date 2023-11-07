@@ -1,4 +1,4 @@
-# Abhängigkeitsoptimierungsoptionen
+# Optionen zur Optimierung der Abhängigkeiten
 
 - **Verwandt:** [Abhängigkeitsvor-Bündelung](/guide/dep-pre-bundling)
 

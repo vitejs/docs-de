@@ -231,7 +231,7 @@ export default defineConfig({
               link: '/guide/why'
             },
             {
-              text: 'Starten',
+              text: 'Erste Schritte',
               link: '/guide/'
             },
             {
@@ -251,11 +251,11 @@ export default defineConfig({
               link: '/guide/dep-pre-bundling'
             },
             {
-              text: 'Statische Asset-Handhabung',
+              text: 'Umgang mit statischen Assets',
               link: '/guide/assets'
             },
             {
-              text: 'Produktives Builden',
+              text: 'Erstellung für die Produktion',
               link: '/guide/build'
             },
             {
@@ -263,11 +263,11 @@ export default defineConfig({
               link: '/guide/static-deploy'
             },
             {
-              text: 'Entwicklungsvariablen und Modi',
+              text: 'Umgebungsvariablen und Modi',
               link: '/guide/env-and-mode'
             },
             {
-              text: 'Serverseitiges Rendering (SSR)',
+              text: 'Serverseitiges Rendern (SSR)',
               link: '/guide/ssr'
             },
             {
@@ -287,7 +287,7 @@ export default defineConfig({
               link: '/guide/performance',
             },
             {
-              text: 'Philosophie',
+              text: 'Projekt-Philosophie',
               link: '/guide/philosophy'
             },
             {

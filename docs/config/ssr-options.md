@@ -1,4 +1,4 @@
-# SSR Optionen
+# SSR-Optionen
 
 ## ssr.external
 

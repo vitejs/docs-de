@@ -1,4 +1,4 @@
-# Befehlszeilen-Schnittstelle
+# Befehlszeilen-Schnittstelle (CLI)
 
 ## Entwicklungs-Server
 

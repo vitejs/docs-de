@@ -13,7 +13,7 @@ hero:
     alt: Vite
   actions:
     - theme: brand
-      text: Starten
+      text: Erste Schritte
       link: /guide/
     - theme: alt
       text: Wieso Vite?
