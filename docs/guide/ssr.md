@@ -16,7 +16,7 @@ Bei Fragen steht Ihnen die Community normalerweise im [Vite Discord-Kanal für S
 
 ## Beispielprojekte
 
-Vite bietet integrierte Unterstützung für serverseitiges Rendern (SSR). Der Vite-Spielplatz enthält Beispiel-SSR-Konfigurationen für Vue 3 und React, die als Referenz für diesen Leitfaden verwendet werden können:
+Vite bietet integrierte Unterstützung für serverseitiges Rendering (SSR). [`create-vite-extra`](https://github.com/bluwy/create-vite-extra) enthält Beispiel-SSR-Setups, die Sie als Referenz für diesen Leitfaden verwenden können:
 
 - [Vue 3](https://github.com/vitejs/vite-plugin-vue/tree/main/playground/ssr-vue)
 - [React](https://github.com/vitejs/vite-plugin-react/tree/main/playground/ssr-react)
@@ -177,7 +177,7 @@ Dann müssen wir in `server.js` einige spezifische Logik für die Produktion hin
 
 - Verschieben Sie die Erstellung und alle Verwendungen des `vite`-Entwicklungsservers hinter bedingte Verzweigungen, die nur für die Entwicklung gelten, und fügen Sie statische Dateiserver-Middleware hinzu, um Dateien aus `dist/client` zu servieren.
 
-Siehe [Vue](https://github.com/vitejs/vite-plugin-vue/tree/main/playground/ssr-vue) und [React](https://github.com/vitejs/vite-plugin-react/tree/main/playground/ssr-react) für eine funktionierende Konfiguration.
+In den [Beispielprojekten](#example-projects) finden Sie eine funktionierende Einrichtung.
 
 ## Generieren von Preload-Direktiven
 

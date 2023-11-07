@@ -57,6 +57,8 @@ Einige Konfigurationsfelder unter `compilerOptions` in `tsconfig.json` erfordern
 
 #### `isolatedModules`
 
+- [TypeScript Dokumentation](https://www.typescriptlang.org/tsconfig#isolatedModules)
+
 Sollte auf `true` gesetzt werden.
 
 Der Grund dafür ist, dass `esbuild` nur die Transpilierung ohne Typinformationen durchführt und bestimmte Funktionen wie `const enum` und implizite nur-Typen-Imports nicht unterstützt.
@@ -67,7 +69,11 @@ Einige Bibliotheken (z.B. [`vue`](https://github.com/vuejs/core/issues/1228)) fu
 
 #### `useDefineForClassFields`
 
+- [TypeScript documentation](https://www.typescriptlang.org/tsconfig#useDefineForClassFields)
+
 Ab Vite 2.5.0 wird der Standardwert `true` sein, wenn das TypeScript-Ziel `ESNext` oder `ES2022` oder neuer ist. Es ist konsistent mit dem [Verhalten von `tsc` 4.3.2 und später](https://github.com/microsoft/TypeScript/pull/42663). Es ist auch das Standardverhalten der ECMAScript-Laufzeit.
+
+Andere TypeScript-Ziele werden standardmäßig auf `false` gesetzt.
 
 Aber es kann für diejenigen, die von anderen Programmiersprachen oder älteren Versionen von TypeScript kommen, kontraintuitiv sein.
 Weitere Informationen über den Übergang finden Sie in den [TypeScript 3.7 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier).
@@ -78,13 +84,32 @@ Die meisten Bibliotheken erwarten `"useDefineForClassFields": true`, wie zum Bei
 
 Aber ein paar Bibliotheken sind noch nicht zu diesem neuen Standard übergegangen, einschließlich [`lit-element`](https://github.com/lit/lit-element/issues/1030). Bitte setzen Sie in diesen Fällen `useDefineForClassFields` explizit auf `false`.
 
+#### `target`
+
+- [TypeScript Dokumentation](https://www.typescriptlang.org/tsconfig#target)
+
+Vite transpiliert TypeScript standardmäßig nicht mit dem konfigurierten `target`-Wert und folgt damit dem gleichen Verhalten wie `esbuild`.
+
+Stattdessen kann die Option [`esbuild.target`](/config/shared-options.html#esbuild) verwendet werden, die für eine minimale Transpilierung auf `esnext` voreingestellt ist. Bei Builds hat die Option [`build.target`](/config/build-options.html#build-target) höhere Priorität und kann bei Bedarf ebenfalls gesetzt werden.
+
+::: warning `useDefineForClassFields`
+Wenn `target` nicht `ESNext` oder `ES2022` oder neuer ist, oder wenn es keine `tsconfig.json` Datei gibt, wird `useDefineForClassFields` standardmäßig auf `false` gesetzt, was mit dem Standardwert `esbuild.target` von `esnext` problematisch sein kann. Es kann zu [statischen Initialisierungsblöcken](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks#browser_compatibility) transpilieren, was in Ihrem Browser möglicherweise nicht unterstützt wird.
+
+Es wird daher empfohlen, `target` auf `ESNext` oder `ES2022` oder neuer zu setzen, oder `useDefineForClassFields` bei der Konfiguration von `tsconfig.json` explizit auf `true` zu setzen.
+:::
+
 #### Andere Compiler-Optionen, die das Build-Ergebnis beeinflussen
 
 - [`Erweiterungen`](https://www.typescriptlang.org/tsconfig#extends)
 - [`importsNotUsedAsValues`](https://www.typescriptlang.org/tsconfig#importsNotUsedAsValues)
 - [`preserveValueImports`](https://www.typescriptlang.org/tsconfig#preserveValueImports)
+- [`verbatimModuleSyntax`](https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax)
+- [`jsx`](https://www.typescriptlang.org/tsconfig#jsx)
 - [`jsxFactory`](https://www.typescriptlang.org/tsconfig#jsxFactory)
 - [`jsxFragmentFactory`](https://www.typescriptlang.org/tsconfig#jsxFragmentFactory)
+- [`jsxImportSource`](https://www.typescriptlang.org/tsconfig#jsxImportSource)
+- [`experimentalDecorators`](https://www.typescriptlang.org/tsconfig#experimentalDecorators)
+- [`alwaysStrict`](https://www.typescriptlang.org/tsconfig#alwaysStrict)
 
 Wenn die Umstellung Ihrer Codebasis auf `"isolatedModules": true` einen unüberwindbaren Aufwand darstellt, können Sie das Problem möglicherweise mit einem Plugin eines Drittanbieters wie [rollup-plugin-friendly-type-imports](https://www.npmjs.com/package/rollup-plugin-friendly-type-imports) umgehen. Dieser Ansatz wird jedoch nicht offiziell von Vite unterstützt.
 

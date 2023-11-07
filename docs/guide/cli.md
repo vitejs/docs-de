@@ -1,4 +1,4 @@
-# Befehlszeilen-Schnittstelle
+# Befehlszeilen-Schnittstelle (CLI)
 
 ## Entwicklungs-Server
 
@@ -18,7 +18,6 @@ vite [root]
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
 | `--host [host]`          | Gibt den Hostnamen an (`string`)                                                                                          |
 | `--port <port>`          | Gibt den Port an (`number`)                                                                                               |
-| `--https`                | Verwendet TLS + HTTP/2 (`boolean`)                                                                                        |
 | `--open [path]`          | Öffnet den Browser beim Starten (`boolean \| string`)                                                                     |
 | `--cors`                 | Aktiviert CORS (`boolean`)                                                                                                |
 | `--strictPort`           | Beendet den Vorgang, wenn der angegebene Port bereits verwendet wird (`boolean`)                                          |
@@ -117,7 +116,6 @@ vite preview [root]
 | `--host [host]`          | Gibt den Hostnamen an (`string`)                                                 |
 | `--port <port>`          | Gibt den Port an (`number`)                                                      |
 | `--strictPort`           | Beendet den Vorgang, wenn der angegebene Port bereits verwendet wird (`boolean`) |
-| `--https`                | Verwendet TLS + HTTP/2 (`boolean`)                                               |
 | `--open [path]`          | Öffnet den Browser beim Starten (`boolean \| string`)                            |
 | `--outDir <dir>`         | Ausgabe Verzeichnis (Standard: `dist`)(`string`)                                 |
 | `-c, --config <file>`    | Verwendet die angegebene Konfigurationsdatei (`string`)                          |

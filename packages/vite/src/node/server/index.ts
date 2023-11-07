@@ -65,6 +65,7 @@ import {
 import { timeMiddleware } from './middlewares/time'
 import type { ModuleNode } from './moduleGraph'
 import { ModuleGraph } from './moduleGraph'
+import { notFoundMiddleware } from './middlewares/notFound'
 import { errorMiddleware, prepareError } from './middlewares/error'
 import type { HmrOptions } from './hmr'
 import {
@@ -77,12 +78,27 @@ import { openBrowser as _openBrowser } from './openBrowser'
 import type { TransformOptions, TransformResult } from './transformRequest'
 import { transformRequest } from './transformRequest'
 import { searchForWorkspaceRoot } from './searchRoot'
+import { warmupFiles } from './warmup'
 
 export interface ServerOptions extends CommonServerOptions {
   /**
    * Configure HMR-specific options (port, host, path & protocol)
    */
   hmr?: HmrOptions | boolean
+  /**
+   * Warm-up files to transform and cache the results in advance. This improves the
+   * initial page load during server starts and prevents transform waterfalls.
+   */
+  warmup?: {
+    /**
+     * The files to be transformed and used on the client-side. Supports glob patterns.
+     */
+    clientFiles?: string[]
+    /**
+     * The files to be transformed and used in SSR. Supports glob patterns.
+     */
+    ssrFiles?: string[]
+  }
   /**
    * chokidar watch options or null to disable FS watching
    * https://github.com/paulmillr/chokidar#api
@@ -92,7 +108,7 @@ export interface ServerOptions extends CommonServerOptions {
    * Create Vite dev server to be used as a middleware in an existing server
    * @default false
    */
-  middlewareMode?: boolean | 'html' | 'ssr'
+  middlewareMode?: boolean
   /**
    * Options for files served via '/\@fs/'.
    */
@@ -611,7 +627,7 @@ export async function _createServer(
 
   // base
   if (config.base !== '/') {
-    middlewares.use(baseMiddleware(server))
+    middlewares.use(baseMiddleware(config.rawBase, middlewareMode))
   }
 
   // open in editor support
@@ -655,14 +671,10 @@ export async function _createServer(
 
   if (config.appType === 'spa' || config.appType === 'mpa') {
     // transform index.html
-    middlewares.use(indexHtmlMiddleware(server))
+    middlewares.use(indexHtmlMiddleware(root, server))
 
     // handle 404s
-    // Keep the named function. The name is visible in debug logs via `DEBUG=connect:dispatcher ...`
-    middlewares.use(function vite404Middleware(_, res) {
-      res.statusCode = 404
-      res.end()
-    })
+    middlewares.use(notFoundMiddleware())
   }
 
   // error handler
@@ -683,6 +695,7 @@ export async function _createServer(
       if (isDepsOptimizerEnabled(config, false)) {
         await initDepsOptimizer(config, server)
       }
+      warmupFiles(server)
       initingServer = undefined
       serverInited = true
     })()

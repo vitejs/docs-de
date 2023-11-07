@@ -56,7 +56,7 @@ Legen Sie fest, dass der Server bei Verwendung des Ports bereits in Verwendung i
 
 ## server.https
 
-- **Typ:** `boolean | https.ServerOptions`
+- **Typ:** `https.ServerOptions`
 
 Aktivieren Sie TLS + HTTP/2. Beachten Sie, dass dies auf TLS herabgestuft wird, wenn die [`server.proxy`-Option](#server-proxy) ebenfalls verwendet wird.
 
@@ -173,6 +173,28 @@ Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann igno
 - Legen Sie `server.hmr.port` auf einen anderen Wert als [`server.port`](#server-port)
 
 :::
+
+## server.warmup
+
+- **Typ:** `{ clientFiles?: string[], ssrFiles?: string[] }`
+- **Verwandt:** [Aufwärmen häufig verwendeter Dateien](/guide/performance.html#warm-up-frequently-used-files)
+
+Aufwärmen der zu transformierenden Dateien und Zwischenspeichern der Ergebnisse im Voraus. Dies verbessert das anfängliche Laden der Seite bei Serverstarts und verhindert Transformations-Wasserfälle.
+
+`clientFiles` sind Dateien, die nur im Client verwendet werden, während `ssrFiles` Dateien sind, die nur in SSR verwendet werden. Sie akzeptieren ein Array von Dateipfaden oder [`fast-glob`](https://github.com/mrmlnc/fast-glob) Mustern relativ zum `root`.
+
+Stellen Sie sicher, dass Sie nur Dateien hinzufügen, die häufig verwendet werden, um den Vite Dev Server beim Start nicht zu überlasten.
+
+```js
+export default defineConfig({
+  server: {
+    warmup: {
+      clientFiles: ['./src/components/*.vue', './src/utils/big-utils.js'],
+      ssrFiles: ['./src/server/modules/*.js'],
+    },
+  },
+})
+```
 
 ## server.watch
 

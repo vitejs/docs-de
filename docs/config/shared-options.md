@@ -37,17 +37,18 @@ Siehe [Umgebungsvariablen und Modi](/guide/env-and-mode) für weitere Details.
 
 Definieren von globalen Konstantenersatzwerten. Einträge werden während der Entwicklung als Globals definiert und während des Builds statisch ersetzt.
 
-- Zeichenfolgenwerte werden als Rohausdrücke verwendet, daher muss eine Zeichenfolge konstant definiert werden und **muss explizit in Anführungszeichen gesetzt werden** (z. B. mit `JSON.stringify`).
+Vite verwendet [esbuild defines](https://esbuild.github.io/api/#define), um Ersetzungen durchzuführen, daher müssen Wertausdrücke eine Zeichenkette sein, die einen JSON-serialisierbaren Wert (null, boolesch, Zahl, Zeichenkette, Array oder Objekt) oder einen einzelnen Bezeichner enthält. Bei Werten, die keine Strings sind, konvertiert Vite sie automatisch mit `JSON.stringify` in einen String.
 
-- Um mit dem Verhalten von [esbuild](https://esbuild.github.io/api/#define) übereinzustimmen, müssen Ausdrücke entweder ein JSON-Objekt (null, boolean, number, string, array oder object) oder ein einzelner Bezeichner sein.
+**Beispiel:**
 
-- Ersetzungen werden nur vorgenommen, wenn die Übereinstimmung nicht von anderen Buchstaben, Zahlen, `_` oder `$` umgeben ist.
-
-::: warning
-Da es sich um einfache Textersetzung ohne Syntaxanalyse handelt, empfehlen wir, `define` nur für KONSTANTEN zu verwenden.
-
-Beispielsweise sind `process.env.FOO` und `__APP_VERSION__` gute Passformen. Aber `process` oder `global` sollten nicht in diese Option aufgenommen werden. Variablen können stattdessen geschimmt oder polygefüllt werden.
-:::
+```js
+export default defineConfig({
+  define: {
+    __APP_VERSION__: JSON.stringify('v1.0.0'),
+    __API_URL__: 'window.__backend_api_url',
+  },
+})
+```
 
 :::tip HINWEIS
 Für TypeScript-Benutzer stellen Sie sicher, dass Sie die Typerklärungen in der Datei `env.d.ts` oder `vite-env.d.ts` hinzufügen, um Typprüfungen und Intellisense zu erhalten.
@@ -57,20 +58,6 @@ Beispiel:
 ```ts
 // vite-env.d.ts
 declare const __APP_VERSION__: string
-```
-
-:::
-
-:::tip HINWEIS
-Da `define` in der Entwicklung und im Build unterschiedlich implementiert ist, sollten wir einige Verwendungsfälle vermeiden, um Inkonsistenzen zu vermeiden.
-
-Beispiel:
-
-```js
-const obj = {
-  __NAME__, // Definieren Sie keine Objekt-Shorthand-Eigenschaftsnamen
-  __KEY__: Wert // Definieren Sie keine Objektschlüssel
-}
 ```
 
 :::
@@ -156,19 +143,9 @@ Die Verwendung von Exportschlüsseln, die mit "/" enden, ist von Node veraltet u
 ## resolve.mainFields
 
 - **Typ:** `string[]`
-- **Standardwert:** `['module', 'jsnext:main', 'jsnext']`
+- **Standardwert:** `['browser', 'module', 'jsnext:main', 'jsnext']`
 
-Liste der Felder in `package.json`, die beim Auflösen des Einstiegspunkts eines Pakets ausprobiert werden sollen. Beachten Sie, dass dies eine niedrigere Priorität als bedingte Exports hat, die aus dem Feld `exports` aufgelöst werden: Wenn ein Einstiegspunkt erfolgreich aus `exports` aufgelöst wird, wird das Hauptfeld ignoriert.
-
-## resolve.browserField
-
-- **Typ:** `boolean`
-- **Standardwert:** `true`
-- **Veraltet**
-
-Ob die Auflösung auf das `browser`-Feld aktiviert werden soll.
-
-In Zukunft wird der Standardwert von `resolve.mainFields` `['browser', 'module', 'jsnext:main', 'jsnext']` sein, und diese Option wird entfernt.
+Liste der Felder in `package.json`, die bei der Auflösung des Einstiegspunktes eines Pakets zu versuchen sind. Beachten Sie, dass dies einen geringeren Vorrang hat als bedingte Exporte, die aus dem Feld `exports` aufgelöst werden: Wenn ein Einstiegspunkt erfolgreich aus `exports` aufgelöst wird, wird das Hauptfeld ignoriert.
 
 ## resolve.extensions
 

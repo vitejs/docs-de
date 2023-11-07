@@ -96,7 +96,7 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
        runs-on: ubuntu-latest
        steps:
          - name: Checkout
-           uses: actions/checkout@v3
+           uses: actions/checkout@v4
          - name: Set up Node
            uses: actions/setup-node@v3
            with:
@@ -109,13 +109,13 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
          - name: Setup Pages
            uses: actions/configure-pages@v3
          - name: Upload artifact
-           uses: actions/upload-pages-artifact@v1
+           uses: actions/upload-pages-artifact@v2
            with:
              # Upload des dist-Repository
              path: './dist'
          - name: Deploy to GitHub Pages
            id: deployment
-           uses: actions/deploy-pages@v1
+           uses: actions/deploy-pages@v2
    ```
 
 ## GitLab Pages und GitLab CI
@@ -329,3 +329,7 @@ Bereiten Sie Ihre statische Website mit [Flightcontrol](https://www.flightcontro
 ## AWS Amplify Hosting
 
 Bereiten Sie Ihre statische Website mit [AWS Amplify Hosting](https://aws.amazon.com/amplify/hosting/) bereit, indem Sie diesen [Anweisungen](https://docs.amplify.aws/guides/hosting/vite/q/platform/js/) folgen.
+
+## Kinsta Hosting statischer Websites
+
+Sie können Ihre Vite-Anwendung als statische Website auf [Kinsta](https://kinsta.com/static-site-hosting/) bereitstellen, indem Sie diese [Anweisungen](https://kinsta.com/docs/react-vite-example/) befolgen.

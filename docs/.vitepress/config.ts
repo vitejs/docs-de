@@ -93,7 +93,7 @@ export default defineConfig({
     ja: { label: '日本語', link: 'https://ja.vitejs.dev' },
     es: { label: 'Español', link: 'https://es.vitejs.dev' },
     pt: { label: 'Português', link: 'https://pt.vitejs.dev' },
-    ko: { label: '한국어', link: 'https://ko.vitejs.dev' }
+    ko: { label: '한국어', link: 'https://ko.vitejs.dev' },
   },
 
   themeConfig: {
@@ -192,6 +192,10 @@ export default defineConfig({
                 link: 'https://github.com/vitejs/awesome-vite'
               },
               {
+                text: 'ViteConf',
+                link: 'https://viteconf.org',
+              },
+              {
                 text: 'DEV Community',
                 link: 'https://dev.to/t/vite'
               },
@@ -227,7 +231,7 @@ export default defineConfig({
               link: '/guide/why'
             },
             {
-              text: 'Starten',
+              text: 'Erste Schritte',
               link: '/guide/'
             },
             {
@@ -247,11 +251,11 @@ export default defineConfig({
               link: '/guide/dep-pre-bundling'
             },
             {
-              text: 'Statische Asset-Handhabung',
+              text: 'Umgang mit statischen Assets',
               link: '/guide/assets'
             },
             {
-              text: 'Produktives Builden',
+              text: 'Erstellung für die Produktion',
               link: '/guide/build'
             },
             {
@@ -259,11 +263,11 @@ export default defineConfig({
               link: '/guide/static-deploy'
             },
             {
-              text: 'Entwicklungsvariablen und Modi',
+              text: 'Umgebungsvariablen und Modi',
               link: '/guide/env-and-mode'
             },
             {
-              text: 'Serverseitiges Rendering (SSR)',
+              text: 'Serverseitiges Rendern (SSR)',
               link: '/guide/ssr'
             },
             {
@@ -279,11 +283,15 @@ export default defineConfig({
               link: '/guide/troubleshooting'
             },
             {
-              text: 'Philosophie',
+              text: 'Leistung',
+              link: '/guide/performance',
+            },
+            {
+              text: 'Projekt-Philosophie',
               link: '/guide/philosophy'
             },
             {
-              text: 'Migration from v4',
+              text: 'Migration von v4',
               link: '/guide/migration',
             },
           ],

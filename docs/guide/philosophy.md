@@ -1,4 +1,4 @@
-# Projektphilosophie
+# Projekt-Philosophie
 
 ## Schlanker erweiterbarer Kern
 

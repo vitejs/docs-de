@@ -7,13 +7,13 @@ titleTemplate: Frontend-Tooling der nächsten Generation
 hero:
   name: Vite
   text: Frontend-Tooling der nächsten Generation
-  tagline: Machen Sie sich bereit für eine Entwicklungsumgebung, die endlich mit Ihnen mithalten kann.
+  tagline: Machen Sie sich bereit für eine Entwicklungsumgebung, die endlich mit Ihnen Schritt halten kann.
   image:
     src: /logo-with-shadow.png
     alt: Vite
   actions:
     - theme: brand
-      text: Starten
+      text: Erste Schritte
       link: /guide/
     - theme: alt
       text: Wieso Vite?
@@ -21,9 +21,6 @@ hero:
     - theme: alt
       text: Aut GitHub anzeigen
       link: https://github.com/vitejs/vite
-    - theme: brand
-      text: 🎉 ViteConf 23!
-      link: https://viteconf.org/23
 
 features:
   - icon: 💡
