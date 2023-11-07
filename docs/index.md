@@ -7,7 +7,7 @@ titleTemplate: Frontend-Tooling der nächsten Generation
 hero:
   name: Vite
   text: Frontend-Tooling der nächsten Generation
-  tagline: Machen Sie sich bereit für eine Entwicklungsumgebung, die endlich mit Ihnen mithalten kann.
+  tagline: Machen Sie sich bereit für eine Entwicklungsumgebung, die endlich mit Ihnen Schritt halten kann.
   image:
     src: /logo-with-shadow.png
     alt: Vite
