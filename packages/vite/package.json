@@ -93,7 +93,7 @@
     "@rollup/plugin-typescript": "^11.1.5",
     "@rollup/pluginutils": "^5.0.5",
     "@types/escape-html": "^1.0.2",
-    "@types/pnpapi": "^0.0.4",
+    "@types/pnpapi": "^0.0.5",
     "acorn": "^8.10.0",
     "acorn-walk": "^8.2.0",
     "cac": "^6.7.14",
