@@ -13,11 +13,12 @@ Siehe [Projektstamm](/guide/#index-html-and-project-root) für weitere Details.
 
 - **Typ:** `string`
 - **Standardwert:** `/`
+- **Verwandt:** [`server.origin`](/config/server-options.md#server-origin)
 
 Öffentlicher Basispfad bei der Ausführung in Entwicklung oder Produktion. Gültige Werte sind:
 
 - Absoluter URL-Pfad, z. B. `/foo/`
-- Vollständige URL, z. B. `https://foo.com/`
+- Vollständige URL, z. B. `https://foo.com/` (Der ursprüngliche Tei wird in der Entwicklung nicht verwendet)
 - Leerzeichen oder `./` (für die eingebettete Bereitstellung)
 
 Siehe [Öffentlicher Basispfad](/guide/build#public-base-path) für weitere Details.
