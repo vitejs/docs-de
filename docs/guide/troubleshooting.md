@@ -149,13 +149,9 @@ Wenn Sie Vite mit WSL2 ausführen, kann Vite in bestimmten Situationen keine Dat
 
 ### Es erfolgt eine vollständige Aktualisierung anstelle von HMR
 
-Wenn HMR nicht von Vite oder einem Plugin verarbeitet wird, erfolgt eine vollständige Aktualisierung.
+Wenn HMR nicht von Vite oder einem Plugin behandelt wird, erfolgt eine vollständige Seitenaktualisierung, da dies die einzige Möglichkeit ist, den Status zu aktualisieren.
 
-Auch wenn es eine Abhängigkeitsschleife gibt, erfolgt eine vollständige Aktualisierung. Um dies zu lösen, versuchen Sie, die Schleife zu entfernen.
-
-### Hohe Anzahl von HMR-Aktualisierungen in der Konsole
-
-Dies kann durch eine zirkuläre Abhängigkeit verursacht werden. Um dies zu lösen, versuchen Sie, die Schleife zu unterbrechen.
+Wenn HMR bedient wird, aber in einer zirkulären Abhängigkeit steht, wird ebenfalls eine vollständige Seitenaktualisierung durchgeführt, um die Ausführungsreihenfolge wiederherzustellen. Um dieses Problem zu lösen, versuchen Sie, die Schleife zu unterbrechen. Sie können `vite --debug hmr` ausführen, um den Pfad der zirkulären Abhängigkeit zu protokollieren, wenn eine Dateiänderung dies ausgelöst hat.
 
 ## Build
 
