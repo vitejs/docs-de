@@ -6,15 +6,11 @@ import express from 'express'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isTest = process.env.VITEST
 
-const DYNAMIC_STYLES = `
-  <style>
-  .ssr-proxy {
-    color: coral;
-  }
-  </style>
-`
-
-export async function createServer(root = process.cwd(), hmrPort) {
+export async function createServer(
+  root = process.cwd(),
+  hmrPort,
+  customLogger,
+) {
   const resolve = (p) => path.resolve(__dirname, p)
 
   const app = express()
@@ -27,9 +23,6 @@ export async function createServer(root = process.cwd(), hmrPort) {
   ).createServer({
     root,
     logLevel: isTest ? 'error' : 'info',
-    css: {
-      transformer: 'lightningcss',
-    },
     server: {
       middlewareMode: true,
       watch: {
@@ -43,6 +36,7 @@ export async function createServer(root = process.cwd(), hmrPort) {
       },
     },
     appType: 'custom',
+    customLogger,
   })
   // use vite's connect instance as middleware
   app.use((req, res, next) => {
@@ -51,26 +45,21 @@ export async function createServer(root = process.cwd(), hmrPort) {
 
   app.use('*', async (req, res, next) => {
     try {
-      let [url] = req.originalUrl.split('?')
-      if (url.endsWith('/')) url += 'index.html'
+      const url = req.originalUrl
 
-      if (url.startsWith('/favicon.ico')) {
-        return res.status(404).end('404')
-      }
+      let template
+      template = fs.readFileSync(resolve('index.html'), 'utf-8')
+      template = await vite.transformIndexHtml(url, template)
+      const render = (await vite.ssrLoadModule('/src/app.js')).render
 
-      const htmlLoc = resolve(`.${url}`)
-      let template = fs.readFileSync(htmlLoc, 'utf-8')
+      const appHtml = await render(url, __dirname)
 
-      template = template.replace('<!--[inline-css]-->', DYNAMIC_STYLES)
-
-      // Force calling transformIndexHtml with url === '/', to simulate
-      // usage by ecosystem that was recommended in the SSR documentation
-      // as `const url = req.originalUrl`
-      const html = await vite.transformIndexHtml('/', template)
+      const html = template.replace(`<!--app-html-->`, appHtml)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {
       vite && vite.ssrFixStacktrace(e)
+      if (isTest) throw e
       console.log(e.stack)
       res.status(500).end(e.stack)
     }

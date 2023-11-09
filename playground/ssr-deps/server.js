@@ -1,3 +1,4 @@
+// @ts-check
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -33,8 +34,56 @@ export async function createServer(root = process.cwd(), hmrPort) {
       },
     },
     appType: 'custom',
+    ssr: {
+      noExternal: [
+        '@vitejs/test-no-external-cjs',
+        '@vitejs/test-import-builtin-cjs',
+        '@vitejs/test-no-external-css',
+        '@vitejs/test-external-entry',
+      ],
+      external: [
+        '@vitejs/test-nested-external',
+        '@vitejs/test-external-entry/entry',
+      ],
+      optimizeDeps: {
+        disabled: 'build',
+      },
+    },
+    plugins: [
+      {
+        name: 'dep-virtual',
+        enforce: 'pre',
+        resolveId(id) {
+          if (id === '@vitejs/test-pkg-exports/virtual') {
+            return '@vitejs/test-pkg-exports/virtual'
+          }
+        },
+        load(id) {
+          if (id === '@vitejs/test-pkg-exports/virtual') {
+            return 'export default "[success]"'
+          }
+        },
+      },
+      {
+        name: 'virtual-isomorphic-module',
+        resolveId(id) {
+          if (id === 'virtual:isomorphic-module') {
+            return '\0virtual:isomorphic-module'
+          }
+        },
+        load(id, { ssr }) {
+          if (id === '\0virtual:isomorphic-module') {
+            if (ssr) {
+              return 'export { default } from "/src/isomorphic-module-server.js";'
+            } else {
+              return 'export { default } from "/src/isomorphic-module-browser.js";'
+            }
+          }
+        },
+      },
+    ],
   })
-
+  // use vite's connect instance as middleware
   app.use((req, res, next) => {
     vite.middlewares.handle(req, res, next)
   })

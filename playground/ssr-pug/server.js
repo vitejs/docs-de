@@ -1,17 +1,20 @@
-import fs from 'node:fs'
+// @ts-check
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import pug from 'pug'
 import express from 'express'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
 const isTest = process.env.VITEST
 
-const DYNAMIC_STYLES = `
-  <style>
-  .ssr-proxy {
-    color: coral;
-  }
-  </style>
+const DYNAMIC_SCRIPTS = `
+  <script type="module">
+    const p = document.createElement('p');
+    p.innerHTML = '✅ Dynamically injected inline script';
+    document.body.appendChild(p);
+  </script>
+  <script type="module" src="/src/app.js"></script>
 `
 
 export async function createServer(root = process.cwd(), hmrPort) {
@@ -27,9 +30,6 @@ export async function createServer(root = process.cwd(), hmrPort) {
   ).createServer({
     root,
     logLevel: isTest ? 'error' : 'info',
-    css: {
-      transformer: 'lightningcss',
-    },
     server: {
       middlewareMode: true,
       watch: {
@@ -49,24 +49,16 @@ export async function createServer(root = process.cwd(), hmrPort) {
     vite.middlewares.handle(req, res, next)
   })
 
-  app.use('*', async (req, res, next) => {
+  app.use('*', async (req, res) => {
     try {
       let [url] = req.originalUrl.split('?')
-      if (url.endsWith('/')) url += 'index.html'
-
-      if (url.startsWith('/favicon.ico')) {
-        return res.status(404).end('404')
-      }
+      url = url.replace(/\.html$/, '.pug')
+      if (url.endsWith('/')) url += 'index.pug'
 
       const htmlLoc = resolve(`.${url}`)
-      let template = fs.readFileSync(htmlLoc, 'utf-8')
-
-      template = template.replace('<!--[inline-css]-->', DYNAMIC_STYLES)
-
-      // Force calling transformIndexHtml with url === '/', to simulate
-      // usage by ecosystem that was recommended in the SSR documentation
-      // as `const url = req.originalUrl`
-      const html = await vite.transformIndexHtml('/', template)
+      let html = pug.renderFile(htmlLoc)
+      html = html.replace('</body>', `${DYNAMIC_SCRIPTS}</body>`)
+      html = await vite.transformIndexHtml(url, html)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {

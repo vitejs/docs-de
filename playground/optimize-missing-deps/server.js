@@ -1,9 +1,7 @@
+// @ts-check
 import fs from 'node:fs'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import express from 'express'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const isTest = process.env.VITEST
 
@@ -22,39 +20,37 @@ export async function createServer(root = process.cwd(), hmrPort) {
     logLevel: isTest ? 'error' : 'info',
     server: {
       middlewareMode: true,
-      watch: {
-        // During tests we edit the files too fast and sometimes chokidar
-        // misses change events, so enforce polling for consistency
-        usePolling: true,
-        interval: 100,
-      },
       hmr: {
         port: hmrPort,
       },
     },
     appType: 'custom',
   })
-
   app.use((req, res, next) => {
     vite.middlewares.handle(req, res, next)
   })
 
   app.use('*', async (req, res) => {
     try {
-      const url = req.originalUrl
+      let template = fs.readFileSync(resolve('index.html'), 'utf-8')
+      template = await vite.transformIndexHtml(req.originalUrl, template)
 
-      let template
-      template = fs.readFileSync(resolve('index.html'), 'utf-8')
-      template = await vite.transformIndexHtml(url, template)
-      const render = (await vite.ssrLoadModule('/src/app.js')).render
+      // `main.js` imports dependencies that are yet to be discovered and optimized, aka "missing" deps.
+      // Loading `main.js` in SSR should not trigger optimizing the "missing" deps
+      const { name } = await vite.ssrLoadModule('./main.js')
 
-      const appHtml = await render(url, __dirname)
+      // Loading `main.js` in the client should trigger optimizing the "missing" deps
+      const appHtml = `<div id="app">${name}</div>
+<script type='module'>
+  import { name } from './main.js'
+  document.getElementById('app').innerText = name
+</script>`
 
       const html = template.replace(`<!--app-html-->`, appHtml)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {
-      vite && vite.ssrFixStacktrace(e)
+      vite.ssrFixStacktrace(e)
       console.log(e.stack)
       res.status(500).end(e.stack)
     }

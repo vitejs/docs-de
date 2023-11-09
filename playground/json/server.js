@@ -1,3 +1,4 @@
+// @ts-check
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -6,17 +7,8 @@ import express from 'express'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isTest = process.env.VITEST
 
-const DYNAMIC_STYLES = `
-  <style>
-  .ssr-proxy {
-    color: coral;
-  }
-  </style>
-`
-
 export async function createServer(root = process.cwd(), hmrPort) {
   const resolve = (p) => path.resolve(__dirname, p)
-
   const app = express()
 
   /**
@@ -27,9 +19,6 @@ export async function createServer(root = process.cwd(), hmrPort) {
   ).createServer({
     root,
     logLevel: isTest ? 'error' : 'info',
-    css: {
-      transformer: 'lightningcss',
-    },
     server: {
       middlewareMode: true,
       watch: {
@@ -43,30 +32,47 @@ export async function createServer(root = process.cwd(), hmrPort) {
       },
     },
     appType: 'custom',
+    json: {
+      stringify: true,
+    },
   })
   // use vite's connect instance as middleware
   app.use((req, res, next) => {
     vite.middlewares.handle(req, res, next)
   })
 
-  app.use('*', async (req, res, next) => {
+  app.use('*', async (req, res) => {
     try {
       let [url] = req.originalUrl.split('?')
-      if (url.endsWith('/')) url += 'index.html'
+      if (url.endsWith('/')) url += 'index.ssr.html'
 
-      if (url.startsWith('/favicon.ico')) {
-        return res.status(404).end('404')
+      if (url === '/json-module') {
+        console.time('load module')
+        const json = JSON.stringify(await vite.ssrLoadModule('/test.json'))
+        console.timeEnd('load module')
+        res.status(200).end('' + json.length)
+        return
+      }
+
+      if (url === '/json-fs') {
+        // console.time('transform module')
+        const source = fs.readFileSync(path.resolve(__dirname, './test.json'), {
+          encoding: 'utf-8',
+        })
+        const json = await vite.ssrTransform(
+          `export default ${source}`,
+          null,
+          './output.json',
+        )
+        // console.timeEnd('transform module')
+        // @ts-expect-error ignore in test
+        res.status(200).end(String(json.code.length))
+        return
       }
 
       const htmlLoc = resolve(`.${url}`)
-      let template = fs.readFileSync(htmlLoc, 'utf-8')
-
-      template = template.replace('<!--[inline-css]-->', DYNAMIC_STYLES)
-
-      // Force calling transformIndexHtml with url === '/', to simulate
-      // usage by ecosystem that was recommended in the SSR documentation
-      // as `const url = req.originalUrl`
-      const html = await vite.transformIndexHtml('/', template)
+      let html = fs.readFileSync(htmlLoc, 'utf8')
+      html = await vite.transformIndexHtml(url, html)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {

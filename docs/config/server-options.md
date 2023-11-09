@@ -249,7 +249,9 @@ async function createServer() {
     appType: 'custom' // Vites Standard-HTML-Handling-Middlewares nicht einschließen
   })
   // Verwenden Sie Vites Connect-Instanz als Middleware
-  app.use(vite.middlewares)
+  app.use((req, res, next) => {
+    vite.middlewares.handle(req, res, next)
+  })
 
   app.use('*', async (req, res) => {
     // Da `appType` `'custom'` ist, sollte die Antwort hier bedient werden.

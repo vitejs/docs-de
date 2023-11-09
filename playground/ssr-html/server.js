@@ -6,10 +6,19 @@ import express from 'express'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isTest = process.env.VITEST
 
+const DYNAMIC_SCRIPTS = `
+  <script type="module">
+    const p = document.createElement('p');
+    p.innerHTML = '✅ Dynamically injected inline script';
+    document.body.appendChild(p);
+  </script>
+  <script type="module" src="/src/app.js"></script>
+`
+
 const DYNAMIC_STYLES = `
   <style>
-  .ssr-proxy {
-    color: coral;
+  h1 {
+    background-color: blue;
   }
   </style>
 `
@@ -27,9 +36,6 @@ export async function createServer(root = process.cwd(), hmrPort) {
   ).createServer({
     root,
     logLevel: isTest ? 'error' : 'info',
-    css: {
-      transformer: 'lightningcss',
-    },
     server: {
       middlewareMode: true,
       watch: {
@@ -43,6 +49,21 @@ export async function createServer(root = process.cwd(), hmrPort) {
       },
     },
     appType: 'custom',
+    plugins: [
+      {
+        name: 'virtual-file',
+        resolveId(id) {
+          if (id === 'virtual:file') {
+            return '\0virtual:file'
+          }
+        },
+        load(id) {
+          if (id === '\0virtual:file') {
+            return 'import { virtual } from "/src/importedVirtual.js"; export { virtual };'
+          }
+        },
+      },
+    ],
   })
   // use vite's connect instance as middleware
   app.use((req, res, next) => {
@@ -57,11 +78,17 @@ export async function createServer(root = process.cwd(), hmrPort) {
       if (url.startsWith('/favicon.ico')) {
         return res.status(404).end('404')
       }
+      if (url.startsWith('/@id/__x00__')) {
+        return next()
+      }
 
       const htmlLoc = resolve(`.${url}`)
       let template = fs.readFileSync(htmlLoc, 'utf-8')
 
-      template = template.replace('<!--[inline-css]-->', DYNAMIC_STYLES)
+      template = template.replace(
+        '</body>',
+        `${DYNAMIC_SCRIPTS}${DYNAMIC_STYLES}</body>`,
+      )
 
       // Force calling transformIndexHtml with url === '/', to simulate
       // usage by ecosystem that was recommended in the SSR documentation
