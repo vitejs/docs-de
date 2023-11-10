@@ -218,7 +218,7 @@ Wenn die `package.json` nicht `"type": "module"` enthält, generiert Vite unters
 :::
 
 ::: tip Umgebungsvariablen
-Im Bibliotheksmodus werden alle `import.meta.env.*`-Verwendungen beim Erstellen für die Produktion statisch ersetzt. `process.env.*`-Verwendungen werden jedoch nicht ersetzt, damit Verbraucher Ihrer Bibliothek diese dynamisch ändern können. Wenn dies unerwünscht ist, können Sie z.B. `define: { 'process.env.NODE_ENV': '"production"' }` verwenden, um sie statisch zu ersetzen.
+Im Bibliotheksmodus werden alle Verwendungen von [`import.meta.env.*`](./env-and-mode.md) statisch ersetzt, wenn sie für die Produktion erstellt wurden. Die Verwendung von `process.env.*` wird jedoch nicht ersetzt, so dass die Nutzer Ihrer Bibliothek diese dynamisch ändern können. Wenn dies unerwünscht ist, können Sie `define: { 'process.env.NODE_ENV': '"production"' }` setzen, um sie statisch zu ersetzen, oder [`esm-env`](https://github.com/benmccann/esm-env) für eine bessere Kompatibilität mit Bundlern und Laufzeiten verwenden.
 :::
 
 ::: warning Erweiterte Verwendung
