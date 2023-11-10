@@ -55,22 +55,20 @@ Barrel-Dateien sind Dateien, die die APIs anderer Dateien im selben Verzeichnis 
 
 ```js
 // src/utils/index.js
-export * from './color'
-export * from './dom'
-export * from './string'
+export * from './color.js'
+export * from './dom.js'
+export * from './string.js'
 ```
 
-Wenn Sie nur eine einzelne API importieren, z.B. `import { slash } from './utils'`, müssen alle Dateien in dieser Barrel-Datei abgerufen und transformiert werden, da sie die `slash` API enthalten können und auch Seiteneffekte enthalten können, die bei der Initialisierung ausgeführt werden. Dies bedeutet, dass Sie mehr Dateien als erforderlich beim ersten Laden der Seite laden, was zu längeren Ladezeiten führt.
+Wenn Sie nur eine einzelne API importieren, z. B. `import { slash } from './utils.js'`, müssen alle Dateien in dieser Barrel-Datei abgerufen und umgewandelt werden, da sie die `slash`-API enthalten können und auch Seiteneffekte enthalten können, die bei der Initialisierung ausgeführt werden. Das bedeutet, dass beim ersten Laden der Seite mehr Dateien als erforderlich geladen werden, was zu einem langsameren Laden der Seite führt.
 
-Wenn möglich, sollten Sie Barrel-Dateien vermeiden und die einzelnen APIs direkt importieren, z.B. `import { slash } from './utils/slash'`. Sie können [Issue #8237](https://github.com/vitejs/vite/issues/8237) für weitere Informationen lesen.
+Wenn möglich, sollten Sie Barrel-Dateien vermeiden und die einzelnen APIs direkt importieren, z. B. `import { slash } from './utils/slash.js'`. Weitere Informationen finden Sie unter [Issue #8237](https://github.com/vitejs/vite/issues/8237).
 
-## Häufig verwendete Dateien vorwärmen
+## Warm Up Frequently Used Files
 
-Der Vite-Entwicklungsserver transformiert nur Dateien, die vom Browser angefordert werden, was es ihm ermöglicht, schnell zu starten und Transformationen nur für verwendete Dateien anzu
+The Vite dev server only transforms files as requested by the browser, which allows it to start up quickly and only apply transformations for used files. It can also pre-transform files if it anticipates certain files will be requested shortly. However, request waterfalls may still happen if some files take longer to transform than others. For example:
 
-wenden. Er kann auch Dateien vorab transformieren, wenn er erwartet, dass bestimmte Dateien in Kürze angefordert werden. Es kann jedoch immer noch zu Anfrage-Wasserfällen kommen, wenn einige Dateien länger zur Transformation benötigen als andere. Zum Beispiel:
-
-Angenommen, es gibt einen Importgraphen, bei dem die linke Datei die rechte Datei importiert:
+Given an import graph where the left file imports the right file:
 
 ```
 main.js -> BigComponent.vue -> big-utils.js -> large-data.json
@@ -104,3 +102,20 @@ export default defineConfig({
 Beachten Sie, dass Sie nur Dateien vorwärmen sollten, die häufig verwendet werden, um den Vite-Entwicklungsserver beim Start nicht zu überlasten. Überprüfen Sie die Option [`server.warmup`](/config/server-options.md#server-warmup) für weitere Informationen.
 
 Die Verwendung von [`--open` oder `server.open`](/config/server-options.html#server-open) bietet ebenfalls eine Leistungssteigerung, da Vite automatisch den Einstiegspunkt Ihrer App oder die bereitgestellte URL vorab erwärmt.
+
+## Weniger oder natives Werkzeug verwenden
+
+Um die Geschwindigkeit von Vite mit einer wachsenden Codebasis beizubehalten, muss man den Arbeitsaufwand für die Quelldateien (JS/TS/CSS) reduzieren.
+
+Beispiele für weniger Arbeit:
+
+- CSS anstelle von Sass/Less/Stylus verwenden, wenn möglich (Verschachtelung kann von PostCSS gehandhabt werden).
+- Transformieren Sie SVGs nicht in UI-Framework-Komponenten (React, Vue usw.). Importieren Sie sie stattdessen als Strings oder URLs.
+- Wenn Sie `@vitejs/plugin-react` verwenden, vermeiden Sie es, die Babel-Optionen so zu konfigurieren, dass die Transformation während des Builds übersprungen wird (nur esbuild wird verwendet).
+
+Beispiele für die Verwendung von nativen Werkzeugen:
+
+Die Verwendung von nativem Werkzeug bringt oft eine größere Installation mit sich und ist daher nicht der Standard, wenn ein neues Vite-Projekt initialisiert wird. Für größere Anwendungen hingegen kann es sich aber lohnen.
+
+- Probieren Sie die experimentelle Unterstützung für [LightningCSS](https://github.com/vitejs/vite/discussions/13835) aus.
+- Verwenden Sie [`@vitejs/plugin-react-swc`](https://github.com/vitejs/vite-plugin-react-swc) anstelle von `@vitejs/plugin-react`.
