@@ -64,11 +64,11 @@ Wenn Sie nur eine einzelne API importieren, z. B. `import { slash } from './util
 
 Wenn möglich, sollten Sie Barrel-Dateien vermeiden und die einzelnen APIs direkt importieren, z. B. `import { slash } from './utils/slash.js'`. Weitere Informationen finden Sie unter [Issue #8237](https://github.com/vitejs/vite/issues/8237).
 
-## Warm Up Frequently Used Files
+## Häufig verwendete Dateien aufwärmen
 
-The Vite dev server only transforms files as requested by the browser, which allows it to start up quickly and only apply transformations for used files. It can also pre-transform files if it anticipates certain files will be requested shortly. However, request waterfalls may still happen if some files take longer to transform than others. For example:
+Der Vite Entwicklungsserver transformiert Dateien nur, wenn sie vom Browser auch angefordert werden. Dadurch kann er schneller starten und wendet nur Transformationen für verwendete Dateien an. Er kann auch Dateien vorverwandeln, wenn er erwartet, dass bestimmte Dateien in Kürze angefordert werden. Dennoch kann es zu einem "Request Wassfall" kommen, wenn die Umwandlung einiger Dateien länger dauert als die von anderen. Ein Beispiel:
 
-Given an import graph where the left file imports the right file:
+Bei einem Importgraphen, bei dem die linke Datei die rechte Datei importiert:
 
 ```
 main.js -> BigComponent.vue -> big-utils.js -> large-data.json
