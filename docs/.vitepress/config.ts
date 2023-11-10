@@ -33,16 +33,16 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
   const oldVersions: DefaultTheme.NavItemWithLink[] = [
     {
       text: 'Vite 4 Dokumentation',
-      link: 'https://v4.vitejs.dev'
+      link: 'https://v4.vitejs.dev',
     },
     {
       text: 'Vite 3 Dokumentation',
-      link: 'https://v3.vitejs.dev'
+      link: 'https://v3.vitejs.dev',
     },
     {
       text: 'Vite 2 Dokumentation',
-      link: 'https://v2.vitejs.dev'
-    }
+      link: 'https://v2.vitejs.dev',
+    },
   ]
 
   switch (deployType) {
@@ -51,7 +51,7 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
       return [
         {
           text: 'Vite 5 Dokumentation (release)',
-          link: 'https://vitejs.dev'
+          link: 'https://vitejs.dev',
         },
         ...oldVersions,
       ]
@@ -80,9 +80,9 @@ export default defineConfig({
         src: 'https://cdn.usefathom.com/script.js',
         'data-site': 'CBDFBSLI',
         'data-spa': 'auto',
-        defer: ''
-      }
-    ]
+        defer: '',
+      },
+    ],
   ],
 
   locales: {
@@ -100,14 +100,14 @@ export default defineConfig({
 
     editLink: {
       pattern: 'https://github.com/vitejs/vite/edit/main/docs/:path',
-      text: 'Änderungen für diese Seite vorschlagen'
+      text: 'Änderungen für diese Seite vorschlagen',
     },
 
     socialLinks: [
       { icon: 'mastodon', link: 'https://elk.zone/m.webtoo.ls/@vite' },
       { icon: 'twitter', link: 'https://twitter.com/vite_js' },
       { icon: 'discord', link: 'https://chat.vitejs.dev' },
-      { icon: 'github', link: 'https://github.com/vitejs/vite' }
+      { icon: 'github', link: 'https://github.com/vitejs/vite' },
     ],
 
     algolia: {
@@ -115,56 +115,56 @@ export default defineConfig({
       apiKey: 'deaab78bcdfe96b599497d25acc6460e',
       indexName: 'vitejs',
       searchParameters: {
-        facetFilters: ['tags:de']
+        facetFilters: ['tags:de'],
       },
       placeholder: 'Suche',
       translations: {
         button: {
-          buttonText: 'Suche'
+          buttonText: 'Suche',
         },
         modal: {
           searchBox: {
             resetButtonTitle: 'Suche zurücksetzen.',
             resetButtonAriaLabel: 'Suche zurücksetzen.',
             cancelButtonText: 'Zurücksetzen',
-            cancelButtonAriaLabel: 'Zurücksetzen'
+            cancelButtonAriaLabel: 'Zurücksetzen',
           },
           startScreen: {
             recentSearchesTitle: 'Letzte Suchanfragen',
-            noRecentSearchesText: 'Keine letzten Suchanfragen.'
+            noRecentSearchesText: 'Keine letzten Suchanfragen.',
           },
           errorScreen: {
             titleText: 'Fehler beim Abrufen von Suchergebnissen.',
             helpText:
-              'Möglicherweise müssen Sie Ihre Netzwerkverbindung überprüfen.'
+              'Möglicherweise müssen Sie Ihre Netzwerkverbindung überprüfen.',
           },
           footer: {
             selectText: 'Auswählen',
             navigateText: 'Navigieren',
-            closeText: 'Schließen'
+            closeText: 'Schließen',
           },
           noResultsScreen: {
             noResultsText: 'Keine Ergebnisse gefunden.',
-            suggestedQueryText: 'Alternative Vorschläge'
-          }
-        }
-      }
+            suggestedQueryText: 'Alternative Vorschläge',
+          },
+        },
+      },
     },
 
     carbonAds: {
       code: 'CEBIEK3N',
-      placement: 'vitejsdev'
+      placement: 'vitejsdev',
     },
 
     outlineTitle: 'Auf dieser Seite',
     docFooter: {
       prev: 'Vorherige Seite',
-      next: 'Nächste Seite'
+      next: 'Nächste Seite',
     },
 
     footer: {
       message: `Veröffentlicht unter der MIT-Lizenz. (${commitRef})`,
-      copyright: 'Copyright © 2019-present Evan You & Vite Contributors'
+      copyright: 'Copyright © 2019-present Evan You & Vite Contributors',
     },
 
     nav: [
@@ -180,15 +180,15 @@ export default defineConfig({
             items: [
               {
                 text: 'Twitter',
-                link: 'https://twitter.com/vite_js'
+                link: 'https://twitter.com/vite_js',
               },
               {
                 text: 'Discord Chat',
-                link: 'https://chat.vitejs.dev'
+                link: 'https://chat.vitejs.dev',
               },
               {
                 text: 'Awesome Vite',
-                link: 'https://github.com/vitejs/awesome-vite'
+                link: 'https://github.com/vitejs/awesome-vite',
               },
               {
                 text: 'ViteConf',
@@ -196,28 +196,28 @@ export default defineConfig({
               },
               {
                 text: 'DEV Community',
-                link: 'https://dev.to/t/vite'
+                link: 'https://dev.to/t/vite',
               },
               {
                 text: 'Rollup Plugins Compat',
-                link: 'https://vite-rollup-plugins.patak.dev/'
+                link: 'https://vite-rollup-plugins.patak.dev/',
               },
               {
                 text: 'Changelog',
-                link: 'https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md'
+                link: 'https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md',
               },
               {
                 text: 'Beitragen',
-                link: 'https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md'
-              }
-            ]
-          }
-        ]
+                link: 'https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md',
+              },
+            ],
+          },
+        ],
       },
       {
         text: 'Version',
-        items: versionLinks
-      }
+        items: versionLinks,
+      },
     ],
 
     sidebar: {
@@ -227,59 +227,59 @@ export default defineConfig({
           items: [
             {
               text: 'Wieso Vite?',
-              link: '/guide/why'
+              link: '/guide/why',
             },
             {
               text: 'Erste Schritte',
-              link: '/guide/'
+              link: '/guide/',
             },
             {
               text: 'Funktionen',
-              link: '/guide/features'
+              link: '/guide/features',
             },
             {
               text: 'CLI',
-              link: '/guide/cli'
+              link: '/guide/cli',
             },
             {
               text: 'Plugins verwenden',
-              link: '/guide/using-plugins'
+              link: '/guide/using-plugins',
             },
             {
               text: 'Vorbündeln von Abhängigkeiten',
-              link: '/guide/dep-pre-bundling'
+              link: '/guide/dep-pre-bundling',
             },
             {
               text: 'Umgang mit statischen Assets',
-              link: '/guide/assets'
+              link: '/guide/assets',
             },
             {
               text: 'Erstellung für die Produktion',
-              link: '/guide/build'
+              link: '/guide/build',
             },
             {
               text: 'Bereitstellen einer statischen Website',
-              link: '/guide/static-deploy'
+              link: '/guide/static-deploy',
             },
             {
               text: 'Umgebungsvariablen und Modi',
-              link: '/guide/env-and-mode'
+              link: '/guide/env-and-mode',
             },
             {
               text: 'Serverseitiges Rendern (SSR)',
-              link: '/guide/ssr'
+              link: '/guide/ssr',
             },
             {
               text: 'Backend-Integration',
-              link: '/guide/backend-integration'
+              link: '/guide/backend-integration',
             },
             {
               text: 'Vergleiche',
-              link: '/guide/comparisons'
+              link: '/guide/comparisons',
             },
             {
               text: 'Fehlerbehebung',
-              link: '/guide/troubleshooting'
+              link: '/guide/troubleshooting',
             },
             {
               text: 'Leistung',
@@ -287,7 +287,7 @@ export default defineConfig({
             },
             {
               text: 'Projekt-Philosophie',
-              link: '/guide/philosophy'
+              link: '/guide/philosophy',
             },
             {
               text: 'Migration von v4',
@@ -300,22 +300,22 @@ export default defineConfig({
           items: [
             {
               text: 'Plugin API',
-              link: '/guide/api-plugin'
+              link: '/guide/api-plugin',
             },
             {
               text: 'HMR API',
-              link: '/guide/api-hmr'
+              link: '/guide/api-hmr',
             },
             {
               text: 'JavaScript API',
-              link: '/guide/api-javascript'
+              link: '/guide/api-javascript',
             },
             {
               text: 'Referenzen zur Konfiguration',
-              link: '/config/'
-            }
-          ]
-        }
+              link: '/config/',
+            },
+          ],
+        },
       ],
       '/config/': [
         {
@@ -323,35 +323,35 @@ export default defineConfig({
           items: [
             {
               text: 'Vite konfigurieren',
-              link: '/config/'
+              link: '/config/',
             },
             {
               text: 'Gemeinsame Optionen',
-              link: '/config/shared-options'
+              link: '/config/shared-options',
             },
             {
               text: 'Server-Optionen',
-              link: '/config/server-options'
+              link: '/config/server-options',
             },
             {
               text: 'Build-Optionen',
-              link: '/config/build-options'
+              link: '/config/build-options',
             },
             {
               text: 'Vorschau-Optionen',
-              link: '/config/preview-options'
+              link: '/config/preview-options',
             },
             {
               text: 'Optionen zur Optimierung der Abhängigkeiten',
-              link: '/config/dep-optimization-options'
+              link: '/config/dep-optimization-options',
             },
             {
               text: 'SSR-Optionen',
-              link: '/config/ssr-options'
+              link: '/config/ssr-options',
             },
             {
               text: 'Worker-Optionen',
-              link: '/config/worker-options'
+              link: '/config/worker-options',
             },
           ],
         },
