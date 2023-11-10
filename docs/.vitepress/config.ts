@@ -30,34 +30,33 @@ const additionalTitle = ((): string => {
   }
 })()
 const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
+  const oldVersions: DefaultTheme.NavItemWithLink[] = [
+    {
+      text: 'Vite 4 Dokumentation',
+      link: 'https://v4.vitejs.dev'
+    },
+    {
+      text: 'Vite 3 Dokumentation',
+      link: 'https://v3.vitejs.dev'
+    },
+    {
+      text: 'Vite 2 Dokumentation',
+      link: 'https://v2.vitejs.dev'
+    }
+  ]
+
   switch (deployType) {
     case 'main':
     case 'local':
       return [
         {
-          text: 'Vite 4 Dokumentation (release)',
+          text: 'Vite 5 Dokumentation (release)',
           link: 'https://vitejs.dev'
         },
-        {
-          text: 'Vite 3 Dokumentation',
-          link: 'https://v3.vitejs.dev'
-        },
-        {
-          text: 'Vite 2 Dokumentation',
-          link: 'https://v2.vitejs.dev'
-        }
+        ...oldVersions,
       ]
     case 'release':
-      return [
-        {
-          text: 'Vite 3 Dokumentation',
-          link: 'https://v3.vitejs.dev'
-        },
-        {
-          text: 'Vite 2 Dokumentation',
-          link: 'https://v2.vitejs.dev'
-        }
-      ]
+      return oldVersions
   }
 })()
 
