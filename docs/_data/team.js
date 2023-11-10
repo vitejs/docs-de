@@ -53,10 +53,11 @@ export const core = [
     avatar: 'https://github.com/sapphi-red.png',
     name: 'green',
     title: 'Webentwickler',
-    desc: 'Mitglied des Vite-Teams. Du kannst mich Sapphi, Green oder Midori nennen ;)',
+    desc: 'Kernmitglied des Vite-Teams. Du kannst mich sapphi, green oder midori nennen ;)',
     links: [
       { icon: 'github', link: 'https://github.com/sapphi-red' },
-      { icon: 'twitter', link: 'https://twitter.com/sapphi_red' }
+      { icon: 'twitter', link: 'https://twitter.com/sapphi_red' },
+      { icon: 'mastodon', link: 'https://elk.zone/m.webtoo.ls/@sapphi_red' },
     ],
     sponsor: 'https://github.com/sponsors/sapphi-red'
   },
