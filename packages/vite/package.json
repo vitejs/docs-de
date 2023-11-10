@@ -130,7 +130,7 @@
     "rollup": "^4.0.0",
     "simple-git-hooks": "^2.9.0",
     "tslib": "^2.6.2",
-    "tsx": "^3.12.10",
+    "tsx": "^4.0.0",
     "typescript": "^5.0.2",
     "unbuild": "^2.0.0",
     "vite": "workspace:*",
