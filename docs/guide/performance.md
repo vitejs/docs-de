@@ -22,7 +22,7 @@ Die Leistung von Community-Plugins liegt jedoch außerhalb der Kontrolle von Vit
 
    You can inspect the duration it takes to transform a file using `DEBUG="vite:plugin-transform" vite` or [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect). Note that as asynchronous operations tend to provide inaccurate timings, you should treat the numbers as a rough estimate, but it should still reveal the more expensive operations.
 
-::: Tipp Profiling
+::: tip Profiling
 Sie können `vite --profile` ausführen, die Website besuchen und in Ihrem Terminal `p + Enter` drücken, um ein `.cpuprofile` aufzuzeichnen. Ein Tool wie [speedscope](https://www.speedscope.app) kann dann verwendet werden, um das Profil zu überprüfen und Engpässe zu identifizieren. Sie können die Profile auch [mit dem Vite-Team teilen](https://chat.vitejs.dev), um bei der Identifizierung von Leistungsproblemen zu helfen.
 :::
 
@@ -45,7 +45,7 @@ Daher ist es in der Regel besser, bei Ihren Importpfaden explizit zu sein, z. B.
 
 Wenn Sie ein Plugin-Autor sind, stellen Sie sicher, dass Sie [`this.resolve`](https://rollupjs.org/plugin-development/#this-resolve) nur aufrufen, wenn es notwendig ist, um die Anzahl der oben genannten Überprüfungen zu reduzieren.
 
-::: Tipp TypeScript
+::: tip TypeScript
 Wenn Sie TypeScript verwenden, aktivieren Sie `"moduleResolution": "bundler"` und `"allowImportingTsExtensions": true` in den `compilerOptions` Ihrer `tsconfig.json`, um `.ts` und `.tsx` Erweiterungen direkt in Ihrem Code zu verwenden.
 :::
 
