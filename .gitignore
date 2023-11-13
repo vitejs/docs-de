@@ -5,3 +5,4 @@ docs/.vitepress/temp
 .vscode
 .DS_Store
 /docs/.vitepress/cache
+package-lock.json
