@@ -57,10 +57,10 @@ Barrel-Dateien sind Dateien, die die APIs anderer Dateien im selben Verzeichnis 
 // src/utils/index.js
 export * from './color.js'
 export * from './dom.js'
-export * from './string.js'
+export * from './slash.js'
 ```
 
-Wenn Sie nur eine einzelne API importieren, z. B. `import { slash } from './utils.js'`, müssen alle Dateien in dieser Barrel-Datei abgerufen und umgewandelt werden, da sie die `slash`-API enthalten können und auch Seiteneffekte enthalten können, die bei der Initialisierung ausgeführt werden. Das bedeutet, dass beim ersten Laden der Seite mehr Dateien als erforderlich geladen werden, was zu einem langsameren Laden der Seite führt.
+Wenn Sie nur eine einzelne API importieren, z. B. `import { slash } from './utils'`, müssen alle Dateien in dieser Barrel-Datei abgerufen und transformiert werden, da sie die `slash`-API enthalten können und auch Seiteneffekte enthalten können, die bei der Initialisierung ausgeführt werden. Dies bedeutet, dass beim ersten Laden der Seite mehr Dateien als erforderlich geladen werden, was zu einem langsameren Laden der Seite führt.
 
 Wenn möglich, sollten Sie Barrel-Dateien vermeiden und die einzelnen APIs direkt importieren, z. B. `import { slash } from './utils/slash.js'`. Weitere Informationen finden Sie unter [Issue #8237](https://github.com/vitejs/vite/issues/8237).
 
