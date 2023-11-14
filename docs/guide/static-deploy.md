@@ -58,9 +58,9 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
 
 1. Legen Sie den richtigen `base` in `vite.config.js` fest.
 
-   Wenn Sie auf `https://<BENUTZERNAME>.github.io/` bereitstellen, können Sie `base` weglassen, da es standardmäßig auf `'/'` eingestellt ist.
+   Wenn Sie auf `https://<USERNAME>.github.io/` oder auf eine benutzerdefinierte Domain über GitHub Pages (z. B. `www.example.com`) bereitstellen, setzen Sie `base` auf `'/'`. Alternativ können Sie `base` aus der Konfiguration entfernen, da es auch standardmäßig auf `'/'` eingestellt ist.
 
-   Wenn Sie auf `https://<BENUTZERNAME>.github.io/<REPO>/` bereitstellen, z.B. wenn Ihr Repository unter `https://github.com/<BENUTZERNAME>/<REPO>` zu finden ist, setzen Sie `base` auf `'/<REPO>/'`.
+   Wenn Sie auf `https://<USERNAME>.github.io/<REPO>/` deployen (z.B. Ihr Repository befindet sich unter `https://github.com/<USERNAME>/<REPO>`), dann setzen Sie `base` auf `'/<REPO>/'`.
 
 2. Gehen Sie zur GitHub Pages-Konfiguration in den Einstellungen des Repository und wählen Sie die Quelle für die Bereitstellung als "GitHub Actions" aus. Dadurch wird ein Workflow erstellt, der Ihr Projekt erstellt und bereitstellt. Ein Beispielworkflow, der Abhängigkeiten installiert und mit npm erstellt, ist bereitgestellt:
 
