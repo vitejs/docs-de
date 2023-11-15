@@ -142,3 +142,35 @@ Da `vite build` standardmäßig eine Produktionsversion erstellt, können Sie di
 # .env.testing
 NODE_ENV=development
 ```
+
+## NODE_ENV und Modi
+
+Wichtig zu beachten ist, dass `NODE_ENV` (`process.env.NODE_ENV`) und Modi zwei verschiedene Konzepte sind. Hier sieht man, wie die verschiedenen Befehle die `NODE_ENV` und den Modus beeinflussen:
+
+| Befehl                                               | NODE_ENV        | Mode            |
+| ---------------------------------------------------- | --------------- | --------------- |
+| `vite build`                                         | `"production"`  | `"production"`  |
+| `vite build --mode development`                      | `"production"`  | `"development"` |
+| `NODE_ENV=development vite build`                    | `"development"` | `"production"`  |
+| `NODE_ENV=development vite build --mode development` | `"development"` | `"development"` |
+
+Die unterschiedlichen Werte von `NODE_ENV` und `mode` spiegeln sich auch in den entsprechenden Eigenschaften von `import.meta.env` wider:
+
+| Befehl                 | `import.meta.env.PROD` | `import.meta.env.DEV` |
+| ---------------------- | ---------------------- | --------------------- |
+| `NODE_ENV=production`  | `true`                 | `false`               |
+| `NODE_ENV=development` | `false`                | `true`                |
+| `NODE_ENV=other`       | `false`                | `true`                |
+
+| Befehl               | `import.meta.env.MODE` |
+| -------------------- | ---------------------- |
+| `--mode production`  | `"production"`         |
+| `--mode development` | `"development"`        |
+| `--mode staging`     | `"staging"`            |
+
+:::tip `NODE_ENV` in `.env` Dateien
+
+`NODE_ENV=...` kann sowohl im Befehl, als auch in Ihrer `.env`-Datei gesetzt werden. Wenn `NODE_ENV` in einer `.env.[mode]`-Datei angegeben ist, kann der Modus verwendet werden, um seinen Wert zu kontrollieren. Allerdings bleiben sowohl `NODE_ENV` als auch Modi zwei verschiedene Konzepte.
+
+Der Hauptvorteil von `NODE_ENV=...` im Befehl ist, dass es Vite erlaubt, den Wert frühzeitig zu erkennen. Es erlaubt Ihnen auch, `process.env.NODE_ENV` in Ihrer Vite-Konfiguration auszulesen, da Vite die env-Dateien nur laden kann, wenn die Konfiguration ausgewertet wird.
+:::
