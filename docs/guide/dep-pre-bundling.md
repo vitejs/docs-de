@@ -56,11 +56,11 @@ Wenn Sie Änderungen an der verknüpften Abhängigkeit vornehmen, starten Sie de
 
 Die Standard-Abhängigkeitserkennungsheuristik ist nicht immer wünschenswert. In Fällen, in denen Sie Abhängigkeiten ausdrücklich in die Liste aufnehmen oder ausschließen möchten, verwenden Sie die [`optimizeDeps`-Konfigurationsoptionen](/config/dep-optimization-options.md).
 
-Ein typischer Anwendungsfall für `optimizeDeps.include` oder `optimizeDeps.exclude` ist, wenn Sie einen Import haben, der im Quellcode nicht direkt auffindbar ist. Möglicherweise wird der Import als Ergebnis einer Plugin-Transformation erstellt. Das bedeutet, dass Vite den Import beim ersten Scannen nicht entdecken kann - er kann ihn nur entdecken, nachdem die Datei vom Browser angefordert und transformiert wurde. Dies führt dazu, dass der Server unmittelbar nach dem Start erneut gebündelt wird.
+Ein typischer Anwendungsfall für `optimizeDeps.include` oder `optimizeDeps.exclude` ist, wenn Sie einen Import haben, der nicht direkt im Quellcode zu finden ist. Zum Beispiel, wenn der Import als Ergebnis einer Plugin-Transformation erstellt wurde. Das bedeutet, dass Vite den Import beim ersten Scan nicht entdecken kann, sondern erst, nachdem die Datei vom Browser angefordert und transformiert wurde. Dies führt dazu, dass der Server sofort nach dem Start des Servers neu gebündelt wird.
 
-Beide, `include` und `exclude`, können verwendet werden, um damit umzugehen. Wenn die Abhängigkeit groß (mit vielen internen Modulen) oder CommonJS ist, sollten Sie sie einschließen; Wenn die Abhängigkeit klein ist und bereits gültiges ESM ist, können Sie sie ausschließen und sie direkt vom Browser laden lassen.
+Sowohl `include` als auch `exclude` können verwendet werden, um dieses Problem zu lösen. Wenn die Abhängigkeit groß ist (mit vielen internen Modulen) oder CommonJS ist, dann sollten Sie sie einschließen; wenn die Abhängigkeit klein ist und bereits gültiges ESM ist, können Sie sie ausschließen und den Browser sie direkt laden lassen.
 
-Sie können auch `esbuild` mit der [`optimizeDeps.esbuildOptions`-Option](/config/dep-optimization-options.md#optimizedeps-esbuildoptions) weiter anpassen. Zum Beispiel das Hinzufügen eines `esbuild`-Plugins, um spezielle Dateien in Abhängigkeiten zu verarbeiten.
+Sie können esbuild auch mit der Option [`optimizeDeps.esbuildOptions`] (/config/dep-optimization-options.md#optimizedeps-esbuildoptions) weiter anpassen. Zum Beispiel durch das Hinzufügen eines esbuild-Plugins zur Behandlung spezieller Dateien in Abhängigkeiten oder durch das Ändern des [build `target`](https://esbuild.github.io/api/#target).
 
 ## Zwischenspeicherung
 

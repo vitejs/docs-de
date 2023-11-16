@@ -20,7 +20,9 @@ Mehr über die Beweggründe für das Projekt erfahren Sie im Abschnitt [Warum Vi
 
 ## Browser-Unterstützung
 
-Der Standard-Build zielt auf Browser ab, die [native ES Module](https://caniuse.com/es6-module), [native ESM dynamic import](https://caniuse.com/es6-module-dynamic-import) und [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta) unterstützen. Ältere Browser können über das offizielle [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) unterstützt werden - siehe den Abschnitt [Building for Production](./build) für weitere Details.
+Während der Entwicklung setzt Vite [`esnext` als Transformationsziel](https://esbuild.github.io/api/#target), da wir davon ausgehen, dass ein moderner Browser verwendet wird, der alle aktuellen JavaScript- und CSS-Funktionen unterstützt. Dadurch wird eine Absenkung der Syntax verhindert, so dass Vite die Module so nah wie möglich am ursprünglichen Quellcode bereitstellen kann.
+
+Für den Produktions-Build zielt Vite standardmäßig auf Browser ab, die [native ES Module](https://caniuse.com/es6-module), [native ESM dynamic import](https://caniuse.com/es6-module-dynamic-import) und [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta) unterstützen. Legacy-Browser können über das offizielle [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) unterstützt werden. Lesen Sie den Abschnitt [Erstellung für die Produktion](./build) für weitere Details.
 
 ## Vite online ausprobieren
 
