@@ -23,7 +23,7 @@ head:
 
 # Vite 4.0 ist da!
 
-_9. Dezember 2022_
+_9. Dezember 2022_ - Lesen Sie die [Vite 5.0 Ankündigung](./announcing-vite5.md)
 
 Vite 3 [wurde](./announcing-vite3.md) vor fünf Monaten veröffentlicht. Die wöchentlichen npm-Downloads sind seitdem von 1 Million auf 2,5 Millionen gestiegen. Das Ökosystem hat sich ebenfalls weiterentwickelt und wächst kontinuierlich. In der diesjährigen [Jamstack Conf-Umfrage](https://twitter.com/vite_js/status/1589665610119585793) stieg die Verwendung in der Community von 14% auf 32%, bei gleichzeitig hoher Zufriedenheitsbewertung von 9,7. Wir haben die stabilen Veröffentlichungen von [Astro 1.0](https://astro.build/), [Nuxt 3](https://v3.nuxtjs.org/) und anderen von Vite unterstützten Frameworks gesehen, die innovative und kollaborative Lösungen bieten: [SvelteKit](https://kit.svelte.dev/), [Solid Start](https://www.solidjs.com/blog/introducing-solidstart), [Qwik City](https://qwik.builder.io/qwikcity/overview/). Storybook hat die Unterstützung für Vite als eines seiner Hauptmerkmale für [Storybook 7.0](https://storybook.js.org/blog/first-class-vite-support-in-storybook/) angekündigt. Deno [unterstützt jetzt Vite](https://www.youtube.com/watch?v=Zjojo9wdvmY). Die Akzeptanz von [Vitest](https://vitest.dev) nimmt explosionsartig zu und wird bald die Hälfte der npm-Downloads von Vite ausmachen. Nx investiert ebenfalls in das Ökosystem und [unterstützt Vite offiziell](https://nx.dev/packages/vite).
 
@@ -38,7 +38,7 @@ Heute freut sich das Vite [Team](https://vitejs.dev/team) mit Unterstützung uns
 Schnellzugriff:
 
 - [Dokumentation](/)
-- [Migrationsleitfaden](/guide/migration)
+- [Migrationsleitfaden](https://v4.vitejs.dev/guide/migration.html)
 - [Änderungsprotokoll](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#400-2022-12-09)
 
 Dokumentationen in anderen Sprachen:
@@ -89,7 +89,7 @@ Diese doppelte Ladung konnte auftreten, da eine `.css`-Datei ausgegeben wird und
 import stuff from './global.css?inline'
 ```
 
-Weitere Informationen finden Sie im [Migrationsleitfaden](/guide/migration).
+Weitere Informationen finden Sie im [Migrationsleitfaden](https://v4.vitejs.dev/guide/migration.html).
 
 ## Umgebungsvariablen
 
