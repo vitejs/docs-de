@@ -35,13 +35,13 @@
   },
   "homepage": "https://github.com/vitejs/docs-de#readme",
   "dependencies": {
-    "search-insights": "^2.6.0",
-    "vitepress": "^1.0.0-alpha.46"
+    "search-insights": "^2.11.0",
+    "vitepress": "1.0.0-rc.27"
   },
   "devDependencies": {
-    "@algolia/client-search": "^4.13.1",
+    "@algolia/client-search": "^4.20.0",
     "@types/node": "20.9.1",
-    "@types/react": "^18.0.15",
+    "@types/react": "^18.2.37",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
