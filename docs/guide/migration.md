@@ -22,7 +22,7 @@ Die CJS-Node-API von Vite ist veraltet. Wenn Sie `require('vite')` aufrufen, wir
 In einem einfachen Vite-Projekt stellen Sie sicher, dass:
 
 1. Der Inhalt der Datei `vite.config.js` die ESM-Syntax verwendet.
-2. Die nächstgelegene `package.json`-Datei `"type": "module"` enthält oder die Erweiterung `.mjs` verwendet, z.B. `vite.config.mjs`.
+2. Die nächstgelegene `package.json`-Datei, die `"type": "module"` enthält oder die Erweiterung `.mjs`/`.mts` verwendet, z.B. `vite.config.mjs` or `vite.config.mts`.
 
 Für andere Projekte gibt es einige allgemeine Ansätze:
 
