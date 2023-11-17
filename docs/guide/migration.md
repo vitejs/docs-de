@@ -15,6 +15,8 @@ Vite verwendet nun Rollup 4, welches auch seine Änderungen mit sich bringt:
 
 Lesen Sie die vollständigen Änderungen in [Rollup's release notes](https://github.com/rollup/rollup/releases/tag/v4.0.0) für Build-bezogene Änderungen in [`build.rollupOptions`](/config/build-options.md#build-rollupoptions).
 
+Falls Sie TypeScript verwenden, dann stellen Sie sicher, dass Sie `moduleResolution: 'bundler'` (oder `node16`/`nodenext`) einstellen, da Rollup 4 dies erfordert. Alternativ können Sie stattdessen `skipLibCheck: true` einstellen.
+
 ## Veraltete CJS Node API
 
 Die CJS-Node-API von Vite ist veraltet. Wenn Sie `require('vite')` aufrufen, wird nun eine Veraltungs-Warnung protokolliert. Sie sollten Ihre Dateien oder Frameworks aktualisieren, um stattdessen den ESM-Build von Vite zu importieren.
