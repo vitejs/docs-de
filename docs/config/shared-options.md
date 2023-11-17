@@ -169,21 +169,31 @@ Durch Aktivieren dieser Einstellung bestimmt Vite die Dateiidentität anhand des
 - **Typ:**
   ```ts
   interface CSSModulesOptions {
+    getJSON?: (
+      cssFileName: string,
+      json: Record<string, string>,
+      outputFileName: string,
+    ) => void
     scopeBehaviour?: 'global' | 'local'
     globalModulePaths?: RegExp[]
+    exportGlobals?: boolean
     generateScopedName?:
       | string
       | ((name: string, filename: string, css: string) => string)
     hashPrefix?: string
     /**
-     * default: null
+     * default: undefined
      */
     localsConvention?:
       | 'camelCase'
       | 'camelCaseOnly'
       | 'dashes'
       | 'dashesOnly'
-      | null
+      | ((
+          originalClassName: string,
+          generatedClassName: string,
+          inputFile: string,
+        ) => string)
   }
   ```
 
