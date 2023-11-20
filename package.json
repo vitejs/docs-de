@@ -36,7 +36,7 @@
   "homepage": "https://github.com/vitejs/docs-de#readme",
   "dependencies": {
     "search-insights": "^2.11.0",
-    "vitepress": "1.0.0-rc.27"
+    "vitepress": "1.0.0-rc.29"
   },
   "devDependencies": {
     "@algolia/client-search": "^4.20.0",
