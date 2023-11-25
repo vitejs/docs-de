@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/vitejs/docs-de#readme",
   "dependencies": {
+    "feed": "^4.2.2",
     "search-insights": "^2.11.0",
     "vitepress": "1.0.0-rc.30"
   },
