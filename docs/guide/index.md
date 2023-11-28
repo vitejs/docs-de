@@ -88,20 +88,17 @@ Siehe [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vit
 
 ## Community Vorlagen
 
-create-vite ist ein Tool, mit dem man schnell ein Projekt aus einer Basisvorlage für gängige Frameworks erstellen kann. Bei Awesome Vite finden Sie [von der Community gepflegte Vorlagen](https://github.com/vitejs/awesome-vite#templates), die andere Tools enthalten oder auf andere Frameworks abzielen. Sie können ein Tool wie [degit](https://github.com/Rich-Harris/degit) verwenden, um Ihr Projekt mit einer der Vorlagen zu unterfüttern.
+create-vite ist ein Tool, mit dem man schnell ein Projekt aus einer Basisvorlage für gängige Frameworks erstellen kann. Bei Awesome Vite finden Sie [von der Gemeinschaft gepflegte Vorlagen] (https://github.com/vitejs/awesome-vite#templates), die andere Tools enthalten oder auf andere Frameworks abzielen.
 
+Für eine Vorlage unter `https://github.com/user/project` können Sie sie online unter `https://github.stackblitz.com/user/project` ausprobieren (indem Sie `.stackblitz` nach `github` zur URL des Projekts hinzufügen).
+
+Sie können auch ein Tool wie [degit](https://github.com/Rich-Harris/degit) verwenden, um Ihr Projekt mit einer der Vorlagen zu unterlegen. Angenommen, das Projekt befindet sich auf GitHub und verwendet `main` als Standardzweig, können Sie eine lokale Kopie erstellen:
 ```bash
-npx degit user/project my-project
+npx degit user/project#main my-project
 cd my-project
 
 npm install
 npm run dev
-```
-
-Wenn das Projekt `main` als Standard-Branch verwendet, fügen Sie dem Projekt-Repository den Zusatz `#main` hinzu.
-
-```bash
-npx degit user/project#main my-project
 ```
 
 ## `index.html` und das Projekt-Wurzelverzeichnis
