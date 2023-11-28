@@ -134,6 +134,14 @@ In Vite 4 wurden die Manifestdateien ([`build.manifest`](/config/build-options.m
 
 Ab Vite 5 werden sie standardmäßig im Verzeichnis `.vite` im `build.outDir` erzeugt. Diese Änderung trägt dazu bei, dass öffentliche Dateien mit denselben Manifest-Dateinamen nicht mehr in Konflikt geraten, wenn sie in das `build.outDir` kopiert werden.
 
+### Entsprechende CSS-Dateien sind nicht als oberster Eintrag in der manifest.json-Datei aufgeführt
+
+In Vite 4 wurde die entsprechende CSS-Datei für einen JavaScript-Einstiegspunkt auch als Top-Level-Eintrag in der Manifestdatei ([`build.manifest`](/config/build-options.md#build-manifest)) aufgeführt. Diese Einträge wurden unbeabsichtigt hinzugefügt und funktionierten nur in einfachen Fällen.
+
+In Vite 5 sind die entsprechenden CSS-Dateien nur im Abschnitt der JavaScript-Eingabedatei zu finden.
+Wenn die JS-Datei injiziert wird, sollten die entsprechenden CSS-Dateien [injiziert werden](/guide/backend-integration.md#:~:text=%3C!%2D%2D%20if%20production%20%2D%2D%3E%0A%3Clink%20rel%3D%22stylesheet%22%20href%3D%22/assets/%7B%7B%20manifest%5B%27main.js%27%5D.css%20%7D%7D%22%20/%3E%0A%3Cscript%20type%3D%22module%22%20src%3D%22/assets/%7B%7B%20manifest%5B%27main.js%27%5D.file%20%7D%7D%22%3E%3C/script%3E).
+Wenn das CSS separat injiziert werden soll, muss es als separater Einstiegspunkt hinzugefügt werden.
+
 ### CLI-Verknüpfungen erfordern eine zusätzliche Eingabetaste
 
 CLI-Verknüpfungen, wie z.B. `r`, um den Dev-Server neu zu starten, erfordern nun eine zusätzliche Eingabetaste, um die Verknüpfung auszulösen. Zum Beispiel `r + Enter`, um den Dev-Server neu zu starten.
@@ -230,6 +238,8 @@ Es gibt auch andere Änderungen, die nur einige Benutzer betreffen.
   - `resolve.browserField` ist seit Vite 3 veraltet zugunsten eines aktualisierten Standards von `['browser', 'module', 'jsnext:main', 'jsnext']` für [`resolve.mainFields`](/config/shared-options.md#resolve-mainfields).
 - [[#14855] feat!: add isPreview to ConfigEnv and resolveConfig](https://github.com/vitejs/vite/pull/14855)
   - Umbenennung von `ssrBuild` in `isSsrBuild` im `ConfigEnv` Objekt.
+- [[#14945] fix(css): correctly set manifest source name and emit CSS file](https://github.com/vitejs/vite/pull/14945)
+  - CSS-Dateinamen werden jetzt auf der Grundlage des Chunk-Namens generiert.
 
 ## Migration von v3
 
