@@ -627,7 +627,7 @@ import MyWorker from './worker?worker'
 const worker = new MyWorker()
 ```
 
-Das Arbeitsskript kann auch ESM-"Import"-Anweisungen anstelle von "ImportScripts()" verwenden. **Anmerkung**: Während der Entwicklung ist dies auf [browser native support](https://caniuse.com/?search=module%20worker) angewiesen, aber für den Produktions-Build wird es wegkompiliert.
+Das Arbeitsskript kann auch ESM-`import`-Anweisungen anstelle von ìmportScripts()`Ω verwenden. **Anmerkung**: Während der Entwicklung ist dies auf [browser native support](https://caniuse.com/?search=module%20worker) angewiesen, aber für den Produktions-Build wird es wegkompiliert.
 
 Standardmäßig wird das Arbeitsskript als separater Chunk im Produktions-Build ausgegeben. Wenn Sie den Worker als base64-String einbinden möchten, fügen Sie die Abfrage `inline` hinzu:
 
