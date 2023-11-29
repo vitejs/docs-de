@@ -81,15 +81,13 @@ async function createServer() {
     appType: 'custom'
   })
 
-  // Verwenden Sie die Connect-Instanz von Vite als Middleware. Wenn Sie Ihren eigenen
-  // Express-Router (express.Router()) verwenden, sollten Sie `router.use` verwenden
-  app.use((req, res, next) => {
-    // Wenn der Server neu startet (z.B. nachdem der Benutzer die
-    // vite.config.js bearbeitet), wird `vite.middlewares` neu zugewiesen. Das Aufrufen von
-    // `vite.middlewares` innerhalb eines Wrapper-Handlers stellt sicher, dass die
-    // neuesten Vite-Middlewares verwendet werden.
-    vite.middlewares.handle(req, res, next)
-  })
+  // Verwenden Sie die Connect-Instanz von vite als Middleware. Wenn Sie Ihren eigenen
+  // Express-Router (express.Router()) verwenden, sollten Sie router.use
+  // Wenn der Server neu startet (z.B. nachdem der Benutzer die
+  // vite.config.js), ist `vite.middlewares` immer noch die gleiche
+  // Referenz (mit einem neuen internen Stapel von Vite und Plugin-injected
+  // Middlewares. Das Folgende ist auch nach Neustarts gültig.
+  app.use(vite.middlewares)
 
   app.use('*', async (req, res) => {
     // Stellen Sie die index.html bereit - wir werden diese als Nächstes angehen
