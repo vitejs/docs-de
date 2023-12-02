@@ -61,12 +61,24 @@ export default defineConfig({
 Diese Strategie wird auch als `splitVendorChunk({ cache: SplitVendorChunkCache })`-Factory bereitgestellt, falls eine Kombination mit benutzerdefinierter Logik erforderlich ist. In diesem Fall muss `cache.reset()` bei `buildStart` aufgerufen werden, damit der Build-Watch-Modus in diesem Fall korrekt funktioniert.
 
 ::: warning
-Verwenden Sie die Funktion `build.rollupOptions.output.manualChunks`, wenn Sie dieses Plugin verwenden. Wenn die Objektform verwendet wird, hat das Plugin keine Wirkung.
+Verwenden Sie die Funktion `build.rollupOptions.output.manualChunks`, falls Sie dieses Plugin verwenden. Wenn die Objektform verwendet wird, hat das Plugin keine Wirkung.
 :::
+
+## Fehlerbehandlung beim Laden
+
+Vite gibt das Ereignis `vite:preloadError` aus, wenn das Laden dynamischer Importe fehlschlägt. `event.payload` enthält den ursprünglichen Importfehler. Wenn Sie `event.preventDefault()` aufrufen, wird der Fehler nicht ausgelöst.
+
+```js
+window.addEventListener('vite:preloadError', (event) => {
+  window.reload() // for example, refresh the page
+})
+```
+
+When a new deployment occurs, the hosting service may delete the assets from previous deployments. As a result, a user who visited your site before the new deployment might encounter an import error. This error happens because the assets running on that user's device are outdated and it tries to import the corresponding old chunk, which is deleted. This event is useful for addressing this situation.
 
 ## Neuerstellen bei Dateiänderungen
 
-Sie können den Rollup-Watcher mit `vite build --watch` aktivieren. Alternativ können Sie die zugrunde liegenden [`WatcherOptions`](https://rollupjs.org/configuration-options/#watch) über `build.watch` direkt anpassen:
+Sie können den Rollup Watcher mit `vite build --watch` aktivieren. Oder Sie können die zugrundeliegenden [`WatcherOptions`](https://rollupjs.org/configuration-options/#watch) direkt über `build.watch` anpassen:
 
 ```js
 // vite.config.js
