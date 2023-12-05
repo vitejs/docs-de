@@ -135,7 +135,7 @@
     "unbuild": "^2.0.0",
     "vite": "workspace:*",
     "vitepress": "1.0.0-rc.31",
-    "vitest": "^0.34.4",
+    "vitest": "^1.0.0",
     "vue": "^3.3.4"
   },
   "simple-git-hooks": {
