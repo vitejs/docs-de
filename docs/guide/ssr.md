@@ -86,7 +86,7 @@ async function createServer() {
   // Wenn der Server neu startet (z.B. nachdem der Benutzer die
   // vite.config.js), ist `vite.middlewares` immer noch die gleiche
   // Referenz (mit einem neuen internen Stapel von Vite und Plugin-injected
-  // Middlewares. Das Folgende ist auch nach Neustarts gültig.
+  // Middlewares). Das Folgende ist auch nach Neustarts gültig.
   app.use(vite.middlewares)
 
   app.use('*', async (req, res) => {
