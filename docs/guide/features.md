@@ -391,26 +391,6 @@ const modules = {
 }
 ```
 
-### Glob Importieren als
-
-import.meta.glob" unterstützt auch den Import von Dateien als Zeichenketten (ähnlich wie [Asset als Zeichenkette importieren](https://vitejs.dev/guide/assets.html#importing-asset-as-string)) mit der Syntax [Reflection importieren](https://github.com/tc39/proposal-import-reflection):
-
-```js
-const modules = import.meta.glob('./dir/*.js', { as: 'raw' })
-```
-
-Der obige Text wird in den folgenden Text umgewandelt:
-
-```js
-// code produced by vite
-const modules = {
-  './dir/foo.js': 'export default "foo"\n',
-  './dir/bar.js': 'export default "bar"\n'
-}
-```
-
-`{ as: 'url' }` wird auch für das Laden von Assets als URLs unterstützt.
-
 ### Mehrere Patterns
 
 Das erste Argument kann ein Array von Globs sein, zum Beispiel
@@ -490,20 +470,37 @@ const modules = {
 
 #### Benutzerdefinierte Abfragen
 
-Sie können auch die Option `query` verwenden, um benutzerdefinierte Abfragen für Importe bereitzustellen, die von anderen Plugins verwendet werden können.
+Sie können auch die Option `query` verwenden, um Abfragen für Importe zu stellen, zum Beispiel um Assets [als String](https://vitejs.dev/guide/assets.html#importing-asset-as-string) oder [als URL](https://vitejs.dev/guide/assets.html#importing-asset-as-url) zu importieren:
 
 ```ts
-const modules = import.meta.glob('./dir/*.js', {
-  query: { foo: 'bar', bar: true }
+const moduleStrings = import.meta.glob('./dir/*.svg', {
+  query: '?raw',
+  import: 'default',
+})
+const moduleUrls = import.meta.glob('./dir/*.svg', {
+  query: '?url',
+  import: 'default',
 })
 ```
 
 ```ts
 // code produced by vite:
-const modules = {
-  './dir/foo.js': () => import('./dir/foo.js?foo=bar&bar=true'),
-  './dir/bar.js': () => import('./dir/bar.js?foo=bar&bar=true')
+const moduleStrings = {
+  './dir/foo.svg': () => import('./dir/foo.js?raw').then((m) => m['default']),
+  './dir/bar.svg': () => import('./dir/bar.js?raw').then((m) => m['default']),
 }
+const moduleUrls = {
+  './dir/foo.svg': () => import('./dir/foo.js?url').then((m) => m['default']),
+  './dir/bar.svg': () => import('./dir/bar.js?url').then((m) => m['default']),
+}
+```
+
+You can also provide custom queries for other plugins to consume:
+
+```ts
+const modules = import.meta.glob('./dir/*.js', {
+  query: { foo: 'bar', bar: true }
+})
 ```
 
 ### Glob Import Caveats
