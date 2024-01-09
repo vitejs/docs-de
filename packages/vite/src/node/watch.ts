@@ -1,4 +1,5 @@
 import { EventEmitter } from 'node:events'
+import path from 'node:path'
 import glob from 'fast-glob'
 import type { FSWatcher, WatchOptions } from 'dep-types/chokidar'
 import type { ResolvedConfig } from '.'
@@ -15,7 +16,8 @@ export function resolveChokidarOptions(
       '**/node_modules/**',
       '**/test-results/**', // Playwright
       glob.escapePath(config.cacheDir) + '/**',
-      ...(Array.isArray(ignored) ? ignored : [ignored]),
+      glob.escapePath(path.resolve(config.root, config.build.outDir)) + '/**',
+      ...arraify(ignored),
     ],
     ignoreInitial: true,
     ignorePermissionErrors: true,
