@@ -2,9 +2,13 @@
 
 Obwohl Vite standardmäßig ist, können Leistungsprobleme auftreten, wenn die Anforderungen des Projekts wachsen. Dieser Leitfaden soll Ihnen dabei helfen, gängige Leistungsprobleme zu identifizieren und zu beheben, wie beispielsweise:
 
-- Langsame Serverstarts
+- Langsame Serverstartsstarts
 - Langsame Seitenaufbauzeiten
 - Langsame Builds
+
+## Browser-Erweiterungen vermeiden
+
+Einige Browser-Erweiterungen können Anfragen stören und die Start- und Ladezeiten für große Anwendungen verlangsamen, insbesondere bei der Verwendung von Browser-Entwicklungstools. Wir empfehlen, ein reines Entwicklungsprofil ohne Erweiterungen zu erstellen oder in den Inkognito-Modus zu wechseln, während Sie den Entwicklungsserver von Vite in diesen Fällen verwenden. Der Inkognito-Modus sollte ebenfalls schneller sein als ein normales Profil ohne Erweiterungen.
 
 ## Überprüfung konfigurierter Vite-Plugins
 
