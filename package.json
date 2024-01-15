@@ -24,6 +24,10 @@
     "url": "git+https://github.com/vitejs/docs-de.git"
   },
   "keywords": [
+    "frontend",
+    "hmr",
+    "dev-server",
+    "build-tool",
     "vite",
     "docs",
     "translation"
