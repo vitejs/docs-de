@@ -168,8 +168,8 @@ Vite 5 verwendet esbuild 0.19 und entfernt die Kompatibilitätsschicht für esbu
     // Setzen Sie dies auf "true", wenn Sie Decorators verwenden
     "experimentalDecorators": true,
     // Setzen Sie dies auf "true", wenn Sie Parsing-Fehler in Ihrem Browser erhalten
-    "useDefineForClassFields": true
-  }
+    "useDefineForClassFields": true,
+  },
 }
 ```
 
