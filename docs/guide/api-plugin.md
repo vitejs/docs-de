@@ -48,7 +48,7 @@ import vitePlugin from 'vite-plugin-feature'
 import rollupPlugin from 'rollup-plugin-feature'
 
 export default defineConfig({
-  plugins: [vitePlugin(), rollupPlugin()]
+  plugins: [vitePlugin(), rollupPlugin()],
 })
 ```
 
@@ -72,7 +72,7 @@ import { defineConfig } from 'vite'
 import framework from 'vite-plugin-framework'
 
 export default defineConfig({
-  plugins: [framework()]
+  plugins: [framework()],
 })
 ```
 
@@ -95,10 +95,10 @@ export default function myPlugin() {
       if (fileRegex.test(id)) {
         return {
           code: compileFileToJS(src),
-          map: null // Karteninformationen bereitstellen, falls verfügbar
+          map: null, // Karteninformationen bereitstellen, falls verfügbar
         }
       }
-    }
+    },
   }
 }
 ```
@@ -127,7 +127,7 @@ export default function myPlugin() {
       if (id === resolvedVirtualModuleId) {
         return `export const msg = "from virtual module"`
       }
-    }
+    },
   }
 }
 ```
@@ -192,10 +192,10 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
     config: () => ({
       resolve: {
         alias: {
-          foo: 'bar'
-        }
-      }
-    })
+          foo: 'bar',
+        },
+      },
+    }),
   })
 
   // Die Konfiguration direkt ändern (nur verwenden, wenn das Zusammenführen nicht funktioniert)
@@ -205,7 +205,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
       if (command === 'build') {
         config.root = 'foo'
       }
-    }
+    },
   })
   ```
 
@@ -241,7 +241,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
         } else {
           // build: Plugin, das von Rollup aufgerufen wird
         }
-      }
+      },
     }
   }
   ```
@@ -263,7 +263,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
       server.middlewares.use((req, res, next) => {
         // benutzerdefinierte Anfragen behandeln...
       })
-    }
+    },
   })
   ```
 
@@ -281,7 +281,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
           // benutzerdefinierte Anfragen behandeln...
         })
       }
-    }
+    },
   })
   ```
 
@@ -301,7 +301,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
         if (server) {
           // Den Server verwenden...
         }
-      }
+      },
     }
   }
   ```
@@ -326,7 +326,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
           // benutzerdefinierte Anfragen behandeln...
         })
       }
-    }
+    },
   })
   ```
 
@@ -358,7 +358,7 @@ const htmlPlugin = () => {
         /<title>(.*?)<\/title>/,
         `<title>Title replaced!</title>`
       )
-    }
+    },
   }
 }
 ```
@@ -420,11 +420,11 @@ interface HtmlTagDescriptor {
 
   - Die betroffene Modulliste filtern und einschränken, damit HMR genauer ist.
 
-  - Ein leeres Array zurückgeben und die vollständige benutzerdefinierte HMR-Verarbeitung durch Senden benutzerdefinierter Ereignisse an den Client durchführen:
+  - Gibt ein leeres Array zurück und führt eine vollständige benutzerdefinierte HMR-Behandlung durch, indem es benutzerdefinierte Ereignisse an den Client sendet (das Beispiel verwendet `server.hot`, das in Vite 5.1 eingeführt wurde, es wird empfohlen, auch `server.ws` zu verwenden, wenn Sie niedrigere Versionen unterstützen):
 
     ```js
     handleHotUpdate({ server }) {
-      server.ws.send({
+      server.hot.send({
         type: 'custom',
         event: 'special-update',
         data: {}
@@ -463,7 +463,7 @@ Standardmäßig werden Plugins sowohl für den Serve- als auch für den Build-Vo
 function myPlugin() {
   return {
     name: 'build-only',
-    apply: 'build' // oder 'serve'
+    apply: 'build', // oder 'serve'
   }
 }
 ```
@@ -500,9 +500,9 @@ export default defineConfig({
     {
       ...example(),
       enforce: 'post',
-      apply: 'build'
-    }
-  ]
+      apply: 'build',
+    },
+  ],
 })
 ```
 
@@ -533,7 +533,7 @@ Seit Vite 2.9 bieten wir einige Hilfsmittel für Plugins, um die Kommunikation m
 
 ### Server zu Client
 
-Auf der Plugin-Seite können wir `server.ws.send` verwenden, um Ereignisse an alle Clients zu senden:
+Auf der Plugin-Seite können wir `server.hot.send` (seit Vite 5.1) oder `server.ws.send` verwenden, um Ereignisse an alle Clients zu senden:
 
 ```js
 // vite.config.js
@@ -543,12 +543,12 @@ export default defineConfig({
       // ...
       configureServer(server) {
         // Beispiel: Warten Sie darauf, dass ein Client eine Verbindung herstellt, bevor Sie eine Nachricht senden
-        server.ws.on('connection', () => {
-          server.ws.send('my:greetings', { msg: 'hello' })
+        server.hot.on('connection', () => {
+          server.hot.send('my:greetings', { msg: 'hello' })
         })
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
 ```
 
@@ -578,7 +578,7 @@ if (import.meta.hot) {
 }
 ```
 
-Verwenden Sie dann `server.ws.on` und hören Sie auf der Server-Seite auf die Ereignisse:
+Dann verwenden Sie `server.hot.on` (seit Vite 5.1) oder `server.ws.on` und hören auf die Ereignisse auf der Serverseite:
 
 ```js
 // vite.config.js
@@ -587,16 +587,16 @@ export default defineConfig({
     {
       // ...
       configureServer(server) {
-        server.ws.on('my:from-client', (data, client) => {
+        server.hot.on('my:from-client', (data, client) => {
           console.log('Nachricht vom Client:', data.msg) // Hey!
           // Nur an den Client zurückschicken (falls erforderlich)
           client.send('my:ack', {
-            msg: 'Hi! Ich habe deine Nachricht erhalten!'
+            msg: 'Hi! Ich habe deine Nachricht erhalten!',
           })
         })
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
 ```
 
