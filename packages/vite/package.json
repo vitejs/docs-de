@@ -125,7 +125,7 @@
     "periscopic": "^4.0.2",
     "picocolors": "^1.0.0",
     "playwright-chromium": "^1.38.0",
-    "prettier": "3.2.3",
+    "prettier": "3.2.4",
     "rimraf": "^5.0.1",
     "rollup": "^4.0.0",
     "simple-git-hooks": "^2.9.0",
