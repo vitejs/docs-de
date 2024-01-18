@@ -195,7 +195,7 @@ During the SSR build, static assets aren't emitted as it is assumed they would b
 ## build.minify
 
 - **Typ:** `boolean | 'terser' | 'esbuild'`
-- **Standard:** `'esbuild'`
+- **Standard:** 'esbuild' für Client-Build, 'false' für SSR-Build
 
 Setzen Sie auf `false`, um die Minimierung zu deaktivieren, oder geben Sie den Minimierer an, der verwendet werden soll. Die Standardeinstellung ist [esbuild](https://github.com/evanw/esbuild), das 20 ~ 40x schneller als terser ist und nur eine 1 ~ 2% schlechtere Komprimierung bietet. [Benchmarks](https://github.com/privatenumber/minification-benchmarks)
 
