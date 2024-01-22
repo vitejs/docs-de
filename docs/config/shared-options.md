@@ -215,38 +215,60 @@ Hinweis: Wenn eine Inline-Konfiguration bereitgestellt wird, sucht Vite nicht na
 
 ## css.preprocessorOptions
 
-- **Typ:** `Record<string, object>`
+- **Type:** `Record<string, object>`
 
-Geben Sie Optionen an, die an CSS-Preprozessoren übergeben werden sollen. Die Dateierweiterungen werden als Schlüssel für die Optionen verwendet. Die unterstützten Optionen für jeden Preprozessor finden Sie in ihrer jeweiligen Dokumentation:
+Specify options to pass to CSS pre-processors. The file extensions are used as keys for the options. The supported options for each preprocessors can be found in their respective documentation:
 
-- `sass`/`scss` - [Optionen](https://sass-lang.com/documentation/js-api/interfaces/LegacyStringOptions).
-- `less` - [Optionen](https://lesscss.org/usage/#less-options).
+- `sass`/`scss` - [Options](https://sass-lang.com/documentation/js-api/interfaces/LegacyStringOptions).
+- `less` - [Options](https://lesscss.org/usage/#less-options).
+- `styl`/`stylus` - Only [`define`](https://stylus-lang.com/docs/js.html#define-name-node) is supported, which can be passed as an object.
 
-- `styl`/`stylus` - Es wird nur [`define`](https://stylus-lang.com/docs/js.html#define-name-node) unterstützt, das als Objekt übergeben werden kann.
+**Beispiel:**
 
-Alle Preprozessor-Optionen unterstützen auch die Option `additionalData`, die verwendet werden kann, um zusätzlichen Code für den Inhalt jeder Style-Datei einzufügen.
+```js
+export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      less: {
+        math: 'parens-division',
+      },
+      styl: {
+        define: {
+          $specialColor: new stylus.nodes.RGBA(51, 197, 255, 1),
+        },
+      },
+    },
+  },
+})
+```
 
-Beispiel:
+### css.preprocessorOptions[extension].additionalData
+
+- **Typ:** `string | ((source: string, filename: string) => (string | { content: string; map?: SourceMap }))`
+
+This option can be used to inject extra code for each style content. Note that if you include actual styles and not just variables, those styles will be duplicated in the final bundle.
+
+**Beispiel:**
 
 ```js
 export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `$injectedColor: orange;`
+        additionalData: `$injectedColor: orange;`,
       },
-      less: {
-        math: 'parens-division'
-      },
-      styl: {
-        define: {
-          $specialColor: new stylus.nodes.RGBA(51, 197, 255, 1)
-        }
-      }
-    }
-  }
+    },
+  },
 })
 ```
+
+## css.preprocessorMaxWorkers
+
+- **Experimental:** [Give Feedback](TODO: update)
+- **Type:** `number | true`
+- **Default:** `0` (does not create any workers and run in the main thread)
+
+If this option is set, CSS preprocessors will run in workers when possible. `true` means the number of CPUs minus 1.
 
 ## css.devSourcemap
 
