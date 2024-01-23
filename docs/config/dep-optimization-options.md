@@ -62,6 +62,14 @@ Bestimmte Optionen werden ausgelassen, da ihre Änderung nicht mit der Abhängig
 
 Setzen Sie `true`, um die Vorab-Bündelung von Abhängigkeiten zu erzwingen, und ignorieren Sie zuvor zwischengespeicherte optimierte Abhängigkeiten.
 
+## optimizeDeps.holdUntilCrawlEnd
+
+- **Experimental**
+- **Type:** `boolean`
+- **Default:** `true`
+
+When enabled, it will hold the first optimized deps results until all static imports are crawled on cold start. This avoids the need for full-page reloads when new dependencies are discovered and they trigger the generation of new common chunks. If all dependencies are found by the scanner plus the explicitely defined ones in `include`, it is better to disable this option to let the browser process more requests in parallel.
+
 ## optimizeDeps.disabled
 
 - **Veraltet**
