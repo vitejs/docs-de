@@ -6,3 +6,7 @@ docs/.vitepress/temp
 .DS_Store
 /docs/.vitepress/cache
 package-lock.json
+packages
+patches
+playground
+pnpm-workspace.yaml
