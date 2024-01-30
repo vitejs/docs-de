@@ -9,3 +9,4 @@ package-lock.json
 packages
 patches
 playground
+pnpm-workspace.yaml
