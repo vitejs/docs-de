@@ -119,13 +119,20 @@ app.use('*', async (req, res, next) => {
     //    Präambeln von @vitejs/plugin-react
     template = await vite.transformIndexHtml(url, template)
 
-    // 3. Laden Sie den Server-Einstieg. ssrLoadModule transformiert automatisch
+    // 3a. Laden Sie den Server-Einstieg. ssrLoadModule transformiert automatisch
     //    ESM-Quellcode, damit er in Node.js verwendbar ist! Es ist kein Bündeln erforderlich und bietet
     //    effiziente Ungültigmachung ähnlich wie HMR.
     const { render } = await vite.ssrLoadModule('/src/entry-server.js')
+    // 3b. Seit Vite 5.1 können Sie stattdessen die API createViteRuntime verwenden.
+    // Sie unterstützt HMR vollständig und funktioniert ähnlich wie ssrLoadModule
+    // Ein fortgeschrittener Anwendungsfall wäre die Erstellung einer Runtime in einem separaten
+    // Thread oder sogar einer anderen Maschine unter Verwendung der Klasse ViteRuntime
+    const runtime = await vite.createViteRuntime(server)
+    const { render } = await runtime.executeEntrypoint('/src/entry-server.js')
 
-    // 4. Rendern Sie das App-HTML. Dies setzt voraus, dass die exportierte Funktion von entry-server.js
-    //     `render` die entsprechenden Framework-SSR-APIs aufruft, z. B. ReactDOMServer.renderToString()
+    // 4. Die HTML-Anwendung rendern. Dies setzt voraus, dass entry-server.js exportiert wird.
+    //     Die Funktion `render` ruft entsprechende SSR-Rahmen-APIs auf,
+    //    z.B. ReactDOMServer.renderToString()
     const appHtml = await render(url)
 
     // 5. Fügen Sie das vom App gerenderte HTML in die Vor
@@ -157,7 +164,7 @@ Das `dev`-Skript in `package.json` sollte ebenfalls geändert werden, um stattde
 Um ein SSR-Projekt für die Produktion bereitzustellen, müssen wir Folgendes tun:
 
 1. Erstellen Sie einen Client-Build wie gewohnt.
-2. Erstellen Sie einen SSR-Build, der direkt über `import()` geladen werden kann, sodass wir nicht den `ssrLoadModule` von Vite durchlaufen müssen.
+2. Erstellen Sie einen SSR-Build, der direkt über `import()` geladen werden kann, sodass der `ssrLoadModule` oder `runtime.executeEntrypoint` nicht von Vite durchlaufen werden müssen.
 
 Unsere Skripts in `package.json` sehen folgendermaßen aus:
 
@@ -175,9 +182,9 @@ Beachten Sie die `--ssr`-Flagge, die darauf hinweist, dass dies ein SSR-Build is
 
 Dann müssen wir in `server.js` einige spezifische Logik für die Produktion hinzufügen, indem wir `process.env.NODE_ENV` überprüfen:
 
-- Statt der Wurzel `index.html` verwenden wir stattdessen `dist/client/index.html` als Vorlage, da diese die richtigen Asset-Links zum Client-Build enthält.
+- Anstatt die Stammdatei `index.html` zu lesen, verwenden Sie die Datei `dist/client/index.html` als Vorlage, da sie die richtigen Asset-Links zum Client-Build enthält.
 
-- Statt `await vite.ssrLoadModule('/src/entry-server.js')` verwenden wir stattdessen `import('./dist/server/entry-server.js')` (diese Datei ist das Ergebnis des SSR-Builds).
+- Statt `await vite.ssrLoadModule('/src/entry-server.js')` oder `await runtime.executeEntrypoint('/src/entry-server.js')`, verwenden Sie `import('./dist/server/entry-server.js')` (diese Datei ist das Ergebnis des SSR-Builds).
 
 - Verschieben Sie die Erstellung und alle Verwendungen des `vite`-Entwicklungsservers hinter bedingte Verzweigungen, die nur für die Entwicklung gelten, und fügen Sie statische Dateiserver-Middleware hinzu, um Dateien aus `dist/client` zu servieren.
 
