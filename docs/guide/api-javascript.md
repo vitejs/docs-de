@@ -140,7 +140,11 @@ interface ViteDevServer {
   /**
    * Wendet Vite-eigene HTML-Transformationen und alle Plugin-HTML-Transformationen an.
    */
-  transformIndexHtml(url: string, html: string): Promise<string>
+  transformIndexHtml(
+    url: string,
+    html: string,
+    originalUrl?: string,
+  ): Promise<string>
   /**
    * Lädt ein gegebenes URL als instanziiertes Modul für SSR.
    */
