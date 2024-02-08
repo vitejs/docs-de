@@ -49,7 +49,7 @@ vite build [root]
 
 | Optionen                       |                                                                                                                                                               |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--target <target>`            | Übersetzungsziel (Standard: `"modules"`) (`string`)                                                                                                           |
+| `--target <target>`            | Transpile-Ziel (Standard: `"modules"`) (`string`)                                                                                                           |
 | `--outDir <dir>`               | Ausgabe Verzeichnis (Standard: `dist`) (`string`)                                                                                                             |
 | `--assetsDir <dir>`            | Verzeichnis unter outDir, um Assets abzulegen (Standard: `"assets"`) (`string`)                                                                               |
 | `--assetsInlineLimit <number>` | Schwellenwert für statische Asset-Base64-Inlines in Byte (Standard: `4096`) (`number`)                                                                        |
@@ -58,7 +58,6 @@ vite build [root]
 | `--minify [minifier]`          | Aktiviert/deaktiviert die Minifizierung oder gibt den Minifizierer an, der verwendet werden soll (Standard: `"esbuild"`) (`boolean \| "terser" \| "esbuild"`) |
 | `--manifest [name]`            | Erzeugt Build-Manifest JSON (`boolean \| string`)                                                                                                             |
 | `--ssrManifest [name]`         | Erzeugt SSR-Manifest JSON (`boolean \| string`)                                                                                                               |
-| `--force`                      | Zwingt den Optimierer, den Cache zu ignorieren und neu zu bündeln (experimentell) (`boolean`)                                                                 |
 | `--emptyOutDir`                | Leert das Ausgabeverzeichnis, wenn es außerhalb des Stammverzeichnisses liegt (`boolean`)                                                                     |
 | `-w, --watch`                  | Erstellt erneut, wenn Module auf der Festplatte geändert wurden (`boolean`)                                                                                   |
 | `-c, --config <file>`          | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                                       |
