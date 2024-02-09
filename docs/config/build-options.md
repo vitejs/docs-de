@@ -82,10 +82,12 @@ Geben Sie das Verzeichnis an, unter dem generierte Assets eingebettet werden sol
 
 ## build.assetsInlineLimit
 
-- **Typ:** `number`
+- **Typ:** `number` | `((filePath: string, content: Buffer) => boolean | undefined)`
 - **Standard:** `4096` (4 KiB)
 
 Importierte oder referenzierte Assets, die kleiner als diese Schwelle sind, werden als base64-URLs eingebettet, um zusätzliche HTTP-Anfragen zu vermeiden. Setzen Sie `0`, um die Einbettung vollständig zu deaktivieren.
+
+Wenn ein Callback übergeben wird, kann ein boolescher Wert zurückgegeben werden, um ein opt-in oder opt-out zu bewirken. Wenn nichts zurückgegeben wird, dann greift die Standardlogik.
 
 Git LFS-Platzhalter werden automatisch von der Einbettung ausgeschlossen, da sie den In
 
