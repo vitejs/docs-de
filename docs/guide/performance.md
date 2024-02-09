@@ -2,7 +2,7 @@
 
 Obwohl Vite standardmäßig ist, können Leistungsprobleme auftreten, wenn die Anforderungen des Projekts wachsen. Dieser Leitfaden soll Ihnen dabei helfen, gängige Leistungsprobleme zu identifizieren und zu beheben, wie beispielsweise:
 
-- Langsame Serverstartsstarts
+- Langsame Serverstarts
 - Langsame Seitenaufbauzeiten
 - Langsame Builds
 
