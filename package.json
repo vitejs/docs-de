@@ -37,11 +37,11 @@
   "dependencies": {
     "feed": "^4.2.2",
     "search-insights": "^2.11.0",
-    "vitepress": "1.0.0-rc.41"
+    "vitepress": "1.0.0-rc.42"
   },
   "devDependencies": {
     "@algolia/client-search": "^4.20.0",
-    "@types/node": "20.11.16",
+    "@types/node": "20.11.17",
     "@types/react": "^18.2.37",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
