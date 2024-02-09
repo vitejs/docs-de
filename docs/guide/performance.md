@@ -6,6 +6,10 @@ Obwohl Vite standardmäßig ist, können Leistungsprobleme auftreten, wenn die A
 - Langsame Seitenaufbauzeiten
 - Langsame Builds
 
+## Browser-Erweiterungen vermeiden
+
+Einige Browser-Erweiterungen können Anfragen stören und die Start- und Ladezeiten für große Anwendungen verlangsamen, insbesondere bei der Verwendung von Browser-Entwicklungstools. Wir empfehlen, ein reines Entwicklungsprofil ohne Erweiterungen zu erstellen oder in den Inkognito-Modus zu wechseln, während Sie den Entwicklungsserver von Vite in diesen Fällen verwenden. Der Inkognito-Modus sollte ebenfalls schneller sein als ein normales Profil ohne Erweiterungen.
+
 ## Überprüfung konfigurierter Vite-Plugins
 
 Die internen und offiziellen Plugins von Vite sind optimiert, um so wenig wie möglich zu arbeiten, während sie gleichzeitig die Kompatibilität mit dem breiteren Ökosystem sicherstellen. Zum Beispiel verwenden Code-Transformationen in der Entwicklung Regex, führen aber in der Build-Phase eine vollständige Analyse durch, um die Korrektheit sicherzustellen.
