@@ -28,3 +28,6 @@ temp
 TODOs.md
 .eslintcache
 packages/vite/src/node
+package.json
+pnpm-lock.yaml
+.github/workflows/ci.yml
