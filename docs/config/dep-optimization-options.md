@@ -64,16 +64,17 @@ Setzen Sie `true`, um die Vorab-Bündelung von Abhängigkeiten zu erzwingen, und
 
 ## optimizeDeps.disabled
 
+- **Veraltet**
 - **Experimentell:** [Feedback geben](https://github.com/vitejs/vite/discussions/13839)
 - **Typ:** `boolean | 'build' | 'dev'`
 - **Standard:** `'build'`
 
-Deaktiviert Abhängigkeitsoptimierungen. `true` deaktiviert den Optimierer während des Builds und im Entwicklungsmodus. Geben Sie `'build'` oder `'dev'` an, um den Optimierer nur in einem der Modi zu deaktivieren. Die Abhängigkeitsoptimierung ist standardmäßig nur im Entwicklungsmodus aktiviert.
+Diese Option ist veraltet. Ab Vite 5.1 wurde die Vorbündelung von Abhängigkeiten während der Erstellung entfernt. Wenn `optimizeDeps.disabled` auf `true` oder `'dev'` gesetzt wird, wird der Optimierer deaktiviert, und wenn `false` oder `'build'` gesetzt wird, bleibt der Optimierer während der Entwicklung aktiviert.
+
+Um den Optimierer vollständig zu deaktivieren, verwenden Sie `optimizeDeps.noDiscovery: true`, um die automatische Erkennung von Abhängigkeiten zu unterbinden und lassen Sie `optimizeDeps.include` undefiniert oder leer.
 
 :::warning
-Die Optimierung von Abhängigkeiten im Build-Modus ist experimentell. Wenn sie aktiviert ist, wird eine der bedeutendsten Unterschiede zwischen Entwicklung und Produktion entfernt. @rollup/plugin-commonjs wird in diesem Fall nicht mehr benötigt, da esbuild CJS-Abhängigkeiten in ESM umwandelt.
-
-Wenn Sie diese Build-Strategie ausprobieren möchten, können Sie `optimizeDeps.disabled: false` verwenden. `@rollup/plugin-commonjs` kann entfernt werden, indem Sie `build.commonjsOptions: { include: [] }` übergeben.
+Die Optimierung von Abhängigkeiten während der Build-Zeit war eine **experimentelle** Funktion. Projekte, die diese Strategie ausprobierten, entfernten auch `@rollup/plugin-commonjs` mit `build.commonjsOptions: { include: [] }`. Wenn Sie dies getan haben, wird eine Warnung Sie dazu anleiten, dies wieder zu aktivieren, um beim Bündeln nur CJS-Pakete zu unterstützen.
 :::
 
 ## optimizeDeps.needsInterop
