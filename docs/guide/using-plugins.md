@@ -34,7 +34,7 @@ Falsche Plugins werden ignoriert, was dazu verwendet werden kann, Plugins einfac
 Vite zielt darauf ab, Out-of-the-Box-Unterstützung für gängige Webentwicklungsmuster bereitzustellen. Bevor Sie nach einem Vite- oder kompatiblen Rollup-Plugin suchen, werfen Sie einen Blick in den [Feature-Guide](../guide/features.md). Viele der Fälle, in denen ein Plugin in einem Rollup-Projekt benötigt wird, sind bereits in Vite abgedeckt.
 :::
 
-Schauen Sie sich den [Plugins-Bereich](../plugins/) für Informationen über offizielle Plugins an. Community-Plugins sind in [awesome-vite](https://github.com/vitejs/awesome-vite#plugins) aufgeführt. Für kompatible Rollup-Plugins schauen Sie in [Vite Rollup Plugins](https://vite-rollup-plugins.patak.dev), um eine Liste kompatibler offizieller Rollup-Plugins mit Verwendungshinweisen zu erhalten, oder in den [Rollup Plugin Compatibility](../guide/api-plugin#rollup-plugin-compatibility)-Abschnitt, falls sie dort nicht aufgeführt sind.
+In der [Plugins-Sektion](../plugins/) finden Sie Informationen über offizielle Plugins. Community-Plugins sind in [awesome-vite](https://github.com/vitejs/awesome-vite#plugins) aufgeführt.
 
 Sie können auch Plugins finden, die den [empfohlenen Konventionen](./api-plugin.md#conventions) folgen, indem Sie eine [npm-Suche nach vite-plugin](https://www.npmjs.com/search?q=vite-plugin&ranking=popularity) für Vite-Plugins oder eine [npm-Suche nach rollup-plugin](https://www.npmjs.com/search?q=rollup-plugin&ranking=popularity) für Rollup-Plugins verwenden.
 
@@ -61,7 +61,7 @@ export default defineConfig({
 })
 ```
 
-Schauen Sie in den [Plugins API Guide](./api-plugin.md#plugin-ordering) für detaillierte Informationen und suchen Sie nach dem `enforce`-Label und den Verwendungshinweisen für beliebte Plugins in der [Vite Rollup Plugins](https://vite-rollup-plugins.patak.dev)-Kompatibilitätsliste.
+Ausführliche Informationen finden Sie im [Plugins API Guide](./api-plugin.md#plugin-ordering).
 
 ## Bedingte Anwendung
 
