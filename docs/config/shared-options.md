@@ -215,13 +215,13 @@ Hinweis: Wenn eine Inline-Konfiguration bereitgestellt wird, sucht Vite nicht na
 
 ## css.preprocessorOptions
 
-- **Type:** `Record<string, object>`
+- **Typ:** `Record<string, object>`
 
-Specify options to pass to CSS pre-processors. The file extensions are used as keys for the options. The supported options for each preprocessors can be found in their respective documentation:
+Geben Sie Optionen an, die an CSS-Präprozessoren übergeben werden sollen. Die Dateierweiterungen werden als Schlüssel für die Optionen verwendet. Die unterstützten Optionen für jeden Präprozessor finden Sie in der jeweiligen Dokumentation:
 
-- `sass`/`scss` - [Options](https://sass-lang.com/documentation/js-api/interfaces/LegacyStringOptions).
-- `less` - [Options](https://lesscss.org/usage/#less-options).
-- `styl`/`stylus` - Only [`define`](https://stylus-lang.com/docs/js.html#define-name-node) is supported, which can be passed as an object.
+- `sass`/`scss` - [Optionen](https://sass-lang.com/documentation/js-api/interfaces/LegacyStringOptions).
+- `less` - [Optionen](https://lesscss.org/usage/#less-options).
+- `styl`/`stylus` - Es wird nur ein [`define`](https://stylus-lang.com/docs/js.html#define-name-node) unterstützt, das als Objekt übergeben werden kann.
 
 **Beispiel:**
 
@@ -246,7 +246,7 @@ export default defineConfig({
 
 - **Typ:** `string | ((source: string, filename: string) => (string | { content: string; map?: SourceMap }))`
 
-This option can be used to inject extra code for each style content. Note that if you include actual styles and not just variables, those styles will be duplicated in the final bundle.
+Diese Option kann verwendet werden, um zusätzlichen Code für jeden Stilinhalt einzufügen. Beachten Sie, dass, wenn Sie tatsächliche Stile und nicht nur Variablen einfügen, diese Stile im endgültigen Paket dupliziert werden.
 
 **Beispiel:**
 
@@ -264,11 +264,11 @@ export default defineConfig({
 
 ## css.preprocessorMaxWorkers
 
-- **Experimental:** [Give Feedback](TODO: update)
-- **Type:** `number | true`
-- **Default:** `0` (does not create any workers and run in the main thread)
+- **Experimentell:** [Feedback geben](TODO: update)
+- **Typ:** `number | true`
+- **Standardwert:** `0` (erzeugt keine Worker und läuft im Hauptthread)
 
-If this option is set, CSS preprocessors will run in workers when possible. `true` means the number of CPUs minus 1.
+Wenn diese Option gesetzt ist, werden CSS-Präprozessoren wenn möglich in Workern ausgeführt. `true` beschreibt die Anzahl der CPUs `- 1`.
 
 ## css.devSourcemap
 
