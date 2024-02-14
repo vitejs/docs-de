@@ -217,36 +217,58 @@ Hinweis: Wenn eine Inline-Konfiguration bereitgestellt wird, sucht Vite nicht na
 
 - **Typ:** `Record<string, object>`
 
-Geben Sie Optionen an, die an CSS-Preprozessoren übergeben werden sollen. Die Dateierweiterungen werden als Schlüssel für die Optionen verwendet. Die unterstützten Optionen für jeden Preprozessor finden Sie in ihrer jeweiligen Dokumentation:
+Geben Sie Optionen an, die an CSS-Präprozessoren übergeben werden sollen. Die Dateierweiterungen werden als Schlüssel für die Optionen verwendet. Die unterstützten Optionen für jeden Präprozessor finden Sie in der jeweiligen Dokumentation:
 
 - `sass`/`scss` - [Optionen](https://sass-lang.com/documentation/js-api/interfaces/LegacyStringOptions).
 - `less` - [Optionen](https://lesscss.org/usage/#less-options).
+- `styl`/`stylus` - Es wird nur ein [`define`](https://stylus-lang.com/docs/js.html#define-name-node) unterstützt, das als Objekt übergeben werden kann.
 
-- `styl`/`stylus` - Es wird nur [`define`](https://stylus-lang.com/docs/js.html#define-name-node) unterstützt, das als Objekt übergeben werden kann.
+**Beispiel:**
 
-Alle Preprozessor-Optionen unterstützen auch die Option `additionalData`, die verwendet werden kann, um zusätzlichen Code für den Inhalt jeder Style-Datei einzufügen.
+```js
+export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      less: {
+        math: 'parens-division',
+      },
+      styl: {
+        define: {
+          $specialColor: new stylus.nodes.RGBA(51, 197, 255, 1),
+        },
+      },
+    },
+  },
+})
+```
 
-Beispiel:
+### css.preprocessorOptions[extension].additionalData
+
+- **Typ:** `string | ((source: string, filename: string) => (string | { content: string; map?: SourceMap }))`
+
+Diese Option kann verwendet werden, um zusätzlichen Code für jeden Stilinhalt einzufügen. Beachten Sie, dass, wenn Sie tatsächliche Stile und nicht nur Variablen einfügen, diese Stile im endgültigen Paket dupliziert werden.
+
+**Beispiel:**
 
 ```js
 export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `$injectedColor: orange;`
+        additionalData: `$injectedColor: orange;`,
       },
-      less: {
-        math: 'parens-division'
-      },
-      styl: {
-        define: {
-          $specialColor: new stylus.nodes.RGBA(51, 197, 255, 1)
-        }
-      }
-    }
-  }
+    },
+  },
 })
 ```
+
+## css.preprocessorMaxWorkers
+
+- **Experimentell:** [Feedback geben](TODO: update)
+- **Typ:** `number | true`
+- **Standardwert:** `0` (erzeugt keine Worker und läuft im Hauptthread)
+
+Wenn diese Option gesetzt ist, werden CSS-Präprozessoren wenn möglich in Workern ausgeführt. `true` beschreibt die Anzahl der CPUs `- 1`.
 
 ## css.devSourcemap
 
