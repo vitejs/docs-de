@@ -614,6 +614,8 @@ const worker = new Worker(new URL('./worker.js', import.meta.url), {
 })
 ```
 
+Die Erkennung von Workern funktioniert nur, wenn der Konstruktor `new URL()` direkt innerhalb der Deklaration `new Worker()` verwendet wird. Außerdem müssen alle Optionsparameter statische Werte sein (d.h. String-Literale).
+
 ### Import mit Abfrage-Suffixen
 
 Ein Webworker-Skript kann direkt importiert werden, indem man `?worker` oder `?sharedworker` an die Importanfrage anhängt. Der Standard-Export ist ein eigener Worker-Konstruktor:
