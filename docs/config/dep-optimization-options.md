@@ -60,7 +60,15 @@ Bestimmte Optionen werden ausgelassen, da ihre Änderung nicht mit der Abhängig
 
 - **Typ:** `boolean`
 
-Setzen Sie `true`, um die Vorab-Bündelung von Abhängigkeiten zu erzwingen, und ignorieren Sie zuvor zwischengespeicherte optimierte Abhängigkeiten.
+Setzen Sie dies auf `true`, um die Vorab-Bündelung von Abhängigkeiten zu erzwingen und zuvor zwischengespeicherte optimierte Abhängigkeiten zu ignorieren.
+
+## optimizeDeps.holdUntilCrawlEnd
+
+- **Experimentell**
+- **Typ:** `boolean`
+- **Standard:** `true`
+
+Wenn diese Funktion aktiviert ist, werden die ersten optimierten Deps-Ergebnisse zurückgehalten, bis alle statischen Importe beim kalten Start gecrawlt wurden. Dadurch wird vermieden, dass die gesamte Seite neu geladen werden muss, wenn neue Abhängigkeiten entdeckt werden und diese die Erzeugung neuer gemeinsamer Chunks auslösen. Wenn alle Abhängigkeiten vom Scanner gefunden werden, inklusive der explizit definierten in `include`, ist es besser, diese Option zu deaktivieren, damit der Browser mehr Anfragen parallel verarbeiten kann.
 
 ## optimizeDeps.disabled
 
@@ -79,6 +87,6 @@ Die Optimierung von Abhängigkeiten während der Build-Zeit war eine **experimen
 
 ## optimizeDeps.needsInterop
 
-- **Experimental**
-- **Type:** `string[]`
+- **Experimentell**
+- **Typ:** `string[]`
   Erzwingt ESM-Interop beim Importieren dieser Abhängigkeiten. Vite kann ordnungsgemäß erkennen, wann eine Abhängigkeit Interop benötigt, daher ist diese Option im Allgemeinen nicht erforderlich. Unterschiedliche Kombinationen von Abhängigkeiten könnten jedoch dazu führen, dass einige von ihnen unterschiedlich vorab gebündelt werden. Wenn dies für eine Ihrer Abhängigkeiten der Fall ist, erhalten Sie eine Warnung und es wird vorgeschlagen, den Paketnamen in diesem Array in Ihrer Konfiguration hinzuzufügen.
