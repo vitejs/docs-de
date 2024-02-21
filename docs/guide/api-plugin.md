@@ -399,6 +399,7 @@ interface HtmlTagDescriptor {
 ### `handleHotUpdate`
 
 - **Typ:** `(ctx: HmrContext) => Array<ModuleNode> | void | Promise<Array<ModuleNode> | void>`
+- **See also:** [HMR API](./api-hmr)
 
   Führen Sie die benutzerdefinierte HMR-Updateverarbeitung durch. Der Hook erhält ein Kontextobjekt mit folgender Signatur:
 
@@ -420,10 +421,31 @@ interface HtmlTagDescriptor {
 
   - Die betroffene Modulliste filtern und einschränken, damit HMR genauer ist.
 
-  - Gibt ein leeres Array zurück und führt eine vollständige benutzerdefinierte HMR-Behandlung durch, indem es benutzerdefinierte Ereignisse an den Client sendet (das Beispiel verwendet `server.hot`, das in Vite 5.1 eingeführt wurde, es wird empfohlen, auch `server.ws` zu verwenden, wenn Sie niedrigere Versionen unterstützen):
+  - Gibt ein leeres Array zurück und führt ein vollständiges Neuladen durch:
+
+    ```js
+    handleHotUpdate({ server, modules, timestamp }) {
+      // Also use `server.ws.send` to support Vite <5.1 if needed
+      server.hot.send({ type: 'full-reload' })
+      // Invalidate modules manually
+      const invalidatedModules = new Set()
+      for (const mod of modules) {
+        server.moduleGraph.invalidateModule(
+          mod,
+          invalidatedModules,
+          timestamp,
+          true
+        )
+      }
+      return []
+    }
+    ```
+
+  - Gibt ein leeres Array zurück und führt eine vollständige benutzerdefinierte HMR-Behandlung durch, indem benutzerdefinierte Ereignisse an den Client gesendet werden:
 
     ```js
     handleHotUpdate({ server }) {
+      // Also use `server.ws.send` to support Vite <5.1 if needed
       server.hot.send({
         type: 'custom',
         event: 'special-update',
