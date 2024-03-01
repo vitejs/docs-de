@@ -77,8 +77,8 @@ Ein gültiges Zertifikat ist erforderlich. Für eine grundlegende Einrichtung k�
 ```js
 export default defineConfig({
   server: {
-    open: '/docs/index.html'
-  }
+    open: '/docs/index.html',
+  },
 })
 ```
 
@@ -106,13 +106,13 @@ export default defineConfig({
       '/api': {
         target: 'http://jsonplaceholder.typicode.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
       // Mit RegEx: http://localhost:5173/fallback/ -> http://jsonplaceholder.typicode.com/
       '^/fallback/.*': {
         target: 'http://jsonplaceholder.typicode.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/fallback/, '')
+        rewrite: (path) => path.replace(/^\/fallback/, ''),
       },
       // Verwendung der Proxyinstanz
       '/api': {
@@ -120,15 +120,15 @@ export default defineConfig({
         changeOrigin: true,
         configure: (proxy, options) => {
           // proxy wird eine Instanz von 'http-proxy' sein
-        }
+        },
       },
       // Proxying von Websockets oder socket.io: ws://localhost:5173/socket.io -> ws://localhost:5174/socket.io
       '/socket.io': {
         target: 'ws://localhost:5174',
-        ws: true
-      }
-    }
-  }
+        ws: true,
+      },
+    },
+  },
 })
 ```
 
@@ -150,7 +150,9 @@ Legen Sie die Serverantwortheader fest.
 
 Deaktivieren oder konfigurieren Sie die HMR-Verbindung (in Fällen, in denen das HMR-WebSocket eine andere Adresse als der HTTP-Server verwenden muss).
 
-Legen Sie `server.hmr.overlay` auf `false`, um das Serverfehler-Overlay zu deaktivieren.
+Setzen Sie `server.hmr.overlay` auf `false`, um das Serverfehler-Overlay zu deaktivieren.
+
+Mit `protocol` wird das für die HMR-Verbindung verwendete WebSocket-Protokoll festgelegt - zur Auswahl stehen `ws` (WebSocket) und `wss` (WebSocket Secure).
 
 `clientPort` ist eine erweiterte Option, die den Port nur auf der Clientseite überschreibt und es Ihnen ermöglicht, das WebSocket auf einem anderen Port als der Clientcode danach suchen lässt.
 
@@ -246,7 +248,7 @@ async function createServer() {
   // Erstellen Sie den Vite-Server im Middleware-Modus
   const vite = await createViteServer({
     server: { middlewareMode: true },
-    appType: 'custom' // Vites Standard-HTML-Handling-Middlewares nicht einschließen
+    appType: 'custom', // Vites Standard-HTML-Handling-Middlewares nicht einschließen
   })
   // Verwenden Sie Vites Connect-Instanz als Middleware
   app.use(vite.middlewares)
@@ -291,9 +293,9 @@ export default defineConfig({
   server: {
     fs: {
       // Erlaube das Servieren von Dateien vom Stammverzeichnis des Projekts bis zu einer Ebene höher
-      allow: ['..']
-    }
-  }
+      allow: ['..'],
+    },
+  },
 })
 ```
 
@@ -310,10 +312,10 @@ export default defineConfig({
         searchForWorkspaceRoot(process.cwd()),
         // Ihre benutzerdefinierten Regeln
         '/path/to/custom/allow_directory',
-        '/path/to/custom/allow_file.demo'
-      ]
-    }
-  }
+        '/path/to/custom/allow_file.demo',
+      ],
+    },
+  },
 })
 ```
 
@@ -333,8 +335,8 @@ Definiert den Ursprung der generierten Asset-URLs während der Entwicklung.
 ```js
 export default defineConfig({
   server: {
-    origin: 'http://127.0.0.1:8080'
-  }
+    origin: 'http://127.0.0.1:8080',
+  },
 })
 ```
 
