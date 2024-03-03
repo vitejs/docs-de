@@ -28,7 +28,17 @@ Das Verhalten ähnelt dem von webpack's `file-loader`. Der Unterschied besteht d
 
 - Git LFS-Platzhalter werden automatisch vom Inline-Ausschluss ausgenommen, da sie den Inhalt der von ihnen repräsentierten Datei nicht enthalten. Um das Inline-Einfügen zu ermöglichen, stellen Sie sicher, dass Sie die Dateiinhalte über Git LFS vor dem Build herunterladen.
 
-- TypeScript erkennt statische Asset-Imports standardmäßig nicht als gültige Module. Um dies zu beheben, fügen Sie [`vite/client`](./features#client-types) hinzu.
+- TypeScript erkennt statische Asset-Importe standardmäßig nicht als gültige Module. Um dies zu beheben, schließen Sie [`vite/client`](./features#client-types) ein.
+
+::: tip Einbindung von SVGs durch `url()`
+Bei der Übergabe einer SVG-URL an eine manuell erstellte `url()` durch JS sollte die Variable in Anführungszeichen gesetzt werden.
+
+```js
+import imgUrl from './img.svg'
+document.getElementById('hero-img').style.background = `url("${imgUrl}")`
+```
+
+:::
 
 ### Explizite URL-Imports
 
