@@ -35,7 +35,7 @@ export default defineConfig({
 
 Standardmäßig werden verknüpfte Pakete, die sich nicht in `node_modules` befinden, nicht vorab gebündelt. Verwenden Sie diese Option, um ein verknüpftes Paket zur Vorab-Bündelung zu zwingen.
 
-**Experimentell:** Wenn Sie eine Bibliothek mit vielen tiefen Importen verwenden, können Sie auch ein abschließendes Glob-Muster angeben, um alle tiefen Importe auf einmal vorab zu bündeln. Dies vermeidet ständiges Vorab-Bündeln, wenn ein neuer tiefer Import verwendet wird. Zum Beispiel:
+**Experimentell:** Wenn Sie eine Bibliothek mit vielen tiefen Importen verwenden, können Sie auch ein abschließendes Glob-Muster angeben, um alle tiefen Importe auf einmal vorab zu bündeln. Dies vermeidet ständiges Vorab-Bündeln, wenn ein neuer tiefer Import verwendet wird. [Feedback geben](https://github.com/vitejs/vite/discussions/15833). Zum Beispiel:
 
 ```js
 export default defineConfig({
@@ -64,7 +64,7 @@ Setzen Sie dies auf `true`, um die Vorab-Bündelung von Abhängigkeiten zu erzwi
 
 ## optimizeDeps.holdUntilCrawlEnd
 
-- **Experimentell**
+- **Experimentell:** [Feedback geben](https://github.com/vitejs/vite/discussions/15834)
 - **Typ:** `boolean`
 - **Standard:** `true`
 
