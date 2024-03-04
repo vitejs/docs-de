@@ -1,18 +1,18 @@
 # Vite Runtime API
 
-:::warning Low-level API
-This API was introduced in Vite 5.1 as an experimental feature. It was added to [gather feedback](https://github.com/vitejs/vite/discussions/15774). There will probably be breaking changes to it in Vite 5.2, so make sure to pin the Vite version to `~5.1.0` when using it. This is a low-level API meant for library and framework authors. If your goal is to create an application, make sure to check out the higher-level SSR plugins and tools at [Awesome Vite SSR section](https://github.com/vitejs/awesome-vite#ssr) first.
+:::warning Low-Level-API
+Diese API wurde in Vite 5.1 als experimentelle Funktion eingeführt. Sie wurde zu [gather feedback](https://github.com/vitejs/vite/discussions/15774) hinzugefügt. Wahrscheinlich wird es in Vite 5.2 Änderungen hierzu geben, also stellen Sie sicher, dass Sie die Vite-Version auf `~5.1.0` festsetzen, wenn Sie sie benutzen. Dies ist eine Low-Level-API, die für Bibliotheks- und Framework-Autoren gedacht ist. Wenn es Ihr Ziel ist, eine Anwendung zu erstellen, stellen Sie sicher, dass Sie zuerst die SSR-Plugins und -Werkzeuge auf höherer Ebene unter [Awesome Vite SSR section](https://github.com/vitejs/awesome-vite#ssr) ausprobieren.
 :::
 
-The "Vite Runtime" is a tool that allows running any code by processing it with Vite plugins first. It is different from `server.ssrLoadModule` because the runtime implementation is decoupled from the server. This allows library and framework authors to implement their own layer of communication between the server and the runtime.
+Die "Vite Runtime" ist ein Werkzeug, das es erlaubt, jeden Code auszuführen, indem es ihn zuerst mit Vite-Plugins verarbeitet. Es unterscheidet sich von `server.ssrLoadModule`, weil die Runtime-Implementierung vom Server entkoppelt ist. Dies erlaubt es Autoren von Bibliotheken und Frameworks, ihre eigene Kommunikationsschicht zwischen dem Server und der Laufzeit zu implementieren.
 
-One of the goals of this feature is to provide a customizable API to process and run the code. Vite provides enough tools to use Vite Runtime out of the box, but users can build upon it if their needs do not align with Vite's built-in implementation.
+Eines der Ziele dieser Funktion ist es, eine anpassbare API für die Verarbeitung und Ausführung des Codes bereitzustellen. Vite stellt genügend Werkzeuge zur Verfügung, um Vite Runtime zu verwenden, aber Benutzer können darauf aufbauen, wenn ihre Bedürfnisse nicht mit der eingebauten Implementierung von Vite übereinstimmen.
 
-All APIs can be imported from `vite/runtime` unless stated otherwise.
+Alle APIs können von `vite/runtime` importiert werden, sofern nicht anders angegeben.
 
 ## `ViteRuntime`
 
-**Type Signature:**
+**Typ Signatur:**
 
 ```ts
 export class ViteRuntime {
@@ -47,17 +47,17 @@ export class ViteRuntime {
 }
 ```
 
-::: tip Advanced Usage
-If you are just migrating from `server.ssrLoadModule` and want to support HMR, consider using [`createViteRuntime`](#createviteruntime) instead.
+::: tip Erweiterte Verwendung
+Wenn Sie gerade von `server.ssrLoadModule` migrieren und HMR unterstützen wollen, sollten Sie stattdessen [`createViteRuntime`](#createviteruntime) verwenden.
 :::
 
-The `ViteRuntime` class requires `root` and `fetchModule` options when initiated. Vite exposes `ssrFetchModule` on the [`server`](/guide/api-javascript) instance for easier integration with Vite SSR. Vite also exports `fetchModule` from its main entry point - it doesn't make any assumptions about how the code is running unlike `ssrFetchModule` that expects the code to run using `new Function`. This can be seen in source maps that these functions return.
+Die Klasse `ViteRuntime` benötigt die Optionen `root` und `fetchModule`, wenn sie gestartet wird. Vite stellt `ssrFetchModule` auf der [`server`](/guide/api-javascript) Instanz für eine einfachere Integration mit Vite SSR zur Verfügung. Vite exportiert auch `fetchModule` von seinem Haupteinstiegspunkt - es macht keine Annahmen darüber, wie der Code läuft, im Gegensatz zu `ssrFetchModule`, das erwartet, dass der Code mit `new Function` läuft. Dies kann in den Source-Maps gesehen werden, die diese Funktionen zurückgeben.
 
-Runner in `ViteRuntime` is responsible for executing the code. Vite exports `ESModulesRunner` out of the box, it uses `new AsyncFunction` to run the code. You can provide your own implementation if your JavaScript runtime doesn't support unsafe evaluation.
+Der Runner in `ViteRuntime` ist für die Ausführung des Codes verantwortlich. Vite exportiert `ESModulesRunner` von Haus aus, er verwendet `new AsyncFunction`, um den Code auszuführen. Sie können Ihre eigene Implementierung bereitstellen, wenn Ihre JavaScript-Laufzeitumgebung keine unsichere Auswertung unterstützt.
 
-The two main methods that runtime exposes are `executeUrl` and `executeEntrypoint`. The only difference between them is that all modules executed by `executeEntrypoint` will be reexecuted if HMR triggers `full-reload` event. Be aware that Vite Runtime doesn't update `exports` object when this happens (it overrides it), you would need to run `executeUrl` or get the module from `moduleCache` again if you rely on having the latest `exports` object.
+Die beiden wichtigsten Methoden, die die Laufzeitumgebung zur Verfügung stellt, sind `executeUrl` und `executeEntrypoint`. Der einzige Unterschied zwischen ihnen ist, dass alle Module, die von `executeEntrypoint` ausgeführt werden, erneut ausgeführt werden, wenn HMR das Ereignis `full-reload` auslöst. Beachten Sie, dass Vite Runtime das `exports`-Objekt in diesem Fall nicht aktualisiert (es wird überschrieben). Sie müssten `executeUrl` ausführen oder das Modul erneut aus dem `moduleCache` holen, wenn Sie sich darauf verlassen, dass Sie das neueste `exports`-Objekt haben.
 
-**Example Usage:**
+**Beispiel für die Verwendung:**
 
 ```js
 import { ViteRuntime, ESModulesRunner } from 'vite/runtime'
@@ -146,7 +146,7 @@ export interface ViteModuleRunner {
 }
 ```
 
-Vite exports `ESModulesRunner` that implements this interface by default. It uses `new AsyncFunction` to run code, so if the code has inlined source map it should contain an [offset of 2 lines](https://tc39.es/ecma262/#sec-createdynamicfunction) to accommodate for new lines added. This is done automatically by `server.ssrFetchModule`. If your runner implementation doesn't have this constraint, you should use `fetchModule` (exported from `vite`) directly.
+Vite exportiert `ESModulesRunner`, der diese Schnittstelle standardmäßig implementiert. Er verwendet `new AsyncFunction`, um Code auszuführen. Wenn der Code also eine Inline-Source-Map hat, sollte er einen [Offset von 2 Zeilen](https://tc39.es/ecma262/#sec-createdynamicfunction) enthalten, um neue hinzugefügte Zeilen zu berücksichtigen. Dies wird automatisch von `server.ssrFetchModule` gemacht. Wenn Ihre Runner-Implementierung diese Einschränkung nicht hat, sollten Sie `fetchModule` (exportiert von `vite`) direkt verwenden.
 
 ## HMRRuntimeConnection
 
@@ -170,9 +170,9 @@ export interface HMRRuntimeConnection {
 }
 ```
 
-This interface defines how HMR communication is established. Vite exports `ServerHMRConnector` from the main entry point to support HMR during Vite SSR. The `isReady` and `send` methods are usually called when the custom event is triggered (like, `import.meta.hot.send("my-event")`).
+Diese Schnittstelle definiert, wie die HMR-Kommunikation aufgebaut wird. Vite exportiert `ServerHMRConnector` vom Haupteinstiegspunkt, um HMR während Vite SSR zu unterstützen. Die Methoden `isReady` und `send` werden normalerweise aufgerufen, wenn das benutzerdefinierte Ereignis ausgelöst wird (z.B. `import.meta.hot.send("my-event")`).
 
-`onUpdate` is called only once when the new runtime is initiated. It passed down a method that should be called when connection triggers the HMR event. The implementation depends on the type of connection (as an example, it can be `WebSocket`/`EventEmitter`/`MessageChannel`), but it usually looks something like this:
+`onUpdate` wird nur einmal aufgerufen, wenn die neue Laufzeit initiiert wird. Es übergibt eine Methode, die aufgerufen werden soll, wenn die Verbindung das HMR-Ereignis auslöst. Die Implementierung hängt von der Art der Verbindung ab (als Beispiel kann es sich um `WebSocket`/`EventEmitter`/`MessageChannel` handeln), sieht aber in der Regel etwa so aus:
 
 ```js
 function onUpdate(callback) {
@@ -180,11 +180,11 @@ function onUpdate(callback) {
 }
 ```
 
-The callback is queued and it will wait for the current update to be resolved before processing the next update. Unlike the browser implementation, HMR updates in Vite Runtime wait until all listeners (like, `vite:beforeUpdate`/`vite:beforeFullReload`) are finished before updating the modules.
+Der Rückruf wird in eine Warteschlange gestellt und wartet, bis die aktuelle Aktualisierung abgeschlossen ist, bevor er die nächste Aktualisierung verarbeitet. Im Gegensatz zur Browser-Implementierung warten die HMR-Aktualisierungen in Vite Runtime, bis alle Listener (z. B. `vite:beforeUpdate`/`vite:beforeFullReload`) beendet sind, bevor die Module aktualisiert werden.
 
 ## `createViteRuntime`
 
-**Type Signature:**
+**Typ Signatur:**
 
 ```ts
 async function createViteRuntime(
@@ -193,7 +193,7 @@ async function createViteRuntime(
 ): Promise<ViteRuntime>
 ```
 
-**Example Usage:**
+**Beispiel für die Verwendung:**
 
 ```js
 import { createServer } from 'vite'
@@ -211,7 +211,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 })()
 ```
 
-This method serves as an easy replacement for `server.ssrLoadModule`. Unlike `ssrLoadModule`, `createViteRuntime` provides HMR support out of the box. You can pass down [`options`](#mainthreadruntimeoptions) to customize how SSR runtime behaves to suit your needs.
+Diese Methode dient als einfacher Ersatz für `server.ssrLoadModule`. Im Gegensatz zu `ssrLoadModule` bietet `createViteRuntime` standardmäßig HMR-Unterstützung. Sie können [`options`](#mainthreadruntimeoptions) weitergeben, um das Verhalten der SSR-Laufzeit an Ihre eigenen Bedürfnisse anzupassen.
 
 ## `MainThreadRuntimeOptions`
 
