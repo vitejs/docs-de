@@ -197,7 +197,7 @@ Benutzerdefinierte HMR-Ereignisse können auch von Plugins gesendet werden. Weit
 
 ## `hot.off(event, cb)`
 
-Remove callback from the event listeners
+Remove callback from the event listeners.
 
 ## `hot.send(event, data)`
 
