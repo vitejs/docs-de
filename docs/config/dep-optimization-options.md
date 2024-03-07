@@ -47,7 +47,18 @@ export default defineConfig({
 
 ## optimizeDeps.esbuildOptions
 
-- **Typ:** [`EsbuildBuildOptions`](https://esbuild.github.io/api/#simple-options)
+- **Typ:** [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<`[`EsbuildBuildOptions`](https://esbuild.github.io/api/#simple-options)`,
+    | 'bundle'
+    | 'entryPoints'
+    | 'external'
+    | 'write'
+    | 'watch'
+    | 'outdir'
+    | 'outfile'
+    | 'outbase'
+    | 'outExtension'
+    | 'metafile'>`
+
 
 Optionen, die an esbuild während des Abhängigkeits-Scannens und der Optimierung übergeben werden sollen.
 
