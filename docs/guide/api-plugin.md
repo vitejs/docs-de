@@ -506,8 +506,6 @@ export default defineConfig({
 })
 ```
 
-Überprüfen Sie [Vite Rollup Plugins](https://vite-rollup-plugins.patak.dev) für eine Liste kompatibler offizieller Rollup-Plugins mit Verwendungshinweisen.
-
 ## Pfadnormalisierung
 
 Vite normalisiert Pfade, während es IDs auflöst, um POSIX-Trennzeichen ( / ) zu verwenden, während das Volumen in Windows beibehalten wird. Rollup hingegen lässt aufgelöste Pfade standardmäßig unberührt, sodass aufgelöste IDs in Windows Win32-Trennzeichen ( \\ ) haben. Rollup-Plugins verwenden jedoch intern eine [`normalizePath`-Hilfsfunktion](https://github.com/rollup/plugins/tree/master/packages/pluginutils#normalizepath) aus `@rollup/pluginutils`, die Trennzeichen vor dem Vergleich in POSIX umwandelt. Das bedeutet, dass, wenn diese Plugins in Vite verwendet werden, die Muster in der `include`- und `exclude`-Konfiguration sowie andere ähnliche Pfade gegen aufgelöste IDs korrekt funktionieren.
