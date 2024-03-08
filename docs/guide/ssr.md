@@ -123,10 +123,10 @@ app.use('*', async (req, res, next) => {
     //    ESM-Quellcode, damit er in Node.js verwendbar ist! Es ist kein Bündeln erforderlich und bietet
     //    effiziente Ungültigmachung ähnlich wie HMR.
     const { render } = await vite.ssrLoadModule('/src/entry-server.js')
-    // 3b. Seit Vite 5.1 können Sie stattdessen die API createViteRuntime verwenden.
-    // Sie unterstützt HMR vollständig und funktioniert ähnlich wie ssrLoadModule
+    // 3b. Seit Vite 5.1 können Sie stattdessen die experimentelle createViteRuntime-API verwenden.
+    // Sie unterstützt HMR vollständig und funktioniert ähnlich wie ssrLoadModule.
     // Ein fortgeschrittener Anwendungsfall wäre die Erstellung einer Runtime in einem separaten
-    // Thread oder sogar einer anderen Maschine unter Verwendung der Klasse ViteRuntime
+    // Thread oder sogar auf einer anderen Maschine mit der ViteRuntime-Klasse.
     const runtime = await vite.createViteRuntime(server)
     const { render } = await runtime.executeEntrypoint('/src/entry-server.js')
 
@@ -246,7 +246,7 @@ export function mySSRPlugin() {
       if (options?.ssr) {
         // Führen Sie Transformationen spezifisch für SSR aus...
       }
-    }
+    },
   }
 }
 ```
