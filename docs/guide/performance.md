@@ -26,7 +26,7 @@ Die Leistung von Community-Plugins liegt jedoch außerhalb der Kontrolle von Vit
 
    The longer it takes to transform a file, the more significant the request waterfall will be when loading the site in the browser.
 
-   You can inspect the duration it takes to transform a file using `DEBUG="vite:plugin-transform" vite` or [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect). Note that as asynchronous operations tend to provide inaccurate timings, you should treat the numbers as a rough estimate, but it should still reveal the more expensive operations. For setting environment variables on Windows platform, please refer to the [documentation](https://github.com/debug-js/debug?tab=readme-ov-file#windows-command-prompt-notes).
+   You can inspect the duration it takes to transform a file using `vite --debug plugin-transform` or [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect). Note that as asynchronous operations tend to provide inaccurate timings, you should treat the numbers as a rough estimate, but it should still reveal the more expensive operations.
 
 ::: tip Profiling
 Sie können `vite --profile` ausführen, die Website besuchen und in Ihrem Terminal `p + Enter` drücken, um ein `.cpuprofile` aufzuzeichnen. Ein Tool wie [speedscope](https://www.speedscope.app) kann dann verwendet werden, um das Profil zu überprüfen und Engpässe zu identifizieren. Sie können die Profile auch [mit dem Vite-Team teilen](https://chat.vitejs.dev), um bei der Identifizierung von Leistungsproblemen zu helfen.
@@ -84,7 +84,7 @@ Die Importbeziehung kann erst nach der Transformation der Datei bekannt sein. We
 
 Vite ermöglicht es Ihnen, Dateien vorzuwärmen, von denen Sie wissen, dass sie häufig verwendet werden, z.B. `big-utils.js`, mithilfe der Option [`server.warmup`](/config/server-options.md#server-warmup). Auf diese Weise wird `big-utils.js` bereit und zwischengespeichert, um sofort bei Bedarf bereitgestellt zu werden.
 
-Sie können Dateien, die häufig verwendet werden, ermitteln, indem Sie `DEBUG="vite:transform" vite` ausführen und die Protokolle überprüfen:
+Sie können häufig verwendete Dateien finden, indem Sie `vite --debug transform` ausführen und die Protokolle untersuchen:
 
 ```bash
 vite:transform 28.72ms /@vite/client +1ms
