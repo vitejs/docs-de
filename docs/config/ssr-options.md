@@ -18,7 +18,7 @@ Beachten Sie, dass die explizit aufgeführten Abhängigkeiten (mit dem Typ `stri
 
 Verhindert, dass aufgelistete Abhängigkeiten für SSR externalisiert werden, wodurch sie im Build gebündelt werden. Standardmäßig werden nur verlinkte Abhängigkeiten nicht externalisiert (für HMR). Wenn Sie es bevorzugen, die verlinkten Abhängigkeiten zu externalisieren, können Sie ihren Namen an die Option `ssr.external` übergeben.
 
-Wenn auf `true` gesetzt, werden keine Abhängigkeiten externalisiert. Allerdings können Abhängigkeiten, die explizit in `ssr.external` aufgeführt sind (unter Verwendung des Typs `string[]`), Vorrang haben und trotzdem externalisiert werden.
+Wenn auf `true` gesetzt, werden keine Abhängigkeiten externalisiert. Allerdings können Abhängigkeiten, die explizit in `ssr.external` aufgelistet sind (unter Verwendung des Typs `string[]`), Vorrang haben und trotzdem externalisiert werden. Wenn `ssr.target: 'node'` gesetzt ist, werden auch Node.js-Build-Ins standardmäßig externalisiert.
 
 Beachten Sie, dass - wenn sowohl `ssr.noExternal: true` als auch `ssr.external: true` konfiguriert sind - `ssr.noExternal` Vorrang hat und keine Abhängigkeiten externalisiert werden.
 
