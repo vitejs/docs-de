@@ -4,7 +4,7 @@
 
 ### `vite`
 
-Startet den Vite-Entwicklungs-Server im aktuellen Verzeichnis.
+Startet den Vite-Entwicklungs-Server im aktuellen Verzeichnis. `vite dev` und `vite serve` sind Aliasnamen für `vite`.
 
 #### Verwendung
 

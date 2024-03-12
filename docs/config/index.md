@@ -65,7 +65,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
 })
 ```
 
-Es ist wichtig zu beachten, dass in der API von Vite der `command` Wert `serve` während der Entwicklung (in der Cli sind `vite`, `vite dev` und `vite serve` Aliase) und `build` bei der Erstellung für die Produktion (`vite build`) ist.
+Es ist wichtig zu beachten, dass in der API von Vite der Wert `command` während der Entwicklung `serve` ist (im Cli sind [`vite`](/guide/cli#vite), `vite dev` und `vite serve` Aliase), und `build` bei der Erstellung für die produktive Umgebung ([`vite build`](/guide/cli#vite-build)).
 
 `isSsrBuild` und `isPreview` sind zusätzliche optionale Flags, um die Art der `build` bzw. `serve` Befehle zu unterscheiden. Einige Werkzeuge, die die Vite-Konfiguration laden, unterstützen diese Flags möglicherweise nicht und übergeben stattdessen `undefined`. Daher wird empfohlen, explizite Vergleiche gegen `true` und `false` zu verwenden.
 
@@ -98,8 +98,8 @@ export default defineConfig(({ command, mode }) => {
   return {
     // vite config
     define: {
-      __APP_ENV__: JSON.stringify(env.APP_ENV)
-    }
+      __APP_ENV__: JSON.stringify(env.APP_ENV),
+    },
   }
 })
 ```
