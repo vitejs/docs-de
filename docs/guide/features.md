@@ -640,7 +640,29 @@ Wenn Sie den Worker als URL abrufen möchten, fügen Sie die Abfrage `url` hinzu
 import MyWorker from './worker?worker&url'
 ```
 
-Siehe [Worker-Optionen](/config/worker-options.md) für Details zur Konfiguration der Bündelung aller Worker.
+See [Worker Options](/config/worker-options.md) for details on configuring the bundling of all workers.
+
+## Content Security Policy (CSP)
+
+Für den Einsatz von CSP müssen aufgrund von Vite's Interna bestimmte Direktiven oder Configs gesetzt werden.
+
+### [`'nonce-{RANDOM}'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/Sources#nonce-base64-value)
+
+Wenn [`html.cspNonce`](/config/shared-options#html-cspnonce) gesetzt ist, fügt Vite ein nonce-Attribut mit dem angegebenen Wert zum Output-Script-Tag und Link-Tag für Stylesheets hinzu. Beachten Sie, dass Vite kein Nonce-Attribut zu anderen Tags hinzufügt, wie z.B. `<style>`. Wenn diese Option gesetzt ist, fügt Vite außerdem ein Meta-Tag ein (`<meta property="csp-nonce" nonce="PLACEHOLDER" />`).
+
+Der nonce-Wert eines Meta-Tags mit `property="csp-nonce"` wird von Vite bei Bedarf sowohl während der Entwicklung als auch nach dem Build verwendet.
+
+:::warning
+Stellen Sie sicher, dass Sie den Platzhalter bei jeder Anfrage durch einen eindeutigen Wert ersetzen. Dies ist wichtig, um zu verhindern, dass die Richtlinie einer Ressource umgangen wird, was sonst leicht möglich wäre.
+:::
+
+### [`data:`](<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/Sources#scheme-source:~:text=schemes%20(not%20recommended).-,data%3A,-Allows%20data%3A>)
+
+By default, during build, Vite inlines small assets as data URIs. Allowing `data:` for related directives (e.g. [`img-src`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/img-src), [`font-src`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/font-src)), or, disabling it by setting [`build.assetsInlineLimit: 0`](/config/build-options#build-assetsinlinelimit) is necessary.
+
+:::warning
+Do not allow `data:` for [`script-src`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src). It will allow injection of arbitrary scripts.
+:::
 
 ## Build-Optimierungen
 
