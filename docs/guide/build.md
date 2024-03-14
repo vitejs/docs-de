@@ -70,7 +70,7 @@ Vite gibt das Ereignis `vite:preloadError` aus, wenn das Laden dynamischer Impor
 
 ```js
 window.addEventListener('vite:preloadError', (event) => {
-  window.reload() // for example, refresh the page
+  window.location.reload() // for example, refresh the page
 })
 ```
 
