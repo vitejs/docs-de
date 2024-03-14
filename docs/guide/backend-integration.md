@@ -98,7 +98,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    <!-- for cssFile of manifest[name].css -->
    <link rel="stylesheet" href="/{{ cssFile }}" />
 
-   <!-- for chunk of importedChunks(manifest, name)) -->
+   <!-- for chunk of importedChunks(manifest, name) -->
    <!-- for cssFile of chunk.css -->
    <link rel="stylesheet" href="/{{ cssFile }}" />
 
