@@ -34,7 +34,6 @@ Für erweiterte Steuerung des Basispfads siehe [Erweiterte Basisoptionen](#erwei
 Der Build kann über verschiedene [Build-Konfigurationsoptionen](/config/build-options.md) angepasst werden. Konkret können Sie die zugrunde liegenden [Rollup-Optionen](https://rollupjs.org/configuration-options/) direkt über `build.rollupOptions` anpassen:
 
 ```js
-// vite.config.js
 export default defineConfig({
   build: {
     rollupOptions: {
@@ -68,7 +67,7 @@ Verwenden Sie die Funktion `build.rollupOptions.output.manualChunks`, falls Sie 
 
 Vite gibt das Ereignis `vite:preloadError` aus, wenn das Laden dynamischer Importe fehlschlägt. `event.payload` enthält den ursprünglichen Importfehler. Wenn Sie `event.preventDefault()` aufrufen, wird der Fehler nicht ausgelöst.
 
-```js
+```js twoslash
 window.addEventListener('vite:preloadError', (event) => {
   window.location.reload() // for example, refresh the page
 })
@@ -111,7 +110,7 @@ Während der Entwicklung navigieren oder verlinken Sie einfach zu `/nested/` - e
 
 Während des Builds müssen Sie nur mehrere `.html`-Dateien als Einstiegspunkte angeben:
 
-```js
+```js twoslash
 // vite.config.js
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
@@ -138,7 +137,7 @@ Wenn Sie eine auf den Browser ausgerichtete Bibliothek entwickeln, verbringen Si
 
 Wenn es Zeit ist, Ihre Bibliothek für die Verteilung zu bündeln, verwenden Sie die [`build.lib`-Konfigurationsoption](/config/build-options.md#build-lib). Stellen Sie sicher, dass Sie auch Abhängigkeiten externisieren, die Sie nicht in Ihre Bibliothek bündeln möchten, z. B. `vue` oder `react`:
 
-```js
+```js twoslash
 // vite.config.js
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
@@ -251,33 +250,44 @@ Für fortgeschrittene Anwendungsfälle können die bereitgestellten Assets und �
 
 Ein einziger statischer [Basispfad](#public-base-path) reicht in diesen Szenarien nicht aus. Vite bietet experimentelle Unterstützung für erweiterte Basisoptionen während des Builds, die `experimental.renderBuiltUrl` verwenden.
 
-```ts
+<!-- prettier-ignore-start -->
+```ts twoslash
+import type { UserConfig } from 'vite'
+const config: UserConfig = {
+// ---cut-before---
 experimental: {
-  renderBuiltUrl(filename: string, { hostType }: { hostType: 'js' | 'css' | 'html' }) {
+  renderBuiltUrl(filename, { hostType }) {
     if (hostType === 'js') {
       return { runtime: `window.__toCdnUrl(${JSON.stringify(filename)})` }
     } else {
       return { relative: true }
     }
-  }
+  },
+},
+// ---cut-after---
 }
 ```
+<!-- prettier-ignore-end -->
 
 Wenn die gehashten Assets und öffentlichen Dateien nicht gemeinsam bereitgestellt werden, können für jede Gruppe unabhängig Optionen mit dem Assettyp in der zweiten `context`-Parameter gegebenen `renderBuiltUrl`-Funktion definiert werden.
 
-```ts
-experimental: {
-  renderBuiltUrl(filename: string, { hostId, hostType, type }: { hostId: string, hostType: 'js' | 'css' | 'html', type: 'public' | 'asset' }) {
-    if (type === 'public') {
-      return 'https://www.domain.com/' + filename
-    }
-    else if (path.extname(hostId) === '.js') {
-      return { runtime: `window.__assetsPath(${JSON.stringify(filename)})` }
-    }
-    else {
-      return 'https://cdn.domain.com/assets/' + filename
-    }
-  }
+```ts twoslash
+import type { UserConfig } from 'vite'
+import path from 'node:path'
+const config: UserConfig = {
+  // ---cut-before---
+  experimental: {
+    renderBuiltUrl(filename, { hostId, hostType, type }) {
+      if (type === 'public') {
+        return 'https://www.domain.com/' + filename
+      } else if (path.extname(hostId) === '.js') {
+        return { runtime: `window.__assetsPath(${JSON.stringify(filename)})` }
+      } else {
+        return 'https://cdn.domain.com/assets/' + filename
+      }
+    },
+  },
+  // ---cut-after---
 }
 ```
 

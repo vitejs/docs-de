@@ -1,105 +1,119 @@
-# Umgang mit statischen Assets
+# Static Asset Handling
 
-- Verwandt: [Öffentlicher Basispfad](./build#public-base-path)
-- Verwandt: [`assetsInclude`-Konfigurationsoption](/config/shared-options.md#assetsinclude)
+- Related: [Public Base Path](./build#public-base-path)
+- Related: [`assetsInclude` config option](/config/shared-options.md#assetsinclude)
 
-## Importieren von Assets als URL
+## Importing Asset as URL
 
-Das Importieren eines statischen Assets gibt die aufgelöste öffentliche URL zurück, wenn es bereitgestellt wird:
+Importing a static asset will return the resolved public URL when it is served:
 
-```js
+```js twoslash
+import 'vite/client'
+// ---cut---
 import imgUrl from './img.png'
 document.getElementById('hero-img').src = imgUrl
 ```
 
-Beispielsweise ist `imgUrl` während der Entwicklung `/img.png` und wird im Produktionsbuild zu `/assets/img.2d8efhg.png`.
+For example, `imgUrl` will be `/img.png` during development, and become `/assets/img.2d8efhg.png` in the production build.
 
-Das Verhalten ähnelt dem von webpack's `file-loader`. Der Unterschied besteht darin, dass der Import entweder absolute öffentliche Pfade (basierend auf dem Projektstamm während der Entwicklung) oder relative Pfade verwenden kann.
+The behavior is similar to webpack's `file-loader`. The difference is that the import can be either using absolute public paths (based on project root during dev) or relative paths.
 
-- `url()`-Verweise in CSS werden auf die gleiche Weise behandelt.
+- `url()` references in CSS are handled the same way.
 
-- Wenn das Vue-Plugin verwendet wird, werden Asset-Verweise in Vue-SFC-Vorlagen automatisch in Imports umgewandelt.
+- If using the Vue plugin, asset references in Vue SFC templates are automatically converted into imports.
 
-- Häufig verwendete Bild-, Medien- und Schriftdateiformate werden automatisch als Assets erkannt. Sie können die interne Liste mithilfe der [`assetsInclude`-Option](/config/shared-options.md#assetsinclude) erweitern.
+- Common image, media, and font filetypes are detected as assets automatically. You can extend the internal list using the [`assetsInclude` option](/config/shared-options.md#assetsinclude).
 
-- Referenzierte Assets werden als Teil des Build-Asset-Graphen einbezogen, erhalten gehashte Dateinamen und können von Plugins zur Optimierung verarbeitet werden.
+- Referenced assets are included as part of the build assets graph, will get hashed file names, and can be processed by plugins for optimization.
 
-- Assets, die weniger Bytes als die [`assetsInlineLimit`-Option](/config/build-options.md#build-assetsinlinelimit) haben, werden als Base64-Daten-URLs inline eingefügt.
+- Assets smaller in bytes than the [`assetsInlineLimit` option](/config/build-options.md#build-assetsinlinelimit) will be inlined as base64 data URLs.
 
-- Git LFS-Platzhalter werden automatisch vom Inline-Ausschluss ausgenommen, da sie den Inhalt der von ihnen repräsentierten Datei nicht enthalten. Um das Inline-Einfügen zu ermöglichen, stellen Sie sicher, dass Sie die Dateiinhalte über Git LFS vor dem Build herunterladen.
+- Git LFS placeholders are automatically excluded from inlining because they do not contain the content of the file they represent. To get inlining, make sure to download the file contents via Git LFS before building.
 
-- TypeScript erkennt statische Asset-Importe standardmäßig nicht als gültige Module. Um dies zu beheben, schließen Sie [`vite/client`](./features#client-types) ein.
+- TypeScript, by default, does not recognize static asset imports as valid modules. To fix this, include [`vite/client`](./features#client-types).
 
-::: tip Einbindung von SVGs durch `url()`
-Bei der Übergabe einer SVG-URL an eine manuell erstellte `url()` durch JS sollte die Variable in Anführungszeichen gesetzt werden.
+::: tip Inlining SVGs through `url()`
+When passing a URL of SVG to a manually constructed `url()` by JS, the variable should be wrapped within double quotes.
 
-```js
+```js twoslash
+import 'vite/client'
+// ---cut---
 import imgUrl from './img.svg'
 document.getElementById('hero-img').style.background = `url("${imgUrl}")`
 ```
 
 :::
 
-### Explizite URL-Imports
+### Explicit URL Imports
 
-Assets, die nicht in der internen Liste oder in `assetsInclude` enthalten sind, können explizit als URL mit dem Suffix `?url` importiert werden. Dies ist nützlich, um beispielsweise [Houdini Paint Worklets](https://houdini.how/usage) zu importieren.
+Assets that are not included in the internal list or in `assetsInclude`, can be explicitly imported as a URL using the `?url` suffix. This is useful, for example, to import [Houdini Paint Worklets](https://houdini.how/usage).
 
-```js
+```js twoslash
+import 'vite/client'
+// ---cut---
 import workletURL from 'extra-scalloped-border/worklet.js?url'
 CSS.paintWorklet.addModule(workletURL)
 ```
 
-### Importieren von Assets als Zeichenfolge
+### Importing Asset as String
 
-Assets können als Zeichenfolgen mithilfe des Suffix `?raw` importiert werden.
+Assets can be imported as strings using the `?raw` suffix.
 
-```js
+```js twoslash
+import 'vite/client'
+// ---cut---
 import shaderString from './shader.glsl?raw'
 ```
 
-### Importieren von Skripten als Worker
+### Importing Script as a Worker
 
-Skripte können als Web Worker mit dem Suffix `?worker` oder `?sharedworker` importiert werden.
+Scripts can be imported as web workers with the `?worker` or `?sharedworker` suffix.
 
-```js
-// Separater Chunk im Produktionsbuild
+```js twoslash
+import 'vite/client'
+// ---cut---
+// Separate chunk in the production build
 import Worker from './shader.js?worker'
 const worker = new Worker()
 ```
 
-```js
+```js twoslash
+import 'vite/client'
+// ---cut---
 // sharedworker
 import SharedWorker from './shader.js?sharedworker'
 const sharedWorker = new SharedWorker()
 ```
 
-```js
-// Als Base64-Zeichenfolgen eingebettet
+```js twoslash
+import 'vite/client'
+// ---cut---
+// Inlined as base64 strings
 import InlineWorker from './shader.js?worker&inline'
 ```
 
-Weitere Details finden Sie im [Web Worker-Abschnitt](./features.md#web-workers).
+Check out the [Web Worker section](./features.md#web-workers) for more details.
 
-## Das `public`-Verzeichnis
+## The `public` Directory
 
-Wenn Sie Assets haben, die:
+If you have assets that are:
 
-- Im Quellcode nie referenziert werden (z. B. `robots.txt`)
-- Den exakt gleichen Dateinamen behalten müssen (ohne Hashing)
-- ...oder wenn Sie einfach nicht möchten, dass Sie zuerst ein Asset importieren müssen, um seine URL zu erhalten
+- Never referenced in source code (e.g. `robots.txt`)
+- Must retain the exact same file name (without hashing)
+- ...or you simply don't want to have to import an asset first just to get its URL
 
-Dann können Sie das Asset in einem speziellen `public`-Verzeichnis unter Ihrem Projektstamm platzieren. Assets in diesem Verzeichnis werden während der Entwicklung unter dem Pfad `/` bereitgestellt und im Verzeichnis `dist` unverändert im Stammverzeichnis kopiert.
+Then you can place the asset in a special `public` directory under your project root. Assets in this directory will be served at root path `/` during dev, and copied to the root of the dist directory as-is.
 
-Das Verzeichnis wird standardmäßig zu `<Projektstamm>/public` festgelegt, kann jedoch über die [`publicDir`-Option](/config/shared-options.md#publicdir) konfiguriert werden.
+The directory defaults to `<root>/public`, but can be configured via the [`publicDir` option](/config/shared-options.md#publicdir).
 
-Beachten Sie, dass:
+Note that:
 
-- Sie `public`-Assets immer mit absolutem Wurzelpfad referenzieren sollten. Zum Beispiel sollte `public/icon.png` im Quellcode als `/icon.png` referenziert werden.
-- Assets in `public` können nicht aus JavaScript importiert werden.
+- You should always reference `public` assets using root absolute path - for example, `public/icon.png` should be referenced in source code as `/icon.png`.
+- Assets in `public` cannot be imported from JavaScript.
 
 ## new URL(url, import.meta.url)
 
-[import.meta.url](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Statements/import.meta) ist ein natives ESM-Feature, das die URL des aktuellen Moduls offenlegt. Indem es mit dem nativen [URL-Konstruktor](https://developer.mozilla.org/de/docs/Web/API/URL) kombiniert wird, können wir die vollständige, aufgelöste URL eines statischen Assets mithilfe eines relativen Pfads aus einem JavaScript-Modul erhalten:
+[import.meta.url](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import.meta) is a native ESM feature that exposes the current module's URL. Combining it with the native [URL constructor](https://developer.mozilla.org/en-US/docs/Web/API/URL), we can obtain the full, resolved URL of a static asset using relative path from a JavaScript module:
 
 ```js
 const imgUrl = new URL('./img.png', import.meta.url).href
@@ -107,9 +121,9 @@ const imgUrl = new URL('./img.png', import.meta.url).href
 document.getElementById('hero-img').src = imgUrl
 ```
 
-Dies funktioniert nativ in modernen Browsern - tatsächlich muss Vite diesen Code während der Entwicklung überhaupt nicht verarbeiten!
+This works natively in modern browsers - in fact, Vite doesn't need to process this code at all during development!
 
-Dieses Muster unterstützt auch dynamische URLs über Vorlagenliterale:
+This pattern also supports dynamic URLs via template literals:
 
 ```js
 function getImageUrl(name) {
@@ -117,13 +131,13 @@ function getImageUrl(name) {
 }
 ```
 
-Während des Produktionsbuilds führt Vite die erforderlichen Transformationen durch, damit die URLs auch nach Bündelung und Asset-Hashing weiterhin auf den richtigen Speicherort zeigen. Die URL-Zeichenfolge muss jedoch statisch sein, damit sie analysiert werden kann, andernfalls bleibt der Code unverändert, was zu Laufzeitfehlern führen kann, wenn `build.target` `import.meta.url` nicht unterstützt.
+During the production build, Vite will perform necessary transforms so that the URLs still point to the correct location even after bundling and asset hashing. However, the URL string must be static so it can be analyzed, otherwise the code will be left as is, which can cause runtime errors if `build.target` does not support `import.meta.url`
 
 ```js
-// Vite wird dies nicht transformieren
+// Vite will not transform this
 const imgUrl = new URL(imagePath, import.meta.url).href
 ```
 
-::: warning Funktioniert nicht mit SSR
-Dieses Muster funktioniert nicht, wenn Sie Vite für Server-seitiges Rendern verwenden, da `import.meta.url` unterschiedliche Semantiken in Browsern gegenüber Node.js hat. Das Server-Bundle kann auch die Client-Host-URL im Voraus nicht ermitteln.
+::: warning Does not work with SSR
+This pattern does not work if you are using Vite for Server-Side Rendering, because `import.meta.url` have different semantics in browsers vs. Node.js. The server bundle also cannot determine the client host URL ahead of time.
 :::

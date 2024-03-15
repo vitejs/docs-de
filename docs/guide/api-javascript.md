@@ -12,26 +12,24 @@ async function createServer(inlineConfig?: InlineConfig): Promise<ViteDevServer>
 
 **Beispielverwendung:**
 
-```js
-import { fileURLToPath } from 'url'
+```ts twoslash
+import { fileURLToPath } from 'node:url'
 import { createServer } from 'vite'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
-;(async () => {
-  const server = await createServer({
-    // Alle gültigen Benutzerkonfigurationsoptionen, plus `mode` und `configFile`
-    configFile: false,
-    root: __dirname,
-    server: {
-      port: 1337
-    }
-  })
-  await server.listen()
+const server = await createServer({
+  // any valid user config options, plus `mode` and `configFile`
+  configFile: false,
+  root: __dirname,
+  server: {
+    port: 1337,
+  },
+})
+await server.listen()
 
-  server.printUrls()
-  server.bindCLIShortcuts({ print: true })
-})()
+server.printUrls()
+server.bindCLIShortcuts({ print: true })
 ```
 
 :::tip HINWEIS
@@ -44,7 +42,7 @@ Bei Verwendung von [middleware mode](/config/server-options.html#server-middlewa
 <details>
 <summary>Beispiel</summary>
 
-```ts
+```ts twoslash
 import http from 'http'
 import { createServer } from 'vite'
 
@@ -57,16 +55,17 @@ const vite = await createServer({
       // Den übergeordneten http-Server für Proxy-WebSocket bereitstellen
       server: parentServer,
     },
-  },
-  proxy: {
-    '/ws': {
-      target: 'ws://localhost:3000',
-      // Proxying WebSocket
-      ws: true,
+    proxy: {
+      '/ws': {
+        target: 'ws://localhost:3000',
+        // Proxying WebSocket
+        ws: true,
+      },
     },
   },
 })
 
+// @noErrors: 2339
 parentServer.use(vite.middlewares)
 ```
 
@@ -193,24 +192,22 @@ async function build(
 
 **Beispielverwendung:**
 
-```js
-import path from 'path'
-import { fileURLToPath } from 'url'
+```ts twoslash
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { build } from 'vite'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
-;(async () => {
-  await build({
-    root: path.resolve(__dirname, './project'),
-    base: '/foo/',
-    build: {
-      rollupOptions: {
-        // ...
-      }
-    }
-  })
-})()
+await build({
+  root: path.resolve(__dirname, './project'),
+  base: '/foo/',
+  build: {
+    rollupOptions: {
+      // ...
+    },
+  },
+})
 ```
 
 ## `preview`
@@ -223,20 +220,19 @@ async function preview(inlineConfig?: InlineConfig): Promise<PreviewServer>
 
 **Beispielverwendung:**
 
-```js
+```ts twoslash
 import { preview } from 'vite'
-;(async () => {
-  const previewServer = await preview({
-    // Alle gültigen Benutzerkonfigurationsoptionen, plus `mode` und `configFile`
-    preview: {
-      port: 8080,
-      open: true
-    }
-  })
 
-  previewServer.printUrls()
-  previewServer.bindCLIShortcuts({ print: true })
-})()
+const previewServer = await preview({
+  // any valid user config options, plus `mode` and `configFile`
+  preview: {
+    port: 8080,
+    open: true,
+  },
+})
+
+previewServer.printUrls()
+previewServer.bindCLIShortcuts({ print: true })
 ```
 
 ## `PreviewServer`
@@ -305,12 +301,22 @@ function mergeConfig(
 
 Vereinigt tief zwei Vite-Konfigurationen. `isRoot` repräsentiert die Ebene innerhalb der Vite-Konfiguration, die zusammengeführt wird. Legen Sie es beispielsweise auf `false`, wenn Sie zwei `build`-Optionen zusammenführen.
 
-:::tip HINWEIS
-`mergeConfig` akzeptiert nur Konfigurationen in Objektform. Wenn Sie eine Konfiguration in Rückrufform haben, sollten Sie sie aufrufen, bevor Sie sie an `mergeConfig` übergeben.
+::: tip NOTE
+`mergeConfig` accepts only config in object form. If you have a config in callback form, you should call it before passing into `mergeConfig`.
 
-Sie können den `defineConfig`-Helfer verwenden, um eine Konfiguration in Rückrufform mit einer anderen Konfiguration zu vereinigen:
+You can use the `defineConfig` helper to merge a config in callback form with another config:
 
-```ts
+```ts twoslash
+import {
+  defineConfig,
+  mergeConfig,
+  type UserConfigFnObject,
+  type UserConfig,
+} from 'vite'
+declare const configAsCallback: UserConfigFnObject
+declare const configAsObject: UserConfig
+
+// ---cut---
 export default defineConfig((configEnv) =>
   mergeConfig(configAsCallback(configEnv), configAsObject)
 )

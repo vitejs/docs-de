@@ -47,7 +47,9 @@ Sie können jeden gewünschten Platzhalter anstelle von `<!--ssr-outlet-->` verw
 
 Wenn Sie bedingte Logik basierend auf SSR gegenüber Client ausführen müssen, können Sie folgendes verwenden:
 
-```js
+```js twoslash
+import 'vite/client'
+// ---cut---
 if (import.meta.env.SSR) {
   // ... serverseitige Logik
 }
@@ -61,10 +63,10 @@ Wenn Sie eine SSR-Anwendung erstellen, möchten Sie wahrscheinlich die volle Kon
 
 **server.js**
 
-```js{15-18}
-import fs from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
+```js{15-18} twoslash
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import express from 'express'
 import { createServer as createViteServer } from 'vite'
 
@@ -103,7 +105,18 @@ Hierbei handelt es sich um eine Instanz von [ViteDevServer](./api-javascript#vit
 
 Der nächste Schritt besteht darin, den Handler `*` zu implementieren, um servergerendertes HTML zu servieren:
 
-```js
+```js twoslash
+// @noErrors
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+/** @type {import('express').Express} */
+var app
+/** @type {import('vite').ViteDevServer}  */
+var vite
+
+// ---cut---
 app.use('*', async (req, res, next) => {
   const url = req.originalUrl
 
@@ -238,7 +251,9 @@ Einige Frameworks wie Vue oder Svelte kompilieren Komponenten in verschiedene Fo
 
 **Beispiel:**
 
-```js
+```js twoslash
+/** @type {() => import('vite').Plugin} */
+// ---cut---
 export function mySSRPlugin() {
   return {
     name: 'my-ssr',
