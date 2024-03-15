@@ -37,7 +37,9 @@ In einer Monorepo-Konfiguration kann eine Abhängigkeit ein verknüpftes Paket a
 
 Dies erfordert jedoch, dass die verknüpfte Abhängigkeit als ESM exportiert wird. Andernfalls können Sie die Abhängigkeit zu [`optimizeDeps.include`](/config/dep-optimization-options.md#optimizedeps-include) und [`build.commonjsOptions.include`](/config/build-options.md#build-commonjsoptions) in Ihrer Konfiguration hinzufügen.
 
-```js
+```js twoslash
+import { defineConfig } from 'vite'
+// ---cut---
 export default defineConfig({
   optimizeDeps: {
     include: ['linked-dep']

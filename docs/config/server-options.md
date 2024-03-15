@@ -18,10 +18,10 @@ Der erste Fall tritt auf, wenn `localhost` verwendet wird. Node.js unter v17 ord
 
 Sie können [`dns.setDefaultResultOrder('verbatim')`](https://nodejs.org/api/dns.html#dns_dns_setdefaultresultorder_order) festlegen, um das Neuanordnungsverhalten zu deaktivieren. Vite gibt die Adresse dann als `localhost` aus.
 
-```js
+```js twoslash
 // vite.config.js
 import { defineConfig } from 'vite'
-import dns from 'dns'
+import dns from 'node:dns'
 
 dns.setDefaultResultOrder('verbatim')
 
@@ -238,7 +238,7 @@ Erstellen Sie den Vite-Server im Middleware-Modus.
 
 - **Beispiel:**
 
-```js
+```js twoslash
 import express from 'express'
 import { createServer as createViteServer } from 'vite'
 
@@ -358,9 +358,9 @@ export default defineConfig({
     // in ihrem Pfad zur Ignorierungsliste hinzufügen.
     sourcemapIgnoreList(sourcePath, sourcemapPath) {
       return sourcePath.includes('node_modules')
-    }
-  }
-};
+    },
+  },
+})
 ```
 
 :::tip HINWEIS

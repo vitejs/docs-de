@@ -10,7 +10,7 @@ Um ein Plugin zu verwenden, muss es zu den `devDependencies` des Projekts hinzug
 $ npm add -D @vitejs/plugin-legacy
 ```
 
-```js
+```js twoslash
 // vite.config.js
 import legacy from '@vitejs/plugin-legacy'
 import { defineConfig } from 'vite'
@@ -46,7 +46,7 @@ Für die Kompatibilität mit einigen Rollup-Plugins kann es notwendig sein, die 
 - default: Plugin nach den Vite-Kernplugins aufrufen
 - `post`: Plugin nach den Vite-Build-Plugins aufrufen
 
-```js
+```js twoslash
 // vite.config.js
 import image from '@rollup/plugin-image'
 import { defineConfig } from 'vite'
@@ -67,7 +67,7 @@ Ausführliche Informationen finden Sie im [Plugins API Guide](./api-plugin.md#pl
 
 Standardmäßig werden Plugins sowohl für den Dev-Server als auch für den Build aufgerufen. In Fällen, in denen ein Plugin nur während des Dev-Servers oder des Builds bedingt angewendet werden muss, verwenden Sie die `apply`-Eigenschaft, um sie nur während des `'build'` oder `'serve'` aufzurufen:
 
-```js
+```js twoslash
 // vite.config.js
 import typescript2 from 'rollup-plugin-typescript2'
 import { defineConfig } from 'vite'

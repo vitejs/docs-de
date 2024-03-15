@@ -420,7 +420,7 @@ Passen Sie die Konsolenausgabe an. Standardmäßig ist `'info'`.
 
 Verwenden Sie einen benutzerdefinierten Logger, um Nachrichten zu protokollieren. Sie können die `createLogger`-API von Vite verwenden, um den Standard-Logger zu erhalten und ihn anpassen, um beispielsweise die Nachricht zu ändern oder bestimmte Warnungen auszufiltern.
 
-```js
+```ts twoslash
 import { createLogger, defineConfig } from 'vite'
 
 const logger = createLogger()
