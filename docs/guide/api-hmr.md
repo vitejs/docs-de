@@ -39,7 +39,7 @@ interface ViteHotContext {
   ): void
   off<T extends string>(
     event: T,
-    cb: (payload: InferCustomEventPayload<T>) => void,
+    cb: (payload: InferCustomEventPayload<T>) => void
   ): void
   send<T extends string>(event: T, data?: InferCustomEventPayload<T>): void
 }
@@ -206,3 +206,9 @@ Senden Sie benutzerdefinierte Ereignisse zurück an den Vite-Entwicklungsserver.
 Wenn dies vor der Verbindung aufgerufen wird, wird die Daten zwischengespeichert und gesendet, sobald die Verbindung hergestellt ist.
 
 Weitere Informationen finden Sie unter [Kommunikation zwischen Client und Server](/guide/api-plugin.html#client-server-communication).
+
+## Weiteres wissenswertes
+
+Wenn Sie mehr über die Verwendung der HMR-API und ihre Funktionsweise erfahren möchten, finden Sie hier weitere Informationen. Sehen Sie sich diese Ressourcen an:
+
+- [Hot Module Replacement ist einfach](https://bjornlu.com/blog/hot-module-replacement-is-easy)
