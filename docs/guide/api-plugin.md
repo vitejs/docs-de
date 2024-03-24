@@ -477,6 +477,8 @@ Ein Vite-Plugin kann zusätzlich eine `enforce`-Eigenschaft angeben (ähnlich wi
 - Benutzer-Plugins mit `enforce: 'post'`
 - Vite-Post-Build-Plugins (minify, manifest, reporting)
 
+Beachten Sie, dass dies unabhängig von der Reihenfolge der Hooks ist, denn diese unterliegen immer noch separat dem Attribut "Reihenfolge" [wie es bei Rollup-Hooks üblich ist](https://rollupjs.org/plugin-development/#build-hooks).
+
 ## Bedingte Anwendung
 
 Standardmäßig werden Plugins sowohl für den Serve- als auch für den Build-Vorgang aufgerufen. In Fällen, in denen ein Plugin nur während des Serve- oder Build-Vorgangs bedingt angewendet werden muss, verwenden Sie die `apply`-Eigenschaft, um sie nur während `'build'` oder `'serve'` aufzurufen:
