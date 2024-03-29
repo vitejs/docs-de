@@ -286,6 +286,10 @@ Ob Sourcemaps während der Entwicklung aktiviert werden sollen.
 
 Wählt den für die CSS-Verarbeitung verwendeten Engine aus. Weitere Informationen finden Sie unter [Lightning CSS](../guide/features.md#lightning-css).
 
+::: info `@import` duplizieren
+Beachten Sie, dass postcss (postcss-import) derzeit ein anderes Verhalten mit duplizierten `@import` von Browsern aufweist. Siehe [postcss/postcss-import#462](https://github.com/postcss/postcss-import/issues/462).
+:::
+
 ## css.lightningcss
 
 - **Experimentell:** [Feedback geben](https://github.com/vitejs/vite/discussions/13835)
