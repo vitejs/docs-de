@@ -48,21 +48,7 @@ Sie können beispielsweise mehrere Rollup-Ausgaben mit Plugins spezifizieren, di
 
 ## Chunking-Strategie
 
-Sie können konfigurieren, wie Chunks aufgeteilt werden, indem Sie `build.rollupOptions.output.manualChunks` verwenden (siehe [Rollup-Dokumentation](https://rollupjs.org/configuration-options/#output-manualchunks)). Bis Vite 2.8 teilte die standardmäßige Chunking-Strategie die Chunks in `index` und `vendor` auf. Dies ist eine gute Strategie für einige SPAs, aber es ist schwer, eine allgemeine Lösung für jeden Vite-Zielfall anzubieten. Ab Vite 2.9 wird `manualChunks` standardmäßig nicht mehr geändert. Sie können die Strategie zum Aufteilen des Vendor-Chunks weiterhin verwenden, indem Sie das `splitVendorChunkPlugin` in Ihrer Konfigurationsdatei hinzufügen:
-
-```js
-// vite.config.js
-import { splitVendorChunkPlugin } from 'vite'
-export default defineConfig({
-  plugins: [splitVendorChunkPlugin()]
-})
-```
-
-Diese Strategie wird auch als `splitVendorChunk({ cache: SplitVendorChunkCache })`-Factory bereitgestellt, falls eine Kombination mit benutzerdefinierter Logik erforderlich ist. In diesem Fall muss `cache.reset()` bei `buildStart` aufgerufen werden, damit der Build-Watch-Modus in diesem Fall korrekt funktioniert.
-
-::: warning
-Verwenden Sie die Funktion `build.rollupOptions.output.manualChunks`, falls Sie dieses Plugin verwenden. Wenn die Objektform verwendet wird, hat das Plugin keine Wirkung.
-:::
+Sie können konfigurieren, wie Chunks aufgeteilt werden, indem Sie `build.rollupOptions.output.manualChunks` verwenden (siehe [Rollup docs](https://rollupjs.org/configuration-options/#output-manualchunks)). Wenn Sie ein Framework verwenden, lesen Sie dessen Dokumentation, um zu konfigurieren, wie Chunks aufgeteilt werden.
 
 ## Fehlerbehandlung beim Laden
 
