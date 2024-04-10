@@ -1,7 +1,9 @@
 # Vite Runtime API
 
-:::warning Low-Level-API
-Diese API wurde in Vite 5.1 als experimentelle Funktion eingeführt. Sie wurde zu [gather feedback](https://github.com/vitejs/vite/discussions/15774) hinzugefügt. Wahrscheinlich wird es in Vite 5.2 Änderungen hierzu geben, also stellen Sie sicher, dass Sie die Vite-Version auf `~5.1.0` festsetzen, wenn Sie sie benutzen. Dies ist eine Low-Level-API, die für Bibliotheks- und Framework-Autoren gedacht ist. Wenn es Ihr Ziel ist, eine Anwendung zu erstellen, stellen Sie sicher, dass Sie zuerst die SSR-Plugins und -Werkzeuge auf höherer Ebene unter [Awesome Vite SSR section](https://github.com/vitejs/awesome-vite#ssr) ausprobieren.
+:::warning Low-level API
+Diese API wurde in Vite 5.1 als experimentelle Funktion eingeführt. Sie wurde zu [gather feedback](https://github.com/vitejs/vite/discussions/15774) hinzugefügt. Es wird wahrscheinlich zu Änderungen kommen, also stellen Sie sicher, dass Sie die Vite-Version auf `~5.1.0` setzen, wenn Sie sie benutzen. Dies ist eine Low-Level-API, die für Bibliotheks- und Framework-Autoren gedacht ist. Wenn es Ihr Ziel ist, eine Anwendung zu erstellen, sollten Sie sich zuerst die SSR-Plugins und -Tools auf [Awesome Vite SSR section](https://github.com/vitejs/awesome-vite#ssr) ansehen.
+
+Derzeit wird die API als [Environment API](https://github.com/vitejs/vite/discussions/16358) überarbeitet, die als `^6.0.0-alpha.0` veröffentlicht wird.
 :::
 
 Die "Vite Runtime" ist ein Werkzeug, das es erlaubt, jeden Code auszuführen, indem es ihn zuerst mit Vite-Plugins verarbeitet. Es unterscheidet sich von `server.ssrLoadModule`, weil die Runtime-Implementierung vom Server entkoppelt ist. Dies erlaubt es Autoren von Bibliotheken und Frameworks, ihre eigene Kommunikationsschicht zwischen dem Server und der Laufzeit zu implementieren.
