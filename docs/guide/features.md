@@ -648,7 +648,7 @@ Für den Einsatz von CSP müssen aufgrund von Vite's Interna bestimmte Direktive
 
 ### [`'nonce-{RANDOM}'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/Sources#nonce-base64-value)
 
-Wenn [`html.cspNonce`](/config/shared-options#html-cspnonce) gesetzt ist, fügt Vite ein nonce-Attribut mit dem angegebenen Wert zum Output-Script-Tag und Link-Tag für Stylesheets hinzu. Beachten Sie, dass Vite kein Nonce-Attribut zu anderen Tags hinzufügt, wie z.B. `<style>`. Wenn diese Option gesetzt ist, fügt Vite außerdem ein Meta-Tag ein (`<meta property="csp-nonce" nonce="PLACEHOLDER" />`).
+Falls [`html.cspNonce`](/config/shared-options#html-cspnonce) gesetzt ist, fügt Vite ein nonce-Attribut mit dem angegebenen Wert zu allen `<script>`- und `<style>`-Tags sowie zu `<link>`-Tags für Stylesheets und Modul-Preloading hinzu. Falls diese Option gesetzt ist, fügt Vite außerdem ein Meta-Tag ein (`<meta property="csp-nonce" nonce="PLACEHOLDER" />`).
 
 Der nonce-Wert eines Meta-Tags mit `property="csp-nonce"` wird von Vite bei Bedarf sowohl während der Entwicklung als auch nach dem Build verwendet.
 
