@@ -248,23 +248,30 @@ experimental: {
   }
 }
 ```
+<!-- prettier-ignore-end -->
 
 Wenn die gehashten Assets und öffentlichen Dateien nicht gemeinsam bereitgestellt werden, können für jede Gruppe unabhängig Optionen mit dem Assettyp in der zweiten `context`-Parameter gegebenen `renderBuiltUrl`-Funktion definiert werden.
 
-```ts
+<!-- prettier-ignore-start -->
+```ts twoslash
+import type { UserConfig } from 'vite'
+import path from 'node:path'
+const config: UserConfig = {
+// ---cut-before---
 experimental: {
-  renderBuiltUrl(filename: string, { hostId, hostType, type }: { hostId: string, hostType: 'js' | 'css' | 'html', type: 'public' | 'asset' }) {
+  renderBuiltUrl(filename, { hostId, hostType, type }) {
     if (type === 'public') {
       return 'https://www.domain.com/' + filename
-    }
-    else if (path.extname(hostId) === '.js') {
+    } else if (path.extname(hostId) === '.js') {
       return { runtime: `window.__assetsPath(${JSON.stringify(filename)})` }
-    }
-    else {
+    } else {
       return 'https://cdn.domain.com/assets/' + filename
     }
-  }
+  },
+},
+// ---cut-after---
 }
 ```
+<!-- prettier-ignore-end -->
 
 Note that the `filename` passed is a decoded URL, and if the function returns a URL string, it should also be decoded. Vite will handle the encoding automatically when rendering the URLs. If an object with `runtime` is returned, encoding should be handled yourself where needed as the runtime code will be rendered as is.
