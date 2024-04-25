@@ -24,9 +24,9 @@ Die Leistung von Community-Plugins liegt jedoch außerhalb der Kontrolle von Vit
 
 3. Die `resolveId`-, `load`- und `transform`-Hooks können dazu führen, dass einige Dateien langsamer geladen werden als andere. Auch wenn dies manchmal unvermeidbar ist, lohnt es sich, nach möglichen Optimierungsbereichen zu suchen. Zum Beispiel kann man prüfen, ob der `code` ein bestimmtes Schlüsselwort enthält oder die `id` mit einer bestimmten Erweiterung übereinstimmt, bevor man die vollständige Transformation durchführt.
 
-   The longer it takes to transform a file, the more significant the request waterfall will be when loading the site in the browser.
+   Je länger es dauert, eine Datei umzuwandeln, desto größer ist der Request Waterfall beim Laden der Website im Browser.
 
-   You can inspect the duration it takes to transform a file using `vite --debug plugin-transform` or [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect). Note that as asynchronous operations tend to provide inaccurate timings, you should treat the numbers as a rough estimate, but it should still reveal the more expensive operations.
+   Sie können die Dauer, die für die Umwandlung einer Datei benötigt wird, mit `vite --debug plugin-transform` oder [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) überprüfen. Da asynchrone Operationen dazu tendieren, ungenaue Zeitangaben zu liefern, sollten Sie die Zahlen eher als grobe Schätzung betrachten, aber sie sollten dennoch die teureren Operationen aufzeigen.
 
 ::: tip Profiling
 Sie können `vite --profile` ausführen, die Website besuchen und in Ihrem Terminal `p + Enter` drücken, um ein `.cpuprofile` aufzuzeichnen. Ein Tool wie [speedscope](https://www.speedscope.app) kann dann verwendet werden, um das Profil zu überprüfen und Engpässe zu identifizieren. Sie können die Profile auch [mit dem Vite-Team teilen](https://chat.vitejs.dev), um bei der Identifizierung von Leistungsproblemen zu helfen.
