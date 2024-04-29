@@ -2,7 +2,7 @@
 
 ## Umgebungsvariablen
 
-Vite stellt Umgebungsvariablen im speziellen **`import.meta.env`** Objekt zur Verfügung. Einige integrierte Variablen stehen in allen Fällen zur Verfügung:
+Vite stellt env-Variablen auf dem speziellen **`import.meta.env`**-Objekt zur Verfügung, die zur Erstellungszeit statisch ersetzt werden. Einige eingebaute Variablen sind in allen folgenden Fällen verfügbar:
 
 - **`import.meta.env.MODE`**: {string} der [Modus](#Modi), in dem die App ausgeführt wird.
 
