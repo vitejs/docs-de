@@ -332,3 +332,7 @@ Bereiten Sie Ihre statische Website mit [AWS Amplify Hosting](https://aws.amazon
 ## Kinsta Hosting statischer Websites
 
 Sie können Ihre Vite-Anwendung als statische Website auf [Kinsta](https://kinsta.com/static-site-hosting/) bereitstellen, indem Sie diese [Anweisungen](https://kinsta.com/docs/react-vite-example/) befolgen.
+
+## xmit Hosting statischer Websites
+
+Stellen Sie Ihre statische Website mit [xmit](https://xmit.co) bereit, indem Sie diese [Anleitung](https://xmit.dev/posts/vite-quickstart/) befolgen.
