@@ -235,9 +235,13 @@ Für fortgeschrittene Anwendungsfälle können die bereitgestellten Assets und �
 - Die generierten gehashten Assets (JS, CSS und andere Dateitypen wie Bilder)
 - Die kopierten [öffentlichen Dateien](assets.md#the-public-directory)
 
-Ein einziger statischer [Basispfad](#public-base-path) reicht in diesen Szenarien nicht aus. Vite bietet experimentelle Unterstützung für erweiterte Basisoptionen während des Builds, die `experimental.renderBuiltUrl` verwenden.
+A single static [base](#public-base-path) isn't enough in these scenarios. Vite provides experimental support for advanced base options during build, using `experimental.renderBuiltUrl`.
 
-```ts
+```ts twoslash
+import type { UserConfig } from 'vite'
+// prettier-ignore
+const config: UserConfig = {
+// ---cut-before---
 experimental: {
   renderBuiltUrl(filename: string, { hostType }: { hostType: 'js' | 'css' | 'html' }) {
     if (hostType === 'js') {
@@ -248,14 +252,13 @@ experimental: {
   }
 }
 ```
-<!-- prettier-ignore-end -->
 
 Wenn die gehashten Assets und öffentlichen Dateien nicht gemeinsam bereitgestellt werden, können für jede Gruppe unabhängig Optionen mit dem Assettyp in der zweiten `context`-Parameter gegebenen `renderBuiltUrl`-Funktion definiert werden.
 
-<!-- prettier-ignore-start -->
 ```ts twoslash
 import type { UserConfig } from 'vite'
 import path from 'node:path'
+// prettier-ignore
 const config: UserConfig = {
 // ---cut-before---
 experimental: {
@@ -272,6 +275,5 @@ experimental: {
 // ---cut-after---
 }
 ```
-<!-- prettier-ignore-end -->
 
 Note that the `filename` passed is a decoded URL, and if the function returns a URL string, it should also be decoded. Vite will handle the encoding automatically when rendering the URLs. If an object with `runtime` is returned, encoding should be handled yourself where needed as the runtime code will be rendered as is.
