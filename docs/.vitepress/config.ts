@@ -106,7 +106,7 @@ export default defineConfig({
     logo: '/logo.svg',
 
     editLink: {
-      pattern: 'https://github.com/vitejs/vite/edit/main/docs/:path',
+      pattern: 'https://github.com/vitejs/docs-de/edit/main/docs/:path',
       text: 'Änderungen für diese Seite vorschlagen',
     },
 
