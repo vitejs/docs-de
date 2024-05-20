@@ -12,26 +12,26 @@ importers:
         specifier: ^4.2.2
         version: 4.2.2
       search-insights:
-        specifier: ^2.11.0
+        specifier: ^2.13.0
         version: 2.13.0
       vitepress:
         specifier: 1.2.0
         version: 1.2.0(@algolia/client-search@4.23.3)(@types/node@20.12.12)(@types/react@18.3.2)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.13.0)(typescript@5.4.5)
     devDependencies:
       '@algolia/client-search':
-        specifier: ^4.20.0
+        specifier: ^4.23.3
         version: 4.23.3
       '@types/node':
         specifier: 20.12.12
         version: 20.12.12
       '@types/react':
-        specifier: ^18.2.37
+        specifier: ^18.3.2
         version: 18.3.2
       react:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1
       react-dom:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
 
   docs:
