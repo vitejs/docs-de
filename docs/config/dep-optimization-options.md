@@ -19,9 +19,7 @@ Abhängigkeiten, die von der Vorab-Bündelung ausgeschlossen werden sollen.
 :::warning CommonJS
 CommonJS-Abhängigkeiten sollten nicht von der Optimierung ausgeschlossen werden. Wenn eine ESM-Abhängigkeit von der Optimierung ausgeschlossen ist, aber eine verschachtelte CommonJS-Abhängigkeit hat, sollte die CommonJS-Abhängigkeit zu `optimizeDeps.include` hinzugefügt werden. Beispiel:
 
-```js twoslash
-import { defineConfig } from 'vite'
-// ---cut---
+```js
 export default defineConfig({
   optimizeDeps: {
     include: ['esm-dep > cjs-dep']
@@ -39,9 +37,7 @@ Standardmäßig werden verknüpfte Pakete, die sich nicht in `node_modules` befi
 
 **Experimentell:** Wenn Sie eine Bibliothek mit vielen tiefen Importen verwenden, können Sie auch ein abschließendes Glob-Muster angeben, um alle tiefen Importe auf einmal vorab zu bündeln. Dies vermeidet ständiges Vorab-Bündeln, wenn ein neuer tiefer Import verwendet wird. [Feedback geben](https://github.com/vitejs/vite/discussions/15833). Zum Beispiel:
 
-```js twoslash
-import { defineConfig } from 'vite'
-// ---cut---
+```js
 export default defineConfig({
   optimizeDeps: {
     include: ['my-lib/components/**/*.vue']

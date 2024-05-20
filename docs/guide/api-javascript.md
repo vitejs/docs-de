@@ -12,24 +12,26 @@ async function createServer(inlineConfig?: InlineConfig): Promise<ViteDevServer>
 
 **Beispielverwendung:**
 
-```ts twoslash
-import { fileURLToPath } from 'node:url'
+```js
+import { fileURLToPath } from 'url'
 import { createServer } from 'vite'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
-const server = await createServer({
-  // Alle gültigen Benutzerkonfigurationsoptionen, plus `mode` und `configFile`
-  configFile: false,
-  root: __dirname,
-  server: {
-    port: 1337,
-  },
-})
-await server.listen()
+;(async () => {
+  const server = await createServer({
+    // Alle gültigen Benutzerkonfigurationsoptionen, plus `mode` und `configFile`
+    configFile: false,
+    root: __dirname,
+    server: {
+      port: 1337
+    }
+  })
+  await server.listen()
 
-server.printUrls()
-server.bindCLIShortcuts({ print: true })
+  server.printUrls()
+  server.bindCLIShortcuts({ print: true })
+})()
 ```
 
 :::tip HINWEIS
@@ -42,7 +44,7 @@ Bei Verwendung von [middleware mode](/config/server-options.html#server-middlewa
 <details>
 <summary>Beispiel</summary>
 
-```ts twoslash
+```ts
 import http from 'http'
 import { createServer } from 'vite'
 
@@ -55,17 +57,16 @@ const vite = await createServer({
       // Den übergeordneten http-Server für Proxy-WebSocket bereitstellen
       server: parentServer,
     },
-    proxy: {
-      '/ws': {
-        target: 'ws://localhost:3000',
-        // Proxying WebSocket
-        ws: true,
-      },
+  },
+  proxy: {
+    '/ws': {
+      target: 'ws://localhost:3000',
+      // Proxying WebSocket
+      ws: true,
     },
   },
 })
 
-// @noErrors: 2339
 parentServer.use(vite.middlewares)
 ```
 
@@ -192,22 +193,24 @@ async function build(
 
 **Beispielverwendung:**
 
-```ts twoslash
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+```js
+import path from 'path'
+import { fileURLToPath } from 'url'
 import { build } from 'vite'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
-await build({
-  root: path.resolve(__dirname, './project'),
-  base: '/foo/',
-  build: {
-    rollupOptions: {
-      // ...
-    },
-  },
-})
+;(async () => {
+  await build({
+    root: path.resolve(__dirname, './project'),
+    base: '/foo/',
+    build: {
+      rollupOptions: {
+        // ...
+      }
+    }
+  })
+})()
 ```
 
 ## `preview`
@@ -220,19 +223,20 @@ async function preview(inlineConfig?: InlineConfig): Promise<PreviewServer>
 
 **Beispielverwendung:**
 
-```ts twoslash
+```js
 import { preview } from 'vite'
+;(async () => {
+  const previewServer = await preview({
+    // Alle gültigen Benutzerkonfigurationsoptionen, plus `mode` und `configFile`
+    preview: {
+      port: 8080,
+      open: true
+    }
+  })
 
-const previewServer = await preview({
-  // Alle gültigen Benutzerkonfigurationsoptionen, plus `mode` und `configFile`
-  preview: {
-    port: 8080,
-    open: true,
-  },
-})
-
-previewServer.printUrls()
-previewServer.bindCLIShortcuts({ print: true })
+  previewServer.printUrls()
+  previewServer.bindCLIShortcuts({ print: true })
+})()
 ```
 
 ## `PreviewServer`
@@ -306,17 +310,7 @@ Vereinigt tief zwei Vite-Konfigurationen. `isRoot` repräsentiert die Ebene inne
 
 Sie können den `defineConfig`-Helfer verwenden, um eine Konfiguration in Rückrufform mit einer anderen Konfiguration zu vereinigen:
 
-```ts twoslash
-import {
-  defineConfig,
-  mergeConfig,
-  type UserConfigFnObject,
-  type UserConfig,
-} from 'vite'
-declare const configAsCallback: UserConfigFnObject
-declare const configAsObject: UserConfig
-
-// ---cut---
+```ts
 export default defineConfig((configEnv) =>
   mergeConfig(configAsCallback(configEnv), configAsObject)
 )

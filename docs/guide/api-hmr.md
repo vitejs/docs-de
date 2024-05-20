@@ -8,13 +8,13 @@ Die manuelle HMR API ist hauptsächlich für Framework- und Tool-Autoren gedacht
 
 Vite stellt seine manuelle HMR API über das spezielle `import.meta.hot` Objekt zur Verfügung:
 
-```ts twoslash
-import type { ModuleNamespace } from 'vite/types/hot.d.ts'
-import type { InferCustomEventPayload } from 'vite/types/customEvent.d.ts'
-
-// ---cut---
+```ts
 interface ImportMeta {
   readonly hot?: ViteHotContext
+}
+
+type ModuleNamespace = Record<string, any> & {
+  [Symbol.toStringTag]: 'Module'
 }
 
 interface ViteHotContext {
@@ -32,6 +32,7 @@ interface ViteHotContext {
   prune(cb: (data: any) => void): void
   invalidate(message?: string): void
 
+  // `InferCustomEventPayload` bietet Typen für integrierte Vite-Ereignisse
   on<T extends string>(
     event: T,
     cb: (payload: InferCustomEventPayload<T>) => void
@@ -66,9 +67,7 @@ Vite stellt Typdefinitionen für `import.meta.hot` in [`vite/client.d.ts`](https
 
 Um ein Modul zur Selbstannahme zu bringen, verwenden Sie `import.meta.hot.accept` mit einem Callback, der das aktualisierte Modul empfängt:
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 export const count = 1
 
 if (import.meta.hot) {
@@ -91,13 +90,7 @@ Vite erfordert, dass der Aufruf dieser Funktion in der Quellcodeform als `import
 
 Ein Modul kann auch Updates von direkten Abhängigkeiten akzeptieren, ohne sich selbst neu zu laden:
 
-```js twoslash
-// @filename: /foo.d.ts
-export declare const foo: () => void
-
-// @filename: /example.js
-import 'vite/client'
-// ---cut---
+```js
 import { foo } from './foo.js'
 
 foo()
@@ -122,9 +115,7 @@ if (import.meta.hot) {
 
 Ein Modul, das sich selbst annimmt, oder ein Modul, das erwartet, von anderen angenommen zu werden, kann `hot.dispose` verwenden, um alle persistenten Seiteneffekte zu bereinigen, die durch seine aktualisierte Kopie erstellt wurden:
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 function setupSideEffect() {}
 
 setupSideEffect()
@@ -140,9 +131,7 @@ if (import.meta.hot) {
 
 Registrieren Sie einen Callback, der aufgerufen wird, wenn das Modul nicht mehr auf der Seite importiert wird. Im Vergleich zu `hot.dispose` kann dies verwendet werden, wenn der Quellcode selbst auf Updates hin Seiten Effekte bereinigt und Sie nur bereinigen müssen, wenn er von der Seite entfernt wird. Vite verwendet dies derzeit für `.css`-Importe.
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 function setupOrReuseSideEffect() {}
 
 setupOrReuseSideEffect()
@@ -160,9 +149,7 @@ Das `import.meta.hot.data` Objekt bleibt über verschiedene Instanzen des gleich
 
 Note that re-assignment of `data` itself is not supported. Instead, you should mutate properties of the `data` object so information added from other handlers are preserved.
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 // ok
 import.meta.hot.data.someValue = 'hello'
 
@@ -182,9 +169,7 @@ Ein Modul, das Hot-Updates annimmt, kann während der Laufzeit feststellen, dass
 
 Beachten Sie, dass Sie `import.meta.hot.accept` immer aufrufen sollten, auch wenn Sie planen, sofort danach `invalidate` aufzurufen, da der HMR-Client sonst nicht auf zukünftige Änderungen am selbst annehmenden Modul hört. Um Ihre Absicht klar zu kommunizieren, empfehlen wir, `invalidate` innerhalb des `accept`-Callbacks wie folgt aufzurufen:
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 import.meta.hot.accept((module) => {
   // Sie können die neue Modulinstanz verwenden, um zu entscheiden, ob Sie ungültig machen möchten.
   if (cannotHandleUpdate(module)) {

@@ -37,7 +37,7 @@ importers:
   docs:
     devDependencies:
       '@shikijs/vitepress-twoslash':
-        specifier: ^1.2.0
+        specifier: ^1.1.7
         version: 1.6.0(typescript@5.4.5)
       '@types/express':
         specifier: ^4.17.21
@@ -49,1404 +49,9 @@ importers:
         specifier: ^3.4.21
         version: 3.4.27(typescript@5.4.5)
 
-  packages/create-vite:
-    devDependencies:
-      '@types/minimist':
-        specifier: ^1.2.5
-        version: 1.2.5
-      '@types/prompts':
-        specifier: ^2.4.9
-        version: 2.4.9
-      cross-spawn:
-        specifier: ^7.0.3
-        version: 7.0.3
-      kolorist:
-        specifier: ^1.8.0
-        version: 1.8.0
-      minimist:
-        specifier: ^1.2.8
-        version: 1.2.8
-      prompts:
-        specifier: ^2.4.2
-        version: 2.4.2
-      unbuild:
-        specifier: ^2.0.0
-        version: 2.0.0(typescript@5.2.2)
-
-  packages/plugin-legacy:
-    dependencies:
-      '@babel/core':
-        specifier: ^7.24.0
-        version: 7.24.0
-      '@babel/preset-env':
-        specifier: ^7.24.0
-        version: 7.24.0(@babel/core@7.24.0)
-      browserslist:
-        specifier: ^4.23.0
-        version: 4.23.0
-      browserslist-to-esbuild:
-        specifier: ^2.1.1
-        version: 2.1.1(browserslist@4.23.0)
-      core-js:
-        specifier: ^3.36.0
-        version: 3.36.0
-      magic-string:
-        specifier: ^0.30.8
-        version: 0.30.8
-      regenerator-runtime:
-        specifier: ^0.14.1
-        version: 0.14.1
-      systemjs:
-        specifier: ^6.14.3
-        version: 6.14.3
-    devDependencies:
-      acorn:
-        specifier: ^8.11.3
-        version: 8.11.3
-      picocolors:
-        specifier: ^1.0.0
-        version: 1.0.0
-      vite:
-        specifier: workspace:*
-        version: link:../vite
-
-  packages/vite:
-    dependencies:
-      esbuild:
-        specifier: ^0.20.1
-        version: 0.20.1
-      postcss:
-        specifier: ^8.4.36
-        version: 8.4.36
-      rollup:
-        specifier: ^4.13.0
-        version: 4.13.0
-    optionalDependencies:
-      fsevents:
-        specifier: ~2.3.3
-        version: 2.3.3
-    devDependencies:
-      '@ampproject/remapping':
-        specifier: ^2.3.0
-        version: 2.3.0
-      '@babel/parser':
-        specifier: ^7.24.0
-        version: 7.24.0
-      '@jridgewell/trace-mapping':
-        specifier: ^0.3.25
-        version: 0.3.25
-      '@polka/compression':
-        specifier: ^1.0.0-next.25
-        version: 1.0.0-next.25
-      '@rollup/plugin-alias':
-        specifier: ^5.1.0
-        version: 5.1.0(rollup@4.13.0)
-      '@rollup/plugin-commonjs':
-        specifier: ^25.0.7
-        version: 25.0.7(rollup@4.13.0)
-      '@rollup/plugin-dynamic-import-vars':
-        specifier: ^2.1.2
-        version: 2.1.2(rollup@4.13.0)
-      '@rollup/plugin-json':
-        specifier: ^6.1.0
-        version: 6.1.0(rollup@4.13.0)
-      '@rollup/plugin-node-resolve':
-        specifier: 15.2.3
-        version: 15.2.3(rollup@4.13.0)
-      '@rollup/plugin-typescript':
-        specifier: ^11.1.6
-        version: 11.1.6(rollup@4.13.0)(tslib@2.6.2)(typescript@5.2.2)
-      '@rollup/pluginutils':
-        specifier: ^5.1.0
-        version: 5.1.0(rollup@4.13.0)
-      '@types/escape-html':
-        specifier: ^1.0.4
-        version: 1.0.4
-      '@types/pnpapi':
-        specifier: ^0.0.5
-        version: 0.0.5
-      acorn:
-        specifier: ^8.11.3
-        version: 8.11.3
-      acorn-walk:
-        specifier: ^8.3.2
-        version: 8.3.2(acorn@8.11.3)
-      artichokie:
-        specifier: ^0.2.0
-        version: 0.2.0
-      cac:
-        specifier: ^6.7.14
-        version: 6.7.14
-      chokidar:
-        specifier: ^3.6.0
-        version: 3.6.0(patch_hash=bckcfsslxcffppz65mxcq6naau)
-      connect:
-        specifier: ^3.7.0
-        version: 3.7.0
-      convert-source-map:
-        specifier: ^2.0.0
-        version: 2.0.0
-      cors:
-        specifier: ^2.8.5
-        version: 2.8.5
-      cross-spawn:
-        specifier: ^7.0.3
-        version: 7.0.3
-      debug:
-        specifier: ^4.3.4
-        version: 4.3.4
-      dep-types:
-        specifier: link:./src/types
-        version: link:src/types
-      dotenv:
-        specifier: ^16.4.5
-        version: 16.4.5
-      dotenv-expand:
-        specifier: ^11.0.6
-        version: 11.0.6
-      es-module-lexer:
-        specifier: ^1.4.1
-        version: 1.4.1
-      escape-html:
-        specifier: ^1.0.3
-        version: 1.0.3
-      estree-walker:
-        specifier: ^3.0.3
-        version: 3.0.3
-      etag:
-        specifier: ^1.8.1
-        version: 1.8.1
-      fast-glob:
-        specifier: ^3.3.2
-        version: 3.3.2
-      http-proxy:
-        specifier: ^1.18.1
-        version: 1.18.1(debug@4.3.4)
-      launch-editor-middleware:
-        specifier: ^2.6.1
-        version: 2.6.1
-      lightningcss:
-        specifier: ^1.24.1
-        version: 1.24.1
-      magic-string:
-        specifier: ^0.30.8
-        version: 0.30.8
-      micromatch:
-        specifier: ^4.0.5
-        version: 4.0.5
-      mlly:
-        specifier: ^1.6.1
-        version: 1.6.1
-      mrmime:
-        specifier: ^2.0.0
-        version: 2.0.0
-      open:
-        specifier: ^8.4.2
-        version: 8.4.2
-      parse5:
-        specifier: ^7.1.2
-        version: 7.1.2
-      pathe:
-        specifier: ^1.1.2
-        version: 1.1.2
-      periscopic:
-        specifier: ^4.0.2
-        version: 4.0.2
-      picocolors:
-        specifier: ^1.0.0
-        version: 1.0.0
-      picomatch:
-        specifier: ^2.3.1
-        version: 2.3.1
-      postcss-import:
-        specifier: ^16.0.1
-        version: 16.0.1(patch_hash=fjrm7xa2co7loa5ldk32oip4ly)(postcss@8.4.36)
-      postcss-load-config:
-        specifier: ^4.0.2
-        version: 4.0.2(postcss@8.4.36)(ts-node@10.9.2)
-      postcss-modules:
-        specifier: ^6.0.0
-        version: 6.0.0(postcss@8.4.36)
-      resolve.exports:
-        specifier: ^2.0.2
-        version: 2.0.2
-      rollup-plugin-dts:
-        specifier: ^6.1.0
-        version: 6.1.0(rollup@4.13.0)(typescript@5.2.2)
-      rollup-plugin-esbuild:
-        specifier: ^6.1.1
-        version: 6.1.1(esbuild@0.20.1)(rollup@4.13.0)
-      rollup-plugin-license:
-        specifier: ^3.3.1
-        version: 3.3.1(rollup@4.13.0)
-      sirv:
-        specifier: ^2.0.4
-        version: 2.0.4(patch_hash=amdes53ifqfntejkflpaq5ifce)
-      source-map-support:
-        specifier: ^0.5.21
-        version: 0.5.21
-      strip-ansi:
-        specifier: ^7.1.0
-        version: 7.1.0
-      strip-literal:
-        specifier: ^2.0.0
-        version: 2.0.0
-      tsconfck:
-        specifier: ^3.0.3
-        version: 3.0.3(typescript@5.2.2)
-      tslib:
-        specifier: ^2.6.2
-        version: 2.6.2
-      types:
-        specifier: link:./types
-        version: link:types
-      ufo:
-        specifier: ^1.5.1
-        version: 1.5.1
-      ws:
-        specifier: ^8.16.0
-        version: 8.16.0
-
-  packages/vite/src/node/__tests__/packages/module: {}
-
-  packages/vite/src/node/__tests__/packages/name: {}
-
-  packages/vite/src/node/__tests__/packages/noname: {}
-
-  packages/vite/src/node/server/__tests__/fixtures/lerna/nested: {}
-
-  packages/vite/src/node/server/__tests__/fixtures/none/nested: {}
-
-  packages/vite/src/node/server/__tests__/fixtures/pnpm: {}
-
-  packages/vite/src/node/server/__tests__/fixtures/pnpm/nested: {}
-
-  packages/vite/src/node/server/__tests__/fixtures/yarn: {}
-
-  packages/vite/src/node/server/__tests__/fixtures/yarn/nested: {}
-
-  packages/vite/src/node/ssr/__tests__:
-    dependencies:
-      '@vitejs/cjs-ssr-dep':
-        specifier: link:./fixtures/cjs-ssr-dep
-        version: link:fixtures/cjs-ssr-dep
-
-  packages/vite/src/node/ssr/__tests__/fixtures/cjs-ssr-dep: {}
-
-  packages/vite/src/node/ssr/runtime/__tests__:
-    dependencies:
-      '@vitejs/cjs-external':
-        specifier: link:./fixtures/cjs-external
-        version: link:fixtures/cjs-external
-      '@vitejs/esm-external':
-        specifier: link:./fixtures/esm-external
-        version: link:fixtures/esm-external
-      tinyspy:
-        specifier: 2.2.0
-        version: 2.2.0
-
-  packages/vite/src/node/ssr/runtime/__tests__/fixtures/cjs-external: {}
-
-  packages/vite/src/node/ssr/runtime/__tests__/fixtures/esm-external: {}
-
-  playground:
-    devDependencies:
-      convert-source-map:
-        specifier: ^2.0.0
-        version: 2.0.0
-      css-color-names:
-        specifier: ^1.0.1
-        version: 1.0.1
-      kill-port:
-        specifier: ^1.6.1
-        version: 1.6.1
-      node-fetch:
-        specifier: ^3.3.2
-        version: 3.3.2
-
-  playground/alias:
-    dependencies:
-      '@vue/shared':
-        specifier: ^3.4.21
-        version: 3.4.21
-      aliased-module:
-        specifier: file:./dir/module
-        version: file:playground/alias/dir/module
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.2.2)
-    devDependencies:
-      '@vitejs/test-resolve-linked':
-        specifier: workspace:*
-        version: link:../resolve-linked
-
-  playground/alias/dir/module: {}
-
-  playground/assets: {}
-
-  playground/assets-sanitize: {}
-
-  playground/backend-integration:
-    devDependencies:
-      fast-glob:
-        specifier: ^3.3.2
-        version: 3.3.2
-      sass:
-        specifier: ^1.72.0
-        version: 1.72.0
-      tailwindcss:
-        specifier: ^3.4.1
-        version: 3.4.1(ts-node@10.9.2)
-
-  playground/build-old: {}
-
-  playground/cli: {}
-
-  playground/cli-module:
-    devDependencies:
-      url:
-        specifier: ^0.11.3
-        version: 0.11.3
-
-  playground/config/packages/entry:
-    dependencies:
-      '@vite/test-config-plugin-module-condition':
-        specifier: link:../plugin-module-condition
-        version: link:../plugin-module-condition
-
-  playground/config/packages/plugin-module-condition: {}
-
-  playground/config/packages/siblings:
-    devDependencies:
-      '@types/lodash':
-        specifier: ^4.17.0
-        version: 4.17.0
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-
   playground/csp: {}
 
-  playground/css:
-    devDependencies:
-      '@vitejs/test-css-dep':
-        specifier: link:./css-dep
-        version: link:css-dep
-      '@vitejs/test-css-dep-exports':
-        specifier: link:./css-dep-exports
-        version: link:css-dep-exports
-      '@vitejs/test-css-js-dep':
-        specifier: file:./css-js-dep
-        version: file:playground/css/css-js-dep
-      '@vitejs/test-css-proxy-dep':
-        specifier: file:./css-proxy-dep
-        version: file:playground/css/css-proxy-dep
-      '@vitejs/test-scss-proxy-dep':
-        specifier: file:./scss-proxy-dep
-        version: file:playground/css/scss-proxy-dep
-      fast-glob:
-        specifier: ^3.3.2
-        version: 3.3.2
-      less:
-        specifier: ^4.2.0
-        version: 4.2.0
-      postcss-nested:
-        specifier: ^6.0.1
-        version: 6.0.1(postcss@8.4.36)
-      sass:
-        specifier: ^1.72.0
-        version: 1.72.0
-      stylus:
-        specifier: ^0.63.0
-        version: 0.63.0
-      sugarss:
-        specifier: ^4.0.1
-        version: 4.0.1
-
-  playground/css-codesplit: {}
-
-  playground/css-codesplit-cjs: {}
-
-  playground/css-dynamic-import: {}
-
-  playground/css-lightningcss:
-    devDependencies:
-      lightningcss:
-        specifier: ^1.24.1
-        version: 1.24.1
-
-  playground/css-lightningcss-proxy:
-    devDependencies:
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
-      lightningcss:
-        specifier: ^1.24.1
-        version: 1.24.1
-
-  playground/css-sourcemap:
-    devDependencies:
-      less:
-        specifier: ^4.2.0
-        version: 4.2.0
-      magic-string:
-        specifier: ^0.30.8
-        version: 0.30.8
-      sass:
-        specifier: ^1.72.0
-        version: 1.72.0
-      stylus:
-        specifier: ^0.63.0
-        version: 0.63.0
-      sugarss:
-        specifier: ^4.0.1
-        version: 4.0.1
-
-  playground/css/css-dep: {}
-
-  playground/css/css-dep-exports: {}
-
-  playground/css/css-js-dep: {}
-
-  playground/css/css-proxy-dep:
-    dependencies:
-      '@vitejs/test-css-proxy-dep-nested':
-        specifier: file:../css-proxy-dep-nested
-        version: file:playground/css/css-proxy-dep-nested
-
-  playground/css/css-proxy-dep-nested: {}
-
-  playground/css/pkg-dep: {}
-
-  playground/css/postcss-caching/blue-app: {}
-
-  playground/css/postcss-caching/green-app: {}
-
-  playground/css/scss-proxy-dep:
-    dependencies:
-      '@vitejs/test-scss-proxy-dep-nested':
-        specifier: file:../scss-proxy-dep-nested
-        version: file:playground/css/scss-proxy-dep-nested
-
-  playground/css/scss-proxy-dep-nested: {}
-
-  playground/data-uri: {}
-
-  playground/define:
-    dependencies:
-      '@vitejs/test-commonjs-dep':
-        specifier: file:./commonjs-dep
-        version: file:playground/define/commonjs-dep
-
-  playground/define/commonjs-dep: {}
-
-  playground/dynamic-import:
-    dependencies:
-      '@vitejs/test-pkg':
-        specifier: file:./pkg
-        version: file:playground/dynamic-import/pkg
-
-  playground/dynamic-import-inline: {}
-
-  playground/dynamic-import/pkg: {}
-
-  playground/env: {}
-
-  playground/env-nested: {}
-
-  playground/extensions:
-    dependencies:
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.2.2)
-
-  playground/external:
-    dependencies:
-      '@vitejs/test-dep-that-imports':
-        specifier: file:./dep-that-imports
-        version: file:playground/external/dep-that-imports(typescript@5.2.2)
-      '@vitejs/test-dep-that-requires':
-        specifier: file:./dep-that-requires
-        version: file:playground/external/dep-that-requires(typescript@5.2.2)
-    devDependencies:
-      slash3:
-        specifier: npm:slash@^3.0.0
-        version: /slash@3.0.0
-      slash5:
-        specifier: npm:slash@^5.1.0
-        version: /slash@5.1.0
-      vite:
-        specifier: workspace:*
-        version: link:../../packages/vite
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.2.2)
-      vue32:
-        specifier: npm:vue@~3.2.0
-        version: /vue@3.2.0
-
-  playground/external/dep-that-imports:
-    dependencies:
-      slash3:
-        specifier: npm:slash@^3.0.0
-        version: /slash@3.0.0
-      slash5:
-        specifier: npm:slash@^5.1.0
-        version: /slash@5.1.0
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.2.2)
-
-  playground/external/dep-that-requires:
-    dependencies:
-      slash3:
-        specifier: npm:slash@^3.0.0
-        version: /slash@3.0.0
-      slash5:
-        specifier: npm:slash@^5.1.0
-        version: /slash@5.1.0
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.2.2)
-
-  playground/fs-serve: {}
-
-  playground/glob-import:
-    dependencies:
-      '@vitejs/test-import-meta-glob-pkg':
-        specifier: file:./import-meta-glob-pkg
-        version: file:playground/glob-import/import-meta-glob-pkg
-
-  playground/glob-import/import-meta-glob-pkg: {}
-
-  playground/hmr: {}
-
-  playground/hmr-ssr: {}
-
-  playground/html: {}
-
-  playground/html/side-effects: {}
-
-  playground/import-assertion:
-    dependencies:
-      '@vitejs/test-import-assertion-dep':
-        specifier: file:./import-assertion-dep
-        version: file:playground/import-assertion/import-assertion-dep
-
-  playground/import-assertion/import-assertion-dep: {}
-
-  playground/js-sourcemap:
-    dependencies:
-      '@vitejs/test-importee-pkg':
-        specifier: file:importee-pkg
-        version: file:playground/js-sourcemap/importee-pkg
-      magic-string:
-        specifier: ^0.30.8
-        version: 0.30.8
-
-  playground/js-sourcemap/importee-pkg: {}
-
-  playground/json:
-    devDependencies:
-      '@vitejs/test-json-module':
-        specifier: file:./json-module
-        version: file:playground/json/json-module
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.2.2)
-
-  playground/json/json-module: {}
-
-  playground/legacy:
-    devDependencies:
-      '@vitejs/plugin-legacy':
-        specifier: workspace:*
-        version: link:../../packages/plugin-legacy
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
-      terser:
-        specifier: ^5.29.2
-        version: 5.29.2
-
-  playground/lib:
-    devDependencies:
-      sirv:
-        specifier: ^2.0.4
-        version: 2.0.4(patch_hash=amdes53ifqfntejkflpaq5ifce)
-
-  playground/minify:
-    dependencies:
-      minified-module:
-        specifier: file:./dir/module
-        version: file:playground/minify/dir/module
-
-  playground/minify/dir/module: {}
-
-  playground/module-graph: {}
-
-  playground/multiple-entrypoints:
-    devDependencies:
-      sass:
-        specifier: ^1.72.0
-        version: 1.72.0
-
-  playground/nested-deps:
-    dependencies:
-      '@vitejs/self-referencing':
-        specifier: link:../self-referencing
-        version: link:../self-referencing
-      '@vitejs/test-package-a':
-        specifier: link:./test-package-a
-        version: link:test-package-a
-      '@vitejs/test-package-b':
-        specifier: link:./test-package-b
-        version: link:test-package-b
-      '@vitejs/test-package-c':
-        specifier: link:./test-package-c
-        version: link:test-package-c
-      '@vitejs/test-package-d':
-        specifier: link:./test-package-d
-        version: link:test-package-d
-      '@vitejs/test-package-e':
-        specifier: link:./test-package-e
-        version: link:test-package-e
-      '@vitejs/test-package-f':
-        specifier: link:./test-package-f
-        version: link:test-package-f
-
-  playground/nested-deps/test-package-a: {}
-
-  playground/nested-deps/test-package-b: {}
-
-  playground/nested-deps/test-package-c: {}
-
-  playground/nested-deps/test-package-d:
-    dependencies:
-      '@vitejs/test-package-d-nested':
-        specifier: link:./test-package-d-nested
-        version: link:test-package-d-nested
-
-  playground/nested-deps/test-package-d/test-package-d-nested: {}
-
-  playground/nested-deps/test-package-e:
-    dependencies:
-      '@vitejs/test-package-e-excluded':
-        specifier: link:./test-package-e-excluded
-        version: link:test-package-e-excluded
-      '@vitejs/test-package-e-included':
-        specifier: link:./test-package-e-included
-        version: link:test-package-e-included
-
-  playground/nested-deps/test-package-e/test-package-e-excluded: {}
-
-  playground/nested-deps/test-package-e/test-package-e-included:
-    dependencies:
-      test-package-e-excluded:
-        specifier: link:../test-package-e-excluded
-        version: link:../test-package-e-excluded
-
-  playground/nested-deps/test-package-f: {}
-
-  playground/object-hooks:
-    dependencies:
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.2.2)
-
-  playground/optimize-deps:
-    dependencies:
-      '@vitejs/longfilename-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa':
-        specifier: file:./longfilename
-        version: file:playground/optimize-deps/longfilename
-      '@vitejs/test-added-in-entries':
-        specifier: file:./added-in-entries
-        version: file:playground/optimize-deps/added-in-entries
-      '@vitejs/test-dep-alias-using-absolute-path':
-        specifier: file:./dep-alias-using-absolute-path
-        version: file:playground/optimize-deps/dep-alias-using-absolute-path
-      '@vitejs/test-dep-cjs-browser-field-bare':
-        specifier: file:./dep-cjs-browser-field-bare
-        version: file:playground/optimize-deps/dep-cjs-browser-field-bare
-      '@vitejs/test-dep-cjs-compiled-from-cjs':
-        specifier: file:./dep-cjs-compiled-from-cjs
-        version: file:playground/optimize-deps/dep-cjs-compiled-from-cjs
-      '@vitejs/test-dep-cjs-compiled-from-esm':
-        specifier: file:./dep-cjs-compiled-from-esm
-        version: file:playground/optimize-deps/dep-cjs-compiled-from-esm
-      '@vitejs/test-dep-cjs-with-assets':
-        specifier: file:./dep-cjs-with-assets
-        version: file:playground/optimize-deps/dep-cjs-with-assets
-      '@vitejs/test-dep-css-require':
-        specifier: file:./dep-css-require
-        version: file:playground/optimize-deps/dep-css-require
-      '@vitejs/test-dep-esbuild-plugin-transform':
-        specifier: file:./dep-esbuild-plugin-transform
-        version: file:playground/optimize-deps/dep-esbuild-plugin-transform
-      '@vitejs/test-dep-incompatible':
-        specifier: file:./dep-incompatible
-        version: file:playground/optimize-deps/dep-incompatible
-      '@vitejs/test-dep-linked':
-        specifier: link:./dep-linked
-        version: link:dep-linked
-      '@vitejs/test-dep-linked-include':
-        specifier: link:./dep-linked-include
-        version: link:dep-linked-include
-      '@vitejs/test-dep-node-env':
-        specifier: file:./dep-node-env
-        version: file:playground/optimize-deps/dep-node-env
-      '@vitejs/test-dep-non-optimized':
-        specifier: file:./dep-non-optimized
-        version: file:playground/optimize-deps/dep-non-optimized
-      '@vitejs/test-dep-not-js':
-        specifier: file:./dep-not-js
-        version: file:playground/optimize-deps/dep-not-js
-      '@vitejs/test-dep-optimize-exports-with-glob':
-        specifier: file:./dep-optimize-exports-with-glob
-        version: file:playground/optimize-deps/dep-optimize-exports-with-glob
-      '@vitejs/test-dep-optimize-with-glob':
-        specifier: file:./dep-optimize-with-glob
-        version: file:playground/optimize-deps/dep-optimize-with-glob
-      '@vitejs/test-dep-relative-to-main':
-        specifier: file:./dep-relative-to-main
-        version: file:playground/optimize-deps/dep-relative-to-main
-      '@vitejs/test-dep-with-builtin-module-cjs':
-        specifier: file:./dep-with-builtin-module-cjs
-        version: file:playground/optimize-deps/dep-with-builtin-module-cjs
-      '@vitejs/test-dep-with-builtin-module-esm':
-        specifier: file:./dep-with-builtin-module-esm
-        version: file:playground/optimize-deps/dep-with-builtin-module-esm
-      '@vitejs/test-dep-with-dynamic-import':
-        specifier: file:./dep-with-dynamic-import
-        version: file:playground/optimize-deps/dep-with-dynamic-import
-      '@vitejs/test-dep-with-optional-peer-dep':
-        specifier: file:./dep-with-optional-peer-dep
-        version: file:playground/optimize-deps/dep-with-optional-peer-dep
-      '@vitejs/test-dep-with-optional-peer-dep-submodule':
-        specifier: file:./dep-with-optional-peer-dep-submodule
-        version: file:playground/optimize-deps/dep-with-optional-peer-dep-submodule
-      '@vitejs/test-nested-exclude':
-        specifier: file:./nested-exclude
-        version: file:playground/optimize-deps/nested-exclude
-      '@vitejs/test-resolve-linked':
-        specifier: workspace:0.0.0
-        version: link:../resolve-linked
-      axios:
-        specifier: ^1.6.8
-        version: 1.6.8
-      clipboard:
-        specifier: ^2.0.11
-        version: 2.0.11
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
-      lodash.clonedeep:
-        specifier: ^4.5.0
-        version: 4.5.0
-      phoenix:
-        specifier: ^1.7.11
-        version: 1.7.11
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      url:
-        specifier: ^0.11.3
-        version: 0.11.3
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.2.2)
-      vuex:
-        specifier: ^4.1.0
-        version: 4.1.0(vue@3.4.21)
-
-  playground/optimize-deps-no-discovery:
-    dependencies:
-      '@vitejs/test-dep-no-discovery':
-        specifier: file:./dep-no-discovery
-        version: file:playground/optimize-deps-no-discovery/dep-no-discovery
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.2.2)
-      vuex:
-        specifier: ^4.1.0
-        version: 4.1.0(vue@3.4.21)
-
-  playground/optimize-deps-no-discovery/dep-no-discovery: {}
-
-  playground/optimize-deps/added-in-entries: {}
-
-  playground/optimize-deps/dep-alias-using-absolute-path:
-    dependencies:
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-
-  playground/optimize-deps/dep-cjs-browser-field-bare: {}
-
-  playground/optimize-deps/dep-cjs-compiled-from-cjs: {}
-
-  playground/optimize-deps/dep-cjs-compiled-from-esm: {}
-
-  playground/optimize-deps/dep-cjs-with-assets: {}
-
-  playground/optimize-deps/dep-css-require: {}
-
-  playground/optimize-deps/dep-esbuild-plugin-transform: {}
-
-  playground/optimize-deps/dep-incompatible: {}
-
-  playground/optimize-deps/dep-linked:
-    dependencies:
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
-
-  playground/optimize-deps/dep-linked-include:
-    dependencies:
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
-
-  playground/optimize-deps/dep-node-env: {}
-
-  playground/optimize-deps/dep-non-optimized: {}
-
-  playground/optimize-deps/dep-not-js: {}
-
-  playground/optimize-deps/dep-optimize-exports-with-glob: {}
-
-  playground/optimize-deps/dep-optimize-with-glob: {}
-
-  playground/optimize-deps/dep-relative-to-main: {}
-
-  playground/optimize-deps/dep-with-builtin-module-cjs: {}
-
-  playground/optimize-deps/dep-with-builtin-module-esm: {}
-
-  playground/optimize-deps/dep-with-dynamic-import: {}
-
-  playground/optimize-deps/dep-with-optional-peer-dep: {}
-
-  playground/optimize-deps/dep-with-optional-peer-dep-submodule: {}
-
-  playground/optimize-deps/longfilename: {}
-
-  playground/optimize-deps/nested-exclude:
-    dependencies:
-      '@vitejs/test-nested-include':
-        specifier: file:../nested-include
-        version: file:playground/optimize-deps/nested-include
-
-  playground/optimize-deps/nested-include: {}
-
-  playground/optimize-deps/non-optimizable-include: {}
-
-  playground/optimize-missing-deps:
-    dependencies:
-      '@vitejs/test-missing-dep':
-        specifier: file:./missing-dep
-        version: file:playground/optimize-missing-deps/missing-dep
-    devDependencies:
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
-
-  playground/optimize-missing-deps/missing-dep:
-    dependencies:
-      '@vitejs/test-multi-entry-dep':
-        specifier: file:../multi-entry-dep
-        version: file:playground/optimize-missing-deps/multi-entry-dep
-
-  playground/optimize-missing-deps/multi-entry-dep: {}
-
-  playground/preload:
-    devDependencies:
-      '@vitejs/test-dep-a':
-        specifier: file:./dep-a
-        version: file:playground/preload/dep-a
-      '@vitejs/test-dep-including-a':
-        specifier: file:./dep-including-a
-        version: file:playground/preload/dep-including-a
-      terser:
-        specifier: ^5.29.2
-        version: 5.29.2
-
-  playground/preload/dep-a: {}
-
-  playground/preload/dep-including-a:
-    dependencies:
-      '@vitejs/test-dep-a':
-        specifier: file:../dep-a
-        version: file:playground/preload/dep-a
-
-  playground/preserve-symlinks:
-    dependencies:
-      '@vitejs/test-module-a':
-        specifier: link:./module-a
-        version: link:module-a
-
-  playground/preserve-symlinks/module-a: {}
-
-  playground/proxy-bypass: {}
-
-  playground/proxy-hmr: {}
-
-  playground/proxy-hmr/other-app: {}
-
-  playground/resolve:
-    dependencies:
-      '@babel/runtime':
-        specifier: ^7.24.0
-        version: 7.24.0
-      '@vitejs/test-require-pkg-with-module-field':
-        specifier: link:./require-pkg-with-module-field
-        version: link:require-pkg-with-module-field
-      '@vitejs/test-resolve-browser-field':
-        specifier: link:./browser-field
-        version: link:browser-field
-      '@vitejs/test-resolve-browser-module-field1':
-        specifier: link:./browser-module-field1
-        version: link:browser-module-field1
-      '@vitejs/test-resolve-browser-module-field2':
-        specifier: link:./browser-module-field2
-        version: link:browser-module-field2
-      '@vitejs/test-resolve-browser-module-field3':
-        specifier: link:./browser-module-field3
-        version: link:browser-module-field3
-      '@vitejs/test-resolve-custom-browser-main-field':
-        specifier: link:./custom-browser-main-field
-        version: link:custom-browser-main-field
-      '@vitejs/test-resolve-custom-condition':
-        specifier: link:./custom-condition
-        version: link:custom-condition
-      '@vitejs/test-resolve-custom-main-field':
-        specifier: link:./custom-main-field
-        version: link:custom-main-field
-      '@vitejs/test-resolve-exports-and-nested-scope':
-        specifier: link:./exports-and-nested-scope
-        version: link:exports-and-nested-scope
-      '@vitejs/test-resolve-exports-env':
-        specifier: link:./exports-env
-        version: link:exports-env
-      '@vitejs/test-resolve-exports-from-root':
-        specifier: link:./exports-from-root
-        version: link:exports-from-root
-      '@vitejs/test-resolve-exports-legacy-fallback':
-        specifier: link:./exports-legacy-fallback
-        version: link:exports-legacy-fallback
-      '@vitejs/test-resolve-exports-path':
-        specifier: link:./exports-path
-        version: link:exports-path
-      '@vitejs/test-resolve-exports-with-module':
-        specifier: link:./exports-with-module
-        version: link:exports-with-module
-      '@vitejs/test-resolve-exports-with-module-condition':
-        specifier: link:./exports-with-module-condition
-        version: link:exports-with-module-condition
-      '@vitejs/test-resolve-exports-with-module-condition-required':
-        specifier: link:./exports-with-module-condition-required
-        version: link:exports-with-module-condition-required
-      '@vitejs/test-resolve-imports-pkg':
-        specifier: link:./imports-path/other-pkg
-        version: link:imports-path/other-pkg
-      '@vitejs/test-resolve-linked':
-        specifier: workspace:*
-        version: link:../resolve-linked
-      '@vitejs/test-resolve-sharp-dir':
-        specifier: link:./sharp-dir
-        version: link:sharp-dir
-      es5-ext:
-        specifier: 0.10.64
-        version: 0.10.64
-      normalize.css:
-        specifier: ^8.0.1
-        version: 8.0.1
-
-  playground/resolve-config: {}
-
-  playground/resolve-linked: {}
-
-  playground/resolve/browser-field:
-    dependencies:
-      '@vitejs/test-resolve-browser-field-bare-import-fail':
-        specifier: link:../browser-field-bare-import-fail
-        version: link:../browser-field-bare-import-fail
-      '@vitejs/test-resolve-browser-field-bare-import-success':
-        specifier: link:../browser-field-bare-import-success
-        version: link:../browser-field-bare-import-success
-
-  playground/resolve/browser-field-bare-import-fail: {}
-
-  playground/resolve/browser-field-bare-import-success: {}
-
-  playground/resolve/browser-module-field1: {}
-
-  playground/resolve/browser-module-field2: {}
-
-  playground/resolve/browser-module-field3: {}
-
-  playground/resolve/custom-browser-main-field: {}
-
-  playground/resolve/custom-condition: {}
-
-  playground/resolve/custom-main-field: {}
-
-  playground/resolve/exports-and-nested-scope: {}
-
-  playground/resolve/exports-and-nested-scope/nested-scope: {}
-
-  playground/resolve/exports-env: {}
-
-  playground/resolve/exports-from-root: {}
-
-  playground/resolve/exports-from-root/nested: {}
-
-  playground/resolve/exports-legacy-fallback: {}
-
-  playground/resolve/exports-legacy-fallback/dir: {}
-
-  playground/resolve/exports-path: {}
-
-  playground/resolve/exports-with-module: {}
-
-  playground/resolve/exports-with-module-condition: {}
-
-  playground/resolve/exports-with-module-condition-required:
-    dependencies:
-      '@vitejs/test-resolve-exports-with-module-condition':
-        specifier: link:../exports-with-module-condition
-        version: link:../exports-with-module-condition
-
-  playground/resolve/imports-path/other-pkg: {}
-
-  playground/resolve/inline-package: {}
-
-  playground/resolve/require-pkg-with-module-field:
-    dependencies:
-      bignumber.js:
-        specifier: 9.1.2
-        version: 9.1.2
-
-  playground/resolve/sharp-dir:
-    dependencies:
-      es5-ext:
-        specifier: 0.10.64
-        version: 0.10.64
-
-  playground/self-referencing: {}
-
-  playground/ssr:
-    devDependencies:
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
-
-  playground/ssr-alias:
-    dependencies:
-      '@vitejs/test-alias-original':
-        specifier: file:./alias-original
-        version: file:playground/ssr-alias/alias-original
-
-  playground/ssr-alias/alias-original: {}
-
-  playground/ssr-conditions:
-    dependencies:
-      '@vitejs/test-ssr-conditions-external':
-        specifier: file:./external
-        version: file:playground/ssr-conditions/external
-      '@vitejs/test-ssr-conditions-no-external':
-        specifier: file:./no-external
-        version: file:playground/ssr-conditions/no-external
-    devDependencies:
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
-
-  playground/ssr-conditions/external: {}
-
-  playground/ssr-conditions/no-external: {}
-
-  playground/ssr-deps:
-    dependencies:
-      '@vitejs/test-css-lib':
-        specifier: file:./css-lib
-        version: file:playground/ssr-deps/css-lib
-      '@vitejs/test-define-properties-exports':
-        specifier: file:./define-properties-exports
-        version: file:playground/ssr-deps/define-properties-exports
-      '@vitejs/test-define-property-exports':
-        specifier: file:./define-property-exports
-        version: file:playground/ssr-deps/define-property-exports
-      '@vitejs/test-external-entry':
-        specifier: file:./external-entry
-        version: file:playground/ssr-deps/external-entry
-      '@vitejs/test-external-using-external-entry':
-        specifier: file:./external-using-external-entry
-        version: file:playground/ssr-deps/external-using-external-entry
-      '@vitejs/test-forwarded-export':
-        specifier: file:./forwarded-export
-        version: file:playground/ssr-deps/forwarded-export
-      '@vitejs/test-import-builtin-cjs':
-        specifier: file:./import-builtin-cjs
-        version: file:playground/ssr-deps/import-builtin-cjs
-      '@vitejs/test-linked-no-external':
-        specifier: link:./linked-no-external
-        version: link:linked-no-external
-      '@vitejs/test-module-condition':
-        specifier: file:./module-condition
-        version: file:playground/ssr-deps/module-condition
-      '@vitejs/test-no-external-cjs':
-        specifier: file:./no-external-cjs
-        version: file:playground/ssr-deps/no-external-cjs
-      '@vitejs/test-no-external-css':
-        specifier: file:./no-external-css
-        version: file:playground/ssr-deps/no-external-css
-      '@vitejs/test-non-optimized-with-nested-external':
-        specifier: workspace:*
-        version: link:non-optimized-with-nested-external
-      '@vitejs/test-object-assigned-exports':
-        specifier: file:./object-assigned-exports
-        version: file:playground/ssr-deps/object-assigned-exports
-      '@vitejs/test-only-object-assigned-exports':
-        specifier: file:./only-object-assigned-exports
-        version: file:playground/ssr-deps/only-object-assigned-exports
-      '@vitejs/test-optimized-cjs-with-nested-external':
-        specifier: file:./optimized-with-nested-external
-        version: file:playground/ssr-deps/optimized-with-nested-external
-      '@vitejs/test-optimized-with-nested-external':
-        specifier: file:./optimized-with-nested-external
-        version: file:playground/ssr-deps/optimized-with-nested-external
-      '@vitejs/test-pkg-exports':
-        specifier: file:./pkg-exports
-        version: file:playground/ssr-deps/pkg-exports
-      '@vitejs/test-primitive-export':
-        specifier: file:./primitive-export
-        version: file:playground/ssr-deps/primitive-export
-      '@vitejs/test-read-file-content':
-        specifier: file:./read-file-content
-        version: file:playground/ssr-deps/read-file-content
-      '@vitejs/test-require-absolute':
-        specifier: file:./require-absolute
-        version: file:playground/ssr-deps/require-absolute
-      '@vitejs/test-ts-transpiled-exports':
-        specifier: file:./ts-transpiled-exports
-        version: file:playground/ssr-deps/ts-transpiled-exports
-      bcrypt:
-        specifier: ^5.1.1
-        version: 5.1.1
-    devDependencies:
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
-
-  playground/ssr-deps/css-lib: {}
-
-  playground/ssr-deps/define-properties-exports: {}
-
-  playground/ssr-deps/define-property-exports: {}
-
-  playground/ssr-deps/external-entry: {}
-
-  playground/ssr-deps/external-using-external-entry:
-    dependencies:
-      external-entry:
-        specifier: file:../external-entry
-        version: file:playground/ssr-deps/external-entry
-
-  playground/ssr-deps/forwarded-export:
-    dependencies:
-      object-assigned-exports:
-        specifier: file:../object-assigned-exports
-        version: file:playground/ssr-deps/object-assigned-exports
-
-  playground/ssr-deps/import-builtin-cjs: {}
-
-  playground/ssr-deps/linked-no-external: {}
-
-  playground/ssr-deps/module-condition: {}
-
-  playground/ssr-deps/nested-external: {}
-
-  playground/ssr-deps/nested-external-cjs: {}
-
-  playground/ssr-deps/no-external-cjs: {}
-
-  playground/ssr-deps/no-external-css: {}
-
-  playground/ssr-deps/non-optimized-with-nested-external:
-    dependencies:
-      nested-external:
-        specifier: file:../nested-external
-        version: file:playground/ssr-deps/nested-external
-      nested-external-cjs:
-        specifier: file:../nested-external-cjs
-        version: file:playground/ssr-deps/nested-external-cjs
-
-  playground/ssr-deps/object-assigned-exports: {}
-
-  playground/ssr-deps/only-object-assigned-exports: {}
-
-  playground/ssr-deps/optimized-cjs-with-nested-external:
-    dependencies:
-      nested-external:
-        specifier: file:../nested-external
-        version: file:playground/ssr-deps/nested-external
-
-  playground/ssr-deps/optimized-with-nested-external:
-    dependencies:
-      nested-external:
-        specifier: file:../nested-external
-        version: file:playground/ssr-deps/nested-external
-
-  playground/ssr-deps/pkg-exports: {}
-
-  playground/ssr-deps/primitive-export: {}
-
-  playground/ssr-deps/read-file-content: {}
-
-  playground/ssr-deps/require-absolute: {}
-
-  playground/ssr-deps/ts-transpiled-exports: {}
-
-  playground/ssr-html:
-    devDependencies:
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
-
-  playground/ssr-noexternal:
-    dependencies:
-      '@vitejs/test-external-cjs':
-        specifier: file:./external-cjs
-        version: file:playground/ssr-noexternal/external-cjs
-      '@vitejs/test-require-external-cjs':
-        specifier: file:./require-external-cjs
-        version: file:playground/ssr-noexternal/require-external-cjs
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
-
-  playground/ssr-noexternal/external-cjs: {}
-
-  playground/ssr-noexternal/require-external-cjs:
-    dependencies:
-      '@vitejs/test-external-cjs':
-        specifier: file:../external-cjs
-        version: file:playground/ssr-noexternal/external-cjs
-
-  playground/ssr-pug:
-    devDependencies:
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
-      pug:
-        specifier: ^3.0.2
-        version: 3.0.2
-
-  playground/ssr-resolve:
-    dependencies:
-      '@vitejs/test-deep-import':
-        specifier: file:./deep-import
-        version: file:playground/ssr-resolve/deep-import
-      '@vitejs/test-entries':
-        specifier: file:./entries
-        version: file:playground/ssr-resolve/entries
-      '@vitejs/test-resolve-pkg-exports':
-        specifier: file:./pkg-exports
-        version: file:playground/ssr-resolve/pkg-exports
-
-  playground/ssr-resolve/deep-import: {}
-
-  playground/ssr-resolve/deep-import/bar: {}
-
-  playground/ssr-resolve/deep-import/foo: {}
-
-  playground/ssr-resolve/entries: {}
-
-  playground/ssr-resolve/pkg-exports: {}
-
-  playground/ssr-webworker:
-    dependencies:
-      '@vitejs/test-browser-exports':
-        specifier: file:./browser-exports
-        version: file:playground/ssr-webworker/browser-exports
-      '@vitejs/test-worker-exports':
-        specifier: file:./worker-exports
-        version: file:playground/ssr-webworker/worker-exports
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-    devDependencies:
-      '@vitejs/test-resolve-linked':
-        specifier: workspace:*
-        version: link:../resolve-linked
-      miniflare:
-        specifier: ^3.20240304.2
-        version: 3.20240304.2
-
-  playground/ssr-webworker/browser-exports: {}
-
-  playground/ssr-webworker/worker-exports: {}
-
-  playground/tailwind:
-    dependencies:
-      autoprefixer:
-        specifier: ^10.4.18
-        version: 10.4.18
-      tailwindcss:
-        specifier: ^3.4.1
-        version: 3.4.1(ts-node@10.9.2)
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.2.2)
-      vue-router:
-        specifier: ^4.3.0
-        version: 4.3.0(vue@3.4.21)
-    devDependencies:
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.11.28)(typescript@5.2.2)
-
-  playground/tailwind-sourcemap:
-    dependencies:
-      tailwindcss:
-        specifier: ^3.4.1
-        version: 3.4.1(ts-node@10.9.2)
-
-  playground/transform-plugin: {}
-
-  playground/tsconfig-json: {}
-
-  playground/tsconfig-json-load-error: {}
-
-  playground/wasm: {}
-
-  playground/worker:
-    dependencies:
-      '@vitejs/test-dep-to-optimize':
-        specifier: file:./dep-to-optimize
-        version: file:playground/worker/dep-to-optimize
-
-  playground/worker/dep-to-optimize: {}
-
 packages:
-
-  /slash@3.0.0:
-    resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
-    engines: {node: '>=8'}
-
-  /slash@5.1.0:
-    resolution: {integrity: sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg==}
-    engines: {node: '>=14.16'}
 
   '@algolia/autocomplete-core@1.9.3':
     resolution: {integrity: sha512-009HdfugtGCdC4JdXUbVJClA0q0zh24yyePn+KUGk3rP7j8FEe/m5Yo/z65gn6nP/cM39PxpzqKrL7A6fP6PPw==}
@@ -1468,81 +73,66 @@ packages:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
 
-  '@algolia/cache-browser-local-storage@4.22.1':
-    resolution: {integrity: sha512-Sw6IAmOCvvP6QNgY9j+Hv09mvkvEIDKjYW8ow0UDDAxSXy664RBNQk3i/0nt7gvceOJ6jGmOTimaZoY1THmU7g==}
-
-  '@algolia/cache-common@4.22.1':
-    resolution: {integrity: sha512-TJMBKqZNKYB9TptRRjSUtevJeQVXRmg6rk9qgFKWvOy8jhCPdyNZV1nB3SKGufzvTVbomAukFR8guu/8NRKBTA==}
+  '@algolia/cache-browser-local-storage@4.23.3':
+    resolution: {integrity: sha512-vRHXYCpPlTDE7i6UOy2xE03zHF2C8MEFjPN2v7fRbqVpcOvAUQK81x3Kc21xyb5aSIpYCjWCZbYZuz8Glyzyyg==}
 
   '@algolia/cache-common@4.23.3':
     resolution: {integrity: sha512-h9XcNI6lxYStaw32pHpB1TMm0RuxphF+Ik4o7tcQiodEdpKK+wKufY6QXtba7t3k8eseirEMVB83uFFF3Nu54A==}
 
-  '@algolia/cache-in-memory@4.22.1':
-    resolution: {integrity: sha512-ve+6Ac2LhwpufuWavM/aHjLoNz/Z/sYSgNIXsinGofWOysPilQZPUetqLj8vbvi+DHZZaYSEP9H5SRVXnpsNNw==}
+  '@algolia/cache-in-memory@4.23.3':
+    resolution: {integrity: sha512-yvpbuUXg/+0rbcagxNT7un0eo3czx2Uf0y4eiR4z4SD7SiptwYTpbuS0IHxcLHG3lq22ukx1T6Kjtk/rT+mqNg==}
 
-  '@algolia/client-account@4.22.1':
-    resolution: {integrity: sha512-k8m+oegM2zlns/TwZyi4YgCtyToackkOpE+xCaKCYfBfDtdGOaVZCM5YvGPtK+HGaJMIN/DoTL8asbM3NzHonw==}
+  '@algolia/client-account@4.23.3':
+    resolution: {integrity: sha512-hpa6S5d7iQmretHHF40QGq6hz0anWEHGlULcTIT9tbUssWUriN9AUXIFQ8Ei4w9azD0hc1rUok9/DeQQobhQMA==}
 
-  '@algolia/client-analytics@4.22.1':
-    resolution: {integrity: sha512-1ssi9pyxyQNN4a7Ji9R50nSdISIumMFDwKNuwZipB6TkauJ8J7ha/uO60sPJFqQyqvvI+px7RSNRQT3Zrvzieg==}
-
-  '@algolia/client-common@4.22.1':
-    resolution: {integrity: sha512-IvaL5v9mZtm4k4QHbBGDmU3wa/mKokmqNBqPj0K7lcR8ZDKzUorhcGp/u8PkPC/e0zoHSTvRh7TRkGX3Lm7iOQ==}
+  '@algolia/client-analytics@4.23.3':
+    resolution: {integrity: sha512-LBsEARGS9cj8VkTAVEZphjxTjMVCci+zIIiRhpFun9jGDUlS1XmhCW7CTrnaWeIuCQS/2iPyRqSy1nXPjcBLRA==}
 
   '@algolia/client-common@4.23.3':
     resolution: {integrity: sha512-l6EiPxdAlg8CYhroqS5ybfIczsGUIAC47slLPOMDeKSVXYG1n0qGiz4RjAHLw2aD0xzh2EXZ7aRguPfz7UKDKw==}
 
-  '@algolia/client-personalization@4.22.1':
-    resolution: {integrity: sha512-sl+/klQJ93+4yaqZ7ezOttMQ/nczly/3GmgZXJ1xmoewP5jmdP/X/nV5U7EHHH3hCUEHeN7X1nsIhGPVt9E1cQ==}
-
-  '@algolia/client-search@4.22.1':
-    resolution: {integrity: sha512-yb05NA4tNaOgx3+rOxAmFztgMTtGBi97X7PC3jyNeGiwkAjOZc2QrdZBYyIdcDLoI09N0gjtpClcackoTN0gPA==}
+  '@algolia/client-personalization@4.23.3':
+    resolution: {integrity: sha512-3E3yF3Ocr1tB/xOZiuC3doHQBQ2zu2MPTYZ0d4lpfWads2WTKG7ZzmGnsHmm63RflvDeLK/UVx7j2b3QuwKQ2g==}
 
   '@algolia/client-search@4.23.3':
     resolution: {integrity: sha512-P4VAKFHqU0wx9O+q29Q8YVuaowaZ5EM77rxfmGnkHUJggh28useXQdopokgwMeYw2XUht49WX5RcTQ40rZIabw==}
 
-  '@algolia/logger-common@4.22.1':
-    resolution: {integrity: sha512-OnTFymd2odHSO39r4DSWRFETkBufnY2iGUZNrMXpIhF5cmFE8pGoINNPzwg02QLBlGSaLqdKy0bM8S0GyqPLBg==}
-
   '@algolia/logger-common@4.23.3':
     resolution: {integrity: sha512-y9kBtmJwiZ9ZZ+1Ek66P0M68mHQzKRxkW5kAAXYN/rdzgDN0d2COsViEFufxJ0pb45K4FRcfC7+33YB4BLrZ+g==}
 
-  '@algolia/logger-console@4.22.1':
-    resolution: {integrity: sha512-O99rcqpVPKN1RlpgD6H3khUWylU24OXlzkavUAMy6QZd1776QAcauE3oP8CmD43nbaTjBexZj2nGsBH9Tc0FVA==}
+  '@algolia/logger-console@4.23.3':
+    resolution: {integrity: sha512-8xoiseoWDKuCVnWP8jHthgaeobDLolh00KJAdMe9XPrWPuf1by732jSpgy2BlsLTaT9m32pHI8CRfrOqQzHv3A==}
 
-  '@algolia/requester-browser-xhr@4.22.1':
-    resolution: {integrity: sha512-dtQGYIg6MteqT1Uay3J/0NDqD+UciHy3QgRbk7bNddOJu+p3hzjTRYESqEnoX/DpEkaNYdRHUKNylsqMpgwaEw==}
+  '@algolia/recommend@4.23.3':
+    resolution: {integrity: sha512-9fK4nXZF0bFkdcLBRDexsnGzVmu4TSYZqxdpgBW2tEyfuSSY54D4qSRkLmNkrrz4YFvdh2GM1gA8vSsnZPR73w==}
 
-  '@algolia/requester-common@4.22.1':
-    resolution: {integrity: sha512-dgvhSAtg2MJnR+BxrIFqlLtkLlVVhas9HgYKMk2Uxiy5m6/8HZBL40JVAMb2LovoPFs9I/EWIoFVjOrFwzn5Qg==}
+  '@algolia/requester-browser-xhr@4.23.3':
+    resolution: {integrity: sha512-jDWGIQ96BhXbmONAQsasIpTYWslyjkiGu0Quydjlowe+ciqySpiDUrJHERIRfELE5+wFc7hc1Q5hqjGoV7yghw==}
 
   '@algolia/requester-common@4.23.3':
     resolution: {integrity: sha512-xloIdr/bedtYEGcXCiF2muajyvRhwop4cMZo+K2qzNht0CMzlRkm8YsDdj5IaBhshqfgmBb3rTg4sL4/PpvLYw==}
 
-  '@algolia/requester-node-http@4.22.1':
-    resolution: {integrity: sha512-JfmZ3MVFQkAU+zug8H3s8rZ6h0ahHZL/SpMaSasTCGYR5EEJsCc8SI5UZ6raPN2tjxa5bxS13BRpGSBUens7EA==}
-
-  '@algolia/transporter@4.22.1':
-    resolution: {integrity: sha512-kzWgc2c9IdxMa3YqA6TN0NW5VrKYYW/BELIn7vnLyn+U/RFdZ4lxxt9/8yq3DKV5snvoDzzO4ClyejZRdV3lMQ==}
+  '@algolia/requester-node-http@4.23.3':
+    resolution: {integrity: sha512-zgu++8Uj03IWDEJM3fuNl34s746JnZOWn1Uz5taV1dFyJhVM/kTNw9Ik7YJWiUNHJQXcaD8IXD1eCb0nq/aByA==}
 
   '@algolia/transporter@4.23.3':
     resolution: {integrity: sha512-Wjl5gttqnf/gQKJA+dafnD0Y6Yw97yvfY8R9h0dQltX1GXTgNs1zWgvtWW0tHl1EgMdhAyw189uWiZMnL3QebQ==}
 
-  '@babel/helper-string-parser@7.23.4':
-    resolution: {integrity: sha512-803gmbQdqwdf4olxrX4AJyFBV/RTr3rSmOj0rKwesmzlfhYNDEs+/iOcznzpNWlJlIlTJC2QfPFcHB6DlzdVLQ==}
+  '@babel/helper-string-parser@7.24.1':
+    resolution: {integrity: sha512-2ofRCjnnA9y+wk8b9IAREroeUP02KHp431N2mhKniy2yKIDKpbrHv9eXwm8cBeWQYcJmzv5qKCu65P47eCF7CQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/helper-validator-identifier@7.22.20':
-    resolution: {integrity: sha512-Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==}
+  '@babel/helper-validator-identifier@7.24.5':
+    resolution: {integrity: sha512-3q93SSKX2TWCG30M2G2kwaKeTYgEUp5Snjuj8qm729SObL6nbtUldAi37qbxkD5gg3xnBio+f9nqpSepGZMvxA==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/parser@7.24.4':
-    resolution: {integrity: sha512-zTvEBcghmeBma9QIGunWevvBAp4/Qu9Bdq+2k0Ot4fVMD6v3dsC9WOcRSKk7tRRyBM/53yKMJko9xOatGQAwSg==}
+  '@babel/parser@7.24.5':
+    resolution: {integrity: sha512-EOv5IK8arwh3LI47dz1b0tKUb/1uhHAnHJOrjgtQMIpu1uXd9mlFrJg9IUgGUgZ41Ch0K8REPTYpO7B76b4vJg==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/types@7.23.9':
-    resolution: {integrity: sha512-dQjSq/7HaSjRM43FFGnv5keM2HsxpmyV1PfaSVm0nzzjwwTmjOe6J4bC8e3+pTEIgHaHj+1ZlLThRJ2auc/w1Q==}
+  '@babel/types@7.24.5':
+    resolution: {integrity: sha512-6mQNsaLeXTw0nxYUYu+NSa4Hx4BlF1x1x8/PMFbiR+GBSr+2DkECc69b8hgy2frEodNcvPffeH8YfWd3LI6jhQ==}
     engines: {node: '>=6.9.0'}
 
   '@docsearch/css@3.6.0':
@@ -1718,68 +308,83 @@ packages:
   '@jridgewell/sourcemap-codec@1.4.15':
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
 
-  '@rollup/rollup-android-arm-eabi@4.13.0':
-    resolution: {integrity: sha512-5ZYPOuaAqEH/W3gYsRkxQATBW3Ii1MfaT4EQstTnLKViLi2gLSQmlmtTpGucNP3sXEpOiI5tdGhjdE111ekyEg==}
+  '@rollup/rollup-android-arm-eabi@4.17.2':
+    resolution: {integrity: sha512-NM0jFxY8bB8QLkoKxIQeObCaDlJKewVlIEkuyYKm5An1tdVZ966w2+MPQ2l8LBZLjR+SgyV+nRkTIunzOYBMLQ==}
     cpu: [arm]
     os: [android]
 
-  '@rollup/rollup-android-arm64@4.13.0':
-    resolution: {integrity: sha512-BSbaCmn8ZadK3UAQdlauSvtaJjhlDEjS5hEVVIN3A4bbl3X+otyf/kOJV08bYiRxfejP3DXFzO2jz3G20107+Q==}
+  '@rollup/rollup-android-arm64@4.17.2':
+    resolution: {integrity: sha512-yeX/Usk7daNIVwkq2uGoq2BYJKZY1JfyLTaHO/jaiSwi/lsf8fTFoQW/n6IdAsx5tx+iotu2zCJwz8MxI6D/Bw==}
     cpu: [arm64]
     os: [android]
 
-  '@rollup/rollup-darwin-arm64@4.13.0':
-    resolution: {integrity: sha512-Ovf2evVaP6sW5Ut0GHyUSOqA6tVKfrTHddtmxGQc1CTQa1Cw3/KMCDEEICZBbyppcwnhMwcDce9ZRxdWRpVd6g==}
+  '@rollup/rollup-darwin-arm64@4.17.2':
+    resolution: {integrity: sha512-kcMLpE6uCwls023+kknm71ug7MZOrtXo+y5p/tsg6jltpDtgQY1Eq5sGfHcQfb+lfuKwhBmEURDga9N0ol4YPw==}
     cpu: [arm64]
     os: [darwin]
 
-  '@rollup/rollup-darwin-x64@4.13.0':
-    resolution: {integrity: sha512-U+Jcxm89UTK592vZ2J9st9ajRv/hrwHdnvyuJpa5A2ngGSVHypigidkQJP+YiGL6JODiUeMzkqQzbCG3At81Gg==}
+  '@rollup/rollup-darwin-x64@4.17.2':
+    resolution: {integrity: sha512-AtKwD0VEx0zWkL0ZjixEkp5tbNLzX+FCqGG1SvOu993HnSz4qDI6S4kGzubrEJAljpVkhRSlg5bzpV//E6ysTQ==}
     cpu: [x64]
     os: [darwin]
 
-  '@rollup/rollup-linux-arm-gnueabihf@4.13.0':
-    resolution: {integrity: sha512-8wZidaUJUTIR5T4vRS22VkSMOVooG0F4N+JSwQXWSRiC6yfEsFMLTYRFHvby5mFFuExHa/yAp9juSphQQJAijQ==}
+  '@rollup/rollup-linux-arm-gnueabihf@4.17.2':
+    resolution: {integrity: sha512-3reX2fUHqN7sffBNqmEyMQVj/CKhIHZd4y631duy0hZqI8Qoqf6lTtmAKvJFYa6bhU95B1D0WgzHkmTg33In0A==}
     cpu: [arm]
     os: [linux]
 
-  '@rollup/rollup-linux-arm64-gnu@4.13.0':
-    resolution: {integrity: sha512-Iu0Kno1vrD7zHQDxOmvweqLkAzjxEVqNhUIXBsZ8hu8Oak7/5VTPrxOEZXYC1nmrBVJp0ZcL2E7lSuuOVaE3+w==}
+  '@rollup/rollup-linux-arm-musleabihf@4.17.2':
+    resolution: {integrity: sha512-uSqpsp91mheRgw96xtyAGP9FW5ChctTFEoXP0r5FAzj/3ZRv3Uxjtc7taRQSaQM/q85KEKjKsZuiZM3GyUivRg==}
+    cpu: [arm]
+    os: [linux]
+
+  '@rollup/rollup-linux-arm64-gnu@4.17.2':
+    resolution: {integrity: sha512-EMMPHkiCRtE8Wdk3Qhtciq6BndLtstqZIroHiiGzB3C5LDJmIZcSzVtLRbwuXuUft1Cnv+9fxuDtDxz3k3EW2A==}
     cpu: [arm64]
     os: [linux]
 
-  '@rollup/rollup-linux-arm64-musl@4.13.0':
-    resolution: {integrity: sha512-C31QrW47llgVyrRjIwiOwsHFcaIwmkKi3PCroQY5aVq4H0A5v/vVVAtFsI1nfBngtoRpeREvZOkIhmRwUKkAdw==}
+  '@rollup/rollup-linux-arm64-musl@4.17.2':
+    resolution: {integrity: sha512-NMPylUUZ1i0z/xJUIx6VUhISZDRT+uTWpBcjdv0/zkp7b/bQDF+NfnfdzuTiB1G6HTodgoFa93hp0O1xl+/UbA==}
     cpu: [arm64]
     os: [linux]
 
-  '@rollup/rollup-linux-riscv64-gnu@4.13.0':
-    resolution: {integrity: sha512-Oq90dtMHvthFOPMl7pt7KmxzX7E71AfyIhh+cPhLY9oko97Zf2C9tt/XJD4RgxhaGeAraAXDtqxvKE1y/j35lA==}
+  '@rollup/rollup-linux-powerpc64le-gnu@4.17.2':
+    resolution: {integrity: sha512-T19My13y8uYXPw/L/k0JYaX1fJKFT/PWdXiHr8mTbXWxjVF1t+8Xl31DgBBvEKclw+1b00Chg0hxE2O7bTG7GQ==}
+    cpu: [ppc64]
+    os: [linux]
+
+  '@rollup/rollup-linux-riscv64-gnu@4.17.2':
+    resolution: {integrity: sha512-BOaNfthf3X3fOWAB+IJ9kxTgPmMqPPH5f5k2DcCsRrBIbWnaJCgX2ll77dV1TdSy9SaXTR5iDXRL8n7AnoP5cg==}
     cpu: [riscv64]
     os: [linux]
 
-  '@rollup/rollup-linux-x64-gnu@4.13.0':
-    resolution: {integrity: sha512-yUD/8wMffnTKuiIsl6xU+4IA8UNhQ/f1sAnQebmE/lyQ8abjsVyDkyRkWop0kdMhKMprpNIhPmYlCxgHrPoXoA==}
+  '@rollup/rollup-linux-s390x-gnu@4.17.2':
+    resolution: {integrity: sha512-W0UP/x7bnn3xN2eYMql2T/+wpASLE5SjObXILTMPUBDB/Fg/FxC+gX4nvCfPBCbNhz51C+HcqQp2qQ4u25ok6g==}
+    cpu: [s390x]
+    os: [linux]
+
+  '@rollup/rollup-linux-x64-gnu@4.17.2':
+    resolution: {integrity: sha512-Hy7pLwByUOuyaFC6mAr7m+oMC+V7qyifzs/nW2OJfC8H4hbCzOX07Ov0VFk/zP3kBsELWNFi7rJtgbKYsav9QQ==}
     cpu: [x64]
     os: [linux]
 
-  '@rollup/rollup-linux-x64-musl@4.13.0':
-    resolution: {integrity: sha512-9RyNqoFNdF0vu/qqX63fKotBh43fJQeYC98hCaf89DYQpv+xu0D8QFSOS0biA7cGuqJFOc1bJ+m2rhhsKcw1hw==}
+  '@rollup/rollup-linux-x64-musl@4.17.2':
+    resolution: {integrity: sha512-h1+yTWeYbRdAyJ/jMiVw0l6fOOm/0D1vNLui9iPuqgRGnXA0u21gAqOyB5iHjlM9MMfNOm9RHCQ7zLIzT0x11Q==}
     cpu: [x64]
     os: [linux]
 
-  '@rollup/rollup-win32-arm64-msvc@4.13.0':
-    resolution: {integrity: sha512-46ue8ymtm/5PUU6pCvjlic0z82qWkxv54GTJZgHrQUuZnVH+tvvSP0LsozIDsCBFO4VjJ13N68wqrKSeScUKdA==}
+  '@rollup/rollup-win32-arm64-msvc@4.17.2':
+    resolution: {integrity: sha512-tmdtXMfKAjy5+IQsVtDiCfqbynAQE/TQRpWdVataHmhMb9DCoJxp9vLcCBjEQWMiUYxO1QprH/HbY9ragCEFLA==}
     cpu: [arm64]
     os: [win32]
 
-  '@rollup/rollup-win32-ia32-msvc@4.13.0':
-    resolution: {integrity: sha512-P5/MqLdLSlqxbeuJ3YDeX37srC8mCflSyTrUsgbU1c/U9j6l2g2GiIdYaGD9QjdMQPMSgYm7hgg0551wHyIluw==}
+  '@rollup/rollup-win32-ia32-msvc@4.17.2':
+    resolution: {integrity: sha512-7II/QCSTAHuE5vdZaQEwJq2ZACkBpQDOmQsE6D6XUbnBHW8IAhm4eTufL6msLJorzrHDFv3CF8oCA/hSIRuZeQ==}
     cpu: [ia32]
     os: [win32]
 
-  '@rollup/rollup-win32-x64-msvc@4.13.0':
-    resolution: {integrity: sha512-UKXUQNbO3DOhzLRwHSpa0HnhhCgNODvfoPWv2FCXme8N/ANFfhIPMGuOT+QuKd16+B5yxZ0HdpNlqPvTMS1qfw==}
+  '@rollup/rollup-win32-x64-msvc@4.17.2':
+    resolution: {integrity: sha512-TGGO7v7qOq4CYmSBVEYpI1Y5xDuCEnbVC5Vth8mOsW0gDSzxNrVERPc790IGHsrT2dQSimgMr9Ub3Y1Jci5/8w==}
     cpu: [x64]
     os: [win32]
 
@@ -1791,6 +396,9 @@ packages:
 
   '@shikijs/transformers@1.5.2':
     resolution: {integrity: sha512-/Sh64rKOFGMQLCvtHeL1Y7EExdq8LLxcdVkvoGx2aMHsYMOn8DckYl2gYKMHRBu/YUt1C38/Amd1Jdh48tWHgw==}
+
+  '@shikijs/transformers@1.6.0':
+    resolution: {integrity: sha512-qGfHe1ECiqfE2STPWvfogIj/9Q0SK+MCRJdoITkW7AmFuB7DmbFnBT2US84+zklJOB51MzNO8RUXZiauWssJlQ==}
 
   '@shikijs/twoslash@1.6.0':
     resolution: {integrity: sha512-sA9l5hgKNiB+CFUNwxeWyh4nvA6J/fSIzVZId1AhO4rRLINi5dFb13MmDSnxqw+60HKCKjsoWKcbVGvToQXJVA==}
@@ -1910,13 +518,24 @@ packages:
   '@vue/devtools-api@7.2.0':
     resolution: {integrity: sha512-92RsjyH9WKNFO6U/dECUMakq4dm2CeqEDJYLJ8wZ81AnCifpXE7d4jPIjK34ENsPaapA6BSfIZdH/qzLOHiepA==}
 
+  '@vue/devtools-api@7.2.1':
+    resolution: {integrity: sha512-6oNCtyFOrNdqm6GUkFujsCgFlpbsHLnZqq7edeM/+cxAbMyCWvsaCsIMUaz7AiluKLccCGEM8fhOsjaKgBvb7g==}
+
   '@vue/devtools-kit@7.2.0':
     resolution: {integrity: sha512-Kx+U0QiQg/g714euYKfnCdhTcOycSlH1oyTE57D0sAmisdsRCNLfXcnnIwcFY2jdCpuz9DNbuE0VWQuYF5zAZQ==}
     peerDependencies:
       vue: ^3.0.0
 
+  '@vue/devtools-kit@7.2.1':
+    resolution: {integrity: sha512-Wak/fin1X0Q8LLIfCAHBrdaaB+R6IdpSXsDByPHbQ3BmkCP0/cIo/oEGp9i0U2+gEqD4L3V9RDjNf1S34DTzQQ==}
+    peerDependencies:
+      vue: ^3.0.0
+
   '@vue/devtools-shared@7.2.0':
     resolution: {integrity: sha512-gVr3IjKjU7axNvclRgICgy1gq/TDnF1hhBAEox+l5mMXZiTIFVIm1zpcIPssc0HxMDgzy+lXqOVsY4DGyZ+ZeA==}
+
+  '@vue/devtools-shared@7.2.1':
+    resolution: {integrity: sha512-PCJF4UknJmOal68+X9XHyVeQ+idv0LFujkTOIW30+GaMJqwFVN9LkQKX4gLqn61KkGMdJTzQ1bt7EJag3TI6AA==}
 
   '@vue/language-core@1.8.27':
     resolution: {integrity: sha512-L8Kc27VdQserNaCUNiSFdDl9LWT24ly8Hpwf1ECy3aFb9m6bDhBGQYOujDm21N7EW3moKIOKEanQwe1q5BK+mA==}
@@ -1993,8 +612,8 @@ packages:
   '@vueuse/shared@10.9.0':
     resolution: {integrity: sha512-Uud2IWncmAfJvRaFYzv5OHDli+FbOzxiVEQdLCKQKLyhz94PIyFC3CHcH7EDMwIn8NPtD06+PNbC/PiO0LGLtw==}
 
-  algoliasearch@4.22.1:
-    resolution: {integrity: sha512-jwydKFQJKIx9kIZ8Jm44SdpigFwRGPESaxZBaHSV0XWN2yBJAOT4mT7ppvlrpA4UGzz92pqFnVKr/kaZXrcreg==}
+  algoliasearch@4.23.3:
+    resolution: {integrity: sha512-Le/3YgNvjW9zxIQMRhUHuhiUjAlKY/zsdZpfq4dlLqg6mEm0nL6yk+7f2hDOtLpxsgE4jSzDmvHL7nXdBp5feg==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -2225,15 +844,15 @@ packages:
   perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
 
-  picocolors@1.0.0:
-    resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
+  picocolors@1.0.1:
+    resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
 
   postcss@8.4.38:
     resolution: {integrity: sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  preact@10.19.3:
-    resolution: {integrity: sha512-nHHTeFVBTHRGxJXKkKu5hT8C/YWBkPso4/Gad6xuj5dbptt9iF9NZr9pHbPhBrnT2klheu7mHTxTZ/LjwJiEiQ==}
+  preact@10.22.0:
+    resolution: {integrity: sha512-RRurnSjJPj4rp5K6XoP45Ui33ncb7e4H7WiOHVpjbkvqvA3U+N8Z6Qbo0AE6leGYBV66n8EhEaFixvIu3SkxFw==}
 
   react-dom@18.3.1:
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
@@ -2247,8 +866,8 @@ packages:
   rfdc@1.3.1:
     resolution: {integrity: sha512-r5a3l5HzYlIC68TpmYKlxWjmOP6wiPJ1vWv2HeLhNsRZMrCkxeqxiHlQ21oXmQ4F3SiryXBHhAD7JZqvOJjFmg==}
 
-  rollup@4.13.0:
-    resolution: {integrity: sha512-3YegKemjoQnYKmsBlOHfMLVPPA5xLkQ8MHLLSw/fBrFaVkEayL51DilPpNNLq1exr98F2B1TzrV0FUlN3gWRPg==}
+  rollup@4.17.2:
+    resolution: {integrity: sha512-/9ClTJPByC0U4zNLowV1tMBe8yMEAxewtR3cUNX5BoEpGH3dQEWpJLr6CLp0fPdYRF/fzVOgvDb1zXuakwF5kQ==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -2415,84 +1034,67 @@ packages:
 
 snapshots:
 
-  /slash@3.0.0: {}
-
-  /slash@5.1.0: {}
-
-  '@algolia/autocomplete-core@1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.22.1)(search-insights@2.13.0)':
+  '@algolia/autocomplete-core@1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)(search-insights@2.13.0)':
     dependencies:
-      '@algolia/autocomplete-plugin-algolia-insights': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.22.1)(search-insights@2.13.0)
-      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.22.1)
+      '@algolia/autocomplete-plugin-algolia-insights': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)(search-insights@2.13.0)
+      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
       - search-insights
 
-  '@algolia/autocomplete-plugin-algolia-insights@1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.22.1)(search-insights@2.13.0)':
+  '@algolia/autocomplete-plugin-algolia-insights@1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)(search-insights@2.13.0)':
     dependencies:
-      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.22.1)
+      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)
       search-insights: 2.13.0
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
 
-  '@algolia/autocomplete-preset-algolia@1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.22.1)':
+  '@algolia/autocomplete-preset-algolia@1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)':
     dependencies:
-      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.22.1)
+      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)
       '@algolia/client-search': 4.23.3
-      algoliasearch: 4.22.1
+      algoliasearch: 4.23.3
 
-  '@algolia/autocomplete-shared@1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.22.1)':
+  '@algolia/autocomplete-shared@1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)':
     dependencies:
       '@algolia/client-search': 4.23.3
-      algoliasearch: 4.22.1
+      algoliasearch: 4.23.3
 
-  '@algolia/cache-browser-local-storage@4.22.1':
+  '@algolia/cache-browser-local-storage@4.23.3':
     dependencies:
-      '@algolia/cache-common': 4.22.1
-
-  '@algolia/cache-common@4.22.1': {}
+      '@algolia/cache-common': 4.23.3
 
   '@algolia/cache-common@4.23.3': {}
 
-  '@algolia/cache-in-memory@4.22.1':
+  '@algolia/cache-in-memory@4.23.3':
     dependencies:
-      '@algolia/cache-common': 4.22.1
+      '@algolia/cache-common': 4.23.3
 
-  '@algolia/client-account@4.22.1':
+  '@algolia/client-account@4.23.3':
     dependencies:
-      '@algolia/client-common': 4.22.1
-      '@algolia/client-search': 4.22.1
-      '@algolia/transporter': 4.22.1
+      '@algolia/client-common': 4.23.3
+      '@algolia/client-search': 4.23.3
+      '@algolia/transporter': 4.23.3
 
-  '@algolia/client-analytics@4.22.1':
+  '@algolia/client-analytics@4.23.3':
     dependencies:
-      '@algolia/client-common': 4.22.1
-      '@algolia/client-search': 4.22.1
-      '@algolia/requester-common': 4.22.1
-      '@algolia/transporter': 4.22.1
-
-  '@algolia/client-common@4.22.1':
-    dependencies:
-      '@algolia/requester-common': 4.22.1
-      '@algolia/transporter': 4.22.1
+      '@algolia/client-common': 4.23.3
+      '@algolia/client-search': 4.23.3
+      '@algolia/requester-common': 4.23.3
+      '@algolia/transporter': 4.23.3
 
   '@algolia/client-common@4.23.3':
     dependencies:
       '@algolia/requester-common': 4.23.3
       '@algolia/transporter': 4.23.3
 
-  '@algolia/client-personalization@4.22.1':
+  '@algolia/client-personalization@4.23.3':
     dependencies:
-      '@algolia/client-common': 4.22.1
-      '@algolia/requester-common': 4.22.1
-      '@algolia/transporter': 4.22.1
-
-  '@algolia/client-search@4.22.1':
-    dependencies:
-      '@algolia/client-common': 4.22.1
-      '@algolia/requester-common': 4.22.1
-      '@algolia/transporter': 4.22.1
+      '@algolia/client-common': 4.23.3
+      '@algolia/requester-common': 4.23.3
+      '@algolia/transporter': 4.23.3
 
   '@algolia/client-search@4.23.3':
     dependencies:
@@ -2500,31 +1102,35 @@ snapshots:
       '@algolia/requester-common': 4.23.3
       '@algolia/transporter': 4.23.3
 
-  '@algolia/logger-common@4.22.1': {}
-
   '@algolia/logger-common@4.23.3': {}
 
-  '@algolia/logger-console@4.22.1':
+  '@algolia/logger-console@4.23.3':
     dependencies:
-      '@algolia/logger-common': 4.22.1
+      '@algolia/logger-common': 4.23.3
 
-  '@algolia/requester-browser-xhr@4.22.1':
+  '@algolia/recommend@4.23.3':
     dependencies:
-      '@algolia/requester-common': 4.22.1
+      '@algolia/cache-browser-local-storage': 4.23.3
+      '@algolia/cache-common': 4.23.3
+      '@algolia/cache-in-memory': 4.23.3
+      '@algolia/client-common': 4.23.3
+      '@algolia/client-search': 4.23.3
+      '@algolia/logger-common': 4.23.3
+      '@algolia/logger-console': 4.23.3
+      '@algolia/requester-browser-xhr': 4.23.3
+      '@algolia/requester-common': 4.23.3
+      '@algolia/requester-node-http': 4.23.3
+      '@algolia/transporter': 4.23.3
 
-  '@algolia/requester-common@4.22.1': {}
+  '@algolia/requester-browser-xhr@4.23.3':
+    dependencies:
+      '@algolia/requester-common': 4.23.3
 
   '@algolia/requester-common@4.23.3': {}
 
-  '@algolia/requester-node-http@4.22.1':
+  '@algolia/requester-node-http@4.23.3':
     dependencies:
-      '@algolia/requester-common': 4.22.1
-
-  '@algolia/transporter@4.22.1':
-    dependencies:
-      '@algolia/cache-common': 4.22.1
-      '@algolia/logger-common': 4.22.1
-      '@algolia/requester-common': 4.22.1
+      '@algolia/requester-common': 4.23.3
 
   '@algolia/transporter@4.23.3':
     dependencies:
@@ -2532,18 +1138,18 @@ snapshots:
       '@algolia/logger-common': 4.23.3
       '@algolia/requester-common': 4.23.3
 
-  '@babel/helper-string-parser@7.23.4': {}
+  '@babel/helper-string-parser@7.24.1': {}
 
-  '@babel/helper-validator-identifier@7.22.20': {}
+  '@babel/helper-validator-identifier@7.24.5': {}
 
-  '@babel/parser@7.24.4':
+  '@babel/parser@7.24.5':
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.24.5
 
-  '@babel/types@7.23.9':
+  '@babel/types@7.24.5':
     dependencies:
-      '@babel/helper-string-parser': 7.23.4
-      '@babel/helper-validator-identifier': 7.22.20
+      '@babel/helper-string-parser': 7.24.1
+      '@babel/helper-validator-identifier': 7.24.5
       to-fast-properties: 2.0.0
 
   '@docsearch/css@3.6.0': {}
@@ -2551,7 +1157,7 @@ snapshots:
   '@docsearch/js@3.6.0(@algolia/client-search@4.23.3)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.13.0)':
     dependencies:
       '@docsearch/react': 3.6.0(@algolia/client-search@4.23.3)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.13.0)
-      preact: 10.19.3
+      preact: 10.22.0
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/react'
@@ -2561,10 +1167,10 @@ snapshots:
 
   '@docsearch/react@3.6.0(@algolia/client-search@4.23.3)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.13.0)':
     dependencies:
-      '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.22.1)(search-insights@2.13.0)
-      '@algolia/autocomplete-preset-algolia': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.22.1)
+      '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)(search-insights@2.13.0)
+      '@algolia/autocomplete-preset-algolia': 1.9.3(@algolia/client-search@4.23.3)(algoliasearch@4.23.3)
       '@docsearch/css': 3.6.0
-      algoliasearch: 4.22.1
+      algoliasearch: 4.23.3
     optionalDependencies:
       '@types/react': 18.3.2
       react: 18.3.1
@@ -2654,43 +1260,52 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.4.15': {}
 
-  '@rollup/rollup-android-arm-eabi@4.13.0':
+  '@rollup/rollup-android-arm-eabi@4.17.2':
     optional: true
 
-  '@rollup/rollup-android-arm64@4.13.0':
+  '@rollup/rollup-android-arm64@4.17.2':
     optional: true
 
-  '@rollup/rollup-darwin-arm64@4.13.0':
+  '@rollup/rollup-darwin-arm64@4.17.2':
     optional: true
 
-  '@rollup/rollup-darwin-x64@4.13.0':
+  '@rollup/rollup-darwin-x64@4.17.2':
     optional: true
 
-  '@rollup/rollup-linux-arm-gnueabihf@4.13.0':
+  '@rollup/rollup-linux-arm-gnueabihf@4.17.2':
     optional: true
 
-  '@rollup/rollup-linux-arm64-gnu@4.13.0':
+  '@rollup/rollup-linux-arm-musleabihf@4.17.2':
     optional: true
 
-  '@rollup/rollup-linux-arm64-musl@4.13.0':
+  '@rollup/rollup-linux-arm64-gnu@4.17.2':
     optional: true
 
-  '@rollup/rollup-linux-riscv64-gnu@4.13.0':
+  '@rollup/rollup-linux-arm64-musl@4.17.2':
     optional: true
 
-  '@rollup/rollup-linux-x64-gnu@4.13.0':
+  '@rollup/rollup-linux-powerpc64le-gnu@4.17.2':
     optional: true
 
-  '@rollup/rollup-linux-x64-musl@4.13.0':
+  '@rollup/rollup-linux-riscv64-gnu@4.17.2':
     optional: true
 
-  '@rollup/rollup-win32-arm64-msvc@4.13.0':
+  '@rollup/rollup-linux-s390x-gnu@4.17.2':
     optional: true
 
-  '@rollup/rollup-win32-ia32-msvc@4.13.0':
+  '@rollup/rollup-linux-x64-gnu@4.17.2':
     optional: true
 
-  '@rollup/rollup-win32-x64-msvc@4.13.0':
+  '@rollup/rollup-linux-x64-musl@4.17.2':
+    optional: true
+
+  '@rollup/rollup-win32-arm64-msvc@4.17.2':
+    optional: true
+
+  '@rollup/rollup-win32-ia32-msvc@4.17.2':
+    optional: true
+
+  '@rollup/rollup-win32-x64-msvc@4.17.2':
     optional: true
 
   '@shikijs/core@1.5.2': {}
@@ -2700,6 +1315,10 @@ snapshots:
   '@shikijs/transformers@1.5.2':
     dependencies:
       shiki: 1.5.2
+
+  '@shikijs/transformers@1.6.0':
+    dependencies:
+      shiki: 1.6.0
 
   '@shikijs/twoslash@1.6.0(typescript@5.4.5)':
     dependencies:
@@ -2839,7 +1458,7 @@ snapshots:
 
   '@vue/compiler-core@3.4.27':
     dependencies:
-      '@babel/parser': 7.24.4
+      '@babel/parser': 7.24.5
       '@vue/shared': 3.4.27
       entities: 4.5.0
       estree-walker: 2.0.2
@@ -2852,7 +1471,7 @@ snapshots:
 
   '@vue/compiler-sfc@3.4.27':
     dependencies:
-      '@babel/parser': 7.24.4
+      '@babel/parser': 7.24.5
       '@vue/compiler-core': 3.4.27
       '@vue/compiler-dom': 3.4.27
       '@vue/compiler-ssr': 3.4.27
@@ -2873,6 +1492,12 @@ snapshots:
     transitivePeerDependencies:
       - vue
 
+  '@vue/devtools-api@7.2.1(vue@3.4.27(typescript@5.4.5))':
+    dependencies:
+      '@vue/devtools-kit': 7.2.1(vue@3.4.27(typescript@5.4.5))
+    transitivePeerDependencies:
+      - vue
+
   '@vue/devtools-kit@7.2.0(vue@3.4.27(typescript@5.4.5))':
     dependencies:
       '@vue/devtools-shared': 7.2.0
@@ -2882,7 +1507,20 @@ snapshots:
       speakingurl: 14.0.1
       vue: 3.4.27(typescript@5.4.5)
 
+  '@vue/devtools-kit@7.2.1(vue@3.4.27(typescript@5.4.5))':
+    dependencies:
+      '@vue/devtools-shared': 7.2.1
+      hookable: 5.5.3
+      mitt: 3.0.1
+      perfect-debounce: 1.0.0
+      speakingurl: 14.0.1
+      vue: 3.4.27(typescript@5.4.5)
+
   '@vue/devtools-shared@7.2.0':
+    dependencies:
+      rfdc: 1.3.1
+
+  '@vue/devtools-shared@7.2.1':
     dependencies:
       rfdc: 1.3.1
 
@@ -2953,22 +1591,23 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  algoliasearch@4.22.1:
+  algoliasearch@4.23.3:
     dependencies:
-      '@algolia/cache-browser-local-storage': 4.22.1
-      '@algolia/cache-common': 4.22.1
-      '@algolia/cache-in-memory': 4.22.1
-      '@algolia/client-account': 4.22.1
-      '@algolia/client-analytics': 4.22.1
-      '@algolia/client-common': 4.22.1
-      '@algolia/client-personalization': 4.22.1
-      '@algolia/client-search': 4.22.1
-      '@algolia/logger-common': 4.22.1
-      '@algolia/logger-console': 4.22.1
-      '@algolia/requester-browser-xhr': 4.22.1
-      '@algolia/requester-common': 4.22.1
-      '@algolia/requester-node-http': 4.22.1
-      '@algolia/transporter': 4.22.1
+      '@algolia/cache-browser-local-storage': 4.23.3
+      '@algolia/cache-common': 4.23.3
+      '@algolia/cache-in-memory': 4.23.3
+      '@algolia/client-account': 4.23.3
+      '@algolia/client-analytics': 4.23.3
+      '@algolia/client-common': 4.23.3
+      '@algolia/client-personalization': 4.23.3
+      '@algolia/client-search': 4.23.3
+      '@algolia/logger-common': 4.23.3
+      '@algolia/logger-console': 4.23.3
+      '@algolia/recommend': 4.23.3
+      '@algolia/requester-browser-xhr': 4.23.3
+      '@algolia/requester-common': 4.23.3
+      '@algolia/requester-node-http': 4.23.3
+      '@algolia/transporter': 4.23.3
 
   balanced-match@1.0.2: {}
 
@@ -3333,15 +1972,15 @@ snapshots:
 
   perfect-debounce@1.0.0: {}
 
-  picocolors@1.0.0: {}
+  picocolors@1.0.1: {}
 
   postcss@8.4.38:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.0
+      picocolors: 1.0.1
       source-map-js: 1.2.0
 
-  preact@10.19.3: {}
+  preact@10.22.0: {}
 
   react-dom@18.3.1(react@18.3.1):
     dependencies:
@@ -3355,23 +1994,26 @@ snapshots:
 
   rfdc@1.3.1: {}
 
-  rollup@4.13.0:
+  rollup@4.17.2:
     dependencies:
       '@types/estree': 1.0.5
     optionalDependencies:
-      '@rollup/rollup-android-arm-eabi': 4.13.0
-      '@rollup/rollup-android-arm64': 4.13.0
-      '@rollup/rollup-darwin-arm64': 4.13.0
-      '@rollup/rollup-darwin-x64': 4.13.0
-      '@rollup/rollup-linux-arm-gnueabihf': 4.13.0
-      '@rollup/rollup-linux-arm64-gnu': 4.13.0
-      '@rollup/rollup-linux-arm64-musl': 4.13.0
-      '@rollup/rollup-linux-riscv64-gnu': 4.13.0
-      '@rollup/rollup-linux-x64-gnu': 4.13.0
-      '@rollup/rollup-linux-x64-musl': 4.13.0
-      '@rollup/rollup-win32-arm64-msvc': 4.13.0
-      '@rollup/rollup-win32-ia32-msvc': 4.13.0
-      '@rollup/rollup-win32-x64-msvc': 4.13.0
+      '@rollup/rollup-android-arm-eabi': 4.17.2
+      '@rollup/rollup-android-arm64': 4.17.2
+      '@rollup/rollup-darwin-arm64': 4.17.2
+      '@rollup/rollup-darwin-x64': 4.17.2
+      '@rollup/rollup-linux-arm-gnueabihf': 4.17.2
+      '@rollup/rollup-linux-arm-musleabihf': 4.17.2
+      '@rollup/rollup-linux-arm64-gnu': 4.17.2
+      '@rollup/rollup-linux-arm64-musl': 4.17.2
+      '@rollup/rollup-linux-powerpc64le-gnu': 4.17.2
+      '@rollup/rollup-linux-riscv64-gnu': 4.17.2
+      '@rollup/rollup-linux-s390x-gnu': 4.17.2
+      '@rollup/rollup-linux-x64-gnu': 4.17.2
+      '@rollup/rollup-linux-x64-musl': 4.17.2
+      '@rollup/rollup-win32-arm64-msvc': 4.17.2
+      '@rollup/rollup-win32-ia32-msvc': 4.17.2
+      '@rollup/rollup-win32-x64-msvc': 4.17.2
       fsevents: 2.3.3
 
   sax@1.3.0: {}
@@ -3461,7 +2103,7 @@ snapshots:
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
-      rollup: 4.13.0
+      rollup: 4.17.2
     optionalDependencies:
       '@types/node': 20.12.12
       fsevents: 2.3.3
@@ -3516,18 +2158,18 @@ snapshots:
     dependencies:
       '@docsearch/css': 3.6.0
       '@docsearch/js': 3.6.0(@algolia/client-search@4.23.3)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.13.0)
-      '@shikijs/core': 1.5.2
-      '@shikijs/transformers': 1.5.2
+      '@shikijs/core': 1.6.0
+      '@shikijs/transformers': 1.6.0
       '@types/markdown-it': 14.1.1
       '@vitejs/plugin-vue': 5.0.4(vite@5.2.11(@types/node@20.12.12))(vue@3.4.27(typescript@5.4.5))
-      '@vue/devtools-api': 7.2.0(vue@3.4.27(typescript@5.4.5))
+      '@vue/devtools-api': 7.2.1(vue@3.4.27(typescript@5.4.5))
       '@vue/shared': 3.4.27
       '@vueuse/core': 10.9.0(vue@3.4.27(typescript@5.4.5))
       '@vueuse/integrations': 10.9.0(focus-trap@7.5.4)(vue@3.4.27(typescript@5.4.5))
       focus-trap: 7.5.4
       mark.js: 8.11.1
       minisearch: 6.3.0
-      shiki: 1.5.2
+      shiki: 1.6.0
       vite: 5.2.11(@types/node@20.12.12)
       vue: 3.4.27(typescript@5.4.5)
     optionalDependencies:

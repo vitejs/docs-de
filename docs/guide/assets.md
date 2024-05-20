@@ -7,9 +7,7 @@
 
 Das Importieren eines statischen Assets gibt die aufgelöste öffentliche URL zurück, wenn es bereitgestellt wird:
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 import imgUrl from './img.png'
 document.getElementById('hero-img').src = imgUrl
 ```
@@ -35,9 +33,7 @@ Das Verhalten ähnelt dem von webpack's `file-loader`. Der Unterschied besteht d
 ::: tip Einbindung von SVGs durch `url()`
 Bei der Übergabe einer SVG-URL an eine manuell erstellte `url()` durch JS sollte die Variable in Anführungszeichen gesetzt werden.
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 import imgUrl from './img.svg'
 document.getElementById('hero-img').style.background = `url("${imgUrl}")`
 ```
@@ -48,9 +44,7 @@ document.getElementById('hero-img').style.background = `url("${imgUrl}")`
 
 Assets, die nicht in der internen Liste oder in `assetsInclude` enthalten sind, können explizit als URL mit dem Suffix `?url` importiert werden. Dies ist nützlich, um beispielsweise [Houdini Paint Worklets](https://houdini.how/usage) zu importieren.
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 import workletURL from 'extra-scalloped-border/worklet.js?url'
 CSS.paintWorklet.addModule(workletURL)
 ```
@@ -59,9 +53,7 @@ CSS.paintWorklet.addModule(workletURL)
 
 Assets können als Zeichenfolgen mithilfe des Suffix `?raw` importiert werden.
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 import shaderString from './shader.glsl?raw'
 ```
 
@@ -69,25 +61,19 @@ import shaderString from './shader.glsl?raw'
 
 Skripte können als Web Worker mit dem Suffix `?worker` oder `?sharedworker` importiert werden.
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 // Separater Chunk im Produktionsbuild
 import Worker from './shader.js?worker'
 const worker = new Worker()
 ```
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 // sharedworker
 import SharedWorker from './shader.js?sharedworker'
 const sharedWorker = new SharedWorker()
 ```
 
-```js twoslash
-import 'vite/client'
-// ---cut---
+```js
 // Als Base64-Zeichenfolgen eingebettet
 import InlineWorker from './shader.js?worker&inline'
 ```

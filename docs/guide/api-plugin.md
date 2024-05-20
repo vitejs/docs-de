@@ -578,10 +578,8 @@ Wir empfehlen, Ihre Ereignisnamen **immer zu präfixieren**, um Kollisionen mit 
 
 Auf der Client-Seite verwenden Sie [`hot.on`](/guide/api-hmr.html#hot-on-event-cb), um auf die Ereignisse zu hören:
 
-```ts twoslash
-import 'vite/client'
-// ---cut---
-// client side
+```ts
+// Client-Seite
 if (import.meta.hot) {
   import.meta.hot.on('my:greetings', (data) => {
     console.log(data.msg) // hello
