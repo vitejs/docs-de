@@ -50,9 +50,7 @@ Vite unterstützt auch direkt TS-Konfigurationsdateien. Sie können `vite.config
 
 Wenn die Konfiguration Optionen basierend auf dem Befehl (`serve` oder `build`), dem [mode](/guide/env-and-mode), der verwendet wird, wenn es ein SSR-Build ist (`isSsrBuild`) oder eine Vorschau des Builds ist (`isPreview`), bestimmen muss, kann sie stattdessen eine Funktion exportieren:
 
-```js twoslash
-import { defineConfig } from 'vite'
-// ---cut---
+```js
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
   if (command === 'serve') {
     return {
@@ -75,9 +73,7 @@ Es ist wichtig zu beachten, dass in der API von Vite der Wert `command` während
 
 Wenn die Konfiguration asynchrone Funktionen aufrufen muss, kann sie stattdessen eine asynchrone Funktion exportieren. Und diese asynchrone Funktion kann auch durch `defineConfig` für verbesserte Intellisense-Unterstützung übergeben werden:
 
-```js twoslash
-import { defineConfig } from 'vite'
-// ---cut---
+```js
 export default defineConfig(async ({ command, mode }) => {
   const data = await asyncFunction()
   return {
@@ -92,7 +88,7 @@ Umgebungsvariablen können wie üblich aus `process.env` bezogen werden.
 
 Beachten Sie, dass Vite die `.env`-Dateien nicht standardmäßig lädt, da die zu ladenden Dateien nur nach Auswertung der Vite-Konfiguration bestimmt werden können, zum Beispiel beeinflussen die Optionen `root` und `envDir` das Ladeverhalten. Sie können jedoch die exportierte `loadEnv`-Hilfe verwenden, um die spezifische `.env`-Datei zu laden, falls erforderlich.
 
-```js twoslash
+```js
 import { defineConfig, loadEnv } from 'vite'
 
 export default defineConfig(({ command, mode }) => {

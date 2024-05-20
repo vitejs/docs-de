@@ -8,9 +8,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
 
 1. In Ihrer Vite-Konfiguration konfigurieren Sie den Einstiegspunkt und aktivieren das Build-Manifest:
 
-   ```js twoslash
-   import { defineConfig } from 'vite'
-   // ---cut---
+   ```js
    // vite.config.js
    export default defineConfig({
      build: {
