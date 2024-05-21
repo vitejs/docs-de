@@ -41,7 +41,7 @@
   "dependencies": {
     "feed": "^4.2.2",
     "search-insights": "^2.13.0",
-    "vitepress": "1.2.1"
+    "vitepress": "1.2.2"
   },
   "devDependencies": {
     "@algolia/client-search": "^4.23.3",
