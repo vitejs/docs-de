@@ -429,8 +429,7 @@ interface HtmlTagDescriptor {
 
     ```js
     handleHotUpdate({ server, modules, timestamp }) {
-      // Also use `server.ws.send` to support Vite <5.1 if needed
-      server.hot.send({ type: 'full-reload' })
+      server.ws.send({ type: 'full-reload' })
       // Invalidate modules manually
       const invalidatedModules = new Set()
       for (const mod of modules) {
@@ -449,8 +448,7 @@ interface HtmlTagDescriptor {
 
     ```js
     handleHotUpdate({ server }) {
-      // Also use `server.ws.send` to support Vite <5.1 if needed
-      server.hot.send({
+      server.ws.send({
         type: 'custom',
         event: 'special-update',
         data: {}
@@ -559,7 +557,7 @@ Seit Vite 2.9 bieten wir einige Hilfsmittel für Plugins, um die Kommunikation m
 
 ### Server zu Client
 
-Auf der Plugin-Seite können wir `server.hot.send` (seit Vite 5.1) oder `server.ws.send` verwenden, um Ereignisse an alle Clients zu senden:
+Auf der Plugin-Seite könnten wir `server.ws.send` verwenden, um Ereignisse an den Client zu senden:
 
 ```js
 // vite.config.js
@@ -568,9 +566,8 @@ export default defineConfig({
     {
       // ...
       configureServer(server) {
-        // Beispiel: Warten Sie darauf, dass ein Client eine Verbindung herstellt, bevor Sie eine Nachricht senden
-        server.hot.on('connection', () => {
-          server.hot.send('my:greetings', { msg: 'hello' })
+        server.ws.on('connection', () => {
+          server.ws.send('my:greetings', { msg: 'hello' })
         })
       },
     },
@@ -604,7 +601,7 @@ if (import.meta.hot) {
 }
 ```
 
-Dann verwenden Sie `server.hot.on` (seit Vite 5.1) oder `server.ws.on` und hören auf die Ereignisse auf der Serverseite:
+Dann verwenden Sie "server.ws.on" und horchen auf die Ereignisse auf der Serverseite:
 
 ```js
 // vite.config.js
@@ -613,12 +610,10 @@ export default defineConfig({
     {
       // ...
       configureServer(server) {
-        server.hot.on('my:from-client', (data, client) => {
-          console.log('Nachricht vom Client:', data.msg) // Hey!
-          // Nur an den Client zurückschicken (falls erforderlich)
-          client.send('my:ack', {
-            msg: 'Hi! Ich habe deine Nachricht erhalten!',
-          })
+        server.ws.on('my:from-client', (data, client) => {
+          console.log('Message from client:', data.msg) // Hey!
+          // reply only to the client (if needed)
+          client.send('my:ack', { msg: 'Hi! I got your message!' })
         })
       },
     },
