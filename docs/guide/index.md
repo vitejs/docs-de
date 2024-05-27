@@ -86,6 +86,8 @@ bun create vite my-vue-app --template vue
 
 Siehe [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) für weitere Details zu jeder unterstützten Vorlage: `vanilla`, `vanilla-ts`, `vue`, `vue-ts`, `react`, `react-ts`, `react-swc`, `react-swc-ts`, `preact`, `preact-ts`, `lit`, `lit-ts`, `svelte`, `svelte-ts`, `solid`, `solid-ts`, `qwik`, `qwik-ts`.
 
+Sie können `.` für den Projektnamen verwenden, um im aktuellen Verzeichnis ein Gerüst zu erstellen.
+
 ## Community Vorlagen
 
 create-vite ist ein Tool, mit dem man schnell ein Projekt aus einer Basisvorlage für gängige Frameworks erstellen kann. Bei Awesome Vite finden Sie [von der Community gepflegte Vorlagen](https://github.com/vitejs/awesome-vite#templates), die andere Tools enthalten oder auf andere Frameworks abzielen.
