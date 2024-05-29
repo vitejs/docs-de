@@ -90,7 +90,7 @@ Konfigurieren Sie benutzerdefinierte Proxyregeln für den Entwicklungsserver. Er
 
 Beachten Sie, dass bei Verwendung von nicht relativem [`base`](/config/shared-options.md#base) jeder Schlüssel mit diesem `base` vorangestellt werden muss.
 
-Erweitert [`http-proxy`](https://github.com/http-party/node-http-proxy#options). Weitere Optionen finden Sie [hier](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/server/middlewares/proxy.ts#L13).
+Erweitert [`http-proxy`](https://github.com/http-party/node-http-proxy#options). Weitere Optionen finden Sie [hier](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/server/middlewares/proxy.ts#L13). Beachten Sie, dass [im Gegensatz zu http-proxy](https://github.com/http-party/node-http-proxy/issues/1669) die Option `changeOrigin` sowohl Host- als auch Origin-Header so ändert, dass sie dem Ziel entsprechen.
 
 In einigen Fällen möchten Sie möglicherweise auch den zugrunde liegenden Entwicklungsserver konfigurieren (z. B. um benutzerdefinierte Middlewares zur internen [connect](https://github.com/senchalabs/connect)-App hinzuzufügen). Um dies zu tun, müssen Sie Ihr eigenes [Plugin](/guide/using-plugins.html) schreiben und die Funktion [configureServer](/guide/api-plugin.html#configureserver) verwenden.
 
