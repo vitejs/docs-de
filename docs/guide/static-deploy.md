@@ -36,7 +36,6 @@ Standardmäßig wird die Build-Ausgabe in `dist` platziert. Sie können diesen `
 Sobald Sie die Anwendung erstellt haben, können Sie sie lokal testen, indem Sie den Befehl `npm run preview` ausführen.
 
 ```bash
-$ npm run build
 $ npm run preview
 ```
 
