@@ -15,8 +15,8 @@ importers:
         specifier: ^2.14.0
         version: 2.14.0
       vitepress:
-        specifier: 1.2.2
-        version: 1.2.2(@algolia/client-search@4.23.3)(@types/node@20.14.0)(@types/react@18.3.3)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.14.0)(typescript@5.4.5)
+        specifier: 1.2.3
+        version: 1.2.3(@algolia/client-search@4.23.3)(@types/node@20.14.0)(@types/react@18.3.3)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.14.0)(typescript@5.4.5)
     devDependencies:
       '@algolia/client-search':
         specifier: ^4.23.3
@@ -639,8 +639,8 @@ packages:
       terser:
         optional: true
 
-  vitepress@1.2.2:
-    resolution: {integrity: sha512-uZ3nXR5NY4nYj3RJWCo5jev9qlNZAQo5SUXu1U0QSUx84cUm/o7hCTDVjZ4njVSVui+PsV1oAbdQOg8ygbaf4w==}
+  vitepress@1.2.3:
+    resolution: {integrity: sha512-GvEsrEeNLiDE1+fuwDAYJCYLNZDAna+EtnXlPajhv/MYeTjbNK6Bvyg6NoTdO1sbwuQJ0vuJR99bOlH53bo6lg==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4
@@ -1238,7 +1238,7 @@ snapshots:
       '@types/node': 20.14.0
       fsevents: 2.3.3
 
-  vitepress@1.2.2(@algolia/client-search@4.23.3)(@types/node@20.14.0)(@types/react@18.3.3)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.14.0)(typescript@5.4.5):
+  vitepress@1.2.3(@algolia/client-search@4.23.3)(@types/node@20.14.0)(@types/react@18.3.3)(postcss@8.4.38)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.14.0)(typescript@5.4.5):
     dependencies:
       '@docsearch/css': 3.6.0
       '@docsearch/js': 3.6.0(@algolia/client-search@4.23.3)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.14.0)
