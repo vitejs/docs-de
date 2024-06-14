@@ -104,7 +104,7 @@ npm install
 npm run dev
 ```
 
-## `index.html` und das Projekt-Wurzelverzeichnis
+## `index.html` und das Projekt-Root-Verzeichnis
 
 Eine Sache, die Ihnen vielleicht aufgefallen ist, ist, dass in einem Vite-Projekt die Datei `index.html` an vorderster Stelle steht, anstatt in `public` versteckt zu sein. Das ist beabsichtigt: Während der Entwicklung ist Vite ein Server, und `index.html` ist der Einstiegspunkt zu Ihrer Anwendung.
 
@@ -115,9 +115,9 @@ Vite ist auch in der Lage, mit Abhängigkeiten umzugehen, die zu Orten außerhal
 
 Vite unterstützt auch [mehrseitige Anwendungen](./build#multi-page-app) mit mehreren `.html`-Einstiegspunkten.
 
-#### Festlegen eines alternativen Wurzelverzeichnisses
+#### Alternative Root-Verzeichnisse spezifizieren
 
-Das Ausführen von `vite` startet den Dev-Server unter Verwendung des aktuellen Arbeitsverzeichnisses als Wurzel. Sie können ein alternatives Wurzelverzeichnis mit `vite serve some/sub/dir` angeben.
+Das Ausführen von `vite` startet den Dev-Server unter Verwendung des aktuellen Arbeitsverzeichnisses als Root. Sie können ein alternatives Wurzelverzeichnis mit `vite serve some/sub/dir` angeben.
 Beachten Sie, dass Vite auch [seine Konfigurationsdatei (d.h. `vite.config.js`)](/config/#configuring-vite) innerhalb des Projektstammes auflöst, so dass Sie diese verschieben müssen, wenn das Wurzelverzeichnis geändert wird.
 
 ## Befehlszeilenschnittstelle (CLI)
