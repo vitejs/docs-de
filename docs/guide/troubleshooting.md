@@ -17,7 +17,7 @@ In einem einfachen Vite-Projekt stellen Sie sicher, dass:
 
 Für andere Projekte gibt es einige allgemeine Ansätze:
 
-- **Konfigurieren Sie ESM als Standard und optieren Sie bei Bedarf für CJS:** Fügen Sie `"type": "module"` in die `package.json` des Projekts hinzu. Alle `*.js`-Dateien werden jetzt als ESM interpretiert und müssen die ESM-Syntax verwenden. Sie können eine Datei mit der Erweiterung `.cjs` umbenennen, um weiterhin CJS zu verwenden.
+- **ESM als Standard konfigurieren, bei Bedarf Opt-In für CJS:** Fügen Sie `"type": "module"` in die `package.json` des Projekts hinzu. Alle `*.js`-Dateien werden jetzt als ESM interpretiert und müssen die ESM-Syntax verwenden. Sie können eine Datei mit der Erweiterung `.cjs` umbenennen, um weiterhin CJS zu verwenden.
 - **Behalten Sie CJS als Standard und optieren Sie bei Bedarf für ESM:** Wenn die `package.json` des Projekts nicht `"type": "module"` enthält, werden alle `*.js`-Dateien als CJS interpretiert. Sie können eine Datei mit der Erweiterung `.mjs` umbenennen, um stattdessen ESM zu verwenden.
 - **Importieren Sie Vite dynamisch:** Wenn Sie CJS weiterhin verwenden müssen, können Sie Vite dynamisch mit `import('vite')` importieren. Dies erfordert, dass Ihr Code in einem `async`-Kontext geschrieben ist, sollte aber trotzdem gut beherrschbar sein, da die Vite-API größtenteils asynchron ist.
 
@@ -33,7 +33,7 @@ Wenn Sie die Warnung vorübergehend ignorieren möchten, können Sie Ihr Skript 
 VITE_CJS_IGNORE_WARNING=true vite dev
 ```
 
-Beachten Sie, dass postcss-Konfigurationsdateien ESM + TypeScript (`.mts` oder `.ts` in `"type": "module"`) noch nicht unterstützen. Wenn Sie postcss configs mit `.ts` haben und `"type": "module"` zu package.json hinzugefügt haben, müssen Sie auch die postcss-Konfiguration umbenennen, um `.cts` zu verwenden.
+Beachten Sie, dass postcss-Konfigurationsdateien die ESM + TypeScript (`.mts` oder `.ts` in `„type“: „module“`) noch nicht unterstützen. Wenn Sie postcss-Konfigurationen mit `.ts` haben und `„type“: „module"` zu package.json hinzugefügt haben, müssen Sie auch die postcss-Konfiguration umbenennen, um `.cts` zu verwenden.
 
 ## Befehlszeilenschnittstelle (CLI)
 
@@ -171,7 +171,7 @@ Sie müssen auf die Datei mit dem `http`-Protokoll zugreifen. Der einfachste Weg
 
 Der Hash-Wert, der zum Ungültigmachen optimierter Abhängigkeiten verwendet wird, hängt von den Inhalten des Paketsperrverzeichnisses, den auf Abhängigkeiten angewendeten Patches und den Optionen in der Vite-Konfigurationsdatei ab, die sich auf das Bündeln von Node-Modulen auswirken. Dies bedeutet, dass Vite erkennt, wenn eine Abhängigkeit mit einer Funktion wie [npm overrides](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides) überschrieben wird, und Ihre Abhängigkeiten beim nächsten Serverstart erneut bündelt. Vite wird die Abhängigkeiten nicht ungültig machen, wenn Sie eine Funktion wie [npm link](https://docs.npmjs.com/cli/v9/commands/npm-link) verwenden. Wenn Sie eine Abhängigkeit verknüpfen oder entknüpfen, müssen Sie beim nächsten Serverstart eine erneute Optimierung erzwingen, indem Sie `vite --force` verwenden. Wir empfehlen stattdessen die Verwendung von Überschreibungen, die jetzt von jedem Paketmanager unterstützt werden (siehe auch [pnpm overrides](https://pnpm.io/package_json#pnpmoverrides) und [yarn resolutions](https://yarnpkg.com/configuration/manifest/#resolutions)).
 
-## Leistungsengpässe
+Der Hash-Schlüssel, der zum Ungültigmachen optimierter Abhängigkeiten verwendet wird, hängt vom Inhalt der Paketsperre, den auf die Abhängigkeiten angewendeten Patches und den Optionen in der Vite-Konfigurationsdatei ab, die sich auf die Bündelung von Node-Modulen auswirken. Das bedeutet, dass Vite erkennt, wenn eine Abhängigkeit mit einer Funktion wie [npm overrides](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides) überschrieben wird, und Ihre Abhängigkeiten beim nächsten Serverstart neu bündelt. Vite wird die Abhängigkeiten nicht ungültig machen, wenn Sie eine Funktion wie [npm link](https://docs.npmjs.com/cli/v9/commands/npm-link) verwenden. Falls Sie eine Abhängigkeit verlinken oder aufheben, müssen Sie beim nächsten Serverstart eine erneute Optimierung erzwingen, indem Sie `vite --force` verwenden. Wir empfehlen stattdessen die Verwendung von Overrides, die mittlerweile von jedem Paketmanager unterstützt werden (siehe auch [pnpm overrides](https://pnpm.io/package_json#pnpmoverrides) und [yarn resolutions](https://yarnpkg.com/configuration/manifest/#resolutions)).
 
 Wenn Sie unter langsamen Ladezeiten aufgrund von Leistungsengpässen in Ihrer Anwendung leiden, können Sie den integrierten Node.js-Inspektor mit Ihrem Vite-Entwicklungsserver starten oder beim Erstellen Ihrer Anwendung, um ein CPU-Profil zu erstellen:
 
@@ -217,7 +217,7 @@ Beispielsweise könnten Sie diese Fehler sehen.
 
 > TypeError: Cannot create property 'foo' on boolean 'false'
 
-Wenn dieser Code in Abhängigkeiten verwendet wird, können Sie [`patch-package`](https://github.com/ds300/patch-package) (oder [`yarn patch`](https://yarnpkg.com/cli/patch) oder [`pnpm patch`](https://pnpm.io/cli/patch)) für einen Ausweg verwenden.
+Wenn diese Codes innerhalb von Abhängigkeiten verwendet werden, können Sie [`patch-package`](https://github.com/ds300/patch-package) (oder [`yarn patch`](https://yarnpkg.com/cli/patch) oder [`pnpm patch`](https://pnpm.io/cli/patch)) als Ausweg verwenden.
 
 ### Browsererweiterungen
 

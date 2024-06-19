@@ -28,9 +28,9 @@ In einem einfachen Vite-Projekt stellen Sie sicher, dass:
 
 Für andere Projekte gibt es einige allgemeine Ansätze:
 
-- **Konfigurieren Sie ESM als Standard und wählen Sie bei Bedarf CJS aus:** Fügen Sie `"type": "module"` in die `package.json` des Projekts hinzu. Alle `*.js`-Dateien werden jetzt als ESM interpretiert und müssen die ESM-Syntax verwenden. Sie können eine Datei mit der Erweiterung `.cjs` umbenennen, um weiterhin CJS zu verwenden.
-- **Behalten Sie CJS als Standard und wählen Sie bei Bedarf ESM aus:** Wenn die `package.json` des Projekts nicht `"type": "module"` enthält, werden alle `*.js`-Dateien als CJS interpretiert. Sie können eine Datei mit der Erweiterung `.mjs` umbenennen, um stattdessen ESM zu verwenden.
-- **Importieren Sie Vite dynamisch:** Wenn Sie weiterhin CJS verwenden müssen, können Sie Vite dynamisch mit `import('vite')` importieren. Dies erfordert, dass Ihr Code in einem `async`-Kontext geschrieben ist, sollte aber immer noch gut beherrschbar sein, da die Vite-API größtenteils asynchron ist.
+- **ESM als Standard konfigurieren, bei Bedarf Opt-In für CJS:** Fügen Sie `„type“: „module"` im Projekt `package.json`. Alle „*.js“-Dateien werden nun als ESM interpretiert und müssen die ESM-Syntax verwenden. Sie können eine Datei mit der Erweiterung `.cjs` umbenennen, um stattdessen weiterhin CJS zu verwenden.
+- **CJS als Standard beibehalten, bei Bedarf auf ESM umstellen:** Wenn die Projektdatei `package.json` nicht den Eintrag `„type“: „module"` enthält, werden alle ‚*.js‘-Dateien als CJS interpretiert. Sie können eine Datei mit der Erweiterung `.mjs` umbenennen, um stattdessen ESM zu verwenden.
+- **Vite dynamisch importieren:** Wenn Sie weiterhin CJS verwenden möchten, können Sie stattdessen Vite dynamisch mit `import('vite')` importieren. Dies erfordert, dass Ihr Code in einem „asynchronen“ Kontext geschrieben wird, aber es sollte immer noch handhabbar sein, da die API von Vite größtenteils asynchron ist.
 
 Weitere Informationen finden Sie im [Leitfaden zur Problembehandlung](/guide/troubleshooting.html#vite-cjs-node-api-deprecated).
 
@@ -96,7 +96,7 @@ import * as _foo from 'bar'
 const foo = _foo.default
 ```
 
-Beachten Sie, dass diese Änderungen dem Verhalten von Node.js entsprechen, so dass Sie die Importe auch in Node.js ausführen können, um sie zu testen. Wenn Sie es vorziehen, das bisherige Verhalten beizubehalten, können Sie `legacy.proxySsrExternalModules` auf `true` setzen.
+Beachten Sie, dass diese Änderungen dem Verhalten von Node.js entsprechen, so dass Sie die Importe auch in Node.js ausführen können, um sie zu testen. Wenn Sie aber bevorzugen, das bisherige Verhalten beizubehalten, können Sie `legacy.proxySsrExternalModules` auf `true` setzen.
 
 ### `worker.plugins` ist jetzt eine Funktion
 

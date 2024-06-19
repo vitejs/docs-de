@@ -34,7 +34,7 @@ Build-Ziel für den SSR-Server.
 - **Typ:** `String[]`
 - **Verwandt:** [Bedingungen auflösen](./shared-options.md#resolve-conditions)
 
-Die Standardeinstellung ist der Root [`resolve.conditions`](./shared-options.md#resolve-conditions).
+Standardmäßig wird die Root [`resolve.conditions`](./shared-options.md#resolve-conditions) verwendet.
 
 Diese Bedingungen werden in der Plugin-Pipeline verwendet und betreffen nur nicht-externalisierte Abhängigkeiten während des SSR-Builds. Verwenden Sie `ssr.resolve.externalConditions`, um externalisierte Importe zu beeinflussen.
 

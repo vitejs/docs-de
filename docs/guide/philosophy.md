@@ -8,11 +8,11 @@ Vite beabsichtigt nicht, jeden Anwendungsfall für jeden Benutzer abzudecken. Vi
 
 Vite bietet anspruchsvolle Funktionen, die das Schreiben modernen Codes vorantreiben. Beispielsweise:
 
-- Der Quellcode kann nur in ESM geschrieben werden, wobei Nicht-ESM-Abhängigkeiten [vorab als ESM gebündelt](./dep-pre-bundling) werden müssen, um zu funktionieren.
-- Web-Worker werden ermutigt, mit der [`new Worker`-Syntax](./features#web-workers) geschrieben zu werden, um modernen Standards zu entsprechen.
+- Der Quellcode kann nur in ESM geschrieben werden, wobei Nicht-ESM-Abhängigkeiten [pre-bundled as ESM](./dep-pre-bundling) sein müssen, um zu funktionieren.
+- Web-Worker sollten mit der [`new Worker`-Syntax](./features#web-workers) geschrieben werden, um moderne Standards zu erfüllen.
 - Node.js-Module können nicht im Browser verwendet werden.
 
-Bei der Einführung neuer Funktionen werden diese Muster befolgt, um eine zukunftssichere API zu erstellen, die nicht immer mit anderen Build-Tools kompatibel ist.
+Wenn neue Funktionen hinzugefügt werden, werden diese Muster befolgt, um eine zukunftssichere API zu schaffen, die möglicherweise nicht immer mit anderen Build-Tools kompatibel ist.
 
 ## Ein pragmatischer Ansatz zur Leistung
 
