@@ -17,9 +17,9 @@ Siehe [Projektstamm](/guide/#index-html-and-project-root) für weitere Details.
 
 Öffentlicher Basispfad bei der Ausführung in Entwicklung oder Produktion. Gültige Werte sind:
 
-- Absoluter URL-Pfad, z. B. `/foo/`
-- Vollständige URL, z. B. `https://foo.com/` (Der ursprüngliche Tei wird in der Entwicklung nicht verwendet)
-- Leerzeichen oder `./` (für die eingebettete Bereitstellung)
+- Absoluter URL-Pfadname, z.B. `/foo/`
+- Vollständige URL, z. B. `https://bar.com/foo/` (Der Ursprungsteil wird in der Entwicklung nicht verwendet, daher ist der Wert derselbe wie `/foo/`)
+- Leere Zeichenfolge oder `./` (für eingebettete Bereitstellung)
 
 Siehe [Öffentlicher Basispfad](/guide/build#public-base-path) für weitere Details.
 
@@ -179,7 +179,7 @@ A nonce value placeholder that will be used when generating script / style tags.
     getJSON?: (
       cssFileName: string,
       json: Record<string, string>,
-      outputFileName: string,
+      outputFileName: string
     ) => void
     scopeBehaviour?: 'global' | 'local'
     globalModulePaths?: RegExp[]
@@ -199,7 +199,7 @@ A nonce value placeholder that will be used when generating script / style tags.
       | ((
           originalClassName: string,
           generatedClassName: string,
-          inputFile: string,
+          inputFile: string
         ) => string)
   }
   ```
@@ -309,7 +309,7 @@ import type {
   Features,
   NonStandard,
   PseudoClasses,
-  Targets
+  Targets,
 } from 'lightningcss'
 ```
 
@@ -355,8 +355,8 @@ Wenn dies aktiviert ist, werden benannte Imports deaktiviert.
 export default defineConfig({
   esbuild: {
     jsxFactory: 'h',
-    jsxFragment: 'Fragment'
-  }
+    jsxFragment: 'Fragment',
+  },
 })
 ```
 
@@ -367,8 +367,8 @@ Darüber hinaus können Sie auch `esbuild.jsxInject` verwenden, um automatisch J
 ```js
 export default defineConfig({
   esbuild: {
-    jsxInject: `import React from 'react'`
-  }
+    jsxInject: `import React from 'react'`,
+  },
 })
 ```
 
@@ -393,7 +393,7 @@ Die eingebauten Asset-Typenliste finden Sie [hier](https://github.com/vitejs/vit
 
 ```js
 export default defineConfig({
-  assetsInclude: ['**/*.gltf']
+  assetsInclude: ['**/*.gltf'],
 })
 ```
 
@@ -433,7 +433,7 @@ logger.warn = (msg, options) => {
 }
 
 export default defineConfig({
-  customLogger: logger
+  customLogger: logger,
 })
 ```
 
