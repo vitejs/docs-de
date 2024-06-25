@@ -187,7 +187,7 @@ Die `resolvePackageEntry` und `resolvePackageData` APIs werden entfernt, da sie 
 - `resolvePackageData`: Dasselbe wie oben, und crawlen Sie das Paketverzeichnis, um die Wurzel `package.json` zu erhalten. Oder verwenden Sie das Gemeinschaftspaket [`vitefu`](https://github.com/svitejs/vitefu).
 
 ```js
-import { resolve } from 'import-meta-env'
+import { resolve } from 'import-meta-resolve'
 import { findDepPkgJsonPath } from 'vitefu'
 import fs from 'node:fs'
 
