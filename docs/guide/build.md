@@ -13,7 +13,7 @@ Das Produktionsbündel setzt die Unterstützung für modernes JavaScript voraus.
 
 Sie können benutzerdefinierte Ziele über die [`build.target` Konfigurationsoption](/config/build-options.md#build-target) festlegen, wobei das niedrigste Ziel `es2015` ist.
 
-Beachten Sie, dass Vite standardmäßig nur Syntaxtransformationen verarbeitet und **keine Polyfills** abdeckt. Sie könnten zum Beispiel [Polyfill JS](https://cdnjs.cloudflare.com/polyfill/) nutzen - ein Dienst, der automatisch Polyfill-Bundles auf Grundlage des UserAgent-Strings des Browsers des Nutzers generiert.
+Beachten Sie, dass Vite standardmäßig nur Syntaxtransformationen verarbeitet und **keine Polyfills** abdeckt. Sie könnten zum Beispiel https://cdnjs.cloudflare.com/polyfill/, um automatisch Polyfill-Bundles auf Grundlage des UserAgent-Strings des Browsers des Nutzers zu generieren.
 
 Ältere Browser können über [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) unterstützt werden, der automatisch Legacy-Chunks und entsprechende Polyfills für ES-Sprachfunktionen generiert. Die Legacy-Chunks werden nur in Browsern geladen, die keine native Unterstützung für ESM haben.
 
