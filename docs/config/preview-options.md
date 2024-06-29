@@ -46,7 +46,7 @@ Setzen Sie dies auf `true`, um den Vorgang zu beenden, wenn der Port bereits ver
 
 ## preview.https
 
-- **Typ:** `boolean | https.ServerOptions`
+- **Typ:** `https.ServerOptions`
 - **Standardwert:** [`server.https`](./server-options#server-https)
 
 Aktivieren Sie TLS + HTTP/2. Beachten Sie, dass dies auf TLS allein downgradet, wenn auch die [`server.proxy`-Option](./server-options#server-proxy) verwendet wird.
