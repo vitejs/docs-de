@@ -88,19 +88,6 @@ export const core = [
     sponsor: 'https://github.com/sponsors/dominikg',
   },
   {
-    avatar: 'https://github.com/Shinigami92.png',
-    name: 'Shinigami',
-    title: 'Maintainer',
-    org: 'Faker',
-    orgLink: 'https://fakerjs.dev',
-    desc: 'Passionate TypeScript enthusiast working extensively with Vue SPA and pug.',
-    links: [
-      { icon: 'github', link: 'https://github.com/Shinigami92' },
-      { icon: 'mastodon', link: 'https://elk.zone/mas.to/@Shini92' },
-    ],
-    sponsor: 'https://github.com/sponsors/Shinigami92',
-  },
-  {
     avatar: 'https://github.com/sodatea.png',
     name: 'Haoqun Jiang',
     title: 'Developer',
@@ -186,5 +173,17 @@ export const emeriti = [
     name: 'Nihal Gonsalves',
     title: 'Senior Software-Entwickler',
     links: [{ icon: 'github', link: 'https://github.com/nihalgonsalves' }],
+  },
+  {
+    avatar: 'https://github.com/Shinigami92.png',
+    name: 'Shinigami',
+    title: 'Senior Frontend Engineer',
+    org: 'Faker',
+    orgLink: 'https://fakerjs.dev',
+    desc: 'Passionate TypeScript enthusiast working extensively with Vue SPA.',
+    links: [
+      { icon: 'github', link: 'https://github.com/Shinigami92' },
+      { icon: 'mastodon', link: 'https://elk.zone/mas.to/@Shini92' },
+    ],
   },
 ]
