@@ -67,24 +67,32 @@ $ bun create vite
 
 :::
 
-Folgen Sie dann den Anweisungen!
-Sie können auch direkt den Projektnamen und die zu verwendende Vorlage über zusätzliche Befehlszeilenoptionen angeben. Führen Sie zum Beispiel ein Vite + Vue-Projekt aus, um ein Gerüst zu erstellen:
+Folgen Sie dann den Anweisungen.
 
-```bash
+Sie können auch direkt den Projektnamen und die zu verwendende Vorlage über zusätzliche Befehlszeilenoptionen angeben. Führen Sie zum Beispiel ein Vite + Vue-Projekt aus, um ein Scaffold zu erstellen:
+
+::: code-group
+
+```bash [NPM]
 # npm 7+, extra double-dash is needed:
-npm create vite@latest my-vue-app -- --template vue
-
-# yarn
-yarn create vite my-vue-app --template vue
-
-# pnpm
-pnpm create vite my-vue-app --template vue
-
-# bun
-bun create vite my-vue-app --template vue
+$ npm create vite@latest my-vue-app -- --template vue
 ```
 
-Siehe [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) für weitere Details zu jeder unterstützten Vorlage: `vanilla`, `vanilla-ts`, `vue`, `vue-ts`, `react`, `react-ts`, `react-swc`, `react-swc-ts`, `preact`, `preact-ts`, `lit`, `lit-ts`, `svelte`, `svelte-ts`, `solid`, `solid-ts`, `qwik`, `qwik-ts`.
+```bash [Yarn]
+$ yarn create vite my-vue-app --template vue
+```
+
+```bash [PNPM]
+$ pnpm create vite my-vue-app --template vue
+```
+
+```bash [Bun]
+$ bun create vite my-vue-app --template vue
+```
+
+:::
+
+Siehe [create-vite](https://github. com/vitejs/vite/tree/main/packages/create-vite) für weitere Details zu jeder unterstützten Vorlage: `vanilla`, `vanilla-ts`, `vue`, `vue-ts`, `react`, `react-ts`, `react-swc`, `react-swc-ts`, `preact`, `preact-ts`, `lit`, `lit-ts`, `svelte`, `svelte-ts`, `solid`, `solid-ts`, `qwik`, `qwik-ts`.
 
 Sie können `.` für den Projektnamen verwenden, um im aktuellen Verzeichnis ein Gerüst zu erstellen.
 
