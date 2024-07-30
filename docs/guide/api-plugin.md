@@ -397,7 +397,7 @@ interface HtmlTagDescriptor {
 ```
 
   ::: warning Note
-  This hook won't be called if you are using a framework that has custom handling of entry files (for example [SvelteKit](https://github.com/sveltejs/kit/discussions/8269#discussioncomment-4509145).
+    Dieser Hook wird nicht aufgerufen, wenn Sie ein Framework verwenden, das eine benutzerdefinierte Handhabung von Eingabedateien hat (zum Beispiel [SvelteKit](https://github.com/sveltejs/kit/discussions/8269#discussioncomment-4509145).
   :::
 
 ### `handleHotUpdate`
