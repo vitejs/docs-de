@@ -429,7 +429,6 @@ interface HtmlTagDescriptor {
 
     ```js
     handleHotUpdate({ server, modules, timestamp }) {
-      server.ws.send({ type: 'full-reload' })
       // Invalidate modules manually
       const invalidatedModules = new Set()
       for (const mod of modules) {
@@ -440,6 +439,7 @@ interface HtmlTagDescriptor {
           true
         )
       }
+      server.ws.send({ type: 'full-reload' })
       return []
     }
     ```
