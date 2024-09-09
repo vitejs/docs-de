@@ -112,9 +112,63 @@ npm install
 npm run dev
 ```
 
-## `index.html` und das Projekt-Root-Verzeichnis
+## Manuelle Installation
 
-Eine Sache, die Ihnen vielleicht aufgefallen ist, ist, dass in einem Vite-Projekt die Datei `index.html` an vorderster Stelle steht, anstatt in `public` versteckt zu sein. Das ist beabsichtigt: Während der Entwicklung ist Vite ein Server, und `index.html` ist der Einstiegspunkt zu Ihrer Anwendung.
+In Ihrem Projekt können Sie das `vite` CLI mit installieren:
+
+::: code-group
+
+```bash [NPM]
+$ npm install -D vite
+```
+
+```bash [Yarn]
+$ yarn add -D vite
+```
+
+```bash [PNPM]
+$ pnpm add -D vite
+```
+
+```bash [Bun]
+$ bun add -D vite
+```
+
+:::
+
+Und eine `index.html` Datei wie folgt erstellen:
+
+```html
+<p>Hallo Vite!</p>
+```
+
+Dann führen Sie den entsprechenden CLI-Befehl in Ihrem Terminal aus:
+
+::: code-group
+
+```bash [NPM]
+$ npx vite
+```
+
+```bash [Yarn]
+$ yarn vite
+```
+
+````bash [PNPM]
+$ pnpm vite
+```
+
+```bash [Bun]
+$ bunx vite
+```
+
+:::
+
+Die `index.html` wird auf `http://localhost:5173` bereitgestellt.
+
+## `index.html` und Projekt-Root
+
+Eine Sache, die Ihnen vielleicht aufgefallen ist, ist, dass in einem Vite-Projekt `index.html` an vorderster Stelle steht, anstatt in `public` versteckt zu sein. Das ist beabsichtigt: Während der Entwicklung ist Vite ein Server, und `index.html` ist der Einstiegspunkt zu Ihrer Anwendung.
 
 Vite behandelt die `index.html` als Quellcode und Teil des Modulgraphen. Es löst `<script type="module" src="...">` auf, das auf Ihren JavaScript-Quellcode verweist. Sogar inline `<script type="module">` und CSS werden über `<link href>` referenziert und genießen damit Vite-spezifische Eigenschaften. Darüber hinaus werden URLs innerhalb von `index.html` automatisch umbasiert, so dass keine speziellen Platzhalter für `%PUBLIC_URL%` erforderlich sind.
 
@@ -165,3 +219,4 @@ Gehen Sie dann zu Ihrem Vite-basierten Projekt und führen Sie `pnpm link --glob
 ## Community
 
 Wenn Sie Fragen haben oder Hilfe benötigen, wenden Sie sich an die Community unter [Discord](https://chat.vitejs.dev) und [GitHub Discussions](https://github.com/vitejs/vite/discussions).
+````
