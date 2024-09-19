@@ -38,7 +38,7 @@ Eine typische SSR-Anwendung hat die folgende Dateistruktur:
 
 Die `index.html` muss auf `entry-client.js` verweisen und einen Platzhalter enthalten, in den das servergerenderte Markup eingefügt werden soll:
 
-```html
+```html [index.html]
 <div id="app"><!--ssr-outlet--></div>
 <script type="module" src="/src/entry-client.js"></script>
 ```
@@ -61,12 +61,10 @@ Dies wird während des Builds statisch ersetzt und ermöglicht das Entfernen von
 
 Wenn Sie eine SSR-Anwendung erstellen, möchten Sie wahrscheinlich die volle Kontrolle über Ihren Hauptserver haben und Vite von der Produktionsumgebung entkoppeln. Es wird daher empfohlen, Vite im Middleware-Modus zu verwenden. Hier ist ein Beispiel mit [Express](https://expressjs.com/):
 
-**server.js**
-
-```js{15-18}
-import fs from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
+```js{15-18} twoslash [server.js]
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import express from 'express'
 import { createServer as createViteServer } from 'vite'
 
@@ -101,11 +99,22 @@ async function createServer() {
 createServer()
 ```
 
-Hierbei handelt es sich um eine Instanz von [ViteDevServer](./api-javascript#vitedevserver). `vite.middlewares` ist eine [Connect](https://github.com/senchalabs/connect)-Instanz, die als Middleware in jedem connect-kompatiblen Node.js-Framework verwendet werden kann.
+Here `vite` is an instance of [ViteDevServer](./api-javascript#vitedevserver). `vite.middlewares` is a [Connect](https://github.com/senchalabs/connect) instance which can be used as a middleware in any connect-compatible Node.js framework.
 
-Der nächste Schritt besteht darin, den Handler `*` zu implementieren, um servergerendertes HTML zu servieren:
+The next step is implementing the `*` handler to serve server-rendered HTML:
 
-```js
+```js twoslash [server.js]
+// @noErrors
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+/** @type {import('express').Express} */
+var app
+/** @type {import('vite').ViteDevServer}  */
+var vite
+
+// ---cut---
 app.use('*', async (req, res, next) => {
   const url = req.originalUrl
 
@@ -148,7 +157,7 @@ lage ein.
 
 Das `dev`-Skript in `package.json` sollte ebenfalls geändert werden, um stattdessen das Server-Skript zu verwenden:
 
-```diff
+```diff [package.json]
   "scripts": {
 -   "dev": "vite"
 +   "dev": "node server"
@@ -164,7 +173,7 @@ Um ein SSR-Projekt für die Produktion bereitzustellen, müssen wir Folgendes tu
 
 Unsere Skripts in `package.json` sehen folgendermaßen aus:
 
-```json
+```json [package.json]
 {
   "scripts": {
     "dev": "node server",
@@ -201,8 +210,7 @@ Um das Manifest zu nutzen, müssen Frameworks eine Möglichkeit bereitstellen, d
 
 `@vitejs/plugin-vue` unterstützt dies von Haus aus und registriert automatisch verwendete Komponentenmodul-IDs im zugehörigen Vue-SSR-Kontext:
 
-```js
-// src/entry-server.js
+```js [src/entry-server.js]
 const ctx = {}
 const html = await vueServerRenderer.renderToString(app, ctx)
 // ctx.modules ist jetzt ein Set von Modul-IDs, die während des Renderns verwendet wurden

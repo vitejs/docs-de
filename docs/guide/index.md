@@ -133,7 +133,7 @@ Beachten Sie, dass Vite auch [seine Konfigurationsdatei (d.h. `vite.config.js`)]
 In einem Projekt, in dem Vite installiert ist, können Sie das `vite`-Binary in Ihren npm-Skripten verwenden oder es direkt mit `npx vite` ausführen. Hier sind die standardmäßigen npm-Skripte in einem gerüsteten Vite-Projekt:
 
 <!-- prettier-ignore -->
-```json
+```json [package.json]
 {
   "scripts": {
     "dev": "vite", // start dev server, aliases: `vite dev`, `vite serve`

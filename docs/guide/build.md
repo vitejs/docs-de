@@ -33,8 +33,7 @@ Für erweiterte Steuerung des Basispfads siehe [Erweiterte Basisoptionen](#erwei
 
 Der Build kann über verschiedene [Build-Konfigurationsoptionen](/config/build-options.md) angepasst werden. Konkret können Sie die zugrunde liegenden [Rollup-Optionen](https://rollupjs.org/configuration-options/) direkt über `build.rollupOptions` anpassen:
 
-```js
-// vite.config.js
+```js [vite.config.js]
 export default defineConfig({
   build: {
     rollupOptions: {
@@ -66,8 +65,7 @@ When a new deployment occurs, the hosting service may delete the assets from pre
 
 Sie können den Rollup Watcher mit `vite build --watch` aktivieren. Oder Sie können die zugrundeliegenden [`WatcherOptions`](https://rollupjs.org/configuration-options/#watch) direkt über `build.watch` anpassen:
 
-```js
-// vite.config.js
+```js [vite.config.js]
 export default defineConfig({
   build: {
     watch: {
@@ -97,8 +95,7 @@ Während der Entwicklung navigieren oder verlinken Sie einfach zu `/nested/` - e
 
 Während des Builds müssen Sie nur mehrere `.html`-Dateien als Einstiegspunkte angeben:
 
-```js
-// vite.config.js
+```js twoslash [vite.config.js]
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
@@ -124,8 +121,7 @@ Wenn Sie eine auf den Browser ausgerichtete Bibliothek entwickeln, verbringen Si
 
 Wenn es Zeit ist, Ihre Bibliothek für die Verteilung zu bündeln, verwenden Sie die [`build.lib`-Konfigurationsoption](/config/build-options.md#build-lib). Stellen Sie sicher, dass Sie auch Abhängigkeiten externisieren, die Sie nicht in Ihre Bibliothek bündeln möchten, z. B. `vue` oder `react`:
 
-```js
-// vite.config.js
+```js twoslash [vite.config.js]
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
@@ -155,8 +151,7 @@ export default defineConfig({
 
 Die Eingabedatei enthält Exporte, die von Benutzern Ihres Pakets importiert werden können:
 
-```js
-// lib/main.js
+```js [lib/main.js]
 import Foo from './Foo.vue'
 import Bar from './Bar.vue'
 export { Foo, Bar }
@@ -173,7 +168,7 @@ dist/my-lib.umd.cjs 0.30 kB / gzip: 0.16 kB
 
 Empfohlenes `package.json` für Ihre Bibliothek:
 
-```json
+```json [package.json]
 {
   "name": "my-lib",
   "type": "module",
@@ -191,7 +186,7 @@ Empfohlenes `package.json` für Ihre Bibliothek:
 
 Oder, wenn mehrere Einstiegspunkte freigegeben werden:
 
-```json
+```json [package.json]
 {
   "name": "my-lib",
   "type": "module",

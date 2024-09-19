@@ -42,8 +42,7 @@ Siehe auch [Konvention für virtuelle Module](#virtuelle-module-konvention).
 
 Benutzer werden Plugins zum Projekt `devDependencies` hinzufügen und diese über das `plugins`-Array konfigurieren.
 
-```js
-// vite.config.js
+```js [vite.config.js]
 import vitePlugin from 'vite-plugin-feature'
 import rollupPlugin from 'rollup-plugin-feature'
 
@@ -66,8 +65,7 @@ export default function framework(config) {
 }
 ```
 
-```js
-// vite.config.js
+```js [vite.config.js]
 import { defineConfig } from 'vite'
 import framework from 'vite-plugin-framework'
 
@@ -516,8 +514,7 @@ Wenn ein Rollup-Plugin nur für die Build-Phase Sinn macht, kann es unter `build
 
 Sie können auch ein vorhandenes Rollup-Plugin mit Vite-spezifischen Eigenschaften erweitern:
 
-```js
-// vite.config.js
+```js [vite.config.js]
 import example from 'rollup-plugin-example'
 import { defineConfig } from 'vite'
 
@@ -559,8 +556,7 @@ Seit Vite 2.9 bieten wir einige Hilfsmittel für Plugins, um die Kommunikation m
 
 Auf der Plugin-Seite könnten wir `server.ws.send` verwenden, um Ereignisse an den Client zu senden:
 
-```js
-// vite.config.js
+```js [vite.config.js]
 export default defineConfig({
   plugins: [
     {
@@ -603,8 +599,7 @@ if (import.meta.hot) {
 
 Dann verwenden Sie "server.ws.on" und horchen auf die Ereignisse auf der Serverseite:
 
-```js
-// vite.config.js
+```js [vite.config.js]
 export default defineConfig({
   plugins: [
     {
@@ -625,9 +620,8 @@ export default defineConfig({
 
 Es ist möglich, benutzerdefinierte Ereignisse durch Erweitern des `CustomEventMap`-Interfaces zu typisieren:
 
-```ts
-// events.d.ts
-import 'vite/types/customEvent'
+```ts [events.d.ts]
+import 'vite/types/customEvent.d.ts'
 
 declare module 'vite/types/customEvent' {
   interface CustomEventMap {

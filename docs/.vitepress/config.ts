@@ -1,4 +1,10 @@
-import { defineConfig, DefaultTheme } from 'vitepress'
+import type { DefaultTheme } from 'vitepress'
+import { defineConfig } from 'vitepress'
+import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin,
+} from 'vitepress-plugin-group-icons'
 import { buildEnd } from './buildEnd.config'
 
 const ogDescription = 'Frontend-Tooling der nächsten Generation'
@@ -380,6 +386,22 @@ export default defineConfig({
       ['meta', { property: 'og:title', content: pageData.title }],
     )
     return pageData
+  },
+  markdown: {
+    codeTransformers: [transformerTwoslash()],
+    config(md) {
+      md.use(groupIconMdPlugin)
+    },
+  },
+  vite: {
+    plugins: [
+      groupIconVitePlugin({
+        customIcon: {
+          firebase: 'vscode-icons:file-type-firebase',
+          '.gitlab-ci.yml': 'vscode-icons:file-type-gitlab',
+        },
+      }),
+    ],
   },
   buildEnd,
 })

@@ -8,8 +8,9 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
 
 1. In Ihrer Vite-Konfiguration konfigurieren Sie den Einstiegspunkt und aktivieren das Build-Manifest:
 
-   ```js
-   // vite.config.js
+   ```js twoslash [vite.config.js]
+   import { defineConfig } from 'vite'
+   // ---cut---
    export default defineConfig({
      build: {
        // generiert .vite/manifest.json in outDir
@@ -56,13 +57,29 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    </script>
    ```
 
-3. Für die Produktion: Nach Ausführung von `vite build` wird eine Datei `.vite/manifest.json` neben anderen Asset-Dateien generiert. Eine Beispieldatei für das Manifest sieht so aus:
+3. For production: after running `vite build`, a `.vite/manifest.json` file will be generated alongside other asset files. An example manifest file looks like this:
 
-   ```json
+   ```json [.vite/manifest.json]
    {
-     "main.js": {
-       "file": "assets/main.4889e940.js",
-       "src": "main.js",
+     "_shared-!~{003}~.js": {
+       "file": "assets/shared-ChJ_j-JJ.css",
+       "src": "_shared-!~{003}~.js"
+     },
+     "_shared-B7PI925R.js": {
+       "file": "assets/shared-B7PI925R.js",
+       "name": "shared",
+       "css": ["assets/shared-ChJ_j-JJ.css"]
+     },
+     "baz.js": {
+       "file": "assets/baz-B2H3sXNv.js",
+       "name": "baz",
+       "src": "baz.js",
+       "isDynamicEntry": true
+     },
+     "views/bar.js": {
+       "file": "assets/bar-gkvgaI9m.js",
+       "name": "bar",
+       "src": "views/bar.js",
        "isEntry": true,
        "dynamicImports": ["views/foo.js"],
        "css": ["assets/main.b82dbe22.css"],

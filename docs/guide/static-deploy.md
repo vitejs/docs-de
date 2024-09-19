@@ -6,7 +6,7 @@ Die folgenden Anleitungen basieren auf einigen gemeinsamen Annahmen:
 - Sie verwenden npm. Sie können äquivalente Befehle verwenden, um die Skripte auszuführen, wenn Sie Yarn oder andere Paketmanager verwenden.
 - Vite ist als lokale Entwicklungsumgebungsabhängigkeit in Ihrem Projekt installiert, und Sie haben die folgenden npm-Skripte eingerichtet:
 
-```json
+```json [package.json]
 {
   "scripts": {
     "build": "vite build",
@@ -43,7 +43,7 @@ Der Befehl `vite preview` startet einen lokalen statischen Webserver, der die Da
 
 Sie können den Port des Servers konfigurieren, indem Sie die `--port`-Flagge als Argument übergeben.
 
-```json
+```json [package.json]
 {
   "scripts": {
     "preview": "vite preview --port 8080"
@@ -127,7 +127,7 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
 
 2. Erstellen Sie eine Datei namens `.gitlab-ci.yml` im Stammverzeichnis Ihres Projekts mit dem folgenden Inhalt. Dadurch wird Ihre Website erstellt und bereitgestellt, sobald Sie Änderungen an Ihrem Inhalt vornehmen:
 
-   ```yaml
+   ```yaml [.gitlab-ci.yml]
    image: node:16.5.0
    pages:
      stage: deploy
@@ -245,9 +245,7 @@ Sie können auch benutzerdefinierte Domänen hinzufügen und benutzerdefinierte 
 
 2. Erstellen Sie `firebase.json` und `.firebaserc` im Stammverzeichnis Ihres Projekts mit folgendem Inhalt:
 
-   `firebase.json`:
-
-   ```json
+   ```json [firebase.json]
    {
      "hosting": {
        "public": "dist",
@@ -262,9 +260,7 @@ Sie können auch benutzerdefinierte Domänen hinzufügen und benutzerdefinierte 
    }
    ```
 
-   `.firebaserc`:
-
-   ```js
+   ```js [.firebaserc]
    {
      "projects": {
        "default": "<YOUR_FIREBASE_ID>"

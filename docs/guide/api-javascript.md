@@ -193,9 +193,9 @@ async function build(
 
 **Beispielverwendung:**
 
-```js
-import path from 'path'
-import { fileURLToPath } from 'url'
+```ts twoslash [vite.config.js]
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { build } from 'vite'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))

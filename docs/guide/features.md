@@ -125,7 +125,7 @@ Die Standardtypen von Vite sind für die Node.js-API. Um die Umgebung von client
 
 Alternativ können Sie `vite/client` zu `compilerOptions.types` in `tsconfig.json` hinzufügen:
 
-```json
+```json [tsconfig.json]
 {
   "compilerOptions": {
     "types": ["vite/client"]
@@ -176,8 +176,7 @@ Vue-Benutzer sollten das offizielle [@vitejs/plugin-vue-jsx](https://github.com/
 
 Wenn JSX ohne React oder Vue verwendet wird, können benutzerdefinierte `jsxFactory` und `jsxFragment` mit der [`esbuild` Option](/config/shared-options.md#esbuild) konfiguriert werden. Zum Beispiel für Preact:
 
-```js
-// vite.config.js
+```js twoslash [vite.config.js]
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -192,8 +191,7 @@ Mehr Details in [esbuild docs](https://esbuild.github.io/content-types/#jsx).
 
 Sie können die JSX-Helfer mit `jsxInject` injizieren (eine Option, die nur für Vite verfügbar ist), um manuelle Importe zu vermeiden:
 
-```js
-// vite.config.js
+```js twoslash [vite.config.js]
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -223,8 +221,7 @@ Beachten Sie, dass die CSS-Minifizierung nach PostCSS ausgeführt wird und die O
 
 Jede CSS-Datei, die mit `.module.css` endet, wird als [CSS-Modul-Datei](https://github.com/css-modules/css-modules) betrachtet. Beim Importieren einer solchen Datei wird das entsprechende Modulobjekt zurückgegeben:
 
-```css
-/* example.module.css */
+```css [example.module.css]
 .red {
   color: red;
 }
