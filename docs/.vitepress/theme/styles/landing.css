@@ -3,9 +3,8 @@
 /* /////////////////////// */
 
 html:has(.landing) {
-  --vp-c-bg: #101010;
-
   background-color: #101010;
+  --vp-c-bg: #101010;
 
   body {
     background-color: #101010;
@@ -38,12 +37,7 @@ html:has(.landing) {
 
     .content-body {
       background: none !important;
-      transition: none;
     }
-  }
-
-  .VPNavBar *:not(.wrapper *) {
-    transition: none;
   }
 
   .VPFooter {
@@ -61,10 +55,6 @@ html:has(.landing) {
   /* /////////////// */
 
   .VPNavBarAppearance {
-    display: none;
-  }
-
-  .VPMenu .translations + .group {
     display: none;
   }
 

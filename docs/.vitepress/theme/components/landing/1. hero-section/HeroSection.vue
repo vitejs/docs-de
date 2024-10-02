@@ -5,14 +5,10 @@ import HeroDiagram from './HeroDiagram.vue'
 <template>
   <div class="hero">
     <div class="container">
-      <!-- ViteConf 2025 Button -->
-      <a
-        href="https://viteconf.org/?utm=vite"
-        class="hero__pill"
-        target="_blank"
-      >
+      <!-- ViteConf Replay Button -->
+      <a href="https://viteconf.org/" class="hero__pill" target="_blank">
         <img src="/viteconf.svg" alt="Viteconf logo" width="20" height="20" />
-        <span>ViteConf 2025</span>
+        <span>ViteConf 2024 - Oct 3rd & 4th</span>
       </a>
 
       <!-- Heading -->

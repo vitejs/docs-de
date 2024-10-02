@@ -23,9 +23,6 @@ import logoReact from './images/react.svg'
 import logoRemix from './images/remix.svg'
 import logoSvelte from './images/svelte.svg'
 import logoLaravel from './images/laravel.svg'
-import logoAdonis from './images/adonis.svg'
-import logoEmber from './images/ember.svg'
-import logoPreact from './images/preact.svg'
 
 /**
  * The frameworks and tools to display in this section.
@@ -49,7 +46,7 @@ const frameworks: Framework[] = [
     name: 'Angular',
     logo: logoAngular,
     color: '#e03237',
-    url: 'https://angular.dev/',
+    url: 'https://angularjs.org/',
     visible: ref(false),
   },
   {
@@ -71,13 +68,6 @@ const frameworks: Framework[] = [
     logo: logoSvelte,
     color: '#fd3e00',
     url: 'https://svelte.dev/',
-    visible: ref(false),
-  },
-  {
-    name: 'Preact',
-    logo: logoPreact,
-    color: '#673ab8',
-    url: 'https://preactjs.com/',
     visible: ref(false),
   },
   {
@@ -105,7 +95,7 @@ const frameworks: Framework[] = [
     name: 'Qwik',
     logo: logoQwik,
     color: '#18b5f4',
-    url: 'https://qwik.dev/',
+    url: 'https://qwik.builder.io/',
     visible: ref(false),
   },
   {
@@ -148,27 +138,6 @@ const frameworks: Framework[] = [
     logo: logoLaravel,
     color: '#eb4432',
     url: 'https://laravel.com/',
-    visible: ref(false),
-  },
-  {
-    name: 'AdonisJS',
-    logo: logoAdonis,
-    color: '#5a45ff',
-    url: 'https://adonisjs.com/',
-    visible: ref(false),
-  },
-  {
-    name: 'EmberJS',
-    logo: logoEmber,
-    color: '#e04e39',
-    url: 'https://emberjs.com/',
-    visible: ref(false),
-  },
-  {
-    name: 'Hono',
-    logo: logoHono,
-    color: '#ff5c13',
-    url: 'https://hono.dev/',
     visible: ref(false),
   },
 ]
@@ -260,46 +229,24 @@ const numFrameworksPerRow = computed(
 )
 
 /**
+ * The indexes of the blocks on each row that support framework cards.
+ */
+const centerIndexes: ComputedRef<{ start: number; end: number }> = computed(
+  () => {
+    const startIndex = paddedBlocksPerSide.value
+    return {
+      start: startIndex,
+      end: numBlocksPerRow.value - paddedBlocksPerSide.value,
+    }
+  },
+)
+
+/**
  * How many rows do we need to display all the frameworks?
  */
 const numRows: ComputedRef<number> = computed(() => {
   return Math.ceil(frameworks.length / numFrameworksPerRow.value)
 })
-
-/**
- * The indexes of the blocks on each row that support framework cards.
- *
- * Note that the index of the returned array is 1-based.
- */
-const centerIndexes: ComputedRef<{ start: number; end: number }[]> = computed(
-  () => {
-    const firstRowsStartIndex = paddedBlocksPerSide.value
-    const frameworksPerFirstRows =
-      numBlocksPerRow.value - 2 * paddedBlocksPerSide.value
-    const lastRowStartIndex =
-      paddedBlocksPerSide.value +
-      Math.floor(
-        (frameworksPerFirstRows -
-          (frameworks.length % frameworksPerFirstRows)) /
-          2,
-      )
-    return new Array(numRows.value + 1).fill(0).map((_, i) => {
-      return i < numRows.value ||
-        frameworks.length % frameworksPerFirstRows === 0
-        ? {
-            start: firstRowsStartIndex,
-            end: numBlocksPerRow.value - paddedBlocksPerSide.value,
-          }
-        : {
-            start: lastRowStartIndex,
-            end:
-              lastRowStartIndex +
-              (frameworks.length % frameworksPerFirstRows) +
-              1,
-          }
-    })
-  },
-)
 
 /**
  * Generate CSS transformations for each row, to gracefully slide between horizontal positions.
@@ -326,8 +273,8 @@ const rowStyle: ComputedRef<{ transform: string }> = computed(() => {
           <template v-for="columnIndex in numBlocksPerRow + 2">
             <template
               v-if="
-                columnIndex - 1 >= centerIndexes[rowIndex].start &&
-                columnIndex - 1 < centerIndexes[rowIndex].end
+                columnIndex - 1 >= centerIndexes.start &&
+                columnIndex - 1 < centerIndexes.end
               "
             >
               <FrameworkCard
@@ -335,7 +282,7 @@ const rowStyle: ComputedRef<{ transform: string }> = computed(() => {
                   frameworks[
                     (rowIndex - 1) * numFrameworksPerRow +
                       (columnIndex - 1) -
-                      centerIndexes[rowIndex].start
+                      centerIndexes.start
                   ]
                 "
               />

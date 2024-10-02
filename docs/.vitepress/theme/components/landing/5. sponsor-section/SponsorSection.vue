@@ -1,5 +1,5 @@
 <script setup>
-import { useSponsor, voidZero } from '../../../composables/sponsor'
+import { useSponsor } from '../../../composables/sponsor'
 import { VPSponsors } from 'vitepress/theme'
 
 const { data } = useSponsor()
@@ -54,8 +54,8 @@ const { data } = useSponsor()
 
     <h4>Brought to you by</h4>
     <div class="voidzero">
-      <a :href="voidZero.url" target="_blank">
-        <img :src="voidZero.img" />
+      <a href="https://voidzero.dev" target="_blank">
+        <img src="./voidzero.svg" />
       </a>
     </div>
 
@@ -121,7 +121,6 @@ const { data } = useSponsor()
       position: relative;
       display: inline-block;
       max-width: 260px;
-      filter: grayscale(1) invert(1);
     }
   }
 
@@ -134,10 +133,9 @@ const { data } = useSponsor()
     font-weight: 400;
     line-height: 150%; /* 24px */
     letter-spacing: -0.32px;
-    width: 520px;
+    width: 480px;
     max-width: 100%;
     margin: 0 auto 40px;
-    padding: 0 20px;
   }
 
   .sponsor-grid {
