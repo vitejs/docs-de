@@ -7,7 +7,7 @@ import {
 } from 'vitepress-plugin-group-icons'
 import { buildEnd } from './buildEnd.config'
 
-const ogDescription = 'Next Generation Frontend Tooling'
+const ogDescription = 'Frontend-Tooling der nächsten Generation'
 const ogImage = 'https://vite.dev/og-image.jpg'
 const ogTitle = 'Vite'
 const ogUrl = 'https://vite.dev'
