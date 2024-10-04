@@ -7,10 +7,10 @@ import {
 } from 'vitepress-plugin-group-icons'
 import { buildEnd } from './buildEnd.config'
 
-const ogDescription = 'Frontend-Tooling der nächsten Generation'
-const ogImage = 'https://vitejs.dev/og-image.png'
+const ogDescription = 'Next Generation Frontend Tooling'
+const ogImage = 'https://vite.dev/og-image.jpg'
 const ogTitle = 'Vite'
-const ogUrl = 'https://vitejs.dev'
+const ogUrl = 'https://vite.dev'
 
 // netlify envs
 const deployURL = process.env.DEPLOY_PRIME_URL || ''
