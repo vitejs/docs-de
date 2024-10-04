@@ -13,10 +13,10 @@ head:
       content: Announcing Vite 4
   - - meta
     - property: og:image
-      content: https://vitejs.dev/og-image-announcing-vite4.png
+      content: https://vite.dev/og-image-announcing-vite4.png
   - - meta
     - property: og:url
-      content: https://vitejs.dev/blog/announcing-vite4
+      content: https://vite.dev/blog/announcing-vite4
   - - meta
     - property: og:description
       content: Vite 4 Release Announcement
@@ -35,23 +35,23 @@ Vite 3 [wurde](./announcing-vite3.md) vor fünf Monaten veröffentlicht. Die wö
 
 Als Zeichen des Wachstums, das Vite und die damit verbundenen Projekte erfahren haben, hat sich das Vite-Ökosystem am 11. Oktober auf der [ViteConf 2022](https://viteconf.org/2022/replay) versammelt. Vertreter der wichtigsten Web-Frameworks und Tools erzählten Geschichten über Innovation und Zusammenarbeit. Und symbolisch wählte das Rollup-Team genau an diesem Tag, um [Rollup 3](https://rollupjs.org) zu veröffentlichen.
 
-Heute freut sich das Vite [Team](https://vitejs.dev/team) mit Unterstützung unserer Ökosystem-Partner, die Veröffentlichung von Vite 4 bekannt zu geben, das zur Build-Zeit von Rollup 3 angetrieben wird. Wir haben mit dem Ökosystem zusammengearbeitet, um einen reibungslosen Upgrade-Pfad für diese neue Hauptversion sicherzustellen. Vite verwendet jetzt [Rollup 3](https://github.com/vitejs/vite/issues/9870), was es uns ermöglicht hat, die interne Asset-Verarbeitung von Vite zu vereinfachen und viele Verbesserungen bietet. Die [Rollup 3 Versionshinweise finden Sie hier](https://github.com/rollup/rollup/releases/tag/v3.0.0).
+Heute freut sich das Vite [Team](https://vite.dev/team) mit Unterstützung unserer Ökosystem-Partner, die Veröffentlichung von Vite 4 bekannt zu geben, das zur Build-Zeit von Rollup 3 angetrieben wird. Wir haben mit dem Ökosystem zusammengearbeitet, um einen reibungslosen Upgrade-Pfad für diese neue Hauptversion sicherzustellen. Vite verwendet jetzt [Rollup 3](https://github.com/vitejs/vite/issues/9870), was es uns ermöglicht hat, die interne Asset-Verarbeitung von Vite zu vereinfachen und viele Verbesserungen bietet. Die [Rollup 3 Versionshinweise finden Sie hier](https://github.com/rollup/rollup/releases/tag/v3.0.0).
 
 ![Vite 4 Announcement Cover Image](/og-image-announcing-vite4.png)
 
 Schnellzugriff:
 
 - [Dokumentation](/)
-- [Migrationsleitfaden](https://v4.vitejs.dev/guide/migration.html)
+- [Migrationsleitfaden](https://v4.vite.dev/guide/migration.html)
 - [Änderungsprotokoll](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#400-2022-12-09)
 
 Dokumentationen in anderen Sprachen:
 
-- [简体中文](https://cn.vitejs.dev/)
-- [日本語](https://ja.vitejs.dev/)
-- [Español](https://es.vitejs.dev/)
+- [简体中文](https://cn.vite.dev/)
+- [日本語](https://ja.vite.dev/)
+- [Español](https://es.vite.dev/)
 
-Wenn Sie Vite kürzlich verwendet haben, empfehlen wir Ihnen das Lesen des [Warum Vite-Leitfadens](https://vitejs.dev/guide/why.html) und das Überprüfen der [Einführungsanleitung](https://vitejs.dev/guide/) und des [Funktionsleitfadens](https://vitejs.dev/guide/features). Wenn Sie sich beteiligen möchten, sind Beiträge auf [GitHub](https://github.com/vitejs/vite) willkommen. Fast [700 Mitwirkende](https://github.com/vitejs/vite/graphs/contributors) haben zu Vite beigetragen. Verfolgen Sie die Updates auf [Twitter](https://twitter.com/vite_js) und [Mastodon](https://webtoo.ls/@vite) oder arbeiten Sie mit anderen in unserer [Discord-Community](http://chat.vitejs.dev/) zusammen.
+Wenn Sie Vite kürzlich verwendet haben, empfehlen wir Ihnen das Lesen des [Warum Vite-Leitfadens](https://vite.dev/guide/why.html) und das Überprüfen der [Einführungsanleitung](https://vite.dev/guide/) und des [Funktionsleitfadens](https://vite.dev/guide/features). Wenn Sie sich beteiligen möchten, sind Beiträge auf [GitHub](https://github.com/vitejs/vite) willkommen. Fast [700 Mitwirkende](https://github.com/vitejs/vite/graphs/contributors) haben zu Vite beigetragen. Verfolgen Sie die Updates auf [Twitter](https://twitter.com/vite_js) und [Mastodon](https://webtoo.ls/@vite) oder arbeiten Sie mit anderen in unserer [Discord-Community](http://chat.vite.dev/) zusammen.
 
 ## Spielen Sie mit Vite 4
 
@@ -93,7 +93,7 @@ Diese doppelte Ladung konnte auftreten, da eine `.css`-Datei ausgegeben wird und
 import stuff from './global.css?inline'
 ```
 
-Weitere Informationen finden Sie im [Migrationsleitfaden](https://v4.vitejs.dev/guide/migration.html).
+Weitere Informationen finden Sie im [Migrationsleitfaden](https://v4.vite.dev/guide/migration.html).
 
 ## Umgebungsvariablen
 
@@ -139,6 +139,6 @@ Wir danken auch Einzelpersonen und Unternehmen, die das Vite-Team unterstützen,
 
 ## Nächste Schritte
 
-Unser unmittelbarer Fokus wird darauf liegen, neu eröffnete Issues zu triagieren, um mögliche Regressionen zu vermeiden. Wenn Sie sich beteiligen und uns bei der Verbesserung von Vite unterstützen möchten, schlagen wir vor, mit der Triage von Issues zu beginnen. Treten Sie [unserem Discord](https://chat.vitejs.dev) bei und melden Sie sich im `#contributing`-Kanal. Verbessern Sie unsere `#docs`-Geschichte und `#help`-en Sie anderen. Wir müssen weiterhin eine hilfreiche und einladende Community für die nächste Welle von Benutzern aufbauen, da die Akzeptanz von Vite weiterhin wächst.
+Unser unmittelbarer Fokus wird darauf liegen, neu eröffnete Issues zu triagieren, um mögliche Regressionen zu vermeiden. Wenn Sie sich beteiligen und uns bei der Verbesserung von Vite unterstützen möchten, schlagen wir vor, mit der Triage von Issues zu beginnen. Treten Sie [unserem Discord](https://chat.vite.dev) bei und melden Sie sich im `#contributing`-Kanal. Verbessern Sie unsere `#docs`-Geschichte und `#help`-en Sie anderen. Wir müssen weiterhin eine hilfreiche und einladende Community für die nächste Welle von Benutzern aufbauen, da die Akzeptanz von Vite weiterhin wächst.
 
 Es gibt viele offene Baustellen, um die DX von allen zu verbessern, die Vite gewählt haben, um ihre Frameworks zu betreiben und ihre Apps zu entwickeln. Weiter so!

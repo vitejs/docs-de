@@ -1,6 +1,6 @@
 # Vite Beitragshandbuch
 
-Hi! Wir freuen uns sehr, dass Sie daran interessiert sind, zu Vite beizutragen. Bevor Sie Ihren Beitrag einreichen, lesen Sie bitte die folgende Anleitung:
+Hi! Wir freuen uns sehr, dass Sie einen Beitrag zu Vite leisten möchten! Bevor Sie Ihren Beitrag einreichen, lesen Sie sich bitte den folgenden Leitfaden durch. Wir empfehlen Ihnen auch, die [Projektphilosophie](https://vite.dev/guide/philosophy) in unserer Dokumentation zu lesen.
 
 ## Einrichtung des Repos
 

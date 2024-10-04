@@ -218,5 +218,5 @@ Gehen Sie dann zu Ihrem Vite-basierten Projekt und führen Sie `pnpm link --glob
 
 ## Community
 
-Wenn Sie Fragen haben oder Hilfe benötigen, wenden Sie sich an die Community unter [Discord](https://chat.vitejs.dev) und [GitHub Discussions](https://github.com/vitejs/vite/discussions).
+Wenn Sie Fragen haben oder Hilfe benötigen, wenden Sie sich an die Community unter [Discord](https://chat.vite.dev) und [GitHub Discussions](https://github.com/vitejs/vite/discussions).
 ````

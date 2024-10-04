@@ -29,7 +29,7 @@ Die Leistung von Community-Plugins liegt jedoch außerhalb der Kontrolle von Vit
    Sie können die Dauer, die für die Umwandlung einer Datei benötigt wird, mit `vite --debug plugin-transform` oder [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) überprüfen. Da asynchrone Operationen dazu tendieren, ungenaue Zeitangaben zu liefern, sollten Sie die Zahlen eher als grobe Schätzung betrachten, aber sie sollten dennoch die teureren Operationen aufzeigen.
 
 ::: tip Profiling
-Sie können `vite --profile` ausführen, die Website besuchen und in Ihrem Terminal `p + Enter` drücken, um ein `.cpuprofile` aufzuzeichnen. Ein Tool wie [speedscope](https://www.speedscope.app) kann dann verwendet werden, um das Profil zu überprüfen und Engpässe zu identifizieren. Sie können die Profile auch [mit dem Vite-Team teilen](https://chat.vitejs.dev), um bei der Identifizierung von Leistungsproblemen zu helfen.
+Sie können `vite --profile` ausführen, die Website besuchen und in Ihrem Terminal `p + Enter` drücken, um ein `.cpuprofile` aufzuzeichnen. Ein Tool wie [speedscope](https://www.speedscope.app) kann dann verwendet werden, um das Profil zu überprüfen und Engpässe zu identifizieren. Sie können die Profile auch [mit dem Vite-Team teilen](https://chat.vite.dev), um bei der Identifizierung von Leistungsproblemen zu helfen.
 :::
 
 ## Reduzierung der Auflösungsoperationen

@@ -467,7 +467,7 @@ const modules = {
 
 #### Benutzerdefinierte Abfragen
 
-Sie können auch die Option `query` verwenden, um Abfragen für Importe zu stellen, zum Beispiel um Assets [als String](https://vitejs.dev/guide/assets.html#importing-asset-as-string) oder [als URL](https://vitejs.dev/guide/assets.html#importing-asset-as-url) zu importieren:
+Sie können auch die Option `query` verwenden, um Abfragen für Importe zu stellen, zum Beispiel um Assets [als String](https://vite.dev/guide/assets.html#importing-asset-as-string) oder [als URL](https://vite.dev/guide/assets.html#importing-asset-as-url) zu importieren:
 
 ```ts
 const moduleStrings = import.meta.glob('./dir/*.svg', {

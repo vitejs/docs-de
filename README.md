@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
-    <img width="180" src="https://vitejs.dev/logo.svg" alt="Vite logo">
+  <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
+    <img width="180" src="https://vite.dev/logo.svg" alt="Vite logo">
   </a>
 </p>
 <br/>
@@ -8,7 +8,8 @@
   <a href="https://npmjs.com/package/vite"><img src="https://img.shields.io/npm/v/vite.svg" alt="npm package"></a>
   <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/node/v/vite.svg" alt="node compatibility"></a>
   <a href="https://github.com/vitejs/vite/actions/workflows/ci.yml"><img src="https://github.com/vitejs/vite/actions/workflows/ci.yml/badge.svg?branch=main" alt="build status"></a>
-  <a href="https://chat.vitejs.dev"><img src="https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord" alt="discord chat"></a>
+  <a href="https://pr.new/vitejs/vite"><img src="https://developer.stackblitz.com/img/start_pr_dark_small.svg" alt="Start new PR in StackBlitz Codeflow"></a>
+  <a href="https://chat.vite.dev"><img src="https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord" alt="discord chat"></a>
 </p>
 <br/>
 
@@ -25,13 +26,13 @@
 
 Vite (französisches Wort für "schnell", ausgesprochen [`/vit/`](https://cdn.jsdelivr.net/gh/vitejs/vite@main/docs/public/vite.mp3), wie "veet") ist eine neue Art von Frontend-Build-Tool, das die Erfahrung bei der Frontend-Entwicklung erheblich verbessert. Es besteht aus zwei Hauptbestandteilen:
 
-- Einem Entwicklungsserver, der Ihre Quelldateien über [native ES-Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), mit [umfangreichen integrierten Funktionen](https://vitejs.dev/guide/features.html) und erstaunlich schnellem [Hot Module Replacement (HMR)](https://vitejs.dev/guide/features.html#hot-module-replacement) bereitstellt.
+- A dev server that serves your source files over [native ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), with [rich built-in features](https://vite.dev/guide/features.html) and astonishingly fast [Hot Module Replacement (HMR)](https://vite.dev/guide/features.html#hot-module-replacement).
 
-- Einem [Build-Befehl](https://vitejs.dev/guide/build.html), der Ihren Code mit [Rollup](https://rollupjs.org) bündelt und so vorkonfiguriert ist, dass er hochoptimierte statische Assets für die Produktion ausgibt.
+- A [build command](https://vite.dev/guide/build.html) that bundles your code with [Rollup](https://rollupjs.org), pre-configured to output highly optimized static assets for production.
 
-Darüber hinaus ist Vite über seine [Plugin-API](https://vitejs.dev/guide/api-plugin.html) und [JavaScript-API](https://vitejs.dev/guide/api-javascript.html) mit vollständiger Typisierungsunterstützung in hohem Maße erweiterbar.
+In addition, Vite is highly extensible via its [Plugin API](https://vite.dev/guide/api-plugin.html) and [JavaScript API](https://vite.dev/guide/api-javascript.html) with full typing support.
 
-[Lesen Sie die Dokumentation, um mehr zu erfahren](https://vitejs.dev).
+[Read the Docs to Learn More](https://vite.dev).
 
 ## Pakete
 

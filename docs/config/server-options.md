@@ -164,7 +164,7 @@ Schauen Sie sich [`vite-setup-catalogue`](https://github.com/sapphi-red/vite-set
 Mit der Standardkonfiguration wird erwartet, dass Reverse-Proxys vor Vite WebSocket-Proxying unterstützen. Wenn der Vite HMR-Client keine Verbindung zum WebSocket herstellen kann, fällt der Client auf die direkte Verbindung zum Vite HMR-Server zurück und umgeht die Reverse-Proxys:
 
 ```
-Direkter WebSocket-Verbindungsrückfall. Weitere Informationen finden Sie unter https://vitejs.dev/config/server-options.html#server-hmr, um den vorherigen Verbindungsfehler zu entfernen.
+Direkter WebSocket-Verbindungsrückfall. Weitere Informationen finden Sie unter https://vite.dev/config/server-options.html#server-hmr, um den vorherigen Verbindungsfehler zu entfernen.
 ```
 
 Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann ignoriert werden. Um den Fehler zu vermeiden, indem Sie die Reverse-Proxys direkt umgehen, können Sie entweder:

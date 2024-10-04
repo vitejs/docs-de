@@ -13,10 +13,10 @@ head:
       content: Announcing Vite 4.3
   - - meta
     - property: og:image
-      content: https://vitejs.dev/og-image-announcing-vite4-3.png
+      content: https://vite.dev/og-image-announcing-vite4-3.png
   - - meta
     - property: og:url
-      content: https://vitejs.dev/blog/announcing-vite4-3
+      content: https://vite.dev/blog/announcing-vite4-3
   - - meta
     - property: og:description
       content: Vite 4.3 Release Announcement
@@ -33,7 +33,7 @@ _20. April 2023_
 
 Schnellzugriffe:
 
-- Dokumentationen: [Englisch](/), [简体中文](https://cn.vitejs.dev/), [日本語](https://ja.vitejs.dev/), [Español](https://es.vitejs.dev/), [Português](https://pt.vitejs.dev/)
+- Dokumentationen: [Englisch](/), [简体中文](https://cn.vite.dev/), [日本語](https://ja.vite.dev/), [Español](https://es.vite.dev/), [Português](https://pt.vite.dev/)
 - [Vite 4.3 Änderungsprotokoll](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#430-2023-04-20)
 
 ## Leistungsverbesserungen
@@ -83,7 +83,7 @@ Wir werden weiterhin an der Leistung von Vite arbeiten. Wir arbeiten an einem of
 
 Und [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) verfügt jetzt über weitere leistungsbezogene Funktionen, um Ihnen dabei zu helfen, herauszufinden, welche Plugins oder Middleware für Ihre Anwendungen den Flaschenhals darstellen.
 
-Durch Verwenden von `vite --profile` (und dann Drücken von `p`) nach dem Laden der Seite wird ein CPU-Profil des Startvorgangs des Entwicklungsservers gespeichert. Sie können sie in einer Anwendung wie [speedscope](https://www.speedscope.app/) öffnen, um Leistungsprobleme zu identifizieren. Und Sie können Ihre Erkenntnisse mit dem Vite-Team in einer [Diskussion](https://github.com/vitejs/vite/discussions) oder im [Vite-Discord](https://chat.vitejs.dev) teilen.
+Durch Verwenden von `vite --profile` (und dann Drücken von `p`) nach dem Laden der Seite wird ein CPU-Profil des Startvorgangs des Entwicklungsservers gespeichert. Sie können sie in einer Anwendung wie [speedscope](https://www.speedscope.app/) öffnen, um Leistungsprobleme zu identifizieren. Und Sie können Ihre Erkenntnisse mit dem Vite-Team in einer [Diskussion](https://github.com/vitejs/vite/discussions) oder im [Vite-Discord](https://chat.vite.dev) teilen.
 
 ## Nächste Schritte
 

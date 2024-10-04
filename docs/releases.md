@@ -26,7 +26,7 @@ Ein Beispiel: Die neueste Version von Vite ist 5.3.10:
 - Sicherheitspatches werden auch in `vite@3` und `vite@5.1` zurückportiert.
 - `vite@2` und `vite@5.0` werden nicht mehr unterstützt. Benutzer sollten aktualisieren, um Updates zu erhalten.
 
-Wir empfehlen, Vite regelmäßig zu aktualisieren. Schauen Sie sich die [Migration Guides](https://vitejs.dev/guide/migration.html) an, wenn Sie auf ein neues Major aktualisieren. Das Vite-Team arbeitet eng mit den wichtigsten Projekten im Ökosystem zusammen, um die Qualität neuer Versionen zu gewährleisten. Wir testen neue Vite-Versionen, bevor wir sie über das [vite-ecosystem-ci project](https://github.com/vitejs/vite-ecosystem-ci) freigeben. Die meisten Projekte, die Vite verwenden, sollten in der Lage sein, schnell Unterstützung anzubieten oder auf neue Versionen zu migrieren, sobald diese veröffentlicht werden.
+Wir empfehlen, Vite regelmäßig zu aktualisieren. Schauen Sie sich die [Migration Guides](https://vite.dev/guide/migration.html) an, wenn Sie auf ein neues Major aktualisieren. Das Vite-Team arbeitet eng mit den wichtigsten Projekten im Ökosystem zusammen, um die Qualität neuer Versionen zu gewährleisten. Wir testen neue Vite-Versionen, bevor wir sie über das [vite-ecosystem-ci project](https://github.com/vitejs/vite-ecosystem-ci) freigeben. Die meisten Projekte, die Vite verwenden, sollten in der Lage sein, schnell Unterstützung anzubieten oder auf neue Versionen zu migrieren, sobald diese veröffentlicht werden.
 
 ## Randfälle der Semantischen Versionierung
 
@@ -54,7 +54,7 @@ Vorabveröffentlichungen ermöglichen es Early Adopters und Maintainern aus dem 
 
 ## Veraltungen
 
-Gelegentlich veralten Funktionen, die durch bessere Alternativen ersetzt wurden, in Minor-Veröffentlichungen. Veraltete Funktionen funktionieren weiterhin mit einem Typ oder einer protokollierten Warnung. Sie werden in der nächsten Hauptveröffentlichung nach dem Status "veraltet" entfernt. Die [Migrationsanleitung (Migration Guide)](https://vitejs.dev/guide/migration.html) für jede Hauptveröffentlichung enthält diese Entfernungen und dokumentiert einen Aktualisierungspfad für sie.
+Gelegentlich veralten Funktionen, die durch bessere Alternativen ersetzt wurden, in Minor-Veröffentlichungen. Veraltete Funktionen funktionieren weiterhin mit einem Typ oder einer protokollierten Warnung. Sie werden in der nächsten Hauptveröffentlichung nach dem Status "veraltet" entfernt. Die [Migrationsanleitung (Migration Guide)](https://vite.dev/guide/migration.html) für jede Hauptveröffentlichung enthält diese Entfernungen und dokumentiert einen Aktualisierungspfad für sie.
 
 ## Experimentelle Funktionen
 

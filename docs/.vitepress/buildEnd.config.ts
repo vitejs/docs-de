@@ -3,7 +3,7 @@ import { writeFileSync } from 'fs'
 import { Feed } from 'feed'
 import { createContentLoader, type SiteConfig } from 'vitepress'
 
-const siteUrl = 'https://vitejs.dev'
+const siteUrl = 'https://vite.dev'
 const blogUrl = `${siteUrl}/blog`
 
 export const buildEnd = async (config: SiteConfig) => {
@@ -13,8 +13,8 @@ export const buildEnd = async (config: SiteConfig) => {
     id: blogUrl,
     link: blogUrl,
     language: 'en',
-    image: 'https://vitejs.dev/og-image.png',
-    favicon: 'https://vitejs.dev/logo.svg',
+    image: 'https://vite.dev/og-image.png',
+    favicon: 'https://vite.dev/logo.svg',
     copyright: 'Copyright © 2019-present VoidZero Inc. & Vite Contributors',
   })
 
