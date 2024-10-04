@@ -26,7 +26,6 @@ import logoLaravel from './images/laravel.svg'
 import logoAdonis from './images/adonis.svg'
 import logoEmber from './images/ember.svg'
 import logoPreact from './images/preact.svg'
-import logoHono from './images/hono.svg'
 
 /**
  * The frameworks and tools to display in this section.
@@ -257,7 +256,7 @@ const paddedBlocksPerSide: ComputedRef<number> = computed(() => {
 })
 
 const numFrameworksPerRow = computed(
-  () => numBlocksPerRow.value - paddedBlocksPerSide.value * 2,
+  () => numBlocksPerRow.value - paddedBlocksPerSide.value * 2
 )
 
 /**
@@ -282,7 +281,7 @@ const centerIndexes: ComputedRef<{ start: number; end: number }[]> = computed(
       Math.floor(
         (frameworksPerFirstRows -
           (frameworks.length % frameworksPerFirstRows)) /
-          2,
+          2
       )
     return new Array(numRows.value + 1).fill(0).map((_, i) => {
       return i < numRows.value ||
@@ -299,7 +298,7 @@ const centerIndexes: ComputedRef<{ start: number; end: number }[]> = computed(
               1,
           }
     })
-  },
+  }
 )
 
 /**
