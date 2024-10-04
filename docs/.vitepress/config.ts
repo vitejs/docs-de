@@ -177,7 +177,7 @@ export default defineConfig({
 
     footer: {
       message: `Veröffentlicht unter der MIT-Lizenz. (${commitRef})`,
-      copyright: 'Copyright © 2019-present Evan You & Vite Contributors',
+      copyright: 'Copyright © 2019-present VoidZero Inc. & Vite Contributors',
     },
 
     nav: [
@@ -383,7 +383,7 @@ export default defineConfig({
     pageData.frontmatter.head ??= []
     pageData.frontmatter.head.unshift(
       ['link', { rel: 'canonical', href: canonicalUrl }],
-      ['meta', { property: 'og:title', content: pageData.title }],
+      ['meta', { property: 'og:title', content: pageData.title }]
     )
     return pageData
   },
