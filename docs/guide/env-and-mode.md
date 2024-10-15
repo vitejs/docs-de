@@ -55,7 +55,7 @@ console.log(import.meta.env.DB_PASSWORD) // undefined
 Wie bereits oben erwähnt, ist `VITE_SOME_KEY` eine Zahl, gibt aber einen String zurück, wenn sie geparst wird. Das Gleiche gilt auch für boolesche Umgebungsvariablen. Stellen Sie sicher, dass Sie sie in den gewünschten Typ konvertieren, wenn Sie sie in Ihrem Code verwenden.
 :::
 
-Außerdem verwendet Vite [dotenv-expand](https://github.com/motdotla/dotenv-expand), um Variablen standardmäßig zu erweitern. Um mehr über die Syntax zu erfahren, werfen Sie einen Blick auf [ihre Dokumentation](https://github.com/motdotla/dotenv-expand#what-rules-does-the-expansion-engine-follow).
+Außerdem verwendet Vite [dotenv-expand](https://github.com/motdotla/dotenv-expand), um in env-Dateien geschriebene Variablen zu erweitern. Um mehr über die Syntax zu erfahren, sehen Sie sich [die Dokumentation](https://github.com/motdotla/dotenv-expand#what-rules-does-the-expansion-engine-follow) dazu an.
 
 Beachten Sie, dass Sie, wenn Sie `$` in Ihrem Umgebungscode verwenden möchten, es mit `\` escapen müssen.
 
