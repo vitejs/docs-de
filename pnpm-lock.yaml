@@ -16,11 +16,11 @@ importers:
         version: 2.17.2
       vitepress:
         specifier: 1.4.1
-        version: 1.4.1(@algolia/client-search@5.7.0)(@types/node@20.16.11)(@types/react@18.3.11)(postcss@8.4.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)(typescript@5.4.5)
+        version: 1.4.1(@algolia/client-search@5.8.1)(@types/node@20.16.11)(@types/react@18.3.11)(postcss@8.4.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)(typescript@5.4.5)
     devDependencies:
       '@algolia/client-search':
         specifier: ^5.0.0
-        version: 5.7.0
+        version: 5.8.1
       '@types/node':
         specifier: 20.16.11
         version: 20.16.11
@@ -74,8 +74,8 @@ packages:
   '@algolia/client-common@4.23.3':
     resolution: {integrity: sha512-l6EiPxdAlg8CYhroqS5ybfIczsGUIAC47slLPOMDeKSVXYG1n0qGiz4RjAHLw2aD0xzh2EXZ7aRguPfz7UKDKw==}
 
-  '@algolia/client-common@5.7.0':
-    resolution: {integrity: sha512-hrYlN9yNQukmNj8bBlw9PCXi9jmRQqNUXaG6MXH1aDabjO6YD1WPVqTvaELbIBgTbDJzCn0R2owms0uaxQkjUg==}
+  '@algolia/client-common@5.8.1':
+    resolution: {integrity: sha512-MLX/gipPFEhJPCExsxXf9tnt+kLfWCe9JWRp1adcoVySkhzPxpIeSiWaQaOqyy0TYIgIpdeVx/emlBT9Ni8GFw==}
     engines: {node: '>= 14.0.0'}
 
   '@algolia/client-personalization@4.23.3':
@@ -84,8 +84,8 @@ packages:
   '@algolia/client-search@4.23.3':
     resolution: {integrity: sha512-P4VAKFHqU0wx9O+q29Q8YVuaowaZ5EM77rxfmGnkHUJggh28useXQdopokgwMeYw2XUht49WX5RcTQ40rZIabw==}
 
-  '@algolia/client-search@5.7.0':
-    resolution: {integrity: sha512-0Frfjt4oxvVP2qsTQAjwdaG5SvJ3TbHBkBrS6M7cG5RDrgHqOrhBnBGCFT+YO3CeNK54r+d57oB1VcD2F1lHuQ==}
+  '@algolia/client-search@5.8.1':
+    resolution: {integrity: sha512-zy3P4fI28GfzKihUw5+L76pEedQxyLDiMsdDYEWghIz8yAnELDatPNEThyWuUk8fD0PeVoCi1M4tr1iz00fOtQ==}
     engines: {node: '>= 14.0.0'}
 
   '@algolia/logger-common@4.23.3':
@@ -100,22 +100,22 @@ packages:
   '@algolia/requester-browser-xhr@4.23.3':
     resolution: {integrity: sha512-jDWGIQ96BhXbmONAQsasIpTYWslyjkiGu0Quydjlowe+ciqySpiDUrJHERIRfELE5+wFc7hc1Q5hqjGoV7yghw==}
 
-  '@algolia/requester-browser-xhr@5.7.0':
-    resolution: {integrity: sha512-ohtIp+lyTGM3agrHyedC3w7ijfdUvSN6wmGuKqUezrNzd0nCkFoLW0OINlyv1ODrTEVnL8PAM/Zqubjafxd/Ww==}
+  '@algolia/requester-browser-xhr@5.8.1':
+    resolution: {integrity: sha512-x0iULVrx5PocaYBqH+G6jyEsEHf7m5FDiZW7CP8AaJdzdCzoUyx7YH6e6TSCNlkFEjwmn8uj05coN8uljCHXTg==}
     engines: {node: '>= 14.0.0'}
 
   '@algolia/requester-common@4.23.3':
     resolution: {integrity: sha512-xloIdr/bedtYEGcXCiF2muajyvRhwop4cMZo+K2qzNht0CMzlRkm8YsDdj5IaBhshqfgmBb3rTg4sL4/PpvLYw==}
 
-  '@algolia/requester-fetch@5.7.0':
-    resolution: {integrity: sha512-Eg8cBhNg2QNnDDldyK77aXvg3wIc5qnpCDCAJXQ2oaqZwwvvYaTgnP1ofznNG6+klri4Fk1YAaC9wyDBhByWIA==}
+  '@algolia/requester-fetch@5.8.1':
+    resolution: {integrity: sha512-SRWGrNsKSLNYIDNlVKVkf4wxsm6h57xI+0b8JPm0wUe0ly0jymAgQU2yW2GDzNuXyiPiS7U1oWwaVGs71IT5Pw==}
     engines: {node: '>= 14.0.0'}
 
   '@algolia/requester-node-http@4.23.3':
     resolution: {integrity: sha512-zgu++8Uj03IWDEJM3fuNl34s746JnZOWn1Uz5taV1dFyJhVM/kTNw9Ik7YJWiUNHJQXcaD8IXD1eCb0nq/aByA==}
 
-  '@algolia/requester-node-http@5.7.0':
-    resolution: {integrity: sha512-8BDssYEkcp1co06KtHO9b37H+5zVM/h+5kyesJb2C2EHFO3kgzLHWl/JyXOVtYlKQBkmdObYOI0s6JaXRy2yQA==}
+  '@algolia/requester-node-http@5.8.1':
+    resolution: {integrity: sha512-pYylr2gBsV68E88bltaVoJHIc3YNIllVmA12d+jefAcutR9ytQM7iP6dXbCYuRqF4CHF32YvZuwvqNI3J4kowA==}
     engines: {node: '>= 14.0.0'}
 
   '@algolia/transporter@4.23.3':
@@ -824,32 +824,32 @@ packages:
 
 snapshots:
 
-  '@algolia/autocomplete-core@1.9.3(@algolia/client-search@5.7.0)(algoliasearch@4.23.3)(search-insights@2.17.2)':
+  '@algolia/autocomplete-core@1.9.3(@algolia/client-search@5.8.1)(algoliasearch@4.23.3)(search-insights@2.17.2)':
     dependencies:
-      '@algolia/autocomplete-plugin-algolia-insights': 1.9.3(@algolia/client-search@5.7.0)(algoliasearch@4.23.3)(search-insights@2.17.2)
-      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@5.7.0)(algoliasearch@4.23.3)
+      '@algolia/autocomplete-plugin-algolia-insights': 1.9.3(@algolia/client-search@5.8.1)(algoliasearch@4.23.3)(search-insights@2.17.2)
+      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@5.8.1)(algoliasearch@4.23.3)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
       - search-insights
 
-  '@algolia/autocomplete-plugin-algolia-insights@1.9.3(@algolia/client-search@5.7.0)(algoliasearch@4.23.3)(search-insights@2.17.2)':
+  '@algolia/autocomplete-plugin-algolia-insights@1.9.3(@algolia/client-search@5.8.1)(algoliasearch@4.23.3)(search-insights@2.17.2)':
     dependencies:
-      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@5.7.0)(algoliasearch@4.23.3)
+      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@5.8.1)(algoliasearch@4.23.3)
       search-insights: 2.17.2
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
 
-  '@algolia/autocomplete-preset-algolia@1.9.3(@algolia/client-search@5.7.0)(algoliasearch@4.23.3)':
+  '@algolia/autocomplete-preset-algolia@1.9.3(@algolia/client-search@5.8.1)(algoliasearch@4.23.3)':
     dependencies:
-      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@5.7.0)(algoliasearch@4.23.3)
-      '@algolia/client-search': 5.7.0
+      '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@5.8.1)(algoliasearch@4.23.3)
+      '@algolia/client-search': 5.8.1
       algoliasearch: 4.23.3
 
-  '@algolia/autocomplete-shared@1.9.3(@algolia/client-search@5.7.0)(algoliasearch@4.23.3)':
+  '@algolia/autocomplete-shared@1.9.3(@algolia/client-search@5.8.1)(algoliasearch@4.23.3)':
     dependencies:
-      '@algolia/client-search': 5.7.0
+      '@algolia/client-search': 5.8.1
       algoliasearch: 4.23.3
 
   '@algolia/cache-browser-local-storage@4.23.3':
@@ -880,7 +880,7 @@ snapshots:
       '@algolia/requester-common': 4.23.3
       '@algolia/transporter': 4.23.3
 
-  '@algolia/client-common@5.7.0': {}
+  '@algolia/client-common@5.8.1': {}
 
   '@algolia/client-personalization@4.23.3':
     dependencies:
@@ -894,12 +894,12 @@ snapshots:
       '@algolia/requester-common': 4.23.3
       '@algolia/transporter': 4.23.3
 
-  '@algolia/client-search@5.7.0':
+  '@algolia/client-search@5.8.1':
     dependencies:
-      '@algolia/client-common': 5.7.0
-      '@algolia/requester-browser-xhr': 5.7.0
-      '@algolia/requester-fetch': 5.7.0
-      '@algolia/requester-node-http': 5.7.0
+      '@algolia/client-common': 5.8.1
+      '@algolia/requester-browser-xhr': 5.8.1
+      '@algolia/requester-fetch': 5.8.1
+      '@algolia/requester-node-http': 5.8.1
 
   '@algolia/logger-common@4.23.3': {}
 
@@ -925,23 +925,23 @@ snapshots:
     dependencies:
       '@algolia/requester-common': 4.23.3
 
-  '@algolia/requester-browser-xhr@5.7.0':
+  '@algolia/requester-browser-xhr@5.8.1':
     dependencies:
-      '@algolia/client-common': 5.7.0
+      '@algolia/client-common': 5.8.1
 
   '@algolia/requester-common@4.23.3': {}
 
-  '@algolia/requester-fetch@5.7.0':
+  '@algolia/requester-fetch@5.8.1':
     dependencies:
-      '@algolia/client-common': 5.7.0
+      '@algolia/client-common': 5.8.1
 
   '@algolia/requester-node-http@4.23.3':
     dependencies:
       '@algolia/requester-common': 4.23.3
 
-  '@algolia/requester-node-http@5.7.0':
+  '@algolia/requester-node-http@5.8.1':
     dependencies:
-      '@algolia/client-common': 5.7.0
+      '@algolia/client-common': 5.8.1
 
   '@algolia/transporter@4.23.3':
     dependencies:
@@ -965,9 +965,9 @@ snapshots:
 
   '@docsearch/css@3.6.2': {}
 
-  '@docsearch/js@3.6.2(@algolia/client-search@5.7.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)':
+  '@docsearch/js@3.6.2(@algolia/client-search@5.8.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)':
     dependencies:
-      '@docsearch/react': 3.6.2(@algolia/client-search@5.7.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)
+      '@docsearch/react': 3.6.2(@algolia/client-search@5.8.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)
       preact: 10.22.0
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -976,10 +976,10 @@ snapshots:
       - react-dom
       - search-insights
 
-  '@docsearch/react@3.6.2(@algolia/client-search@5.7.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)':
+  '@docsearch/react@3.6.2(@algolia/client-search@5.8.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)':
     dependencies:
-      '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@5.7.0)(algoliasearch@4.23.3)(search-insights@2.17.2)
-      '@algolia/autocomplete-preset-algolia': 1.9.3(@algolia/client-search@5.7.0)(algoliasearch@4.23.3)
+      '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@5.8.1)(algoliasearch@4.23.3)(search-insights@2.17.2)
+      '@algolia/autocomplete-preset-algolia': 1.9.3(@algolia/client-search@5.8.1)(algoliasearch@4.23.3)
       '@docsearch/css': 3.6.2
       algoliasearch: 4.23.3
     optionalDependencies:
@@ -1574,10 +1574,10 @@ snapshots:
       '@types/node': 20.16.11
       fsevents: 2.3.3
 
-  vitepress@1.4.1(@algolia/client-search@5.7.0)(@types/node@20.16.11)(@types/react@18.3.11)(postcss@8.4.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)(typescript@5.4.5):
+  vitepress@1.4.1(@algolia/client-search@5.8.1)(@types/node@20.16.11)(@types/react@18.3.11)(postcss@8.4.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)(typescript@5.4.5):
     dependencies:
       '@docsearch/css': 3.6.2
-      '@docsearch/js': 3.6.2(@algolia/client-search@5.7.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)
+      '@docsearch/js': 3.6.2(@algolia/client-search@5.8.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)
       '@shikijs/core': 1.22.0
       '@shikijs/transformers': 1.22.0
       '@shikijs/types': 1.22.0
