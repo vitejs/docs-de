@@ -149,6 +149,34 @@ export default defineConfig({
 })
 ```
 
+```js twoslash [vite.config.js (mehrere Einstiegspunkte)]
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  build: {
+    lib: {
+      entry: {
+        'my-lib': resolve(__dirname, 'lib/main.js'),
+        secondary: resolve(__dirname, 'lib/secondary.js'),
+      },
+      name: 'MyLib',
+    },
+    rollupOptions: {
+      // Stellen Sie sicher, dass Abhängigkeiten, die nicht in Ihre Bibliothek gebündelt werden sollen, externisiert werden
+      external: ['vue'],
+      output: {
+        // Stellen Sie globale Variablen für die Verwendung im UMD-Build bereit
+        // für externalisierte Abhängigkeiten
+        globals: {
+          vue: 'Vue',
+        },
+      },
+    },
+  },
+})
+```
+
 Die Eingabedatei enthält Exporte, die von Benutzern Ihres Pakets importiert werden können:
 
 ```js [lib/main.js]
