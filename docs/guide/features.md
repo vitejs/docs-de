@@ -505,9 +505,9 @@ const modules = import.meta.glob('./dir/*.js', {
 Beachten Sie dies:
 
 - Dies ist ein reines Vite-Feature und kein Web- oder ES-Standard.
-- Die Glob-Muster werden wie Import-Spezifizierer behandelt: Sie müssen entweder relativ (beginnen mit `./`) oder absolut (beginnen mit `/`, aufgelöst relativ zum Projektstamm) oder ein Alias-Pfad sein (siehe [Option `resolve.alias`](/config/shared-options.md#resolve-alias)).
-- Der Glob-Abgleich erfolgt über [`fast-glob`](https://github.com/mrmlnc/fast-glob) - sehen Sie sich die Dokumentation für [unterstützte Glob-Muster](https://github.com/mrmlnc/fast-glob#pattern-syntax) an.
-- Sie sollten sich auch bewusst sein, dass alle Argumente in `import.meta.glob` als Literale **übergeben werden müssen**. Sie können KEINE Variablen oder Ausdrücke in ihnen verwenden.
+- Die glob-Muster werden wie Import-Spezifizierer behandelt: Sie müssen entweder relativ (beginnen mit `./`) oder absolut (beginnen mit `/`, aufgelöst relativ zum Projektroot) oder ein Alias-Pfad sein (siehe [Option `resolve.alias`](/config/shared-options.md#resolve-alias)).
+- Der Glob-Abgleich erfolgt über [`tinyglobby`](https://github.com/SuperchupuDev/tinyglobby).
+- Sie sollten auch beachten, dass alle Argumente in `import.meta.glob` als Literale **übergeben werden müssen**. Sie können KEINE Variablen oder Ausdrücke in ihnen verwenden.
 
 ## Dynamischer Import
 

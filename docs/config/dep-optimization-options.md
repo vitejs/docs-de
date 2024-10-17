@@ -8,7 +8,7 @@
 
 Standardmäßig durchsucht Vite alle Ihre `.html`-Dateien, um Abhängigkeiten zu erkennen, die vorab gebündelt werden müssen (ignoriert `node_modules`, `build.outDir`, `__tests__` und `coverage`). Wenn `build.rollupOptions.input` angegeben ist, durchsucht Vite stattdessen diese Einstiegspunkte.
 
-Wenn keines davon Ihren Anforderungen entspricht, können Sie benutzerdefinierte Einstiegspunkte mit dieser Option angeben. Der Wert sollte ein [fast-glob-Muster](https://github.com/mrmlnc/fast-glob#basic-syntax) oder ein Array von Mustern sein, die relativ zum Root-Verzeichnis des Vite-Projekts sind. Dies überschreibt die Standard-Einstiegspunkte. Wenn `optimizeDeps.entries` explizit definiert ist, werden standardmäßig nur die Ordner `node_modules` und `build.outDir` ignoriert. Wenn andere Ordner ignoriert werden müssen, können Sie ein Ignore-Muster als Teil der Einstiegspunkte verwenden, markiert mit einem initialen `!`.
+Wenn keine der beiden Optionen Ihren Anforderungen entspricht, können Sie mit dieser Option benutzerdefinierte Einträge angeben - der Wert sollte ein [`tinyglobby`-Muster](https://github.com/SuperchupuDev/tinyglobby) oder ein Array von Mustern sein, die relativ zum Vite-Projektroot sind. Dies überschreibt die Inferenz der Standardeinträge. Nur die Ordner `node_modules` und `build.outDir` werden standardmäßig ignoriert, wenn `optimizeDeps.entries` explizit definiert ist. Wenn andere Ordner ignoriert werden sollen, können Sie ein Ignoriermuster als Teil der Eintragsliste verwenden, das mit einem anfänglichen `!` gekennzeichnet ist. Wenn Sie `node_modules` und `build.outDir` nicht ignorieren möchten, können Sie stattdessen literalisierte String-Pfade (ohne `tinyglobby`-Muster) angeben.
 
 ## optimizeDeps.exclude
 
@@ -22,8 +22,8 @@ CommonJS-Abhängigkeiten sollten nicht von der Optimierung ausgeschlossen werden
 ```js
 export default defineConfig({
   optimizeDeps: {
-    include: ['esm-dep > cjs-dep']
-  }
+    include: ['esm-dep > cjs-dep'],
+  },
 })
 ```
 
@@ -40,8 +40,8 @@ Standardmäßig werden verknüpfte Pakete, die sich nicht in `node_modules` befi
 ```js
 export default defineConfig({
   optimizeDeps: {
-    include: ['my-lib/components/**/*.vue']
-  }
+    include: ['my-lib/components/**/*.vue'],
+  },
 })
 ```
 

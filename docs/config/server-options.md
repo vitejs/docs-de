@@ -182,7 +182,7 @@ Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann igno
 
 Aufwärmen der zu transformierenden Dateien und Zwischenspeichern der Ergebnisse im Voraus. Dies verbessert das anfängliche Laden der Seite bei Serverstarts und verhindert Transformations-Wasserfälle.
 
-`clientFiles` sind Dateien, die nur im Client verwendet werden, während `ssrFiles` Dateien sind, die nur in SSR verwendet werden. Sie akzeptieren ein Array von Dateipfaden oder [`fast-glob`](https://github.com/mrmlnc/fast-glob) Mustern relativ zum `root`.
+`clientFiles` sind Dateien, die nur im Client verwendet werden, während `ssrFiles` Dateien sind, die nur in SSR verwendet werden. Sie akzeptieren ein Array von Dateipfaden oder [`tinyglobby`](https://github.com/SuperchupuDev/tinyglobby) Mustern relativ zum `root`.
 
 Stellen Sie sicher, dass Sie nur Dateien hinzufügen, die häufig verwendet werden, um den Vite Dev Server beim Start nicht zu überlasten.
 
