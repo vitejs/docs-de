@@ -49,7 +49,9 @@ Auch wenn natives ESM inzwischen weitgehend unterstützt wird, ist die Ausliefer
 
 Es ist nicht einfach, eine optimale Ausgabe und Verhaltenskonsistenz zwischen dem Entwicklungsserver und dem produktiven Build zu gewährleisten. Aus diesem Grund wird Vite mit einem vorkonfigurierten [Build-Befehl](./build) ausgeliefert, der viele [Leistungsoptimierungen](./features#build-optimizations) von Haus aus einbaut.
 
-## Warum nicht mit esbuild bündeln?
+## Warum nicht mit esbuild bundlen?
+
+Während Vite esbuild nutzt, um [einige Abhängigkeiten in dev vorzu-bundlen](./dep-pre-bundling.md), verwendet Vite esbuild nicht als Bundler für Produktions-Builds.
 
 Die aktuelle Plugin-API von Vite ist nicht mit der Verwendung von `esbuild` als Bundler kompatibel. Obwohl `esbuild` schneller ist, hat die Übernahme der flexiblen Plugin-API und -Infrastruktur von Rollup wesentlich zum Erfolg von Vite im Ökosystem beigetragen. Im Moment glauben wir, dass Rollup einen besseren Kompromiss zwischen Leistung und Flexibilität bietet.
 
