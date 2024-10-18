@@ -168,8 +168,8 @@ Durch Aktivieren dieser Einstellung bestimmt Vite die Dateiidentität anhand des
 
 ## html.cspNonce
 
-- **Type:** `string`
-- **Related:** [Content Security Policy (CSP)](/guide/features#content-security-policy-csp)
+- **Typ:** `string`
+- **Verwandt:** [Content Security Policy (CSP)](/guide/features#content-security-policy-csp)
 
 A nonce value placeholder that will be used when generating script / style tags. Setting this value will also generate a meta tag with nonce value.
 

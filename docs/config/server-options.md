@@ -318,15 +318,14 @@ export default defineConfig({
 
 ## server.fs.deny
 
-- **Typ:** `string[]`
-- **Standardwert:** `['.env', '.env.*', '*.{crt,pem}']`
-
+- **Typ:** `String[]`
+- **Standardwert:** `['.env', '.env.*', '*.{crt,pem}', '**/.git/**']`
 Blockliste für sensitive Dateien, die vom Vite-Entwicklungsserver nicht serviert werden dürfen. Dies hat eine höhere Priorität als [`server.fs.allow`](#server-fs-allow). [Picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features) werden unterstützt.
 
 ## server.fs.cachedChecks
 
-- **Type:** `boolean`
-- **Default:** `false`
+- **Typ:** `boolean`
+- **Standardwert:** `false`
 - **Experimental**
 
 Caches filenames of accessed directories to avoid repeated filesystem operations. Particularly in Windows, this could result in a performance boost. It is disabled by default due to edge cases when writing a file in a cached folder and immediately importing it.

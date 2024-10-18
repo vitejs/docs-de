@@ -40,7 +40,7 @@ if (isRunnableDevEnvironment(server.environments.ssr)) {
 The `runner` is evaluated eagerly when it's accessed for the first time. Beware that Vite enables source map support when the `runner` is created by calling `process.setSourceMapsEnabled` or by overriding `Error.prepareStackTrace` if it's not available.
 :::
 
-## Default `RunnableDevEnvironment`
+## Standardwert `RunnableDevEnvironment`
 
 Given a Vite server configured in middleware mode as described by the [SSR setup guide](/guide/ssr#setting-up-the-dev-server), let's implement the SSR middleware using the environment API. Error handling is omitted.
 
