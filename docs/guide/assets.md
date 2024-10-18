@@ -92,10 +92,7 @@ Dann können Sie das Asset in einem speziellen `public`-Verzeichnis unter Ihrem 
 
 Das Verzeichnis wird standardmäßig zu `<Projektstamm>/public` festgelegt, kann jedoch über die [`publicDir`-Option](/config/shared-options.md#publicdir) konfiguriert werden.
 
-Beachten Sie, dass:
-
-- Sie `public`-Assets immer mit absolutem Wurzelpfad referenzieren sollten. Zum Beispiel sollte `public/icon.png` im Quellcode als `/icon.png` referenziert werden.
-- Assets in `public` können nicht aus JavaScript importiert werden.
+Beachten Sie, dass Sie immer den absoluten Rootpfad von `public` Assets verwenden sollten - zum Beispiel sollte `public/icon.png` im Quellcode als `/icon.png` referenziert werden.
 
 ## new URL(url, import.meta.url)
 
