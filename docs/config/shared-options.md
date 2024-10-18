@@ -1,5 +1,7 @@
 # Gemeinsame Optionen
 
+Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt für alle Dev-, Build- und Preview-Versionen.
+
 ## root
 
 - **Typ:** `string`

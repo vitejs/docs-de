@@ -2,6 +2,8 @@
 
 - **Verwandt:** [Abhängigkeitsvor-Bündelung](/guide/dep-pre-bundling)
 
+Sofern nicht anders angegeben, werden die Optionen in diesem Abschnitt nur auf den Dependency Optimizer angewendet, der nur in dev verwendet wird.
+
 ## optimizeDeps.entries
 
 - **Typ:** `string | string[]`

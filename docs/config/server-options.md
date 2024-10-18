@@ -1,5 +1,7 @@
 # Server-Optionen
 
+Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt nur für dev.
+
 ## server.host
 
 - **Typ:** `string | boolean`
@@ -208,13 +210,10 @@ Der Vite Server Watcher überwacht das `root` und überspringt standardmäßig d
 Wenn auf `null` gesetzt, dann werden keine Dateien überwacht. `server.watcher` stellt einen kompatiblen Ereignis-Emitter zur Verfügung, aber der Aufruf von `add` oder `unwatch` hat keine Wirkung.
 
 ::: warning Überwachen von Dateien in `node_modules`
-
 Es ist derzeit nicht möglich, Dateien und Pakete in `node_modules` zu überwachen. Für weitere Fortschritte und Umwege hierzu können Sie [issue #8619](https://github.com/vitejs/vite/issues/8619) verfolgen.
-
 :::
 
 ::: warning Verwendung von Vite unter Windows Subsystem for Linux (WSL) 2
-
 Wenn Sie Vite unter WSL2 ausführen, funktioniert das Dateisystem-Watching nicht, wenn eine Datei von Windows-Anwendungen (nicht WSL2-Prozess) bearbeitet wird. Dies liegt an [einer WSL2-Beschränkung](https://github.com/microsoft/WSL/issues/4739). Dies gilt auch für die Verwendung von Docker mit einem WSL2-Backend.
 
 Um das Problem zu beheben, können Sie Folgendes tun:
@@ -223,7 +222,6 @@ Um das Problem zu beheben, können Sie Folgendes tun:
   - Es wird auch empfohlen, den Projektordner aus einem Windows-Dateisystem zu verschieben. Der Zugriff auf Windows-Dateisysteme von WSL2 aus ist langsam. Durch Entfernen dieses Overheads wird die Leistung verbessert.
 - Setzen Sie `{ usePolling: true }`.
   - Beachten Sie, dass [`usePolling` zu hoher CPU-Auslastung führt](https://github.com/paulmillr/chokidar#performance).
-
 :::
 
 ## server.middlewareMode
