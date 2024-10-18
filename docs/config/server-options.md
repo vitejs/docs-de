@@ -222,6 +222,7 @@ Um das Problem zu beheben, können Sie Folgendes tun:
   - Es wird auch empfohlen, den Projektordner aus einem Windows-Dateisystem zu verschieben. Der Zugriff auf Windows-Dateisysteme von WSL2 aus ist langsam. Durch Entfernen dieses Overheads wird die Leistung verbessert.
 - Setzen Sie `{ usePolling: true }`.
   - Beachten Sie, dass [`usePolling` zu hoher CPU-Auslastung führt](https://github.com/paulmillr/chokidar#performance).
+
 :::
 
 ## server.middlewareMode
@@ -321,7 +322,7 @@ export default defineConfig({
 - **Typ:** `string[]`
 - **Standardwert:** `['.env', '.env.*', '*.{crt,pem}', '**/.git/**']`
 
-Blocklist for sensitive files being restricted to be served by Vite dev server. This will have higher priority than [`server.fs.allow`](#server-fs-allow). [picomatch patterns](https://github.com/micromatch/picomatch#globbing-features) are supported.
+Blockliste für empfindliche Dateien, die vom Vite Dev Server nur eingeschränkt zur Verfügung gestellt werden dürfen. Dies hat eine höhere Priorität als [`server.fs.allow`](#server-fs-allow). [picomatch patterns](https://github.com/micromatch/picomatch#globbing-features) werden unterstützt.
 
 ## server.fs.cachedChecks
 
@@ -329,7 +330,7 @@ Blocklist for sensitive files being restricted to be served by Vite dev server. 
 - **Standardwert:** `false`
 - **Experimental**
 
-Caches filenames of accessed directories to avoid repeated filesystem operations. Particularly in Windows, this could result in a performance boost. It is disabled by default due to edge cases when writing a file in a cached folder and immediately importing it.
+Caching der Dateinamen der aufgerufenen Verzeichnisse, um wiederholte Dateisystemoperationen zu vermeiden. Insbesondere unter Windows kann dies zu einer Leistungssteigerung führen. Diese Funktion ist standardmäßig deaktiviert, da es zu Problemen kommen kann, wenn eine Datei in einen zwischengespeicherten Ordner geschrieben und sofort importiert wird.
 
 ## server.origin
 
