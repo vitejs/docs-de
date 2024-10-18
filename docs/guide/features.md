@@ -88,12 +88,13 @@ Aber ein paar Bibliotheken sind noch nicht zu diesem neuen Standard übergegange
 
 - [TypeScript Dokumentation](https://www.typescriptlang.org/tsconfig#target)
 
-Vite transpiliert TypeScript standardmäßig nicht mit dem konfigurierten `target`-Wert und folgt damit dem gleichen Verhalten wie `esbuild`.
+Vite ignoriert den `target`-Wert in der `tsconfig.json` und folgt damit dem gleichen Verhalten wie `esbuild`.
 
-Stattdessen kann die Option [`esbuild.target`](/config/shared-options.html#esbuild) verwendet werden, die für eine minimale Transpilierung auf `esnext` voreingestellt ist. Bei Builds hat die Option [`build.target`](/config/build-options.html#build-target) höhere Priorität und kann bei Bedarf ebenfalls gesetzt werden.
+Um das Ziel in dev anzugeben, kann die Option [`esbuild.target`](/config/shared-options.html#esbuild) verwendet werden, die für eine minimale Transpilierung auf `esnext` voreingestellt ist. In Builds hat die Option [`build.target`](/config/build-options.html#build-target) höhere Priorität als `esbuild.target` und kann bei Bedarf ebenfalls gesetzt werden.
 
 ::: warning `useDefineForClassFields`
-Wenn `target` nicht `ESNext` oder `ES2022` oder neuer ist, oder wenn es keine `tsconfig.json` Datei gibt, wird `useDefineForClassFields` standardmäßig auf `false` gesetzt, was mit dem Standardwert `esbuild.target` von `esnext` problematisch sein kann. Es kann zu [statischen Initialisierungsblöcken](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks#browser_compatibility) transpilieren, was in Ihrem Browser möglicherweise nicht unterstützt wird.
+
+Wenn `target` in `tsconfig.json` nicht `ESNext` oder `ES2022` oder neuer ist, oder wenn es keine `tsconfig.json` Datei gibt, wird `useDefineForClassFields` standardmäßig auf `false` gesetzt, was mit dem Standardwert `esbuild.target` von `esnext` problematisch sein kann. Es kann zu [statischen Initialisierungsblöcken](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks#browser_compatibility) transpilieren, was in einigen Browsern möglicherweise nicht unterstützt wird.
 
 Es wird daher empfohlen, `target` auf `ESNext` oder `ES2022` oder neuer zu setzen, oder `useDefineForClassFields` bei der Konfiguration von `tsconfig.json` explizit auf `true` zu setzen.
 :::
@@ -182,8 +183,8 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   esbuild: {
     jsxFactory: 'h',
-    jsxFragment: 'Fragment'
-  }
+    jsxFragment: 'Fragment',
+  },
 })
 ```
 
@@ -196,8 +197,8 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   esbuild: {
-    jsxInject: `import React from 'react'`
-  }
+    jsxInject: `import React from 'react'`,
+  },
 })
 ```
 
@@ -356,7 +357,7 @@ Der obige Code wird in den folgenden Code umgewandelt:
 // code produced by vite
 const modules = {
   './dir/foo.js': () => import('./dir/foo.js'),
-  './dir/bar.js': () => import('./dir/bar.js')
+  './dir/bar.js': () => import('./dir/bar.js'),
 }
 ```
 
@@ -384,7 +385,7 @@ import * as __glob__0_0 from './dir/foo.js'
 import * as __glob__0_1 from './dir/bar.js'
 const modules = {
   './dir/foo.js': __glob__0_0,
-  './dir/bar.js': __glob__0_1
+  './dir/bar.js': __glob__0_1,
 }
 ```
 
@@ -407,7 +408,7 @@ const modules = import.meta.glob(['./dir/*.js', '!**/bar.js'])
 ```js
 // code produced by vite
 const modules = {
-  './dir/foo.js': () => import('./dir/foo.js')
+  './dir/foo.js': () => import('./dir/foo.js'),
 }
 ```
 
@@ -423,7 +424,7 @@ const modules = import.meta.glob('./dir/*.js', { import: 'setup' })
 // code produced by vite
 const modules = {
   './dir/foo.js': () => import('./dir/foo.js').then((m) => m.setup),
-  './dir/bar.js': () => import('./dir/bar.js').then((m) => m.setup)
+  './dir/bar.js': () => import('./dir/bar.js').then((m) => m.setup),
 }
 ```
 
@@ -432,7 +433,7 @@ In Kombination mit `eager` ist es sogar möglich, das Tree-Shaking für diese Mo
 ```ts
 const modules = import.meta.glob('./dir/*.js', {
   import: 'setup',
-  eager: true
+  eager: true,
 })
 ```
 
@@ -442,7 +443,7 @@ import { setup as __glob__0_0 } from './dir/foo.js'
 import { setup as __glob__0_1 } from './dir/bar.js'
 const modules = {
   './dir/foo.js': __glob__0_0,
-  './dir/bar.js': __glob__0_1
+  './dir/bar.js': __glob__0_1,
 }
 ```
 
@@ -451,7 +452,7 @@ Setzen Sie `import` auf `default`, um den Standard-Export zu importieren.
 ```ts
 const modules = import.meta.glob('./dir/*.js', {
   import: 'default',
-  eager: true
+  eager: true,
 })
 ```
 
@@ -461,7 +462,7 @@ import __glob__0_0 from './dir/foo.js'
 import __glob__0_1 from './dir/bar.js'
 const modules = {
   './dir/foo.js': __glob__0_0,
-  './dir/bar.js': __glob__0_1
+  './dir/bar.js': __glob__0_1,
 }
 ```
 
@@ -496,7 +497,7 @@ You can also provide custom queries for other plugins to consume:
 
 ```ts
 const modules = import.meta.glob('./dir/*.js', {
-  query: { foo: 'bar', bar: true }
+  query: { foo: 'bar', bar: true },
 })
 ```
 
@@ -539,8 +540,8 @@ init({
   imports: {
     someFunc: () => {
       /* ... */
-    }
-  }
+    },
+  },
 }).then(() => {
   /* ... */
 })
@@ -562,8 +563,9 @@ import wasmUrl from 'foo.wasm?url'
 
 const main = async () => {
   const responsePromise = fetch(wasmUrl)
-  const { module, instance } =
-    await WebAssembly.instantiateStreaming(responsePromise)
+  const { module, instance } = await WebAssembly.instantiateStreaming(
+    responsePromise
+  )
   /* ... */
 }
 
@@ -607,7 +609,7 @@ Der Worker-Konstruktor akzeptiert auch Optionen, die verwendet werden können, u
 
 ```ts
 const worker = new Worker(new URL('./worker.js', import.meta.url), {
-  type: 'module'
+  type: 'module',
 })
 ```
 
