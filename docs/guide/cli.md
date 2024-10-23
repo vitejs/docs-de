@@ -49,7 +49,7 @@ vite build [root]
 
 | Optionen                       |                                                                                                                                                               |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--target <target>`            | Transpile-Ziel (Standard: `"modules"`) (`string`)                                                                                                           |
+| `--target <target>`            | Transpile-Ziel (Standard: `"modules"`) (`string`)                                                                                                             |
 | `--outDir <dir>`               | Ausgabe Verzeichnis (Standard: `dist`) (`string`)                                                                                                             |
 | `--assetsDir <dir>`            | Verzeichnis unter outDir, um Assets abzulegen (Standard: `"assets"`) (`string`)                                                                               |
 | `--assetsInlineLimit <number>` | Schwellenwert für statische Asset-Base64-Inlines in Byte (Standard: `4096`) (`number`)                                                                        |
@@ -69,6 +69,7 @@ vite build [root]
 | `-f, --filter <filter>`        | Filtert Debug-Protokolle (`string`)                                                                                                                           |
 | `-m, --mode <mode>`            | Setzt den Umgebungsmodus (`string`)                                                                                                                           |
 | `-h, --help`                   | Zeigt verfügbare CLI-Optionen an                                                                                                                              |
+| `--app`                        | Alle Umgebungen builden, wie bei `builder.entireApp` (`boolean`, experimentell)                                                                               |
 
 ## Andere
 
