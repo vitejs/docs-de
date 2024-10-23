@@ -8,13 +8,9 @@ Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt nur für 
 - **Standard:** `'modules'`
 - **Verwandt:** [Browser-Kompatibilität](/guide/build#browser-compatibility)
 
-Ziel für die Browserkompatibilität des finalen Bündels. Der Standardwert ist ein spezieller Wert von Vite, `'modules'`, der auf Browser abzielt, die [native ES-Module](https://caniuse.com/es6-module), [native ESM dynamic import](https://caniuse.com/es6-module-dynamic-import) und Unterstützung für [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta) haben. Vite ersetzt `'modules'` durch `['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14']`.
+Browser-Kompatibilitätsziel für das endgültige Bundle. Der Standardwert ist ein spezieller Vite-Wert, `'modules'`, der auf Browser mit [native ES Modules](https://caniuse.com/es6-module), [native ESM dynamic import](https://caniuse.com/es6-module-dynamic-import) und [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta) Unterstützung abzielt. Vite ersetzt `'modules'` durch `['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14']`.
 
-Ein weiterer spezieller Wert ist `'esnext'`, der von nativer Unterstützung für dynamisches Importieren ausgeht und so wenig wie möglich transpiliert:
-
-- Wenn die [`build.minify`](#build-minify)-Option `'terser'` ist und die installierte Terser-Version unter 5.16.0 liegt, wird `'esnext'` auf `'es2021'` erzwungen.
-- In anderen Fällen wird überhaupt keine Transpilierung durchgeführt.
-
+Ein weiterer spezieller Wert ist `'esnext'` - der die Unterstützung nativer dynamischer Importe voraussetzt und nur eine minimale Transpilierung durchführt.
 Die Transpilierung erfolgt mit esbuild, und der Wert sollte eine gültige [esbuild-Zieloption](https://esbuild.github.io/api/#target) sein. Benutzerdefinierte Ziele können entweder eine ES-Version sein (z.B. `es2015`), ein Browser mit Version (z.B. `chrome58`) oder ein Array von mehreren Zielzeichenketten.
 
 Beachten Sie, dass der Build fehlschlägt, wenn der Code Funktionen enthält, die von esbuild nicht sicher transpiliert werden können. Weitere Details finden Sie in den [esbuild-Dokumentationen](https://esbuild.github.io/content-types/#javascript).
