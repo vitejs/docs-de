@@ -346,12 +346,12 @@ Ob benannte Imports aus `.json`-Dateien unterstützt werden sollen.
 
 ## json.stringify
 
-- **Typ:** `boolean`
-- **Standardwert:** `false`
+- **Typ:** `boolean | 'auto'`
+- **Standardwert:** `'auto'`
 
 Wenn auf `true` gesetzt, wird importiertes JSON in `export default JSON.parse("...")` umgewandelt, was wesentlich performanter ist als Objektliterale, insbesondere wenn die JSON-Datei groß ist.
 
-Wenn dies aktiviert ist, werden benannte Imports deaktiviert.
+Bei der Einstellung `'auto'` werden die Daten nur dann stringifiziert, wenn [die Daten größer als 10kB sind](https://v8.dev/blog/cost-of-javascript-2019#json:~:text=A%20good%20rule%20of%20thumb%20is%20to%20apply%20this%20technique%20for%20objects%20of%2010%20kB%20or%20larger).
 
 ## esbuild
 
