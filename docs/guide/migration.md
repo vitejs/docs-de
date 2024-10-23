@@ -184,7 +184,7 @@ Wenn Sie [`@vitejs/plugin-basic-ssl`](https://github.com/vitejs/vite-plugin-basi
 Die `resolvePackageEntry` und `resolvePackageData` APIs werden entfernt, da sie die Interna von Vite offenlegen und in der Vergangenheit potentielle Optimierungen von Vite 4.3 blockiert haben. Diese APIs können z.B. durch Pakete von Drittanbietern ersetzt werden:
 
 - `resolvePackageEntry`: [`import.meta.resolve`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve) oder das Paket [`import-meta-resolve`](https://github.com/wooorm/import-meta-resolve).
-- `resolvePackageData`: Dasselbe wie oben, und crawlen Sie das Paketverzeichnis, um die Wurzel `package.json` zu erhalten. Oder verwenden Sie das Gemeinschaftspaket [`vitefu`](https://github.com/svitejs/vitefu).
+- `resolvePackageData`: Dasselbe wie oben, und crawlen Sie das Paketverzeichnis, um die Root-`package.json` zu erhalten. Oder verwenden Sie das Gemeinschaftspaket [`vitefu`](https://github.com/svitejs/vitefu).
 
 ```js
 import { resolve } from 'import-meta-resolve'

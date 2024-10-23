@@ -50,7 +50,7 @@ Einige Fehler werden aufgrund der Abstraktionsebenen und der sandboxartigen Natu
 
 ## Testen von Vite mit externen Paketen
 
-Sie möchten möglicherweise Ihre lokal geänderte Kopie von Vite gegen ein anderes Paket testen, das mit Vite erstellt wurde. Bei pnpm können Sie nach dem Erstellen von Vite das [`pnpm.overrides`](https://pnpm.io/package_json#pnpmoverrides) verwenden. Beachten Sie, dass `pnpm.overrides` in der Wurzel-`package.json` angegeben sein muss und Sie das Paket zuerst als Abhängigkeit in der Wurzel-`package.json` auflisten müssen:
+Sie möchten möglicherweise Ihre lokal geänderte Kopie von Vite gegen ein anderes Paket testen, das mit Vite erstellt wurde. Bei pnpm können Sie nach dem Erstellen von Vite das [`pnpm.overrides`](https://pnpm.io/package_json#pnpmoverrides) verwenden. Beachten Sie, dass `pnpm.overrides` in der Root-`package.json` angegeben sein muss und Sie das Paket zuerst als Abhängigkeit in der Root-`package.json` auflisten müssen:
 
 ```json
 {

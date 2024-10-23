@@ -8,7 +8,7 @@
 
 Standardmäßig durchsucht Vite alle Ihre `.html`-Dateien, um Abhängigkeiten zu erkennen, die vorab gebündelt werden müssen (ignoriert `node_modules`, `build.outDir`, `__tests__` und `coverage`). Wenn `build.rollupOptions.input` angegeben ist, durchsucht Vite stattdessen diese Einstiegspunkte.
 
-Wenn keines davon Ihren Anforderungen entspricht, können Sie benutzerdefinierte Einstiegspunkte mit dieser Option angeben. Der Wert sollte ein [fast-glob-Muster](https://github.com/mrmlnc/fast-glob#basic-syntax) oder ein Array von Mustern sein, die relativ zum Wurzelverzeichnis des Vite-Projekts sind. Dies überschreibt die Standard-Einstiegspunkte. Wenn `optimizeDeps.entries` explizit definiert ist, werden standardmäßig nur die Ordner `node_modules` und `build.outDir` ignoriert. Wenn andere Ordner ignoriert werden müssen, können Sie ein Ignore-Muster als Teil der Einstiegspunkte verwenden, markiert mit einem initialen `!`.
+Wenn keines davon Ihren Anforderungen entspricht, können Sie benutzerdefinierte Einstiegspunkte mit dieser Option angeben. Der Wert sollte ein [fast-glob-Muster](https://github.com/mrmlnc/fast-glob#basic-syntax) oder ein Array von Mustern sein, die relativ zum Root-Verzeichnis des Vite-Projekts sind. Dies überschreibt die Standard-Einstiegspunkte. Wenn `optimizeDeps.entries` explizit definiert ist, werden standardmäßig nur die Ordner `node_modules` und `build.outDir` ignoriert. Wenn andere Ordner ignoriert werden müssen, können Sie ein Ignore-Muster als Teil der Einstiegspunkte verwenden, markiert mit einem initialen `!`.
 
 ## optimizeDeps.exclude
 
