@@ -127,7 +127,8 @@ interface ViteDevServer {
    */
   moduleGraph: ModuleGraph
   /**
-   * Die von Vite auf der Befehlszeile gedruckten aufgelösten URLs. In Middleware-Modus oder vor dem Aufruf von `server.listen` ist dies null.
+   * Die aufgelösten URLs, die Vite auf dem CLI ausgibt (URL-kodiert).
+   * Gibt `null` zurück, wenn im Middleware-Modus oder wenn der Server an keinem Port läuft.
    */
   resolvedUrls: ResolvedServerUrls | null
   /**
@@ -260,8 +261,8 @@ interface PreviewServer {
    */
   httpServer: http.Server
   /**
-   * Die von Vite auf der Befehlszeile gedruckten aufgelösten URLs.
-   * Null, bevor der Server lauscht.
+   * Die aufgelösten URLs, die Vite auf dem CLI ausgibt (URL-kodiert).
+   * Gibt `null` zurück, wenn der Server an keinem Port lauscht.
    */
   resolvedUrls: ResolvedServerUrls | null
   /**
