@@ -218,7 +218,7 @@ Inline-PostCSS-Konfiguration oder ein benutzerdefiniertes Verzeichnis zum Suchen
 
 Für die Inline-PostCSS-Konfiguration wird dasselbe Format wie `postcss.config.js` erwartet. Für die `plugins`-Eigenschaft kann nur das [Array-Format](https://github.com/postcss/postcss-load-config/blob/main/README.md#array) verwendet werden.
 
-Die Suche erfolgt mit [postcss-load-config](https://github.com/postcss/postcss-load-config), und nur die unterstützten Dateinamen für die Konfiguration werden geladen.
+Die Suche erfolgt mit [postcss-load-config](https://github.com/postcss/postcss-load-config) und nur die unterstützten Konfigurationsdateinamen werden geladen. Konfigurationsdateien außerhalb des Stammverzeichnisses des Arbeitsbereichs (oder des [Projekt-Stammverzeichnisses](/guide/#index-html-and-project-root), wenn kein Arbeitsbereich gefunden wird) werden standardmäßig nicht durchsucht. Sie können bei Bedarf einen benutzerdefinierten Pfad außerhalb des Stammverzeichnisses angeben, um stattdessen die spezifische Konfigurationsdatei zu laden.
 
 Hinweis: Wenn eine Inline-Konfiguration bereitgestellt wird, sucht Vite nicht nach anderen PostCSS-Konfigurationsquellen.
 
