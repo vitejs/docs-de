@@ -20,6 +20,14 @@ Ab Vite 6 wird `json.namedExports` auch dann nicht deaktiviert, wenn `json.strin
 
 Vite 6 führt auch einen neuen Standardwert für `json.stringify` ein, nämlich `'auto'`, der nur große JSON-Dateien stringifizieren wird. Um dieses Verhalten zu deaktivieren, setzen Sie `json.stringify: false`.
 
+### Sass verwendet jetzt standardmäßig die moderne API
+
+In Vite 5 wurde standardmäßig die Legacy-API für Sass verwendet. Vite 5.4 fügte Unterstützung für die moderne API hinzu.
+
+Ab Vite 6 wird die moderne API standardmäßig für Sass verwendet. Wenn Sie weiterhin die Legacy-API verwenden möchten, können Sie [`css.preprocessorOptions.sass.api: 'legacy'` / `css.preprocessorOptions.scss.api: 'legacy'`](/config/shared-options#css-preprocessoroptions) einstellen. Beachten Sie jedoch, dass die Unterstützung der Legacy-API in Vite 7 entfernt wird.
+
+Um auf die moderne API umzusteigen, siehe [die Sass-Dokumentation](https://sass-lang.com/documentation/breaking-changes/legacy-js-api/).
+
 ## Erweitert
 
 Es gibt weitere Änderungen, die nur wenige Benutzer betreffen.
