@@ -20,6 +20,10 @@ Ab Vite 6 wird `json.namedExports` auch dann nicht deaktiviert, wenn `json.strin
 
 Vite 6 führt auch einen neuen Standardwert für `json.stringify` ein, nämlich `'auto'`, der nur große JSON-Dateien stringifizieren wird. Um dieses Verhalten zu deaktivieren, setzen Sie `json.stringify: false`.
 
+### postcss-load-config
+
+[`postcss-load-config`](https://npmjs.com/package/postcss-load-config) wurde von v4 auf v6 aktualisiert. [`tsx`](https://www.npmjs.com/package/tsx) oder [`jiti`](https://www.npmjs.com/package/jiti) wird nun benötigt, um TypeScript postcss-Konfigurationsdateien zu laden, anstatt [`ts-node`](https://www.npmjs.com/package/ts-node). Auch [`yaml`](https://www.npmjs.com/package/yaml) wird nun benötigt, um YAML postcss Konfigurationsdateien zu laden.
+
 ### Sass verwendet jetzt standardmäßig die moderne API
 
 In Vite 5 wurde standardmäßig die Legacy-API für Sass verwendet. Vite 5.4 fügte Unterstützung für die moderne API hinzu.
