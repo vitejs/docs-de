@@ -54,11 +54,12 @@ Beim Importieren eines ESM-Pakets nur über `require` tritt der folgende Fehler 
 
 > Fehlgeschlagen, um "foo" aufzulösen. Dieses Paket ist nur für ESM geeignet, wurde jedoch versucht, über `require` geladen zu werden.
 
-> "foo" wurde als ESM-Datei aufgelöst. ESM-Dateien können nicht über `require` geladen werden.
+> Fehler [ERR_REQUIRE_ESM]: require() des ES-Moduls /path/to/dependency.js aus /path/to/vite.config.js wird nicht unterstützt.
+> Ändern Sie stattdessen das require von index.js in /path/to/vite.config.js in einen dynamischen import(), der in allen CommonJS-Modulen verfügbar ist.
 
-ESM-Dateien können nicht über [`require`](<https://nodejs.org/docs/latest-v18.x/api/esm.html#require:~:text=Using%20require%20to%20load%20an%20ES%20module%20is%20not%20supported%20because%20ES%20modules%20have%20asynchronous%20execution.%20Instead%2C%20use%20import()%20to%20load%20an%20ES%20module%20from%20a%20CommonJS%20module.>) geladen werden.
+In Node.js <=22 können ESM-Dateien standardmäßig nicht mit [`require`](https://nodejs.org/docs/latest-v22.x/api/esm.html#require) geladen werden.
 
-Wir empfehlen, Ihre Konfiguration in ESM zu konvertieren, indem Sie entweder:
+Obwohl dies mit [`--experimental-require-module`](https://nodejs.org/docs/latest-v22.x/api/modules.html#loading-ecmascript-modules-using-require) oder Node.js >22 oder in anderen Laufzeitumgebungen funktionieren kann, empfehlen wir dennoch, Ihre Konfiguration entweder durch:
 
 - `"type": "module"` zum nächsten `package.json` hinzufügen
 - `vite.config.js`/`vite.config.ts` in `vite.config.mjs`/`vite.config.mts` umbenennen
