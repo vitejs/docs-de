@@ -24,8 +24,8 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
     configFile: false,
     root: __dirname,
     server: {
-      port: 1337
-    }
+      port: 1337,
+    },
   })
   await server.listen()
 
@@ -110,8 +110,8 @@ interface ViteDevServer {
   httpServer: http.Server | null
   /**
    * Chokidar-Watcher-Instanz. Wenn `config.server.watch` auf `null` gesetzt ist,
-   * dann gibt diese einen Noop-Ereignis-Emitter zurück.
-   * https://github.com/paulmillr/chokidar#api
+   * werden keine Dateien überwacht und der Aufruf von `add` hat keine Auswirkungen.
+   * https://github.com/paulmillr/chokidar#getting-started
    */
   watcher: FSWatcher
   /**
@@ -144,7 +144,7 @@ interface ViteDevServer {
   transformIndexHtml(
     url: string,
     html: string,
-    originalUrl?: string,
+    originalUrl?: string
   ): Promise<string>
   /**
    * Lädt ein gegebenes URL als instanziiertes Modul für SSR.
@@ -208,8 +208,8 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
     build: {
       rollupOptions: {
         // ...
-      }
-    }
+      },
+    },
   })
 })()
 ```
@@ -231,8 +231,8 @@ import { preview } from 'vite'
     // Alle gültigen Benutzerkonfigurationsoptionen, plus `mode` und `configFile`
     preview: {
       port: 8080,
-      open: true
-    }
+      open: true,
+    },
   })
 
   previewServer.printUrls()
@@ -286,7 +286,7 @@ async function resolveConfig(
   command: 'build' | 'serve',
   defaultMode = 'development',
   defaultNodeEnv = 'development',
-  isPreview = false,
+  isPreview = false
 ): Promise<ResolvedConfig>
 ```
 
@@ -392,7 +392,7 @@ async function loadConfigFromFile(
   configFile?: string,
   configRoot: string = process.cwd(),
   logLevel?: LogLevel,
-  customLogger?: Logger,
+  customLogger?: Logger
 ): Promise<{
   path: string
   config: UserConfig
@@ -412,7 +412,7 @@ Lädt eine Vite-Konfigurationsdatei manuell mit Esbuild.
 async function preprocessCSS(
   code: string,
   filename: string,
-  config: ResolvedConfig,
+  config: ResolvedConfig
 ): Promise<PreprocessCSSResult>
 
 interface PreprocessCSSResult {

@@ -203,11 +203,11 @@ export default defineConfig({
 
 - **Typ:** `object | null`
 
-Optionen für den Dateisystem-Watcher, die an [chokidar](https://github.com/paulmillr/chokidar#api) weitergegeben werden.
+Optionen für den Dateisystem-Watcher, die an [chokidar](https://github.com/paulmillr/chokidar#getting-started) übergeben werden sollen. Wenn die Option `ignored` übergeben wird, konvertiert Vite automatisch alle Zeichenfolgen in [picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features).
 
 Der Vite Server Watcher überwacht das `root` und überspringt standardmäßig die Verzeichnisse `.git/`, `node_modules/`, Vites `cacheDir` und Vites `build.outDir`. Wenn eine überwachte Datei aktualisiert wird, wendet Vite HMR an und aktualisiert nur bei Bedarf die Seite.
 
-Wenn auf `null` gesetzt, dann werden keine Dateien überwacht. `server.watcher` stellt einen kompatiblen Ereignis-Emitter zur Verfügung, aber der Aufruf von `add` oder `unwatch` hat keine Wirkung.
+Wenn auf `null` gesetzt, werden keine Dateien überwacht. `server.watcher` überwacht keine Dateien und der Aufruf von `add` hat keine Wirkung.
 
 ::: warning Überwachen von Dateien in `node_modules`
 Es ist derzeit nicht möglich, Dateien und Pakete in `node_modules` zu überwachen. Für weitere Fortschritte und Umwege hierzu können Sie [issue #8619](https://github.com/vitejs/vite/issues/8619) verfolgen.
