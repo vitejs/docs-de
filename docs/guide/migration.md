@@ -30,7 +30,27 @@ In Vite 5 wurde standardmäßig die Legacy-API für Sass verwendet. Vite 5.4 fü
 
 Ab Vite 6 wird die moderne API standardmäßig für Sass verwendet. Wenn Sie weiterhin die Legacy-API verwenden möchten, können Sie [`css.preprocessorOptions.sass.api: 'legacy'` / `css.preprocessorOptions.scss.api: 'legacy'`](/config/shared-options#css-preprocessoroptions) einstellen. Beachten Sie jedoch, dass die Unterstützung der Legacy-API in Vite 7 entfernt wird.
 
-Um auf die moderne API umzusteigen, siehe [die Sass-Dokumentation](https://sass-lang.com/documentation/breaking-changes/legacy-js-api/).
+Um zur modernen API zu migrieren, lesen Sie bitte die [Sass-Dokumentation](https://sass-lang.com/documentation/breaking-changes/legacy-js-api/).
+
+### CSS-Ausgabedateinamen im Bibliotheksmodus anpassen
+
+In Vite 5 lautete der CSS-Ausgabedateiname im Bibliotheksmodus immer „style.css“ und konnte nicht ohne Weiteres über die Vite-Konfiguration geändert werden.
+
+Ab Vite 6 wird für den Standarddateinamen nun „name“ aus „package.json“ verwendet, ähnlich wie bei den JS-Ausgabedateien. Wenn [`build.lib.fileName`](/config/build-options.md#build-lib) mit einer Zeichenfolge festgelegt ist, wird dieser Wert auch für den Namen der CSS-Ausgabedatei verwendet. Um explizit einen anderen CSS-Dateinamen festzulegen, können Sie die neue Option [`build.lib.cssFileName`](/config/build-options.md#build-lib) verwenden.
+
+Wenn Sie sich bisher auf den Dateinamen `style.css` verlassen haben, sollten Sie für die Migration die Verweise darauf auf den neuen Namen basierend auf Ihrem Paketnamen aktualisieren. Beispiel:
+
+```json [package.json]
+{
+  "name": "my-lib",
+  "exports": {
+    "./style.css": "./dist/style.css" // [!code --]
+    "./style.css": "./dist/my-lib.css" // [!code ++]
+  }
+}
+```
+
+Wenn Sie wie in Vite 5 lieber bei `style.css` bleiben möchten, können Sie stattdessen `build.lib.cssFileName: 'style'` festlegen.
 
 ## Erweitert
 

@@ -185,7 +185,12 @@ import Bar from './Bar.vue'
 export { Foo, Bar }
 ```
 
-Die Ausführung von `vite build` mit dieser Konfiguration verwendet ein Rollup-Preset, das auf die Bereitstellung von Bibliotheken ausgerichtet ist und zwei Bündelformate erstellt: `es` und `umd` (konfigurierbar über `build.lib`):
+Wenn Sie `vite build` mit dieser Konfiguration ausführen, wird eine Rollup-Voreinstellung verwendet, die auf die Auslieferung von Bibliotheken ausgerichtet ist und zwei Bundle-Formate erzeugt:
+
+- `es` und `umd` (für einen einzelnen Eintrag)
+- `es` und `cjs` (für mehrere Einträge)
+
+Die Formate können mit der Option [„build.lib.formats“](/config/build-options.md#build-lib) konfiguriert werden.
 
 ```
 $ vite build
@@ -234,8 +239,33 @@ Oder, wenn mehrere Einstiegspunkte freigegeben werden:
 }
 ```
 
-::: tip Dateierweiterungen
-Wenn die `package.json` nicht `"type": "module"` enthält, generiert Vite unterschiedliche Dateierweiterungen für Node.js-Kompatibilität. `.js` wird zu `.mjs` und `.cjs` wird zu `.js`.
+:::
+
+### CSS-Unterstützung
+
+Wenn Ihre Bibliothek CSS importiert, wird es neben den erstellten JS-Dateien als einzelne CSS-Datei gebündelt, z. B. `dist/my-lib.css`. Der Name lautet standardmäßig `build.lib.fileName`, kann aber auch mit [`build.lib.cssFileName`](/config/build-options.md#build-lib) geändert werden.
+
+Sie können die CSS-Datei in Ihrer `package.json` exportieren, damit sie von Benutzern importiert werden kann:
+
+```json {12}
+{
+  "name": "my-lib",
+  "type": "module",
+  "files": ["dist"],
+  "main": "./dist/my-lib.umd.cjs",
+  "module": "./dist/my-lib.js",
+  "exports": {
+    ".": {
+      "import": "./dist/my-lib.js",
+      "require": "./dist/my-lib.umd.cjs"
+    },
+    "./style.css": "./dist/my-lib.css"
+  }
+}
+```
+
+::: tip File Extensions
+If the `package.json` does not contain `"type": "module"`, Vite will generate different file extensions for Node.js compatibility. `.js` will become `.mjs` and `.cjs` will become `.js`.
 :::
 
 ::: tip Umgebungsvariablen

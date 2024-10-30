@@ -157,10 +157,28 @@ Optionen, die an [@rollup/plugin-dynamic-import-vars](https://github.com/rollup/
 
 ## build.lib
 
-- **Typ:** `{ entry: string | string[] | { [entryAlias: string]: string }, name?: string, formats?: ('es' | 'cjs' | 'umd' | 'iife')[], fileName?: string | ((format: ModuleFormat, entryName: string) => string) }`
+- **Typ:** `{ entry: string | string[] | { [entryAlias: string]: string }, name?: string, formats?: ('es' | 'cjs' | 'umd' | 'iife')[], fileName?: string | ((format: ModuleFormat, entryName: string) => string), cssFileName?: string }`
 - **Verwandt:** [Library-Modus](/guide/build#library-mode)
 
-Bauen Sie als Bibliothek. `entry` ist erforderlich, da die Bibliothek HTML nicht als Eingabe verwenden kann. `name` ist die freigegebene globale Variable und ist erforderlich, wenn `formats` `'umd'` oder `'iife'` enthält. Die Standardformate sind `['es', 'umd']` oder `['es', 'cjs']`, wenn mehrere Eingaben verwendet werden. `fileName` ist der Name der Paketdatei-Ausgabe, standardmäßig ist `fileName` die Optionsnamen aus package.json, er kann auch als Funktion definiert werden, die `format` und `entryAlias` als Argumente akzeptiert.
+Als Bibliothek erstellen. `entry` ist erforderlich, da die Bibliothek HTML nicht als Eintrag verwenden kann. `name` ist die exponierte globale Variable und erforderlich, wenn `formats` `'umd'` oder `'iife'` enthält. Die Standardformate sind `['es', 'umd']` oder `['es', 'cjs']`, wenn mehrere Einträge verwendet werden.
+
+`fileName` ist der Name der ausgegebenen Paketdatei, der standardmäßig dem `"name"` in `package.json` entspricht. Er kann auch als Funktion definiert werden, die `format` und `entryName` als Argumente übernimmt und den Dateinamen zurückgibt.
+
+Wenn Ihr Paket CSS importiert, kann „cssFileName“ verwendet werden, um den Namen der CSS-Datei-Ausgabe anzugeben. Der Standardwert ist derselbe wie „fileName“, wenn dieser als Zeichenfolge festgelegt ist, andernfalls wird ebenfalls auf „name“ in „package.json“ zurückgegriffen.
+
+```js twoslash [vite.config.js]
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  build: {
+    lib: {
+      entry: ['src/main.js'],
+      fileName: (format, entryName) => `my-lib-${entryName}.${format}.js`,
+      cssFileName: 'my-lib-style',
+    },
+  },
+})
+```
 
 ## build.manifest
 
