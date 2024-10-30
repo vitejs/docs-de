@@ -160,6 +160,35 @@ Zum Beispiel, um den Standardimport von `*.svg` zu einer React-Komponente zu mac
 
 :::
 
+## HTML
+
+HTML-Dateien stehen im Mittelpunkt eines Vite-Projekts und dienen als Einstiegspunkte für Ihre Anwendung, wodurch die Erstellung von einseitigen und mehrseitigen Anwendungen vereinfacht wird.
+
+Alle HTML-Dateien im Stammverzeichnis Ihres Projekts können direkt über den entsprechenden Verzeichnispfad aufgerufen werden:
+
+- `<root>/index.html` -> `http://localhost:5173/`
+- `<root>/about.html` -> `http://localhost:5173/about.html`
+- `<root>/blog/index.html` -> `http://localhost:5173/blog/index.html`
+
+HTML-Elemente wie `<script type="module">` und `<link href>`-Tags werden standardmäßig verarbeitet, wodurch die Verwendung von Vite-Funktionen in den verknüpften Dateien ermöglicht wird. Allgemeine Asset-Elemente wie `<img src>`, `<video src>` und `<source src>` werden ebenfalls neu basiert, um sicherzustellen, dass sie optimiert und mit dem richtigen Pfad verknüpft sind.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <img src="/src/images/logo.svg" alt="logo" />
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+```
+
+Um die HTML-Verarbeitung für bestimmte Elemente zu deaktivieren, können Sie das Attribut `vite-ignore` zum Element hinzufügen. Dies kann nützlich sein, wenn Sie auf externe Assets oder CDN verweisen.
+
 ## Vue
 
 Vite bietet First-Class Vue Support:
