@@ -33,16 +33,15 @@ Build-Ziel für den SSR-Server.
 
 ## ssr.resolve.conditions
 
-- **Typ:** `String[]`
-- **Verwandt:** [Bedingungen auflösen](./shared-options.md#resolve-conditions)
-
-Standardmäßig wird die Root [`resolve.conditions`](./shared-options.md#resolve-conditions) verwendet.
+- **Type:** `string[]`
+- **Default:** `['module', 'node', 'development|production']` (`['module', 'browser', 'development|production']` für `ssr.target === 'webworker'`)
+- **Verwandte Themen:** [Bedingungen auflösen](./shared-options.md#resolve-conditions)
 
 Diese Bedingungen werden in der Plugin-Pipeline verwendet und betreffen nur nicht-externalisierte Abhängigkeiten während des SSR-Builds. Verwenden Sie `ssr.resolve.externalConditions`, um externalisierte Importe zu beeinflussen.
 
 ## ssr.resolve.externalConditions
 
-- **Typ:** `String[]`
-- **Standard:** `[]`
+- **Type:** `string[]`
+- **Default:** `['node']`
 
 Bedingungen, die beim ssr-Import (einschließlich `ssrLoadModule`) von externalisierten Abhängigkeiten verwendet werden.

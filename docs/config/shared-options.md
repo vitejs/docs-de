@@ -118,7 +118,8 @@ Für SSR-Builds funktioniert die Deduplizierung für ESM-Build-Ausgaben, die von
 
 ## resolve.conditions
 
-- **Typ:** `string[]`
+- **Type:** `string[]`
+- **Default:** `['module', 'browser', 'development|production']`
 
 Zusätzliche erlaubte Bedingungen bei der Auflösung von [bedingten Exports](https://nodejs.org/api/packages.html#packages_conditional_exports) aus einem Paket.
 
@@ -137,7 +138,9 @@ Ein Paket mit bedingten Exports kann das folgende `exports`-Feld in seiner `pack
 
 Hier sind `import` und `require` "Bedingungen". Bedingungen können verschachtelt sein und sollten von am spezifischsten bis am wenigsten spezifisch angegeben werden.
 
-Vite hat eine Liste von "erlaubten Bedingungen" und passt die erste Bedingung an, die in der erlaubten Liste steht, an. Die standardmäßig erlaubten Bedingungen sind: `import`, `module`, `browser`, `default` und `production/development` basierend auf dem aktuellen Modus. Die Konfigurationsoption `resolve.conditions` ermöglicht die Angabe zusätzlicher erlaubter Bedingungen.
+`development|production` ist ein spezieller Wert, der je nach dem Wert von `process.env.NODE_ENV` durch `production` oder `development` ersetzt wird. Er wird durch `production` ersetzt, wenn `process.env.NODE_ENV === 'production'` ist, und andernfalls durch `development`.
+
+Beachten Sie, dass die Bedingungen `import`, `require` und `default` immer angewendet werden, wenn die Anforderungen erfüllt sind.
 
 :::warning Auflösen von Subpath-Exports
 Die Verwendung von Exportschlüsseln, die mit "/" enden, ist von Node veraltet und funktioniert möglicherweise nicht gut. Bitte kontaktieren Sie den Paketautor, um stattdessen [`*`-Subpfadmuster](https://nodejs.org/api/packages.html#package-entry-points) zu verwenden.

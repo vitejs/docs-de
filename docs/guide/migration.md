@@ -12,6 +12,23 @@ Die experimentelle Vite Runtime API entwickelte sich zur Module Runner API, die 
 
 ## Allgemeine Änderungen
 
+### Standardwert für `resolve.conditions`
+
+Diese Änderung hat keine Auswirkungen auf Benutzer, die [`resolve.conditions`](/config/shared-options#resolve-conditions) / [`ssr.resolve.conditions`](/config/ssr-options#ssr-resolve-conditions) / [`ssr.resolve.externalConditions`](/config/ssr-options#ssr-resolve-externalconditions) konfiguriert haben.
+
+In Vite 5 war der Standardwert für `resolve.conditions` `[]` und einige Bedingungen wurden intern hinzugefügt. Der Standardwert für `ssr.resolve.conditions` war der Wert von `resolve.conditions`.
+
+Ab Vite 6 werden einige der Bedingungen nicht mehr intern hinzugefügt und müssen in die Konfigurationswerte aufgenommen werden.
+Die Bedingungen, die nicht mehr intern hinzugefügt werden, sind
+
+- `resolve.conditions` sind `['module', 'browser', 'development|production']`
+- `ssr.resolve.conditions` sind `['module', 'node', 'development|production']`
+
+Die Standardwerte für diese Optionen werden auf die entsprechenden Werte aktualisiert, und „ssr.resolve.conditions“ verwendet „resolve.conditions“ nicht mehr als Standardwert. Beachten Sie, dass „development|production“ eine spezielle Variable ist, die je nach Wert von „process.env.NODE_ENV“ durch „production“ oder „development“ ersetzt wird.
+
+Wenn Sie einen benutzerdefinierten Wert für `resolve.conditions` oder `ssr.resolve.conditions` angegeben haben, müssen Sie diesen aktualisieren, um die neuen Bedingungen einzubeziehen.
+Wenn Sie beispielsweise zuvor `['custom']` für `resolve.conditions` angegeben haben, müssen Sie stattdessen `['custom', 'module', 'browser', 'development|production']` angeben.
+
 ### JSON stringify
 
 In Vite 5, wenn [`json.stringify: true`](/config/shared-options#json-stringify) gesetzt ist, war [`json.namedExports`](/config/shared-options#json-namedexports) deaktiviert.
