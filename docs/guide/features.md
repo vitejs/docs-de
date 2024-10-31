@@ -170,7 +170,7 @@ Alle HTML-Dateien im Stammverzeichnis Ihres Projekts können direkt über den en
 - `<root>/about.html` -> `http://localhost:5173/about.html`
 - `<root>/blog/index.html` -> `http://localhost:5173/blog/index.html`
 
-Dateien, auf die HTML-Elemente wie `<script type="module">` und `<link href>` verweisen, werden verarbeitet und als Teil der App gebündelt. Allgemeine Asset-Elemente können standardmäßig auch auf zu optimierende Assets verweisen, darunter:
+Von HTML-Elementen wie `<script type="module" src>` und `<link href>` referenzierte Assets werden verarbeitet und als Teil der App gebündelt. Die vollständige Liste der unterstützten Elemente lautet wie folgt:
 
 - `<audio src>`
 - `<embed src>`
@@ -179,7 +179,8 @@ Dateien, auf die HTML-Elemente wie `<script type="module">` und `<link href>` ve
 - `<input src>`
 - `<link href>` und `<link imagesrcet>`
 - `<object data>`
-- `<source src>` und `<source srcset>`
+- `<script type="module" src>`
+- `<source src>` and `<source srcset>`
 - `<track src>`
 - `<use href>` und `<use xlink:href>`
 - `<video src>` und `<video poster>`
