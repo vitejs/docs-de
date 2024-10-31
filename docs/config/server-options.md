@@ -322,15 +322,7 @@ export default defineConfig({
 - **Typ:** `string[]`
 - **Standardwert:** `['.env', '.env.*', '*.{crt,pem}', '**/.git/**']`
 
-Blockliste für empfindliche Dateien, die vom Vite Dev Server nur eingeschränkt zur Verfügung gestellt werden dürfen. Dies hat eine höhere Priorität als [`server.fs.allow`](#server-fs-allow). [picomatch patterns](https://github.com/micromatch/picomatch#globbing-features) werden unterstützt.
-
-## server.fs.cachedChecks
-
-- **Typ:** `boolean`
-- **Standardwert:** `false`
-- **Experimental**
-
-Caching der Dateinamen der aufgerufenen Verzeichnisse, um wiederholte Dateisystemoperationen zu vermeiden. Insbesondere unter Windows kann dies zu einer Leistungssteigerung führen. Diese Funktion ist standardmäßig deaktiviert, da es zu Problemen kommen kann, wenn eine Datei in einen zwischengespeicherten Ordner geschrieben und sofort importiert wird.
+Blockier-Liste für sensible Dateien, deren Bereitstellung durch den Vite-Entwicklungsserver eingeschränkt ist. Diese hat eine höhere Priorität als [`server.fs.allow`](#server-fs-allow). [Picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features) werden unterstützt.
 
 ## server.origin
 
