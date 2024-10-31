@@ -170,9 +170,24 @@ Alle HTML-Dateien im Stammverzeichnis Ihres Projekts können direkt über den en
 - `<root>/about.html` -> `http://localhost:5173/about.html`
 - `<root>/blog/index.html` -> `http://localhost:5173/blog/index.html`
 
-HTML-Elemente wie `<script type="module">` und `<link href>`-Tags werden standardmäßig verarbeitet, wodurch die Verwendung von Vite-Funktionen in den verknüpften Dateien ermöglicht wird. Allgemeine Asset-Elemente wie `<img src>`, `<video src>` und `<source src>` werden ebenfalls neu basiert, um sicherzustellen, dass sie optimiert und mit dem richtigen Pfad verknüpft sind.
+Dateien, auf die HTML-Elemente wie `<script type="module">` und `<link href>` verweisen, werden verarbeitet und als Teil der App gebündelt. Allgemeine Asset-Elemente können standardmäßig auch auf zu optimierende Assets verweisen, darunter:
 
-```html
+- `<audio src>`
+- `<embed src>`
+- `<img src>` und `<img srcset>`
+- `<image src>`
+- `<input src>`
+- `<link href>` und `<link imagesrcet>`
+- `<object data>`
+- `<source src>` und `<source srcset>`
+- `<track src>`
+- `<use href>` und `<use xlink:href>`
+- `<video src>` und `<video poster>`
+- `<meta content>`
+  - Nur wenn das Attribut `name` mit `msapplication-tileimage`, `msapplication-square70x70logo`, `msapplication-square150x150logo`, `msapplication-wide310x150logo`, `msapplication-square310x310logo`, `msapplication-config` oder `twitter:image` übereinstimmt
+  - Oder nur, wenn das Attribut `property` mit `og:image`, `og:image:url`, `og:image:secure_url`, `og:audio`, `og:audio:secure_url`, `og:video` oder `og:video:secure_url` übereinstimmt
+
+```html {4-5,8-9}
 <!DOCTYPE html>
 <html>
   <head>
@@ -180,7 +195,6 @@ HTML-Elemente wie `<script type="module">` und `<link href>`-Tags werden standar
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
-    <div id="app"></div>
     <img src="/src/images/logo.svg" alt="logo" />
     <script type="module" src="/src/main.js"></script>
   </body>
