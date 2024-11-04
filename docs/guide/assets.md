@@ -49,11 +49,24 @@ import workletURL from 'extra-scalloped-border/worklet.js?url'
 CSS.paintWorklet.addModule(workletURL)
 ```
 
+### Explizite Inline-Verarbeitung
+
+Assets können explizit mit Inlining oder ohne Inlining importiert werden, indem jeweils das Suffix `?inline` oder `?no-inline` verwendet wird.
+
+```js twoslash
+import 'vite/client'
+// ---cut---
+import imgUrl1 from './img.svg?no-inline'
+import imgUrl2 from './img.png?inline'
+```
+
 ### Importieren von Assets als Zeichenfolge
 
-Assets können als Zeichenfolgen mithilfe des Suffix `?raw` importiert werden.
+Assets können mit dem Suffix `?raw` als Zeichenfolgen importiert werden.
 
-```js
+```js twoslash
+import 'vite/client'
+// ---cut---
 import shaderString from './shader.glsl?raw'
 ```
 
