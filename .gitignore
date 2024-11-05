@@ -31,4 +31,4 @@ packages/vite/src/node
 package.json
 pnpm-lock.yaml
 .github/workflows/ci.yml
-patch-docs.sh
+patch-docs.*
