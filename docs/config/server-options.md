@@ -101,15 +101,21 @@ In einigen Fällen möchten Sie möglicherweise auch den zugrunde liegenden Entw
 export default defineConfig({
   server: {
     proxy: {
-      // Zeichenfolgen-Schnellzugriff: http://localhost:5173/foo -> http://localhost:4567/foo
+      // string shorthand:
+      // http://localhost:5173/foo
+      //   -> http://localhost:4567/foo
       '/foo': 'http://localhost:4567',
-      // Mit Optionen: http://localhost:5173/api/bar-> http://jsonplaceholder.typicode.com/bar
+      // with options:
+      // http://localhost:5173/api/bar
+      //   -> http://jsonplaceholder.typicode.com/bar
       '/api': {
         target: 'http://jsonplaceholder.typicode.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
-      // mit RegExp: http://localhost:5173/fallback/ -> http://jsonplaceholder.typicode.com/
+      // with RegExp:
+      // http://localhost:5173/fallback/
+      //   -> http://jsonplaceholder.typicode.com/
       '^/fallback/.*': {
         target: 'http://jsonplaceholder.typicode.com',
         changeOrigin: true,
@@ -123,7 +129,11 @@ export default defineConfig({
           // proxy wird eine Instanz von 'http-proxy' sein
         },
       },
-      // Proxying von Websockets oder socket.io: ws://localhost:5173/socket.io -> ws://localhost:5174/socket.io
+      // Proxying websockets or socket.io:
+      // ws://localhost:5173/socket.io
+      //   -> ws://localhost:5174/socket.io
+      // Exercise caution using `rewriteWsOrigin` as it can leave the
+      // proxying open to CSRF attacks.
       '/socket.io': {
         target: 'ws://localhost:5174',
         ws: true,
@@ -246,16 +256,17 @@ async function createServer() {
   // Erstellen Sie den Vite-Server im Middleware-Modus
   const vite = await createViteServer({
     server: { middlewareMode: true },
-    appType: 'custom', // Vites Standard-HTML-Handling-Middlewares nicht einschließen
+    // don't include Vite's default HTML handling middlewares
+    appType: 'custom',
   })
   // Verwenden Sie Vites Connect-Instanz als Middleware
   app.use(vite.middlewares)
 
   app.use('*', async (req, res) => {
-    // Da `appType` `'custom'` ist, sollte die Antwort hier bedient werden.
-    // Hinweis: Wenn `appType` `'spa'` oder `'mpa'` ist, fügt Vite Middlewares hinzu, um
-    // HTML-Anfragen und 404er zu behandeln, sodass Benutzer-Middlewares hinzugefügt werden sollten
-    // vor Vites Middlewares, um wirksam zu werden.
+    // Since `appType` is `'custom'`, should serve response here.
+    // Note: if `appType` is `'spa'` or `'mpa'`, Vite includes middlewares
+    // to handle HTML requests and 404s so user middlewares should be added
+    // before Vite's middlewares to take effect instead
   })
 }
 
