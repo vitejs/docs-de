@@ -123,6 +123,7 @@ Dieses Muster unterstützt auch dynamische URLs über Vorlagenliterale:
 
 ```js
 function getImageUrl(name) {
+  // note that this does not include files in subdirectories
   return new URL(`./dir/${name}.png`, import.meta.url).href
 }
 ```
@@ -133,6 +134,25 @@ Während des Produktionsbuilds führt Vite die erforderlichen Transformationen d
 // Vite wird dies nicht transformieren
 const imgUrl = new URL(imagePath, import.meta.url).href
 ```
+
+::: details So funktioniert es
+
+Vite wandelt die Funktion `getImageUrl` wie folgt um:
+
+```js
+import __img0png from './dir/img0.png'
+import __img1png from './dir/img1.png'
+
+function getImageUrl(name) {
+  const modules = {
+    './dir/img0.png': __img0png,
+    './dir/img1.png': __img1png,
+  }
+  return new URL(modules[`./dir/${name}.png`], import.meta.url).href
+}
+```
+
+:::
 
 ::: warning Funktioniert nicht mit SSR
 Dieses Muster funktioniert nicht, wenn Sie Vite für Server-seitiges Rendern verwenden, da `import.meta.url` unterschiedliche Semantiken in Browsern gegenüber Node.js hat. Das Server-Bundle kann auch die Client-Host-URL im Voraus nicht ermitteln.
