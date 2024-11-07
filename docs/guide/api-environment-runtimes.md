@@ -16,7 +16,7 @@ Bitte teilen Sie uns Ihr Feedback mit, wenn Sie den Vorschlag testen.
 Umgebungsfabriken sind für die Implementierung durch Umgebungsanbieter wie Cloudflare vorgesehen und nicht für Endbenutzer. Umgebungsfabriken geben eine `EnvironmentOptions` für den häufigsten Fall zurück, bei dem die Ziel-Laufzeitumgebung sowohl für Entwicklungs- als auch für Build-Umgebungen verwendet wird. Die Standardumgebungsoptionen können auch so eingestellt werden, dass der Benutzer dies nicht tun muss.
 
 ```ts
-function createWorkedEnvironment(
+function createWorkerdEnvironment(
   userConfig: EnvironmentOptions,
 ): EnvironmentOptions {
   return mergeConfig(
