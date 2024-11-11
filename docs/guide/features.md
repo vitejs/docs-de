@@ -177,10 +177,10 @@ Von HTML-Elementen wie `<script type="module" src>` und `<link href>` referenzie
 - `<img src>` und `<img srcset>`
 - `<image src>`
 - `<input src>`
-- `<link href>` und `<link imagesrcet>`
+- `<link href>` und `<link imagesrcset>`
 - `<object data>`
 - `<script type="module" src>`
-- `<source src>` and `<source srcset>`
+- `<source src>` und `<source srcset>`
 - `<track src>`
 - `<use href>` und `<use xlink:href>`
 - `<video src>` und `<video poster>`
