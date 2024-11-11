@@ -44,4 +44,12 @@ Diese Bedingungen werden in der Plugin-Pipeline verwendet und betreffen nur nich
 - **Type:** `string[]`
 - **Default:** `['node']`
 
-Bedingungen, die beim ssr-Import (einschließlich `ssrLoadModule`) von externalisierten Abhängigkeiten verwendet werden.
+Bedingungen, die beim Importieren von externalisierten direkten Abhängigkeiten (von Vite importierte externe Abhängigkeiten) mit ssr (einschließlich `ssrLoadModule`) verwendet werden.
+
+:::tip
+
+Falls Sie diese Option nutzen, dann stellen Sie sicher, dass Sie Node mit dem Flag [`--conditions`](https://nodejs.org/docs/latest/api/cli.html#-c-condition---conditionscondition) und denselben Werten sowohl in der Entwicklung als auch beim Build ausführen, um ein konsistentes Verhalten zu erzielen.
+
+Wenn Sie beispielsweise `['node', 'custom']` festlegen, sollten Sie `NODE_OPTIONS='--conditions custom' vite` in der Entwicklungsumgebung und `NODE_OPTIONS="--conditions custom" node ./dist/server.js` nach dem Build ausführen.
+
+:::
