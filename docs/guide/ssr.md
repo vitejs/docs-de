@@ -122,7 +122,7 @@ app.use('*', async (req, res, next) => {
     // 1. Lesen Sie die index.html
     let template = fs.readFileSync(
       path.resolve(__dirname, 'index.html'),
-      'utf-8',
+      'utf-8'
     )
 
     // 2. Wenden Sie Vite-HTML-Transformationen an. Dadurch wird der Vite HMR-Client eingefügt,
@@ -140,10 +140,8 @@ app.use('*', async (req, res, next) => {
     //    z.B. ReactDOMServer.renderToString()
     const appHtml = await render(url)
 
-    // 5. Fügen Sie das vom App gerenderte HTML in die Vor
-
-lage ein.
-    const html = template.replace(`<!--ssr-outlet-->`, appHtml)
+    // 5. Fügen Sie den von der App gerenderten HTML-Code in die Vorlage ein.
+    const html = template.replace(`<!--ssr-outlet-->`, () => appHtml)
 
     // 6. Senden Sie das gerenderte HTML zurück.
     res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
