@@ -93,6 +93,8 @@ Es gibt weitere Änderungen, die nur wenige Benutzer betreffen.
     - Wenn Sie eine CommonJS-Datei als Einstiegspunkt angeben, sind möglicherweise zusätzliche Schritte erforderlich. Weitere Informationen finden Sie in der [Dokumentation zum CommonJS-Plugin](https://github.com/rollup/plugins/blob/master/packages/commonjs/README.md#using-commonjs-files-as-entry-points).
 - [[#18243] chore(deps)!: Migration von `fast-glob` zu `tinyglobby`](https://github.com/vitejs/vite/pull/18243)
   - Bereichsklammern (`{01..03}` ⇒ `['01', '02', '03']`) und inkrementelle Klammern (`{2..8..2}` ⇒ `['2', '4', '6', '8']`) werden in Globs nicht mehr unterstützt.
+- [[#18395] feat(resolve)!: Bedingungen entfernen zulassen](https://github.com/vitejs/vite/pull/18395)
+  - Dieser PR führt nicht nur die oben erwähnte grundlegende Änderung „Standardwert für `resolve.conditions`” ein, sondern sorgt auch dafür, dass `resolve.mainFields` nicht für nicht externalisierte Abhängigkeiten in SSR verwendet wird. Wenn Sie `resolve.mainFields` verwendet haben und dies auf nicht externalisierte Abhängigkeiten in SSR anwenden möchten, können Sie [`ssr.resolve.mainFields`](/config/ssr-options#ssr-resolve-mainfields) verwenden.
 - [[#18493] refactor: Option „fs.cachedChecks“ entfernen](https://github.com/vitejs/vite/pull/18493)
 - Diese optionale Optimierung wurde aufgrund von Randfällen entfernt, die beim Schreiben einer Datei in einen zwischengespeicherten Ordner und deren sofortigem Import auftraten.
 

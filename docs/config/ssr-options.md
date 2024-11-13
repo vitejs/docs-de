@@ -53,3 +53,10 @@ Falls Sie diese Option nutzen, dann stellen Sie sicher, dass Sie Node mit dem Fl
 Wenn Sie beispielsweise `['node', 'custom']` festlegen, sollten Sie `NODE_OPTIONS='--conditions custom' vite` in der Entwicklungsumgebung und `NODE_OPTIONS="--conditions custom" node ./dist/server.js` nach dem Build ausführen.
 
 :::
+
+### ssr.resolve.mainFields
+
+- **Type:** `string[]`
+- **Default:** `['module', 'jsnext:main', 'jsnext']`
+
+Liste der Felder in `package.json`, die beim Auflösen des Einstiegspunkts eines Pakets versucht werden sollen. Beachten Sie, dass dies eine geringere Priorität hat als bedingte Exporte, die aus dem Feld `exports` aufgelöst werden: Wenn ein Einstiegspunkt erfolgreich aus `exports` aufgelöst wird, wird das Hauptfeld ignoriert. Diese Einstellung wirkt sich nur auf nicht externalisierte Abhängigkeiten aus.
