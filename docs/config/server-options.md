@@ -213,11 +213,11 @@ export default defineConfig({
 
 - **Typ:** `object | null`
 
-Optionen für den Dateisystem-Watcher, die an [chokidar](https://github.com/paulmillr/chokidar#getting-started) übergeben werden sollen. Wenn die Option `ignored` übergeben wird, konvertiert Vite automatisch alle Zeichenfolgen in [picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features).
+Dateisystem-Überwachungsoptionen, die an [chokidar](https://github.com/paulmillr/chokidar/tree/3.6.0#api) weitergegeben werden sollen.
 
 Der Vite Server Watcher überwacht das `root` und überspringt standardmäßig die Verzeichnisse `.git/`, `node_modules/`, Vites `cacheDir` und Vites `build.outDir`. Wenn eine überwachte Datei aktualisiert wird, wendet Vite HMR an und aktualisiert nur bei Bedarf die Seite.
 
-Wenn auf `null` gesetzt, werden keine Dateien überwacht. `server.watcher` überwacht keine Dateien und der Aufruf von `add` hat keine Wirkung.
+Wenn auf `null` gesetzt, werden keine Dateien überwacht. `server.watcher` stellt einen kompatiblen Ereignis-Emitter bereit, aber der Aufruf von `add` oder `unwatch` hat keine Wirkung.
 
 ::: warning Überwachen von Dateien in `node_modules`
 Es ist derzeit nicht möglich, Dateien und Pakete in `node_modules` zu überwachen. Für weitere Fortschritte und Umwege hierzu können Sie [issue #8619](https://github.com/vitejs/vite/issues/8619) verfolgen.
@@ -228,10 +228,10 @@ Wenn Sie Vite unter WSL2 ausführen, funktioniert das Dateisystem-Watching nicht
 
 Um das Problem zu beheben, können Sie Folgendes tun:
 
-- **Empfohlen**: Verwenden Sie WSL2-Anwendungen zum Bearbeiten Ihrer Dateien.
-  - Es wird auch empfohlen, den Projektordner aus einem Windows-Dateisystem zu verschieben. Der Zugriff auf Windows-Dateisysteme von WSL2 aus ist langsam. Durch Entfernen dieses Overheads wird die Leistung verbessert.
+- **Empfohlen**: Verwenden Sie WSL2-Anwendungen, um Ihre Dateien zu bearbeiten.
+  - Es wird außerdem empfohlen, den Projektordner außerhalb des Windows-Dateisystems zu verschieben. Der Zugriff auf das Windows-Dateisystem von WSL2 aus ist langsam. Durch Entfernen dieses Overheads wird die Leistung verbessert.
 - Setzen Sie `{ usePolling: true }`.
-  - Beachten Sie, dass [`usePolling` zu hoher CPU-Auslastung führt](https://github.com/paulmillr/chokidar#performance).
+  - Beachten Sie, dass [`usePolling` zu einer hohen CPU-Auslastung führt](https://github.com/paulmillr/chokidar/tree/3.6.0#performance).
 
 :::
 
