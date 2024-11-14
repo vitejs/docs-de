@@ -34,8 +34,8 @@ Build-Ziel für den SSR-Server.
 ## ssr.resolve.conditions
 
 - **Type:** `string[]`
-- **Default:** `['module', 'node', 'development|production']` (`['module', 'browser', 'development|production']` für `ssr.target === 'webworker'`)
-- **Verwandte Themen:** [Bedingungen auflösen](./shared-options.md#resolve-conditions)
+- **Default:** `['module', 'node', 'development|production']` (`defaultServerConditions`) (`['module', 'browser', 'development|production']` (`defaultClientConditions`) for `ssr.target === 'webworker'`)
+- **Related:** [Resolve Conditions](./shared-options.md#resolve-conditions)
 
 Diese Bedingungen werden in der Plugin-Pipeline verwendet und betreffen nur nicht-externalisierte Abhängigkeiten während des SSR-Builds. Verwenden Sie `ssr.resolve.externalConditions`, um externalisierte Importe zu beeinflussen.
 

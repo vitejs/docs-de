@@ -119,7 +119,7 @@ Für SSR-Builds funktioniert die Deduplizierung für ESM-Build-Ausgaben, die von
 ## resolve.conditions
 
 - **Type:** `string[]`
-- **Default:** `['module', 'browser', 'development|production']`
+- **Default:** `['module', 'browser', 'development|production']` (`defaultClientConditions`)
 
 Zusätzliche erlaubte Bedingungen bei der Auflösung von [bedingten Exports](https://nodejs.org/api/packages.html#packages_conditional_exports) aus einem Paket.
 
@@ -148,8 +148,8 @@ Die Verwendung von Exportschlüsseln, die mit "/" enden, ist von Node veraltet u
 
 ## resolve.mainFields
 
-- **Typ:** `string[]`
-- **Standardwert:** `['browser', 'module', 'jsnext:main', 'jsnext']`
+- **Type:** `string[]`
+- **Default:** `['browser', 'module', 'jsnext:main', 'jsnext']` (`defaultClientMainFields`)
 
 Liste der Felder in `package.json`, die bei der Auflösung des Einstiegspunktes eines Pakets zu versuchen sind. Beachten Sie, dass dies einen geringeren Vorrang hat als bedingte Exporte, die aus dem Feld `exports` aufgelöst werden: Wenn ein Einstiegspunkt erfolgreich aus `exports` aufgelöst wird, wird das Hauptfeld ignoriert.
 

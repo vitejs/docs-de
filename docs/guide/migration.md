@@ -24,10 +24,10 @@ Die Bedingungen, die nicht mehr intern hinzugefügt werden, sind
 - `resolve.conditions` sind `['module', 'browser', 'development|production']`
 - `ssr.resolve.conditions` sind `['module', 'node', 'development|production']`
 
-Die Standardwerte für diese Optionen werden auf die entsprechenden Werte aktualisiert, und „ssr.resolve.conditions“ verwendet „resolve.conditions“ nicht mehr als Standardwert. Beachten Sie, dass „development|production“ eine spezielle Variable ist, die je nach Wert von „process.env.NODE_ENV“ durch „production“ oder „development“ ersetzt wird.
+Die Standardwerte für diese Optionen werden auf die entsprechenden Werte aktualisiert, und „ssr.resolve.conditions“ verwendet „resolve.conditions“ nicht mehr als Standardwert. Beachten Sie, dass „development|production“ eine spezielle Variable ist, die je nach Wert von „process.env.NODE_ENV“ durch „production“ oder „development“ ersetzt wird. Diese Standardwerte werden aus `vite` als `defaultClientConditions` und `defaultServerConditions` exportiert.
 
 Wenn Sie einen benutzerdefinierten Wert für `resolve.conditions` oder `ssr.resolve.conditions` angegeben haben, müssen Sie diesen aktualisieren, um die neuen Bedingungen einzubeziehen.
-Wenn Sie beispielsweise zuvor `['custom']` für `resolve.conditions` angegeben haben, müssen Sie stattdessen `['custom', 'module', 'browser', 'development|production']` angeben.
+Wenn Sie beispielsweise zuvor `['custom']` für `resolve.conditions` angegeben haben, müssen Sie stattdessen `['custom', ...defaultClientConditions]` angeben.
 
 ### JSON stringify
 
