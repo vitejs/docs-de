@@ -99,6 +99,8 @@ Es gibt weitere Änderungen, die nur wenige Benutzer betreffen.
   - Dieser PR führt nicht nur die oben erwähnte grundlegende Änderung „Standardwert für `resolve.conditions`” ein, sondern sorgt auch dafür, dass `resolve.mainFields` nicht für nicht externalisierte Abhängigkeiten in SSR verwendet wird. Wenn Sie `resolve.mainFields` verwendet haben und dies auf nicht externalisierte Abhängigkeiten in SSR anwenden möchten, können Sie [`ssr.resolve.mainFields`](/config/ssr-options#ssr-resolve-mainfields) verwenden.
 - [[#18493] refactor: Option „fs.cachedChecks“ entfernen](https://github.com/vitejs/vite/pull/18493)
 - Diese optionale Optimierung wurde aufgrund von Randfällen entfernt, die beim Schreiben einer Datei in einen zwischengespeicherten Ordner und deren sofortigem Import auftraten.
+- [[#18697] fix(deps)!: update dependency dotenv-expand to v12](https://github.com/vitejs/vite/pull/18697)
+  - Variablen, die bei der Interpolation verwendet werden, sollten nun vor der Interpolation deklariert werden. Weitere Informationen finden Sie unter [dem `dotenv-expand`-Changelog](https://github.com/motdotla/dotenv-expand/blob/v12.0.1/CHANGELOG.md#1200-2024-11-16).
 
 ## Migration von v4
 
