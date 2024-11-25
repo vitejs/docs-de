@@ -101,6 +101,53 @@ Es gibt weitere Änderungen, die nur wenige Benutzer betreffen.
 - Diese optionale Optimierung wurde aufgrund von Randfällen entfernt, die beim Schreiben einer Datei in einen zwischengespeicherten Ordner und deren sofortigem Import auftraten.
 - [[#18697] fix(deps)!: update dependency dotenv-expand to v12](https://github.com/vitejs/vite/pull/18697)
   - Variablen, die bei der Interpolation verwendet werden, sollten nun vor der Interpolation deklariert werden. Weitere Informationen finden Sie unter [dem `dotenv-expand`-Changelog](https://github.com/motdotla/dotenv-expand/blob/v12.0.1/CHANGELOG.md#1200-2024-11-16).
+- [[#16471] feat: v6 - Environment API](https://github.com/vitejs/vite/pull/16471)
+
+  - Aktualisierungen eines reinen SSR-Moduls lösen im Client keinen vollständigen Seitenneuladen mehr aus. Um zum vorherigen Verhalten zurückzukehren, kann ein benutzerdefiniertes Vite-Plugin verwendet werden:
+    <details>
+    <summary>Click to expand example</summary>
+
+    ```ts twoslash
+    import type { Plugin, EnvironmentModuleNode } from 'vite'
+
+    function hmrReload(): Plugin {
+      return {
+        name: 'hmr-reload',
+        enforce: 'post',
+        hotUpdate: {
+          order: 'post',
+          handler({ modules, server, timestamp }) {
+            if (this.environment.name !== 'ssr') return
+
+            let hasSsrOnlyModules = false
+
+            const invalidatedModules = new Set<EnvironmentModuleNode>()
+            for (const mod of modules) {
+              if (mod.id == null) continue
+              const clientModule =
+                server.environments.client.moduleGraph.getModuleById(mod.id)
+              if (clientModule != null) continue
+
+              this.environment.moduleGraph.invalidateModule(
+                mod,
+                invalidatedModules,
+                timestamp,
+                true
+              )
+              hasSsrOnlyModules = true
+            }
+
+            if (hasSsrOnlyModules) {
+              server.ws.send({ type: 'full-reload' })
+              return []
+            }
+          },
+        },
+      }
+    }
+    ```
+
+    </details>
 
 ## Migration von v4
 
