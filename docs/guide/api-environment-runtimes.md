@@ -120,8 +120,8 @@ Ein Modul-Runner wird in der Ziel-Laufzeit instanziiert. Alle APIs im nächsten 
 export class ModuleRunner {
   constructor(
     public options: ModuleRunnerOptions,
-    public evaluator: ModuleEvaluator,
-    private debug?: ModuleRunnerDebugger
+    public evaluator: ModuleEvaluator = new ESModulesEvaluator(),
+    private debug?: ModuleRunnerDebugger,
   ) {}
   /**
    * URL to execute.
@@ -168,8 +168,21 @@ await moduleRunner.import('/src/entry-point.js')
 
 ## `ModuleRunnerOptions`
 
-```ts
-export interface ModuleRunnerOptions {
+```ts twoslash
+import type {
+  InterceptorOptions as InterceptorOptionsRaw,
+  ModuleRunnerHmr as ModuleRunnerHmrRaw,
+  EvaluatedModules,
+} from 'vite/module-runner'
+import type { Debug } from '@type-challenges/utils'
+
+type InterceptorOptions = Debug<InterceptorOptionsRaw>
+type ModuleRunnerHmr = Debug<ModuleRunnerHmrRaw>
+/** see below */
+type ModuleRunnerTransport = unknown
+
+// ---cut---
+interface ModuleRunnerOptions {
   /**
    * Root of the project
    */
@@ -209,7 +222,13 @@ export interface ModuleRunnerOptions {
 
 **Type Signature:**
 
-```ts
+```ts twoslash
+import type { ModuleRunnerContext as ModuleRunnerContextRaw } from 'vite/module-runner'
+import type { Debug } from '@type-challenges/utils'
+
+type ModuleRunnerContext = Debug<ModuleRunnerContextRaw>
+
+// ---cut---
 export interface ModuleEvaluator {
   /**
    * Number of prefixed lines in the transformed code.
@@ -240,12 +259,19 @@ Vite exportiert standardmäßig `ESModulesEvaluator`, das diese Schnittstelle im
 
 **Type Signature:**
 
-```ts
-interface RunnerTransport {
-  /**
-   * A method to get the information about the module.
-   */
-  fetchModule: FetchFunction
+```ts twoslash
+import type { ModuleRunnerTransportHandlers } from 'vite/module-runner'
+/** an object */
+type HotPayload = unknown
+// ---cut---
+interface ModuleRunnerTransport {
+  connect?(handlers: ModuleRunnerTransportHandlers): Promise<void> | void
+  disconnect?(): Promise<void> | void
+  send?(data: HotPayload): Promise<void> | void
+  invoke?(
+    data: HotPayload,
+  ): Promise<{ /** result */ r: any } | { /** error */ e: any }>
+  timeout?: number
 }
 ```
 
