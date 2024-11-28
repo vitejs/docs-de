@@ -102,6 +102,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    - Das Manifest hat eine Struktur `Record<Name, Chunk>`.
    - Für Einstiegs- oder dynamische Einstiegschunks ist der Schlüssel der relative Quellpfad vom Projektstamm aus.
    - Für Nicht-Einstiegschunks ist der Schlüssel der Basename der generierten Datei mit einem `_`-Präfix.
+   - Für die CSS-Datei, die generiert wird, wenn [`build.cssCodeSplit`](/config/build-options.md#build-csscodesplit) auf `false` gesetzt ist, lautet der Schlüssel `style.css`.
    - Chunks enthalten Informationen zu ihren statischen und dynamischen Importen (beide sind Schlüssel, die auf den entsprechenden Chunk im Manifest verweisen), sowie ihre zugehörigen CSS- und Asset-Dateien (falls vorhanden).
 
 4. Sie können diese Datei zum Rendern von Links oder zum Vorladen von Direktiven mit gehashten Dateinamen verwenden.
