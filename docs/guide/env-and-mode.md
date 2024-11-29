@@ -27,9 +27,11 @@ Vite verwendet [dotenv](https://github.com/motdotla/dotenv), um zusätzliche Umg
 
 :::tip Prioritäten der Entwicklungsumgebungen
 
-Eine Umgebungsdatei für einen bestimmten Modus (z.B. `.env.production`) hat eine höhere Priorität als eine generische (z.B. `.env`).
+Eine env-Datei für einen bestimmten Modus (z. B. `.env.production`) hat eine höhere Priorität als eine generische Datei (z. B. `.env`).
 
-Darüber hinaus haben Umgebungsvariablen, die bereits existieren, wenn Vite ausgeführt wird, die höchste Priorität und werden nicht von `.env`-Dateien überschrieben. Zum Beispiel beim Ausführen von `VITE_SOME_KEY=123 vite build`.
+Vite lädt immer `.env` und `.env.local` zusätzlich zur modusspezifischen Datei `.env.[mode]`. In modusspezifischen Dateien deklarierte Variablen haben Vorrang vor denen in generischen Dateien, aber Variablen, die nur in `.env` oder `.env.local` definiert sind, sind weiterhin in der Umgebung verfügbar.
+
+Darüber hinaus haben Umgebungsvariablen, die bereits bei der Ausführung von Vite vorhanden sind, die höchste Priorität und werden nicht durch `.env`-Dateien überschrieben. Beispiel: Bei der Ausführung von `VITE_SOME_KEY=123 vite build`.
 
 `.env`-Dateien werden zu Beginn von Vite geladen. Starten Sie den Server neu, nachdem Sie Änderungen vorgenommen haben.
 :::
