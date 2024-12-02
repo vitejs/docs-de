@@ -240,16 +240,23 @@ Vite exportiert standardmäßig `ESModulesEvaluator`, das diese Schnittstelle im
 
 **Type Signature:**
 
-```ts
-interface RunnerTransport {
-  /**
-   * A method to get the information about the module.
-   */
-  fetchModule: FetchFunction
+```ts twoslash
+import type { ModuleRunnerTransportHandlers } from 'vite/module-runner'
+/** an object */
+type HotPayload = unknown
+// ---cut---
+interface ModuleRunnerTransport {
+  connect?(handlers: ModuleRunnerTransportHandlers): Promise<void> | void
+  disconnect?(): Promise<void> | void
+  send?(data: HotPayload): Promise<void> | void
+  invoke?(data: HotPayload): Promise<{ result: any } | { error: any }>
+  timeout?: number
 }
 ```
 
-Transportobjekt, das über RPC oder durch direkten Aufruf der Funktion mit der Umgebung kommuniziert. Standardmäßig müssen Sie ein Objekt mit der Methode `fetchModule` übergeben – es kann jede Art von RPC darin verwenden, aber Vite stellt auch eine bidirektionale Transportschnittstelle über eine `RemoteRunnerTransport`-Klasse bereit, um die Konfiguration zu vereinfachen. Sie müssen es mit der `RemoteEnvironmentTransport`-Instanz auf dem Server koppeln, wie in diesem Beispiel, in dem der Modul-Runner im Worker-Thread erstellt wird:
+Transportobjekt, das über einen RPC oder durch direkten Aufruf der Funktion mit der Umgebung kommuniziert. Wenn die Methode `invoke` nicht implementiert ist, müssen die Methoden `send` und `connect` implementiert werden. Vite erstellt die Methode `invoke` intern.
+
+Sie müssen sie mit der Instanz `HotChannel` auf dem Server koppeln, wie in diesem Beispiel, in dem der Modul-Runner im Worker-Thread erstellt wird:
 
 ::: code-group
 
