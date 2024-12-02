@@ -1,14 +1,13 @@
 # Environment API für Frameworks
 
 :::warning Experimentell
-Die ersten Arbeiten für diese API wurden in Vite 5.1 unter dem Namen „Vite Runtime API“ eingeführt. Dieser Leitfaden beschreibt eine überarbeitete API, die in Environment API umbenannt wurde. Diese API wird in Vite 6 als experimentell veröffentlicht werden. Sie können sie bereits in der neuesten Version `vite@6.0.0-beta.x` testen.
-
+Die Environment-API befindet sich noch in der Testphase. Wir werden die APIs während Vite 6 stabil halten, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Wir planen, diese neuen APIs mit potenziellen grundlegenden Änderungen in Vite 7 zu stabilisieren.
 Ressourcen:
 
 - [Feedback-Diskussion](https://github.com/vitejs/vite/discussions/16358), wo wir Feedback zu den neuen APIs sammeln.
 - [Environment API PR](https://github.com/vitejs/vite/pull/16471), wo die neuen APIs implementiert und überprüft wurden.
 
-Bitte teilen Sie uns Ihr Feedback mit, wenn Sie den Vorschlag testen.
+Bitte teilen Sie uns Ihr Feedback mit.
 :::
 
 ## Umgebungen und Frameworks
