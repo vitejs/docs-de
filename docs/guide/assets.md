@@ -12,7 +12,7 @@ import imgUrl from './img.png'
 document.getElementById('hero-img').src = imgUrl
 ```
 
-Beispielsweise ist `imgUrl` während der Entwicklung `/img.png` und wird im Produktionsbuild zu `/assets/img.2d8efhg.png`.
+Beispielsweise ist `imgUrl` während der Entwicklung `/src/img.png` und wird im Produktionsbuild zu `/assets/img.2d8efhg.png`.
 
 Das Verhalten ähnelt dem von webpack's `file-loader`. Der Unterschied besteht darin, dass der Import entweder absolute öffentliche Pfade (basierend auf dem Projektstamm während der Entwicklung) oder relative Pfade verwenden kann.
 
