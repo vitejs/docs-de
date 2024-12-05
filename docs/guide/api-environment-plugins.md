@@ -158,7 +158,7 @@ const UnoCssPlugin = () => {
   // shared global state
   return {
     buildStart() {
-      // init per environment state with WeakMap<Environment,Data>
+      // init per-environment state with WeakMap<Environment,Data>
       // using this.environment
     },
     configureServer() {
