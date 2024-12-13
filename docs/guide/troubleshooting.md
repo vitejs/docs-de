@@ -174,7 +174,9 @@ Der Hash-Wert, der zum Ungültigmachen optimierter Abhängigkeiten verwendet wir
 
 Der Hash-Schlüssel, der zum Ungültigmachen optimierter Abhängigkeiten verwendet wird, hängt vom Inhalt der Paketsperre, den auf die Abhängigkeiten angewendeten Patches und den Optionen in der Vite-Konfigurationsdatei ab, die sich auf die Bündelung von Node-Modulen auswirken. Das bedeutet, dass Vite erkennt, wenn eine Abhängigkeit mit einer Funktion wie [npm overrides](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides) überschrieben wird, und Ihre Abhängigkeiten beim nächsten Serverstart neu bündelt. Vite wird die Abhängigkeiten nicht ungültig machen, wenn Sie eine Funktion wie [npm link](https://docs.npmjs.com/cli/v9/commands/npm-link) verwenden. Falls Sie eine Abhängigkeit verlinken oder aufheben, müssen Sie beim nächsten Serverstart eine erneute Optimierung erzwingen, indem Sie `vite --force` verwenden. Wir empfehlen stattdessen die Verwendung von Overrides, die mittlerweile von jedem Paketmanager unterstützt werden (siehe auch [pnpm overrides](https://pnpm.io/package_json#pnpmoverrides) und [yarn resolutions](https://yarnpkg.com/configuration/manifest/#resolutions)).
 
-Wenn Sie unter langsamen Ladezeiten aufgrund von Leistungsengpässen in Ihrer Anwendung leiden, können Sie den integrierten Node.js-Inspektor mit Ihrem Vite-Entwicklungsserver starten oder beim Erstellen Ihrer Anwendung, um ein CPU-Profil zu erstellen:
+## Leistungsengpässe
+
+Wenn Sie unter Leistungsengpässen Ihrer Anwendung leiden, die zu langen Ladezeiten führen, können Sie den integrierten Node.js-Inspector mit Ihrem Vite-Entwicklungsserver oder beim Erstellen Ihrer Anwendung starten, um das CPU-Profil zu erstellen:
 
 ::: code-group
 
