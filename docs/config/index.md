@@ -8,8 +8,7 @@ Wenn Sie `vite` von der Kommandozeile aus starten, wird Vite automatisch versuch
 
 Die einfachste Konfigurationsdatei sieht wie folgt aus:
 
-```js
-// vite.config.js
+```js [vite.config.js]
 export default {
   // config options
 }
