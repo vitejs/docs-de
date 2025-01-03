@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@algolia/client-search": "^5.0.0",
-    "@types/node": "22.10.3",
+    "@types/node": "22.10.5",
     "@types/react": "^19.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
