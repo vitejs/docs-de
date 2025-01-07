@@ -42,7 +42,7 @@ type ResolveModulePreloadDependenciesFn = (
   deps: string[],
   context: {
     importer: string
-  },
+  }
 ) => string[]
 ```
 
@@ -51,13 +51,13 @@ Die Funktion `resolveDependencies` wird für jeden dynamischen Import mit einer 
 ```js twoslash
 /** @type {import('vite').UserConfig} */
 const config = {
-  // prettier-ignore
   build: {
-// ---cut-before---
-modulePreload: {
-  resolveDependencies: (filename, deps, { hostId, hostType }) => {
-    return deps.filter(condition)
-  }
+    modulePreload: {
+      resolveDependencies: (filename, deps, { hostId, hostType }) => {
+        return deps.filter(condition)
+      },
+    },
+  },
 }
 ```
 

@@ -38,8 +38,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       // https://rollupjs.org/configuration-options/
-    }
-  }
+    },
+  },
 })
 ```
 
@@ -70,8 +70,8 @@ export default defineConfig({
   build: {
     watch: {
       // https://rollupjs.org/configuration-options/#watch
-    }
-  }
+    },
+  },
 })
 ```
 
@@ -104,10 +104,10 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        nested: resolve(__dirname, 'nested/index.html')
-      }
-    }
-  }
+        nested: resolve(__dirname, 'nested/index.html'),
+      },
+    },
+  },
 })
 ```
 
@@ -132,7 +132,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'lib/main.js'),
       name: 'MyLib',
       // Die richtigen Dateierweiterungen werden hinzugefügt
-      fileName: 'my-lib'
+      fileName: 'my-lib',
     },
     rollupOptions: {
       // Stellen Sie sicher, dass Abhängigkeiten, die nicht in Ihre Bibliothek gebündelt werden sollen, externisiert werden
@@ -141,11 +141,11 @@ export default defineConfig({
         // Stellen Sie globale Variablen für die Verwendung im UMD-Build bereit
         // für externalisierte Abhängigkeiten
         globals: {
-          vue: 'Vue'
-        }
-      }
-    }
-  }
+          vue: 'Vue',
+        },
+      },
+    },
+  },
 })
 ```
 
@@ -234,17 +234,19 @@ A single static [base](#public-base-path) isn't enough in these scenarios. Vite 
 
 ```ts twoslash
 import type { UserConfig } from 'vite'
-// prettier-ignore
 const config: UserConfig = {
-// ---cut-before---
-experimental: {
-  renderBuiltUrl(filename: string, { hostType }: { hostType: 'js' | 'css' | 'html' }) {
-    if (hostType === 'js') {
-      return { runtime: `window.__toCdnUrl(${JSON.stringify(filename)})` }
-    } else {
-      return { relative: true }
-    }
-  }
+  experimental: {
+    renderBuiltUrl(
+      filename: string,
+      { hostType }: { hostType: 'js' | 'css' | 'html' }
+    ) {
+      if (hostType === 'js') {
+        return { runtime: `window.__toCdnUrl(${JSON.stringify(filename)})` }
+      } else {
+        return { relative: true }
+      }
+    },
+  },
 }
 ```
 
@@ -253,21 +255,19 @@ Wenn die gehashten Assets und öffentlichen Dateien nicht gemeinsam bereitgestel
 ```ts twoslash
 import type { UserConfig } from 'vite'
 import path from 'node:path'
-// prettier-ignore
+
 const config: UserConfig = {
-// ---cut-before---
-experimental: {
-  renderBuiltUrl(filename, { hostId, hostType, type }) {
-    if (type === 'public') {
-      return 'https://www.domain.com/' + filename
-    } else if (path.extname(hostId) === '.js') {
-      return { runtime: `window.__assetsPath(${JSON.stringify(filename)})` }
-    } else {
-      return 'https://cdn.domain.com/assets/' + filename
-    }
+  experimental: {
+    renderBuiltUrl(filename, { hostId, hostType, type }) {
+      if (type === 'public') {
+        return 'https://www.domain.com/' + filename
+      } else if (path.extname(hostId) === '.js') {
+        return { runtime: `window.__assetsPath(${JSON.stringify(filename)})` }
+      } else {
+        return 'https://cdn.domain.com/assets/' + filename
+      }
+    },
   },
-},
-// ---cut-after---
 }
 ```
 
