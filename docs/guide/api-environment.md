@@ -108,7 +108,8 @@ export default {
 }
 ```
 
-## Backward Compatibility
+<!-- TODO -->
+<!-- ## Backward Compatibility
 
 The current Vite server API are not yet deprecated and are backward compatible with Vite 5. The new Environment API is experimental.
 
@@ -120,7 +121,7 @@ We don't recommend switching to Environment API yet. We are aiming for a good po
 - [HMR `hotUpdate` Plugin Hook](/changes/hotupdate-hook)
 - [Move to per-environment APIs](/changes/per-environment-apis)
 - [SSR using `ModuleRunner` API](/changes/ssr-using-modulerunner)
-- [Shared plugins during build](/changes/shared-plugins-during-build)
+- [Shared plugins during build](/changes/shared-plugins-during-build) -->
 
 ## Target users
 
