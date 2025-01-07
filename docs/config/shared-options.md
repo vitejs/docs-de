@@ -226,9 +226,9 @@ Hinweis: Wenn eine Inline-Konfiguration bereitgestellt wird, sucht Vite nicht na
 
 Geben Sie Optionen an, die an CSS-Präprozessoren übergeben werden sollen. Die Dateierweiterungen werden als Schlüssel für die Optionen verwendet. Die unterstützten Optionen für jeden Präprozessor finden Sie in der jeweiligen Dokumentation:
 
-- `sass`/`scss` - [Optionen](https://sass-lang.com/documentation/js-api/interfaces/LegacyStringOptions).
+- `sass`/`scss` - die Top-Level-Option `api: „legacy„ | ‚modern‘` (Standard `“legacy"`) erlaubt es, die zu verwendende Sass-API zu wechseln. [Optionen (legacy)](https://sass-lang.com/documentation/js-api/interfaces/LegacyStringOptions), [Optionen (modern)](https://sass-lang.com/documentation/js-api/interfaces/stringoptions/).
 - `less` - [Optionen](https://lesscss.org/usage/#less-options).
-- `styl`/`stylus` - Es wird nur ein [`define`](https://stylus-lang.com/docs/js.html#define-name-node) unterstützt, das als Objekt übergeben werden kann.
+- `styl`/`stylus` - Nur [`define`](https://stylus-lang.com/docs/js.html#define-name-node) wird unterstützt, das als Objekt übergeben werden kann.
 
 **Beispiel:**
 
@@ -243,6 +243,12 @@ export default defineConfig({
         define: {
           $specialColor: new stylus.nodes.RGBA(51, 197, 255, 1),
         },
+      },
+      scss: {
+        api: 'modern', // or "legacy"
+        importers: [
+          // ...
+        ],
       },
     },
   },
