@@ -111,9 +111,9 @@ export default defineConfig(({ mode }) => {
 })
 ```
 
-## Debugging the Config File on VS Code
+## Debugging der Konfigurationsdatei im VS-Code
 
-With the default `--configLoader bundle` behavior, Vite writes the generated temporary configuration file to the `node_modules/.vite-temp` folder and a file not found error will occur when setting breakpoint debugging in the Vite config file. To fix the issue, add the following configuration to `.vscode/settings.json`:
+Mit dem standardmäßigen `--configLoader bundle`-Verhalten schreibt Vite die generierte, temporäre Konfigurationsdatei in den Ordner `node_modules/.vite-temp` und ein Fehler „Datei nicht gefunden“ tritt auf, wenn das Debuggen von Haltepunkten in der Vite-Konfigurationsdatei eingestellt wird. Um das Problem zu beheben, fügen Sie die folgende Konfiguration zu `.vscode/settings.json` hinzu:
 
 ```json
 {
