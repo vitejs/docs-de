@@ -110,3 +110,19 @@ export default defineConfig(({ mode }) => {
   }
 })
 ```
+
+## Debugging der Konfigurationsdatei im VS-Code
+
+Mit dem standardmäßigen `--configLoader bundle`-Verhalten schreibt Vite die generierte, temporäre Konfigurationsdatei in den Ordner `node_modules/.vite-temp` und ein Fehler „Datei nicht gefunden“ tritt auf, wenn das Debuggen von Haltepunkten in der Vite-Konfigurationsdatei eingestellt wird. Um das Problem zu beheben, fügen Sie die folgende Konfiguration zu `.vscode/settings.json` hinzu:
+
+```json
+{
+  "debug.javascript.terminalOptions": {
+    "resolveSourceMapLocations": [
+      "${workspaceFolder}/**",
+      "!**/node_modules/**",
+      "**/node_modules/.vite-temp/**"
+    ]
+  }
+}
+```
