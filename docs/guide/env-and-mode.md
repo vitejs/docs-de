@@ -4,7 +4,7 @@
 
 Vite stellt env-Variablen auf dem speziellen **`import.meta.env`**-Objekt zur Verfügung, die zur Erstellungszeit statisch ersetzt werden. Einige eingebaute Variablen sind in allen folgenden Fällen verfügbar:
 
-- **`import.meta.env.MODE`**: {string} der [Modus](#Modi), in dem die App ausgeführt wird.
+- **`import.meta.env.MODE`**: {string} der [Modus](#modi), in dem die App ausgeführt wird.
 
 - **`import.meta.env.BASE_URL`**: {string} die Basis-URL, von der aus die App bereitgestellt wird. Dies wird durch die [`base` Konfigurationsoption](/config/shared-options.md#base) bestimmt.
 
