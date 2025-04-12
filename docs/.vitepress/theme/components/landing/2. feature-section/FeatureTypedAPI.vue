@@ -15,7 +15,7 @@ const { isCardActive, startAnimation } = useCardAnimation(
   undefined,
   {
     once: true,
-  },
+  }
 )
 </script>
 
@@ -68,8 +68,10 @@ const { isCardActive, startAnimation } = useCardAnimation(
       </div>
     </div>
     <div class="feature__meta meta--center">
-      <div class="meta__title">Fully typed API</div>
-      <div class="meta__description">Designed to be built on top of.</div>
+      <div class="meta__title">Vollständig typisierte API</div>
+      <div class="meta__description">
+        Konzipiert, um darauf aufgebaut zu werden.
+      </div>
     </div>
   </div>
 </template>
@@ -138,9 +140,7 @@ const { isCardActive, startAnimation } = useCardAnimation(
   .code {
     color: #fff;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    font-family:
-      IBM Plex Mono,
-      sans-serif;
+    font-family: IBM Plex Mono, sans-serif;
     font-size: 11px;
     font-weight: 400;
     line-height: 150%;

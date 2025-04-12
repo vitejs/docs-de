@@ -44,7 +44,7 @@ const { startAnimation } = useCardAnimation(
           node.visible.value = false
         },
         null,
-        '-=0.6',
+        '-=0.6'
       )
       timeline.add(subTimeline, Math.random())
     })
@@ -55,7 +55,7 @@ const { startAnimation } = useCardAnimation(
         isBoltActive.value = true
       },
       null,
-      '-=0.5',
+      '-=0.5'
     )
 
     // All done
@@ -63,7 +63,7 @@ const { startAnimation } = useCardAnimation(
   },
   {
     once: true,
-  },
+  }
 )
 </script>
 
@@ -436,9 +436,10 @@ const { startAnimation } = useCardAnimation(
       </svg>
     </div>
     <div class="feature__meta meta--center">
-      <div class="meta__title">Optimized build</div>
+      <div class="meta__title">Optimierter Build</div>
       <div class="meta__description">
-        Pre-configured Rollup build with multi-page and library mode support.
+        Vorkonfigurierter Rollup-Build mit Unterstützung für Mehrseiten- und
+        Bibliotheksmodus.
       </div>
     </div>
   </div>

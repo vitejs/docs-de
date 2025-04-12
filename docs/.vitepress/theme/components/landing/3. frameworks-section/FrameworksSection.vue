@@ -225,7 +225,7 @@ const paddedBlocksPerSide: ComputedRef<number> = computed(() => {
 })
 
 const numFrameworksPerRow = computed(
-  () => numBlocksPerRow.value - paddedBlocksPerSide.value * 2,
+  () => numBlocksPerRow.value - paddedBlocksPerSide.value * 2
 )
 
 /**
@@ -238,7 +238,7 @@ const centerIndexes: ComputedRef<{ start: number; end: number }> = computed(
       start: startIndex,
       end: numBlocksPerRow.value - paddedBlocksPerSide.value,
     }
-  },
+  }
 )
 
 /**
@@ -260,7 +260,7 @@ const rowStyle: ComputedRef<{ transform: string }> = computed(() => {
 
 <template>
   <section class="frameworks-section" id="frameworks-section">
-    <h2>Powering your favorite frameworks and tools</h2>
+    <h2>Unterstützung für Ihre bevorzugten Frameworks und Tools</h2>
     <div class="frameworks-container">
       <!-- Top Row -->
       <div class="framework-row" :style="rowStyle">

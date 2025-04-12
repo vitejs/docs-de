@@ -15,7 +15,7 @@ const { isCardActive, startAnimation } = useCardAnimation(
   null,
   {
     once: true,
-  },
+  }
 )
 </script>
 
@@ -349,10 +349,10 @@ const { isCardActive, startAnimation } = useCardAnimation(
       </div>
     </div>
     <div class="feature__meta">
-      <div class="meta__title">Flexible plugin system</div>
+      <div class="meta__title">Flexibles Plugin-System</div>
       <div class="meta__description">
-        Vite plugins extends Rollup's well-designed plugin interface with a few
-        extra Vite-specific options.
+        Vite-Plugins erweitert die gut gestaltete Plugin-Schnittstelle von
+        Rollup um ein paar zusätzlichen Vite-spezifischen Optionen.
       </div>
     </div>
   </div>
@@ -410,9 +410,7 @@ const { isCardActive, startAnimation } = useCardAnimation(
 
   .blue-chip__cube,
   .pink-chip__cube {
-    transition:
-      transform 0.5s ease-in-out,
-      filter 0.05s ease 0.45s;
+    transition: transform 0.5s ease-in-out, filter 0.05s ease 0.45s;
     will-change: filter, transform;
 
     @media (min-width: 768px) {

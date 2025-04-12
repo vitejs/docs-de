@@ -109,10 +109,10 @@
       </svg>
       <img src="/logo.svg" alt="Vite Logo" class="vite-chip__logo" />
     </div>
-    <h2>Start building with Vite</h2>
+    <h2>Starten Sie mit Vite durch</h2>
     <h3>
-      Prepare for a development environment that can finally keep pace with the
-      speed of your mind.
+      Bereiten Sie sich auf eine Entwicklungsumgebung vor, die endlich mit der
+      Geschwindigkeit Ihrer Gedanken Schritt hält.
     </h3>
     <a href="/guide/" class="btn btn--primary">Get started</a>
     <div class="glow glow--purple" />

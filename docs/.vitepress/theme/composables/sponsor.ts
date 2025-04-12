@@ -99,7 +99,7 @@ export function useSponsor() {
 function mapSponsors(sponsors: Sponsors) {
   return [
     {
-      tier: 'in partnership with',
+      tier: 'in Kooperation mit',
       size: 'big',
       items: viteSponsors['special'],
     },
@@ -117,9 +117,7 @@ function mapSponsors(sponsors: Sponsors) {
 }
 
 const viteSponsorNames = new Set(
-  Object.values(viteSponsors).flatMap((sponsors) =>
-    sponsors.map((s) => s.name),
-  ),
+  Object.values(viteSponsors).flatMap((sponsors) => sponsors.map((s) => s.name))
 )
 
 /**

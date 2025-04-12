@@ -29,21 +29,21 @@ const { startAnimation } = useCardAnimation(
         terminalActive.value = true
       },
       null,
-      0,
+      0
     )
     timeline.call(
       () => {
         connectionsActive.value = true
       },
       null,
-      0.4,
+      0.4
     )
     timeline.call(
       () => {
         browserActive.value = true
       },
       null,
-      1,
+      1
     )
 
     // All done
@@ -51,7 +51,7 @@ const { startAnimation } = useCardAnimation(
   },
   {
     once: true,
-  },
+  }
 )
 </script>
 
@@ -247,9 +247,10 @@ const { startAnimation } = useCardAnimation(
       </div>
     </div>
     <div class="feature__meta meta--center">
-      <div class="meta__title">Lightning fast HMR</div>
+      <div class="meta__title">Blitzschnelles HMR</div>
       <div class="meta__description">
-        Hot Module Replacement (HMR) that stays fast regardless of app size.
+        Hot Module Replacement (HMR), das unabhängig von der Größe der Anwendung
+        schnell bleibt.
       </div>
     </div>
   </div>

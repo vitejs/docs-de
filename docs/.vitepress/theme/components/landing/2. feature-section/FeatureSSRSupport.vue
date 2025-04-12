@@ -15,7 +15,7 @@ const { isCardActive, startAnimation } = useCardAnimation(
   undefined,
   {
     once: true,
-  },
+  }
 )
 </script>
 
@@ -417,10 +417,10 @@ const { isCardActive, startAnimation } = useCardAnimation(
       </svg>
     </div>
     <div class="feature__meta">
-      <div class="meta__title">First class SSR Support</div>
+      <div class="meta__title">Erstklassiger SSR-Support</div>
       <div class="meta__description">
-        It's never been easier to setup custom SSR (Server-Side Rendering), or
-        build your own SSR framework.
+        Noch nie war es so einfach, benutzerdefiniertes SSR (Server-Side
+        Rendering) einzurichten oder ein eigenes SSR-Framework zu erstellen.
       </div>
     </div>
   </div>

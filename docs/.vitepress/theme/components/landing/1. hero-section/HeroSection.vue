@@ -12,16 +12,16 @@ import HeroDiagram from './HeroDiagram.vue'
       </a>
 
       <!-- Heading -->
-      <h1>The Build Tool<br />for the Web</h1>
+      <h1>Das Werkzeug<br />für das Web</h1>
       <!-- Tagline -->
       <h3>
-        Vite is a blazing fast frontend build tool powering the next generation
-        of web applications.
+        Vite ist ein blitzschnelles Tool zur Erstellung von Frontends, das die
+        nächste Generation von Webanwendungen ermöglicht.
       </h3>
 
       <!-- CTA Buttons -->
       <div class="hero__actions">
-        <a href="/guide/" class="btn btn--primary">Get started</a>
+        <a href="/guide/" class="btn btn--primary">Starten</a>
         <a
           href="https://github.com/vitejs/vite"
           target="_blank"
@@ -108,14 +108,12 @@ import HeroDiagram from './HeroDiagram.vue'
 @keyframes hero-pill-glow {
   0% {
     border-color: rgba(189, 52, 254, 0.5);
-    box-shadow:
-      0 0 5px rgba(189, 52, 254, 0.01),
+    box-shadow: 0 0 5px rgba(189, 52, 254, 0.01),
       inset 0 0 5px rgba(189, 52, 254, 0.1);
   }
   100% {
     border-color: rgba(189, 52, 254, 0.6);
-    box-shadow:
-      0 0 20px rgba(189, 52, 254, 0.2),
+    box-shadow: 0 0 20px rgba(189, 52, 254, 0.2),
       inset 0 0 10px rgba(189, 52, 254, 0.2);
   }
 }

@@ -21,7 +21,7 @@ const { isCardActive, startAnimation } = useCardAnimation(
   null,
   {
     once: true,
-  },
+  }
 )
 </script>
 
@@ -126,9 +126,9 @@ const { isCardActive, startAnimation } = useCardAnimation(
       <div class="center-glow" />
     </div>
     <div class="feature__meta meta--center">
-      <div class="meta__title">Rich features</div>
+      <div class="meta__title">Zahlreiche Features</div>
       <div class="meta__description">
-        Out-of-the-box support for TypeScript, JSX, CSS and more.
+        Out-of-the-box-Support für TypeScript, JSX, CSS und mehr.
       </div>
     </div>
   </div>
@@ -237,9 +237,7 @@ const { isCardActive, startAnimation } = useCardAnimation(
       );
       will-change: background;
       box-shadow: var(--card-color) 0 5px 10px -30px;
-      transition:
-        --opacity 0.8s ease,
-        box-shadow 0.5s ease;
+      transition: --opacity 0.8s ease, box-shadow 0.5s ease;
       z-index: 1;
     }
 

@@ -46,13 +46,14 @@ const { data } = useSponsor()
       width="58"
       height="55"
     />
-    <h2>Free &amp; open source</h2>
+    <h2>Kostenlos &amp; Open Source</h2>
     <h4>
-      Vite is MIT Licensed and will always be free and open source. This is made
-      possible by our contributors and these companies:
+      Vite ist MIT-lizenziert und wird immer frei und quelloffen sein.
+      Ermöglicht wird dies durch unsere Mitwirkenden und diese Unternehmen
+      ermöglicht:
     </h4>
 
-    <h4>Brought to you by</h4>
+    <h4>Gesponsert von</h4>
     <div class="voidzero">
       <a href="https://voidzero.dev" target="_blank">
         <img src="./voidzero.svg" />
@@ -70,7 +71,7 @@ const { data } = useSponsor()
         href="https://github.com/sponsors/vitejs"
         target="_blank"
         class="btn btn--outline btn--rounded"
-        >Become a Sponsor</a
+        >Sponsor werden</a
       >
     </div>
   </div>

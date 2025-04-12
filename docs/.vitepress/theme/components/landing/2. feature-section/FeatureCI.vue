@@ -36,7 +36,7 @@ const { startAnimation, isCardActive } = useCardAnimation(
         duration: 1.5,
         ease: 'power2.in',
       },
-      0,
+      0
     )
 
     // Make the glowing lines visible
@@ -45,7 +45,7 @@ const { startAnimation, isCardActive } = useCardAnimation(
         glowVisible.value = true
       },
       null,
-      0.2,
+      0.2
     )
     // Make the glowing lines hidden shortly after
     timeline.call(
@@ -53,7 +53,7 @@ const { startAnimation, isCardActive } = useCardAnimation(
         glowVisible.value = false
       },
       null,
-      1.1,
+      1.1
     )
 
     // Stagger the checkmarks
@@ -63,7 +63,7 @@ const { startAnimation, isCardActive } = useCardAnimation(
           checkmark.value = true
         },
         null,
-        1.3 + index * 0.2,
+        1.3 + index * 0.2
       )
     })
 
@@ -72,7 +72,7 @@ const { startAnimation, isCardActive } = useCardAnimation(
   },
   {
     once: true,
-  },
+  }
 )
 </script>
 
@@ -319,10 +319,10 @@ const { startAnimation, isCardActive } = useCardAnimation(
       </div>
     </div>
     <div class="feature__meta meta--center">
-      <div class="meta__title">Continuous ecosystem integration</div>
+      <div class="meta__title">Kontinuierliche Integration des Ökosystems</div>
       <div class="meta__description">
-        Our CI continuously tests Vite changes against downstream projects,
-        allowing us to improve Vite with stability and confidence.
+        Unser CI testet kontinuierlich Vite-Änderungen gegen Downstream, was uns
+        ermöglicht, Vite mit Stabilität und Vertrauen zu verbessern.
       </div>
     </div>
   </div>
@@ -379,9 +379,7 @@ const { startAnimation, isCardActive } = useCardAnimation(
     left: 319px;
     color: #fff;
     text-align: center;
-    font-family:
-      IBM Plex Mono,
-      sans-serif;
+    font-family: IBM Plex Mono, sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;

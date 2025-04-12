@@ -29,7 +29,7 @@ const { startAnimation } = useCardAnimation(
   },
   {
     once: true,
-  },
+  }
 )
 
 /**
@@ -174,7 +174,7 @@ onUnmounted(() => {
         <div class="terminal__enter-pulse" v-show="highlightEnter" />
         <Transition name="ready-label-transition">
           <span class="terminal__ready-label" v-if="commandTriggered"
-            >Ready in 96ms</span
+            >In 96ms bereit</span
           >
         </Transition>
         <div class="terminal__glow" />
@@ -182,9 +182,9 @@ onUnmounted(() => {
       <div class="connection-line" :class="{ active: commandTriggered }" />
     </div>
     <div class="feature__meta">
-      <div class="meta__title">Instant server start</div>
+      <div class="meta__title">Sofortiger Serverstart</div>
       <div class="meta__description">
-        On demand file serving over native ESM, no bundling required!
+        On-Demand-Dateiservice über natives ESM, kein Bundling erforderlich!
       </div>
     </div>
   </div>
