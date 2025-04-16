@@ -99,7 +99,7 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
          - name: Set up Node
            uses: actions/setup-node@v4
            with:
-             node-version: 20
+             node-version: lts/*
              cache: 'npm'
          - name: Install dependencies
            run: npm ci
@@ -128,7 +128,7 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
 2. Erstellen Sie eine Datei namens `.gitlab-ci.yml` im Stammverzeichnis Ihres Projekts mit dem folgenden Inhalt. Dadurch wird Ihre Website erstellt und bereitgestellt, sobald Sie Änderungen an Ihrem Inhalt vornehmen:
 
    ```yaml [.gitlab-ci.yml]
-   image: node:16.5.0
+   image: node:lts
    pages:
      stage: deploy
      cache:
