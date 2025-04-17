@@ -114,7 +114,7 @@
       Bereiten Sie sich auf eine Entwicklungsumgebung vor, die endlich mit der
       Geschwindigkeit Ihrer Gedanken Schritt hält.
     </h3>
-    <a href="/guide/" class="btn btn--primary">Get started</a>
+    <a href="/guide/" class="btn btn--primary">Los geht's</a>
     <div class="glow glow--purple" />
     <div class="glow glow--blue" />
   </div>

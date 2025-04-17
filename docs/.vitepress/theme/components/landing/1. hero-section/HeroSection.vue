@@ -12,11 +12,11 @@ import HeroDiagram from './HeroDiagram.vue'
       </a>
 
       <!-- Heading -->
-      <h1>Das Werkzeug<br />für das Web</h1>
+      <h1>Das Build-Tool<br />für das Web</h1>
       <!-- Tagline -->
       <h3>
-        Vite ist ein blitzschnelles Tool zur Erstellung von Frontends, das die
-        nächste Generation von Webanwendungen ermöglicht.
+        Vite ist ein blitzschnelles Frontend-Build-Tool für die nächste
+        Generation von Webanwendungen.
       </h3>
 
       <!-- CTA Buttons -->
