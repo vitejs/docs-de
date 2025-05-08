@@ -52,7 +52,7 @@
     "@types/react": "^19.0.0",
     "eslint": "^9.16.0",
     "eslint-plugin-import-x": "^4.4.3",
-    "feed": "^4.2.2",
+    "feed": "^5.0.0",
     "gsap": "^3.12.5",
     "lint-staged": "^15.2.10",
     "react": "^19.0.0",
