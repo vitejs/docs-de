@@ -29,9 +29,9 @@ const viteSponsors: Pick<Sponsors, 'special' | 'gold'> = {
   special: [
     // sponsors patak-dev
     {
-      name: 'StackBlitz',
-      url: 'https://stackblitz.com',
-      img: '/stackblitz.svg',
+      name: 'Bolt',
+      url: 'https://bolt.new',
+      img: '/bolt.svg',
     },
     // sponsors antfu
     {
