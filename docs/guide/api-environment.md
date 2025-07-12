@@ -103,12 +103,12 @@ import { customEnvironment } from ‚vite-environment-provider‘
 
 export default {
   build: {
-    outDir: ‚/dist/client‘,
+    outDir: '/dist/client',
   },
   environments: {
     ssr: customEnvironment({
       build: {
-        outDir: ‚/dist/ssr‘,
+        outDir: '/dist/ssr',
       },
     }),
   },
