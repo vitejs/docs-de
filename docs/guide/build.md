@@ -68,7 +68,7 @@ window.addEventListener('vite:preloadError', (event) => {
 })
 ```
 
-When a new deployment occurs, the hosting service may delete the assets from previous deployments. As a result, a user who visited your site before the new deployment might encounter an import error. This error happens because the assets running on that user's device are outdated and it tries to import the corresponding old chunk, which is deleted. This event is useful for addressing this situation.
+Bei einer neuen Bereitstellung kann der Hosting-Dienst die Assets aus früheren Bereitstellungen löschen. Infolgedessen kann es bei einem Benutzer, der Ihre Website vor der neuen Bereitstellung besucht hat, zu einem Importfehler kommen. Dieser Fehler tritt auf, weil die auf dem Gerät dieses Benutzers ausgeführten Assets veraltet sind und er versucht, den entsprechenden alten Chunk zu importieren, der gelöscht wurde. Dieses Ereignis ist nützlich, um diese Situation zu beheben. Stellen Sie in diesem Fall sicher, dass Sie „Cache-Control: no-cache“ in der HTML-Datei festlegen, da sonst weiterhin auf die alten Assets verwiesen wird.
 
 ## Neuerstellen bei Dateiänderungen
 
@@ -314,7 +314,7 @@ const config: UserConfig = {
   experimental: {
     renderBuiltUrl(
       filename: string,
-      { hostType }: { hostType: 'js' | 'css' | 'html' }
+      { hostType }: { hostType: 'js' | 'css' | 'html' },
     ) {
       if (hostType === 'js') {
         return { runtime: `window.__toCdnUrl(${JSON.stringify(filename)})` }
@@ -333,21 +333,21 @@ import type { UserConfig } from 'vite'
 import path from 'node:path'
 
 const config: UserConfig = {
-// ---cut-before---
-experimental: {
-  renderBuiltUrl(filename, { hostId, hostType, type }) {
-    if (type === 'public') {
-      return 'https://www.domain.com/' + filename
-    } else if (path.extname(hostId) === '.js') {
-      return {
-        runtime: `window.__assetsPath(${JSON.stringify(filename)})`
+  // ---cut-before---
+  experimental: {
+    renderBuiltUrl(filename, { hostId, hostType, type }) {
+      if (type === 'public') {
+        return 'https://www.domain.com/' + filename
+      } else if (path.extname(hostId) === '.js') {
+        return {
+          runtime: `window.__assetsPath(${JSON.stringify(filename)})`,
+        }
+      } else {
+        return 'https://cdn.domain.com/assets/' + filename
       }
-    } else {
-      return 'https://cdn.domain.com/assets/' + filename
-    }
+    },
   },
-},
-// ---cut-after---
+  // ---cut-after---
 }
 ```
 
