@@ -57,7 +57,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    </script>
    ```
 
-3. For production: after running `vite build`, a `.vite/manifest.json` file will be generated alongside other asset files. An example manifest file looks like this:
+3. For production, after running `vite build`, a `.vite/manifest.json` file will be generated alongside other asset files. An example manifest file looks like this:
 
    ```json [.vite/manifest.json]
    {
