@@ -1,19 +1,19 @@
 # Environment API for Runtimes
 
 :::warning Experimental
-Initial work for this API was introduced in Vite 5.1 with the name "Vite Runtime API". This guide describes a revised API, renamed to Environment API. This API will be released in Vite 6 as experimental. You can already test it in the latest `vite@6.0.0-beta.x` version.
+Die ersten Arbeiten an dieser API wurden in Vite 5.1 unter dem Namen „Vite Runtime API” vorgestellt. Dieser Leitfaden beschreibt eine überarbeitete API, die in Environment API umbenannt wurde. Diese API wird in Vite 6 als experimentell veröffentlicht. Sie können sie bereits in der neuesten Version von `vite@6.0.0-beta.x` testen.
 
-Resources:
+Ressourcen:
 
-- [Feedback discussion](https://github.com/vitejs/vite/discussions/16358) where we are gathering feedback about the new APIs.
-- [Environment API PR](https://github.com/vitejs/vite/pull/16471) where the new API were implemented and reviewed.
+- [Feedback-Diskussion](https://github.com/vitejs/vite/discussions/16358), in der wir Feedback zu den neuen APIs sammeln.
+- [Environment API PR](https://github.com/vitejs/vite/pull/16471), wo die neue API implementiert und überprüft wurde.
 
-Please share with us your feedback as you test the proposal.
+Bitte teilen Sie uns Ihr Feedback mit, wenn Sie den Vorschlag testen.
 :::
 
-## Environment factories
+## Umgebungs-"Fabriken"
 
-Environments factories are intended to be implemented by Environment providers like Cloudflare, and not by end users. Environment factories return a `EnvironmentOptions` for the most common case of using the target runtime for both dev and build environments. The default environment options can also be set so the user doesn't need to do it.
+Umgebungsfabriken sind für die Implementierung durch Umgebungsanbieter wie Cloudflare vorgesehen und nicht für Endbenutzer. Umgebungsfabriken geben eine `EnvironmentOptions` für den häufigsten Fall zurück, bei dem die Ziel-Laufzeitumgebung sowohl für Entwicklungs- als auch für Build-Umgebungen verwendet wird. Die Standardumgebungsoptionen können auch so eingestellt werden, dass der Benutzer dies nicht tun muss.
 
 ```ts
 function createWorkedEnvironment(
@@ -44,7 +44,7 @@ function createWorkedEnvironment(
 }
 ```
 
-Then the config file can be written as:
+Dann kann die Konfigurationsdatei folgend geschrieben werden:
 
 ```js
 import { createWorkerdEnvironment } from 'vite-environment-workerd'
@@ -65,21 +65,21 @@ export default {
 }
 ```
 
-and frameworks can use an environment with the workerd runtime to do SSR using:
+und Frameworks können eine Umgebung mit der Worker-Laufzeitumgebung verwenden, um SSR mithilfe von:
 
 ```js
 const ssrEnvironment = server.environments.ssr
 ```
 
-## Creating a new environment factory
+## Erstellen einer neuen Umgebungsfabrik
 
-A Vite dev server exposes two environments by default: a `client` environment and an `ssr` environment. The client environment is a browser environment by default, and the module runner is implemented by importing the virtual module `/@vite/client` to client apps. The SSR environment runs in the same Node runtime as the Vite server by default and allows application servers to be used to render requests during dev with full HMR support.
+Ein Vite-Entwicklungsserver stellt standardmäßig zwei Umgebungen bereit: eine `client`-Umgebung und eine `ssr`-Umgebung. Die Client-Umgebung ist standardmäßig eine Browserumgebung, und der Modul-Runner wird durch Importieren des virtuellen Moduls `/@vite/client` in Client-Apps implementiert. Die SSR-Umgebung läuft standardmäßig in derselben Node-Laufzeitumgebung wie der Vite-Server und ermöglicht die Verwendung von Anwendungsservern zum Rendern von Anfragen während der Entwicklung mit vollständiger HMR-Unterstützung.
 
-The transformed source code is called a module, and the relationships between the modules processed in each environment are kept in a module graph. The transformed code for these modules is sent to the runtimes associated with each environment to be executed. When a module is evaluated in the runtime, its imported modules will be requested triggering the processing of a section of the module graph.
+Der transformierte Quellcode wird als Modul bezeichnet, und die Beziehungen zwischen den in jeder Umgebung verarbeiteten Modulen werden in einem Modulgraphen gespeichert. Der transformierte Code für diese Module wird an die mit jeder Umgebung verbundenen Laufzeitumgebungen gesendet, um dort ausgeführt zu werden. Wenn ein Modul in der Laufzeitumgebung ausgewertet wird, werden seine importierten Module angefordert, wodurch die Verarbeitung eines Abschnitts des Modulgraphen ausgelöst wird.
 
-A Vite Module Runner allows running any code by processing it with Vite plugins first. It is different from `server.ssrLoadModule` because the runner implementation is decoupled from the server. This allows library and framework authors to implement their layer of communication between the Vite server and the runner. The browser communicates with its corresponding environment using the server Web Socket and through HTTP requests. The Node Module runner can directly do function calls to process modules as it is running in the same process. Other environments could run modules connecting to a JS runtime like workerd, or a Worker Thread as Vitest does.
+Ein Vite-Modul-Runner ermöglicht die Ausführung beliebiger Codes, indem diese zunächst mit Vite-Plugins verarbeitet werden. Er unterscheidet sich von „server.ssrLoadModule“, da die Runner-Implementierung vom Server entkoppelt ist. Dies ermöglicht es Autoren von Bibliotheken und Frameworks, ihre eigene Kommunikationsebene zwischen dem Vite-Server und dem Runner zu implementieren. Der Browser kommuniziert mit seiner entsprechenden Umgebung über den Server-Websocket und über HTTP-Anfragen. Der Node-Modul-Runner kann direkt Funktionsaufrufe zur Verarbeitung von Modulen ausführen, da er im selben Prozess läuft. Andere Umgebungen könnten Module ausführen, die mit einer JS-Laufzeitumgebung wie workerd oder einem Worker-Thread verbunden sind, wie es Vitest tut.
 
-One of the goals of this feature is to provide a customizable API to process and run code. Users can create new environment factories using the exposed primitives.
+Eines der Ziele dieser Funktion ist es, eine anpassbare API zur Verarbeitung und Ausführung von Code bereitzustellen. Benutzer können mit den offengelegten Primitiven neue Umgebungsfabriken erstellen.
 
 ```ts
 import { DevEnvironment, RemoteEnvironmentTransport } from 'vite'
@@ -112,7 +112,7 @@ function createWorkerdDevEnvironment(
 
 ## `ModuleRunner`
 
-A module runner is instantiated in the target runtime. All APIs in the next section are imported from `vite/module-runner` unless stated otherwise. This export entry point is kept as lightweight as possible, only exporting the minimal needed to create module runners.
+Ein Modul-Runner wird in der Ziel-Laufzeit instanziiert. Alle APIs im nächsten Abschnitt werden aus `vite/module-runner` importiert, sofern nicht anders angegeben. Dieser Export-Einstiegspunkt wird so schlank wie möglich gehalten und exportiert nur das Minimum, das zum Erstellen von Modul-Runners erforderlich ist.
 
 **Type Signature:**
 
@@ -121,7 +121,7 @@ export class ModuleRunner {
   constructor(
     public options: ModuleRunnerOptions,
     public evaluator: ModuleEvaluator,
-    private debug?: ModuleRunnerDebugger,
+    private debug?: ModuleRunnerDebugger
   ) {}
   /**
    * URL to execute.
@@ -144,9 +144,9 @@ export class ModuleRunner {
 }
 ```
 
-The module evaluator in `ModuleRunner` is responsible for executing the code. Vite exports `ESModulesEvaluator` out of the box, it uses `new AsyncFunction` to evaluate the code. You can provide your own implementation if your JavaScript runtime doesn't support unsafe evaluation.
+Der Modul-Evaluator in `ModuleRunner` ist für die Ausführung des Codes verantwortlich. Vite exportiert `ESModulesEvaluator` standardmäßig und verwendet `new AsyncFunction`, um den Code zu evaluieren. Sie können Ihre eigene Implementierung bereitstellen, wenn Ihre JavaScript-Laufzeitumgebung keine unsichere Evaluierung unterstützt.
 
-Module runner exposes `import` method. When Vite server triggers `full-reload` HMR event, all affected modules will be re-executed. Be aware that Module Runner doesn't update `exports` object when this happens (it overrides it), you would need to run `import` or get the module from `evaluatedModules` again if you rely on having the latest `exports` object.
+Der Modul-Runner stellt die Methode `import` zur Verfügung. Wenn der Vite-Server das HMR-Ereignis `full-reload` auslöst, werden alle betroffenen Module erneut ausgeführt. Beachten Sie, dass der Modul-Runner in diesem Fall das Objekt `exports` nicht aktualisiert (sondern überschreibt), sodass Sie `import` ausführen oder das Modul erneut aus `evaluatedModules` abrufen müssen, wenn Sie auf das aktuelle Objekt `exports` angewiesen sind.
 
 **Example Usage:**
 
@@ -243,7 +243,7 @@ export interface ModuleEvaluator {
 }
 ```
 
-Vite exports `ESModulesEvaluator` that implements this interface by default. It uses `new AsyncFunction` to evaluate code, so if the code has inlined source map it should contain an [offset of 2 lines](https://tc39.es/ecma262/#sec-createdynamicfunction) to accommodate for new lines added. This is done automatically by the `ESModulesEvaluator`. Custom evaluators will not add additional lines.
+Vite exportiert standardmäßig `ESModulesEvaluator`, das diese Schnittstelle implementiert. Es verwendet `new AsyncFunction`, um Code auszuwerten. Wenn der Code also eine Inline-Quellkarte enthält, sollte er einen [Offset von 2 Zeilen](https://tc39.es/ecma262/#sec-createdynamicfunction) enthalten, um die hinzugefügten neuen Zeilen zu berücksichtigen. Dies wird automatisch von `ESModulesEvaluator` durchgeführt. Benutzerdefinierte Evaluatoren fügen keine zusätzlichen Zeilen hinzu.
 
 ## RunnerTransport
 
@@ -258,7 +258,7 @@ interface RunnerTransport {
 }
 ```
 
-Transport object that communicates with the environment via an RPC or by directly calling the function. By default, you need to pass an object with `fetchModule` method - it can use any type of RPC inside of it, but Vite also exposes bidirectional transport interface via a `RemoteRunnerTransport` class to make the configuration easier. You need to couple it with the `RemoteEnvironmentTransport` instance on the server like in this example where module runner is created in the worker thread:
+Transportobjekt, das über RPC oder durch direkten Aufruf der Funktion mit der Umgebung kommuniziert. Standardmäßig müssen Sie ein Objekt mit der Methode `fetchModule` übergeben – es kann jede Art von RPC darin verwenden, aber Vite stellt auch eine bidirektionale Transportschnittstelle über eine `RemoteRunnerTransport`-Klasse bereit, um die Konfiguration zu vereinfachen. Sie müssen es mit der `RemoteEnvironmentTransport`-Instanz auf dem Server koppeln, wie in diesem Beispiel, in dem der Modul-Runner im Worker-Thread erstellt wird:
 
 ::: code-group
 
@@ -314,7 +314,7 @@ await createServer({
 
 :::
 
-`RemoteRunnerTransport` and `RemoteEnvironmentTransport` are meant to be used together, but you don't have to use them at all. You can define your own function to communicate between the runner and the server. For example, if you connect to the environment via an HTTP request, you can call `fetch().json()` in `fetchModule` function:
+`RemoteRunnerTransport` und `RemoteEnvironmentTransport` sind für die gemeinsame Verwendung vorgesehen, müssen jedoch nicht unbedingt verwendet werden. Sie können Ihre eigene Funktion definieren, um die Kommunikation zwischen dem Runner und dem Server zu ermöglichen. Wenn Sie beispielsweise über eine HTTP-Anfrage eine Verbindung zur Umgebung herstellen, können Sie `fetch().json()` in der Funktion `fetchModule` aufrufen:
 
 ```ts
 import { ESModulesEvaluator, ModuleRunner } from 'vite/module-runner'
@@ -325,7 +325,7 @@ export const runner = new ModuleRunner(
     transport: {
       async fetchModule(id, importer) {
         const response = await fetch(
-          `http://my-vite-server/fetch?id=${id}&importer=${importer}`,
+          `http://my-vite-server/fetch?id=${id}&importer=${importer}`
         )
         return response.json()
       },
@@ -360,9 +360,9 @@ export interface ModuleRunnerHMRConnection {
 }
 ```
 
-This interface defines how HMR communication is established. Vite exports `ServerHMRConnector` from the main entry point to support HMR during Vite SSR. The `isReady` and `send` methods are usually called when the custom event is triggered (like, `import.meta.hot.send("my-event")`).
+Diese Schnittstelle definiert, wie die HMR-Kommunikation hergestellt wird. Vite exportiert `ServerHMRConnector` vom Haupteinstiegspunkt, um HMR während Vite SSR zu unterstützen. Die Methoden `isReady` und `send` werden normalerweise aufgerufen, wenn das benutzerdefinierte Ereignis ausgelöst wird (z. B. `import.meta.hot.send("my-event")`).
 
-`onUpdate` is called only once when the new module runner is initiated. It passed down a method that should be called when connection triggers the HMR event. The implementation depends on the type of connection (as an example, it can be `WebSocket`/`EventEmitter`/`MessageChannel`), but it usually looks something like this:
+`onUpdate` wird nur einmal aufgerufen, wenn der neue Modul-Runner gestartet wird. Es übergibt eine Methode, die aufgerufen werden soll, wenn die Verbindung das HMR-Ereignis auslöst. Die Implementierung hängt vom Verbindungstyp ab (beispielsweise kann es sich um `WebSocket`/`EventEmitter`/`MessageChannel` handeln), sieht aber in der Regel etwa so aus:
 
 ```js
 function onUpdate(callback) {
@@ -370,4 +370,4 @@ function onUpdate(callback) {
 }
 ```
 
-The callback is queued and it will wait for the current update to be resolved before processing the next update. Unlike the browser implementation, HMR updates in a module runner will wait until all listeners (like, `vite:beforeUpdate`/`vite:beforeFullReload`) are finished before updating the modules.
+Der Callback wird in die Warteschlange gestellt und wartet, bis die aktuelle Aktualisierung abgeschlossen ist, bevor die nächste Aktualisierung verarbeitet wird. Im Gegensatz zur Browser-Implementierung warten HMR-Aktualisierungen in einem Modul-Runner, bis alle Listener (wie „vite:beforeUpdate“/„vite:beforeFullReload“) abgeschlossen sind, bevor die Module aktualisiert werden.
