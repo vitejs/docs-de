@@ -57,7 +57,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    </script>
    ```
 
-3. For production, after running `vite build`, a `.vite/manifest.json` file will be generated alongside other asset files. An example manifest file looks like this:
+3. Für die produktive Umgebung wird nach dem Ausführen von `vite build` neben anderen Asset-Dateien eine Datei `.vite/manifest.json` erstellt. Eine Beispiel-Manifestdatei sieht wie folgt aus:
 
    ```json [.vite/manifest.json]
    {
@@ -125,67 +125,67 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    <link rel="modulepreload" href="/{{ chunk.file }}" />
    ```
 
-   Specifically, a backend generating HTML should include the following tags given a manifest
-   file and an entry point:
+Insbesondere sollte ein Backend, das HTML generiert, die folgenden Tags enthalten, wenn eine Manifestdatei
+und ein Einstiegspunkt vorhanden sind:
 
-   - A `<link rel="stylesheet">` tag for each file in the entry point chunk's `css` list
-   - Recursively follow all chunks in the entry point's `imports` list and include a
-     `<link rel="stylesheet">` tag for each CSS file of each imported chunk.
-   - A tag for the `file` key of the entry point chunk (`<script type="module">` for JavaScript,
-     or `<link rel="stylesheet">` for CSS)
-   - Optionally, `<link rel="modulepreload">` tag for the `file` of each imported JavaScript
-     chunk, again recursively following the imports starting from the entry point chunk.
+- Ein `<link rel="stylesheet">`-Tag für jede Datei in der `css`-Liste des Einstiegspunkt-Chunks
+- Rekursives Verfolgen aller Blöcke in der `imports`-Liste des Einstiegspunkts und Einfügen eines
+  `<link rel="stylesheet">`-Tags für jede CSS-Datei jedes importierten Blocks.
+- Ein Tag für den `file`-Schlüssel des Einstiegspunkt-Blocks (`<script type="module">` für JavaScript oder
+  `<link rel="stylesheet">` für CSS)
+- Optional ein `<link rel="modulepreload">`-Tag für die `file` jedes importierten JavaScript-
+  Chunks, wobei erneut rekursiv den Importen ausgehend vom Einstiegspunkt-Chunk gefolgt wird.
 
-   Following the above example manifest, for the entry point `main.js` the following tags should be included in production:
+Gemäß dem obigen Beispielmanifest sollten für den Einstiegspunkt `main.js` die folgenden Tags in die Produktion aufgenommen werden:
 
-   ```html
-   <link rel="stylesheet" href="assets/main.b82dbe22.css" />
-   <link rel="stylesheet" href="assets/shared.a834bfc3.css" />
-   <script type="module" src="assets/main.4889e940.js"></script>
-   <!-- optional -->
-   <link rel="modulepreload" href="assets/shared.83069a53.js" />
-   ```
+```html
+<link rel="stylesheet" href="assets/main.b82dbe22.css" />
+<link rel="stylesheet" href="assets/shared.a834bfc3.css" />
+<script type="module" src="assets/main.4889e940.js"></script>
+<!-- optional -->
+<link rel="modulepreload" href="assets/shared.83069a53.js" />
+```
 
-   While the following should be included for the entry point `views/foo.js`:
+Während für den Einstiegspunkt `views/foo.js` Folgendes enthalten sein sollte:
 
-   ```html
-   <link rel="stylesheet" href="assets/shared.a834bfc3.css" />
-   <script type="module" src="assets/foo.869aea0d.js"></script>
-   <!-- optional -->
-   <link rel="modulepreload" href="assets/shared.83069a53.js" />
-   ```
+```html
+<link rel="stylesheet" href="assets/shared.a834bfc3.css" />
+<script type="module" src="assets/foo.869aea0d.js"></script>
+<!-- optional -->
+<link rel="modulepreload" href="assets/shared.83069a53.js" />
+```
 
-   ::: details Pseudo implementation of `importedChunks`
-   An example pseudo implementation of `importedChunks` in TypeScript (This will
-   need to be adapted for your programming language and templating language):
+::: details Pseudo-Implementierung von `importedChunks`
+Ein Beispiel für eine Pseudo-Implementierung von `importedChunks` in TypeScript (dies muss
+an Ihre Programmier- und Templatesprache angepasst werden):
 
-   ```ts
-   import type { Manifest, ManifestChunk } from 'vite'
+```ts
+import type { Manifest, ManifestChunk } from 'vite'
 
-   export default function importedChunks(
-     manifest: Manifest,
-     name: string,
-   ): ManifestChunk[] {
-     const seen = new Set<string>()
+export default function importedChunks(
+  manifest: Manifest,
+  name: string
+): ManifestChunk[] {
+  const seen = new Set<string>()
 
-     function getImportedChunks(chunk: ManifestChunk): ManifestChunk[] {
-       const chunks: ManifestChunk[] = []
-       for (const file of chunk.imports ?? []) {
-         const importee = manifest[file]
-         if (seen.has(file)) {
-           continue
-         }
-         seen.add(file)
+  function getImportedChunks(chunk: ManifestChunk): ManifestChunk[] {
+    const chunks: ManifestChunk[] = []
+    for (const file of chunk.imports ?? []) {
+      const importee = manifest[file]
+      if (seen.has(file)) {
+        continue
+      }
+      seen.add(file)
 
-         chunks.push(...getImportedChunks(importee))
-         chunks.push(importee)
-       }
+      chunks.push(...getImportedChunks(importee))
+      chunks.push(importee)
+    }
 
-       return chunks
-     }
+    return chunks
+  }
 
-     return getImportedChunks(manifest[name])
-   }
-   ```
+  return getImportedChunks(manifest[name])
+}
+```
 
-   :::
+:::
