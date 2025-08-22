@@ -81,18 +81,18 @@ Wenn Sie wie in Vite 5 lieber bei `style.css` bleiben möchten, können Sie stat
 
 Es gibt weitere Änderungen, die nur wenige Benutzer betreffen.
 
-- [[#15637] fix!: default `build.cssMinify` to `'esbuild'` for SSR](https://github.com/vitejs/vite/pull/15637)
-  - [`build.cssMinify`](/config/build-options#build-cssminify) is now enabled by default even for SSR builds.
-- [[#18070] feat!: proxy bypass with WebSocket](https://github.com/vitejs/vite/pull/18070)
-  - `server.proxy[path].bypass` is now called for WebSocket upgrade requests and in that case, the `res` parameter will be `undefined`.
-- [[#18209] refactor!: bump minimal terser version to 5.16.0](https://github.com/vitejs/vite/pull/18209)
-  - Minimal supported terser version for [`build.minify: 'terser'`](/config/build-options#build-minify) was bumped to 5.16.0 from 5.4.0.
-- [[#18231] chore(deps): update dependency @rollup/plugin-commonjs to v28](https://github.com/vitejs/vite/pull/18231)
-  - [`commonjsOptions.strictRequires`](https://github.com/rollup/plugins/blob/master/packages/commonjs/README.md#strictrequires) is now `true` by default (was `'auto'` before). This may lead to larger bundle sizes but will result in more deterministic builds.
-- [[#18243] chore(deps)!: migrate `fast-glob` to `tinyglobby`](https://github.com/vitejs/vite/pull/18243)
-  - Range braces (`{01..03}` ⇒ `['01', '02', '03']`) and incremental braces (`{2..8..2}` ⇒ `['2', '4', '6', '8']`) are no longer supported in globs.
-- [[#18493] refactor!: remove fs.cachedChecks option](https://github.com/vitejs/vite/pull/18493)
-  - This opt-in optimization was removed due to edge cases when writing a file in a cached folder and immediately importing it.
+- [[#15637] fix!: Standardwert für `build.cssMinify` auf `'esbuild'` für SSR setzen](https://github.com/vitejs/vite/pull/15637)
+  - [`build.cssMinify`](/config/build-options#build-cssminify) ist nun standardmäßig auch für SSR-Builds aktiviert.
+- [[#18070] feat!: Proxy-Bypass mit WebSocket](https://github.com/vitejs/vite/pull/18070)
+  - `server.proxy[path].bypass` wird nun für WebSocket-Upgrade-Anfragen aufgerufen, wobei der Parameter `res` in diesem Fall `undefined` ist.
+- [[#18209] refactor!: Minimale Terser-Version auf 5.16.0 erhöhen](https://github.com/vitejs/vite/pull/18209)
+  - Die minimal unterstützte Terser-Version für [`build.minify: 'terser'`](/config/build-options#build-minify) wurde von 5.4.0 auf 5.16.0 erhöht.
+- [[#18231] chore(deps): Aktualisierung der Abhängigkeit @rollup/plugin-commonjs auf v28](https://github.com/vitejs/vite/pull/18231)
+  - [`commonjsOptions.strictRequires`](https://github.com/rollup/plugins/blob/master/packages/commonjs/README.md#strictrequires) ist jetzt standardmäßig auf `true` gesetzt (vorher war es `'auto'`). Dies kann zu größeren Bundle-Größen führen, sorgt aber für deterministischere Builds.
+- [[#18243] chore(deps)!: Migration von `fast-glob` zu `tinyglobby`](https://github.com/vitejs/vite/pull/18243)
+  - Bereichsklammern (`{01..03}` ⇒ `['01', '02', '03']`) und inkrementelle Klammern (`{2..8..2}` ⇒ `['2', '4', '6', '8']`) werden in Globs nicht mehr unterstützt.
+- [[#18493] refactor: Option „fs.cachedChecks“ entfernen](https://github.com/vitejs/vite/pull/18493)
+- Diese optionale Optimierung wurde aufgrund von Randfällen entfernt, die beim Schreiben einer Datei in einen zwischengespeicherten Ordner und deren sofortigem Import auftraten.
 
 ## Migration von v4
 
