@@ -64,17 +64,13 @@ class DevEnvironment {
    */
   config: ResolvedConfig & ResolvedDevEnvironmentOptions
 
-  constructor(
-    name: string,
-    config: ResolvedConfig,
-    context: DevEnvironmentContext,
-  )
+  constructor(name, config, { hot, options }: DevEnvironmentSetup)
 
   /**
    * Resolve the URL to an id, load it, and process the code using the
    * plugins pipeline. The module graph is also updated.
    */
-  async transformRequest(url: string): Promise<TransformResult | null>
+  async transformRequest(url: string): TransformResult
 
   /**
    * Register a request to be processed with low priority. This is useful
@@ -82,25 +78,11 @@ class DevEnvironment {
    * imported modules by other requests, so it can warmup the module graph
    * so the modules are already processed when they are requested.
    */
-  async warmupRequest(url: string): Promise<void>
+  async warmupRequest(url: string): void
 }
 ```
 
-With `DevEnvironmentContext` being:
-
-```ts
-interface DevEnvironmentContext {
-  hot: boolean
-  transport?: HotChannel | WebSocketServer
-  options?: EnvironmentOptions
-  remoteRunner?: {
-    inlineSourceMap?: boolean
-  }
-  depsOptimizer?: DepsOptimizer
-}
-```
-
-and with `TransformResult` being:
+With `TransformResult` being:
 
 ```ts
 interface TransformResult {
@@ -174,13 +156,9 @@ export class EnvironmentModuleGraph {
     rawUrl: string,
   ): Promise<EnvironmentModuleNode | undefined>
 
-  getModuleById(id: string): EnvironmentModuleNode | undefined
-
   getModulesByFile(file: string): Set<EnvironmentModuleNode> | undefined
 
   onFileChange(file: string): void
-
-  onFileDelete(file: string): void
 
   invalidateModule(
     mod: EnvironmentModuleNode,
