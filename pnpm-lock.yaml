@@ -13,7 +13,7 @@ importers:
         version: 2.17.3
       vite:
         specifier: ^7.1.8
-        version: 7.1.8(@types/node@24.6.2)(yaml@2.8.1)
+        version: 7.1.9(@types/node@24.6.2)(yaml@2.8.1)
     devDependencies:
       '@algolia/client-search':
         specifier: ^5.39.0
@@ -65,7 +65,7 @@ importers:
         version: 1.6.4(@algolia/client-search@5.39.0)(@types/node@24.6.2)(@types/react@19.2.0)(postcss@8.5.6)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(search-insights@2.17.3)(typescript@5.9.3)
       vitepress-plugin-group-icons:
         specifier: ^1.6.3
-        version: 1.6.3(markdown-it@14.1.0)(vite@7.1.8(@types/node@24.6.2)(yaml@2.8.1))
+        version: 1.6.3(markdown-it@14.1.0)(vite@7.1.9(@types/node@24.6.2)(yaml@2.8.1))
       vue:
         specifier: ^3.5.22
         version: 3.5.22(typescript@5.9.3)
@@ -2161,8 +2161,8 @@ packages:
       terser:
         optional: true
 
-  vite@7.1.8:
-    resolution: {integrity: sha512-oBXvfSHEOL8jF+R9Am7h59Up07kVVGH1NrFGFoEG6bPDZP3tGpQhvkBpy5x7U6+E6wZCu9OihsWgJqDbQIm8LQ==}
+  vite@7.1.9:
+    resolution: {integrity: sha512-4nVGliEpxmhCL8DslSAUdxlB6+SMrhB0a1v5ijlh1xB1nEPuy1mxaHxysVucLHuWryAxLWg6a5ei+U4TLn/rFg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -4499,7 +4499,7 @@ snapshots:
       '@types/node': 24.6.2
       fsevents: 2.3.3
 
-  vite@7.1.8(@types/node@24.6.2)(yaml@2.8.1):
+  vite@7.1.9(@types/node@24.6.2)(yaml@2.8.1):
     dependencies:
       esbuild: 0.25.10
       fdir: 6.5.0(picomatch@4.0.3)
@@ -4512,13 +4512,13 @@ snapshots:
       fsevents: 2.3.3
       yaml: 2.8.1
 
-  vitepress-plugin-group-icons@1.6.3(markdown-it@14.1.0)(vite@7.1.8(@types/node@24.6.2)(yaml@2.8.1)):
+  vitepress-plugin-group-icons@1.6.3(markdown-it@14.1.0)(vite@7.1.9(@types/node@24.6.2)(yaml@2.8.1)):
     dependencies:
       '@iconify-json/logos': 1.2.9
       '@iconify-json/vscode-icons': 1.2.29
       '@iconify/utils': 3.0.1
       markdown-it: 14.1.0
-      vite: 7.1.8(@types/node@24.6.2)(yaml@2.8.1)
+      vite: 7.1.9(@types/node@24.6.2)(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
