@@ -102,7 +102,7 @@ Everyone on the Vite team participated in defining the new API, which was co-des
 - [Customize CSS output file name in library mode](/guide/migration#customize-css-output-file-name-in-library-mode)
 - [And more changes that should only affect a few users](/guide/migration#advanced)
 
-There is also a new [Breaking Changes](/changes/) page that lists all planned, considering, and past changes in Vite.
+There is also a new [Breaking Changes](https://vite.dev/changes/) page that lists all planned, considering, and past changes in Vite.
 
 ## Migrating to Vite 6
 
