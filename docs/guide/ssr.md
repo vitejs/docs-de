@@ -12,10 +12,6 @@ Dies ist eine niedrigstufige API, die für Bibliotheks- und Framework-Autoren ge
 Derzeit arbeitet Vite an einer verbesserten SSR-API mit der [Environment API](https://github.com/vitejs/vite/discussions/16358). Unter dem Link finden Sie weitere Details.
 :::
 
-:::tip HILFE
-Bei Fragen steht Ihnen die Community normalerweise im [Vite Discord-Kanal für SSR](https://discord.gg/PkbxgzPhJv) hilfreich zur Seite.
-:::
-
 ## Beispielprojekte
 
 Vite bietet integrierte Unterstützung für serverseitiges Rendering (SSR). [`create-vite-extra`](https://github.com/bluwy/create-vite-extra) enthält Beispiel-SSR-Setups, die Sie als Referenz für diesen Leitfaden verwenden können:
