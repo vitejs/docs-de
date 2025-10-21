@@ -24,15 +24,15 @@
 - 🔩 Universelle Plugin-Schnittstelle
 - 🔑 Vollständig typisierte APIs
 
-Vite (französisches Wort für "schnell", ausgesprochen [`/vit/`](https://cdn.jsdelivr.net/gh/vitejs/vite@main/docs/public/vite.mp3), wie "veet") ist eine neue Art von Frontend-Build-Tool, das die Erfahrung bei der Frontend-Entwicklung erheblich verbessert. Es besteht aus zwei Hauptbestandteilen:
+Vite (französisches Wort für "schnell", ausgesprochen [`/vit/`](https://cdn.jsdelivr.net/gh/vitejs/vite@main/docs/public/vite.mp3), wie "veet") ist eine neue Art von Frontend-Build-Tool, dass die Erfahrung bei der Frontend-Entwicklung erheblich verbessert. Es besteht aus zwei Hauptbestandteilen:
 
-- A dev server that serves your source files over [native ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), with [rich built-in features](https://vite.dev/guide/features.html) and astonishingly fast [Hot Module Replacement (HMR)](https://vite.dev/guide/features.html#hot-module-replacement).
+- Ein Entwicklungs-Server, der Quelldateien über [native ES-Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) bereitstellt, mit [umfangreichen integrierten Funktionen](https://vite.dev/guide/features.html) und erstaunlich schnellem [Hot Module Replacement (HMR)](https://vite.dev/guide/features.html#hot-module-replacement).
 
-- A [build command](https://vite.dev/guide/build.html) that bundles your code with [Rollup](https://rollupjs.org), pre-configured to output highly optimized static assets for production.
+- Ein [Build-Befehl](https://vite.dev/guide/build.html) der Code mit Hilfe von [Rollup](https://rollupjs.org) bündelt und so konfiguriert ist, dass hochoptimisierte statische Assets für die Produktion erzeugt werden.
 
-In addition, Vite is highly extensible via its [Plugin API](https://vite.dev/guide/api-plugin.html) and [JavaScript API](https://vite.dev/guide/api-javascript.html) with full typing support.
+Darüber hinaus ist Vite über seine [Plugin-API](https://vite.dev/guide/api-plugin.html) und [JavaScript-API](https://vite.dev/guide/api-javascript.html) mit vollständiger Typisierungsunterstützung stark erweiterbar.
 
-[Read the Docs to Learn More](https://vite.dev).
+[Lies die Dokumentation, um mehr zu erfahren](https://vite.dev).
 
 ## Pakete
 
