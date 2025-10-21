@@ -17,7 +17,7 @@ Umgebungsfabriken sind für die Implementierung durch Umgebungsanbieter wie Clou
 
 ```ts
 function createWorkerdEnvironment(
-  userConfig: EnvironmentOptions,
+  userConfig: EnvironmentOptions
 ): EnvironmentOptions {
   return mergeConfig(
     {
@@ -39,7 +39,7 @@ function createWorkerdEnvironment(
         },
       },
     },
-    userConfig,
+    userConfig
   )
 }
 ```
@@ -160,7 +160,7 @@ const moduleRunner = new ModuleRunner(
     fetchModule,
     // you can also provide hmr.connection to support HMR
   },
-  new ESModulesEvaluator(),
+  new ESModulesEvaluator()
 )
 
 await moduleRunner.import('/src/entry-point.js')
@@ -182,6 +182,7 @@ type ModuleRunnerHmr = Debug<ModuleRunnerHmrRaw>
 type ModuleRunnerTransport = unknown
 
 // ---cut---
+// @errors: 2307 2304
 interface ModuleRunnerOptions {
   /**
    * Root of the project
@@ -229,6 +230,7 @@ import type { Debug } from '@type-challenge/utils'
 type ModuleRunnerContext = Debug<ModuleRunnerContextRaw>
 
 // ---cut---
+// @errors: 2307
 export interface ModuleEvaluator {
   /**
    * Number of prefixed lines in the transformed code.
@@ -243,7 +245,7 @@ export interface ModuleEvaluator {
   runInlinedModule(
     context: ModuleRunnerContext,
     code: string,
-    id: string,
+    id: string
   ): Promise<any>
   /**
    * evaluate externalized module.
@@ -297,7 +299,7 @@ const runner = new ModuleRunner(
       timeout: 5000,
     }),
   },
-  new ESModulesEvaluator(),
+  new ESModulesEvaluator()
 )
 ```
 
@@ -349,7 +351,7 @@ export const runner = new ModuleRunner(
     },
     hmr: false, // disable HMR as HMR requires transport.connect
   },
-  new ESModulesEvaluator(),
+  new ESModulesEvaluator()
 )
 
 await runner.import('/entry.js')
