@@ -23,6 +23,7 @@ import logoReact from './images/react.svg'
 import logoRemix from './images/remix.svg'
 import logoSvelte from './images/svelte.svg'
 import logoLaravel from './images/laravel.svg'
+import logoHono from './images/hono.svg'
 
 /**
  * The frameworks and tools to display in this section.
@@ -138,6 +139,13 @@ const frameworks: Framework[] = [
     logo: logoLaravel,
     color: '#eb4432',
     url: 'https://laravel.com/',
+    visible: ref(false),
+  },
+  {
+    name: 'Hono',
+    logo: logoHono,
+    color: '#ff5c13',
+    url: 'https://hono.dev/',
     visible: ref(false),
   },
 ]
