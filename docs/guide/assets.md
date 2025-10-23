@@ -42,7 +42,7 @@ document.getElementById('hero-img').style.background = `url("${imgUrl}")`
 
 ### Explizite URL-Imports
 
-Assets, die nicht in der internen Liste oder in `assetsInclude` enthalten sind, können explizit als URL mit dem Suffix `?url` importiert werden. Dies ist nützlich, um beispielsweise [Houdini Paint Worklets](https://houdini.how/usage) zu importieren.
+Assets, die nicht in der internen Liste oder in `assetsInclude` enthalten sind, können explizit als URL mit dem Suffix `?url` importiert werden. Dies ist nützlich, um beispielsweise [Houdini Paint Worklets](https://developer.mozilla.org/en-US/docs/Web/API/CSS/paintWorklet_static) zu importieren.
 
 ```js
 import workletURL from 'extra-scalloped-border/worklet.js?url'
