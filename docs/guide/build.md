@@ -4,14 +4,19 @@ Wenn es Zeit ist, Ihre App für die Produktion bereitzustellen, führen Sie einf
 
 ## Browserkompatibilität
 
-Das Produktionsbündel setzt die Unterstützung für modernes JavaScript voraus. Standardmäßig richtet Vite sich an Browser, die die [nativen ES-Module](https://caniuse.com/es6-module), [nativen ESM-Dynamic-Import](https://caniuse.com/es6-module-dynamic-import) und [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta) unterstützen:
+Standardmäßig setzt das Produktionsbündel die Unterstützung für modernes JavaScript voraus, inklusive [nativer ES-Module](https://caniuse.com/es6-module), [nativem ESM-Dynamic-Import](https://caniuse.com/es6-module-dynamic-import) und [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta). Der Standardbereich für unterstützte Browser ist:
 
 - Chrome >=87
 - Firefox >=78
 - Safari >=14
 - Edge >=88
 
-Sie können benutzerdefinierte Ziele über die [`build.target` Konfigurationsoption](/config/build-options.md#build-target) festlegen, wobei das niedrigste Ziel `es2015` ist.
+Sie können benutzerdefinierte Ziele über die [`build.target` Konfigurationsoption](/config/build-options.md#build-target) festlegen, wobei das niedrigste Ziel `es2015` ist. Wenn ein niedrigeres Ziel festgelegt wird, benötigt Vite dennoch die Mindestanforderungen an die Browserunterstützung, da es auf den [nativen, dynamischen ESM-Import](https://caniuse.com/es6-module-dynamic-import) und [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta) angewiesen ist:
+
+- Chrome >=64
+- Firefox >=67
+- Safari >=11.1
+- Edge >=79
 
 Beachten Sie, dass Vite standardmäßig nur Syntaxtransformationen verarbeitet und **keine Polyfills** abdeckt. Sie könnten zum Beispiel https://cdnjs.cloudflare.com/polyfill/, um automatisch Polyfill-Bundles auf Grundlage des UserAgent-Strings des Browsers des Nutzers zu generieren.
 
