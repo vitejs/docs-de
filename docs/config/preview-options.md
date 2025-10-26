@@ -78,7 +78,9 @@ Verwendet [`http-proxy`](https://github.com/http-party/node-http-proxy). Vollst�
 - **Typ:** `boolean | CorsOptions`
 - **Standardwert:** [`server.cors`](./server-options#server-cors)
 
-Konfigurieren Sie CORS für den Vorschau-Server. Dies ist standardmäßig aktiviert und erlaubt jede Herkunft. Übergeben Sie ein [Optionsobjekt](https://github.com/expressjs/cors#configuration-options), um das Verhalten fein abzustimmen, oder `false`, um es zu deaktivieren.
+Konfigurieren Sie CORS für den Vorschau-Server.
+
+Siehe [`server.cors`](./server-options#server-cors) für mehr Details.
 
 ## preview.headers
 
