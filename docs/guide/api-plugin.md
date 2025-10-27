@@ -6,7 +6,7 @@ Vite-Plugins erweitern die gut gestaltete Plugin-Schnittstelle von Rollup um ein
 
 ## Erstellen eines Plugins
 
-Vite bemüht sich, etablierte Muster von Anfang an anzubieten. Bevor Sie ein neues Plugin erstellen, sollten Sie daher die [Anleitung zu den Funktionen](https://vite.dev/guide/features) überprüfen, um zu sehen, ob Ihre Anforderungen bereits abgedeckt sind. Überprüfen Sie auch verfügbare Community-Plugins, sowohl in Form eines [kompatiblen Rollup-Plugins](https://github.com/rollup/awesome) als auch [Vite-spezifischer Plugins](https://github.com/vitejs/awesome-vite#plugins).
+Vite bemüht sich, etablierte Muster von Anfang an anzubieten. Bevor Sie ein neues Plugin erstellen, sollten Sie daher die [Anleitung zu den Funktionen](/guide/features) überprüfen, um zu sehen, ob Ihre Anforderungen bereits abgedeckt sind. Überprüfen Sie auch verfügbare Community-Plugins, sowohl in Form eines [kompatiblen Rollup-Plugins](https://github.com/rollup/awesome) als auch [Vite-spezifischer Plugins](https://github.com/vitejs/awesome-vite#plugins).
 
 Wenn Sie ein Plugin erstellen, können Sie es direkt in Ihrer `vite.config.js` einbetten. Es ist nicht notwendig, ein neues Paket dafür zu erstellen. Wenn Sie feststellen, dass ein Plugin in Ihren Projekten nützlich war, erwägen Sie, es zu teilen, um anderen [in der Community](https://chat.vite.dev) zu helfen.
 
