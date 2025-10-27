@@ -18,7 +18,7 @@ Vite verbessert die Startzeit des Entwicklungsservers, indem es zunächst die Mo
 
 - **Abhängigkeiten** sind meist einfaches JavaScript, das sich während der Entwicklung nicht oft ändert. Einige große Abhängigkeiten (z. B. Komponentenbibliotheken mit Hunderten von Modulen) sind auch recht teuer in der Verarbeitung. Abhängigkeiten können auch in verschiedenen Modulformaten ausgeliefert werden (z. B. ESM oder CommonJS).
 
-  Vite [bündelt Abhängigkeiten](./dep-pre-bundling) mit [esbuild](https://esbuild.github.io/). Esbuild ist in Go geschrieben und bündelt Abhängigkeiten 10-100x schneller als JavaScript-basierte Bundler.
+  Vite [bündelt Abhängigkeiten](./dep-pre-bundling.md) mit [esbuild](https://esbuild.github.io/). Esbuild ist in Go geschrieben und bündelt Abhängigkeiten 10-100x schneller als JavaScript-basierte Bundler.
 
 - Der **Quellcode** enthält oft Nicht-Plain-JavaScript, das umgewandelt werden muss (z. B. JSX, CSS oder Vue/Svelte-Komponenten), und wird sehr oft bearbeitet werden. Außerdem muss nicht der gesamte Quellcode gleichzeitig geladen werden (z. B. bei routenbasiertem Code-Splitting).
 
@@ -47,7 +47,7 @@ Wenn Sie einmal erlebt haben, wie schnell Vite ist, werden Sie sich wohl kaum no
 
 Auch wenn natives ESM inzwischen weitgehend unterstützt wird, ist die Auslieferung von ungebündeltem ESM in der produktive Umgebung immer noch ineffizient (selbst mit HTTP/2), da durch verschachtelte Importe zusätzliche Netzwerkumläufe verursacht werden. Um eine optimale Ladeleistung in der produktiven Umgebung zu erreichen, ist es immer noch besser, Ihren Code mit Tree-Shaking, Lazy-Loading und Common Chunk Splitting (für besseres Caching) zu bündeln.
 
-Es ist nicht einfach, eine optimale Ausgabe und Verhaltenskonsistenz zwischen dem Entwicklungsserver und dem produktiven Build zu gewährleisten. Aus diesem Grund wird Vite mit einem vorkonfigurierten [Build-Befehl](./build) ausgeliefert, der viele [Leistungsoptimierungen](./features#build-optimizations) von Haus aus einbaut.
+Es ist nicht einfach, eine optimale Ausgabe und Verhaltenskonsistenz zwischen dem Entwicklungsserver und dem produktiven Build zu gewährleisten. Aus diesem Grund wird Vite mit einem vorkonfigurierten [Build-Befehl](./build.md) ausgeliefert, der viele [Leistungsoptimierungen](./features.md#build-optimizations) von Haus aus einbaut.
 
 ## Warum nicht mit esbuild bundlen?
 
@@ -59,4 +59,4 @@ Rollup hat auch an Leistungsverbesserungen gearbeitet, [Umstellung des Parsers a
 
 ## Wie unterscheidet sich Vite von X?
 
-Im Abschnitt [Vergleiche](./comparisons) finden Sie weitere Einzelheiten darüber, wie sich Vite von anderen ähnlichen Tools unterscheidet.
+Im Abschnitt [Vergleiche](./comparisons.md) finden Sie weitere Einzelheiten darüber, wie sich Vite von anderen ähnlichen Tools unterscheidet.
