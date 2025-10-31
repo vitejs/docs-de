@@ -213,6 +213,8 @@ Vite bietet First-Class Vue Support:
 - Ansicht 2.7 Unterstützung über [@vitejs/plugin-vue2](https://github.com/vitejs/vite-plugin-vue2)
 - Ansicht <2.7 Unterstützung via [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2)
 
+Siehe [Plugins Guide](/plugins/) für mehr Informationen.
+
 ## JSX
 
 .jsx"- und "tsx"-Dateien werden ebenfalls von Haus aus unterstützt. JSX Transpilierung wird auch über [esbuild](https://esbuild.github.io) gehandhabt.
@@ -512,7 +514,7 @@ const modules = {
 
 #### Benutzerdefinierte Abfragen
 
-Sie können auch die Option `query` verwenden, um Abfragen für Importe zu stellen, zum Beispiel um Assets [als String](https://vite.dev/guide/assets.html#importing-asset-as-string) oder [als URL](https://vite.dev/guide/assets.html#importing-asset-as-url) zu importieren:
+Sie können auch die Option `query` verwenden, um Abfragen für Importe zu stellen, zum Beispiel um Assets [als String](/guide/assets.html#importing-asset-as-string) oder [als URL](/guide/assets.html#importing-asset-as-url) zu importieren:
 
 ```ts
 const moduleStrings = import.meta.glob('./dir/*.svg', {
