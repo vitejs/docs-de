@@ -12,14 +12,20 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    import { defineConfig } from 'vite'
    // ---cut---
    export default defineConfig({
-     build: {
-       // generiert .vite/manifest.json in outDir
-       manifest: true,
-       rollupOptions: {
-         // Überschreibe den Standard-.html-Einstieg
-         input: '/path/to/main.js'
-       }
-     }
+      server: {
+        cors: {
+          // der Ursprung, auf welchen Sie mit dem Browser zugreifen
+          origin: 'http://my-backend.example.com',
+        },
+      },
+      build: {
+        // generiert .vite/manifest.json in outDir
+        manifest: true,
+        rollupOptions: {
+          // Überschreibe den Standard-.html-Einstieg
+          input: '/path/to/main.js'
+        }
+      }
    })
    ```
 
