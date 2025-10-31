@@ -152,11 +152,10 @@ Der Modul-Runner stellt die Methode `import` zur Verfügung. Wenn der Vite-Serve
 
 ```js
 import { ModuleRunner, ESModulesEvaluator } from 'vite/module-runner'
-import { root, fetchModule } from './rpc-implementation.js'
+import { fetchModule } from './rpc-implementation.js'
 
 const moduleRunner = new ModuleRunner(
   {
-    root,
     fetchModule,
     // you can also provide hmr.connection to support HMR
   },
@@ -184,10 +183,6 @@ type ModuleRunnerTransport = unknown
 // ---cut---
 // @errors: 2307 2304
 interface ModuleRunnerOptions {
-  /**
-   * Root of the project
-   */
-  root: string
   /**
    * A set of methods to communicate with the server.
    */
@@ -292,7 +287,6 @@ import {
 
 const runner = new ModuleRunner(
   {
-    root: fileURLToPath(new URL('./', import.meta.url)),
     transport: new RemoteRunnerTransport({
       send: (data) => parentPort.postMessage(data),
       onMessage: (listener) => parentPort.on('message', listener),
@@ -340,7 +334,6 @@ import { ESModulesEvaluator, ModuleRunner } from 'vite/module-runner'
 
 export const runner = new ModuleRunner(
   {
-    root: fileURLToPath(new URL('./', import.meta.url)),
     transport: {
       async fetchModule(id, importer) {
         const response = await fetch(
