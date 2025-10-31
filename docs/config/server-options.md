@@ -42,6 +42,20 @@ Weitere Informationen finden Sie im [WSL-Dokument](https://learn.microsoft.com/e
 
 :::
 
+## server.allowedHosts
+
+- **Typ:** `string[] | true`
+- **Standardwert:** `[]`
+
+Die Hostnamen, auf die Vite reagieren darf.
+`localhost` und Domänen unter `.localhost` und alle IP-Adressen sind standardmäßig erlaubt.
+Bei der Nutzung von HTTPS wird diese Prüfung übersprungen.
+
+Wenn eine Zeichenkette mit `.` startet, wird der Hostname ohne den `.` zugelassen und alle Subdomänen unter dem Hostnamen. Zum Beispiel `.example.com` erteilt eine Erlaubnis für `example.com`, `foo.example.com` und `foo.bar.example.com`.
+
+Wenn der Wert auf `true` gesetzt wird, ist es dem Server gestattet, auf Anfragen beliebiger Hosts zu reagieren.
+Das ist jedoch nicht empfohlen, da es eine Schwachstelle für DNS-Rebinding-Angriffe darstellt.
+
 ## server.port
 
 - **Typ:** `number`
