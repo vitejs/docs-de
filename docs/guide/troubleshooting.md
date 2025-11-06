@@ -130,6 +130,14 @@ Dies liegt daran, dass Node.js die Größe des Anforderungshauptkopfs begrenzt, 
 
 Um dies zu vermeiden, versuchen Sie, die Größe des Anforderungshauptkopfs zu reduzieren. Wenn beispielsweise der Cookie lang ist, löschen Sie ihn. Oder Sie können [`--max-http-header-size`](https://nodejs.org/api/cli.html#--max-http-header-sizesize) verwenden, um die maximale Headergröße zu ändern.
 
+### Dev Containers / VS Code Port Forwarding
+
+Wenn Sie einen Dev-Container oder die Portweiterleitung in VS Code benutzen, kann es sein, dass sie die [`server.host`](/config/server-options.md#server-host) Option mit `127.0.0.1` in der Konfiguration setzen müssen.
+
+Der Grund dafür ist, dass [die Portweiterleitung in VS Code kein IPv6 unterstützt](https://github.com/microsoft/vscode-remote-release/issues/7029).
+
+Siehe [#16522](https://github.com/vitejs/vite/issues/16522) für mehr Details.
+
 ## HMR (Hot Module Replacement)
 
 ### Vite erkennt eine Dateiänderung, aber das HMR funktioniert nicht
