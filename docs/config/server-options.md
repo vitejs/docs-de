@@ -160,7 +160,7 @@ export default defineConfig({
 ## server.cors
 
 - **Typ:** `boolean | CorsOptions`
-- **Standardwert:** `false`
+- **Standardwert:** `{ origin: /^https?:\/\/(?:(?:[^:]+\.)?localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/ }` (erlaubt localhost, `127.0.0.1` und `::1`)
 
 Konfigurieren Sie CORS für den Entwicklungsserver. Übergeben Sie ein [Optionsobjekt](https://github.com/expressjs/cors#configuration-options), um das Verhalten fein abzustimmen, oder `false`, um es zu deaktivieren. 
 
