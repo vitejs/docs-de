@@ -22,6 +22,10 @@ Sie können auch explizit eine Konfigurationsdatei angeben, die mit der CLI-Opti
 vite --config my-config.js
 ```
 
+::: Tipp: Bündeln der Konfiguration
+Standardmäßig nutzt Vite `esbuild`, um die Konfiguration in einer temporären Datei zu bündeln. Dies kann zu Problemen beim Importieren von TypeScript-Dateien in einem Monorepo führen. Wenn Sie Probleme mit diesem Ansatz haben, können Sie stattdessen `--configLoader=runner` angeben, um den Modul-Runner zu verwenden - dieser erstellt keine temporäre Konfiguration und transformiert alle Dateien sofort. Beachten Sie, dass der Modul-Runner CJS in Konfigurationsdateien nicht unterstützt, externe CJS-Pakete sollten jedoch wie gewohnt funktionieren.
+:::
+
 ## Intellisense-Konfiguration
 
 Da Vite mit TypeScript-Typisierungen ausgeliefert wird, können Sie die Intellisense Ihrer IDE mit jsdoc-Typ-Hinweisen nutzen:
