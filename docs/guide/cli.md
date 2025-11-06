@@ -15,7 +15,7 @@ vite [root]
 #### Optionen
 
 | Optionen                 |                                                                                                                           |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------|
 | `--host [host]`          | Gibt den Hostnamen an (`string`)                                                                                          |
 | `--port <port>`          | Gibt den Port an (`number`)                                                                                               |
 | `--open [path]`          | Öffnet den Browser beim Starten (`boolean \| string`)                                                                     |
@@ -48,7 +48,7 @@ vite build [root]
 #### Optionen
 
 | Optionen                       |                                                                                                                                                               |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `--target <target>`            | Transpile-Ziel (Standard: `"modules"`) (`string`)                                                                                                             |
 | `--outDir <dir>`               | Ausgabe Verzeichnis (Standard: `dist`) (`string`)                                                                                                             |
 | `--assetsDir <dir>`            | Verzeichnis unter outDir, um Assets abzulegen (Standard: `"assets"`) (`string`)                                                                               |
@@ -64,6 +64,7 @@ vite build [root]
 | `--base <path>`                | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                             |
 | `-l, --logLevel <level>`       | Info \| warn \| error \| silent (`string`)                                                                                                                    |
 | `--clearScreen`                | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                               |
+| `--configLoader <loader>`      | Verwenden Sie `bundle`, um die Konfiguration mit esbuild zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten (Standard: `bundle`)          |
 | `--profile`                    | Startet den integrierten Node.js-Inspector (siehe [Performance Engpässe](/guide/troubleshooting#performance-bottlenecks))                                     |
 | `-d, --debug [feat]`           | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                               |
 | `-f, --filter <filter>`        | Filtert Debug-Protokolle (`string`)                                                                                                                           |
@@ -85,17 +86,18 @@ vite optimize [root]
 
 #### Optionen
 
-| Optionen                 |                                                                                 |
-| ------------------------ | ------------------------------------------------------------------------------- |
-| `--force`                | Zwingt den Optimierer, den Cache zu ignorieren und neu zu bündeln (`boolean`)   |
-| `-c, --config <file>`    | Verwendet die angegebene Konfigurationsdatei (`string`)                         |
-| `--base <path>`          | Öffentlicher Basispfad (Standard: `/`) (`string`)                               |
-| `-l, --logLevel <level>` | Info \| warn \| error \| silent (`string`)                                      |
-| `--clearScreen`          | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`) |
-| `-d, --debug [feat]`     | Zeigt Debug-Protokolle an (`string \| boolean`)                                 |
-| `-f, --filter <filter>`  | Filtert Debug-Protokolle (`string`)                                             |
-| `-m, --mode <mode>`      | Setzt den Umgebungsmodus (`string`)                                             |
-| `-h, --help`             | Zeigt verfügbare CLI-Optionen an                                                |
+| Optionen                  |                                                                                                                                                      |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `--force`                 | Zwingt den Optimierer, den Cache zu ignorieren und neu zu bündeln (`boolean`)                                                                        |
+| `-c, --config <file>`     | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                              |
+| `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                    |
+| `-l, --logLevel <level>`  | Info \| warn \| error \| silent (`string`)                                                                                                           |
+| `--clearScreen`           | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                      |
+| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit esbuild zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten (Standard: `bundle`) |
+| `-d, --debug [feat]`      | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                      |
+| `-f, --filter <filter>`   | Filtert Debug-Protokolle (`string`)                                                                                                                  |
+| `-m, --mode <mode>`       | Setzt den Umgebungsmodus (`string`)                                                                                                                  |
+| `-h, --help`              | Zeigt verfügbare CLI-Optionen an                                                                                                                     |
 
 ### `vite preview`
 
@@ -111,18 +113,19 @@ vite preview [root]
 
 #### Optionen
 
-| Optionen                 |                                                                                  |
-| ------------------------ | -------------------------------------------------------------------------------- |
-| `--host [host]`          | Gibt den Hostnamen an (`string`)                                                 |
-| `--port <port>`          | Gibt den Port an (`number`)                                                      |
-| `--strictPort`           | Beendet den Vorgang, wenn der angegebene Port bereits verwendet wird (`boolean`) |
-| `--open [path]`          | Öffnet den Browser beim Starten (`boolean \| string`)                            |
-| `--outDir <dir>`         | Ausgabe Verzeichnis (Standard: `dist`)(`string`)                                 |
-| `-c, --config <file>`    | Verwendet die angegebene Konfigurationsdatei (`string`)                          |
-| `--base <path>`          | Öffentlicher Basispfad (Standard: `/`) (`string`)                                |
-| `-l, --logLevel <level>` | Info \| warn \| error \| silent (`string`)                                       |
-| `--clearScreen`          | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)  |
-| `-d, --debug [feat]`     | Zeigt Debug-Protokolle an (`string \| boolean`)                                  |
-| `-f, --filter <filter>`  | Filtert Debug-Protokolle (`string`)                                              |
-| `-m, --mode <mode>`      | Setzt den Umgebungsmodus (`string`)                                              |
-| `-h, --help`             | Zeigt verfügbare CLI-Optionen an                                                 |
+| Optionen                  |                                                                                                                                                      |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `--host [host]`           | Gibt den Hostnamen an (`string`)                                                                                                                     |
+| `--port <port>`           | Gibt den Port an (`number`)                                                                                                                          |
+| `--strictPort`            | Beendet den Vorgang, wenn der angegebene Port bereits verwendet wird (`boolean`)                                                                     |
+| `--open [path]`           | Öffnet den Browser beim Starten (`boolean \| string`)                                                                                                |
+| `--outDir <dir>`          | Ausgabe Verzeichnis (Standard: `dist`)(`string`)                                                                                                     |
+| `-c, --config <file>`     | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                              |
+| `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                    |
+| `-l, --logLevel <level>`  | Info \| warn \| error \| silent (`string`)                                                                                                           |
+| `--clearScreen`           | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                      |
+| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit esbuild zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten (Standard: `bundle`) |
+| `-d, --debug [feat]`      | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                      |
+| `-f, --filter <filter>`   | Filtert Debug-Protokolle (`string`)                                                                                                                  |
+| `-m, --mode <mode>`       | Setzt den Umgebungsmodus (`string`)                                                                                                                  |
+| `-h, --help`              | Zeigt verfügbare CLI-Optionen an                                                                                                                     |
