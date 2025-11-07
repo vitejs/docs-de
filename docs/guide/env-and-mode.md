@@ -77,6 +77,23 @@ Wenn Sie das Präfix für die Umgebungsvariablen ändern möchten, sehen Sie sic
 - Da alle an Ihren Vite-Quellcode freigegebenen Variablen in Ihrem Client-Bundle landen, sollten `VITE_*`-Variablen _keine_ sensiblen Informationen enthalten.
   :::
 
+::: details Variablen in umgekehrter Reihenfolge erweitern
+
+Vite unterstützt das Erweitern von Variablen in umgekehrter Reihenfolge.
+Zum Beispiel die folgende `.env` wird ausgewertet als `VITE_FOO=foobar`, `VITE_BAR=bar`.
+
+```[.env]
+VITE_FOO=foo${VITE_BAR}
+VITE_BAR=bar
+```
+
+Dies funktioniert nicht in Shell-Skripten oder anderen Werkzeugen wie `docker-compose`.
+Allerdings unterstützt Vite dieses Verhalten, da es seit langem von `dotenv-expand` unterstützt wird und andere Tools im JavaScript-Ökosystem ältere Versionen verwenden, die dieses Verhalten unterstützen.
+
+Um Interoperabilitätsprobleme zu vermeiden, wird empfohlen, sich nicht auf dieses Verhalten zu verlassen. Vite wird möglicherweise in Zukunft Warnungen für dieses Verhalten ausgeben.
+
+:::
+
 ### IntelliSense für TypeScript
 
 Standardmäßig stellt Vite Typdefinitionen für `import.meta.env` in [`vite/client.d.ts`](https://github.com/vitejs/vite/blob/main/packages/vite/client.d.ts) bereit. Obwohl Sie in `.env.[mode]`-Dateien weitere benutzerdefinierte Umgebungsvariablen definieren können, möchten Sie möglicherweise TypeScript IntelliSense für benutzerdefinierte Umgebungsvariablen erhalten, die mit `VITE_` beginnen.
