@@ -56,6 +56,10 @@ Wenn eine Zeichenkette mit `.` startet, wird der Hostname ohne den `.` zugelasse
 Wenn der Wert auf `true` gesetzt wird, ist es dem Server gestattet, auf Anfragen beliebiger Hosts zu reagieren.
 Das ist jedoch nicht empfohlen, da es eine Schwachstelle für DNS-Rebinding-Angriffe darstellt.
 
+::: details Konfiguration via Umgebungsvariable
+Sie können die Umgebungsvariable `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` setzen, um einen zusätzlichen berechtigten Host hinzuzufügen.
+:::
+
 ## server.port
 
 - **Typ:** `number`
