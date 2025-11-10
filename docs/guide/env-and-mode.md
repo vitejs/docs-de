@@ -1,8 +1,10 @@
 # Umgebungsvariablen und Modi
 
-## Umgebungsvariablen
+Vite macht bestimmte Konstanten unter dem speziellen Objekt `import.meta.env` verfügbar. Diese Konstanten werden während der Entwicklung als globale Variablen definiert und beim Erstellen statisch ersetzt, um Tree Shaking effektiv zu gestalten.
 
-Vite stellt env-Variablen auf dem speziellen **`import.meta.env`**-Objekt zur Verfügung, die zur Erstellungszeit statisch ersetzt werden. Einige eingebaute Variablen sind in allen folgenden Fällen verfügbar:
+## Eingebaute Konstanten
+
+Einige eingebaute Konstanten sind in allen folgenden Fällen verfügbar:
 
 - **`import.meta.env.MODE`**: {string} der [Modus](#modi), in dem die App ausgeführt wird.
 
@@ -14,29 +16,7 @@ Vite stellt env-Variablen auf dem speziellen **`import.meta.env`**-Objekt zur Ve
 
 - **`import.meta.env.SSR`**: {boolean}, ob die Anwendung auf dem [Server](./ssr.md#conditional-logic) läuft.
 
-## `.env` Dateien
-
-Vite verwendet [dotenv](https://github.com/motdotla/dotenv), um zusätzliche Umgebungsvariablen aus den folgenden Dateien in Ihrem [Umgebungsverzeichnis](/config/shared-options.md#envdir) zu laden:
-
-```
-.env                # in allen Fällen geladen
-.env.local          # in allen Fällen geladen, von Git ignoriert
-.env.[mode]         # nur im angegebenen Modus geladen
-.env.[mode].local   # nur im angegebenen Modus geladen, von Git ignoriert
-```
-
-:::tip Prioritäten der Entwicklungsumgebungen
-
-Eine env-Datei für einen bestimmten Modus (z. B. `.env.production`) hat eine höhere Priorität als eine generische Datei (z. B. `.env`).
-
-Vite lädt immer `.env` und `.env.local` zusätzlich zur modusspezifischen Datei `.env.[mode]`. In modusspezifischen Dateien deklarierte Variablen haben Vorrang vor denen in generischen Dateien, aber Variablen, die nur in `.env` oder `.env.local` definiert sind, sind weiterhin in der Umgebung verfügbar.
-
-Darüber hinaus haben Umgebungsvariablen, die bereits bei der Ausführung von Vite vorhanden sind, die höchste Priorität und werden nicht durch `.env`-Dateien überschrieben. Beispiel: Bei der Ausführung von `VITE_SOME_KEY=123 vite build`.
-
-`.env`-Dateien werden zu Beginn von Vite geladen. Starten Sie den Server neu, nachdem Sie Änderungen vorgenommen haben.
-:::
-
-Geladene Umgebungsvariablen werden auch Ihrem Client-Quellcode über `import.meta.env` als Zeichenfolgen zugänglich gemacht.
+## Umgebungsvariablen
 
 Um zu verhindern, dass Umgebungsvariablen versehentlich an den Client durchsickern, werden nur Variablen mit dem Präfix `VITE_` in Ihrem von Vite verarbeiteten Code freigegeben. Zum Beispiel werden aus den folgenden Umgebungsvariablen:
 
@@ -52,9 +32,33 @@ console.log(import.meta.env.VITE_SOME_KEY) // "123"
 console.log(import.meta.env.DB_PASSWORD) // undefined
 ```
 
+Wenn Sie das Präfix für die Umgebungsvariablen ändern möchten, sehen Sie sich die [envPrefix](/config/shared-options.html#envprefix) Option an.
+
 :::tip Env Parsing
 
 Wie bereits oben erwähnt, ist `VITE_SOME_KEY` eine Zahl, gibt aber einen String zurück, wenn sie geparst wird. Das Gleiche gilt auch für boolesche Umgebungsvariablen. Stellen Sie sicher, dass Sie sie in den gewünschten Typ konvertieren, wenn Sie sie in Ihrem Code verwenden.
+:::
+
+### `.env` Dateien
+
+Vite verwendet [dotenv](https://github.com/motdotla/dotenv), um zusätzliche Umgebungsvariablen aus den folgenden Dateien in Ihrem [Umgebungsverzeichnis](/config/shared-options.md#envdir) zu laden:
+
+```
+.env                # in allen Fällen geladen
+.env.local          # in allen Fällen geladen, von Git ignoriert
+.env.[mode]         # nur im angegebenen Modus geladen
+.env.[mode].local   # nur im angegebenen Modus geladen, von Git ignoriert
+```
+
+::: tip Prioritäten der Entwicklungsumgebungen
+
+Eine env-Datei für einen bestimmten Modus (z. B. `.env.production`) hat eine höhere Priorität als eine generische Datei (z. B. `.env`).
+
+Vite lädt immer `.env` und `.env.local` zusätzlich zur modusspezifischen Datei `.env.[mode]`. In modusspezifischen Dateien deklarierte Variablen haben Vorrang vor denen in generischen Dateien, aber Variablen, die nur in `.env` oder `.env.local` definiert sind, sind weiterhin in der Umgebung verfügbar.
+
+Darüber hinaus haben Umgebungsvariablen, die bereits bei der Ausführung von Vite vorhanden sind, die höchste Priorität und werden nicht durch `.env`-Dateien überschrieben. Beispiel: Bei der Ausführung von `VITE_SOME_KEY=123 vite build`.
+
+`.env`-Dateien werden zu Beginn von Vite geladen. Starten Sie den Server neu, nachdem Sie Änderungen vorgenommen haben.
 :::
 
 Außerdem verwendet Vite [dotenv-expand](https://github.com/motdotla/dotenv-expand), um in env-Dateien geschriebene Variablen zu erweitern. Um mehr über die Syntax zu erfahren, sehen Sie sich [die Dokumentation](https://github.com/motdotla/dotenv-expand#what-rules-does-the-expansion-engine-follow) dazu an.
@@ -68,14 +72,13 @@ NEW_KEY2=test\$foo  # test$foo
 NEW_KEY3=test$KEY   # test123
 ```
 
-Wenn Sie das Präfix für die Umgebungsvariablen ändern möchten, sehen Sie sich die [envPrefix](/config/shared-options.html#envprefix) Option an.
-
 :::warning SICHERHEITSHINWEISE
 
 - `.env.*.local`-Dateien sind nur lokal und können sensible Variablen enthalten. Sie sollten `*.local` zu Ihrer `.gitignore` hinzufügen, um zu verhindern, dass sie in Git überprüft werden.
 
 - Da alle an Ihren Vite-Quellcode freigegebenen Variablen in Ihrem Client-Bundle landen, sollten `VITE_*`-Variablen _keine_ sensiblen Informationen enthalten.
-  :::
+  
+:::
 
 ::: details Variablen in umgekehrter Reihenfolge erweitern
 
@@ -94,7 +97,7 @@ Um Interoperabilitätsprobleme zu vermeiden, wird empfohlen, sich nicht auf dies
 
 :::
 
-### IntelliSense für TypeScript
+## IntelliSense für TypeScript
 
 Standardmäßig stellt Vite Typdefinitionen für `import.meta.env` in [`vite/client.d.ts`](https://github.com/vitejs/vite/blob/main/packages/vite/client.d.ts) bereit. Obwohl Sie in `.env.[mode]`-Dateien weitere benutzerdefinierte Umgebungsvariablen definieren können, möchten Sie möglicherweise TypeScript IntelliSense für benutzerdefinierte Umgebungsvariablen erhalten, die mit `VITE_` beginnen.
 
@@ -121,9 +124,13 @@ Wenn Ihr Code auf Typen aus Browserumgebungen wie [DOM](https://github.com/micro
 }
 ```
 
-## HTML-Umgebungsersatz
+:::warning Importe werden die Typenerweiterung unterbrechen
 
-Vite unterstützt auch den Ersatz von Umgebungsvariablen in HTML-Dateien. Eigenschaften in `import.meta.env` können in HTML-Dateien mit einer speziellen `%ENV_NAME%`-Syntax verwendet werden:
+Wenn die Erweiterung `ImportMetaEnv` nicht funktioniert, stellen Sie sicher, dass Sie keine `import`-Anweisungen in `vite-env.d.ts` haben. Weitere Informationen finden Sie in der [TypeScript-Dokumentation](https://www.typescriptlang.org/docs/handbook/2/modules.html#how-javascript-modules-are-defined).
+
+## HTML-Konstanten ersetzen
+
+Vite unterstützt auch den Ersatz von Konstanten in HTML-Dateien. Eigenschaften in `import.meta.env` können in HTML-Dateien mit einer speziellen `%CONST_NAME%`-Syntax verwendet werden:
 
 ```html
 <h1>Vite läuft im Modus %MODE%</h1>
@@ -140,8 +147,8 @@ Standardmäßig läuft der Entwicklungsserver (`dev`-Befehl) im `development`-Mo
 
 Dies bedeutet, dass bei Ausführung von `vite build` die Umgebungsvariablen aus `.env.production` geladen werden, wenn eine solche vorhanden ist:
 
-```
-# .env.production
+```[.env.production]
+
 VITE_APP_TITLE=Meine App
 ```
 
@@ -155,19 +162,18 @@ vite build --mode staging
 
 Und erstellen Sie eine `.env.staging`-Datei:
 
-```
-# .env.staging
+```[.env.staging]
+
 VITE_APP_TITLE=Meine App (staging)
 ```
 
 Da `vite build` standardmäßig eine Produktionsversion erstellt, können Sie dies ebenfalls ändern und eine Entwicklungsversion erstellen, indem Sie einen anderen Modus und eine `.env`-Dateikonfiguration verwenden:
 
-```
-# .env.testing
+```[.env.testing]
 NODE_ENV=development
 ```
 
-## NODE_ENV und Modi
+### NODE_ENV und Modi
 
 Wichtig zu beachten ist, dass `NODE_ENV` (`process.env.NODE_ENV`) und Modi zwei verschiedene Konzepte sind. Hier sieht man, wie die verschiedenen Befehle die `NODE_ENV` und den Modus beeinflussen:
 

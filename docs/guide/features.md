@@ -137,7 +137,7 @@ Alternativ können Sie `vite/client` zu `compilerOptions.types` in `tsconfig.jso
 Damit werden die folgenden Arten von Shims bereitgestellt:
 
 - Asset-Importe (z.B. Importieren einer `.svg`-Datei)
-- Typen für die in Vite eingefügten [env-Variablen](./env-and-mode#env-variables) auf `import.meta.env`
+- Typen für die in Vite eingefügten [konstanten Variablen](./env-and-mode#env-variables) auf `import.meta.env`
 - Typen für die [HMR-API](./api-hmr) unter `import.meta.hot`
 
 ::: tip
