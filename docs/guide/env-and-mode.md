@@ -18,6 +18,8 @@ Einige eingebaute Konstanten sind in allen folgenden Fällen verfügbar:
 
 ## Umgebungsvariablen
 
+Geladene Umgebungsvariablen werden auch Ihrem Client-Quellcode über `import.meta.env` als Zeichenfolgen zugänglich gemacht.
+
 Um zu verhindern, dass Umgebungsvariablen versehentlich an den Client durchsickern, werden nur Variablen mit dem Präfix `VITE_` in Ihrem von Vite verarbeiteten Code freigegeben. Zum Beispiel werden aus den folgenden Umgebungsvariablen:
 
 ```[.env]
