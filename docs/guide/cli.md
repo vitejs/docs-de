@@ -14,24 +14,25 @@ vite [root]
 
 #### Optionen
 
-| Optionen                 |                                                                                                                           |
-|--------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| `--host [host]`          | Gibt den Hostnamen an (`string`)                                                                                          |
-| `--port <port>`          | Gibt den Port an (`number`)                                                                                               |
-| `--open [path]`          | Öffnet den Browser beim Starten (`boolean \| string`)                                                                     |
-| `--cors`                 | Aktiviert CORS (`boolean`)                                                                                                |
-| `--strictPort`           | Beendet den Vorgang, wenn der angegebene Port bereits verwendet wird (`boolean`)                                          |
-| `--force`                | Zwingt den Optimierer, den Cache zu ignorieren und neu zu bündeln (`boolean`)                                             |
-| `-c, --config <file>`    | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                   |
-| `--base <path>`          | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                         |
-| `-l, --logLevel <level>` | info \| warn \| error \| silent (`string`)                                                                                |
-| `--clearScreen`          | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                           |
-| `--profile`              | Startet den integrierten Node.js-Inspector (siehe [Performance Engpässe](/guide/troubleshooting#performance-bottlenecks)) |
-| `-d, --debug [feat]`     | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                           |
-| `-f, --filter <filter>`  | Filtert Debug-Protokolle (`string`)                                                                                       |
-| `-m, --mode <mode>`      | Setzt den Umgebungsmodus (`string`)                                                                                       |
-| `-h, --help`             | Zeigt verfügbare CLI-Optionen an                                                                                          |
-| `-v, --version`          | Zeigt die Versionsnummer an                                                                                               |
+| Optionen                  |                                                                                                                                                                                                                                      |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `--host [host]`           | Gibt den Hostnamen an (`string`)                                                                                                                                                                                                     |
+| `--port <port>`           | Gibt den Port an (`number`)                                                                                                                                                                                                          |
+| `--open [path]`           | Öffnet den Browser beim Starten (`boolean \| string`)                                                                                                                                                                                |
+| `--cors`                  | Aktiviert CORS (`boolean`)                                                                                                                                                                                                           |
+| `--strictPort`            | Beendet den Vorgang, wenn der angegebene Port bereits verwendet wird (`boolean`)                                                                                                                                                     |
+| `--force`                 | Zwingt den Optimierer, den Cache zu ignorieren und neu zu bündeln (`boolean`)                                                                                                                                                        |
+| `-c, --config <file>`     | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                                                                                                              |
+| `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                                                                                                    |
+| `-l, --logLevel <level>`  | info \| warn \| error \| silent (`string`)                                                                                                                                                                                           |
+| `--clearScreen`           | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                                                                                                      |
+| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit esbuild zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten oder `native` (experimentell), um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`) |
+| `--profile`               | Startet den integrierten Node.js-Inspector (siehe [Performance Engpässe](/guide/troubleshooting#performance-bottlenecks))                                                                                                            |
+| `-d, --debug [feat]`      | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                                                                                                      |
+| `-f, --filter <filter>`   | Filtert Debug-Protokolle (`string`)                                                                                                                                                                                                  |
+| `-m, --mode <mode>`       | Setzt den Umgebungsmodus (`string`)                                                                                                                                                                                                  |
+| `-h, --help`              | Zeigt verfügbare CLI-Optionen an                                                                                                                                                                                                     |
+| `-v, --version`           | Zeigt die Versionsnummer an                                                                                                                                                                                                          |
 
 ## Erstellen
 
