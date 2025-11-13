@@ -51,10 +51,23 @@ Die Hostnamen, auf die Vite reagieren darf.
 `localhost` und Domänen unter `.localhost` und alle IP-Adressen sind standardmäßig erlaubt.
 Bei der Nutzung von HTTPS wird diese Prüfung übersprungen.
 
-Wenn eine Zeichenkette mit `.` startet, wird der Hostname ohne den `.` zugelassen und alle Subdomänen unter dem Hostnamen. Zum Beispiel `.example.com` erteilt eine Erlaubnis für `example.com`, `foo.example.com` und `foo.bar.example.com`.
+Wenn eine Zeichenkette mit `.` startet, wird der Hostname ohne den `.` zugelassen und alle Subdomänen unter dem Hostnamen. Zum Beispiel `.example.com` erteilt eine Erlaubnis für `example.com`, `foo.example.com` und `foo.bar.example.com`. Wenn der Wert auf `true` gesetzt wird, ist es dem Server gestattet, auf Anfragen beliebiger Hosts zu reagieren.
 
-Wenn der Wert auf `true` gesetzt wird, ist es dem Server gestattet, auf Anfragen beliebiger Hosts zu reagieren.
-Das ist jedoch nicht empfohlen, da es eine Schwachstelle für DNS-Rebinding-Angriffe darstellt.
+::: details Welche Hosts können bedenkenlos hinzugefügt werden?
+
+Hosts, bei denen Sie die Kontrolle darüber haben, zu welchen IP-Adressen sie aufgelöst werden, können Sie bedenkenlos zur Liste der zugelassenen Hosts hinzufügen.
+
+Zum Beispiel, wenn Sie die Domäne `vite.dev` besiten, können Sie `vite.dev` und `.vite.dev` zur Liste hinzufügen. Falls Sie Domäne nicht besitzen und dem Besitzer der Domäne nicht vertrauen können, sollten Sie diese nicht hinzufügen.
+
+Besonders Top-Level-Domains wie `.com` sollten niemals zur Liste hinzugefügt werden. Der Grund dafür ist, dass jedermann eine Domäne wie `example.com` kaufen könnte und kontrollieren könnte, zu welcher IP-Adresse sie aufgelöst wird.
+
+:::
+
+::: danger
+
+Das Setzen des Wertes `server.allowedHosts` auf `true` erlaubt jeder Webseite Anfragen an den Entwicklungs-Server mit Hilfe von DNS-Rebinding-Angriffen zu senden und den Quellcode und Inhalt Ihrer Webseite herunterzuladen. Wir empfehlen immer eine explizite Liste von zulässigen Hosts zu verwenden. Siehe [GHSA-vg6x-rcgg-rjx6](https://github.com/vitejs/vite/security/advisories/GHSA-vg6x-rcgg-rjx6) für mehr Details.
+
+:::
 
 ::: details Konfiguration via Umgebungsvariable
 Sie können die Umgebungsvariable `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` setzen, um einen zusätzlichen berechtigten Host hinzuzufügen.
@@ -168,9 +181,9 @@ export default defineConfig({
 
 Konfigurieren Sie CORS für den Entwicklungsserver. Übergeben Sie ein [Optionsobjekt](https://github.com/expressjs/cors#configuration-options), um das Verhalten fein abzustimmen, oder `false`, um es zu deaktivieren. 
 
-:::warning
+::: danger
 
-Wir empfehlen einen spezifischen Wert zu setzen anstelle der Verwendung von `true`, um zu Vermeiden, dass der Quellcode nicht vertrauenswürdigen Ursprüngen preisgegeben wird.
+Das Setzen des Wertes `server.allowedHosts` auf `true` erlaubt jeder Webseite Anfragen an den Entwicklungs-Server zu senden und den Quellcode und Inhalt herunterzuladen. Wir empfehlen immer eine explizite Liste von zulässigen Ursprüngen zu verwenden.
 
 :::
 
