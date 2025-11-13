@@ -71,18 +71,15 @@ Einige Bibliotheken (z.B. [`vue`](https://github.com/vuejs/core/issues/1228)) fu
 
 - [TypeScript documentation](https://www.typescriptlang.org/tsconfig#useDefineForClassFields)
 
-Ab Vite 2.5.0 wird der Standardwert `true` sein, wenn das TypeScript-Ziel `ESNext` oder `ES2022` oder neuer ist. Es ist konsistent mit dem [Verhalten von `tsc` 4.3.2 und später](https://github.com/microsoft/TypeScript/pull/42663). Es ist auch das Standardverhalten der ECMAScript-Laufzeit.
+Der Standardwert wird `true` sein, wenn das TypeScript-Ziel `ES2022` oder neuer ist, einschließlich `ESNext`. Es ist konsistent mit dem [Verhalten von `TypeScript` 4.3.2+](https://github.com/microsoft/TypeScript/pull/42663).
 
 Andere TypeScript-Ziele werden standardmäßig auf `false` gesetzt.
 
-Aber es kann für diejenigen, die von anderen Programmiersprachen oder älteren Versionen von TypeScript kommen, kontraintuitiv sein.
-Weitere Informationen über den Übergang finden Sie in den [TypeScript 3.7 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier).
+`true` ist das standardmäßige Verhalten der ECMAScript-Laufzeitumgebung.
 
 Wenn Sie eine Bibliothek verwenden, die sich stark auf Klassenfelder stützt, achten Sie bitte auf die beabsichtigte Verwendung dieser Felder durch die Bibliothek.
 
-Die meisten Bibliotheken erwarten `"useDefineForClassFields": true`, wie zum Beispiel [MobX](https://mobx.js.org/installation.html#use-spec-compliant-transpilation-for-class-properties).
-
-Aber ein paar Bibliotheken sind noch nicht zu diesem neuen Standard übergegangen, einschließlich [`lit-element`](https://github.com/lit/lit-element/issues/1030). Bitte setzen Sie in diesen Fällen `useDefineForClassFields` explizit auf `false`.
+Während die meisten Bibliotheken `"useDefineForClassFields": true"` erwarten, können Sie `useDefineForClassFields` explizit auf `false` setzen, falls Ihre Bibliothek das nicht unterstützt.
 
 #### `target`
 
@@ -124,6 +121,9 @@ Die Standardtypen von Vite sind für die Node.js-API. Um die Umgebung von client
 /// <reference types="vite/client" />
 ```
 
+::: details Nutzung
+`compilerOptions.types`
+
 Alternativ können Sie `vite/client` zu `compilerOptions.types` in `tsconfig.json` hinzufügen:
 
 ```json [tsconfig.json]
@@ -134,9 +134,7 @@ Alternativ können Sie `vite/client` zu `compilerOptions.types` in `tsconfig.jso
 }
 ```
 
-::: warning
-
-Wenn [`compilerOptions.types`](https://www.typescriptlang.org/tsconfig#types) angegeben ist, werden nur diese Pakete in den globalen Bereich aufgenommen (anstelle aller sichtbaren „@types“-Pakete).
+Beachten Sie, dass wenn [`compilerOptions.types`](https://www.typescriptlang.org/tsconfig#types) angegeben ist, werden nur diese Pakete in den globalen Bereich aufgenommen (anstelle aller sichtbaren „@types“-Pakete).
 
 :::
 
@@ -216,8 +214,6 @@ Vite bietet First-Class Vue Support:
 
 - Vue 3 SFC Unterstützung über [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
 - Ansicht 3 JSX Unterstützung via [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx)
-- Ansicht 2.7 Unterstützung über [@vitejs/plugin-vue2](https://github.com/vitejs/vite-plugin-vue2)
-- Ansicht <2.7 Unterstützung via [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2)
 
 Siehe [Plugins Guide](/plugins/) für mehr Informationen.
 
