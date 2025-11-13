@@ -129,12 +129,18 @@ Alternativ können Sie `vite/client` zu `compilerOptions.types` in `tsconfig.jso
 ```json [tsconfig.json]
 {
   "compilerOptions": {
-    "types": ["vite/client"]
+    "types": ["some-other-global-lib"]
   }
 }
 ```
 
-Damit werden die folgenden Arten von Shims bereitgestellt:
+::: warning
+
+Wenn [`compilerOptions.types`](https://www.typescriptlang.org/tsconfig#types) angegeben ist, werden nur diese Pakete in den globalen Bereich aufgenommen (anstelle aller sichtbaren „@types“-Pakete).
+
+:::
+
+`vite/client` stellt die folgenden Arten von Shims bereit:
 
 - Asset-Importe (z.B. Importieren einer `.svg`-Datei)
 - Typen für die in Vite eingefügten [konstanten Variablen](./env-and-mode#env-variables) auf `import.meta.env`
