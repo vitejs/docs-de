@@ -219,7 +219,31 @@ Erfahren Sie mehr über die [Befehlszeilenschnittstelle](./cli.md)
 
 ## Unveröffentlichte Commits verwenden
 
-Wenn Sie nicht auf eine neue Version warten können, um die neuesten Funktionen zu testen, müssen Sie das [vite repo](https://github.com/vitejs/vite) auf Ihren lokalen Rechner klonen und es dann selbst bauen und verlinken ([pnpm](https://pnpm.io/) ist erforderlich):
+Wenn Sie nicht auf eine neue Version warten können, um die neuesten Funktionen zu testen, können Sie einen spezifischen Commit von Vite installieren mit https://pkg.pr.new:
+
+::: code-group
+
+```bash [npm]
+npm install -D https://pkg.pr.new/vite@SHA
+```
+
+```bash [Yarn]
+$ yarn add -D https://pkg.pr.new/vite@SHA
+```
+
+```bash [pnpm]
+$ pnpm add -D https://pkg.pr.new/vite@SHA
+```
+
+```bash [Bun]
+$ bun add -D https://pkg.pr.new/vite@SHA
+```
+
+:::
+
+Ersetzen Sie `SHA` mit irgendeinem von [Vites Commit SHAs](https://github.com/vitejs/vite/commits/main/). Beachten Sie, dass nur Commits innerhalb des letzten Monats funktionieren werden, da ältere Veröffentlichungen gelöscht werden.
+
+Alternativ können Sie auch das [Vite Repository](https://github.com/vitejs/vite) auf Ihrer lokalen Maschine klonen, anschließend bauen und es selbst verknüpfen ([pnpm](https://pnpm.io/) is required):
 
 ```bash
 git clone https://github.com/vitejs/vite.git
@@ -231,6 +255,12 @@ pnpm link --global # use your preferred package manager for this step
 ```
 
 Gehen Sie dann zu Ihrem Vite-basierten Projekt und führen Sie `pnpm link --global vite` aus (oder den Paketmanager, den Sie zum globalen Verlinken von `vite` verwendet haben). Starten Sie nun den Entwicklungsserver neu, um auf dem neuesten Stand zu sein!
+
+::: tip Abhängigkeiten die Vite benutzen
+
+Um die von Abhängigkeiten transitiv verwendeter Vite-Version zu ersetzen, sollten Sie [npm-Überschreibungen](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) oder [pnpm-Überschreibungen](https://pnpm.io/package_json#pnpmoverrides) verwenden.
+
+:::
 
 ## Community
 
