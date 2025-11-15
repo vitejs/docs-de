@@ -57,6 +57,12 @@ Die aktuelle Plugin-API von Vite ist nicht mit der Verwendung von `esbuild` als 
 
 Rollup hat auch an Leistungsverbesserungen gearbeitet, [Umstellung des Parsers auf SWC in v4](https://github.com/rollup/rollup/pull/5073); währenddessen gibt es auch ein ständiges Bestreben, eine Rust-Portierung von Rollup namens Rolldown zu entwickeln. Sobald Rolldown fertig ist, könnte es sowohl Rollup als auch esbuild in Vite ersetzen, die Build-Leistung erheblich verbessern und Inkonsistenzen zwischen Entwicklung und Build beseitigen. Sie können sich [Evan You's ViteConf 2023 Keynote für weitere Details](https://youtu.be/hrdwQHoAp0M) ansehen.
 
-## Wie unterscheidet sich Vite von X?
+## Wie steht Vite im Verhältnis zu anderen ungebündelten Build-Tools?
 
-Im Abschnitt [Vergleiche](./comparisons.md) finden Sie weitere Einzelheiten darüber, wie sich Vite von anderen ähnlichen Tools unterscheidet.
+[WMR](https://github.com/preactjs/wmr) vom Preact-Team bietet einen ähnlichen Funktionsumfang. Vites universelle Rollup Plugin-Schnittstelle für dev und build wurden dadurch inspiriert. WMR wird nicht mehr weiterentwickelt. Das Preact-Team empfiehlt nun Vite mit [@preactjs/preset-vite](https://github.com/preactjs/preset-vite).
+
+[Snowpack](https://www.snowpack.dev/) war ebenfalls ein nativer ESM-Entwicklungsserver ohne Bündel, der Vite sehr ähnlich ist. Die Vorab-Bündelung von Abhängigkeiten durch Vite ist ebenfalls von Snowpack v1 (jetzt [`esinstall`](https://github.com/snowpackjs/snowpack/tree/main/esinstall)) inspiriert. Das Projekt wird nicht mehr gepflegt. Das Snowpack-Team arbeitet jetzt an [Astro](https://astro.build/), einem Static Site Builder, der auf Vite basiert.
+
+## @web/dev-server
+
+[@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) (vorher `es-dev-server`) ist ein großartiges Projekt und die Koa-basierte Servereinrichtung von Vite 1.0 wurde davon inspiriert. Das Dachprojekt „@web“ wird aktiv gepflegt und enthält viele weitere hervorragende Tools, von denen auch Vite-Nutzer profitieren können.
