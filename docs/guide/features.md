@@ -141,7 +141,7 @@ Beachten Sie, dass wenn [`compilerOptions.types`](https://www.typescriptlang.org
 `vite/client` stellt die folgenden Arten von Shims bereit:
 
 - Asset-Importe (z.B. Importieren einer `.svg`-Datei)
-- Typen für die in Vite eingefügten [konstanten Variablen](./env-and-mode#env-variables) auf `import.meta.env`
+- Typen für die in Vite eingefügten [Konstanten](./env-and-mode#env-variables) auf `import.meta.env`
 - Typen für die [HMR-API](./api-hmr) unter `import.meta.hot`
 
 ::: tip
