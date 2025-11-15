@@ -270,16 +270,25 @@ export default defineConfig({
     sidebar: {
       '/guide/': [
         {
-          text: 'Leitfaden',
+          text: 'Einführung',
           items: [
-            {
-              text: 'Wieso Vite?',
-              link: '/guide/why',
-            },
             {
               text: 'Erste Schritte',
               link: '/guide/',
             },
+            {
+              text: 'Projekt-Philosophie',
+              link: '/guide/philosophy',
+            },
+            {
+              text: 'Wieso Vite?',
+              link: '/guide/why',
+            },
+          ],
+        },
+        {
+          text: 'Guide',
+          items: [
             {
               text: 'Funktionen',
               link: '/guide/features',
@@ -331,10 +340,6 @@ export default defineConfig({
             {
               text: 'Leistung',
               link: '/guide/performance',
-            },
-            {
-              text: 'Projekt-Philosophie',
-              link: '/guide/philosophy',
             },
             {
               text: 'Migration von v4',
