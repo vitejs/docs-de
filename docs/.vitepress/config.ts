@@ -342,6 +342,10 @@ export default defineConfig({
               link: '/guide/performance',
             },
             {
+              text: 'Rolldown',
+              link: '/guide/rolldown',
+            },
+            {
               text: 'Migration von v4',
               link: '/guide/migration',
             },
