@@ -90,9 +90,9 @@ Legen Sie fest, dass der Server bei Verwendung des Ports bereits in Verwendung i
 
 - **Typ:** `https.ServerOptions`
 
-Aktivieren Sie TLS + HTTP/2. Beachten Sie, dass dies auf TLS herabgestuft wird, wenn die [`server.proxy`-Option](#server-proxy) ebenfalls verwendet wird.
+Aktivieren Sie TLS + HTTP/2. Der Wert ist ein [Option-Objekt](https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener), dass an `https.createServer()` weitergegeben wird.
 
-Der Wert kann auch ein [Optionsobjekt](https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener) sein, das an `https.createServer()` übergeben wird.
+Beachten Sie, dass dies nur dann zu einem Downgrade auf TLS führt, wenn auch die Option [`server.proxy`](#server-proxy) verwendet wird.
 
 Ein gültiges Zertifikat ist erforderlich. Für eine grundlegende Einrichtung können Sie [@vitejs/plugin-basic-ssl](https://github.com/vitejs/vite-plugin-basic-ssl) zu den Projekt-Plugins hinzufügen, das automatisch ein selbstsigniertes Zertifikat erstellt und zwischenspeichert. Wir empfehlen jedoch, eigene Zertifikate zu erstellen.
 
