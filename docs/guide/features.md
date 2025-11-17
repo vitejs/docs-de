@@ -343,10 +343,6 @@ Um CSS-Module zu konfigurieren, verwenden Sie [`css.lightningcss.cssModules`](ht
 
 Standardmäßig verwendet Vite esbuild zum Minifizieren von CSS. Lightning CSS kann auch als CSS-Minifizierer mit [`build.cssMinify: 'lightningcss'`](../config/build-options.md#build-cssminify) verwendet werden.
 
-:::tip HINWEIS
-[CSS-Präprozessoren](#css-pre-processors) werden bei der Verwendung von Lightning CSS nicht unterstützt.
-:::
-
 ## Statische Assets
 
 Beim Importieren eines statischen Assets wird die aufgelöste öffentliche URL zurückgegeben, wenn es bereitgestellt wird:
