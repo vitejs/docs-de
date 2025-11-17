@@ -103,6 +103,12 @@ Um dies zu erreichen, können Sie eine `vite-env.d.ts`-Datei im `src`-Verzeichni
 ```typescript [vite-env.d.ts]
 /// <reference types="vite/client" />
 
+interface ViteTypeOptions {
+  // Durch das Hinzufügen der Zeile, können Sie den Typ von ImportMetaEnv strikt machen,
+  // um unbekannte Typen zu verbieten.
+  // strictImportMetaEnv: unknown
+}
+
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string
   // mehr Umgebungsvariablen...
