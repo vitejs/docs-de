@@ -102,6 +102,8 @@ Für Ubuntu Linux müssen Sie möglicherweise die Zeile `* - nofile 65536` anste
 
 Beachten Sie, dass diese Einstellungen bestehen bleiben, aber ein **Neustart erforderlich ist**.
 
+Wenn der Server in einem VS Code-Entwicklungscontainer ausgeführt wird, kann es vorkommen, dass die Anfrage scheinbar zum Stillstand gekommen ist. Um dieses Problem zu beheben, lesen Sie [Entwicklungscontainer / VS Code-Portweiterleitung](#dev-containers-vs-code-port-forwarding).
+
 ### Netzwerkanfragen werden nicht geladen
 
 Wenn Sie ein selbstsigniertes SSL-Zertifikat verwenden, ignoriert Chrome alle Cache-Anweisungen und lädt den Inhalt neu. Vite ist auf diese Cache-Anweisungen angewiesen.
