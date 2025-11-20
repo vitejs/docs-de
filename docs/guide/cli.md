@@ -77,7 +77,9 @@ vite build [root]
 
 ### `vite optimize`
 
-Optimiert Abhängigkeiten vor dem Bündeln.
+Abhängigkeiten vorab bündeln.
+
+**Veraltet**: Der Vorab-Bündelungsprozess läuft automatisch ab und muss nicht aufgerufen werden.
 
 #### Verwendung
 
