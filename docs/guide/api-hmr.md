@@ -8,13 +8,16 @@ Die manuelle HMR API ist hauptsächlich für Framework- und Tool-Autoren gedacht
 
 Vite stellt seine manuelle HMR API über das spezielle `import.meta.hot` Objekt zur Verfügung:
 
-```ts
+```ts twoslash
+import type { ModuleNamespace } from 'vite/types/hot.d.ts'
+import type {
+  CustomEventName,
+  InferCustomEventPayload,
+} from 'vite/types/customEvent.d.ts'
+
+// ---cut---
 interface ImportMeta {
   readonly hot?: ViteHotContext
-}
-
-type ModuleNamespace = Record<string, any> & {
-  [Symbol.toStringTag]: 'Module'
 }
 
 interface ViteHotContext {
@@ -25,23 +28,25 @@ interface ViteHotContext {
   accept(dep: string, cb: (mod: ModuleNamespace | undefined) => void): void
   accept(
     deps: readonly string[],
-    cb: (mods: Array<ModuleNamespace | undefined>) => void
+    cb: (mods: Array<ModuleNamespace | undefined>) => void,
   ): void
 
   dispose(cb: (data: any) => void): void
   prune(cb: (data: any) => void): void
   invalidate(message?: string): void
 
-  // `InferCustomEventPayload` bietet Typen für integrierte Vite-Ereignisse
-  on<T extends string>(
+  on<T extends CustomEventName>(
     event: T,
-    cb: (payload: InferCustomEventPayload<T>) => void
+    cb: (payload: InferCustomEventPayload<T>) => void,
   ): void
-  off<T extends string>(
+  off<T extends CustomEventName>(
     event: T,
-    cb: (payload: InferCustomEventPayload<T>) => void
+    cb: (payload: InferCustomEventPayload<T>) => void,
   ): void
-  send<T extends string>(event: T, data?: InferCustomEventPayload<T>): void
+  send<T extends CustomEventName>(
+    event: T,
+    data?: InferCustomEventPayload<T>,
+  ): void
 }
 ```
 
