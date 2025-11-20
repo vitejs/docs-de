@@ -330,10 +330,6 @@ export default defineConfig({
               link: '/guide/backend-integration',
             },
             {
-              text: 'Vergleiche',
-              link: '/guide/comparisons',
-            },
-            {
               text: 'Fehlerbehebung',
               link: '/guide/troubleshooting',
             },
