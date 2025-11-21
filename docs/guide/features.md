@@ -71,18 +71,15 @@ Einige Bibliotheken (z.B. [`vue`](https://github.com/vuejs/core/issues/1228)) fu
 
 - [TypeScript documentation](https://www.typescriptlang.org/tsconfig#useDefineForClassFields)
 
-Ab Vite 2.5.0 wird der Standardwert `true` sein, wenn das TypeScript-Ziel `ESNext` oder `ES2022` oder neuer ist. Es ist konsistent mit dem [Verhalten von `tsc` 4.3.2 und später](https://github.com/microsoft/TypeScript/pull/42663). Es ist auch das Standardverhalten der ECMAScript-Laufzeit.
+Der Standardwert wird `true` sein, wenn das TypeScript-Ziel `ES2022` oder neuer ist, einschließlich `ESNext`. Es ist konsistent mit dem [Verhalten von `TypeScript` 4.3.2+](https://github.com/microsoft/TypeScript/pull/42663).
 
 Andere TypeScript-Ziele werden standardmäßig auf `false` gesetzt.
 
-Aber es kann für diejenigen, die von anderen Programmiersprachen oder älteren Versionen von TypeScript kommen, kontraintuitiv sein.
-Weitere Informationen über den Übergang finden Sie in den [TypeScript 3.7 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier).
+`true` ist das standardmäßige Verhalten der ECMAScript-Laufzeitumgebung.
 
 Wenn Sie eine Bibliothek verwenden, die sich stark auf Klassenfelder stützt, achten Sie bitte auf die beabsichtigte Verwendung dieser Felder durch die Bibliothek.
 
-Die meisten Bibliotheken erwarten `"useDefineForClassFields": true`, wie zum Beispiel [MobX](https://mobx.js.org/installation.html#use-spec-compliant-transpilation-for-class-properties).
-
-Aber ein paar Bibliotheken sind noch nicht zu diesem neuen Standard übergegangen, einschließlich [`lit-element`](https://github.com/lit/lit-element/issues/1030). Bitte setzen Sie in diesen Fällen `useDefineForClassFields` explizit auf `false`.
+Während die meisten Bibliotheken `"useDefineForClassFields": true"` erwarten, können Sie `useDefineForClassFields` explizit auf `false` setzen, falls Ihre Bibliothek das nicht unterstützt.
 
 #### `target`
 
@@ -124,20 +121,27 @@ Die Standardtypen von Vite sind für die Node.js-API. Um die Umgebung von client
 /// <reference types="vite/client" />
 ```
 
+::: details Nutzung
+`compilerOptions.types`
+
 Alternativ können Sie `vite/client` zu `compilerOptions.types` in `tsconfig.json` hinzufügen:
 
 ```json [tsconfig.json]
 {
   "compilerOptions": {
-    "types": ["vite/client"]
+    "types": ["some-other-global-lib"]
   }
 }
 ```
 
-Damit werden die folgenden Arten von Shims bereitgestellt:
+Beachten Sie, dass wenn [`compilerOptions.types`](https://www.typescriptlang.org/tsconfig#types) angegeben ist, werden nur diese Pakete in den globalen Bereich aufgenommen (anstelle aller sichtbaren „@types“-Pakete).
+
+:::
+
+`vite/client` stellt die folgenden Arten von Shims bereit:
 
 - Asset-Importe (z.B. Importieren einer `.svg`-Datei)
-- Typen für die in Vite eingefügten [env-Variablen](./env-and-mode#env-variables) auf `import.meta.env`
+- Typen für die in Vite eingefügten [Konstanten](./env-and-mode#env-variables) auf `import.meta.env`
 - Typen für die [HMR-API](./api-hmr) unter `import.meta.hot`
 
 ::: tip
@@ -204,14 +208,16 @@ Von HTML-Elementen wie `<script type="module" src>` und `<link href>` referenzie
 
 Um die HTML-Verarbeitung für bestimmte Elemente zu deaktivieren, können Sie das Attribut `vite-ignore` zum Element hinzufügen. Dies kann nützlich sein, wenn Sie auf externe Assets oder CDN verweisen.
 
-## Vue
+## Frameworks
 
-Vite bietet First-Class Vue Support:
+Alle modernen Frameworks unterstützen die Integration mit Vite. Die meisten Framework-Plugins werden von den jeweiligen Framework-Teams gepflegt, mit Ausnahme der offiziellen Vue- und React-Vite-Plugins, die von der Vite-Organsitation gepflegt werden:
 
-- Vue 3 SFC Unterstützung über [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
-- Ansicht 3 JSX Unterstützung via [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx)
-- Ansicht 2.7 Unterstützung über [@vitejs/plugin-vue2](https://github.com/vitejs/vite-plugin-vue2)
-- Ansicht <2.7 Unterstützung via [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2)
+- Vue Unterstützung via [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
+- Vue JSX Unterstützung via [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx)
+- React Unterstützung via [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react)
+- React mit SWC Unterstützung via [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
+
+Siehe [Plugins Guide](https://vite.dev/plugins) für mehr Informationen.
 
 Siehe [Plugins Guide](/plugins/) für mehr Informationen.
 
@@ -219,9 +225,9 @@ Siehe [Plugins Guide](/plugins/) für mehr Informationen.
 
 .jsx"- und "tsx"-Dateien werden ebenfalls von Haus aus unterstützt. JSX Transpilierung wird auch über [esbuild](https://esbuild.github.io) gehandhabt.
 
-Vue-Benutzer sollten das offizielle [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx) Plugin verwenden, das Vue 3-spezifische Funktionen wie HMR, globale Komponentenauflösung, Direktiven und Slots bietet.
+Das Framework Ihrer Wahl konfiguriert JSX standardmäßig (z. B. Vue-Benutzer sollten das offizielle [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx) Plugin verwenden, das Vue 3-spezifische Funktionen wie HMR, globale Komponentenauflösung, Direktiven und Slots bietet).
 
-Wenn JSX ohne React oder Vue verwendet wird, können benutzerdefinierte `jsxFactory` und `jsxFragment` mit der [`esbuild` Option](/config/shared-options.md#esbuild) konfiguriert werden. Zum Beispiel für Preact:
+Wenn JSX mit einem eigenen Framework verwendet wird, können benutzerdefinierte `jsxFactory` und `jsxFragment` mit der [`esbuild` Option](/config/shared-options.md#esbuild) konfiguriert werden. Zum Beispiel das Preact-Plugin würde Folgendes nutzen:
 
 ```js twoslash [vite.config.js]
 import { defineConfig } from 'vite'
