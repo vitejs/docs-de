@@ -60,9 +60,9 @@ Setzen Sie dies auf `true`, um den Vorgang zu beenden, wenn der Port bereits ver
 - **Typ:** `https.ServerOptions`
 - **Standardwert:** [`server.https`](./server-options#server-https)
 
-Aktivieren Sie TLS + HTTP/2. Beachten Sie, dass dies auf TLS allein downgradet, wenn auch die [`server.proxy`-Option](./server-options#server-proxy) verwendet wird.
+Aktivieren Sie TLS + HTTP/2.
 
-Der Wert kann auch ein [Optionsobjekt](https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener) sein, das an `https.createServer()` übergeben wird.
+Siehe [`server.https`](./server-options#server-https) für mehr Details.
 
 ## preview.open
 
