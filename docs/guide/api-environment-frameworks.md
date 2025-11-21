@@ -37,7 +37,48 @@ if (isRunnableDevEnvironment(server.environments.ssr)) {
 ```
 
 :::warning
-Der `Runner` wird eifrig ausgewertet, wenn das erste Mal auf ihn zugegriffen wird. Achten Sie darauf, dass Vite die Source-Map-Unterstützung aktiviert, wenn der `Runner` erstellt wird, indem Sie `process.setSourceMapsEnabled` aufrufen oder `Error.prepareStackTrace` überschreiben, wenn es nicht verfügbar ist.
+Der `Runner` wird faul ausgewertet, wenn das erste Mal auf ihn zugegriffen wird. Achten Sie darauf, dass Vite die Source-Map-Unterstützung aktiviert, wenn der `Runner` erstellt wird, indem Sie `process.setSourceMapsEnabled` aufrufen oder `Error.prepareStackTrace` überschreiben, wenn es nicht verfügbar ist.
+:::
+
+Frameworks die mit ihrer Laufzeit via [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch) kommunizieren, können `FetchableDevEnvironment` nutzen, welches über die `handleRequest`-Methode einen standardisierten Weg bereitstellt, Anfragen zu bearbeiten:
+
+```ts
+import {
+  createServer,
+  createFetchableDevEnvironment,
+  isFetchableDevEnvironment,
+} from 'vite'
+
+const server = await createServer({
+  server: { middlewareMode: true },
+  appType: 'custom',
+  environments: {
+    custom: {
+      dev: {
+        createEnvironment(name, config) {
+          return createFetchableDevEnvironment(name, config, {
+            handleRequest(request: Request): Promise<Response> | Response {
+              // bearbeite Anfragen und gib eine Antwort zurück
+            },
+          })
+        },
+      },
+    },
+  },
+})
+
+// Jeder Konsument der Umgebungs API kann nun `dispatchFetch` aufrufen
+if (isFetchableDevEnvironment(server.environments.custom)) {
+  const response: Response = await server.environments.custom.dispatchFetch(
+    new Request('/request-to-handle'),
+  )
+}
+```
+
+:::warning
+Vite validiert den Input und den Output der `dispatchFetch`-Methode: Die Anfrage muss eine Instanz der globalen Klasse `Request` sein und die Antwort eine Instanz der globalen Klasse `Response`. Vite wird einen `TypeError` hervorrufen, wenn dies nicht der Fall ist.
+
+Beachten Sie, dass auch wenn `FetchableDevEnvironment` als Klasse implementiert wurde, wird sie vom Vite-Team als Implementationsdetail betrachtet und könnte jederzeit geändert werden.
 :::
 
 ## Standardwert `RunnableDevEnvironment`
