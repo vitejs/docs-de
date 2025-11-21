@@ -141,7 +141,7 @@ Beachten Sie, dass wenn [`compilerOptions.types`](https://www.typescriptlang.org
 `vite/client` stellt die folgenden Arten von Shims bereit:
 
 - Asset-Importe (z.B. Importieren einer `.svg`-Datei)
-- Typen für die in Vite eingefügten [konstanten Variablen](./env-and-mode#env-variables) auf `import.meta.env`
+- Typen für die in Vite eingefügten [Konstanten](./env-and-mode#env-variables) auf `import.meta.env`
 - Typen für die [HMR-API](./api-hmr) unter `import.meta.hot`
 
 ::: tip
@@ -208,12 +208,16 @@ Von HTML-Elementen wie `<script type="module" src>` und `<link href>` referenzie
 
 Um die HTML-Verarbeitung für bestimmte Elemente zu deaktivieren, können Sie das Attribut `vite-ignore` zum Element hinzufügen. Dies kann nützlich sein, wenn Sie auf externe Assets oder CDN verweisen.
 
-## Vue
+## Frameworks
 
-Vite bietet First-Class Vue Support:
+Alle modernen Frameworks unterstützen die Integration mit Vite. Die meisten Framework-Plugins werden von den jeweiligen Framework-Teams gepflegt, mit Ausnahme der offiziellen Vue- und React-Vite-Plugins, die von der Vite-Organsitation gepflegt werden:
 
-- Vue 3 SFC Unterstützung über [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
-- Ansicht 3 JSX Unterstützung via [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx)
+- Vue Unterstützung via [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
+- Vue JSX Unterstützung via [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx)
+- React Unterstützung via [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react)
+- React mit SWC Unterstützung via [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
+
+Siehe [Plugins Guide](https://vite.dev/plugins) für mehr Informationen.
 
 Siehe [Plugins Guide](/plugins/) für mehr Informationen.
 
@@ -221,9 +225,9 @@ Siehe [Plugins Guide](/plugins/) für mehr Informationen.
 
 .jsx"- und "tsx"-Dateien werden ebenfalls von Haus aus unterstützt. JSX Transpilierung wird auch über [esbuild](https://esbuild.github.io) gehandhabt.
 
-Vue-Benutzer sollten das offizielle [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx) Plugin verwenden, das Vue 3-spezifische Funktionen wie HMR, globale Komponentenauflösung, Direktiven und Slots bietet.
+Das Framework Ihrer Wahl konfiguriert JSX standardmäßig (z. B. Vue-Benutzer sollten das offizielle [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx) Plugin verwenden, das Vue 3-spezifische Funktionen wie HMR, globale Komponentenauflösung, Direktiven und Slots bietet).
 
-Wenn JSX ohne React oder Vue verwendet wird, können benutzerdefinierte `jsxFactory` und `jsxFragment` mit der [`esbuild` Option](/config/shared-options.md#esbuild) konfiguriert werden. Zum Beispiel für Preact:
+Wenn JSX mit einem eigenen Framework verwendet wird, können benutzerdefinierte `jsxFactory` und `jsxFragment` mit der [`esbuild` Option](/config/shared-options.md#esbuild) konfiguriert werden. Zum Beispiel das Preact-Plugin würde Folgendes nutzen:
 
 ```js twoslash [vite.config.js]
 import { defineConfig } from 'vite'
