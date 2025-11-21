@@ -186,7 +186,9 @@ export default defineConfig({
 - **Standard:** `false`
 - **Verwandt:** [Backend-Integration](/guide/backend-integration)
 
-Wenn auf `true` gesetzt, wird der Build auch eine `.vite/manifest.json`-Datei generieren, die eine Zuordnung von nicht gehashten Asset-Dateinamen zu ihren gehashten Versionen enthält, die dann von einem Server-Framework verwendet werden kann, um die richtigen Asset-Links zu rendern. Wenn der Wert eine Zeichenkette ist, wird er als Name der Manifestdatei verwendet.
+Legt fest, ob eine Manifestdatei erstellt werden soll, die eine Zuordnung von nicht gehashten Dateinamen von Assets zu ihren gehashten Versionen enthält, die dann von einem Server-Framework verwendet werden kann, um die richtigen Asset-Links zu rendern.
+
+Wenn der Wert eine Zeichenfolge ist, wird er als Manifestdateipfad relativ zu `build.outDir` verwendet. Bei der Einstellung `true` lautet der Pfad `.vite/manifest.json`.
 
 ## build.ssrManifest
 
@@ -194,7 +196,9 @@ Wenn auf `true` gesetzt, wird der Build auch eine `.vite/manifest.json`-Datei ge
 - **Standard:** `false`
 - **Verwandt:** [Server-seitiges Rendern](/guide/ssr)
 
-Wenn auf `true` gesetzt, wird der Build auch ein SSR-Manifest generieren, um Style-Links und Asset-Preload-Anweisungen in der Produktion zu bestimmen. Wenn der Wert eine Zeichenkette ist, wird er als Name der Manifestdatei verwendet.
+Legt fest, ob eine SSR-Manifestdatei zur Bestimmung von Stilverknüpfungen und Anweisungen zum Vorladen von Assets in der Produktion generiert werden soll.
+
+Wenn der Wert eine Zeichenfolge ist, wird er als Manifestdateipfad relativ zu `build.outDir` verwendet. Bei der Einstellung `true` lautet der Pfad `.vite/ssr-manifest.json`.
 
 ## build.ssr
 
