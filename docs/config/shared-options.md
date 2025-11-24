@@ -142,10 +142,6 @@ Hier sind `import` und `require` "Bedingungen". Bedingungen können verschachtel
 
 Beachten Sie, dass die Bedingungen `import`, `require` und `default` immer angewendet werden, wenn die Anforderungen erfüllt sind.
 
-:::warning Auflösen von Subpath-Exports
-Die Verwendung von Exportschlüsseln, die mit "/" enden, ist von Node veraltet und funktioniert möglicherweise nicht gut. Bitte kontaktieren Sie den Paketautor, um stattdessen [`*`-Subpfadmuster](https://nodejs.org/api/packages.html#package-entry-points) zu verwenden.
-:::
-
 ## resolve.mainFields
 
 - **Type:** `string[]`
