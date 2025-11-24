@@ -456,10 +456,10 @@ Legen Sie fest, ob der Konsolenbildschirm bei jedem Neustart gelöscht werden so
 
 ## envDir
 
-- **Typ:** `string`
+- **Typ:** `string | false`
 - **Standardwert:** `root`
 
-Das Verzeichnis, aus dem die `.env`-Dateien geladen werden. Kann ein absoluter Pfad oder ein Pfad relativ zum Projektstammverzeichnis sein.
+Das Verzeichnis, aus dem die `.env`-Dateien geladen werden. Kann ein absoluter Pfad oder ein Pfad relativ zum Projektstammverzeichnis sein. `false` deaktiviert das Laden der `.env`-Datei.
 
 Weitere Informationen zu Umgebungsdateien finden Sie [hier](/guide/env-and-mode#env-files).
 

@@ -345,6 +345,10 @@ export default defineConfig({
               text: 'Migration von v4',
               link: '/guide/migration',
             },
+            {
+              text: 'Grundlegende Änderungen',
+              link: '/changes'
+            }
           ],
         },
         {
@@ -431,6 +435,45 @@ export default defineConfig({
               link: '/config/worker-options',
             },
           ],
+        },
+      ],
+      '/changes/': [
+        {
+          text: 'Grundlegende Änderungen',
+          link: '/changes/',
+        },
+        {
+          text: 'Aktuelles',
+          items: [],
+        },
+        {
+          text: 'Zukünftiges',
+          items: [
+            {
+              text: 'this.environment in Hooks',
+              link: '/changes/this-environment-in-hooks',
+            },
+            {
+              text: 'HMR hotUpdate Plugin Hook',
+              link: '/changes/hotupdate-hook',
+            },
+            {
+              text: 'Umstellung auf umgebungsbezogene APIs',
+              link: '/changes/per-environment-apis',
+            },
+            {
+              text: 'SSR verwendet die ModuleRunner API',
+              link: '/changes/ssr-using-modulerunner',
+            },
+            {
+              text: 'Gemeinsam genutzte Plugins während der Erstellung',
+              link: '/changes/shared-plugins-during-build',
+            },
+          ],
+        },
+        {
+          text: 'Vergangenes',
+          items: [],
         },
       ],
     },
