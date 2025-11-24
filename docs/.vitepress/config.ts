@@ -5,6 +5,8 @@ import {
   groupIconMdPlugin,
   groupIconVitePlugin,
 } from 'vitepress-plugin-group-icons'
+import llmstxt from 'vitepress-plugin-llms'
+import type { PluginOption } from 'vite'
 import { buildEnd } from './buildEnd.config'
 
 const ogDescription = 'Frontend-Tooling der nächsten Generation'
@@ -509,6 +511,25 @@ export default defineConfig({
           '.gitlab-ci.yml': 'vscode-icons:file-type-gitlab',
         },
       }),
+      llmstxt({
+        ignoreFiles: ['blog/*', 'blog.md', 'index.md', 'team.md'],
+        description: 'Das Build-Tool für das Web',
+        details: `\
+- 💡 Sofortiger Server-Start
+- ⚡️ Blitzschnelles HMR
+- 🛠️ Reich an Funktionen
+- 📦 Optimierter Build-Prozess
+- 🔩 Universelle Plugin-Schnittstelle
+- 🔑 Vollständig typisierte APIs
+
+Vite ist eine neue Art von Frontend-Build-Tool, das die Frontend-Entwicklung erheblich verbessert. Es besteht aus zwei Hauptkomponenten:
+
+- Ein Entwicklungs-Server, der Quelldateien über [native ES-Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) bereitstellt, mit [umfangreichen integrierten Funktionen](https://vite.dev/guide/features.html) und erstaunlich schnellem [Hot Module Replacement (HMR)](https://vite.dev/guide/features.html#hot-module-replacement).
+
+- Ein [Build-Befehl](https://vite.dev/guide/build.html) der Code mit Hilfe von [Rollup](https://rollupjs.org) bündelt und so konfiguriert ist, dass hochoptimisierte statische Assets für die Produktion erzeugt werden.
+
+Darüber hinaus ist Vite über seine [Plugin-API](https://vite.dev/guide/api-plugin.html) und [JavaScript-API](https://vite.dev/guide/api-javascript.html) mit vollständiger Typisierungsunterstützung stark erweiterbar.`,
+      }) as PluginOption,
     ],
     optimizeDeps: {
       include: [
