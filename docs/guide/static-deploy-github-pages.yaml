@@ -1,5 +1,5 @@
 # Importiert in static-deploy.md
-# Diese Datei wird als seperate Datei extrahiert, damit Renovate die Aktionsversions aktualisieren kann
+# Diese Datei wird als seperate Datei extrahiert, damit Renovate die Aktionsversionen aktualisieren kann
 #
 #Region Inhalt
 # Einfacher Arbeitsablauf zur Bereitstellung von statischem Inhalt auf GitHub Pages
