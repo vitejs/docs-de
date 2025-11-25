@@ -10,13 +10,15 @@ Rolldown konzentriert sich auf drei Grundprinzipien:
 
 - **Geschwindigkeit**: Mit Rust für maximale Leistung entwickelt
 - **Kompatibilität**: Funktioniert mit bestehenden Rollup-Plugins
-- **Entwicklererfahrung**: Vertraute API für Rollup-Benutzer
+- **Optimierung**: Liefert fortschrittlichere Funktionen, im Vergleich zu esbuild und Rollup
 
 ## Warum Vite zu Rolldown migriert
 
 1. **Vereinheitlichung**: Vite verwendet derzeit esbuild für die Vorab-Bündelung von Abhängigkeiten und Rollup für Produktions-Builds. Rolldown zielt darauf ab, diese zu einem einzigen, leistungsstarken Bündler zu vereinen, der für beide Zwecke verwendet werden kann, wodurch die Komplexität reduziert wird.
 
 2. **Leistung**: Die Rust-basierte Implementierung von Rolldown bietet gegenüber JavaScript-basierten Bundlern erhebliche Leistungsverbesserungen. Auch wenn spezifische Benchmarks je nach Projektgröße und Komplexität variieren können, zeigen erste Tests vielversprechende Geschwindigkeitssteigerungen im Vergleich zu Rollup.
+
+3. **Zusätzliche Funktionen**: Rolldown führt Funktionen ein, die nicht in Rollup oder esbuild vorhanden sind, wie beispielsweise die erweiterte Steuerung der Chunk-Aufteilung, eingebautes HMR und Modulverbünde.
 
 Weitere Einblicke in die Beweggründe für Rolldown finden Sie unter [Gründe für die Entwicklung von Rolldown](https://rolldown.rs/guide/#why-rolldown).
 
@@ -74,11 +76,27 @@ Nachdem Sie diese Überschreibungen hinzugefügt haben, installieren Sie Ihre Ab
 
 Rolldown soll zwar ein direkter Ersatz für Rollup sein, es gibt jedoch Funktionen, die noch implementiert werden, sowie geringfügige beabsichtigte Unterschiede im Verhalten. Eine umfassende Liste finden Sie in [diesem GitHub PR](https://github.com/vitejs/rolldown-vite/pull/84#issue-2903144667), der regelmäßig aktualisiert wird.
 
+### Fehler bei der Validierung von Optionen
+
+Rolldown wirft einen Fehler, wenn unbekannte oder ungültige Optionen angegeben werden. Da manche Optionen, die in Rollup verfügbar sind, in Rolldown nicht zur Verfügung stehen, kann es zu Fehlern kommen. Im Folgenden sehen Sie ein Beispiel für solch eine Fehlermeldung:
+
+> Error: Failed validate input options.
+>
+> - For the "preserveEntrySignatures". Invalid key: Expected never but received "preserveEntrySignatures".
+
+Wenn Sie die Optione nicht selbst angeben, muss der Fehler durch das verwendete Framework behoben werden. Sie können den Fehler unterdrücken, in dem Sie die Umgebungsvariable `ROLLDOWN_OPTIONS_VALIDATION=loose` setzen.
+
+## Aktivieren nativer Plugins
+
+Dank Rolldown und Oxc wurden verschiedene interne Vite-Plugins, wie beispielsweise das Alias- oder Resolve-Plugin, nach Rust portiert. Zum Zeitpunkt der Erstellung dieses Artikels ist die Verwendung dieser Plugins standardmäßig nicht aktiviert, da ihr Verhalten von den JavaScript-Versionen abweichen kann.
+
+Um sie zu testen, können Sie die `experimental.enableNativePlugin`-Option in Ihrer Vite-Konfiguration auf `true` setzen.
+
 ## Probleme melden
 
 Da es sich um eine experimentelle Integration handelt, können Probleme auftreten. Wenn dies der Fall ist, melden Sie diese bitte im Repository [`vitejs/rolldown-vite`](https://github.com/vitejs/rolldown-vite) und **nicht im Haupt-Repository von Vite**.
 
-Wenn Sie [Probleme melden](https://github.com/vitejs/rolldown-vite/issues/new), befolgen Sie bitte die Vorlage für Probleme und geben Sie Folgendes an:
+Wenn Sie [Probleme melden](https://github.com/vitejs/rolldown-vite/issues/new), befolgen Sie bitte die geeignete Vorlage für Probleme und geben Sie bitte an, was von Ihnen gefordert wird. Üblicherweise enthalten sind:
 
 - Eine minimale Reproduktion des Problems
 - Details zu Ihrer Umgebung (Betriebssystem, Node-Version, Paketmanager)
@@ -92,9 +110,34 @@ Das Paket `rolldown-vite` ist eine vorübergehende Lösung, um Feedback zu samme
 
 Wir ermutigen Sie, `rolldown-vite` auszuprobieren und durch Feedback und Fehlerberichte zur Entwicklung beizutragen.
 
+In der Zukunft werden wir auch noch einen vollständigen Bündelmodus für Vite einführen, der gebündelte Dateien sowohl im Produktions-Modus, als auch im _Entwicklungs-Modus_ bereitstellt.
+
+### Wozu die Einführung eines vollständigen Bündelmodus?
+
+Vite ist für seinen Ansatz mit einem ungebündelten Entwicklungs-Server bekannt, was der Hauptgrund für Vites Geschwindigkeit und Bekanntheit war, als es veröffentlicht wurde. Dieser Ansatz war inital ein Experiment, um zu testen, wie weit man die Grenzen der Performanz von Entwicklungs-Servern ausreizen kann, ohne traditionelles Bündeln zu nutzen.
+
+Mit zunehmender Größe und Komplexität der Projekte sind jedoch zwei wesentliche Herausforderungen entstanden:
+
+1. **Inkonsistenz zwischen Entwicklung und Produktion**: Das in der Entwicklung bereitgestellte ungebündelte JavaScript und das gebündelte Produktions-Build führen zu unterschiedlichen Laufzeitverhalten. Dies kann zu Problemen führen, die nur in der Produktion auftreten und die Fehlersuche erschweren.
+
+2. **Leistungsabfall während der Entwicklung**: Der ungebündelte Ansatz führt dazu, dass jedes Modul separat abgerufen wird, was eine große Anzahl von Netzwerkanfragen verursacht. Dies hat zwar _keine Auswirkungen auf die Produktion_, verursacht jedoch einen erheblichen Mehraufwand beim Start des Entwicklungsservers und beim Aktualisieren der Seite während der Entwicklung. Die Auswirkungen sind besonders bei großen Anwendungen spürbar, bei denen Hunderte oder sogar Tausende von separaten Anfragen verarbeitet werden müssen. Diese Engpässe werden noch gravierender, wenn Entwickler einen Netzwerk-Proxy verwenden, was zu langsameren Aktualisierungszeiten und einer verschlechterten Entwicklererfahrung führt.
+
+Mit der Rolldown-Integration besteht die Möglichkeit, die Entwicklungs- und Produktionserfahrungen zu vereinen und gleichzeitig die Performanz von Vite aufrecht zu erhalten. Ein vollständiger Bündelungsmodus ermöglicht das Bereitstellen von gebündelten Dateien in der Produktion, sowie in der Entwicklung. Dadurch werden die Vorteile beider Welten kombiniert:
+
+- Kurze Startzeiten, auch für große Anwendungen
+- Konsistentes Verhalten von Entwicklung und Produktion
+- Reduzierter Netzwerkaufwand beim Neuladen von Seiten
+- Aufrechterhaltung einer effizienten HMR zusätzlich zur ESM-Ausgabe
+
+Wenn der vollständige Bündelungsmodus eingeführt wird, besteht erstmal die Möglichkeit ihn per opt-in zu verwenden. Ähnlich zu Rolldown zielen wir darauf ab, ihn zum Standard werden zu lassen, nachdem wir Feedback gesammelt haben und Stabilität gewährleisten können.
+
 ## Plugin- / Framework-Authoren Leitfaden
 
-### Liste von großen Änderungen
+::: tip
+Dieser Bereich ist primär relevant für Plugin- und Framework-Authoren. Falls Sie ein Nutzer sind, können Sie diesen Bereich überspringen.
+:::
+
+### Übersicht von großen Änderungen
 
 - Rolldown wird für den Build genutzt (Rollup wurde zuvor verwendet)
 - Rolldown wird für den Optimierer genutzt (esbuild wurde zuvor verwendet)
@@ -104,12 +147,15 @@ Wir ermutigen Sie, `rolldown-vite` auszuprobieren und durch Feedback und Fehlerb
 - Oxc-Minifier wird standardmäßig zur Minifizierung von JS genutzt (esbuild wurde zuvor verwendet)
 - Rolldown wird zum Bündeln der Konfiguration genutzt (esbuild wurde zuvor verwendet)
 
+### `rolldown-vite` erkennen
 
-### Rolldown-Vite erkennen
+::: warning
+In den meisten Fällen müssen sie nicht prüfen, ob ihr Plugin mit `rolldown-vite` oder `vite` läuft. Sie sollten eher darauf abzielen, ein konsistentes Verhalten zwischen beiden zu erreichen, ohne bedingte Verzweigungen.
+:::
 
-Sie können es entweder erkennen durch
+Für den Fall, dass Sie ein unterschiedliches Verhalten mit `rolldown-vite` benötigen, gibt es zwei Möglichkeiten zu erkennen, ob `rolldown-vite` verwendet wird.
 
-- Prüfen der Existenz von `this.meta.rolldownVersion`
+Prüfen der Existenz von `this.meta.rolldownVersion`:
 
 ```js
 const plugin = {
@@ -123,7 +169,9 @@ const plugin = {
 }
 ```
 
-- Prüfen der Existenz des `rolldownVersion` Exports
+<br>
+
+Prüfen der Existenz des `rolldownVersion` Exports:
 
 ```js
 import * as vite from 'vite'
@@ -137,17 +185,15 @@ if (vite.rolldownVersion) {
 
 Wenn sie `vite` als Abhängigkeit (nicht als Peer-Abhängigkeit) haben, bietet sich der `rolldownVersion`-Export an, da er überall in Ihrem Code verwendet werden kann.
 
-### Ignorieren von Optionsvalidierung in Rolldown
+### Ignorieren der Optionsvalidierung in Rolldown
 
-Rolldown wirft einen Fehler, wenn unbekannte oder ungültige Optionen angegeben werden. Da manche Optionen, die in Rollup verfügbar sind, in Rolldown nicht zur Verfügung stehen, kann es zu Fehlern kommen. Im Folgenden sehen Sie ein Beispiel für solch eine Fehlermeldung:
+Wie [oben erwähnt](#option-validation-errors), wirft Rolldown einen Fehler wenn unbekannte oder ungültige Optionen übergeben werden.
 
-> Error: Failed validate input options.
->
-> - For the "preserveEntrySignatures". Invalid key: Expected never but received "preserveEntrySignatures".
+Dieser Fehler kann behoben werden, in dem die Option nur unter bestimmten Bedingungen angegeben wird. Wie [oben gezeigt](#detecting-rolldown-vite), muss dann in der Bedingung geprüft werden, ob das Programm mit rolldown-vite ausgeführt wird.
 
-Dieser Fehler kann behoben werden, in dem die Option nur unter bestimmten Bedingungen angegeben wird. Wie oben gezeigt, muss dann in der Bedingung geprüft werden, ob das Programm mit `rolldown-vite` ausgeführt wird.
+Das Unterdrücken der Fehlermeldung durch das Setzen der Umgebungsvariable `ROLLDOWN_OPTIONS_VALIDATION=loose` funktioniert in diesem Fall auch. 
 
-Wenn Sie den Fehler vorerst unterdrücken möchten, können Sie die Umgebungsvariable `ROLLDOWN_OPTIONS_VALIDATION=loose` setzen. Beachten Sie allerdings, dass Sie irgendwann aufhören müssen, Optionen anzugeben, die nicht von Rolldown unterstützt werden.
+Beachten Sie allerdings, dass Sie irgendwann aufhören müssen, Optionen anzugeben, die nicht von Rolldown unterstützt werden.
 
 ### `transformWithEsbuild` benötigt eine seperate `esbuild` Installation
 
