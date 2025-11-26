@@ -2,6 +2,8 @@
 
 Vite plant die Integration von [Rolldown](https://rolldown.rs), einem Rust-basierten JavaScript-Bundler, um die Build-Leistung und -Fähigkeiten zu verbessern.
 
+<YouTubeVideo videoId="RRjfm8cMveQ" />
+
 ## Was ist Rolldown?
 
 Rolldown ist ein moderner, leistungsstarker JavaScript-Bundler, der in Rust geschrieben wurde. Er wurde als Ersatz für Rollup entwickelt und soll erhebliche Leistungsverbesserungen bieten, während die Kompatibilität mit dem bestehenden Ökosystem erhalten bleibt.
@@ -103,6 +105,12 @@ Wenn Sie [Probleme melden](https://github.com/vitejs/rolldown-vite/issues/new), 
 - Alle relevanten Fehlermeldungen oder Protokolle
 
 Für Echtzeit-Diskussionen und Fehlerbehebung treten Sie bitte dem [Rolldown Discord](https://chat.rolldown.rs/) bei.
+
+# Versionierungsrichtlinie
+
+Die Versionierungsrichtlinie von `rolldown-vite` richtet die Major- und Minor-Versionen nach denen vom normalen Vite Paket aus. Diese Synchronisierung stellt sicher, dass Funktionen in einem speziellen Minor-Release auch in der entsprechenden `rolldown-vite`-Version vertreten sind. Allerdings ist zu beachten, dass Patch-Versionen nicht zwischen den beiden Paketen synchronisiert werden. Wenn Sie nachsehen möchten, ob eine bestimme Änderung in Vite auch in `rolldown-vite` vertreten ist, können Sie das im [seperaten `rolldown-vite` Änderungsprotokoll](https://github.com/vitejs/rolldown-vite/blob/rolldown-vite/packages/vite/CHANGELOG.md) tun.
+
+Seien Sie sich bitte weiterhin bewusst, dass `rolldown-vite` aktuell noch als experimentell betrachtet wird. Auf Grund der experimentellen Veranlagung, können grundlegende Änderungen auch zwischen Patch-Versionen eingeführt werden. Beachten Sie bitte außerdem, dass `rolldown-vite` nur Updates für die aktuelleste Minor-Version erhält. Auch wichtige Sicherheitsaktualisierungen werden nicht für ältere Major- oder Minor-Versionen erstellt.
 
 ## Zukünftige Pläne
 
