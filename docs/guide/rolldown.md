@@ -2,6 +2,8 @@
 
 Vite plant die Integration von [Rolldown](https://rolldown.rs), einem Rust-basierten JavaScript-Bundler, um die Build-Leistung und -Fähigkeiten zu verbessern.
 
+<YouTubeVideo videoId="RRjfm8cMveQ" />
+
 ## Was ist Rolldown?
 
 Rolldown ist ein moderner, leistungsstarker JavaScript-Bundler, der in Rust geschrieben wurde. Er wurde als Ersatz für Rollup entwickelt und soll erhebliche Leistungsverbesserungen bieten, während die Kompatibilität mit dem bestehenden Ökosystem erhalten bleibt.
