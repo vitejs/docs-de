@@ -98,11 +98,38 @@ Rolldown wirft einen Fehler, wenn unbekannte oder ungültige Optionen angegeben 
 
 Wenn Sie die Optione nicht selbst angeben, muss der Fehler durch das verwendete Framework behoben werden. Sie können den Fehler unterdrücken, in dem Sie die Umgebungsvariable `ROLLDOWN_OPTIONS_VALIDATION=loose` setzen.
 
-## Aktivieren nativer Plugins
+## Performanz
+
+`rolldown-vite` konzentriert sich darauf, die Kompatibilität mit dem bestehenden Ökosystem sicherzustellen, daher sind die Standardeinstellungen auf einen reibungslosen Übergang ausgerichtet. Sie können die Performanz weiter erhöhen, in dem Sie auf Rust-basierte interne Plugins und andere Anpassungen umsteigen.
+
+### Aktivieren nativer Plugins
 
 Dank Rolldown und Oxc wurden verschiedene interne Vite-Plugins, wie beispielsweise das Alias- oder Resolve-Plugin, nach Rust portiert. Zum Zeitpunkt der Erstellung dieses Artikels ist die Verwendung dieser Plugins standardmäßig nicht aktiviert, da ihr Verhalten von den JavaScript-Versionen abweichen kann.
 
 Um sie zu testen, können Sie die `experimental.enableNativePlugin`-Option in Ihrer Vite-Konfiguration auf `true` setzen.
+
+### `withFilter` Wrapper
+
+Plugin-Authoren haben die Möglichkeit, die [Hook-Filter-Funktion](#hook-filter-feature) zu verwenden, um den Kommunikationsaufwand zwischen Rust- und JavaScript-Laufzeiten zu verringern.
+Für den Fall, dass manche der genutzten Plugins diese Funktion (noch) nicht verwenden, können Sie den `withFilter`-Wrapper verwenden, um einen Filter auf das Plugin anzuwenden.
+
+```js
+// In Ihrer vite.config.ts
+import { withFilter, defineConfig } from 'vite'
+import svgr from 'vite-plugin-svgr'
+
+export default defineConfig({
+  plugins: [
+    // Lädt das `svgr` Plugin nur für Dateien, die mit `.svg?react` enden
+    withFilter(
+      svgr({
+        /*...*/
+      }),
+      { load: { id: /\.svg?react$/ } },
+    ),
+  ],
+})
+```
 
 ## Probleme melden
 
