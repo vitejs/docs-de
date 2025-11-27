@@ -1,0 +1,56 @@
+# Importiert in static-deploy.md
+# Diese Datei wird als seperate Datei extrahiert, damit Renovate die Aktionsversionen aktualisieren kann
+#
+#Region Inhalt
+# Einfacher Arbeitsablauf zur Bereitstellung von statischem Inhalt auf GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Läuft bei Pushes, die auf den Standardzweig abzielen  
+  push:
+    branches: ['main']
+
+  # Ermöglicht Ihnen diesen Workflow manuell vom Aktionstab auszuführen    
+  workflow_dispatch:
+
+# Setzt die GITHUB_TOKEN Berechtigung, um die Bereitstellung auf GitHub Pages zu ermöglichen
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Erlaubt eine gleichzeitige Bereitstellung
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  # Einzelner Bereitstellungsauftrag, da wir nur bereitstellen
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Ordner "dist" hochladen
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+#Endregion Inhalt
