@@ -63,59 +63,7 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
 
 2. Gehen Sie zur GitHub Pages-Konfiguration in den Einstellungen des Repository und wählen Sie die Quelle für die Bereitstellung als "GitHub Actions" aus. Dadurch wird ein Workflow erstellt, der Ihr Projekt erstellt und bereitstellt. Ein Beispielworkflow, der Abhängigkeiten installiert und mit npm erstellt, ist bereitgestellt:
 
-   ```yml
-   # Einfacher Workflow zur Bereitstellung von statischem Inhalt auf GitHub Pages
-   name: Statischen Inhalt auf Pages bereitstellen
-
-   on:
-     # Wird bei Pushes auf den Standard-Zweig ausgeführt
-     push:
-       branches: ['main']
-
-     # Ermöglicht das manuelle Ausführen dieses Workflows über das Actions-Tab
-     workflow_dispatch:
-
-   # Setzt die GITHUB_TOKEN-Berechtigungen, um die Bereitstellung auf GitHub Pages zu ermöglichen
-   permissions:
-     contents: read
-     pages: write
-     id-token: write
-
-   # Ermöglicht eine gleichzeitige Bereitstellung
-   concurrency:
-     group: 'pages'
-     cancel-in-progress: true
-
-   jobs:
-     # Einzelne Bereitstellungs-Job, da wir nur bereitstellen
-     deploy:
-       environment:
-         name: github-pages
-         url: ${{ steps.deployment.outputs.page_url }}
-       runs-on: ubuntu-latest
-       steps:
-         - name: Checkout
-           uses: actions/checkout@v4
-         - name: Set up Node
-           uses: actions/setup-node@v4
-           with:
-             node-version: lts/*
-             cache: 'npm'
-         - name: Install dependencies
-           run: npm ci
-         - name: Build
-           run: npm run build
-         - name: Setup Pages
-           uses: actions/configure-pages@v4
-         - name: Upload artifact
-           uses: actions/upload-pages-artifact@v3
-           with:
-             # Upload des dist-Ordners
-             path: './dist'
-         - name: Deploy to GitHub Pages
-           id: deployment
-           uses: actions/deploy-pages@v4
-   ```
+<<< ./static-deploy-github-pages.yaml#content
 
 ## GitLab Pages und GitLab CI
 
