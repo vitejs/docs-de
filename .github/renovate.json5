@@ -28,4 +28,13 @@
     // breaking changes
     "kill-port", // `kill-port:^2.0.0 has perf issues (#8392)
   ],
+  "github-actions": {
+    "fileMatch": [
+      // Standardwerte
+      "(^|/)(workflow-templates|\\.(?:github|gitea|forgejo)/(?:workflows|actions))/.+\\.ya?ml$",
+      "(^|/)action\\.ya?ml$",
+      // Benutzerdefinierter Wert
+      "(^|/)docs/guide/static-deploy-github-pages\\.yaml$",
+    ],
+  },
 }
