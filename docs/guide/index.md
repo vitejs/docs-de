@@ -44,7 +44,7 @@ Folgende Vorlagen werden unterstützt:
 ## Scaffolding für Ihr erstes Vite Projekt
 
 ::: tip Kompatibilitätshinweis
-Vite erfordert [Node.js](https://nodejs.org/en/) Version 20+. Einige Vorlagen benötigen jedoch eine höhere Node.js-Version, um zu funktionieren. Bitte aktualisieren Sie diese, wenn Ihr Paketmanager Sie davor warnt.
+Vite erfordert [Node.js](https://nodejs.org/en/) Version 20.19+, 22.12+. Einige Vorlagen benötigen jedoch eine höhere Node.js-Version, um zu funktionieren. Bitte aktualisieren Sie diese, wenn Ihr Paketmanager Sie davor warnt.
 :::
 
 ::: code-group
