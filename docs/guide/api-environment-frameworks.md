@@ -328,6 +328,8 @@ export default {
 }
 ```
 
+Plugins können auch eine `buildApp`-Hook definieren. Die Befehle `'pre'` und `null` werden vor der konfigurierten `builder.buildApp` ausgeführt und `'post'`-Befehl-Hooks anschließend. Mit `environment.isBuilt` kann überprüft werden, ob eine Umgebung bereits erstellt wurde.
+
 ## Umgebungsunabhängiger Code
 
 Die meiste Zeit wird die aktuelle `Environment`-Instanz als Teil des Kontexts des ausgeführten Codes verfügbar sein, so dass die Notwendigkeit, auf sie über `server.environments` zuzugreifen, selten sein sollte. Zum Beispiel wird die Umgebung innerhalb von Plugin-Hooks als Teil des `PluginContext` offengelegt, so dass auf sie mit `this.environment` zugegriffen werden kann. Siehe [Environment API for Plugins](./api-environment-plugins.md), um zu erfahren, wie man umweltbewusste Plugins erstellt.
