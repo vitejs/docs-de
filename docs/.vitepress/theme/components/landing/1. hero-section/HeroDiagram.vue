@@ -172,7 +172,7 @@ const prepareInputs = () => {
   inputs.forEach((lineIndex, fileIndex) => {
     inputLines[lineIndex].value.label = inputFileSet[fileIndex].label
     inputLines[lineIndex].value.dotColor = inputLines[
-      lineIndex as number
+      lineIndex
     ].value.glowColor = inputFileSet[fileIndex].color
   })
   return inputs

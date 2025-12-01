@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import logoJSON from './images/json.svg'
 import logoCSS from './images/css3.svg'
 import logoJS from './images/js.svg'
