@@ -375,7 +375,7 @@ Blockier-Liste für sensible Dateien, deren Bereitstellung durch den Vite-Entwic
 
 ::: tip HINWEIS
 
-Diese Blockliste wird nicht auf [das "public"-Verzeichnis](/guide/assets.md#the-public-directory) angewendet. Alle Dateien in dem "public"-Verzeichnis werden ohne Filterung bereitgestellt, da sie beim Build direkt in das Ausgabeverzeichnis kopiert werden.
+Diese Blockliste wird nicht auf [das `public`-Verzeichnis](/guide/assets.md#the-public-directory) angewendet. Alle Dateien in dem `public`-Verzeichnis werden ohne Filterung bereitgestellt, da sie beim Build direkt in das Ausgabeverzeichnis kopiert werden.
 
 :::
 
