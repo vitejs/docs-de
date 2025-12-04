@@ -328,7 +328,7 @@ export default {
 }
 ```
 
-Plugins können auch eine `buildApp`-Hook definieren. Die Befehle `'pre'` und `null` werden vor dem konfigurierten `builder.buildApp` ausgeführt und `'post'`-Befehl-Hooks werden danach ausgeführt. Mit `environment.isBuilt` kann überprüft werden, ob eine Umgebung bereits erstellt wurde.
+Plugins können auch eine `buildApp`-Hook definieren. Die Befehle `'pre'` und `null` werden vor der konfigurierten `builder.buildApp` ausgeführt und `'post'`-Befehl-Hooks werden danach ausgeführt. Mit `environment.isBuilt` kann überprüft werden, ob eine Umgebung bereits erstellt wurde.
 
 ## Umgebungsunabhängiger Code
 
