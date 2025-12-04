@@ -14,7 +14,7 @@ export default {
 }
 ```
 
-Anmerkung: Vite unterstützt die Verwendung der ES-Module-Syntax in der Konfigurationsdatei, auch wenn das Projekt keinen nativen Node ESM verwendet, z.B. `type: "Modul"` in `package.json`. In diesem Fall wird die Konfigurationsdatei vor dem Laden automatisch vorverarbeitet.
+Anmerkung: Vite unterstützt die Verwendung der ES-Module-Syntax in der Konfigurationsdatei, auch wenn das Projekt keinen nativen Node ESM verwendet, z.B. `"type": "module"` in `package.json`. In diesem Fall wird die Konfigurationsdatei vor dem Laden automatisch vorverarbeitet.
 
 Sie können auch explizit eine Konfigurationsdatei angeben, die mit der CLI-Option `--config` verwendet wird (aufgelöst relativ zu `cwd`):
 
