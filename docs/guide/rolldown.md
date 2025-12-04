@@ -31,17 +31,18 @@ Weitere Einblicke in die Beweggründe für Rolldown finden Sie unter [Gründe f�
 
 ## Wie man Rolldown ausprobiert
 
-Die Rolldown-basierte Version von Vite ist derzeit als separates Paket namens `rolldown-vite` verfügbar. Wenn Sie `vite` als direkte Abhängigkeit haben, können Sie das `vite`-Paket über einen Alias in Ihrem Projekt mit `rolldown-vite` verknüpfen, was zu einem direkten Ersatz führen sollte.
+Die Rolldown-basierte Version von Vite ist derzeit als separates Paket namens `rolldown-vite` verfügbar. Wenn Sie `vite` als direkte Abhängigkeit haben, können Sie das `vite`-Paket über einen Alias in der `package.json` Ihres Projekts mit `rolldown-vite` verknüpfen, was zu einem direkten Ersatz führen sollte.
 
 ```json
 {
   "dependencies": {
-    "vite": "npm:rolldown-vite@latest"
+    "vite": "^6.0.0" // [!code --]
+    "vite": "npm:rolldown-vite@latest" // [!code ++]
   }
 }
 ```
 
-Wenn Sie Vitepress oder ein Meta-Framework, das Vite als Peer-Abhängigkeit hat, müssen Sie die Abhängigkeit `vite` in Ihrem Paketmanager überschreiben:
+Wenn Sie Vitepress oder ein Meta-Framework, das Vite als Peer-Abhängigkeit hat, müssen Sie die Abhängigkeit `vite` in Ihrer `package.json` überschreiben, welche je nach Paketmanager leicht unterscheidlich funktioniert:
 
 :::code-group
 
