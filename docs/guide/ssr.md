@@ -55,7 +55,7 @@ Dies wird während des Builds statisch ersetzt und ermöglicht das Entfernen von
 
 ## Einrichten des Entwicklungsservers
 
-Wenn Sie eine SSR-Anwendung erstellen, möchten Sie wahrscheinlich die volle Kontrolle über Ihren Hauptserver haben und Vite von der Produktionsumgebung entkoppeln. Es wird daher empfohlen, Vite im Middleware-Modus zu verwenden. Hier ist ein Beispiel mit [Express](https://expressjs.com/) (v4):
+Wenn Sie eine SSR-Anwendung erstellen, möchten Sie wahrscheinlich die volle Kontrolle über Ihren Hauptserver haben und Vite von der Produktionsumgebung entkoppeln. Es wird daher empfohlen, Vite im Middleware-Modus zu verwenden. Hier ist ein Beispiel mit [Express](https://expressjs.com/):
 
 ```js{15-18} twoslash [server.js]
 import fs from 'node:fs'
@@ -85,7 +85,7 @@ async function createServer() {
   // Middlewares). Das Folgende ist auch nach Neustarts gültig.
   app.use(vite.middlewares)
 
-  app.use('*', async (req, res) => {
+  app.use('*all', async (req, res) => {
     // Stellen Sie die index.html bereit - wir werden diese als Nächstes angehen
   })
 
@@ -111,7 +111,7 @@ var app
 var vite
 
 // ---cut---
-app.use('*', async (req, res, next) => {
+app.use('*all', async (req, res, next) => {
   const url = req.originalUrl
 
   try {
