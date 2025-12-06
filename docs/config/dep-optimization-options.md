@@ -74,6 +74,13 @@ Bestimmte Optionen werden ausgelassen, da ihre Änderung nicht mit der Abhängig
 
 Setzen Sie dies auf `true`, um die Vorab-Bündelung von Abhängigkeiten zu erzwingen und zuvor zwischengespeicherte optimierte Abhängigkeiten zu ignorieren.
 
+## optimizeDeps.noDiscovery
+
+- **Typ:** `boolean`
+- **Standard:** `false`
+
+Wenn der Wert auf `true` gesetzt ist, wird das automatische Entdecken von Abhängigkeiten deaktiviert und nur gelistete Abhägigkeiten der `optimizeDeps.include`-Option werden optimiert. CJS-Abhängigkeiten müssen während der Entwicklung in `optimizeDeps.include` vorhanden sein.
+
 ## optimizeDeps.holdUntilCrawlEnd
 
 - **Experimentell:** [Feedback geben](https://github.com/vitejs/vite/discussions/15834)
