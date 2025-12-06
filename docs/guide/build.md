@@ -4,14 +4,14 @@ Wenn es Zeit ist, Ihre App für die Produktion bereitzustellen, führen Sie einf
 
 ## Browserkompatibilität
 
-Standardmäßig setzt das Produktionsbündel die Unterstützung für modernes JavaScript voraus, inklusive [nativer ES-Module](https://caniuse.com/es6-module), [nativem ESM-Dynamic-Import](https://caniuse.com/es6-module-dynamic-import) und [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta), [Null-Koaleszenz](https://caniuse.com/mdn-javascript_operators_nullish_coalescing), und [BigInt](https://caniuse.com/bigint). Der Standardbereich für unterstützte Browser ist:
+Standardmäßig setzt das Produktionsbündel einen modernen Browser voraus, der in den Zielen der [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available enthalten ist. Der Standardbereich für unterstützte Browser ist:
 
-<!-- Suche nach der `ESBUILD_MODULES_TARGET` Konstante für mehr Informationen -->
+<!-- Suche nach der `ESBUILD_BASELINE_WIDELY_AVAILABLE_TARGET` Konstante für mehr Informationen -->
 
-- Chrome >=87
-- Firefox >=78
-- Safari >=14
-- Edge >=88
+- Chrome >=107
+- Edge >=107
+- Firefox >=104
+- Safari >=16
 
 Sie können benutzerdefinierte Ziele über die [`build.target` Konfigurationsoption](/config/build-options.md#build-target) festlegen, wobei das niedrigste Ziel `es2015` ist. Wenn ein niedrigeres Ziel festgelegt wird, benötigt Vite dennoch die Mindestanforderungen an die Browserunterstützung, da es auf den [nativen, dynamischen ESM-Import](https://caniuse.com/es6-module-dynamic-import) und [`import.meta`](https://caniuse.com/mdn-javascript_operators_import_meta) angewiesen ist:
 
