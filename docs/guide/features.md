@@ -179,7 +179,7 @@ Von HTML-Elementen wie `<script type="module" src>` und `<link href>` referenzie
 - `<audio src>`
 - `<embed src>`
 - `<img src>` und `<img srcset>`
-- `<image src>`
+- `<image href>` and `<image xlink:href>`
 - `<input src>`
 - `<link href>` und `<link imagesrcset>`
 - `<object data>`
@@ -359,7 +359,7 @@ document.getElementById('hero-img').src = imgUrl
 Spezielle Abfragen können die Art und Weise, wie Assets geladen werden, verändern:
 
 ```js
-// Explicitly load assets as URL
+// Explicitly load assets as URL (automatically inlined depending on the file size)
 import assetAsURL from './asset.js?url'
 ```
 
