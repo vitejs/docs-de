@@ -7,7 +7,7 @@ const { data } = useSponsor()
 
 const sponsors = computed(() => {
   return (
-    data?.value.map((sponsor) => {
+    data.value?.map((sponsor) => {
       return {
         size: sponsor.size === 'big' ? 'mini' : 'xmini',
         items: sponsor.items
