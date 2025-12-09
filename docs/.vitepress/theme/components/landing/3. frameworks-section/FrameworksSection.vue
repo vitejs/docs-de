@@ -272,7 +272,7 @@ const rowStyle: ComputedRef<{ transform: string }> = computed(() => {
     <div class="frameworks-container">
       <!-- Top Row -->
       <div class="framework-row" :style="rowStyle">
-        <FrameworkCard v-for="i in numBlocksPerRow + 2" />
+        <FrameworkCard v-for="_ in numBlocksPerRow + 2" />
       </div>
 
       <!-- Logo Rows -->
@@ -304,7 +304,7 @@ const rowStyle: ComputedRef<{ transform: string }> = computed(() => {
 
       <!-- Bottom Row -->
       <div class="framework-row" :style="rowStyle">
-        <FrameworkCard v-for="i in numBlocksPerRow + 2" />
+        <FrameworkCard v-for="_ in numBlocksPerRow + 2" />
       </div>
     </div>
   </section>

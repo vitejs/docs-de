@@ -4,37 +4,6 @@ Siehe [Rollup-Fehlerbehebungshandbuch](https://rollupjs.org/troubleshooting/) f�
 
 Wenn die hier vorgeschlagenen Lösungen nicht funktionieren, versuchen Sie, Ihre Fragen in [GitHub-Diskussionen](https://github.com/vitejs/vite/discussions) zu posten oder im `#help`-Kanal von [Vite Land Discord](https://chat.vite.dev) zu stellen.
 
-## CJS
-
-### Vite CJS Node API veraltet
-
-Die CJS-Build des Node-API von Vite ist veraltet und wird in Vite 6 entfernt. Weitere Informationen finden Sie in der [GitHub-Diskussion](https://github.com/vitejs/vite/discussions/13928). Sie sollten Ihre Dateien oder Frameworks aktualisieren, um stattdessen den ESM-Build von Vite zu importieren.
-
-In einem einfachen Vite-Projekt stellen Sie sicher, dass:
-
-1. Der Inhalt der Datei `vite.config.js` die ESM-Syntax verwendet.
-2. Die nächstgelegene `package.json`-Datei, die `"type": "module"` enthält oder die Erweiterung `.mjs`/`.mts` verwendet, z.B. `vite.config.mjs` or `vite.config.mts`.
-
-Für andere Projekte gibt es einige allgemeine Ansätze:
-
-- **ESM als Standard konfigurieren, bei Bedarf Opt-In für CJS:** Fügen Sie `"type": "module"` in die `package.json` des Projekts hinzu. Alle `*.js`-Dateien werden jetzt als ESM interpretiert und müssen die ESM-Syntax verwenden. Sie können eine Datei mit der Erweiterung `.cjs` umbenennen, um weiterhin CJS zu verwenden.
-- **Behalten Sie CJS als Standard und optieren Sie bei Bedarf für ESM:** Wenn die `package.json` des Projekts nicht `"type": "module"` enthält, werden alle `*.js`-Dateien als CJS interpretiert. Sie können eine Datei mit der Erweiterung `.mjs` umbenennen, um stattdessen ESM zu verwenden.
-- **Importieren Sie Vite dynamisch:** Wenn Sie CJS weiterhin verwenden müssen, können Sie Vite dynamisch mit `import('vite')` importieren. Dies erfordert, dass Ihr Code in einem `async`-Kontext geschrieben ist, sollte aber trotzdem gut beherrschbar sein, da die Vite-API größtenteils asynchron ist.
-
-Wenn Sie unsicher sind, wo die Warnung herkommt, können Sie Ihr Skript mit der Flagge `VITE_CJS_TRACE=true` ausführen, um den Stapelrückverfolgung zu protokollieren:
-
-```bash
-VITE_CJS_TRACE=true vite dev
-```
-
-Wenn Sie die Warnung vorübergehend ignorieren möchten, können Sie Ihr Skript mit der Flagge `VITE_CJS_IGNORE_WARNING=true` ausführen:
-
-```bash
-VITE_CJS_IGNORE_WARNING=true vite dev
-```
-
-Beachten Sie, dass postcss-Konfigurationsdateien die ESM + TypeScript (`.mts` oder `.ts` in `„type“: „module“`) noch nicht unterstützen. Wenn Sie postcss-Konfigurationen mit `.ts` haben und `„type“: „module"` zu package.json hinzugefügt haben, müssen Sie auch die postcss-Konfiguration umbenennen, um `.cts` zu verwenden.
-
 ## Befehlszeilenschnittstelle (CLI)
 
 ### `Fehler: Modul 'C:\foo\bar&baz\vite\bin\vite.js' nicht gefunden`
@@ -246,3 +215,18 @@ Beispiele für Verknüpfungen zwischen verschiedenen Laufwerken sind:
 - Ein Symlink/Junction zu einem anderen Laufwerk über den `mklink`-Befehl (z.B. Yarn Global Cache)
 
 Verwandtes Problem: [#10802](https://github.com/vitejs/vite/issues/10802)
+
+<script setup lang="ts">
+// Weiterleitung von alten Links mit Hash zu alten Dokumentations-Versionen
+if (typeof window !== "undefined") {
+  const hashForOldVersion = {
+    'vite-cjs-node-api-deprecated': 6
+  }
+
+  const version = hashForOldVersion[location.hash.slice(1)]
+  if (version) {
+    // Aktualisieren des Schemas und des Ports, damit es in der lokalen Vorschau funktioniert (lokal mit http und 4173)
+    location.href = `https://v${version}.vite.dev` + location.pathname + location.search + location.hash
+  }
+}
+</script>

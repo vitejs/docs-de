@@ -179,7 +179,7 @@ Von HTML-Elementen wie `<script type="module" src>` und `<link href>` referenzie
 - `<audio src>`
 - `<embed src>`
 - `<img src>` und `<img srcset>`
-- `<image src>`
+- `<image href>` and `<image xlink:href>`
 - `<input src>`
 - `<link href>` und `<link imagesrcset>`
 - `<object data>`
@@ -314,7 +314,7 @@ npm add -D stylus
 
 Bei der Verwendung von Vue-Einzeldateikomponenten aktiviert dies auch automatisch `<style lang="sass">` und andere.
 
-Vite verbessert die `@import`-Auflösung für Sass und Less, so dass Vite-Aliase ebenfalls respektiert werden. Außerdem werden relative `url()`-Referenzen innerhalb importierter Sass/Less-Dateien, die sich in anderen Verzeichnissen als die Stammdatei befinden, automatisch umgestellt, um die Korrektheit sicherzustellen.
+Vite verbessert die `@import`-Auflösung für Sass und Less, so dass Vite-Aliase ebenfalls respektiert werden. Außerdem werden relative `url()`-Referenzen innerhalb importierter Sass/Less-Dateien, die sich in anderen Verzeichnissen als die Stammdatei befinden, automatisch umgestellt, um die Korrektheit sicherzustellen. Das Rebasing von `url()`-Referenzen, die mit einer Variablen oder einer Interpolation beginnen, wird aufgrund der API-Einschränkungen nicht unterstützt.
 
 `@import` alias und url rebasing werden für Stylus aufgrund seiner API-Beschränkungen nicht unterstützt.
 
@@ -359,7 +359,7 @@ document.getElementById('hero-img').src = imgUrl
 Spezielle Abfragen können die Art und Weise, wie Assets geladen werden, verändern:
 
 ```js
-// Explicitly load assets as URL
+// Explicitly load assets as URL (automatically inlined depending on the file size)
 import assetAsURL from './asset.js?url'
 ```
 
