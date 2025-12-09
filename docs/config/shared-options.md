@@ -229,9 +229,7 @@ Geben Sie Optionen an, die an CSS-Präprozessoren übergeben werden sollen. Die 
 
 - `sass`/`scss`:
   - Wählen Sie die zu verwendende Sass-API mit `api: "modern-compiler" | "modern"` (Standard `"modern-compiler"` wenn `sass-embedded` installiert ist, sonst `"modern"`). Für die beste Leistung wird die Verwendung von `api: "modern-compiler"` mit dem `sass-embedded` Paket zu verwenden.
-
   - [Optionen (modern)](https://sass-lang.com/documentation/js-api/interfaces/stringoptions/)
-
 - `less`: [Optionen](https://lesscss.org/usage/#less-options).
 - `styl`/`stylus`: Nur [`define`](https://stylus-lang.com/docs/js.html#define-name-node) wird unterstützt, das als Objekt übergeben werden kann.
 
