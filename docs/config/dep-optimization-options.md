@@ -10,7 +10,7 @@ Sofern nicht anders angegeben, werden die Optionen in diesem Abschnitt nur auf d
 
 Standardmäßig durchsucht Vite alle Ihre `.html`-Dateien, um Abhängigkeiten zu erkennen, die vorab gebündelt werden müssen (ignoriert `node_modules`, `build.outDir`, `__tests__` und `coverage`). Wenn `build.rollupOptions.input` angegeben ist, durchsucht Vite stattdessen diese Einstiegspunkte.
 
-Wenn keine der beiden Optionen Ihren Anforderungen entspricht, können Sie mit dieser Option benutzerdefinierte Einträge angeben - der Wert sollte ein [`tinyglobby`-Muster](https://github.com/SuperchupuDev/tinyglobby) oder ein Array von Mustern sein, die relativ zum Vite-Projektroot sind. Dies überschreibt die Inferenz der Standardeinträge. Nur die Ordner `node_modules` und `build.outDir` werden standardmäßig ignoriert, wenn `optimizeDeps.entries` explizit definiert ist. Wenn andere Ordner ignoriert werden sollen, können Sie ein Ignoriermuster als Teil der Eintragsliste verwenden, das mit einem anfänglichen `!` gekennzeichnet ist. Wenn Sie `node_modules` und `build.outDir` nicht ignorieren möchten, können Sie stattdessen literalisierte String-Pfade (ohne `tinyglobby`-Muster) angeben.
+Wenn keine der beiden Optionen Ihren Anforderungen entspricht, können Sie mit dieser Option benutzerdefinierte Einträge angeben - der Wert sollte ein [`tinyglobby`-Muster](https://github.com/SuperchupuDev/tinyglobby) oder ein Array von Mustern sein, die relativ zum Vite-Projektroot sind. Dies überschreibt die Inferenz der Standardeinträge. Nur die Ordner `node_modules` und `build.outDir` werden standardmäßig ignoriert, wenn `optimizeDeps.entries` explizit definiert ist. Wenn andere Ordner ignoriert werden sollen, können Sie ein Ignoriermuster als Teil der Eintragsliste verwenden, das mit einem anfänglichen `!` gekennzeichnet ist. `node_modules` werden nicht von Mustern ignoriert, die explizit die Zeichenkette `node_modules` enthalten.
 
 ## optimizeDeps.exclude
 
@@ -73,6 +73,13 @@ Bestimmte Optionen werden ausgelassen, da ihre Änderung nicht mit der Abhängig
 - **Typ:** `boolean`
 
 Setzen Sie dies auf `true`, um die Vorab-Bündelung von Abhängigkeiten zu erzwingen und zuvor zwischengespeicherte optimierte Abhängigkeiten zu ignorieren.
+
+## optimizeDeps.noDiscovery
+
+- **Typ:** `boolean`
+- **Standard:** `false`
+
+Wenn der Wert auf `true` gesetzt ist, wird das automatische Entdecken von Abhängigkeiten deaktiviert und nur gelistete Abhägigkeiten der `optimizeDeps.include`-Option werden optimiert. CJS-Abhängigkeiten müssen während der Entwicklung in `optimizeDeps.include` vorhanden sein.
 
 ## optimizeDeps.holdUntilCrawlEnd
 
