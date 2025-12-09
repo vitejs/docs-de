@@ -156,7 +156,7 @@ Zum Beispiel, um den Standardimport von `*.svg` zu einer React-Komponente zu mac
     export default content
   }
   ```
-- Die Datei, die den Verweis auf `vite/client` enthält:
+- Die Datei, die den Verweis auf `vite/client` enthält (normalerweise `vite-env.d.ts`):
   ```ts
   /// <reference types="./vite-env-override.d.ts" />
   /// <reference types="vite/client" />

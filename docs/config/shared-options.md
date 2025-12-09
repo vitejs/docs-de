@@ -54,7 +54,7 @@ export default defineConfig({
 ```
 
 :::tip HINWEIS
-Für TypeScript-Benutzer stellen Sie sicher, dass Sie die Typerklärungen in der Datei `env.d.ts` oder `vite-env.d.ts` hinzufügen, um Typprüfungen und Intellisense zu erhalten.
+Für TypeScript-Benutzer stellen Sie sicher, dass Sie die Typerklärungen in der Datei `vite-env.d.ts` hinzufügen, um Typprüfungen und Intellisense zu erhalten.
 
 Beispiel:
 
