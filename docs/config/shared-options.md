@@ -228,7 +228,7 @@ Hinweis: Wenn eine Inline-Konfiguration bereitgestellt wird, sucht Vite nicht na
 Geben Sie Optionen an, die an CSS-Präprozessoren übergeben werden sollen. Die Dateierweiterungen werden als Schlüssel für die Optionen verwendet. Die unterstützten Optionen für jeden Präprozessor finden Sie in der jeweiligen Dokumentation:
 
 - `sass`/`scss`:
-  - Wählen Sie die zu verwendende Sass-API mit `api: "modern-compiler" | "modern"` (Standard `"modern-compiler"` wenn `sass-embedded` installiert ist, sonst `"modern"`). Für die beste Leistung wird die Verwendung von `api: "modern-compiler"` mit dem `sass-embedded` Paket zu verwenden.
+  - Nutzt `sass-embedded`, falls es installiert ist. Ansonsten wird `sass` verwendet. Für die höchste Performanz empfehlen wir, das Paket `sass-embedded` zu installieren.
   - [Optionen (modern)](https://sass-lang.com/documentation/js-api/interfaces/stringoptions/)
 - `less`: [Optionen](https://lesscss.org/usage/#less-options).
 - `styl`/`stylus`: Nur [`define`](https://stylus-lang.com/docs/js.html#define-name-node) wird unterstützt, das als Objekt übergeben werden kann.
