@@ -280,11 +280,12 @@ export default defineConfig({
 
 ## css.preprocessorMaxWorkers
 
-- **Experimentell:** [Feedback geben](https://github.com/vitejs/vite/discussions/15835)
 - **Typ:** `number | true`
-- **Standardwert:** `0` (erzeugt keine Worker und läuft im Hauptthread)
+- **Standardwert:** `true`
 
-Wenn diese Option gesetzt ist, werden CSS-Präprozessoren wenn möglich in Workern ausgeführt. `true` beschreibt die Anzahl der CPUs `- 1`.
+Spezifiziert die maximale Anzahl an Threads, die CSS-Präprozessoren verwenden können. `true` beschreibt die Anzahl der CPUs `- 1`. Wenn der Wert auf `0` gesetzt wird, erstellt Vite keine Worker erstellen und die Präprozessoren werden im Hauptthread ausgeführt.
+
+Abhängig von den Präprozessor-Optionen, führt Vite den Präprozessor auf dem Hauptthread aus, auch wenn diese Option nicht auf `0` gesetzt ist.
 
 ## css.devSourcemap
 
