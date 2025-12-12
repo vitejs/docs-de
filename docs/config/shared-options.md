@@ -54,7 +54,7 @@ export default defineConfig({
 ```
 
 :::tip HINWEIS
-Für TypeScript-Benutzer stellen Sie sicher, dass Sie die Typerklärungen in der Datei `env.d.ts` oder `vite-env.d.ts` hinzufügen, um Typprüfungen und Intellisense zu erhalten.
+Für TypeScript-Benutzer stellen Sie sicher, dass Sie die Typerklärungen in der Datei `vite-env.d.ts` hinzufügen, um Typprüfungen und Intellisense zu erhalten.
 
 Beispiel:
 
@@ -230,7 +230,6 @@ Geben Sie Optionen an, die an CSS-Präprozessoren übergeben werden sollen. Die 
 - `sass`/`scss`:
   - Nutzt `sass-embedded`, falls es installiert ist. Ansonsten wird `sass` verwendet. Für die höchste Performanz empfehlen wir, das Paket `sass-embedded` zu installieren.
   - [Optionen (modern)](https://sass-lang.com/documentation/js-api/interfaces/stringoptions/)
-  - [Optionen (legacy)](https://sass-lang.com/documentation/js-api/interfaces/LegacyStringOptions).
 - `less`: [Optionen](https://lesscss.org/usage/#less-options).
 - `styl`/`stylus`: Nur [`define`](https://stylus-lang.com/docs/js.html#define-name-node) wird unterstützt, das als Objekt übergeben werden kann.
 
@@ -249,7 +248,7 @@ export default defineConfig({
         },
       },
       scss: {
-        api: 'modern-compiler', // or "modern", "legacy"
+        api: 'modern-compiler', // or "modern"
         importers: [
           // ...
         ],
