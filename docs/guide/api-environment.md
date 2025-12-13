@@ -21,8 +21,8 @@ Für eine einfache SPA/MPA werden keine neuen APIs rund um Umgebungen in der Kon
 
 Wenn wir zu einer typischen serverseitig gerenderten (SSR) App wechseln, haben wir zwei Umgebungen:
 
-- „client“: Führt die App im Browser aus.
-- „server“: Führt die App in Node (oder anderen Server-Laufzeiten) aus, die Seiten rendert, bevor sie an den Browser gesendet werden.
+- `client`: Führt die App im Browser aus.
+- `ssr`: Führt die App in Node (oder anderen Server-Laufzeiten) aus, die Seiten rendert, bevor sie an den Browser gesendet werden.
 
 In der Entwicklung führt Vite den Servercode im gleichen Node-Prozess wie der Vite-Entwicklungsserver aus, wodurch eine gute Annäherung an die Produktionsumgebung erreicht wird. Es ist jedoch auch möglich, dass Server in anderen JS-Laufzeitumgebungen ausgeführt werden, wie z. B. [Cloudflares Workerd](https://github.com/cloudflare/workerd), die andere Einschränkungen haben. Moderne Apps können auch in mehr als zwei Umgebungen ausgeführt werden, z. B. in einem Browser, einem Node-Server und einem Edge-Server. Vite 5 ermöglichte es vorher nicht, diese Umgebungen korrekt darzustellen.
 
