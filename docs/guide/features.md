@@ -156,7 +156,7 @@ Zum Beispiel, um den Standardimport von `*.svg` zu einer React-Komponente zu mac
     export default content
   }
   ```
-- Die Datei, die den Verweis auf `vite/client` enthält:
+- Die Datei, die den Verweis auf `vite/client` enthält (normalerweise `vite-env.d.ts`):
   ```ts
   /// <reference types="./vite-env-override.d.ts" />
   /// <reference types="vite/client" />
@@ -314,7 +314,7 @@ npm add -D stylus
 
 Bei der Verwendung von Vue-Einzeldateikomponenten aktiviert dies auch automatisch `<style lang="sass">` und andere.
 
-Vite verbessert die `@import`-Auflösung für Sass und Less, so dass Vite-Aliase ebenfalls respektiert werden. Außerdem werden relative `url()`-Referenzen innerhalb importierter Sass/Less-Dateien, die sich in anderen Verzeichnissen als die Stammdatei befinden, automatisch umgestellt, um die Korrektheit sicherzustellen.
+Vite verbessert die `@import`-Auflösung für Sass und Less, so dass Vite-Aliase ebenfalls respektiert werden. Außerdem werden relative `url()`-Referenzen innerhalb importierter Sass/Less-Dateien, die sich in anderen Verzeichnissen als die Stammdatei befinden, automatisch umgestellt, um die Korrektheit sicherzustellen. Das Rebasing von `url()`-Referenzen, die mit einer Variablen oder einer Interpolation beginnen, wird aufgrund der API-Einschränkungen nicht unterstützt.
 
 `@import` alias und url rebasing werden für Stylus aufgrund seiner API-Beschränkungen nicht unterstützt.
 

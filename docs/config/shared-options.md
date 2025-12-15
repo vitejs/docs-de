@@ -54,7 +54,7 @@ export default defineConfig({
 ```
 
 :::tip HINWEIS
-Für TypeScript-Benutzer stellen Sie sicher, dass Sie die Typerklärungen in der Datei `env.d.ts` oder `vite-env.d.ts` hinzufügen, um Typprüfungen und Intellisense zu erhalten.
+Für TypeScript-Benutzer stellen Sie sicher, dass Sie die Typerklärungen in der Datei `vite-env.d.ts` hinzufügen, um Typprüfungen und Intellisense zu erhalten.
 
 Beispiel:
 
@@ -228,9 +228,8 @@ Hinweis: Wenn eine Inline-Konfiguration bereitgestellt wird, sucht Vite nicht na
 Geben Sie Optionen an, die an CSS-Präprozessoren übergeben werden sollen. Die Dateierweiterungen werden als Schlüssel für die Optionen verwendet. Die unterstützten Optionen für jeden Präprozessor finden Sie in der jeweiligen Dokumentation:
 
 - `sass`/`scss`:
-  - Wählen Sie die zu verwendende Sass-API mit `api: "modern-compiler" | "modern" | "legacy"` (Standard `"modern-compiler"` wenn `sass-embedded` installiert ist, sonst `"modern"`). Für die beste Leistung wird die Verwendung von `api: "modern-compiler"` mit dem `sass-embedded` Paket zu verwenden. Die `"legacy"` API ist veraltet und wird in Vite 7 entfernt werden.
+  - Nutzt `sass-embedded`, falls es installiert ist. Ansonsten wird `sass` verwendet. Für die höchste Performanz empfehlen wir, das Paket `sass-embedded` zu installieren.
   - [Optionen (modern)](https://sass-lang.com/documentation/js-api/interfaces/stringoptions/)
-  - [Optionen (legacy)](https://sass-lang.com/documentation/js-api/interfaces/LegacyStringOptions).
 - `less`: [Optionen](https://lesscss.org/usage/#less-options).
 - `styl`/`stylus`: Nur [`define`](https://stylus-lang.com/docs/js.html#define-name-node) wird unterstützt, das als Objekt übergeben werden kann.
 
@@ -249,7 +248,7 @@ export default defineConfig({
         },
       },
       scss: {
-        api: 'modern-compiler', // or "modern", "legacy"
+        api: 'modern-compiler', // or "modern"
         importers: [
           // ...
         ],
@@ -281,11 +280,12 @@ export default defineConfig({
 
 ## css.preprocessorMaxWorkers
 
-- **Experimentell:** [Feedback geben](https://github.com/vitejs/vite/discussions/15835)
 - **Typ:** `number | true`
-- **Standardwert:** `0` (erzeugt keine Worker und läuft im Hauptthread)
+- **Standardwert:** `true`
 
-Wenn diese Option gesetzt ist, werden CSS-Präprozessoren wenn möglich in Workern ausgeführt. `true` beschreibt die Anzahl der CPUs `- 1`.
+Spezifiziert die maximale Anzahl an Threads, die CSS-Präprozessoren verwenden können. `true` beschreibt die Anzahl der CPUs `- 1`. Wenn der Wert auf `0` gesetzt wird, erstellt Vite keine Worker erstellen und die Präprozessoren werden im Hauptthread ausgeführt.
+
+Abhängig von den Präprozessor-Optionen, führt Vite den Präprozessor auf dem Hauptthread aus, auch wenn diese Option nicht auf `0` gesetzt ist.
 
 ## css.devSourcemap
 
