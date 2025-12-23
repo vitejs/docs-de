@@ -19,8 +19,8 @@ Während der Entwicklung können die verfügbaren Umgebungen in einem Entwicklun
 // Erstellen des Servers oder erhalten Sie ihn von der configureServer-Hook
 const server = await createServer(/* options */)
 
-const environment = server.environments.client
-environment.transformRequest(url)
+const clientEnvironment = server.environments.client
+clientEnvironment.transformRequest(url)
 console.log(server.environments.ssr.moduleGraph)
 ```
 Sie können auch auf die aktuelle Umgebung durch Plugins zugreifen. Siehe [Environment API for Plugins](./api-environment-plugins.md#accessing-the-current-environment-in-hooks) für mehr Details.
