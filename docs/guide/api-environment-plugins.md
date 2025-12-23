@@ -1,7 +1,7 @@
 # Umgebungs-API für Plugins
 
 :::warning Experimentell
-Die Environment-API befindet sich noch in der Testphase. Wir werden die APIs während Vite 6 stabil halten, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Wir planen, diese neuen APIs mit potenziellen grundlegenden Änderungen in Vite 7 zu stabilisieren.
+Die Environment-API befindet sich noch in der Testphase. Wir werden weiterhin für Stabilität in den APIs zwischen den Hauptversionen sorgen, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Wir planen, diese neueren APIs (mit möglichen grundlegenden Änderungen) in einer zukünftigen Hauptversion zu stabilisieren, sobald nachgelagerte Projekte Zeit hatten, mit den neuen Funktionen zu experimentieren und sie zu validieren.
 
 Ressourcen:
 
@@ -189,7 +189,7 @@ Vor Vite 6 funktionierten die Plugin-Pipelines während der Entwicklung und des 
 
 Dadurch waren Frameworks gezwungen, den Status zwischen dem `client`-Build und dem `ssr`-Build über Manifestdateien zu teilen, die in das Dateisystem geschrieben wurden. In Vite 6 erstellen wir nun alle Umgebungen in einem einzigen Prozess, sodass die Plugin-Pipeline und die Kommunikation zwischen den Umgebungen an die Entwicklung angepasst werden können.
 
-In einer zukünftigen Hauptversion (Vite 7 oder 8) streben wir eine vollständige Angleichung an:
+In einer zukünftigen Hauptversion könnten wir eine vollständige Angleichung haben:
 
 - **Sowohl während der Entwicklung als auch beim Build:** Plugins werden gemeinsam genutzt, mit [Umgebungsfilterung](#per-environment-plugins)
 

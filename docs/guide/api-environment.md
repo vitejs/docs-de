@@ -1,7 +1,7 @@
 # Environment API
 
 :::warning Experimentell
-Die Environment-API befindet sich noch in der Testphase. Wir werden die APIs während Vite 6 stabil halten, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Wir planen, diese neuen APIs mit potenziellen grundlegenden Änderungen in Vite 7 zu stabilisieren.
+Die Environment-API befindet sich noch in der Testphase. Wir werden weiterhin für Stabilität in den APIs zwischen den Hauptversionen sorgen, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Wir planen, diese neueren APIs (mit möglichen grundlegenden Änderungen) in einer zukünftigen Hauptversion zu stabilisieren, sobald nachgelagerte Projekte Zeit hatten, mit den neuen Funktionen zu experimentieren und sie zu validieren.
 
 Ressourcen:
 
