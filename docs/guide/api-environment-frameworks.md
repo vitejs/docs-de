@@ -83,7 +83,7 @@ Beachten Sie, dass auch wenn `FetchableDevEnvironment` als Klasse implementiert 
 
 ## Standardwert `RunnableDevEnvironment`
 
-Ausgehend von einem Vite-Server, der im Middleware-Modus konfiguriert ist, wie in der [SSR-Einrichtungsanleitung] (/guide/ssr#setting-up-the-dev-server) beschrieben, implementieren wir die SSR-Middleware mithilfe der Umgebungs-API. Beachten Sie, dass der Name nicht `ssr` lauten muss, weshalb wir den Namen `server` für dieses Beispiel gewählt haben.  Die Fehlerbehandlung wird weggelassen.
+Ausgehend von einem Vite-Server, der im Middleware-Modus konfiguriert ist, wie in der [SSR-Einrichtungsanleitung] (/guide/ssr#setting-up-the-dev-server) beschrieben, implementieren wir die SSR-Middleware mithilfe der Umgebungs-API. Beachten Sie, dass der Name nicht `ssr` lauten muss, weshalb wir den Namen `server` für dieses Beispiel gewählt haben. Die Fehlerbehandlung wird weggelassen.
 
 ```js
 import fs from 'node:fs'
