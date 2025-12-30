@@ -99,6 +99,42 @@ Rolldown wirft einen Fehler, wenn unbekannte oder ungültige Optionen angegeben 
 
 Wenn Sie die Optione nicht selbst angeben, muss der Fehler durch das verwendete Framework behoben werden. Sie können den Fehler unterdrücken, in dem Sie die Umgebungsvariable `ROLLDOWN_OPTIONS_VALIDATION=loose` setzen.
 
+### API Unterschiede
+
+#### `manualChunks` to `advancedChunks`
+
+Rolldown unterstützt die `manualChunks`-Option nicht, welche in Rollup verfügbar war. Stattdessen wird eine feinkörnige Einstellung mit Hilfe der [`advancedChunks`-Option](https://rolldown.rs/guide/in-depth/advanced-chunks#advanced-chunks) bereitgestellt, die ähnlich zur `splitChunk`-Option von Webpack ist.
+
+```js
+// Alte Konfiguration (Rollup)
+export default {
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (/\/react(?:-dom)?/.test(id)) {
+            return 'vendor'
+          }
+        }
+      }
+    }
+  }
+}
+
+// Neue Konfiguration (Rolldown)
+export default {
+  build: {
+    rollupOptions: {
+      output: {
+        advancedChunks: {
+          groups: [{ name: 'vendor', test: /\/react(?:-dom)?// }]
+        }
+      }
+    }
+  }
+}
+```
+
 ## Performanz
 
 `rolldown-vite` konzentriert sich darauf, die Kompatibilität mit dem bestehenden Ökosystem sicherzustellen, daher sind die Standardeinstellungen auf einen reibungslosen Übergang ausgerichtet. Sie können die Performanz weiter erhöhen, in dem Sie auf Rust-basierte interne Plugins und andere Anpassungen umsteigen.
