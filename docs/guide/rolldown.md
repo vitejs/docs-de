@@ -145,6 +145,12 @@ Dank Rolldown und Oxc wurden verschiedene interne Vite-Plugins, wie beispielswei
 
 Um sie zu testen, können Sie die `experimental.enableNativePlugin`-Option in Ihrer Vite-Konfiguration auf `true` setzen.
 
+### `@vitejs/plugin-react-oxc`
+
+Bei der Verwendung von `@vitejs/plugin-react` oder `@vitejs/plugin-react-swc`, können Sie zum `@vitejs/plugin-react-oxc`-Plugin wechseln, das Oxc für Reacts schnelles Neuladen anstelle von Babel oder SWC verwendet. Es wurde als direkter Ersatz gestaltet, da es bessere Performanz beim Build erzielt und mit der zugrundeliegenden Architektur von `rolldown-vite` abgestimmt ist.
+
+Beachten Sie, dass Sie nur dann zu `@vitejs/plugin-react-oxc` wechseln können, wenn Sie keine Babel- oder SWC-Plugins (einschließlich des React-Compilers) verwenden oder die SWC-Optionen ändern.
+
 ### `withFilter` Wrapper
 
 Plugin-Authoren haben die Möglichkeit, die [Hook-Filter-Funktion](#hook-filter-feature) zu verwenden, um den Kommunikationsaufwand zwischen Rust- und JavaScript-Laufzeiten zu verringern.
