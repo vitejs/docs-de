@@ -1,7 +1,7 @@
 # Environment API für Frameworks
 
 :::warning Experimentell
-Die Environment-API befindet sich noch in der Testphase. Wir werden die APIs während Vite 6 stabil halten, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Wir planen, diese neuen APIs mit potenziellen grundlegenden Änderungen in Vite 7 zu stabilisieren.
+Die Environment-API befindet sich noch in der Testphase. Wir werden weiterhin für Stabilität in den APIs zwischen den Hauptversionen sorgen, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Wir planen, diese neueren APIs (mit möglichen grundlegenden Änderungen) in einer zukünftigen Hauptversion zu stabilisieren, sobald nachgelagerte Projekte Zeit hatten, mit den neuen Funktionen zu experimentieren und sie zu validieren.
 Ressourcen:
 
 - [Feedback-Diskussion](https://github.com/vitejs/vite/discussions/16358), wo wir Feedback zu den neuen APIs sammeln.
@@ -83,7 +83,7 @@ Beachten Sie, dass auch wenn `FetchableDevEnvironment` als Klasse implementiert 
 
 ## Standardwert `RunnableDevEnvironment`
 
-Ausgehend von einem Vite-Server, der im Middleware-Modus konfiguriert ist, wie in der [SSR-Einrichtungsanleitung] (/guide/ssr#setting-up-the-dev-server) beschrieben, implementieren wir die SSR-Middleware mithilfe der Umgebungs-API. Die Fehlerbehandlung wird weggelassen.
+Ausgehend von einem Vite-Server, der im Middleware-Modus konfiguriert ist, wie in der [SSR-Einrichtungsanleitung] (/guide/ssr#setting-up-the-dev-server) beschrieben, implementieren wir die SSR-Middleware mithilfe der Umgebungs-API. Beachten Sie, dass der Name nicht `ssr` lauten muss, weshalb wir den Namen `server` für dieses Beispiel gewählt haben. Die Fehlerbehandlung wird weggelassen.
 
 ```js
 import fs from 'node:fs'
@@ -93,7 +93,7 @@ import { createServer } from 'vite'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const server = await createServer({
+const viteServer = await createServer({
   server: { middlewareMode: true },
   appType: 'custom',
   environments: {
@@ -105,7 +105,7 @@ const server = await createServer({
 
 // You might need to cast this to RunnableDevEnvironment in TypeScript or
 // use isRunnableDevEnvironment to guard the access to the runner
-const environment = server.environments.node
+const serverEnvironment = viteServer.environments.server
 
 app.use('*', async (req, res, next) => {
   const url = req.originalUrl
@@ -117,12 +117,14 @@ app.use('*', async (req, res, next) => {
   // 2. Apply Vite HTML transforms. This injects the Vite HMR client,
   //    and also applies HTML transforms from Vite plugins, e.g. global
   //    preambles from @vitejs/plugin-react
-  template = await server.transformIndexHtml(url, template)
+  template = await viteServer.transformIndexHtml(url, template)
 
   // 3. Load the server entry. import(url) automatically transforms
   //    ESM source code to be usable in Node.js! There is no bundling
   //    required, and provides full HMR support.
-  const { render } = await environment.runner.import('/src/entry-server.js')
+  const { render } = await environment.runner.import(
+    '/src/entry-server.js'
+  )
 
   // 4. render the app HTML. This assumes entry-server.js's exported
   //     `render` function calls appropriate framework SSR APIs,

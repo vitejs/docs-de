@@ -1,7 +1,7 @@
 # Environment API
 
 :::warning Experimentell
-Die Environment-API befindet sich noch in der Testphase. Wir werden die APIs während Vite 6 stabil halten, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Wir planen, diese neuen APIs mit potenziellen grundlegenden Änderungen in Vite 7 zu stabilisieren.
+Die Environment-API befindet sich noch in der Testphase. Wir werden weiterhin für Stabilität in den APIs zwischen den Hauptversionen sorgen, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Wir planen, diese neueren APIs (mit möglichen grundlegenden Änderungen) in einer zukünftigen Hauptversion zu stabilisieren, sobald nachgelagerte Projekte Zeit hatten, mit den neuen Funktionen zu experimentieren und sie zu validieren.
 
 Ressourcen:
 
@@ -21,8 +21,8 @@ Für eine einfache SPA/MPA werden keine neuen APIs rund um Umgebungen in der Kon
 
 Wenn wir zu einer typischen serverseitig gerenderten (SSR) App wechseln, haben wir zwei Umgebungen:
 
-- „client“: Führt die App im Browser aus.
-- „server“: Führt die App in Node (oder anderen Server-Laufzeiten) aus, die Seiten rendert, bevor sie an den Browser gesendet werden.
+- `client`: Führt die App im Browser aus.
+- `ssr`: Führt die App in Node (oder anderen Server-Laufzeiten) aus, die Seiten rendert, bevor sie an den Browser gesendet werden.
 
 In der Entwicklung führt Vite den Servercode im gleichen Node-Prozess wie der Vite-Entwicklungsserver aus, wodurch eine gute Annäherung an die Produktionsumgebung erreicht wird. Es ist jedoch auch möglich, dass Server in anderen JS-Laufzeitumgebungen ausgeführt werden, wie z. B. [Cloudflares Workerd](https://github.com/cloudflare/workerd), die andere Einschränkungen haben. Moderne Apps können auch in mehr als zwei Umgebungen ausgeführt werden, z. B. in einem Browser, einem Node-Server und einem Edge-Server. Vite 5 ermöglichte es vorher nicht, diese Umgebungen korrekt darzustellen.
 
