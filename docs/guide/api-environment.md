@@ -1,7 +1,9 @@
 # Environment API
 
-:::warning Experimentell
-Die Environment-API befindet sich noch in der Testphase. Wir werden weiterhin für Stabilität in den APIs zwischen den Hauptversionen sorgen, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Wir planen, diese neueren APIs (mit möglichen grundlegenden Änderungen) in einer zukünftigen Hauptversion zu stabilisieren, sobald nachgelagerte Projekte Zeit hatten, mit den neuen Funktionen zu experimentieren und sie zu validieren.
+:::info Release-Kandidat
+Die Environment API ist allgemein in der Phase für einen Release-Kandidaten. Wir werden für Stabilität in den APIs zwischen den Hauptversionen sorgen, damit das Ökosystem damit experimentieren und darauf aufbauen kann. Beachten Sie trotzdessen, dass [einige spezifische APIs](/changes/#considering) weiterhin als experimentell betrachtet werden.
+
+Wir planen, diese neueren APIs (mit möglichen grundlegenden Änderungen) in einer zukünftigen Hauptversion zu stabilisieren, sobald nachgelagerte Projekte Zeit hatten, mit den neuen Funktionen zu experimentieren und sie zu validieren.
 
 Ressourcen:
 
@@ -13,7 +15,7 @@ Bitte teilen Sie uns Ihr Feedback mit.
 
 ## Formalisierung von Umgebungen
 
-Vite 6 formalisiert das Konzept der Umgebungen. Bis Vite 5 gab es zwei implizite Umgebungen (`client` und optional `ssr`). Die neue Environment-API ermöglicht es Benutzern und Framework-Autoren, so viele Umgebungen wie nötig zu erstellen, um die Funktionsweise ihrer Apps in der Produktion abzubilden. Diese neue Funktion erforderte eine umfangreiche interne Umgestaltung, aber es wurde viel Wert auf Abwärtskompatibilität gelegt. Das ursprüngliche Ziel von Vite 6 ist es, das Ökosystem so reibungslos wie möglich auf die neue Hauptversion umzustellen und die Einführung dieser neuen experimentellen APIs zu verzögern, bis genügend Benutzer migriert sind und Framework- und Plugin-Autoren das neue Design validiert haben.
+Vite 6 formalisiert das Konzept der Umgebungen. Bis Vite 5 gab es zwei implizite Umgebungen (`client` und optional `ssr`). Die neue Environment-API ermöglicht es Benutzern und Framework-Autoren, so viele Umgebungen wie nötig zu erstellen, um die Funktionsweise ihrer Apps in der Produktion abzubilden. Diese neue Funktion erforderte eine umfangreiche interne Umgestaltung, aber es wurde viel Wert auf Abwärtskompatibilität gelegt. Das ursprüngliche Ziel von Vite 6 ist es, das Ökosystem so reibungslos wie möglich auf die neue Hauptversion umzustellen und die Einführung dieser APIs zu verzögern, bis genügend Benutzer migriert sind und Framework- und Plugin-Autoren das neue Design validiert haben.
 
 ## Die Lücke zwischen Build und Dev schließen
 
@@ -115,10 +117,9 @@ export default {
 }
 ```
 
-<!-- TODO -->
-<!-- ## Abwärtskompatibilität
+## Abwärtskompatibilität
 
-Die aktuelle Vite-Server-API ist noch nicht veraltet und abwärtskompatibel mit Vite 5. Die neue Environment-API ist experimentell.
+Die aktuelle Vite-Server-API ist noch nicht veraltet und abwärtskompatibel mit Vite 5.
 
 Die `server.moduleGraph` gibt eine gemischte Ansicht der Client- und SSR-Modulgraphen zurück. Abwärtskompatible gemischte Modulknoten werden von allen ihren Methoden zurückgegeben. Das gleiche Schema wird für die Modulknoten verwendet, die an `handleHotUpdate` übergeben werden.
 
@@ -128,7 +129,7 @@ Wir empfehlen noch nicht, zur Environment-API zu wechseln. Wir streben an, dass 
 - [HMR „hotUpdate“-Plugin-Hook](/changes/hotupdate-hook)
 - [Umstellung auf umgebungsbezogene APIs](/changes/per-environment-apis)
 - [SSR mit `ModuleRunner` API](/changes/ssr-using-modulerunner)
-- [Gemeinsam genutzte Plugins während des Builds](/changes/shared-plugins-during-build) -->
+- [Gemeinsam genutzte Plugins während des Builds](/changes/shared-plugins-during-build)
 
 ## Zielgruppe
 
