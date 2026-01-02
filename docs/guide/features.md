@@ -215,7 +215,7 @@ Alle modernen Frameworks unterstützen die Integration mit Vite. Die meisten Fra
 - Vue Unterstützung via [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
 - Vue JSX Unterstützung via [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx)
 - React Unterstützung via [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react)
-- React mit SWC Unterstützung via [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
+- React mit SWC Unterstützung via [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react-swc)
 
 Siehe [Plugins Guide](https://vite.dev/plugins) für mehr Informationen.
 
