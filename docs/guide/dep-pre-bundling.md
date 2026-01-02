@@ -72,7 +72,7 @@ Vite zwischenspeichert die vorverpackten Abhängigkeiten in `node
 
 \_modules/.vite`. Es bestimmt, ob der Vorverpackungsschritt erneut ausgeführt werden muss, basierend auf einigen Quellen:
 
-- Inhalt der Paketmanager-Sperrdatei, z. B. `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml` oder `bun.lockb`.
+- Inhalt der Paketmanager-Sperrdatei, z. B. `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml` oder `bun.lock`.
 - Änderungszeitpunkt des Patches-Ordners.
 - Relevante Felder in Ihrer `vite.config.js`, falls vorhanden.
 - Wert von `NODE_ENV`.
