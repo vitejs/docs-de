@@ -215,7 +215,7 @@ Alle modernen Frameworks unterstützen die Integration mit Vite. Die meisten Fra
 - Vue Unterstützung via [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
 - Vue JSX Unterstützung via [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx)
 - React Unterstützung via [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react)
-- React mit SWC Unterstützung via [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
+- React mit SWC Unterstützung via [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react-swc)
 
 Siehe [Plugins Guide](https://vite.dev/plugins) für mehr Informationen.
 
@@ -548,6 +548,32 @@ const modules = import.meta.glob('./dir/*.js', {
   query: { foo: 'bar', bar: true },
 })
 ```
+
+#### Basispfad
+
+Sie können auch die `base`-Option nutzen, um einen Basispfad für Importe zu nutzen:
+
+```ts twoslash
+import 'vite/client'
+// ---cut---
+const modulesWithBase = import.meta.glob('./**/*.js', {
+  base: './base',
+})
+```
+
+```ts
+// Von Vite erzeugter Code:
+const modulesWithBase = {
+  './dir/foo.js': () => import('./base/dir/foo.js'),
+  './dir/bar.js': () => import('./base/dir/bar.js'),
+}
+```
+
+Die `base`-Option kann nur ein Verzeichnispfad relativ zur importierenden Datei sein oder ein absoluter Pfad zum Root-Verzeichnis des Projekts. Aliase und virtuelle Module werden nicht unterstützt.
+
+Nur die Globs, welche relative Pfade sind, werden als relativ zur aufgelösten Basis interpretiert.
+
+Alle resultierenden Modulschlüssel werden so geändert, dass sie relativ zur Basis sind, sofern diese angegeben ist.
 
 ### Glob Import Caveats
 

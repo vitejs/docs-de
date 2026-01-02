@@ -175,6 +175,8 @@ const UnoCssPlugin = () => {
 }
 ```
 
+Die `applyToEnvironment`-Hook wird zur konfigurierten Zeit aufgerufen, aktuell nach `configResolved`, da Projekte im Ökosystem die Plugins in der Hook ändern. Das Auflösen der Umgebungs-Plugins könnte zukünftig vor `configResolved` stattfinden.
+
 ## Umgebung in Build-Hooks
 
 Genau wie während der Entwicklung erhalten Plugin-Hooks auch während des Builds die Umgebungsinstanz, die den booleschen Wert `ssr` ersetzt.
