@@ -253,7 +253,7 @@ export default defineConfig({
 
 Dateisystem-Überwachungsoptionen, die an [chokidar](https://github.com/paulmillr/chokidar/tree/3.6.0#api) weitergegeben werden sollen.
 
-Der Vite Server Watcher überwacht das `root` und überspringt standardmäßig die Verzeichnisse `.git/`, `node_modules/`, Vites `cacheDir` und Vites `build.outDir`. Wenn eine überwachte Datei aktualisiert wird, wendet Vite HMR an und aktualisiert nur bei Bedarf die Seite.
+Der Vite Server Watcher überwacht das `root` und überspringt standardmäßig die Verzeichnisse `.git/`, `node_modules/`, `test-results/`, Vites `cacheDir` und Vites `build.outDir`. Wenn eine überwachte Datei aktualisiert wird, wendet Vite HMR an und aktualisiert nur bei Bedarf die Seite.
 
 Wenn auf `null` gesetzt, werden keine Dateien überwacht. `server.watcher` stellt einen kompatiblen Ereignis-Emitter bereit, aber der Aufruf von `add` oder `unwatch` hat keine Wirkung.
 
