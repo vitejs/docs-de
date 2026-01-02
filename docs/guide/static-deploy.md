@@ -253,7 +253,6 @@ Sie können Ihre Vite-Anwendung als statische Website auf [Render](https://rende
 3. Verknüpfen Sie Ihr GitHub/GitLab-Konto oder verwenden Sie ein öffentliches Repository.
 
 4. Geben Sie einen Projektnamen und einen Zweig an.
-
    - **Build Command**: `npm install && npm run build`
    - **Publish Directory**: `dist`
 
