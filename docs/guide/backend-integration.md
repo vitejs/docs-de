@@ -45,7 +45,6 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    ```
 
    Um Assets ordnungsgemäß bereitzustellen, haben Sie zwei Optionen:
-
    - Stellen Sie sicher, dass der Server so konfiguriert ist, dass er Anfragen nach statischen Assets an den Vite-Server weiterleitet.
    - Legen Sie [`server.origin`](/config/server-options.md#server-origin) fest, damit generierte Asset-URLs mithilfe der URL des Backend-Servers anstelle eines relativen Pfads aufgelöst werden.
 
@@ -104,7 +103,6 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
      }
    }
    ```
-
    - Das Manifest hat eine Struktur `Record<Name, Chunk>`.
    - Für Einstiegs- oder dynamische Einstiegschunks ist der Schlüssel der relative Quellpfad vom Projektstamm aus.
    - Für Nicht-Einstiegschunks ist der Schlüssel der Basename der generierten Datei mit einem `_`-Präfix.
@@ -134,7 +132,6 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
 
 Insbesondere sollte ein Backend, das HTML generiert, die folgenden Tags enthalten, wenn eine Manifestdatei
 und ein Einstiegspunkt vorhanden sind:
-
 - Ein `<link rel="stylesheet">`-Tag für jede Datei in der `css`-Liste des Einstiegspunkt-Chunks
 - Rekursives Verfolgen aller Blöcke in der `imports`-Liste des Einstiegspunkts und Einfügen eines
   `<link rel="stylesheet">`-Tags für jede CSS-Datei jedes importierten Blocks.
