@@ -36,7 +36,7 @@ Die Rolldown-basierte Version von Vite ist derzeit als separates Paket namens `r
 ```json
 {
   "dependencies": {
-    "vite": "^6.0.0" // [!code --]
+    "vite": "^7.0.0" // [!code --]
     "vite": "npm:rolldown-vite@latest" // [!code ++]
   }
 }
