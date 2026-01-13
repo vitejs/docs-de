@@ -36,7 +36,7 @@ Die Rolldown-basierte Version von Vite ist derzeit als separates Paket namens `r
 ```json
 {
   "dependencies": {
-    "vite": "^6.0.0" // [!code --]
+    "vite": "^7.0.0" // [!code --]
     "vite": "npm:rolldown-vite@latest" // [!code ++]
   }
 }
@@ -89,15 +89,15 @@ Nachdem Sie diese Überschreibungen hinzugefügt haben, installieren Sie Ihre Ab
 
 Rolldown soll zwar ein direkter Ersatz für Rollup sein, es gibt jedoch Funktionen, die noch implementiert werden, sowie geringfügige beabsichtigte Unterschiede im Verhalten. Eine umfassende Liste finden Sie in [diesem GitHub PR](https://github.com/vitejs/rolldown-vite/pull/84#issue-2903144667), der regelmäßig aktualisiert wird.
 
-### Fehler bei der Validierung von Optionen
+### Warnungen bei der Validierung von Optionen
 
-Rolldown wirft einen Fehler, wenn unbekannte oder ungültige Optionen angegeben werden. Da manche Optionen, die in Rollup verfügbar sind, in Rolldown nicht zur Verfügung stehen, kann es zu Fehlern kommen. Im Folgenden sehen Sie ein Beispiel für solch eine Fehlermeldung:
+Rolldown erzeugt eine Warnung, wenn unbekannte oder ungültige Optionen angegeben werden. Da manche Optionen, die in Rollup verfügbar sind, in Rolldown nicht zur Verfügung stehen, kann es zu Warnungen kommen. Im Folgenden sehen Sie ein Beispiel für solch eine Warnung:
 
-> Error: Failed validate input options.
+> Warning validate output options.
 >
-> - For the "preserveEntrySignatures". Invalid key: Expected never but received "preserveEntrySignatures".
+> - For the "generatedCode". Invalid key: Expected never but received "generatedCode".
 
-Wenn Sie die Optione nicht selbst angeben, muss der Fehler durch das verwendete Framework behoben werden. Sie können den Fehler unterdrücken, in dem Sie die Umgebungsvariable `ROLLDOWN_OPTIONS_VALIDATION=loose` setzen.
+Wenn Sie die Optione nicht selbst angeben, muss der Fehler durch das verwendete Framework behoben werden.
 
 ### API Unterschiede
 
@@ -257,6 +257,12 @@ const plugin = {
 }
 ```
 
+::: tip
+
+Seit Vite 7.0.0 ist `this.meta` in allen Hooks verfügbar. In früheren Versionen war `this.meta` in Vite-spezifischen Hooks nicht verfügbar, wie zum Beispiel der `config`-Hook.
+
+:::
+
 <br>
 
 Prüfen der Existenz des `rolldownVersion` Exports:
@@ -275,17 +281,15 @@ Wenn sie `vite` als Abhängigkeit (nicht als Peer-Abhängigkeit) haben, bietet s
 
 ### Ignorieren der Optionsvalidierung in Rolldown
 
-Wie [oben erwähnt](#option-validation-errors), wirft Rolldown einen Fehler wenn unbekannte oder ungültige Optionen übergeben werden.
+Wie [oben erwähnt](#option-validation-errors) erzeugt Rolldown eine Warnung, wenn unbekannte oder ungültige Optionen übergeben werden.
 
 Dieser Fehler kann behoben werden, in dem die Option nur unter bestimmten Bedingungen angegeben wird. Wie [oben gezeigt](#detecting-rolldown-vite), muss dann in der Bedingung geprüft werden, ob das Programm mit rolldown-vite ausgeführt wird.
 
-Das Unterdrücken der Fehlermeldung durch das Setzen der Umgebungsvariable `ROLLDOWN_OPTIONS_VALIDATION=loose` funktioniert in diesem Fall auch. 
-
-Beachten Sie allerdings, dass Sie irgendwann aufhören müssen, Optionen anzugeben, die nicht von Rolldown unterstützt werden.
-
 ### `transformWithEsbuild` benötigt eine seperate `esbuild` Installation
 
-Eine ähnliche Funktion namens `transformWithOxc`, die Oxc anstelle von `esbuild` verwendet, wird von `rolldown-vite` exportiert.
+Da Vite selbst `esbuild` nicht mehr verwendet, wird `esbuild` als optionale Peer-Abhängigkeit behandelt. Wenn Ihr Plugin `transformWithEsbuild` verwendet, muss es `esbuild` zu seinen Abhängigkeiten hinzufügen oder der Nutzer muss es manuell installieren.
+
+Die empfohlene Migration ist die Verwendung der neulich exportierten Funktion `transformWithOxc`, welche Oxc anstelle von `esbuild` verwendet.
 
 ### Kompatibilitätsschicht für `esbuild`-Optionen
 
@@ -308,6 +312,12 @@ Rolldown hat eine [Hook-Filter](https://rolldown.rs/guide/plugin-development#plu
 
 Dies wird auch von Rollup 4.38.0+ und Vite 6.3.0+ unterstützt. Um eine Rückwärtskompatibilität für ältere Versionen für Ihr Plugin zu gewährleisten, sollten Sie die Filter auch im Hook-Behandler ausführen.
 
+::: tip
+
+[`@rolldown/pluginutils`](https://www.npmjs.com/package/@rolldown/pluginutils) exportiert einige Funktionen für Hook-Filter wie `exactRegex` oder `prefixRegex`.
+
+:::
+
 ### Inhalt zu JavaScript konvertieren in `load`- oder `transform`-Hooks
 
 Wenn Sie den Inhalt von anderen Typen zu JavaScript konvertieren in `load`- oder `transform`-Hooks, müssen Sie möglicherweise `moduleType: 'js'` zur zurückgegebenen Variable hinzufügen.
@@ -327,4 +337,4 @@ const plugin = {
 }
 ```
 
-Das liegt daran, dass [Rolldown unterstützt JavaScript-fremde Module](https://rolldown.rs/guide/in-depth/module-types) und leitet sich den Modultyp aus der Erweiterung ab, außer es wird spezifiziert. Beachten Sie, dass `rolldown-vite` keine ModuleTypes in dev unterstützt.
+Das liegt daran, dass [Rolldown unterstützt JavaScript-fremde Module](https://rolldown.rs/guide/in-depth/module-types) und leitet sich den Modultyp aus der Erweiterung ab, außer es wird spezifiziert.
