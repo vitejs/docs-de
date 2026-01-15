@@ -36,7 +36,7 @@ Die Rolldown-basierte Version von Vite ist derzeit als separates Paket namens `r
 ```json
 {
   "dependencies": {
-    "vite": "^6.0.0" // [!code --]
+    "vite": "^7.0.0" // [!code --]
     "vite": "npm:rolldown-vite@latest" // [!code ++]
   }
 }
@@ -103,7 +103,7 @@ Wenn Sie die Optione nicht selbst angeben, muss der Fehler durch das verwendete 
 
 #### `manualChunks` to `advancedChunks`
 
-Rolldown unterstützt die `manualChunks`-Option nicht, welche in Rollup verfügbar war. Stattdessen wird eine feinkörnige Einstellung mit Hilfe der [`advancedChunks`-Option](https://rolldown.rs/guide/in-depth/advanced-chunks#advanced-chunks) bereitgestellt, die ähnlich zur `splitChunk`-Option von Webpack ist.
+Rolldown unterstützt die `manualChunks`-Option, welche durch Rollup bereitgestellt wird, allerdings wurde diese als veraltet gekennzeichnet. Stattdessen wird eine feinkörnige Einstellung mit Hilfe der [`advancedChunks`-Option](https://rolldown.rs/guide/in-depth/advanced-chunks#advanced-chunks) bereitgestellt, die ähnlich zur `splitChunk`-Option von Webpack ist.
 
 ```js
 // Alte Konfiguration (Rollup)
@@ -127,7 +127,7 @@ export default {
     rollupOptions: {
       output: {
         advancedChunks: {
-          groups: [{ name: 'vendor', test: /\/react(?:-dom)?// }]
+          groups: [{ name: 'vendor', test: /\/react(?:-dom)?/ }]
         }
       }
     }
