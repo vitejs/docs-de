@@ -39,6 +39,10 @@ const additionalTitle = ((): string => {
 const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
   const oldVersions: DefaultTheme.NavItemWithLink[] = [
     {
+      text: 'Vite 6 Docs',
+      link: 'https://v6.vite.dev',
+    },
+    {
       text: 'Vite 5 Docs',
       link: 'https://v5.vite.dev',
     },
@@ -61,7 +65,7 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
     case 'local':
       return [
         {
-          text: 'Vite 6 Docs (release)',
+          text: 'Vite 7 Docs (release)',
           link: 'https://vite.dev',
         },
         ...oldVersions,
@@ -343,7 +347,7 @@ export default defineConfig({
               link: '/guide/rolldown',
             },
             {
-              text: 'Migration von v4',
+              text: 'Migration von v6',
               link: '/guide/migration',
             },
             {
@@ -495,7 +499,7 @@ export default defineConfig({
     return pageData
   },
   markdown: {
-    // languages used for twoslash and jsdocs in twoslashAdd commentMore actions
+    // languages used for twoslash and jsdocs in twoslash
     languages: ['ts', 'js', 'json'],
     codeTransformers: [transformerTwoslash()],
     config(md) {
