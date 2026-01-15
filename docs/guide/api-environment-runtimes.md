@@ -112,6 +112,8 @@ function createWorkerdDevEnvironment(
 }
 ```
 
+Es gibt [mehrere Kommunikationsebenen für das `DevEnvironment`](/guide/api-environment-frameworks#devenvironment-communication-levels). Um Frameworks das Schreiben von laufzeitunabhängigem Code zu erleichtern, empfehlen wir, die flexibelste Kommunikationsebene zu implementieren.
+
 ## `ModuleRunner`
 
 Ein Modul-Runner wird in der Ziel-Laufzeit instanziiert. Alle APIs im nächsten Abschnitt werden aus `vite/module-runner` importiert, sofern nicht anders angegeben. Dieser Export-Einstiegspunkt wird so schlank wie möglich gehalten und exportiert nur das Minimum, das zum Erstellen von Modul-Runners erforderlich ist.
