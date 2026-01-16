@@ -258,7 +258,7 @@ Gehen Sie dann zu Ihrem Vite-basierten Projekt und führen Sie `pnpm link --glob
 
 ::: tip Abhängigkeiten die Vite benutzen
 
-Um die von Abhängigkeiten transitiv verwendeter Vite-Version zu ersetzen, sollten Sie [npm-Überschreibungen](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) oder [pnpm-Überschreibungen](https://pnpm.io/package_json#pnpmoverrides) verwenden.
+Um die von Abhängigkeiten transitiv verwendeter Vite-Version zu ersetzen, sollten Sie [npm-Überschreibungen](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) oder [pnpm-Überschreibungen](https://pnpm.io/9.x/package_json#pnpmoverrides) verwenden.
 
 :::
 
