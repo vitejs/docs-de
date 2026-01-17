@@ -154,6 +154,7 @@ Falls Sie `@vitejs/plugin-react-swc` ohne SWC-Plugins und benutzerdefinierte SWC
 ::: details `@vitejs/plugin-react-oxc`-Plugin ist veraltet
 
 Bisher haben wir empfohlen, `@vitejs/plugin-react-oxc` zu verwenden, um die React-Aktualisierungstransformation von Oxc zu nutzen. Wir haben die Implementierung jedoch in `@vitejs/plugin-react` integriert, damit der Wechsel zu `rolldown-vite` einfacher ist. `@vitejs/plugin-react-oxc` ist nun veraltet und wird nicht mehr aktualisiert.
+
 :::
 
 ### `withFilter` Wrapper
