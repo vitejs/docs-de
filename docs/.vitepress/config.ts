@@ -1,4 +1,6 @@
-import type { DefaultTheme } from 'vitepress'
+import path from 'node:path'
+import fs from 'node:fs'
+import type { DefaultTheme, HeadConfig } from 'vitepress'
 import { defineConfig } from 'vitepress'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import {
@@ -74,6 +76,17 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
       return oldVersions
   }
 })()
+
+function inlineScript(file: string): HeadConfig {
+  return [
+    'script',
+    {},
+    fs.readFileSync(
+      path.resolve(__dirname, `./inlined-scripts/${file}`),
+      'utf-8',
+    ),
+  ]
+}
 
 export default defineConfig({
   title: `Vite${additionalTitle}`,
