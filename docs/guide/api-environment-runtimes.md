@@ -152,16 +152,16 @@ Der Modul-Evaluator in `ModuleRunner` ist für die Ausführung des Codes verantw
 
 Der Modul-Runner stellt die Methode `import` zur Verfügung. Wenn der Vite-Server das HMR-Ereignis `full-reload` auslöst, werden alle betroffenen Module erneut ausgeführt. Beachten Sie, dass der Modul-Runner in diesem Fall das Objekt `exports` nicht aktualisiert (sondern überschreibt), sodass Sie `import` ausführen oder das Modul erneut aus `evaluatedModules` abrufen müssen, wenn Sie auf das aktuelle Objekt `exports` angewiesen sind.
 
-**Example Usage:**
+**Beispielnutzung:**
 
 ```js
 import { ModuleRunner, ESModulesEvaluator } from 'vite/module-runner'
-import { fetchModule } from './rpc-implementation.js'
+import { transport } from './rpc-implementation.js'
 
 const moduleRunner = new ModuleRunner(
   {
-    fetchModule,
-    // you can also provide hmr.connection to support HMR
+    transport,
+    createImportMeta: createNodeImportMeta, // Falls der ModuleRunner in Node.js läuft
   },
   new ESModulesEvaluator()
 )
@@ -286,16 +286,13 @@ import { fileURLToPath } from 'node:url'
 import {
   ESModulesEvaluator,
   ModuleRunner,
-  RemoteRunnerTransport,
+  createNodeImportMeta,
 } from 'vite/module-runner'
 
 const runner = new ModuleRunner(
   {
-    transport: new RemoteRunnerTransport({
-      send: (data) => parentPort.postMessage(data),
-      onMessage: (listener) => parentPort.on('message', listener),
-      timeout: 5000,
-    }),
+    transport,
+    createImportMeta: createNodeImportMeta,
   },
   new ESModulesEvaluator()
 )
