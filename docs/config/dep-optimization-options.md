@@ -4,7 +4,7 @@
 
 Sofern nicht anders angegeben, werden die Optionen in diesem Abschnitt nur auf den Dependency Optimizer angewendet, der nur in dev verwendet wird.
 
-## optimizeDeps.entries
+## optimizeDeps.entries <NonInheritBadge />
 
 - **Typ:** `string | string[]`
 
@@ -12,7 +12,7 @@ Standardmäßig durchsucht Vite alle Ihre `.html`-Dateien, um Abhängigkeiten zu
 
 Wenn keine der beiden Optionen Ihren Anforderungen entspricht, können Sie mit dieser Option benutzerdefinierte Einträge angeben - der Wert sollte ein [`tinyglobby`-Muster](https://github.com/SuperchupuDev/tinyglobby) oder ein Array von Mustern sein, die relativ zum Vite-Projektroot sind. Dies überschreibt die Inferenz der Standardeinträge. Nur die Ordner `node_modules` und `build.outDir` werden standardmäßig ignoriert, wenn `optimizeDeps.entries` explizit definiert ist. Wenn andere Ordner ignoriert werden sollen, können Sie ein Ignoriermuster als Teil der Eintragsliste verwenden, das mit einem anfänglichen `!` gekennzeichnet ist. `node_modules` werden nicht von Mustern ignoriert, die explizit die Zeichenkette `node_modules` enthalten.
 
-## optimizeDeps.exclude
+## optimizeDeps.exclude <NonInheritBadge />
 
 - **Typ:** `string[]`
 
@@ -31,7 +31,7 @@ export default defineConfig({
 
 :::
 
-## optimizeDeps.include
+## optimizeDeps.include <NonInheritBadge />
 
 - **Typ:** `string[]`
 
@@ -47,7 +47,7 @@ export default defineConfig({
 })
 ```
 
-## optimizeDeps.esbuildOptions
+## optimizeDeps.esbuildOptions <NonInheritBadge />
 
 - **Typ:** [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<`[`EsbuildBuildOptions`](https://esbuild.github.io/api/#general-options)`,
 | 'bundle'
@@ -68,20 +68,20 @@ Bestimmte Optionen werden ausgelassen, da ihre Änderung nicht mit der Abhängig
 - `external` wird ebenfalls ausgelassen, verwenden Sie Vites `optimizeDeps.exclude`-Option
 - `plugins` werden mit dem Abhängigkeits-Plugin von Vite zusammengeführt
 
-## optimizeDeps.force
+## optimizeDeps.force <NonInheritBadge />
 
 - **Typ:** `boolean`
 
 Setzen Sie dies auf `true`, um die Vorab-Bündelung von Abhängigkeiten zu erzwingen und zuvor zwischengespeicherte optimierte Abhängigkeiten zu ignorieren.
 
-## optimizeDeps.noDiscovery
+## optimizeDeps.noDiscovery <NonInheritBadge />
 
 - **Typ:** `boolean`
 - **Standard:** `false`
 
 Wenn der Wert auf `true` gesetzt ist, wird das automatische Entdecken von Abhängigkeiten deaktiviert und nur gelistete Abhägigkeiten der `optimizeDeps.include`-Option werden optimiert. CJS-Abhängigkeiten müssen während der Entwicklung in `optimizeDeps.include` vorhanden sein.
 
-## optimizeDeps.holdUntilCrawlEnd
+## optimizeDeps.holdUntilCrawlEnd <NonInheritBadge />
 
 - **Experimentell:** [Feedback geben](https://github.com/vitejs/vite/discussions/15834)
 - **Typ:** `boolean`
@@ -89,7 +89,7 @@ Wenn der Wert auf `true` gesetzt ist, wird das automatische Entdecken von Abhän
 
 Wenn diese Funktion aktiviert ist, werden die ersten optimierten Deps-Ergebnisse zurückgehalten, bis alle statischen Importe beim kalten Start gecrawlt wurden. Dadurch wird vermieden, dass die gesamte Seite neu geladen werden muss, wenn neue Abhängigkeiten entdeckt werden und diese die Erzeugung neuer gemeinsamer Chunks auslösen. Wenn alle Abhängigkeiten vom Scanner gefunden werden, inklusive der explizit definierten in `include`, ist es besser, diese Option zu deaktivieren, damit der Browser mehr Anfragen parallel verarbeiten kann.
 
-## optimizeDeps.disabled
+## optimizeDeps.disabled <NonInheritBadge />
 
 - **Veraltet**
 - **Experimentell:** [Feedback geben](https://github.com/vitejs/vite/discussions/13839)
@@ -104,7 +104,7 @@ Um den Optimierer vollständig zu deaktivieren, verwenden Sie `optimizeDeps.noDi
 Die Optimierung von Abhängigkeiten während der Build-Zeit war eine **experimentelle** Funktion. Projekte, die diese Strategie ausprobierten, entfernten auch `@rollup/plugin-commonjs` mit `build.commonjsOptions: { include: [] }`. Wenn Sie dies getan haben, wird eine Warnung Sie dazu anleiten, dies wieder zu aktivieren, um beim Bündeln nur CJS-Pakete zu unterstützen.
 :::
 
-## optimizeDeps.needsInterop
+## optimizeDeps.needsInterop <NonInheritBadge />
 
 - **Experimentell**
 - **Typ:** `string[]`

@@ -116,7 +116,7 @@ wahrscheinlich aufgrund des Hoistings oder verknüpfter Pakete in Monorepos), ve
 Für SSR-Builds funktioniert die Deduplizierung für ESM-Build-Ausgaben, die von `build.rollupOptions.output` konfiguriert sind, nicht. Ein Workaround besteht darin, CJS-Build-Ausgaben zu verwenden, bis ESM eine bessere Plugin-Unterstützung für die Modulladung hat.
 :::
 
-## resolve.conditions
+## resolve.conditions <NonInheritBadge />
 
 - **Type:** `string[]`
 - **Default:** `['module', 'browser', 'development|production']` (`defaultClientConditions`)
@@ -142,7 +142,7 @@ Hier sind `import` und `require` "Bedingungen". Bedingungen können verschachtel
 
 Beachten Sie, dass die Bedingungen `import`, `require` und `default` immer angewendet werden, wenn die Anforderungen erfüllt sind.
 
-## resolve.mainFields
+## resolve.mainFields <NonInheritBadge />
 
 - **Type:** `string[]`
 - **Default:** `['browser', 'module', 'jsnext:main', 'jsnext']` (`defaultClientMainFields`)

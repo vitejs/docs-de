@@ -49,7 +49,7 @@ export default defineConfig({
 
 Dies ist wichtig, da wir Vite zugänglich halten und neue Konzepte erst dann einführen möchten, wenn sie benötigt werden.
 
-Wenn die App aus mehreren Umgebungen besteht, können diese Umgebungen explizit mit der Konfigurationsoption „environments” konfiguriert werden.
+Wenn die App aus mehreren Umgebungen besteht, können diese Umgebungen explizit mit der Konfigurationsoption `environments` konfiguriert werden.
 
 ```js
 export default {
@@ -70,9 +70,9 @@ export default {
 }
 ```
 
-Wenn nicht ausdrücklich dokumentiert, erben Umgebungen die konfigurierten Optionen der obersten Ebene (beispielsweise erben die neuen Umgebungen „server“ und „edge“ die Option „build.sourcemap: false“). Eine kleine Anzahl von Optionen der obersten Ebene, wie „optimizeDeps“, gelten nur für die Umgebung „client“, da sie nicht gut funktionieren, wenn sie als Standard für Serverumgebungen angewendet werden. Die Umgebung „client” kann auch explizit über „environments.client” konfiguriert werden, wir empfehlen jedoch, dies mit den Optionen der obersten Ebene zu tun, damit die Client-Konfiguration beim Hinzufügen neuer Umgebungen unverändert bleibt.
+Wenn nicht ausdrücklich dokumentiert, erben Umgebungen die konfigurierten Optionen der obersten Ebene (beispielsweise erben die neuen Umgebungen `server` und `edge` die Option `build.sourcemap: false`). Eine kleine Anzahl von Optionen der obersten Ebene, wie `optimizeDeps`, gelten nur für die Umgebung `client`, da sie nicht gut funktionieren, wenn sie als Standard für Serverumgebungen angewendet werden. Die Optionen haben die <NonInheritBadge />-Markierung in der [Referenz](/config/). Die Umgebung `client` kann auch explizit über `environments.client` konfiguriert werden, wir empfehlen jedoch, dies mit den Optionen der obersten Ebene zu tun, damit die Client-Konfiguration beim Hinzufügen neuer Umgebungen unverändert bleibt.
 
-Die Schnittstelle „EnvironmentOptions” stellt alle Optionen pro Umgebung bereit. Es gibt Umgebungsoptionen, die sowohl für „build“ als auch für „dev“ gelten, wie z. B. „resolve“. Und es gibt „DevEnvironmentOptions“ und „BuildEnvironmentOptions“ für entwicklungs- und buildspezifische Optionen (wie „dev.warmup“ oder „build.outDir“). Einige Optionen wie „optimizeDeps“ gelten nur für die Entwicklung, werden aber aus Gründen der Abwärtskompatibilität als oberste Ebene beibehalten und nicht in „dev“ verschachtelt.
+Die Schnittstelle `EnvironmentOptions` stellt alle Optionen pro Umgebung bereit. Es gibt Umgebungsoptionen, die sowohl für `build` als auch für `dev` gelten, wie z. B. `resolve`. Und es gibt `DevEnvironmentOptions` und `BuildEnvironmentOptions` für entwicklungs- und buildspezifische Optionen (wie `dev.warmup` oder `build.outDir`). Einige Optionen wie `optimizeDeps` gelten nur für die Entwicklung, werden aber aus Gründen der Abwärtskompatibilität als oberste Ebene beibehalten und nicht in `dev` verschachtelt.
 
 ```ts
 interface EnvironmentOptions {
@@ -85,7 +85,7 @@ interface EnvironmentOptions {
 }
 ```
 
-Die Schnittstelle `UserConfig` erweitert die Schnittstelle `EnvironmentOptions` und ermöglicht die Konfiguration des Clients und der Standardeinstellungen für andere Umgebungen, die über die Option `environments` konfiguriert werden. Der `Client` und eine Serverumgebung namens `ssr` sind während der Entwicklung immer vorhanden. Dies ermöglicht Abwärtskompatibilität mit `server.ssrLoadModule(url)` und `server.moduleGraph`. Während des Builds ist die Umgebung „client“ immer vorhanden, und die Umgebung „ssr“ ist nur vorhanden, wenn sie explizit konfiguriert wurde (mit „environments.ssr“ oder aus Gründen der Abwärtskompatibilität mit „build.ssr“). Eine App muss für ihre SSR-Umgebung nicht den Namen „ssr“ verwenden, sie könnte sie beispielsweise „server“ nennen.
+Die Schnittstelle `UserConfig` erweitert die Schnittstelle `EnvironmentOptions` und ermöglicht die Konfiguration des Clients und der Standardeinstellungen für andere Umgebungen, die über die Option `environments` konfiguriert werden. Der `Client` und eine Serverumgebung namens `ssr` sind während der Entwicklung immer vorhanden. Dies ermöglicht Abwärtskompatibilität mit `server.ssrLoadModule(url)` und `server.moduleGraph`. Während des Builds ist die Umgebung `client` immer vorhanden, und die Umgebung `ssr` ist nur vorhanden, wenn sie explizit konfiguriert wurde (mit `environments.ssr` oder aus Gründen der Abwärtskompatibilität mit `build.ssr`). Eine App muss für ihre SSR-Umgebung nicht den Namen `ssr` verwenden, sie könnte sie beispielsweise `server` nennen.
 
 ```ts
 interface UserConfig extends EnvironmentOptions {
@@ -94,7 +94,7 @@ interface UserConfig extends EnvironmentOptions {
 }
 ```
 
-Beachten Sie, dass die Top-Level-Eigenschaft „ssr” veraltet sein wird, sobald die Environment-API stabil ist. Diese Option hat dieselbe Funktion wie „environments”, gilt jedoch für die Standardumgebung „ssr” und erlaubt nur die Konfiguration einer kleinen Auswahl an Optionen.
+Beachten Sie, dass die Top-Level-Eigenschaft `ssr` veraltet sein wird, sobald die Environment-API stabil ist. Diese Option hat dieselbe Funktion wie `environments`, gilt jedoch für die Standardumgebung `ssr` und erlaubt nur die Konfiguration einer kleinen Auswahl an Optionen.
 
 ## Benutzerdefinierte Umgebungsinstanzen
 
@@ -125,8 +125,8 @@ Die `server.moduleGraph` gibt eine gemischte Ansicht der Client- und SSR-Modulgr
 
 Wir empfehlen noch nicht, zur Environment-API zu wechseln. Wir streben an, dass ein Großteil der Nutzerbasis Vite 6 übernimmt, damit Plugins nicht zwei Versionen pflegen müssen. Informationen zu zukünftigen Veraltungen und Upgrade-Pfaden finden Sie im Abschnitt „Zukünftige grundlegende Änderungen“:
 
-- [„this.environment“ in Hooks](/changes/this-environment-in-hooks)
-- [HMR „hotUpdate“-Plugin-Hook](/changes/hotupdate-hook)
+- [`this.environment` in Hooks](/changes/this-environment-in-hooks)
+- [HMR `hotUpdate`-Plugin-Hook](/changes/hotupdate-hook)
 - [Umstellung auf umgebungsbezogene APIs](/changes/per-environment-apis)
 - [SSR mit `ModuleRunner` API](/changes/ssr-using-modulerunner)
 - [Gemeinsam genutzte Plugins während des Builds](/changes/shared-plugins-during-build)
