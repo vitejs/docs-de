@@ -75,6 +75,10 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
        "file": "assets/shared-ChJ_j-JJ.css",
        "src": "_shared-ChJ_j-JJ.css"
      },
+    "logo.svg": {
+       "file": "assets/logo-BuPIv-2h.svg",
+       "src": "logo.svg"
+     },
      "baz.js": {
        "file": "assets/baz-B2H3sXNv.js",
        "name": "baz",
@@ -103,11 +107,32 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
      }
    }
    ```
-   - Das Manifest hat eine Struktur `Record<Name, Chunk>`.
-   - Für Einstiegs- oder dynamische Einstiegschunks ist der Schlüssel der relative Quellpfad vom Projektstamm aus.
-   - Für Nicht-Einstiegschunks ist der Schlüssel der Basename der generierten Datei mit einem `_`-Präfix.
-   - Für die CSS-Datei, die generiert wird, wenn [`build.cssCodeSplit`](/config/build-options.md#build-csscodesplit) auf `false` gesetzt ist, lautet der Schlüssel `style.css`.
-   - Chunks enthalten Informationen zu ihren statischen und dynamischen Importen (beide sind Schlüssel, die auf den entsprechenden Chunk im Manifest verweisen), sowie ihre zugehörigen CSS- und Asset-Dateien (falls vorhanden).
+   
+   Das Manifest hat eine Struktur `Record<name, chunk>`, bei dem jeder Chunk dem `ManifestChunk`-Interface folgt.
+
+   ```ts
+   interface ManifestChunk {
+     src?: string
+     file: string
+     css?: string[]
+     assets?: string[]
+     isEntry?: boolean
+     name?: string
+     names?: string[]
+     isDynamicEntry?: boolean
+     imports?: string[]
+     dynamicImports?: string[]
+   }
+   ```
+
+   Jeder Eintrag im Manifest repräsentiert eines der folgenden:
+   - **Entry Chunks**: Generiert aus Dateien spezifiziert unter [`build.rollupOptions.input`](https://rollupjs.org/configuration-options/#input). Diese Chunks haben `isEntry: true` und ihr Schlüssel ist der relative Pfad vom Wurzelverzeichnis des Projekts.
+   - **Dynamische Entry Chunks**: Generiert aus dynamischen Importen. Diese Chunks haben `isDynamicEntry: true` und ihr Schlüssel ist der relative Pfad vom Wurzelverzeichnis des Projekts.
+   - **Non-entry Chunks**: Ihr Schlüssel ist der Basisname der generierten Dateien beginnend mit `_`.
+   - **Asset Chunks**: Generiert aus importierten Assets wie Images oder Schriftarten. Ihr Schlüssel ist der relative src-Pfad vom Wurzelverzeichnis.
+   - **CSS Dateien**: Wenn [`build.cssCodeSplit`](/config/build-options.md#build-csscodesplit) `false` ist, wird eine einzige CSS Datei generiert mit dem Schlüssel `style.css`. Wenn `build.cssCodeSplit` nicht `false` ist, wird der Schlüssel ähnlich zum JavaScript Chunk generiert (z. B. Entry Chunks werden nicht mit `_` beginnen und Non-Entry Chunks werden mit `_` beginnen).
+
+   Chunks werden Informationen über ihre statischen und dynamischen Importe enthalten (beides sind Schlüssel die den entsprechenden Chunk im Manifest abbilden) und auch ihre entsprechenden CSS und Assets (falls vorhanden).
 
 4. Sie können diese Datei zum Rendern von Links oder zum Vorladen von Direktiven mit gehashten Dateinamen verwenden.
 
@@ -131,14 +156,14 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    ```
 
 Insbesondere sollte ein Backend, das HTML generiert, die folgenden Tags enthalten, wenn eine Manifestdatei
-und ein Einstiegspunkt vorhanden sind:
-- Ein `<link rel="stylesheet">`-Tag für jede Datei in der `css`-Liste des Einstiegspunkt-Chunks
-- Rekursives Verfolgen aller Blöcke in der `imports`-Liste des Einstiegspunkts und Einfügen eines
-  `<link rel="stylesheet">`-Tags für jede CSS-Datei jedes importierten Blocks.
-- Ein Tag für den `file`-Schlüssel des Einstiegspunkt-Blocks (`<script type="module">` für JavaScript oder
-  `<link rel="stylesheet">` für CSS)
-- Optional ein `<link rel="modulepreload">`-Tag für die `file` jedes importierten JavaScript-
-  Chunks, wobei erneut rekursiv den Importen ausgehend vom Einstiegspunkt-Chunk gefolgt wird.
+und ein Einstiegspunkt vorhanden sind. Beachten Sie, dass das Befolgen dieser Reihenfolge für beste Performanz empfohlen ist:
+1. Ein `<link rel="stylesheet">`-Tag für jede Datei in der `css`-Liste des Einstiegspunkt-Chunks (falls vorhanden)
+2. Rekursives Verfolgen aller Blöcke in der `imports`-Liste des Einstiegspunkts und Einfügen eines
+  `<link rel="stylesheet">`-Tags für jede CSS-Datei der `css`-Liste jedes importierten Blocks (falls vorhanden).
+3. Ein Tag für den `file`-Schlüssel des Einstiegspunkt-Blocks. Das kann `<script type="module">` für JavaScript oder
+  `<link rel="stylesheet">` für CSS sein.
+4. Optional ein `<link rel="modulepreload">`-Tag für die `file` jedes importierten JavaScript-Chunks,
+   wobei erneut rekursiv den Importen ausgehend vom Einstiegspunkt-Chunk gefolgt wird.
 
 Gemäß dem obigen Beispielmanifest sollten für den Einstiegspunkt `main.js` die folgenden Tags in die Produktion aufgenommen werden:
 
