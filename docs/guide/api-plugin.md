@@ -336,7 +336,6 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
   Dedizierter Hook zur Transformation von HTML-Einstiegspunktdateien wie `index.html`. Der Hook empfängt den aktuellen HTML-String und einen Transformationskontext. Der Kontext gibt während der Entwicklung die [`ViteDevServer`](./api-javascript#vitedevserver)-Instanz und während des Builds das Rollup-Ausgabe-Bundle aus.
 
   Der Hook kann asynchron sein und kann eines der folgenden zurückgeben:
-
   - Transformierten HTML-String
   - Ein Array von Tag-Beschreibungsobjekten (`{ tag, attrs, children }`), die in das vorhandene HTML eingefügt werden sollen. Jedes Tag kann auch angeben, wo es eingefügt werden soll (Standard ist die Vorbereitung auf `<head>`)
   - Ein Objekt, das beides als `{ html, tags }` enthält
@@ -414,13 +413,11 @@ Dieser Hook wird nicht aufgerufen, wenn Sie ein Framework verwenden, das eine ei
     server: ViteDevServer
   }
   ```
-
   - `modules` ist ein Array von Modulen, die von der geänderten Datei betroffen sind. Es ist ein Array, weil eine einzelne Datei mehreren bedienten Modulen zugeordnet sein kann (z. B. Vue SFCs).
 
   - `read` ist eine asynchrone Lese-Funktion, die den Inhalt der Datei zurückgibt. Dies wird bereitgestellt, weil auf einigen Systemen der Dateiänderungs-Callback möglicherweise zu schnell ausgelöst wird, bevor der Editor die Datei fertig aktualisiert hat, und `fs.readFile` leeren Inhalt zurückgibt. Die übergebene Lese-Funktion normalisiert dieses Verhalten.
 
   Der Hook kann wählen:
-
   - Die betroffene Modulliste filtern und einschränken, damit HMR genauer ist.
 
   - Gibt ein leeres Array zurück und führt ein vollständiges Neuladen durch:

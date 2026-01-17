@@ -549,6 +549,32 @@ const modules = import.meta.glob('./dir/*.js', {
 })
 ```
 
+#### Basispfad
+
+Sie können auch die `base`-Option nutzen, um einen Basispfad für Importe zu nutzen:
+
+```ts twoslash
+import 'vite/client'
+// ---cut---
+const modulesWithBase = import.meta.glob('./**/*.js', {
+  base: './base',
+})
+```
+
+```ts
+// Von Vite erzeugter Code:
+const modulesWithBase = {
+  './dir/foo.js': () => import('./base/dir/foo.js'),
+  './dir/bar.js': () => import('./base/dir/bar.js'),
+}
+```
+
+Die `base`-Option kann nur ein Verzeichnispfad relativ zur importierenden Datei sein oder ein absoluter Pfad zum Root-Verzeichnis des Projekts. Aliase und virtuelle Module werden nicht unterstützt.
+
+Nur die Globs, welche relative Pfade sind, werden als relativ zur aufgelösten Basis interpretiert.
+
+Alle resultierenden Modulschlüssel werden so geändert, dass sie relativ zur Basis sind, sofern diese angegeben ist.
+
 ### Glob Import Caveats
 
 Beachten Sie dies:
