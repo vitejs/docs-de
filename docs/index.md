@@ -30,7 +30,6 @@ import FeatureTypedAPI from './.vitepress/theme/components/landing/2. feature-se
 import FeatureSSRSupport from './.vitepress/theme/components/landing/2. feature-section/FeatureSSRSupport.vue'
 import FeatureCI from './.vitepress/theme/components/landing/2. feature-section/FeatureCI.vue'
 
-
 const { isDark } = useData()
 
 onMounted(() => {
