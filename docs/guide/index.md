@@ -43,10 +43,6 @@ Folgende Vorlagen werden unterstützt:
 
 ## Scaffolding für Ihr erstes Vite Projekt
 
-::: tip Kompatibilitätshinweis
-Vite erfordert [Node.js](https://nodejs.org/en/) Version 20+. Einige Vorlagen benötigen jedoch eine höhere Node.js-Version, um zu funktionieren. Bitte aktualisieren Sie diese, wenn Ihr Paketmanager Sie davor warnt.
-:::
-
 ::: code-group
 
 ```bash [NPM]
@@ -72,6 +68,12 @@ $ deno init --npm vite
 :::
 
 Folgen Sie dann den Anweisungen.
+
+::: tip Kompatibilitätshinweis
+Vite erfordert [Node.js](https://nodejs.org/en/) Version 20.19+, 22.12+. Einige Vorlagen benötigen jedoch eine höhere Node.js-Version, um zu funktionieren. Bitte aktualisieren Sie diese, wenn Ihr Paketmanager Sie davor warnt.
+:::
+
+:::: details Verwendung von `create vite` mit Kommandozeilenoptionen
 
 Sie können auch direkt den Projektnamen und die zu verwendende Vorlage über zusätzliche Befehlszeilenoptionen angeben. Führen Sie zum Beispiel ein Vite + Vue-Projekt aus, um ein Scaffold zu erstellen:
 
@@ -103,6 +105,8 @@ $ deno init --npm vite my-vue-app --template vue
 Siehe [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) für weitere Details zu jeder unterstützten Vorlage: `vanilla`, `vanilla-ts`, `vue`, `vue-ts`, `react`, `react-ts`, `react-swc`, `react-swc-ts`, `preact`, `preact-ts`, `lit`, `lit-ts`, `svelte`, `svelte-ts`, `solid`, `solid-ts`, `qwik`, `qwik-ts`.
 
 Sie können `.` für den Projektnamen verwenden, um im aktuellen Verzeichnis ein Gerüst zu erstellen.
+
+::::
 
 ## Community Vorlagen
 
