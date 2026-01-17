@@ -94,7 +94,7 @@ interface UserConfig extends EnvironmentOptions {
 }
 ```
 
-Beachten Sie, dass die Top-Level-Eigenschaft `ssr” veraltet sein wird, sobald die Environment-API stabil ist. Diese Option hat dieselbe Funktion wie `environments`, gilt jedoch für die Standardumgebung `ssr” und erlaubt nur die Konfiguration einer kleinen Auswahl an Optionen.
+Beachten Sie, dass die Top-Level-Eigenschaft `ssr` veraltet sein wird, sobald die Environment-API stabil ist. Diese Option hat dieselbe Funktion wie `environments`, gilt jedoch für die Standardumgebung `ssr` und erlaubt nur die Konfiguration einer kleinen Auswahl an Optionen.
 
 ## Benutzerdefinierte Umgebungsinstanzen
 
