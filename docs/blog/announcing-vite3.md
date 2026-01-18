@@ -13,7 +13,7 @@ head:
       content: Ankündigung von Vite 3
   - - meta
     - property: og:image
-      content: https://vite.dev/og-image-announcing-vite3.png
+      content: https://vite.dev/og-image-announcing-vite3.webp
   - - meta
     - property: og:url
       content: https://vite.dev/blog/announcing-vite3
@@ -31,7 +31,7 @@ _23. Juli 2022_ - Schauen Sie sich die [Ankündigung von Vite 4.0](./announcing-
 
 Im Februar letzten Jahres veröffentlichte [Evan You](https://twitter.com/youyuxi) Vite 2. Seitdem hat seine Verbreitung stetig zugenommen und erreicht mehr als 1 Million npm-Downloads pro Woche. Nach der Veröffentlichung bildete sich schnell ein weitläufiges Ökosystem. Vite treibt ein erneuertes Rennen um Innovationen in Web-Frameworks an. [Nuxt 3](https://v3.nuxtjs.org/) verwendet standardmäßig Vite. [SvelteKit](https://kit.svelte.dev/), [Astro](https://astro.build/), [Hydrogen](https://hydrogen.shopify.dev/) und [SolidStart](https://docs.solidjs.com/quick-start) wurden alle mit Vite erstellt. [Laravel hat sich nun entschieden, standardmäßig Vite zu verwenden](https://laravel.com/docs/9.x/vite). [Vite Ruby](https://vite-ruby.netlify.app/) zeigt, wie Vite die Entwicklererfahrung von Rails verbessern kann. [Vitest](https://vitest.dev) macht als Vite-native Alternative zu Jest Fortschritte. Vite steht hinter den neuen Komponententestfunktionen von [Cypress](https://docs.cypress.io/guides/component-testing/writing-your-first-component-test) und [Playwright](https://playwright.dev/docs/test-components), Storybook hat [Vite als offiziellen Builder](https://github.com/storybookjs/builder-vite). Und [die Liste geht weiter](https://patak.dev/vite/ecosystem.html). Die Betreuer dieser Projekte waren an der Verbesserung des Vite-Kerns beteiligt und arbeiteten eng mit dem Vite [Team](https://vite.dev/team) und anderen Beitragenden zusammen.
 
-![Titelbild der Ankündigung von Vite 3](/og-image-announcing-vite3.png)
+![Titelbild der Ankündigung von Vite 3](/og-image-announcing-vite3.webp)
 
 Heute, 16 Monate nach dem Start von V2, freuen wir uns, die Veröffentlichung von Vite 3 anzukündigen. Wir haben uns entschieden, mindestens einmal im Jahr eine neue Vite-Version zu veröffentlichen, um sie mit dem [Ende des Lebenszyklus von Node.js](https://nodejs.org/en/about/releases/) abzustimmen, und die Gelegenheit zu nutzen, Vites API regelmäßig mit einem kurzen Migrationspfad für Projekte im Ökosystem zu überprüfen.
 
@@ -47,7 +47,7 @@ Wenn Sie neu bei Vite sind, empfehlen wir Ihnen, den [Leitfaden "Warum Vite"](ht
 
 Gehen Sie zu [vite.dev](https://vite.dev), um die neuen V3-Dokumente zu genießen. Vite verwendet jetzt das neue Standardthema von [VitePress](https://vitepress.vuejs.org) mit einem atemberaubenden Dark Mode und anderen Funktionen.
 
-[![Titelseite der Vite-Dokumentation](../images/v3-docs.png)](https://vite.dev)
+[![Titelseite der Vite-Dokumentation](../images/v3-docs.webp)](https://vite.dev)
 
 Mehrere Projekte im Ökosystem sind bereits auf sie umgestiegen (siehe [Vitest](https://vitest.dev), [vite-plugin-pwa](https://vite-plugin-pwa.netlify.app/) und [VitePress](https://vitepress.vuejs.org/) selbst).
 
@@ -223,9 +223,9 @@ Ein Teil dieser Reduzierung wurde durch die Möglichkeit erreicht, einige Abhän
 
 Eine Triagierungsmarathon wurde von [@bluwyoo](https://twitter.com/bluwyoo), [@sapphi_red](https://twitter.com/sapphi_red) angeführt, die kürzlich dem Vite-Team beigetreten sind. In den letzten drei Monaten wurden die offenen Vite-Probleme von 770 auf 400 reduziert. Dieser Tauchgang wurde erreicht, während die neu eröffneten Pull-Anfragen auf einem Allzeithoch waren. Gleichzeitig hat [@haoqunjiang](https://twitter.com/haoqunjiang) eine umfassende [Übersicht über Vite-Probleme](https://github.com/vitejs/vite/discussions/8232) kuratiert.
 
-[![Diagramm der offenen Probleme und Pull-Anfragen in Vite](../images/v3-open-issues-and-PRs.png)](https://www.repotrends.com/vitejs/vite)
+[![Diagramm der offenen Probleme und Pull-Anfragen in Vite](../images/v3-open-issues-and-PRs.webp)](https://www.repotrends.com/vitejs/vite)
 
-[![Diagramm der neuen Probleme und Pull-Anfragen in Vite](../images/v3-new-open-issues-and-PRs.png)](https://www.repotrends.com/vitejs/vite)
+[![Diagramm der neuen Probleme und Pull-Anfragen in Vite](../images/v3-new-open-issues-and-PRs.webp)](https://www.repotrends.com/vitejs/vite)
 
 ## Kompatibilitätsnotizen
 

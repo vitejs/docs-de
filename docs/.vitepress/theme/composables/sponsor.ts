@@ -1,4 +1,7 @@
 import { onMounted, onUnmounted, ref } from 'vue'
+import voidZeroSvg from './images/voidzero.svg'
+import boltSvg from './images/bolt.svg'
+import nuxtLabsSvg from './images/nuxtlabs.svg'
 
 interface Sponsors {
   special: Sponsor[]
@@ -25,19 +28,25 @@ const data = ref<{ tier: string; size: string; items: Sponsor[] }[]>()
 const dataHost = 'https://sponsors.vuejs.org'
 const dataUrl = `${dataHost}/vite.json`
 
+export const voidZero = {
+  name: 'VoidZero',
+  url: 'https://voidzero.dev',
+  img: voidZeroSvg,
+} satisfies Sponsor
+
 const viteSponsors: Pick<Sponsors, 'special' | 'gold'> = {
   special: [
     // sponsors patak-dev
     {
       name: 'Bolt',
       url: 'https://bolt.new',
-      img: '/bolt.svg',
+      img: boltSvg,
     },
     // sponsors antfu
     {
       name: 'NuxtLabs',
       url: 'https://nuxtlabs.com',
-      img: '/nuxtlabs.svg',
+      img: nuxtLabsSvg,
     },
   ],
   gold: [
