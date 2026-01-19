@@ -145,6 +145,10 @@ Wenn die HTML-Dateiausgabe mit dem `file`-Protokoll geöffnet wurde, werden die 
 
 Sie müssen auf die Datei mit dem `http`-Protokoll zugreifen. Der einfachste Weg, dies zu erreichen, ist das Ausführen von `npx vite preview`.
 
+### `ENOENT: no such file or directory`-Fehler Grund von Groß-/Kleinschreibung
+
+Falls Sie Fehlern wie `ENOENT: no such file or directory` oder `Module not found` begegnen, liegt es oft daran, dass Ihr Projekt auf einem System entwickelt wurde, welches nicht zwischen Groß- und Kleinschreibung unterscheidet (Windows / macOS) und anschließend auf einem System gebaut wurde, dass Groß-/Kleinschreibung berücksichtigt (Linux). Bitte stellen Sie sicher, dass die Importe die korrekte Schreibweise haben.
+
 ## Optimisierte Abhängigkeiten
 
 ### Veraltete vorbündelte Abhängigkeiten bei Verknüpfung mit einem lokalen Paket
