@@ -1,10 +1,13 @@
-import type { DefaultTheme } from 'vitepress'
+import path from 'node:path'
+import fs from 'node:fs'
+import type { DefaultTheme, HeadConfig } from 'vitepress'
 import { defineConfig } from 'vitepress'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import {
   groupIconMdPlugin,
   groupIconVitePlugin,
 } from 'vitepress-plugin-group-icons'
+import { markdownItImageSize } from 'markdown-it-image-size'
 import { buildEnd } from './buildEnd.config'
 
 const ogDescription = 'Frontend-Tooling der nächsten Generation'
@@ -74,6 +77,17 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
       return oldVersions
   }
 })()
+
+function inlineScript(file: string): HeadConfig {
+  return [
+    'script',
+    {},
+    fs.readFileSync(
+      path.resolve(__dirname, `./inlined-scripts/${file}`),
+      'utf-8',
+    ),
+  ]
+}
 
 export default defineConfig({
   title: `Vite${additionalTitle}`,
@@ -504,6 +518,9 @@ export default defineConfig({
     codeTransformers: [transformerTwoslash()],
     config(md) {
       md.use(groupIconMdPlugin)
+      md.use(markdownItImageSize, {
+        publicDir: path.resolve(import.meta.dirname, '../public'),
+      })
     },
   },
   vite: {
