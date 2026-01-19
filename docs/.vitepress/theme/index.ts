@@ -6,6 +6,7 @@ import './styles/landing.css'
 import AsideSponsors from './components/AsideSponsors.vue'
 import SvgImage from './components/SvgImage.vue'
 import YouTubeVideo from './components/YouTubeVideo.vue'
+import NonInheritBadge from './components/NonInheritBadge.vue'
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client'
 
 import '@shikijs/vitepress-twoslash/style.css'
@@ -22,5 +23,6 @@ export default {
     app.use(TwoslashFloatingVue)
     app.component('SvgImage', SvgImage)
     app.component('YouTubeVideo', YouTubeVideo)
+    app.component('NonInheritBadge', NonInheritBadge)
   },
 } satisfies Theme
