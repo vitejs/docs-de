@@ -80,7 +80,7 @@ Siehe [`server.https`](./server-options#server-https) für mehr Details.
 
 Konfigurieren Sie benutzerdefinierte Proxyregeln für den Vorschau-Server. Erwartet ein Objekt von `{ Schlüssel: Optionen }`-Paaren. Wenn der Schlüssel mit `^` beginnt, wird er als `RegExp` interpretiert. Die `configure`-Option kann verwendet werden, um auf die Proxyinstanz zuzugreifen.
 
-Verwendet [`http-proxy`](https://github.com/http-party/node-http-proxy). Vollständige Optionen [hier](https://github.com/http-party/node-http-proxy#options).
+Verwendet [`http-proxy-3`](https://github.com/sagemathinc/http-proxy-3). Vollständige Optionen [hier](https://github.com/sagemathinc/http-proxy-3#options).
 
 ## preview.cors
 
