@@ -4,6 +4,7 @@ on:
   # Schedule the interval of the checks.
   schedule:
     - cron: "*/1 * * * *"
+  workflow_dispatch: # Manual trigger
 
 jobs:
   ryu-cho:
