@@ -12,7 +12,7 @@ Wenn Sie ein Plugin erstellen, können Sie es direkt in Ihrer `vite.config.js` e
 
 ::: tip
 Wenn Sie lernen, Fehler beheben oder Plugins erstellen, empfehlen wir Ihnen, [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) in Ihr Projekt aufzunehmen. Damit können Sie den Zwischenzustand von Vite-Plugins inspizieren. Nach der Installation können Sie `localhost:5173/__inspect/` besuchen, um die Module und Transformationskette Ihres Projekts zu inspizieren. Weitere Installationsanweisungen finden Sie in der [Dokumentation von vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect).
-![vite-plugin-inspect](/images/vite-plugin-inspect.png)
+![vite-plugin-inspect](/images/vite-plugin-inspect.webp)
 :::
 
 ## Konventionen

@@ -1,49 +1,49 @@
-name: ryu-cho
+# name: ryu-cho
 
-on:
-  # Schedule the interval of the checks.
-  schedule:
-    - cron: "*/5 * * * *"
+# on:
+#   # Schedule the interval of the checks.
+#   schedule:
+#     - cron: "*/5 * * * *"
 
-jobs:
-  ryu-cho:
-    name: Ryu Cho
-    runs-on: ubuntu-latest
-    steps:
-      - uses: vuejs-translations/ryu-cho@v1
-        with:
-          # GitHub access token. Required.
-          access-token: ${{ secrets.GITHUB_TOKEN }}
+# jobs:
+#   ryu-cho:
+#     name: Ryu Cho
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: vuejs-translations/ryu-cho@v1
+#         with:
+#           # GitHub access token. Required.
+#           access-token: ${{ secrets.GITHUB_TOKEN }}
 
-          # Git user name to use when making issues and PRs. Required.
-          username: github-actions
+#           # Git user name to use when making issues and PRs. Required.
+#           username: github-actions
 
-          # Git email address to use when making issues and PRs. Required.
-          email: "action@github.com"
+#           # Git email address to use when making issues and PRs. Required.
+#           email: "action@github.com"
 
-          # The url for the upstream repo. This is the repository that you
-          # set up Ryu-Cho. Required.
-          upstream-repo: https://github.com/vitejs/docs-de.git
+#           # The url for the upstream repo. This is the repository that you
+#           # set up Ryu-Cho. Required.
+#           upstream-repo: https://github.com/vitejs/docs-de.git
 
-          # The branch for the upstream repo. Optional. Defaults to `main`.
-          upstream-repo-branch: main
+#           # The branch for the upstream repo. Optional. Defaults to `main`.
+#           upstream-repo-branch: main
 
-          # The head repo to track. This is the repository you want to
-          # take a diff. Required.
-          head-repo: https://github.com/vitejs/vite
+#           # The head repo to track. This is the repository you want to
+#           # take a diff. Required.
+#           head-repo: https://github.com/vitejs/vite
 
-          # The branch for the head repo. Optional. Defaults to `main`.
-          head-repo-branch: main
+#           # The branch for the head repo. Optional. Defaults to `main`.
+#           head-repo-branch: main
 
-          # The git commit sha of head repo to start tracking. Ryu-Cho will
-          # only track commit from this hash. Required.
-          track-from: 1a2e5e6d9a6bb2531bf73be801c9778dbf39d51b
+#           # The git commit sha of head repo to start tracking. Ryu-Cho will
+#           # only track commit from this hash. Required.
+#           track-from: 1a2e5e6d9a6bb2531bf73be801c9778dbf39d51b
 
-          # File path to track. In this example, Ryu-Cho will only track
-          # commits that modified files under `docs` folder. Optional.
-          path-starts-with: docs/
+#           # File path to track. In this example, Ryu-Cho will only track
+#           # commits that modified files under `docs` folder. Optional.
+#           path-starts-with: docs/
 
-          # GitHub workflow name that runs Ryu-Cho. This is required since
-          # Ryu-Cho determines the last run by looking into last workflow
-          # run timestamp. Optional. Defaults to `ryu-cho`.
-          workflow-name: ryu-cho
+#           # GitHub workflow name that runs Ryu-Cho. This is required since
+#           # Ryu-Cho determines the last run by looking into last workflow
+#           # run timestamp. Optional. Defaults to `ryu-cho`.
+#           workflow-name: ryu-cho
