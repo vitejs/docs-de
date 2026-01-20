@@ -3,7 +3,7 @@ name: yuki-no
 on:
   schedule:
     - cron: "0 * * * *" # Every hour
-  workflow_dispatch: # Manual trigger
+  # workflow_dispatch: # Manual trigger
 
 jobs:
   yuki-no:
