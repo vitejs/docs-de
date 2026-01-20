@@ -3,8 +3,8 @@ name: ryu-cho
 on:
   # Schedule the interval of the checks.
   schedule:
-    - cron: "* * * * *"
-  workflow_dispatch:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: # Allow manual run.
 
 permissions:
   contents: write
