@@ -20,7 +20,7 @@ jobs:
           access-token: ${{ secrets.GITHUB_TOKEN }}
 
           # Upstream repository configuration
-          head-repo: https://github.com/vitejs/vite
+          head-repo: https://github.com/vitejs/docs-de.git
 
           # REQUIRED: Set this to a recent commit hash from vitejs/vite
           # Yuki-no will only track commits after this hash.
