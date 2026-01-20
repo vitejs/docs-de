@@ -27,9 +27,9 @@ jobs:
         env:
           YUKI_NO_BATCH_PR_ROOT_DIR: docs
           YUKI_NO_BATCH_PR_EXCLUDE: |
-            **/guide/migration*.md
             **/package.json
-            **/.vitepress/config.ts
+          # **/guide/migration*.md
+          # **/.vitepress/config.ts
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
           head-repo: https://github.com/vitejs/vite.git
