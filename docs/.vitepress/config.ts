@@ -78,16 +78,16 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
   }
 })()
 
-function inlineScript(file: string): HeadConfig {
-  return [
-    'script',
-    {},
-    fs.readFileSync(
-      path.resolve(__dirname, `./inlined-scripts/${file}`),
-      'utf-8',
-    ),
-  ]
-}
+// function inlineScript(file: string): HeadConfig {
+//   return [
+//     'script',
+//     {},
+//     fs.readFileSync(
+//       path.resolve(__dirname, `./inlined-scripts/${file}`),
+//       'utf-8',
+//     ),
+//   ]
+// }
 
 export default defineConfig({
   title: `Vite${additionalTitle}`,
@@ -366,8 +366,8 @@ export default defineConfig({
             },
             {
               text: 'Grundlegende Änderungen',
-              link: '/changes'
-            }
+              link: '/changes',
+            },
           ],
         },
         {
@@ -508,7 +508,7 @@ export default defineConfig({
     pageData.frontmatter.head ??= []
     pageData.frontmatter.head.unshift(
       ['link', { rel: 'canonical', href: canonicalUrl }],
-      ['meta', { property: 'og:title', content: pageData.title }]
+      ['meta', { property: 'og:title', content: pageData.title }],
     )
     return pageData
   },
