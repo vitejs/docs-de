@@ -1,0 +1,1 @@
+import { data as posts } from '../../../_data/blog.data'
