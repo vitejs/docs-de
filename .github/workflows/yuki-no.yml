@@ -1,42 +1,41 @@
-# name: yuki-no
+name: yuki-no
 
-# permissions:
-#   # Read external repo changes
-#   contents: read
-#   # Create and update issues for tracked changes
-#   issues: write
-#   # Get last workflow run info
-#   actions: read
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: # Manual trigger
 
-# on:
-#   schedule:
-#     - cron: "*/5 * * * *" # "0 * * * *" # Every hour
-#   workflow_dispatch: # Manual trigger
+permissions:
+  contents: write
+  issues: write
+  actions: read
+  pull-requests: write
 
-# jobs:
-#   yuki-no:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: Gumball12/yuki-no@v1
-#         with:
-#           # GitHub token for authentication
-#           access-token: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  yuki-no:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
 
-#           # Upstream repository configuration
-#           head-repo: https://github.com/vitejs/docs-de.git
-
-#           # REQUIRED: Set this to a recent commit hash from vitejs/vite
-#           # Yuki-no will only track commits after this hash.
-#           # Using an old commit hash will cause the initial action run to be very slow
-#           # as it processes each historical commit.
-#           # (Subsequent runs are faster as they skip previously processed commits.)
-#           track-from: 8099582e5364f907f2bc6cb8e2d52ae0c4d937e4 # Replace with a recent commit hash from vitejs/vite
-
-#           # Files to track (Glob patterns)
-#           include: |
-#             docs/**
-
-#           # Enable release tracking
-#           # When enabled, Yuki-no will track releases for each issue
-#           # and add comments about release status.
-#           release-tracking: true
+      # https://github.com/Gumball12/yuki-no/
+      - uses: Gumball12/yuki-no@wip
+        env:
+          YUKI_NO_BATCH_PR_ROOT_DIR: docs
+          YUKI_NO_BATCH_PR_EXCLUDE: |
+            **/guide/migration*.md
+            **/package.json
+            **/.vitepress/config.ts
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          head-repo: https://github.com/vitejs/vite.git
+          track-from: 1a2e5e6d9a6bb2531bf73be801c9778dbf39d51b
+          include: |
+            docs/**
+          plugins: |
+            @yuki-no/plugin-release-tracking@latest
+            @yuki-no/plugin-batch-pr@latest
