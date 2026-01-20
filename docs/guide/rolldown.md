@@ -141,15 +141,21 @@ export default {
 
 ### Aktivieren nativer Plugins
 
-Dank Rolldown und Oxc wurden verschiedene interne Vite-Plugins, wie beispielsweise das Alias- oder Resolve-Plugin, nach Rust portiert. Zum Zeitpunkt der Erstellung dieses Artikels ist die Verwendung dieser Plugins standardmäßig nicht aktiviert, da ihr Verhalten von den JavaScript-Versionen abweichen kann.
+Dank Rolldown und Oxc wurden verschiedene interne Vite-Plugins, wie beispielsweise das Alias- oder Resolve-Plugin, nach Rust portiert. Native Plugins sind nun mit standardmäßig aktiviert und enthalten den Standardwert `'v1'`.
 
-Um sie zu testen, können Sie die `experimental.enableNativePlugin`-Option in Ihrer Vite-Konfiguration auf `true` setzen.
+Falls Sie irgendwelchen Problemen begegnen, können Sie die `experimental.enableNativePlugin`-Option als Workaround in Ihrer Vite Konfiguration zu `'resolver'` oder `false` ändern. Beachten Sie, dass diese Möglichkeit in der Zukunft entfernt wird.
 
-### `@vitejs/plugin-react-oxc`
+### Verwendung der React-Aktualisierungstransformation von Oxc
 
-Bei der Verwendung von `@vitejs/plugin-react` oder `@vitejs/plugin-react-swc`, können Sie zum `@vitejs/plugin-react-oxc`-Plugin wechseln, das Oxc für Reacts schnelles Neuladen anstelle von Babel oder SWC verwendet. Es wurde als direkter Ersatz gestaltet, da es bessere Performanz beim Build erzielt und mit der zugrundeliegenden Architektur von `rolldown-vite` abgestimmt ist.
+`@vitejs/plugin-react` v5.0.0+ verwendet die React-Aktualisierungstransformation von Oxc. Wenn Sie keine Babel-Plugins (einschließlich des React-Compilers) verwenden, wird die vollständige Transformation nun von Oxc durchgeführt und verbessert die Build-Leistung, ohne dass außer der Aktualisierung von `@vitejs/plugin-react` weitere Änderungen erforderlich sind.
 
-Beachten Sie, dass Sie nur dann zu `@vitejs/plugin-react-oxc` wechseln können, wenn Sie keine Babel- oder SWC-Plugins (einschließlich des React-Compilers) verwenden oder die SWC-Optionen ändern.
+Falls Sie `@vitejs/plugin-react-swc` ohne SWC-Plugins und benutzerdefinierte SWC-Optionen verwenden, können Sie zum `@vitejs/plugin-react`-Plugin wechseln, um Oxc zu nutzen.
+
+::: details `@vitejs/plugin-react-oxc`-Plugin ist veraltet
+
+Bisher haben wir empfohlen, `@vitejs/plugin-react-oxc` zu verwenden, um die React-Aktualisierungstransformation von Oxc zu nutzen. Wir haben die Implementierung jedoch in `@vitejs/plugin-react` integriert, damit der Wechsel zu `rolldown-vite` einfacher ist. `@vitejs/plugin-react-oxc` ist nun veraltet und wird nicht mehr aktualisiert.
+
+:::
 
 ### `withFilter` Wrapper
 
