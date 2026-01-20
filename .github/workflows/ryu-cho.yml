@@ -3,7 +3,14 @@ name: ryu-cho
 on:
   # Schedule the interval of the checks.
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "* * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  actions: read
+  pull-requests: write
 
 jobs:
   ryu-cho:
