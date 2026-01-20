@@ -3,7 +3,7 @@ name: ryu-cho
 on:
   # Schedule the interval of the checks.
   schedule:
-    - cron: "*/1 * * * *"
+    - cron: "*/5 * * * *"
 
 jobs:
   ryu-cho:
@@ -13,7 +13,7 @@ jobs:
       - uses: vuejs-translations/ryu-cho@v1
         with:
           # GitHub access token. Required.
-          access-token: ${{ secrets.ACCESS_TOKEN }}
+          access-token: ${{ secrets.GITHUB_TOKEN }}
 
           # Git user name to use when making issues and PRs. Required.
           username: github-actions
@@ -37,7 +37,7 @@ jobs:
 
           # The git commit sha of head repo to start tracking. Ryu-Cho will
           # only track commit from this hash. Required.
-          track-from: 8099582e5364f907f2bc6cb8e2d52ae0c4d937e4 # 1a2e5e6d9a6bb2531bf73be801c9778dbf39d51b
+          track-from: 1a2e5e6d9a6bb2531bf73be801c9778dbf39d51b
 
           # File path to track. In this example, Ryu-Cho will only track
           # commits that modified files under `docs` folder. Optional.
