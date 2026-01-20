@@ -3,7 +3,7 @@ name: ryu-cho
 on:
   # Schedule the interval of the checks.
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/1 * * * *"
 
 jobs:
   ryu-cho:
@@ -13,7 +13,7 @@ jobs:
       - uses: vuejs-translations/ryu-cho@v1
         with:
           # GitHub access token. Required.
-          access-token: ${{ secrets.GITHUB_TOKEN }}
+          access-token: ${{ secrets.ACCESS_TOKEN }}
 
           # Git user name to use when making issues and PRs. Required.
           username: github-actions
