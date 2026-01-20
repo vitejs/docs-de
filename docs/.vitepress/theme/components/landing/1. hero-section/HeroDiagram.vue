@@ -437,6 +437,12 @@ const isChromiumBrowser = ref(false)
 onMounted(() => {
   isChromiumBrowser.value = 'chrome' in window
 })
+
+// Check for uwu query
+const isUwu = ref(false)
+onMounted(() => {
+  isUwu.value = location.search.includes('?uwu')
+})
 </script>
 
 <template>
@@ -463,7 +469,12 @@ onMounted(() => {
         ></div>
       </div>
       <div class="vite-chip__filter" />
-      <img src="/logo.svg" alt="Vite Logo" class="vite-chip__logo" />
+      <img
+        :src="isUwu ? '/logo-uwu.webp' : '/logo.svg'"
+        :alt="isUwu ? 'Vite Kawaii Logo by @icarusgkx' : 'Vite Logo'"
+        class="vite-chip__logo"
+        :class="{ uwu: isUwu }"
+      />
     </div>
   </div>
 
@@ -638,6 +649,10 @@ onMounted(() => {
     z-index: 3;
   }
 
+  .uwu.vite-chip__logo {
+    width: 134px;
+  }
+
   &.active {
     box-shadow: 0 30px 35px -10px rgba(0, 0, 0, 0.6);
     transform: translate3d(0, 0, 0) scale(1);
@@ -698,7 +713,7 @@ onMounted(() => {
     opacity: 0.1;
   }
 
-  background: url('/noise.png'),
+  background: url('../common/noise.webp'),
     radial-gradient(
       circle at right center,
       rgb(86, 50, 119) 0%,
@@ -714,7 +729,7 @@ onMounted(() => {
   );
 
   @media (min-width: 1024px) {
-    background: url('/noise.png'),
+    background: url('../common/noise.webp'),
       radial-gradient(
         circle at right center,
         rgba(75, 41, 105, 0.5) 0%,
@@ -732,7 +747,7 @@ onMounted(() => {
   }
 
   @media (min-width: 1500px) {
-    background: url('/noise.png'),
+    background: url('../common/noise.webp'),
       radial-gradient(
         circle at right center,
         rgba(75, 41, 105, 0.5) 0%,
@@ -750,7 +765,7 @@ onMounted(() => {
   }
 
   @media (min-width: 1800px) {
-    background: url('/noise.png'),
+    background: url('../common/noise.webp'),
       radial-gradient(
         circle at right center,
         rgba(75, 41, 105, 0.5) 0%,
