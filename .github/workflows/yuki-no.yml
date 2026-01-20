@@ -1,14 +1,17 @@
 name: yuki-no
 
+permissions:
+  # Read external repo changes
+  contents: read
+  # Create and update issues for tracked changes
+  issues: write
+  # Get last workflow run info
+  actions: read
+
 on:
   schedule:
     - cron: "*/5 * * * *" # "0 * * * *" # Every hour
   workflow_dispatch: # Manual trigger
-
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
 
 jobs:
   yuki-no:
