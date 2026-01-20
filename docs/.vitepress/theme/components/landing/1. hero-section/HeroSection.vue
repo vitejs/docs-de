@@ -7,7 +7,12 @@ import HeroDiagram from './HeroDiagram.vue'
     <div class="container">
       <!-- ViteConf Replay Button -->
       <a href="https://viteconf.org/" class="hero__pill" target="_blank">
-        <img src="/viteconf.svg" alt="Viteconf logo" width="20" height="20" />
+        <img
+          src="../../../../../images/viteconf.svg"
+          alt="Viteconf logo"
+          width="20"
+          height="20"
+        />
         <span>ViteConf 2024 - Oct 3rd & 4th</span>
       </a>
 
@@ -27,7 +32,7 @@ import HeroDiagram from './HeroDiagram.vue'
           target="_blank"
           class="btn btn--outline"
         >
-          <img src="/github.svg" alt="GitHub logo" width="20" height="20" />
+          <img src="./github.svg" alt="GitHub logo" width="20" height="20" />
           GitHub
         </a>
       </div>
