@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSponsor } from '../../../composables/sponsor'
+import { useSponsor, voidZero } from '../../../composables/sponsor'
 import { VPSponsors } from 'vitepress/theme'
 
 const { data } = useSponsor()
