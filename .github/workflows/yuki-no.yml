@@ -2,7 +2,7 @@ name: yuki-no
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "0 * * * *" # Every hour
   workflow_dispatch: # Manual trigger
 
 permissions:
