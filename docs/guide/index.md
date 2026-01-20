@@ -6,7 +6,7 @@
 
 ## Überblick
 
-Vite (französisches Wort für "schnell", ausgesprochen [`/vit/`]<button style="border:none;padding:3px;border-radius:4px;vertical-align:bottom" id="play-vite-audio" onclick="document.getElementById('vite-audio').play();"><svg style="height:2em;width:2em"><use href="/voice.svg?no-inline#voice" /></svg></button>, wie "veet") ist eine neue Art von Frontend-Build-Tool, das die Erfahrung bei der Frontend-Entwicklung erheblich verbessert. Es besteht aus zwei Hauptbestandteilen:
+Vite (französisches Wort für "schnell", ausgesprochen [`/vit/`]<button style="border:none;padding:3px;border-radius:4px;vertical-align:bottom" id="play-vite-audio" onclick="document.getElementById('vite-audio').play();"><svg style="height:2em;width:2em"><use href="../images/voice.svg?no-inline#voice" /></svg></button>, wie "veet") ist eine neue Art von Frontend-Build-Tool, das die Erfahrung bei der Frontend-Entwicklung erheblich verbessert. Es besteht aus zwei Hauptbestandteilen:
 
 - Einem Entwicklungsserver, der Ihre Quelldateien über [native ES-Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), mit [umfangreichen integrierten Funktionen](./features) und erstaunlich schnellem [Hot Module Replacement (HMR)](./features#hot-module-replacement) bereitstellt.
 
@@ -43,10 +43,6 @@ Folgende Vorlagen werden unterstützt:
 
 ## Scaffolding für Ihr erstes Vite Projekt
 
-::: tip Kompatibilitätshinweis
-Vite erfordert [Node.js](https://nodejs.org/en/) Version 20+. Einige Vorlagen benötigen jedoch eine höhere Node.js-Version, um zu funktionieren. Bitte aktualisieren Sie diese, wenn Ihr Paketmanager Sie davor warnt.
-:::
-
 ::: code-group
 
 ```bash [NPM]
@@ -72,6 +68,12 @@ $ deno init --npm vite
 :::
 
 Folgen Sie dann den Anweisungen.
+
+::: tip Kompatibilitätshinweis
+Vite erfordert [Node.js](https://nodejs.org/en/) Version 20.19+, 22.12+. Einige Vorlagen benötigen jedoch eine höhere Node.js-Version, um zu funktionieren. Bitte aktualisieren Sie diese, wenn Ihr Paketmanager Sie davor warnt.
+:::
+
+:::: details Verwendung von `create vite` mit Kommandozeilenoptionen
 
 Sie können auch direkt den Projektnamen und die zu verwendende Vorlage über zusätzliche Befehlszeilenoptionen angeben. Führen Sie zum Beispiel ein Vite + Vue-Projekt aus, um ein Scaffold zu erstellen:
 
@@ -103,6 +105,8 @@ $ deno init --npm vite my-vue-app --template vue
 Siehe [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) für weitere Details zu jeder unterstützten Vorlage: `vanilla`, `vanilla-ts`, `vue`, `vue-ts`, `react`, `react-ts`, `react-swc`, `react-swc-ts`, `preact`, `preact-ts`, `lit`, `lit-ts`, `svelte`, `svelte-ts`, `solid`, `solid-ts`, `qwik`, `qwik-ts`.
 
 Sie können `.` für den Projektnamen verwenden, um im aktuellen Verzeichnis ein Gerüst zu erstellen.
+
+::::
 
 ## Community Vorlagen
 
@@ -258,7 +262,7 @@ Gehen Sie dann zu Ihrem Vite-basierten Projekt und führen Sie `pnpm link --glob
 
 ::: tip Abhängigkeiten die Vite benutzen
 
-Um die von Abhängigkeiten transitiv verwendeter Vite-Version zu ersetzen, sollten Sie [npm-Überschreibungen](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) oder [pnpm-Überschreibungen](https://pnpm.io/package_json#pnpmoverrides) verwenden.
+Um die von Abhängigkeiten transitiv verwendeter Vite-Version zu ersetzen, sollten Sie [npm-Überschreibungen](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) oder [pnpm-Überschreibungen](https://pnpm.io/9.x/package_json#pnpmoverrides) verwenden.
 
 :::
 
