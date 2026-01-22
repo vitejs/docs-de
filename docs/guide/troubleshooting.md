@@ -246,11 +246,11 @@ Wenn diese Codes innerhalb von Abhängigkeiten verwendet werden, können Sie [`p
 
 ### Browsererweiterungen
 
-Some browser extensions (like ad-blockers) may prevent the Vite client from sending requests to the Vite dev server. You may see a white screen without logged errors in this case. You may also see the following error:
+Einige Browser-Erweiterungen (wie Werbeblocker) können verhindern, dass der Vite-Client Anfragen an den Vite-Entwicklungsserver sendet. In diesem Fall wird möglicherweise ein weißer Bildschirm ohne protokollierte Fehler angezeigt. Möglicherweise wird auch der folgende Fehler angezeigt:
 
 > TypeError: Failed to fetch dynamically imported module
 
-Try disabling extensions if you have this issue.
+Deaktivieren Sie die Erweiterungen, wenn dieses Problem auftritt.
 
 ### Verknüpfungen zwischen verschiedenen Laufwerken in Windows
 
