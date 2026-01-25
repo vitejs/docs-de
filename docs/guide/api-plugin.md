@@ -400,6 +400,7 @@ Dieser Hook wird nicht aufgerufen, wenn Sie ein Framework verwenden, das eine ei
 ### `handleHotUpdate`
 
 - **Typ:** `(ctx: HmrContext) => Array<ModuleNode> | void | Promise<Array<ModuleNode> | void>`
+- **Art:** `async`, `sequential`
 - **Siehe auch:** [HMR API](./api-hmr)
 
   Führen Sie die benutzerdefinierte HMR-Updateverarbeitung durch. Der Hook erhält ein Kontextobjekt mit folgender Signatur:

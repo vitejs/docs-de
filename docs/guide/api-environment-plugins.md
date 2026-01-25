@@ -55,6 +55,7 @@ Plugins sollten Standardwerte mithilfe des Hooks „config“ festlegen. Um jede
 ## Der `hotUpdate`-Hook
 
 - **Type:** `(this: { environment: DevEnvironment }, options: HotUpdateOptions) => Array<EnvironmentModuleNode> | void | Promise<Array<EnvironmentModuleNode> | void>`
+- **Art:** `async`, `sequential`
 - **Siehe auch:** [HMR API](./api-hmr)
 
 Der Hook `hotUpdate` ermöglicht es Plugins, benutzerdefinierte HMR-Aktualisierungen für eine bestimmte Umgebung durchzuführen. Wenn sich eine Datei ändert, wird der HMR-Algorithmus für jede Umgebung nacheinander gemäß der Reihenfolge in `server.environments` ausgeführt, sodass der Hook „hotUpdate“ mehrmals aufgerufen wird. Der Hook empfängt ein Kontextobjekt mit der folgenden Signatur:
