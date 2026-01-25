@@ -40,7 +40,7 @@ type ResolveModulePreloadDependenciesFn = (
   deps: string[],
   context: {
     importer: string
-  }
+  },
 ) => string[]
 ```
 
@@ -88,7 +88,7 @@ Geben Sie das Verzeichnis an, unter dem generierte Assets eingebettet werden sol
 - **Typ:** `number` | `((filePath: string, content: Buffer) => boolean | undefined)`
 - **Standard:** `4096` (4 KiB)
 
-Importierte oder referenzierte Assets, die kleiner als diese Schwelle sind, werden als base64-URLs eingebettet, um zusätzliche HTTP-Anfragen zu vermeiden. Setzen Sie `0`, um die Einbettung vollständig zu deaktivieren.
+Importierte oder referenzierte Assets, die kleiner als diese Schwelle sind, werden als base64-URLs eingebettet, um zusätzliche HTTP-Anfragen zu vermeiden. Setzen Sie dies auf `0`, um die Einbettung vollständig zu deaktivieren.
 
 Wenn ein Callback übergeben wird, kann ein boolescher Wert zurückgegeben werden, um ein opt-in oder opt-out zu bewirken. Wenn nichts zurückgegeben wird, dann greift die Standardlogik.
 
@@ -222,7 +222,7 @@ Während des SSR-Builds werden statische Assets nicht ausgegeben, da davon ausge
 - **Typ:** `boolean | 'terser' | 'esbuild'`
 - **Standard:** 'esbuild' für Client-Build, 'false' für SSR-Build
 
-Setzen Sie auf `false`, um die Minimierung zu deaktivieren, oder geben Sie den Minimierer an, der verwendet werden soll. Die Standardeinstellung ist [esbuild](https://github.com/evanw/esbuild), das 20 ~ 40x schneller als terser ist und nur eine 1 ~ 2% schlechtere Komprimierung bietet. [Benchmarks](https://github.com/privatenumber/minification-benchmarks)
+Setzen Sie dies auf `false`, um die Minimierung zu deaktivieren, oder geben Sie den Minimierer an, der verwendet werden soll. Die Standardeinstellung ist [esbuild](https://github.com/evanw/esbuild), das 20 ~ 40x schneller als terser ist und nur eine 1 ~ 2% schlechtere Komprimierung bietet. [Benchmarks](https://github.com/privatenumber/minification-benchmarks)
 
 Beachten Sie, dass die Option `build.minify` keine Leerzeichen minimiert, wenn das Format `'es'` im Lib-Modus verwendet wird, da es reine Anmerkungen entfernt und Tree-Shaking bricht.
 
@@ -245,7 +245,7 @@ Darüber hinaus können Sie auch die Option „maxWorkers: number“ übergeben,
 - **Typ:** `boolean`
 - **Standard:** `true`
 
-Setzen Sie auf `false`, um das Bündel nicht auf die Festplatte zu schreiben. Dies wird hauptsächlich bei [programmatischen `build()`-Aufrufen](/guide/api-javascript#build) verwendet, bei denen das Bündel vor dem Schreiben auf die Festplatte weiterverarbeitet werden muss.
+Setzen Sie dies auf `false`, um das Bündel nicht auf die Festplatte zu schreiben. Dies wird hauptsächlich bei [programmatischen `build()`-Aufrufen](/guide/api-javascript#build) verwendet, bei denen das Bündel vor dem Schreiben auf die Festplatte weiterverarbeitet werden muss.
 
 ## build.emptyOutDir
 
@@ -282,7 +282,7 @@ Begrenzung für die Größe von Chunk-Warnungen (in kB). Sie wird mit der unkomp
 
 Setzen Sie dies auf `{}`, um den Rollup-Watcher zu aktivieren. Dies wird hauptsächlich in Fällen verwendet, die Build-only-Plugins oder Integrationsprozesse involvieren.
 
-::: warning Verwendung von Vite unter Windows Subsystem for Linux (WSL) 2
+::: warning Verwendung von Vite unter WSL2
 
 Es gibt Fälle, in denen das Dateisystem-Watching nicht mit WSL2 funktioniert. Weitere Details finden Sie unter [`server.watch`](./server-options.md#server-watch).
 

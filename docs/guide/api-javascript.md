@@ -77,7 +77,7 @@ parentServer.use(vite.middlewares)
 
 Die Schnittstelle `InlineConfig` erweitert `UserConfig` um zusätzliche Eigenschaften:
 
-- `configFile`: legen Sie die zu verwendende Konfigurationsdatei fest. Wenn nicht gesetzt, versucht Vite, automatisch eine aus dem Projektstamm zu ermitteln. Setzen Sie `false`, um die automatische Auflösung zu deaktivieren.
+- `configFile`: legen Sie die zu verwendende Konfigurationsdatei fest. Wenn nicht gesetzt, versucht Vite, automatisch eine aus dem Projektstamm zu ermitteln. Setzen Sie dies auf `false`, um die automatische Auflösung zu deaktivieren.
 
 ## `ResolvedConfig`
 
