@@ -28,6 +28,16 @@ Verwendet esbuild und Babel und erreicht so ein schnelles HMR mit geringem Paket
 
 Ersetzt Babel durch SWC während der Entwicklung. Während der produktiven Builds werden SWC+esbuild verwendet, wenn Plugins verwendet werden, und ansonsten nur esbuild. Bei großen Projekten, die keine nicht standardmäßigen React-Erweiterungen erfordern, können der Kaltstart und das Hot Module Replacement (HMR) deutlich schneller sein.
 
+### [@vitejs/plugin-rsc](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-rsc)
+
+Vite unterstützt [React Server Components (RSC)](https://react.dev/reference/rsc/server-components) durch das Plugin. Es nutzt die [Environment API](/guide/api-environment), um low-level Primitive bereitzustellen, die React Frameworks zur Integration von RSC-Funktionen nutzen können. Sie können eine minimale, alleinstehende RSC-Anwendung mit folgendem Code ausprobieren:
+
+```bash
+npm create vite@latest -- --template rsc
+```
+
+Lesen Sie die [Plugindokumentation](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-rsc), um mehr zu erfahren.
+
 ### [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy)
 
 Bietet Unterstützung für Legacy-Browser für den produktiven Build.
