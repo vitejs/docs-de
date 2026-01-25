@@ -5,7 +5,7 @@ Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt für alle
 ## worker.format
 
 - **Typ:** `'es' | 'iife'`
-- **Standardwert:** `'iife'`
+- **Standard:** `'iife'`
 
 Ausgabeformat für Worker-Bundle.
 

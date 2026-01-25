@@ -5,7 +5,7 @@ Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt nur für 
 ## server.host
 
 - **Typ:** `string | boolean`
-- **Standardwert:** `'localhost'`
+- **Standard:** `'localhost'`
 
 Geben Sie an, auf welchen IP-Adressen der Server lauschen soll.
 Setzen Sie dies auf `0.0.0.0` oder `true`, um auf allen Adressen zu lauschen, einschließlich LAN- und öffentlichen Adressen.
@@ -45,7 +45,7 @@ Weitere Informationen finden Sie im [WSL-Dokument](https://learn.microsoft.com/e
 ## server.allowedHosts
 
 - **Typ:** `string[] | true`
-- **Standardwert:** `[]`
+- **Standard:** `[]`
 
 Die Hostnamen, auf die Vite reagieren darf.
 `localhost` und Domänen unter `.localhost` und alle IP-Adressen sind standardmäßig erlaubt.
@@ -76,7 +76,7 @@ Sie können die Umgebungsvariable `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` setze
 ## server.port
 
 - **Typ:** `number`
-- **Standardwert:** `5173`
+- **Standard:** `5173`
 
 Geben Sie den Serverport an. Beachten Sie, dass Vite automatisch den nächsten verfügbaren Port ausprobiert, wenn der Port bereits verwendet wird. Daher ist dies möglicherweise nicht der tatsächliche Port, auf den der Server hört.
 
@@ -177,9 +177,9 @@ export default defineConfig({
 ## server.cors
 
 - **Typ:** `boolean | CorsOptions`
-- **Standardwert:** `{ origin: /^https?:\/\/(?:(?:[^:]+\.)?localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/ }` (erlaubt localhost, `127.0.0.1` und `::1`)
+- **Standard:** `{ origin: /^https?:\/\/(?:(?:[^:]+\.)?localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/ }` (erlaubt localhost, `127.0.0.1` und `::1`)
 
-Konfigurieren Sie CORS für den Entwicklungsserver. Übergeben Sie ein [Optionsobjekt](https://github.com/expressjs/cors#configuration-options), um das Verhalten fein abzustimmen, oder `false`, um es zu deaktivieren. 
+Konfigurieren Sie CORS für den Entwicklungsserver. Übergeben Sie ein [Optionsobjekt](https://github.com/expressjs/cors#configuration-options), um das Verhalten fein abzustimmen, oder `false`, um es zu deaktivieren.
 
 ::: danger
 
@@ -276,7 +276,7 @@ Um das Problem zu beheben, können Sie Folgendes tun:
 ## server.middlewareMode
 
 - **Typ:** `boolean`
-- **Standardwert:** `false`
+- **Standard:** `false`
 
 Erstellen Sie den Vite-Server im Middleware-Modus.
 
@@ -314,7 +314,7 @@ createServer()
 ## server.fs.strict
 
 - **Typ:** `boolean`
-- **Standardwert:** `true` (standardmäßig aktiviert seit Vite 2.7)
+- **Standard:** `true` (standardmäßig aktiviert seit Vite 2.7)
 
 Beschränken Sie das Servieren von Dateien außerhalb des Arbeitsbereichs.
 
@@ -369,7 +369,7 @@ export default defineConfig({
 ## server.fs.deny
 
 - **Typ:** `string[]`
-- **Standardwert:** `['.env', '.env.*', '*.{crt,pem}', '**/.git/**']`
+- **Standard:** `['.env', '.env.*', '*.{crt,pem}', '**/.git/**']`
 
 Blockier-Liste für sensible Dateien, deren Bereitstellung durch den Vite-Entwicklungsserver eingeschränkt ist. Diese hat eine höhere Priorität als [`server.fs.allow`](#server-fs-allow). [Picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features) werden unterstützt.
 
@@ -396,7 +396,7 @@ export default defineConfig({
 ## server.sourcemapIgnoreList
 
 - **Typ:** `false | (sourcePath: string, sourcemapPath: string) => boolean`
-- **Standardwert:** `(sourcePath) => sourcePath.includes('node_modules')`
+- **Standard:** `(sourcePath) => sourcePath.includes('node_modules')`
 
 Gibt an, ob Quelldateien in der Server-Sourcemap ignoriert werden sollen, die verwendet wird, um die [`x_google_ignoreList`-Source-Map-Erweiterung](https://developer.chrome.com/blog/devtools-better-angular-debugging/#the-x_google_ignorelist-source-map-extension) zu füllen.
 

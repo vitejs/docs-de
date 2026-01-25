@@ -213,9 +213,9 @@ was erfordert, dass das SSR-Eingabeziel über `rollupOptions.input` festgelegt w
 ## build.ssrEmitAssets
 
 - **Typ:** `boolean`
-- **Standardwert:** `false`
+- **Standard:** `false`
 
-During the SSR build, static assets aren't emitted as it is assumed they would be emitted as part of the client build. This option allows frameworks to force emitting them in both the client and SSR build. It is responsibility of the framework to merge the assets with a post build step.
+Während des SSR-Builds werden statische Assets nicht ausgegeben, da davon ausgegangen wird, dass sie als Teil des Client-Builds ausgegeben werden. Mit dieser Option können Frameworks die Ausgabe sowohl im Client- als auch im SSR-Build erzwingen. Es liegt in der Verantwortung des Frameworks, die Assets in einem Post-Build-Schritt zusammenzuführen.
 
 ## build.minify
 
@@ -238,7 +238,7 @@ npm add -D terser
 
 Zusätzliche [Minimierungsoptionen](https://terser.org/docs/api-reference#minify-options), die an Terser übergeben werden sollen.
 
-In addition, you can also pass a `maxWorkers: number` option to specify the max number of workers to spawn. Defaults to the number of CPUs minus 1.
+Darüber hinaus können Sie auch die Option „maxWorkers: number“ übergeben, um die maximale Anzahl der zu erzeugenden Worker anzugeben. Der Standardwert ist die Anzahl der CPUs - 1.
 
 ## build.write
 

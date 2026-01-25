@@ -5,7 +5,7 @@ Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt für alle
 ## root
 
 - **Typ:** `string`
-- **Standardwert:** `process.cwd()`
+- **Standard:** `process.cwd()`
 
 Projektstammverzeichnis (wo `index.html` sich befindet). Kann ein absoluter Pfad oder ein Pfad relativ zum aktuellen Arbeitsverzeichnis sein.
 
@@ -14,7 +14,7 @@ Siehe [Projektstamm](/guide/#index-html-and-project-root) für weitere Details.
 ## base
 
 - **Typ:** `string`
-- **Standardwert:** `/`
+- **Standard:** `/`
 - **Verwandt:** [`server.origin`](/config/server-options.md#server-origin)
 
 Öffentlicher Basispfad bei der Ausführung in Entwicklung oder Produktion. Gültige Werte sind:
@@ -28,7 +28,7 @@ Siehe [Öffentlicher Basispfad](/guide/build#public-base-path) für weitere Deta
 ## Modus
 
 - **Typ:** `string`
-- **Standardwert:** `'development'` für die Ausführung, `'production'` für den Build
+- **Standard:** `'development'` für die Ausführung, `'production'` für den Build
 
 Die Angabe in der Konfiguration überschreibt den Standardmodus für **Ausführung und Build**. Dieser Wert kann auch über die Befehlszeile mit der Option `--mode` überschrieben werden.
 
@@ -74,7 +74,7 @@ Array von Plugins zur Verwendung. Falsche Plugins werden ignoriert, und Arrays v
 ## publicDir
 
 - **Typ:** `string | false`
-- **Standardwert:** `"public"`
+- **Standard:** `"public"`
 
 Verzeichnis zur Bereitstellung von einfachen statischen Assets. Dateien in diesem Verzeichnis werden während der Entwicklung unter `/` bereitgestellt und während des Builds in das Stammverzeichnis von `outDir` kopiert und immer unverändert bereitgestellt oder kopiert. Der Wert kann entweder ein absoluter Dateisystempfad oder ein Pfad relativ zum Projektstamm sein.
 
@@ -85,7 +85,7 @@ Siehe [Das `public`-Verzeichnis](/guide/assets#the-public-directory) für weiter
 ## cacheDir
 
 - **Typ:** `string`
-- **Standardwert:** `"node_modules/.vite"`
+- **Standard:** `"node_modules/.vite"`
 
 Verzeichnis zur Speicherung von Cache-Dateien. Dateien in diesem Verzeichnis sind vorab gebündelte Abhängigkeiten oder einige andere von Vite generierte Cache-Dateien, die die Leistung verbessern können. Sie können die Flagge `--force` verwenden oder das Verzeichnis manuell löschen, um die Cache-Dateien neu zu generieren. Der Wert kann entweder ein absoluter Dateisystempfad oder ein Pfad relativ zum Projektstamm sein. Standardmäßig auf `.vite`, wenn keine `package.json` erkannt wird.
 
@@ -119,7 +119,7 @@ Für SSR-Builds funktioniert die Deduplizierung für ESM-Build-Ausgaben, die von
 ## resolve.conditions <NonInheritBadge />
 
 - **Typ:** `string[]`
-- **Standardwert:** `['module', 'browser', 'development|production']` (`defaultClientConditions`)
+- **Standard:** `['module', 'browser', 'development|production']` (`defaultClientConditions`)
 
 Zusätzliche erlaubte Bedingungen bei der Auflösung von [bedingten Exports](https://nodejs.org/api/packages.html#packages_conditional_exports) aus einem Paket.
 
@@ -145,21 +145,21 @@ Beachten Sie, dass die Bedingungen `import`, `require` und `default` immer angew
 ## resolve.mainFields <NonInheritBadge />
 
 - **Typ:** `string[]`
-- **Standardwert:** `['browser', 'module', 'jsnext:main', 'jsnext']` (`defaultClientMainFields`)
+- **Standard:** `['browser', 'module', 'jsnext:main', 'jsnext']` (`defaultClientMainFields`)
 
 Liste der Felder in `package.json`, die bei der Auflösung des Einstiegspunktes eines Pakets zu versuchen sind. Beachten Sie, dass dies einen geringeren Vorrang hat als bedingte Exporte, die aus dem Feld `exports` aufgelöst werden: Wenn ein Einstiegspunkt erfolgreich aus `exports` aufgelöst wird, wird das Hauptfeld ignoriert.
 
 ## resolve.extensions
 
 - **Typ:** `string[]`
-- **Standardwert:** `['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']`
+- **Standard:** `['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']`
 
 Liste der Dateierweiterungen, die für Importe ohne Erweiterungen ausprobiert werden sollen. Beachten Sie, dass es **NICHT** empfohlen wird, Erweiterungen für benutzerdefinierte Importtypen (z. B. `.vue`) auszulassen, da dies die Unterstützung in der IDE und der Typprüfung stören kann.
 
 ## resolve.preserveSymlinks
 
 - **Typ:** `boolean`
-- **Standardwert:** `false`
+- **Standard:** `false`
 
 Durch Aktivieren dieser Einstellung bestimmt Vite die Dateiidentität anhand des ursprünglichen Dateipfads (d. h. des Pfads ohne das Folgen von Symbolischen Links), anstelle des realen Dateipfads (d. h. des Pfads nach dem Folgen von Symbolischen Links).
 
@@ -281,7 +281,7 @@ export default defineConfig({
 ## css.preprocessorMaxWorkers
 
 - **Typ:** `number | true`
-- **Standardwert:** `true`
+- **Standard:** `true`
 
 Spezifiziert die maximale Anzahl an Threads, die CSS-Präprozessoren verwenden können. `true` beschreibt die Anzahl der CPUs `- 1`. Wenn der Wert auf `0` gesetzt wird, erstellt Vite keine Worker erstellen und die Präprozessoren werden im Hauptthread ausgeführt.
 
@@ -291,7 +291,7 @@ Abhängig von den Präprozessor-Optionen, führt Vite den Präprozessor auf dem 
 
 - **Experimentell:** [Feedback geben](https://github.com/vitejs/vite/discussions/13845)
 - **Typ:** `boolean`
-- **Standardwert:** `false`
+- **Standard:** `false`
 
 Ob Sourcemaps während der Entwicklung aktiviert werden sollen.
 
@@ -299,7 +299,7 @@ Ob Sourcemaps während der Entwicklung aktiviert werden sollen.
 
 - **Experimentell:** [Feedback geben](https://github.com/vitejs/vite/discussions/13835)
 - **Typ:** `'postcss' | 'lightningcss'`
-- **Standardwert:** `'postcss'`
+- **Standard:** `'postcss'`
 
 Wählt den für die CSS-Verarbeitung verwendeten Engine aus. Weitere Informationen finden Sie unter [Lightning CSS](../guide/features.md#lightning-css).
 
@@ -342,14 +342,14 @@ Konfigurieren Sie Lightning CSS. Die vollständigen Transformationsoptionen find
 ## json.namedExports
 
 - **Typ:** `boolean`
-- **Standardwert:** `true`
+- **Standard:** `true`
 
 Ob benannte Imports aus `.json`-Dateien unterstützt werden sollen.
 
 ## json.stringify
 
 - **Typ:** `boolean | 'auto'`
-- **Standardwert:** `'auto'`
+- **Standard:** `'auto'`
 
 Wenn auf `true` gesetzt, wird importiertes JSON in `export default JSON.parse("...")` umgewandelt, was wesentlich performanter ist als Objektliterale, insbesondere wenn die JSON-Datei groß ist.
 
@@ -450,14 +450,14 @@ export default defineConfig({
 ## clearScreen
 
 - **Typ:** `boolean`
-- **Standardwert:** `true`
+- **Standard:** `true`
 
 Legen Sie fest, ob der Konsolenbildschirm bei jedem Neustart gelöscht werden soll. Wenn Sie dieses Verhalten deaktivieren möchten, setzen Sie es auf `false`.
 
 ## envDir
 
 - **Typ:** `string | false`
-- **Standardwert:** `root`
+- **Standard:** `root`
 
 Das Verzeichnis, aus dem die `.env`-Dateien geladen werden. Kann ein absoluter Pfad oder ein Pfad relativ zum Projektstammverzeichnis sein. `false` deaktiviert das Laden der `.env`-Datei.
 
@@ -466,7 +466,7 @@ Weitere Informationen zu Umgebungsdateien finden Sie [hier](/guide/env-and-mode#
 ## envPrefix
 
 - **Typ:** `string | string[]`
-- **Standardwert:** `VITE_`
+- **Standard:** `VITE_`
 
 Umgebungsvariablen, die mit `envPrefix` beginnen, werden über `import.meta.env` in Ihrem Client-Quellcode freigegeben.
 
@@ -486,7 +486,7 @@ define: {
 ## appType
 
 - **Typ:** `'spa' | 'mpa' | 'custom'`
-- **Standardwert:** `'spa'`
+- **Standard:** `'spa'`
 
 Ob Ihre Anwendung eine Single Page Application (SPA), eine [Multi Page Application (MPA)](../guide/build#multi-page-app) oder eine benutzerdefinierte Anwendung (SSR und Frameworks mit benutzerdefinierter HTML-Behandlung) ist:
 
