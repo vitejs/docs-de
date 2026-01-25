@@ -33,16 +33,16 @@ Build-Ziel für den SSR-Server.
 
 ## ssr.resolve.conditions
 
-- **Type:** `string[]`
-- **Default:** `['module', 'node', 'development|production']` (`defaultServerConditions`) (`['module', 'browser', 'development|production']` (`defaultClientConditions`) for `ssr.target === 'webworker'`)
-- **Related:** [Resolve Conditions](./shared-options.md#resolve-conditions)
+- **Typ:** `string[]`
+- **Standardwert:** `['module', 'node', 'development|production']` (`defaultServerConditions`) (`['module', 'browser', 'development|production']` (`defaultClientConditions`) for `ssr.target === 'webworker'`)
+- **Verwandt:** [Resolve Conditions](./shared-options.md#resolve-conditions)
 
 Diese Bedingungen werden in der Plugin-Pipeline verwendet und betreffen nur nicht-externalisierte Abhängigkeiten während des SSR-Builds. Verwenden Sie `ssr.resolve.externalConditions`, um externalisierte Importe zu beeinflussen.
 
 ## ssr.resolve.externalConditions
 
-- **Type:** `string[]`
-- **Default:** `['node']`
+- **Typ:** `string[]`
+- **Standardwert:** `['node']`
 
 Bedingungen, die beim Importieren von externalisierten direkten Abhängigkeiten (von Vite importierte externe Abhängigkeiten) mit ssr (einschließlich `ssrLoadModule`) verwendet werden.
 
@@ -56,7 +56,7 @@ Wenn Sie beispielsweise `['node', 'custom']` festlegen, sollten Sie `NODE_OPTION
 
 ## ssr.resolve.mainFields
 
-- **Type:** `string[]`
-- **Default:** `['module', 'jsnext:main', 'jsnext']`
+- **Typ:** `string[]`
+- **Standardwert:** `['module', 'jsnext:main', 'jsnext']`
 
 Liste der Felder in `package.json`, die beim Auflösen des Einstiegspunkts eines Pakets versucht werden sollen. Beachten Sie, dass dies eine geringere Priorität hat als bedingte Exporte, die aus dem Feld `exports` aufgelöst werden: Wenn ein Einstiegspunkt erfolgreich aus `exports` aufgelöst wird, wird das Hauptfeld ignoriert. Diese Einstellung wirkt sich nur auf nicht externalisierte Abhängigkeiten aus.

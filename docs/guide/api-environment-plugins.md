@@ -69,7 +69,7 @@ Plugins sollten Standardwerte mithilfe des Hooks „config“ festlegen. Um jede
 
 ## Der `hotUpdate`-Hook
 
-- **Type:** `(this: { environment: DevEnvironment }, options: HotUpdateOptions) => Array<EnvironmentModuleNode> | void | Promise<Array<EnvironmentModuleNode> | void>`
+- **Typ:** `(this: { environment: DevEnvironment }, options: HotUpdateOptions) => Array<EnvironmentModuleNode> | void | Promise<Array<EnvironmentModuleNode> | void>`
 - **Art:** `async`, `sequential`
 - **Siehe auch:** [HMR API](./api-hmr)
 
