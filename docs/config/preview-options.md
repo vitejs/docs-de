@@ -69,7 +69,7 @@ Siehe [`server.https`](./server-options#server-https) für mehr Details.
 - **Typ:** `boolean | string`
 - **Standard:** [`server.open`](./server-options#server-open)
 
-Öffnen Sie die App automatisch im Browser beim Start des Servers. Wenn der Wert ein String ist, wird er als Pfadname der URL verwendet. Wenn Sie den Server in einem bestimmten Browser öffnen möchten, können Sie die Umgebungsvariable `process.env.BROWSER` setzen (z.B. `firefox`). Sie können auch `process.env.BROWSER_ARGS` setzen, um zusätzliche Argumente zu übergeben (z.B. `--incognito`).
+Öffnen Sie die App automatisch im Browser beim Start des Servers. Wenn der Wert ein `string` ist, wird er als Pfadname der URL verwendet. Wenn Sie den Server in einem bestimmten Browser öffnen möchten, können Sie die Umgebungsvariable `process.env.BROWSER` setzen (z.B. `firefox`). Sie können auch `process.env.BROWSER_ARGS` setzen, um zusätzliche Argumente zu übergeben (z.B. `--incognito`).
 
 `BROWSER` und `BROWSER_ARGS` sind auch spezielle Umgebungsvariablen, die Sie in der `.env`-Datei konfigurieren können. Weitere Details finden Sie in [dem `open`-Paket](https://github.com/sindresorhus/open#app).
 

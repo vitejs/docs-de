@@ -108,9 +108,7 @@ Wenn Sie Aliase für [SSR-externe Abhängigkeiten](/guide/ssr.md#ssr-externals) 
 
 - **Typ:** `string[]`
 
-Wenn Sie kopierte Kopien derselben Abhängigkeit in Ihrer App haben (
-
-wahrscheinlich aufgrund des Hoistings oder verknüpfter Pakete in Monorepos), verwenden Sie diese Option, um Vite dazu zu zwingen, aufgelistete Abhängigkeiten immer auf dieselbe Kopie (aus dem Projektstamm) zu lösen.
+Wenn Sie kopierte Kopien derselben Abhängigkeit in Ihrer App haben (wahrscheinlich aufgrund des Hoistings oder verknüpfter Pakete in Monorepos), verwenden Sie diese Option, um Vite dazu zu zwingen, aufgelistete Abhängigkeiten immer auf dieselbe Kopie (aus dem Projektstamm) zu lösen.
 
 :::warning SSR + ESM
 Für SSR-Builds funktioniert die Deduplizierung für ESM-Build-Ausgaben, die von `build.rollupOptions.output` konfiguriert sind, nicht. Ein Workaround besteht darin, CJS-Build-Ausgaben zu verwenden, bis ESM eine bessere Plugin-Unterstützung für die Modulladung hat.
@@ -170,17 +168,18 @@ Durch Aktivieren dieser Einstellung bestimmt Vite die Dateiidentität anhand des
 - **Typ:** `string`
 - **Verwandt:** [Content Security Policy (CSP)](/guide/features#content-security-policy-csp)
 
-A nonce value placeholder that will be used when generating script / style tags. Setting this value will also generate a meta tag with nonce value.
+Ein Platzhalter für einen Nonce-Wert, der bei der Generierung von Skript-/Style-Tags verwendet wird. Durch Festlegen dieses Werts wird auch ein Meta-Tag mit Nonce-Wert generiert.
 
 ## css.modules
 
 - **Typ:**
+
   ```ts
   interface CSSModulesOptions {
     getJSON?: (
       cssFileName: string,
       json: Record<string, string>,
-      outputFileName: string
+      outputFileName: string,
     ) => void
     scopeBehaviour?: 'global' | 'local'
     globalModulePaths?: RegExp[]
@@ -200,7 +199,7 @@ A nonce value placeholder that will be used when generating script / style tags.
       | ((
           originalClassName: string,
           generatedClassName: string,
-          inputFile: string
+          inputFile: string,
         ) => string)
   }
   ```
@@ -262,7 +261,7 @@ export default defineConfig({
 
 - **Typ:** `string | ((source: string, filename: string) => (string | { content: string; map?: SourceMap }))`
 
-Diese Option kann verwendet werden, um zusätzlichen Code für jeden Stilinhalt einzufügen. Beachten Sie, dass, wenn Sie tatsächliche Stile und nicht nur Variablen einfügen, diese Stile im endgültigen Paket dupliziert werden.
+Diese Option kann verwendet werden, um zusätzlichen Code für jeden Stil-Inhalt einzufügen. Beachten Sie, dass, wenn Sie tatsächliche Stile und nicht nur Variablen einfügen, diese Stile im endgültigen Paket dupliziert werden.
 
 **Beispiel:**
 
@@ -283,9 +282,9 @@ export default defineConfig({
 - **Typ:** `number | true`
 - **Standard:** `true`
 
-Spezifiziert die maximale Anzahl an Threads, die CSS-Präprozessoren verwenden können. `true` beschreibt die Anzahl der CPUs `- 1`. Wenn der Wert auf `0` gesetzt wird, erstellt Vite keine Worker erstellen und die Präprozessoren werden im Hauptthread ausgeführt.
+Spezifiziert die maximale Anzahl an Threads, die CSS-Präprozessoren verwenden können. `true` beschreibt die Anzahl der CPUs `- 1`. Wenn der Wert auf `0` gesetzt wird, erstellt Vite keine Worker und die Präprozessoren werden im Haupt-Thread ausgeführt.
 
-Abhängig von den Präprozessor-Optionen, führt Vite den Präprozessor auf dem Hauptthread aus, auch wenn diese Option nicht auf `0` gesetzt ist.
+Abhängig von den Präprozessor-Optionen, führt Vite den Präprozessor auf dem Haupt-Thread aus, auch wenn diese Option nicht auf `0` gesetzt ist.
 
 ## css.devSourcemap
 
@@ -293,7 +292,7 @@ Abhängig von den Präprozessor-Optionen, führt Vite den Präprozessor auf dem 
 - **Typ:** `boolean`
 - **Standard:** `false`
 
-Ob Sourcemaps während der Entwicklung aktiviert werden sollen.
+Definiert, ob Sourcemaps während der Entwicklung aktiviert werden sollen.
 
 ## css.transformer
 
@@ -301,10 +300,10 @@ Ob Sourcemaps während der Entwicklung aktiviert werden sollen.
 - **Typ:** `'postcss' | 'lightningcss'`
 - **Standard:** `'postcss'`
 
-Wählt den für die CSS-Verarbeitung verwendeten Engine aus. Weitere Informationen finden Sie unter [Lightning CSS](../guide/features.md#lightning-css).
+Wählt die für die CSS-Verarbeitung verwendete Engine aus. Weitere Informationen finden Sie unter [Lightning CSS](../guide/features.md#lightning-css).
 
 ::: info `@import` duplizieren
-Beachten Sie, dass postcss (postcss-import) derzeit ein anderes Verhalten mit duplizierten `@import` von Browsern aufweist. Siehe [postcss/postcss-import#462](https://github.com/postcss/postcss-import/issues/462).
+Beachten Sie, dass `postcss` (`postcss-import`) derzeit ein anderes Verhalten mit duplizierten `@import` von Browsern aufweist. Siehe [postcss/postcss-import#462](https://github.com/postcss/postcss-import/issues/462).
 :::
 
 ## css.lightningcss
@@ -344,7 +343,7 @@ Konfigurieren Sie Lightning CSS. Die vollständigen Transformationsoptionen find
 - **Typ:** `boolean`
 - **Standard:** `true`
 
-Ob benannte Imports aus `.json`-Dateien unterstützt werden sollen.
+Definiert, ob benannte Imports aus `.json`-Dateien unterstützt werden sollen.
 
 ## json.stringify
 
@@ -411,11 +410,12 @@ export default defineConfig({
 
 - **Typ:** `'info' | 'warn' | 'error' | 'silent'`
 
-Passen Sie die Konsolenausgabe an. Standardmäßig ist `'info'`.
+Passen Sie die Konsolenausgabe an. Standardmäßig ist dies auf `'info'` gesetzt.
 
 ## customLogger
 
 - **Typ:**
+
   ```ts
   interface Logger {
     info(msg: string, options?: LogOptions): void

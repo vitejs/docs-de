@@ -9,9 +9,7 @@ Siehe [Gemeinsam genutzte Plugins während der Erstellung](/guide/api-environmen
 Betroffener Bereich: `Vite Plugin-Authoren`
 
 ::: warning Zukünftige Standardanpassungen
-`builder.sharedConfigBuild` wurde eingeführt in `v6.0`. Sie können den Wert auf `true` setzen, um zu prüfen wie Ihre Plugins mit einer gemeinsamen Konfiguration funktionieren. Wir suchen nach 
-
- Wir suchen Feedback zur Änderung der Standardeinstellung in einer zukünftigen Hauptversion, sobald das Plugin-Ökosystem bereit ist.
+`builder.sharedConfigBuild` wurde eingeführt in `v6.0`. Sie können den Wert auf `true` setzen, um zu prüfen wie Ihre Plugins mit einer gemeinsamen Konfiguration funktionieren. Wir suchen Feedback zur Änderung der Standardeinstellung in einer zukünftigen Hauptversion, sobald das Plugin-Ökosystem bereit ist.
 :::
 
 ## Motivation

@@ -14,7 +14,7 @@ Die Änderungen sind für die nächste Hauptversion von Vite geplant. Die Verwen
 
 Diese Änderungen werden derzeit noch geprüft und sind oft experimentelle APIs, die zukünftige Nutzungsmustern verbessern sollen. Schauen Sie bitte in die [Vite GitHub Diskussionen mit dem "Experimental"-Label](https://github.com/vitejs/vite/discussions/categories/feedback?discussions_q=label%3Aexperimental+category%3AFeedback), da nicht alle Änderungen hier gelistet werden.
 
-Wir empfehlen es noch nicht, zu diesen APIs zu wechseln. Sie sind nur in Vite enthalten, um Rückmeldungen zu sammeln. Schauen Sie sich gern diese Vorschläge an und teilen Sie uns in den jeweiligen GitHub-Diskussionen mit, wie sie sich für Ihren Anwendungsfall eignen.
+Wir empfehlen, noch nicht zu diesen APIs zu wechseln. Sie sind nur in Vite enthalten, um Feedback zu sammeln. Schauen Sie sich gerne diese Vorschläge an und teilen Sie uns in den jeweiligen GitHub-Diskussionen mit, wie sie sich für Ihren Anwendungsfall eignen.
 
 - [Umstellung auf umgebungsbezogene APIs](/changes/per-environment-apis)
 - [Gemeinsam genutzte Plugins während der Erstellung](/changes/shared-plugins-during-build)

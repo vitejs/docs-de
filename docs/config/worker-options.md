@@ -1,6 +1,6 @@
 # Worker-Optionen
 
-Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt für alle Dev-, Build- und Preview-Versionen.
+Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt für alle `dev`-, `build`- und `preview`-Versionen.
 
 ## worker.format
 

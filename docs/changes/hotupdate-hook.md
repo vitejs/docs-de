@@ -8,8 +8,6 @@ Wir planen, den Plugin-Hook `handleHotUpdate` zugunsten des Hooks `hotUpdate` zu
 
 Betroffener Bereich: `Vite Plugin-Authoren`
 
-
-
 ::: warning Future Deprecation
 `hotUpdate` wurde zum ersten Mal in `v6.0` eingeführt. Die Veraltung von `handleHotUpdate` ist für eine zukünftige Hauptversion geplant. Wir empfehlen, vorerst noch nicht von `handleHotUpdate` abzuweichen. Wenn Sie herumexperimentieren möchten, können Sie gerne die `future.removePluginHookHandleHotUpdate` in Ihrer Vite-Konfiguration auf `"warn"` setzen und uns Feedback geben.
 :::

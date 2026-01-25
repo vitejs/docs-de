@@ -92,9 +92,7 @@ Importierte oder referenzierte Assets, die kleiner als diese Schwelle sind, werd
 
 Wenn ein Callback übergeben wird, kann ein boolescher Wert zurückgegeben werden, um ein opt-in oder opt-out zu bewirken. Wenn nichts zurückgegeben wird, dann greift die Standardlogik.
 
-Git LFS-Platzhalter werden automatisch von der Einbettung ausgeschlossen, da sie den In
-
-halt der Datei, die sie repräsentieren, nicht enthalten.
+Git LFS-Platzhalter werden automatisch von der Einbettung ausgeschlossen, da sie den Inhalt der Datei, die sie repräsentieren, nicht enthalten.
 
 :::tip HINWEIS
 Wenn Sie `build.lib` angeben, wird `build.assetsInlineLimit` ignoriert und Assets werden unabhängig von ihrer Größe oder ob es sich um einen Git LFS-Platzhalter handelt, immer eingebettet.
