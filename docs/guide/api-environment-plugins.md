@@ -31,11 +31,19 @@ Ein Plugin könnte die Instanz `environment` verwenden, um die Verarbeitung eine
 
 ## Registrieren neuer Umgebungen mithilfe von Hooks
 
-Plugins können im Hook „config“ neue Umgebungen hinzufügen (z. B. um einen separaten Modulgraphen für [RSC](https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) zu erhalten):
+Plugins können im Hook `config` neue Umgebungen hinzufügen. Zum Beispiel verwendet die [RSC-Unterstützung](/plugins/#vitejs-plugin-rsc) eine zusätzliche Umgebung, um einen separaten Modulgraphen mit der `react-server`-Bedingung zu haben:
 
 ```ts
   config(config: UserConfig) {
-    config.environments.rsc ??= {}
+    return {
+      environments: {
+        rsc: {
+          resolve: {
+            conditions: ['react-server', ...defaultServerConditions],
+          },
+        },
+      },
+    }
   }
 ```
 
@@ -48,8 +56,15 @@ Plugins sollten Standardwerte mithilfe des Hooks „config“ festlegen. Um jede
 
 ```ts
   configEnvironment(name: string, options: EnvironmentOptions) {
+    // Füge "workerd"-Bedingung zur RSC-Umgebung hinzu
     if (name === 'rsc') {
-      options.resolve.conditions = // ...
+      return {
+        resolve: {
+          conditions: ['workerd'],
+        },
+      }
+    }
+  }
 ```
 
 ## Der `hotUpdate`-Hook
