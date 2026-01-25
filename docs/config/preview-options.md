@@ -21,7 +21,7 @@ Weitere Details finden Sie unter [`server.host`](./server-options#server-host).
 
 ## preview.allowedHosts
 
-- **Type:** `string[] | true`
+- **Typ:** `string[] | true`
 - **Standardwert:** [`server.allowedHosts`](./server-options#server-allowedhosts)
 
 Beschreibt die Hostnamen, auf die Vite reagieren darf.
