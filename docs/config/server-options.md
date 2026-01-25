@@ -1,6 +1,6 @@
 # Server-Optionen
 
-Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt nur für dev.
+Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt nur für `dev`.
 
 ## server.host
 

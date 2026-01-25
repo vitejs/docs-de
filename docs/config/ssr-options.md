@@ -1,6 +1,6 @@
 # SSR-Optionen
 
-Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt sowohl für dev als auch für build.
+Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt sowohl für `dev` als auch für `build`.
 
 ## ssr.external
 
