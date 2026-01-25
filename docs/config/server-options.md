@@ -255,7 +255,7 @@ Dateisystem-Überwachungsoptionen, die an [chokidar](https://github.com/paulmill
 
 Der Vite Server Watcher überwacht das `root` und überspringt standardmäßig die Verzeichnisse `.git/`, `node_modules/`, `test-results/`, Vites `cacheDir` und Vites `build.outDir`. Wenn eine überwachte Datei aktualisiert wird, wendet Vite HMR an und aktualisiert nur bei Bedarf die Seite.
 
-Wenn auf `null` gesetzt, werden keine Dateien überwacht. `server.watcher` stellt einen kompatiblen Ereignis-Emitter bereit, aber der Aufruf von `add` oder `unwatch` hat keine Wirkung.
+Wenn auf `null` gesetzt, werden keine Dateien überwacht. [`server.watcher`](/guide/api-javascript.html#vitedevserver) stellt einen kompatiblen Ereignis-Emitter bereit, aber der Aufruf von `add` oder `unwatch` hat keine Wirkung.
 
 ::: warning Überwachen von Dateien in `node_modules`
 Es ist derzeit nicht möglich, Dateien und Pakete in `node_modules` zu überwachen. Für weitere Fortschritte und Umwege hierzu können Sie [issue #8619](https://github.com/vitejs/vite/issues/8619) verfolgen.

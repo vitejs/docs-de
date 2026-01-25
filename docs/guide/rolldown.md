@@ -314,7 +314,7 @@ const plugin = {
 
 ### Hook-Filter Funktion
 
-Rolldown hat eine [Hook-Filter](https://rolldown.rs/guide/plugin-development#plugin-hook-filters) Funktion eingeführt, um den Kommunikationsaufwand zwischen Rust und JavaScript Laufzeiten zu verringern. Durch die Verwendung dieser Funktion, können Sie Ihre Plugins performanter gestalten.
+Rolldown hat eine [Hook-Filter](https://rolldown.rs/guide/plugins/hook-filters) Funktion eingeführt, um den Kommunikationsaufwand zwischen Rust und JavaScript Laufzeiten zu verringern. Durch die Verwendung dieser Funktion, können Sie Ihre Plugins performanter gestalten.
 
 Dies wird auch von Rollup 4.38.0+ und Vite 6.3.0+ unterstützt. Um eine Rückwärtskompatibilität für ältere Versionen für Ihr Plugin zu gewährleisten, sollten Sie die Filter auch im Hook-Behandler ausführen.
 
