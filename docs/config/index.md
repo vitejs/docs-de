@@ -97,7 +97,9 @@ export default defineConfig(async ({ command, mode }) => {
 
 ## Umgebungsvariablen in der Konfiguration verwenden
 
-Umgebungsvariablen können wie üblich aus `process.env` bezogen werden.
+Während der Auswertung der Konfiguration selbst stehen nur diejenigen Umgebungsvariablen zur Verfügung, die bereits in der aktuellen Prozessumgebung (`process.env`) vorhanden sind. Vite verschiebt das Laden von `.env*`-Dateien bewusst auf einen Zeitpunkt _nach_ der Auflösung der Benutzerkonfiguration, da die zu ladenden Dateien von Konfigurationsoptionen wie [`root`](/guide/#index-html-and-project-root) und [`envDir`](/config/shared-options.md#envdir) sowie vom endgültigen `mode` abhängen.
+
+Das bedeutet, während Ihre `vite.config.*` ausgeführt wird, werden Variablen definiert in `.env`, `.env.local`, `.env.[mode]`, or `.env.[mode].local` **nicht** automatisch in `process.env` injiziert. Sie _werden_ später automatisch geladen und via `import.meta.env` (mit dem standardmäßigen `VITE_`-Präfixfilter) wie dokumentiert in [Umgebungsvariablen und Modi](/guide/env-and-mode.html) für den Anwendungscode bereitgestellt. Wenn Sie also nur Werte aus `.env*`-Dateien für die App bereitstellen müssen, brauchen Sie nichts in der Konfiguration aufrufen.
 
 Beachten Sie, dass Vite die `.env`-Dateien nicht standardmäßig lädt, da die zu ladenden Dateien nur nach Auswertung der Vite-Konfiguration bestimmt werden können, zum Beispiel beeinflussen die Optionen `root` und `envDir` das Ladeverhalten. Sie können jedoch die exportierte `loadEnv`-Hilfe verwenden, um die spezifische `.env`-Datei zu laden, falls erforderlich.
 
@@ -110,10 +112,11 @@ export default defineConfig(({ mode }) => {
   // `VITE_` prefix.
   const env = loadEnv(mode, process.cwd(), '')
   return {
-    // vite config
     define: {
+      // Stellen Sie eine explizite Konstante auf App-Ebene bereit, die aus einer Umgebungsvariablen abgeleitet wird.
       __APP_ENV__: JSON.stringify(env.APP_ENV),
     },
+    // Beispiel: Verwendung einer Umgebungsvariable, um den Port des Dev-Servers bedingt zu setzen
   }
 })
 ```

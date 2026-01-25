@@ -151,6 +151,45 @@ Falls Sie Fehlern wie `ENOENT: no such file or directory` oder `Module not found
 
 ## Optimisierte Abhängigkeiten
 
+### `Failed to fetch dynamically imported module` Fehler
+
+> TypeError: Failed to fetch dynamically imported module
+
+Dieser Fehler tritt in mehreren Fällen auf:
+
+- Versionsunterschiede
+- Schlechte Netzwerkbedingungen
+- Browser-Erweiterungen, die Anfragen blockieren
+
+#### Versionsunterschiede
+
+Wenn Sie eine neue Version Ihrer Anwendung bereitstellen, verweisen die HTML-Datei und die JS-Dateien weiterhin auf alte Chunk-Namen, die in der neuen Bereitstellung gelöscht wurden. Dies geschieht, wenn:
+
+1. Benutzer eine alte Version Ihrer App in ihrem Browser zwischengespeichert haben.
+2. Sie eine neue Version mit anderen Chunk-Namen bereitstellen (aufgrund von Codeänderungen)
+3. Die zwischengespeicherte HTML-Datei versucht, Chunks zu laden, die nicht mehr existieren.
+
+Wenn Sie ein Framework verwenden, lesen Sie zunächst dessen Dokumentation, da es möglicherweise eine integrierte Lösung für dieses Problem enthält.
+
+Um dieses Problem zu beheben, haben Sie folgende Möglichkeiten:
+
+- **Alte Chunks vorübergehend beibehalten**: Erwägen Sie, die Chunks der vorherigen Bereitstellung für einen bestimmten Zeitraum beizubehalten, um Benutzern mit zwischengespeicherten Daten einen reibungslosen Übergang zu ermöglichen.
+- **Verwenden Sie einen Service Worker**: Implementieren Sie einen Service Worker, der alle Assets vorab abruft und zwischenspeichert.
+- **Rufen Sie die dynamischen Chunks vorab ab**: Beachten Sie, dass dies nicht hilft, wenn Ihre HTML-Datei aufgrund von `Cache-Control`-Headern vom Browser zwischengespeichert wird.
+- **Implementieren Sie einen eleganten Fallback**: Implementieren Sie eine Fehlerbehandlung für dynamische Importe, um die Seite neu zu laden, wenn Chunks fehlen. Weitere Informationen finden Sie unter [Fehlerbehandlung beim Laden](./build.md#load-error-handling).
+
+#### Schlechte Netzwerkbedingungen
+
+Dieser Fehler kann in instabilen Netzwerkumgebungen auftreten. Beispielsweise wenn die Anfrage aufgrund von Netzwerkfehlern oder Serverausfällen fehlschlägt.
+
+Beachten Sie, dass Sie den dynamischen Import aufgrund von Browserbeschränkungen ([whatwg/html#6768](https://github.com/whatwg/html/issues/6768)) nicht wiederholen können.
+
+#### Browser-Erweiterungen, die Anfragen blockieren
+
+Der Fehler kann auch auftreten, wenn Browser-Erweiterungen (wie Werbeblocker) diese Anfrage blockieren.
+
+Möglicherweise lässt sich das Problem umgehen, indem Sie einen anderen Chunk-Namen unter [`build.rollupOptions.output.chunkFileNames`](../config/build-options.md#build-rollupoptions) auswählen, da diese Erweiterungen Anfragen häufig anhand von Dateinamen blockieren (z. B. Namen, die „ad“ oder „track“ enthalten).
+
 ### Veraltete vorbündelte Abhängigkeiten bei Verknüpfung mit einem lokalen Paket
 
 Der Hash-Wert, der zum Ungültigmachen optimierter Abhängigkeiten verwendet wird, hängt von den Inhalten des Paketsperrverzeichnisses, den auf Abhängigkeiten angewendeten Patches und den Optionen in der Vite-Konfigurationsdatei ab, die sich auf das Bündeln von Node-Modulen auswirken. Dies bedeutet, dass Vite erkennt, wenn eine Abhängigkeit mit einer Funktion wie [npm overrides](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides) überschrieben wird, und Ihre Abhängigkeiten beim nächsten Serverstart erneut bündelt. Vite wird die Abhängigkeiten nicht ungültig machen, wenn Sie eine Funktion wie [npm link](https://docs.npmjs.com/cli/v9/commands/npm-link) verwenden. Wenn Sie eine Abhängigkeit verknüpfen oder entknüpfen, müssen Sie beim nächsten Serverstart eine erneute Optimierung erzwingen, indem Sie `vite --force` verwenden. Wir empfehlen stattdessen die Verwendung von Überschreibungen, die jetzt von jedem Paketmanager unterstützt werden (siehe auch [pnpm overrides](https://pnpm.io/9.x/package_json#pnpmoverrides) und [yarn resolutions](https://yarnpkg.com/configuration/manifest/#resolutions)).
@@ -207,7 +246,11 @@ Wenn diese Codes innerhalb von Abhängigkeiten verwendet werden, können Sie [`p
 
 ### Browsererweiterungen
 
-Einige Browsererweiterungen (wie Ad-Blocker) können verhindern, dass der Vite-Client Anfragen an den Vite-Entwicklungsserver sendet. In diesem Fall sehen Sie möglicherweise einen weißen Bildschirm ohne protokollierte Fehler. Versuchen Sie, Erweiterungen zu deaktivieren, wenn Sie dieses Problem haben.
+Einige Browser-Erweiterungen (wie Werbeblocker) können verhindern, dass der Vite-Client Anfragen an den Vite-Entwicklungsserver sendet. In diesem Fall wird möglicherweise ein weißer Bildschirm ohne protokollierte Fehler angezeigt. Möglicherweise wird auch der folgende Fehler angezeigt:
+
+> TypeError: Failed to fetch dynamically imported module
+
+Deaktivieren Sie die Erweiterungen, wenn dieses Problem auftritt.
 
 ### Verknüpfungen zwischen verschiedenen Laufwerken in Windows
 
