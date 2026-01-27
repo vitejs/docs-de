@@ -257,7 +257,7 @@ export default defineConfig({
 
 ## CSS
 
-Der Import von `.css`-Dateien fügt deren Inhalt über ein `<style>`-Tag mit HMR-Unterstützung in die Seite ein.
+Der Import von `.css`-Dateien fügt deren Inhalt über ein `<style>`-Tag mit HMR-Unterstützung in die Seite ein. Sie können das verarbeitete CSS auch als Zeichenfolge als Standardexport des Moduls abrufen.
 
 ### `@import` Inlining und Rebasing
 
@@ -331,7 +331,7 @@ import otherStyles from './bar.css?inline' // will not be injected
 ```
 
 :::tip HINWEIS
-Standard- und benannte Importe aus CSS-Dateien (z.B. `import style from './foo.css'`) sind seit Vite 5 veraltet. Verwenden Sie stattdessen die `?inline`-Query-Komponente.
+Standard- und benannte Importe aus CSS-Dateien (z.B. `import style from './foo.css'`) wurden seit Vite 5 entfernt. Verwenden Sie stattdessen die `?inline`-Query-Komponente.
 :::
 
 ### Lightning CSS
