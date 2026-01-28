@@ -1,0 +1,20 @@
+  {
+    avatar: 'https://github.com/sodatea.png',
+    name: 'Haoqun Jiang',
+    title: 'Developer',
+    org: 'Vue.js',
+    orgLink: 'https://vuejs.org/',
+    desc: 'Vue/Vite team member. Full-time open sourcerer.',
+    links: [
+      { icon: 'github', link: 'https://github.com/sodatea' },
+      { icon: 'twitter', link: 'https://twitter.com/haoqunjiang' },
+      { icon: 'mastodon', link: 'https://elk.zone/m.webtoo.ls/@haoqun' },
+    ],
+    sponsor: 'https://github.com/sponsors/sodatea',
+  },
+  {
+    avatar: 'https://github.com/btea.png',
+    name: 'btea',
+    title: 'Web Developer',
+    links: [{ icon: 'github', link: 'https://github.com/btea' }],
+  },
