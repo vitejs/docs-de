@@ -1,7 +1,3 @@
----
-outline: [2, 3]
----
-
 # Plugin API
 
 Vite-Plugins erweitern die gut gestaltete Plugin-Schnittstelle von Rollup um einige zusätzliche Vite-spezifische Optionen. Dadurch können Sie ein Vite-Plugin einmal schreiben und es sowohl für die Entwicklung als auch für die Erstellung verwenden.
