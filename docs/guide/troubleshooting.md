@@ -4,6 +4,35 @@ Siehe [Rollup-Fehlerbehebungshandbuch](https://rollupjs.org/troubleshooting/) f�
 
 Wenn die hier vorgeschlagenen Lösungen nicht funktionieren, versuchen Sie, Ihre Fragen in [GitHub-Diskussionen](https://github.com/vitejs/vite/discussions) zu posten oder im `#help`-Kanal von [Vite Land Discord](https://chat.vite.dev) zu stellen.
 
+## CJS
+
+### Vite CJS Node API veraltet
+
+Der CJS-Build von Vites Node API ist veraltet und wird in Vite 6 entfernt. Siehe [GitHub-Diskussion](https://github.com/vitejs/vite/discussions/13928) für mehr Kontext. Sie sollten Ihre Dateien oder Frameworks aktualisieren, dass stattdessen der ESM-Build von Vite importiert wird.
+
+Für ein einfaches Vite-Projekt, stellen Sie folgendes sicher:
+
+1. Der Inhalt der `vite.config.js`-Datei verwendet die ESM-Syntax
+2. Die nächstgelegene `package.json`-Datei, sollte `"type": "module"` beinhalten oder die `.mjs`-Erweiterung verwenden, z. B. `vite.config.mjs`.
+
+Für andere Projekte gibt es einige allgemeine Herangehensweisen:
+
+- **Konfiguration von ESM als Standard, opt-in für CJS falls benötigt:** Fügen Sie `"type": "module"` in die `package.json` des Projekts hinzu. Alle `*.js`-Dateien werden nun als ESM interpretiert und müssen die ESM-Syntax verwenden. Sie können eine Datei mit der `.cjs`-Erweiterung benennen, um weiterhin CJS zu verwenden.
+- **Behalten von CJS als Standard, opt-in für ESM falls benötigt:** Falls das `package.json` des Projekts kein `"type": "module"` enthält, werden alle `*.js`-Dateien als CJS interpretiert. Sie können eine Datei mit der `.mjs`-Erweiterung benennen, um stattdessen ESM zu verwenden.
+- **Dynamisches Importieren von Vite:** Falls Sie weiterhin CJS verwenden müssen, können Sie stattdessen Vite mit der Verwendung von `import('vite')` dynamisch importieren. Dies erfordert, dass Ihr Code in einem `async`-Kontext geschrieben wird. Dies sollte aber dennoch machbar sein, da die API von Vite größtenteils asynchron ist.
+
+Wenn Sie sich nicht sicher sind, woher die Warnung stammt, können Sie Ihr Skript mit der Flag `VITE_CJS_TRACE=true` ausführen, um den Stacktrace zu protokollieren:
+
+```bash
+VITE_CJS_TRACE=true vite dev
+```
+
+Falls Sie die Warnung temporär ignorieren möchten, können Sie Ihr Skript mit der Flag `VITE_CJS_IGNORE_WARNING=true` ausführen:
+
+```bash
+VITE_CJS_IGNORE_WARNING=true vite dev
+```
+
 ## Befehlszeilenschnittstelle (CLI)
 
 ### `Fehler: Modul 'C:\foo\bar&baz\vite\bin\vite.js' nicht gefunden`
