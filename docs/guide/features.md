@@ -65,7 +65,7 @@ Der Grund dafür ist, dass `esbuild` nur die Transpilierung ohne Typinformatione
 
 Sie müssen `"isolatedModules": true` in Ihrer `tsconfig.json` unter `compilerOptions` festlegen, damit TypeScript Sie vor den Funktionen warnt, die nicht mit isolierter Transpilierung funktionieren.
 
-Einige Bibliotheken (z.B. [`vue`](https://github.com/vuejs/core/issues/1228)) funktionieren jedoch nicht gut mit `"isolatedModules": true`. In solchen Fällen können Sie `"skipLibCheck": true` verwenden, um die Fehler vorübergehend zu unterdrücken, bis sie behoben sind.
+Falls eine Bibliothek nicht gut mit `"isolatedModules": true` funktioniert, können Sie `"skipLibCheck": true` verwenden, um die Fehler vorübergehend zu unterdrücken, bis sie behoben sind.
 
 #### `useDefineForClassFields`
 
