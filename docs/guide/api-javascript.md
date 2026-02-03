@@ -178,8 +178,21 @@ interface ViteDevServer {
    * Bindet CLI-Verknüpfungen
    */
   bindCLIShortcuts(options?: BindCLIShortcutsOptions<ViteDevServer>): void
+  /**
+   * Der Aufruf von `await server.waitForRequestsIdle(id)` wartet bis alle statischen 
+   * Importe verarbeitet wurden. Falls er durch einen Load- oder Transform-Plugin-Hook
+   * aufgerufen wurde, muss die ID als Parameter übergeben werden, um Deadlocks zu
+   * vermeiden. Das Aufrufen der Funktion nach dem der erste statische Importbereich
+   * des Modulgraphen verarbeitet wurde führt zu einer sofortigen Auflösung.
+   * @experimental
+   */
+  waitForRequestsIdle: (ignoredId?: string) => Promise<void>
 }
 ```
+
+:::info
+`waitForRequestsIdle` soll als Ausweichmöglichkeit dienen, um die DX für Funktionen zu verbessern, die aufgrund der On-Demand-Natur des Vite-Entwicklungsservers nicht implementiert werden können. Es kann während des Startups von Tools wie Tailwind verwendet werden, um die Generierung von CSS-Klassen der Anwendung zu verzögern bis der Anwendungscode gesehen wurde, um Flackern durch Stiländerungen zu vermeiden. Wenn diese Funktion in einer Load- oder Transform-Hook verwendet wird und der standardmäßige HTTP1-Server im Einsatz ist, dann wird einer von sechs HTTP-Kanälen blockiert, bis der Server alle statischen Importe verarbeitet hat. Der Abhängigkeitsoptimierer von Vite nutzt diese Funktion derzeit, um bei fehlenden Abhängigkeiten das vollständige Neuladen von Seiten zu vermeiden. Dies geschieht, in dem das Laden von vorab gebündelten Abhängigkeiten verzögert wird, bis alle importierten Abhängigkeiten von statisch importierten Quellen gesammelt wurden. Vite könnte in einer zukünftigen Hauptversion zu einer anderen Strategie wechseln und standardmäßig `optimizeDeps.crawlUntilStaticImports: false` festlegen, um Leistungseinbußen in großen Anwendungen beim Kaltstart zu vermeiden.
+:::
 
 ## `build`
 
