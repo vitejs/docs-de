@@ -122,7 +122,7 @@ Konfigurieren Sie benutzerdefinierte Proxyregeln für den Entwicklungsserver. Er
 
 Beachten Sie, dass bei Verwendung von nicht relativem [`base`](/config/shared-options.md#base) jeder Schlüssel mit diesem `base` vorangestellt werden muss.
 
-Erweitert [`http-proxy-3`](https://github.com/sagemathinc/http-proxy-3#options). Weitere Optionen finden Sie [hier](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/server/middlewares/proxy.ts#L13). Beachten Sie, dass [im Gegensatz zu http-proxy](https://github.com/http-party/node-http-proxy/issues/1669) die Option `changeOrigin` sowohl Host- als auch Origin-Header so ändert, dass sie dem Ziel entsprechen.
+Erweitert [`http-proxy-3`](https://github.com/sagemathinc/http-proxy-3#options). Weitere Optionen finden Sie [hier](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/server/middlewares/proxy.ts#L13).
 
 In einigen Fällen möchten Sie möglicherweise auch den zugrunde liegenden Entwicklungsserver konfigurieren (z. B. um benutzerdefinierte Middlewares zur internen [connect](https://github.com/senchalabs/connect)-App hinzuzufügen). Um dies zu tun, müssen Sie Ihr eigenes [Plugin](/guide/using-plugins.html) schreiben und die Funktion [configureServer](/guide/api-plugin.html#configureserver) verwenden.
 
@@ -163,11 +163,11 @@ export default defineConfig({
       // Proxying websockets or socket.io:
       // ws://localhost:5173/socket.io
       //   -> ws://localhost:5174/socket.io
-      // Exercise caution using `rewriteWsOrigin` as it can leave the
-      // proxying open to CSRF attacks.
+      // Verwenden Sie die Option `rewriteWsOrigin` mit Vorsicht, da es den Proxy für CSRF-Angriffe anfällig machen kann.
       '/socket.io': {
         target: 'ws://localhost:5174',
         ws: true,
+        rewriteOrigin: true,
       },
     },
   },
