@@ -616,15 +616,39 @@ export default defineConfig({
 
 ### TypeScript für benutzerdefinierte Ereignisse
 
-Es ist möglich, benutzerdefinierte Ereignisse durch Erweitern des `CustomEventMap`-Interfaces zu typisieren:
+Intern leitet Vite den Typ einer Payload vom `CustomEventMap`-Interface ab. Es ist möglich benutzerdefinierte Events durch eine Erweiterung des Interfaces zu typisieren:
+
+:::tip Anmerkung
+Stellen Sie sicher, dass Sie bei der Angabe von TypeScript-Deklarationsdateien die Erweiterung `.d.ts` einbeziehen. Andernfalls weiß Typescript möglicherweise nicht, welche Datei das Modul versucht zu erweitern.
+:::
 
 ```ts [events.d.ts]
 import 'vite/types/customEvent.d.ts'
 
-declare module 'vite/types/customEvent' {
+declare module 'vite/types/customEvent.d.ts' {
   interface CustomEventMap {
     'custom:foo': { msg: string }
     // 'event-key': payload
   }
 }
+```
+
+Diese Schnittstellenerweiterung wird von `InferCustomEventPayload<T>` genutzt, um den Typ der Payload für das Event `T` abzuleiten. Für mehr Informationen, sehen Sie sich die [HMR-API-Dokumentation](./api-hmr#hmr-api) an.
+
+```ts twoslash
+import 'vite/client'
+import type { InferCustomEventPayload } from 'vite/types/customEvent.d.ts'
+declare module 'vite/types/customEvent.d.ts' {
+  interface CustomEventMap {
+    'custom:foo': { msg: string }
+  }
+}
+// ---cut---
+type CustomFooPayload = InferCustomEventPayload<'custom:foo'>
+import.meta.hot?.on('custom:foo', (payload) => {
+  // The type of payload will be { msg: string }
+})
+import.meta.hot?.on('unknown:event', (payload) => {
+  // The type of payload will be any
+})
 ```
