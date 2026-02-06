@@ -39,12 +39,13 @@ type ResolveModulePreloadDependenciesFn = (
   url: string,
   deps: string[],
   context: {
-    importer: string
+    hostId: string
+    hostType: 'html' | 'js'
   },
 ) => string[]
 ```
 
-Die Funktion `resolveDependencies` wird für jeden dynamischen Import mit einer Liste der Chunks aufgerufen, von denen er abhängt, und sie wird auch für jeden Chunk aufgerufen, der in Entry-HTML-Dateien importiert wird. Ein neues dependencies-Array kann mit diesen gefilterten oder weiteren Abhängigkeiten zurückgegeben werden, wobei deren Pfade geändert werden. Die `deps`-Pfade sind relativ zum `build.outDir`. Die Rückgabe eines relativen Pfades zur `hostId` für `hostType === 'js'` ist erlaubt - in diesem Fall wird `new URL(dep, import.meta.url)` verwendet, um einen absoluten Pfad zu erhalten, wenn dieses Modul in den HTML-Kopf vorgeladen wird.
+Die Funktion `resolveDependencies` wird für jeden dynamischen Import mit einer Liste der Chunks aufgerufen, von denen er abhängt, und sie wird auch für jeden Chunk aufgerufen, der in Entry-HTML-Dateien importiert wird. Ein neues dependencies-Array kann mit diesen gefilterten oder weiteren Abhängigkeiten zurückgegeben werden, wobei deren Pfade geändert werden. Die `deps`-Pfade sind relativ zum `build.outDir`. Der Rückgabewert sollte ein relativer Pfad zu `build.outDir` sein.
 
 ```js twoslash
 /** @type {import('vite').UserConfig} */
