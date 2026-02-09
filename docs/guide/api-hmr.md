@@ -210,7 +210,7 @@ Senden Sie benutzerdefinierte Ereignisse zurück an den Vite-Entwicklungsserver.
 
 Wenn dies vor der Verbindung aufgerufen wird, wird die Daten zwischengespeichert und gesendet, sobald die Verbindung hergestellt ist.
 
-Weitere Informationen finden Sie unter [Kommunikation zwischen Client und Server](/guide/api-plugin.html#client-server-communication).
+Weitere Informationen finden Sie unter [Kommunikation zwischen Client und Server](/guide/api-plugin.html#client-server-communication) inklusive eines Abschnitts für das [Typisieren von benutzerdefinierten Events](/guide/api-plugin.html#typescript-for-custom-events).
 
 ## Weiteres wissenswertes
 
