@@ -162,7 +162,7 @@ Als Bibliothek erstellen. `entry` ist erforderlich, da die Bibliothek HTML nicht
 
 `fileName` ist der Name der ausgegebenen Paketdatei, der standardmäßig dem `"name"` in `package.json` entspricht. Er kann auch als Funktion definiert werden, die `format` und `entryName` als Argumente übernimmt und den Dateinamen zurückgibt.
 
-Wenn Ihr Paket CSS importiert, kann „cssFileName“ verwendet werden, um den Namen der CSS-Datei-Ausgabe anzugeben. Der Standardwert ist derselbe wie „fileName“, wenn dieser als Zeichenfolge festgelegt ist, andernfalls wird ebenfalls auf „name“ in „package.json“ zurückgegriffen.
+Wenn Ihr Paket CSS importiert, kann `cssFileName` verwendet werden, um den Namen der CSS-Datei-Ausgabe anzugeben. Der Standardwert ist derselbe wie `fileName`, wenn dieser als Zeichenfolge festgelegt ist, andernfalls wird ebenfalls auf `name` in `package.json` zurückgegriffen.
 
 ```js twoslash [vite.config.js]
 import { defineConfig } from 'vite'
@@ -236,7 +236,7 @@ npm add -D terser
 
 Zusätzliche [Minimierungsoptionen](https://terser.org/docs/api-reference#minify-options), die an Terser übergeben werden sollen.
 
-Darüber hinaus können Sie auch die Option „maxWorkers: number“ übergeben, um die maximale Anzahl der zu erzeugenden Worker anzugeben. Der Standardwert ist die Anzahl der CPUs - 1.
+Darüber hinaus können Sie auch die Option `maxWorkers: number` übergeben, um die maximale Anzahl der zu erzeugenden Worker anzugeben. Der Standardwert ist die Anzahl der CPUs - 1.
 
 ## build.write
 
