@@ -29,7 +29,7 @@ head:
 
 _20. April 2023_
 
-![Vite 4.3 Announcement Cover Image](/og-image-announcing-vite4-3.webp)
+![Titelbild zur Ankündigung von Vite 4.3](/og-image-announcing-vite4-3.webp)
 
 Schnellzugriffe:
 

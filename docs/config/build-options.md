@@ -39,12 +39,13 @@ type ResolveModulePreloadDependenciesFn = (
   url: string,
   deps: string[],
   context: {
-    importer: string
+    hostId: string
+    hostType: 'html' | 'js'
   },
 ) => string[]
 ```
 
-Die Funktion `resolveDependencies` wird für jeden dynamischen Import mit einer Liste der Chunks aufgerufen, von denen er abhängt, und sie wird auch für jeden Chunk aufgerufen, der in Entry-HTML-Dateien importiert wird. Ein neues dependencies-Array kann mit diesen gefilterten oder weiteren Abhängigkeiten zurückgegeben werden, wobei deren Pfade geändert werden. Die `deps`-Pfade sind relativ zum `build.outDir`. Die Rückgabe eines relativen Pfades zur `hostId` für `hostType === 'js'` ist erlaubt - in diesem Fall wird `new URL(dep, import.meta.url)` verwendet, um einen absoluten Pfad zu erhalten, wenn dieses Modul in den HTML-Kopf vorgeladen wird.
+Die Funktion `resolveDependencies` wird für jeden dynamischen Import mit einer Liste der Chunks aufgerufen, von denen er abhängt, und sie wird auch für jeden Chunk aufgerufen, der in Entry-HTML-Dateien importiert wird. Ein neues dependencies-Array kann mit diesen gefilterten oder weiteren Abhängigkeiten zurückgegeben werden, wobei deren Pfade geändert werden. Die `deps`-Pfade sind relativ zum `build.outDir`. Der Rückgabewert sollte ein relativer Pfad zu `build.outDir` sein.
 
 ```js twoslash
 /** @type {import('vite').UserConfig} */
@@ -162,7 +163,7 @@ Als Bibliothek erstellen. `entry` ist erforderlich, da die Bibliothek HTML nicht
 
 `fileName` ist der Name der ausgegebenen Paketdatei, der standardmäßig dem `"name"` in `package.json` entspricht. Er kann auch als Funktion definiert werden, die `format` und `entryName` als Argumente übernimmt und den Dateinamen zurückgibt.
 
-Wenn Ihr Paket CSS importiert, kann „cssFileName“ verwendet werden, um den Namen der CSS-Datei-Ausgabe anzugeben. Der Standardwert ist derselbe wie „fileName“, wenn dieser als Zeichenfolge festgelegt ist, andernfalls wird ebenfalls auf „name“ in „package.json“ zurückgegriffen.
+Wenn Ihr Paket CSS importiert, kann `cssFileName` verwendet werden, um den Namen der CSS-Datei-Ausgabe anzugeben. Der Standardwert ist derselbe wie `fileName`, wenn dieser als Zeichenfolge festgelegt ist, andernfalls wird ebenfalls auf `name` in `package.json` zurückgegriffen.
 
 ```js twoslash [vite.config.js]
 import { defineConfig } from 'vite'
@@ -208,12 +209,20 @@ Erzeugen Sie einen build, der für serverseitiges Rendern (SSR) geeignet ist. De
 
 was erfordert, dass das SSR-Eingabeziel über `rollupOptions.input` festgelegt wird.
 
+## build.emitAssets
+
+- **Typ:** `boolean`
+- **Standard:** `false`
+
+Bei Nicht-Client-Builds werden statische Assets nicht ausgegeben, da davon ausgegangen wird, dass sie als Teil des Client-Builds ausgegeben werden. Mit dieser Option können Frameworks die Ausgabe dieser Assets in anderen Build-Umgebungen erzwingen. Es liegt in der Verantwortung des Frameworks, die Assets in einem Post-Build-Schritt zusammenzuführen.
+
+
 ## build.ssrEmitAssets
 
 - **Typ:** `boolean`
 - **Standard:** `false`
 
-Während des SSR-Builds werden statische Assets nicht ausgegeben, da davon ausgegangen wird, dass sie als Teil des Client-Builds ausgegeben werden. Mit dieser Option können Frameworks die Ausgabe sowohl im Client- als auch im SSR-Build erzwingen. Es liegt in der Verantwortung des Frameworks, die Assets in einem Post-Build-Schritt zusammenzuführen.
+Während des SSR-Builds werden statische Assets nicht ausgegeben, da davon ausgegangen wird, dass sie als Teil des Client-Builds ausgegeben werden. Mit dieser Option können Frameworks die Ausgabe sowohl im Client- als auch im SSR-Build erzwingen. Es liegt in der Verantwortung des Frameworks, die Assets in einem Post-Build-Schritt zusammenzuführen. Diese Option wird durch `build.emitAssets` ersetzt, sobald die Environment-API stabil ist.
 
 ## build.minify
 
@@ -236,7 +245,7 @@ npm add -D terser
 
 Zusätzliche [Minimierungsoptionen](https://terser.org/docs/api-reference#minify-options), die an Terser übergeben werden sollen.
 
-Darüber hinaus können Sie auch die Option „maxWorkers: number“ übergeben, um die maximale Anzahl der zu erzeugenden Worker anzugeben. Der Standardwert ist die Anzahl der CPUs - 1.
+Darüber hinaus können Sie auch die Option `maxWorkers: number` übergeben, um die maximale Anzahl der zu erzeugenden Worker anzugeben. Der Standardwert ist die Anzahl der CPUs - 1.
 
 ## build.write
 
