@@ -118,7 +118,7 @@ export default defineConfig({
 
 - **Typ:** `Record<string, string | ProxyOptions>`
 
-Konfigurieren Sie benutzerdefinierte Proxyregeln für den Entwicklungsserver. Erwartet ein Objekt mit `{ Schlüssel: Optionen }`-Paaren. Alle Anfragen, die mit diesem Schlüssel beginnen, werden an das angegebene Ziel weitergeleitet. Wenn der Schlüssel mit `^` beginnt, wird er als `RegExp` interpretiert. Die Option `configure` kann verwendet werden, um auf die Proxyinstanz zuzugreifen.
+Konfigurieren Sie benutzerdefinierte Proxyregeln für den Entwicklungsserver. Erwartet ein Objekt mit `{ Schlüssel: Optionen }`-Paaren. Alle Anfragen, die mit diesem Schlüssel beginnen, werden an das angegebene Ziel weitergeleitet. Wenn der Schlüssel mit `^` beginnt, wird er als `RegExp` interpretiert. Die Option `configure` kann verwendet werden, um auf die Proxyinstanz zuzugreifen. Wenn eine Anfrage mit den konfigurierten Proxy-Regeln übereinstimmt, wird diese nicht von Vite transformiert.
 
 Beachten Sie, dass bei Verwendung von nicht relativem [`base`](/config/shared-options.md#base) jeder Schlüssel mit diesem `base` vorangestellt werden muss.
 
