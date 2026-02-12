@@ -48,10 +48,10 @@ MIT License
 ```
 
 If the `fileName` ends with `.json`, the raw JSON metadata will be generated instead and can be used for further processing. For example:
-
 ```json
 [
   {
+  // prettier-ignore
     "name": "dep-1",
     "version": "1.2.3",
     "identifier": "CC0-1.0",
@@ -63,7 +63,6 @@ If the `fileName` ends with `.json`, the raw JSON metadata will be generated ins
     "identifier": "MIT",
     "text": "MIT License\n\n..."
   }
-]
 ```
 
 ::: tip

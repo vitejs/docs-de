@@ -24,3 +24,4 @@ Vite provides type definitions for `import.meta.hot` in [`vite/client.d.ts`](htt
     "types": ["vite/client"]
   }
 }
+See [Client-server Communication](/guide/api-plugin.html#client-server-communication) for more details, including a section on [Typing Custom Events](/guide/api-plugin.html#typescript-for-custom-events).

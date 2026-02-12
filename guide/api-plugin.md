@@ -66,3 +66,30 @@ export default function myPlugin() {
     /**
      * attribute values will be escaped automatically if needed
      */
+Internally, vite infers the type of a payload from the `CustomEventMap` interface, it is possible to type custom events by extending the interface:
+
+:::tip Note
+Make sure to include the `.d.ts` extension when specifying TypeScript declaration files. Otherwise, Typescript may not know which file the module is trying to extend.
+:::
+import 'vite/types/customEvent.d.ts'
+declare module 'vite/types/customEvent.d.ts' {
+
+This interface extension is utilized by `InferCustomEventPayload<T>` to infer the payload type for event `T`. For more information on how this interface is utilized, refer to the [HMR API Documentation](./api-hmr#hmr-api).
+
+```ts twoslash
+import 'vite/client'
+import type { InferCustomEventPayload } from 'vite/types/customEvent.d.ts'
+declare module 'vite/types/customEvent.d.ts' {
+  interface CustomEventMap {
+    'custom:foo': { msg: string }
+  }
+}
+// ---cut---
+type CustomFooPayload = InferCustomEventPayload<'custom:foo'>
+import.meta.hot?.on('custom:foo', (payload) => {
+  // The type of payload will be { msg: string }
+})
+import.meta.hot?.on('unknown:event', (payload) => {
+  // The type of payload will be any
+})
+```
