@@ -1,0 +1,1 @@
+  window.__VITE_BANNER_ID__ = 'viteplusannouncement'
