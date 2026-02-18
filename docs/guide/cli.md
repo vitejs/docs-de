@@ -71,7 +71,7 @@ vite build [root]
 | `-f, --filter <filter>`        | Filtert Debug-Protokolle (`string`)                                                                                                                           |
 | `-m, --mode <mode>`            | Setzt den Umgebungsmodus (`string`)                                                                                                                           |
 | `-h, --help`                   | Zeigt verfügbare CLI-Optionen an                                                                                                                              |
-| `--app`                        | Alle Umgebungen builden, wie bei `builder.entireApp` (`boolean`, experimentell)                                                                               |
+| `--app`                        | Alle Umgebungen bauen, wie bei `builder.entireApp` (`boolean`, experimentell)                                                                               |
 
 ## Andere
 

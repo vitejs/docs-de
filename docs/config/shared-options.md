@@ -495,3 +495,12 @@ Ob Ihre Anwendung eine Single Page Application (SPA), eine [Multi Page Applicati
 - `'custom'`: Keine HTML-Middleware einschließen
 
 Weitere Informationen finden Sie im [SSR-Handbuch von Vite](/guide/ssr#vite-cli). Verwandt: [`server.middlewareMode`](./server-options#server-middlewaremode).
+
+## future
+
+- **Typ:** `Record<string, 'warn' | undefined>`
+- **Verwandt:** [Breaking Changes](/changes/)
+
+Aktivieren Sie zukünftige grundlegende Änderungen, um eine reibungslose Migration zur nächsten Hauptversion von Vite vorzubereiten. Die Liste kann jederzeit aktualisiert, ergänzt oder gekürzt werden, wenn neue Funktionen entwickelt werden.
+
+Weitere Informationen zu den möglichen Optionen finden Sie auf der Seite [Grundlegende Änderungen](/changes/).
