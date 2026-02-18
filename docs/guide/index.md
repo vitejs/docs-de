@@ -45,7 +45,7 @@ Folgende Vorlagen werden unterstützt:
 
 ::: code-group
 
-```bash [NPM]
+```bash [npm]
 $ npm create vite@latest
 ```
 
@@ -53,7 +53,7 @@ $ npm create vite@latest
 $ yarn create vite
 ```
 
-```bash [PNPM]
+```bash [pnpm]
 $ pnpm create vite
 ```
 
@@ -79,7 +79,7 @@ Sie können auch direkt den Projektnamen und die zu verwendende Vorlage über zu
 
 ::: code-group
 
-```bash [NPM]
+```bash [npm]
 # npm 7+, extra double-dash is needed:
 $ npm create vite@latest my-vue-app -- --template vue
 ```
@@ -88,7 +88,7 @@ $ npm create vite@latest my-vue-app -- --template vue
 $ yarn create vite my-vue-app --template vue
 ```
 
-```bash [PNPM]
+```bash [pnpm]
 $ pnpm create vite my-vue-app --template vue
 ```
 
@@ -130,7 +130,7 @@ In Ihrem Projekt können Sie das `vite` CLI mit installieren:
 
 ::: code-group
 
-```bash [NPM]
+```bash [npm]
 $ npm install -D vite
 ```
 
@@ -138,7 +138,7 @@ $ npm install -D vite
 $ yarn add -D vite
 ```
 
-```bash [PNPM]
+```bash [pnpm]
 $ pnpm add -D vite
 ```
 
@@ -162,7 +162,7 @@ Dann führen Sie den entsprechenden CLI-Befehl in Ihrem Terminal aus:
 
 ::: code-group
 
-```bash [NPM]
+```bash [npm]
 $ npx vite
 ```
 
@@ -170,7 +170,7 @@ $ npx vite
 $ yarn vite
 ```
 
-````bash [PNPM]
+````bash [pnpm]
 $ pnpm vite
 ```
 

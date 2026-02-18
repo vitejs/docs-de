@@ -37,7 +37,7 @@ Als Zeichen des Wachstums, das Vite und die damit verbundenen Projekte erfahren 
 
 Heute freut sich das Vite [Team](https://vite.dev/team) mit Unterstützung unserer Ökosystem-Partner, die Veröffentlichung von Vite 4 bekannt zu geben, das zur Build-Zeit von Rollup 3 angetrieben wird. Wir haben mit dem Ökosystem zusammengearbeitet, um einen reibungslosen Upgrade-Pfad für diese neue Hauptversion sicherzustellen. Vite verwendet jetzt [Rollup 3](https://github.com/vitejs/vite/issues/9870), was es uns ermöglicht hat, die interne Asset-Verarbeitung von Vite zu vereinfachen und viele Verbesserungen bietet. Die [Rollup 3 Versionshinweise finden Sie hier](https://github.com/rollup/rollup/releases/tag/v3.0.0).
 
-![Vite 4 Announcement Cover Image](/og-image-announcing-vite4.webp)
+![Titelbild zur Ankündigung von Vite 4](/og-image-announcing-vite4.webp)
 
 Schnellzugriff:
 

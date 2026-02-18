@@ -25,86 +25,85 @@ head:
       content: summary_large_image
 ---
 
-# Vite 5.0 is out!
+# Vite 5.0 ist da!
 
-_November 16, 2023_
+_16. November 2023_
 
-![Vite 5 Announcement Cover Image](/og-image-announcing-vite5.webp)
+![Titelbild zur Ankündigung von Vite 5](/og-image-announcing-vite5.webp)
 
-Vite 4 [was released](./announcing-vite4.md) almost a year ago, and it served as a solid base for the ecosystem. npm downloads per week jumped from 2.5 million to 7.5 million, as projects keep building on a shared infrastructure. Frameworks continued to innovate, and on top of [Astro](https://astro.build/), [Nuxt](https://nuxt.com/), [SvelteKit](https://kit.svelte.dev/), [Solid Start](https://www.solidjs.com/blog/introducing-solidstart), [Qwik City](https://qwik.builder.io/qwikcity/overview/), between others, we saw new frameworks joining and making the ecosystem stronger. [RedwoodJS](https://redwoodjs.com/) and [Remix](https://remix.run/) switching to Vite paves the way for further adoption in the React ecosystem. [Vitest](https://vitest.dev) kept growing at an even faster pace than Vite. Its team has been hard at work and will soon [release Vitest 1.0](https://github.com/vitest-dev/vitest/issues/3596). The story of Vite when used with other tools such as [Storybook](https://storybook.js.org), [Nx](https://nx.dev), and [Playwright](https://playwright.dev) kept improving, and the same goes for environments, with Vite dev working both in [Deno](https://deno.com) and [Bun](https://bun.sh).
+Vite 4 [wurde vor fast einem Jahr veröffentlicht](./announcing-vite4.md) und diente als solide Grundlage für das Ökosystem. Die wöchentlichen npm-Downloads stiegen von 2,5 Millionen auf 7,5 Millionen, da Projekte weiterhin auf einer gemeinsamen Infrastruktur aufbauen. Die Frameworks wurden weiter innoviert, und zusätzlich zu [Astro](https://astro.build/), [Nuxt](https://nuxt.com/) [SvelteKit](https://kit.svelte.dev/), [Solid Start](https://www.solidjs.com/blog/introducing-solidstart) und [Qwik City](https://qwik.builder.io/qwikcity/overview/) kamen neue Frameworks hinzu, die das Ökosystem weiter stärkten. Der Wechsel von [RedwoodJS](https://redwoodjs.com/) und [Remix](https://remix.run/) zu Vite ebnet den Weg für eine weitere Verbreitung im React-Ökosystem. [Vitest](https://vitest.dev) wuchs sogar noch schneller als Vite. Das Team hat hart gearbeitet und wird bald [Vitest 1.0 veröffentlichen](https://github.com/vitest-dev/vitest/issues/3596). Die Geschichte von Vite in Verbindung mit anderen Tools wie [Storybook](https://storybook.js.org), [Nx](https://nx.dev) und [Playwright](https://playwright.dev) wurde immer besser, ebenso wie die Umgebungen, da Vite dev sowohl in [Deno](https://deno.com) als auch in [Bun](https://bun.sh) funktioniert.
 
-We had the second edition of [ViteConf](https://viteconf.org/23/replay) a month ago, hosted by [StackBlitz](https://stackblitz.com). Like last year, most of the projects in the ecosystem got together to share ideas and connect to keep expanding the commons. We're also seeing new pieces complement the meta-framework tool belt like [Volar](https://volarjs.dev/) and [Nitro](https://nitro.build/). The Rollup team released [Rollup 4](https://rollupjs.org) that same day, a tradition Lukas started last year.
+Vor einem Monat fand die zweite Ausgabe der [ViteConf](https://viteconf.org/23/replay) statt, die von [StackBlitz](https://stackblitz.com) veranstaltet wurde. Wie schon im letzten Jahr kamen die meisten Projekte des Ökosystems zusammen, um Ideen auszutauschen und sich zu vernetzen, um die Commons weiter auszubauen. Außerdem sehen wir neue Elemente, die das Meta-Framework-Toolkit ergänzen, wie [Volar](https://volarjs.dev/) und [Nitro](https://nitro.build/). Das Rollup-Team veröffentlichte am selben Tag [Rollup 4](https://rollupjs.org), eine Tradition, die Lukas im letzten Jahr ins Leben gerufen hat.
 
-Six months ago, Vite 4.3 [was released](./announcing-vite4.md). This release significantly improved the dev server performance. However, there is still ample room for improvement. At ViteConf, [Evan You unveiled Vite's long-term plan to work on Rolldown](https://www.youtube.com/watch?v=hrdwQHoAp0M), a Rust-port of Rollup with compatible APIs. Once it is ready, we intend to use it in Vite Core to take on the tasks of both Rollup and esbuild. This will mean a boost in build performance (and later on in dev performance too as we move perf-sensitive parts of Vite itself to Rust), and a big reduction of inconsistencies between dev and build. Rolldown is currently in early stages and the team is preparing to open source the codebase before the end of the year. Stay tuned!
+Vor sechs Monaten wurde Vite 4.3 [veröffentlicht](./announcing-vite4.md). Diese Version verbesserte die Leistung des Entwicklungsservers erheblich. Es gibt jedoch noch viel Raum für Verbesserungen. Auf der ViteConf stellte Evan You den langfristigen Plan von Vite vor, an Rolldown zu arbeiten (https://www.youtube.com/watch?v=hrdwQHoAp0M), einer Rust-Portierung von Rollup mit kompatiblen APIs. Sobald diese fertig ist, wollen wir sie in Vite Core einsetzen, um sowohl die Aufgaben von Rollup als auch von esbuild zu übernehmen. Dies wird zu einer Steigerung der Build-Leistung (und später auch der Entwicklungsleistung, wenn wir leistungssensitive Teile von Vite selbst auf Rust umstellen) und zu einer deutlichen Verringerung der Inkonsistenzen zwischen Entwicklung und Build führen. Rolldown befindet sich derzeit in einem frühen Stadium, und das Team bereitet sich darauf vor, den Code noch vor Jahresende als Open Source zur Verfügung zu stellen. Bleiben Sie gespannt!
 
-Today, we mark another big milestone in Vite's path. The Vite [team](/team), [contributors](https://github.com/vitejs/vite/graphs/contributors), and ecosystem partners, are excited to announce the release of Vite 5. Vite is now using [Rollup 4](https://github.com/vitejs/vite/pull/14508), which already represents a big boost in build performance. And there are also new options to improve your dev server performance profile.
+Heute erreichen wir einen weiteren wichtigen Meilenstein in der Entwicklung von Vite. Das Vite-Team, die Mitwirkenden und die Partner des Ökosystems freuen sich, die Veröffentlichung von Vite 5 bekannt zu geben. Vite verwendet nun [Rollup 4](https://github.com/vitejs/vite/pull/14508), was bereits eine erhebliche Steigerung der Build-Leistung bedeutet. Außerdem gibt es neue Optionen zur Verbesserung des Leistungsprofils Ihres Entwicklungsservers.
 
-Vite 5 focuses on cleaning up the API (removing deprecated features) and streamlines several features closing long-standing issues, for example switching `define` to use proper AST replacements instead of regexes. We also continue to take steps to future-proof Vite (Node.js 18+ is now required, and [the CJS Node API has been deprecated](/guide/migration#deprecate-cjs-node-api)).
+Vite 5 konzentriert sich auf die Bereinigung der API (Entfernen veralteter Funktionen) und optimiert mehrere Funktionen, um langjährige Probleme zu beheben, beispielsweise durch Umstellung von `define` auf die Verwendung geeigneter AST-Ersetzungen anstelle von regulären Ausdrücken. Wir unternehmen auch weiterhin Schritte, um Vite zukunftssicher zu machen (Node.js 18+ ist jetzt erforderlich, und [die CJS Node API wurde veraltet erklärt](/guide/migration#deprecate-cjs-node-api)).
 
-Quick links:
+Schnellzugriff:
 
 - [Docs](/)
 - [Migration Guide](/guide/migration)
 - [Changelog](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#500-2023-11-16)
 
-Docs in other languages:
+Dokumentationen in anderen Sprachen:
 
 - [简体中文](https://cn.vite.dev/)
 - [日本語](https://ja.vite.dev/)
 - [Español](https://es.vite.dev/)
 - [Português](https://pt.vite.dev/)
 - [한국어](https://ko.vite.dev/)
-- [Deutsch](https://de.vite.dev/) (new translation!)
+- [Deutsch](https://de.vite.dev/) (Neue Übersetzung!)
 
-If you're new to Vite, we suggest reading first the [Getting Started](/guide/) and [Features](/guide/features) guides.
+Wenn Sie Vite noch nicht kennen, empfehlen wir Ihnen, zunächst die Anleitungen [Erste Schritte](/guide/) und [Funktionen](/guide/features) zu lesen.
 
-We appreciate the more than [850 contributors to Vite Core](https://github.com/vitejs/vite/graphs/contributors), and the maintainers and contributors of Vite plugins, integrations, tools, and translations that have helped us reach here. We encourage you to get involved and continue to improve Vite with us. You can learn more at our [Contributing Guide](https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md). To get started, we recommend [triaging issues](https://github.com/vitejs/vite/issues), [reviewing PRs](https://github.com/vitejs/vite/pulls), sending failing tests PRs based on open issues, and helping others in [Discussions](https://github.com/vitejs/vite/discussions) and Vite Land's [help forum](https://discord.com/channels/804011606160703521/1019670660856942652). You'll learn a lot along the way and have a smooth path to further contributions to the project. If you have doubts, join us on our [Discord community](http://chat.vite.dev/) and say hi on the [#contributing channel](https://discord.com/channels/804011606160703521/804439875226173480).
+Wir bedanken uns bei den mehr als [850 Mitwirkenden an Vite Core](https://github.com/vitejs/vite/graphs/contributors) sowie den Betreuern und Mitwirkenden von Vite-Plugins, -Integrationen, -Tools und -Übersetzungen, die uns dabei geholfen haben, diesen Punkt zu erreichen. Wir möchten Sie ermutigen, sich zu engagieren und Vite gemeinsam mit uns weiter zu verbessern. Weitere Informationen finden Sie in unserem [Beitragsleitfaden](https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md). Für den Einstieg empfehlen wir Ihnen, [Probleme zu sichten](https://github.com/vitejs/vite/issues), [PRs zu überprüfen](https://github.com/vitejs/vite/pulls), fehlgeschlagene Test-PRs auf der Grundlage offener Probleme zu senden und anderen in den [Diskussionen](https://github.com/vitejs/vite/discussions) und im [Hilfeforum](https://discord.com/channels/804011606160703521/1019670660856942652) von Vite Land zu helfen. Dabei lernen Sie viel und ebnen sich den Weg für weitere Beiträge zum Projekt. Wenn Sie Fragen haben, treten Sie unserer [Discord-Community](http://chat.vite.dev/) bei und melden Sie sich im [#contributing-Kanal](https://discord.com/channels/804011606160703521/804439875226173480) zu Wort.
 
-To stay up to date, follow us on [X](https://twitter.com/vite_js) or [Mastodon](https://webtoo.ls/@vite).
+Um auf dem Laufenden zu bleiben, folgen Sie uns auf [X](https://twitter.com/vite_js) oder [Mastodon](https://webtoo.ls/@vite).
 
-## Quick start with Vite 5
+## Schnellstart mit Vite 5
 
-Use `pnpm create vite` to scaffold a Vite project with your preferred framework, or open a started template online to play with Vite 5 using [vite.new](https://vite.new). You can also run `pnpm create vite-extra` to get access to templates from other frameworks and runtimes (Solid, Deno, SSR, and library starters). `create vite-extra` templates are also available when you run `create vite` under the `Others` option.
+Verwenden Sie `pnpm create vite`, um ein Vite-Projekt mit Ihrem bevorzugten Framework zu erstellen, oder öffnen Sie eine vorgefertigte Vorlage online, um mit Vite 5 unter Verwendung von [vite.new](https://vite.new) zu experimentieren. Sie können auch `pnpm create vite-extra` ausführen, um Zugriff auf Vorlagen aus anderen Frameworks und Laufzeiten (Solid, Deno, SSR und Bibliotheksstartern) zu erhalten. `create vite-extra`-Vorlagen sind auch verfügbar, wenn Sie `create vite` unter der Option `Others` ausführen.
 
-Note that Vite starter templates are intended to be used as a playground to test Vite with different frameworks. When building your next project, we recommend reaching out to the starters recommended by each framework. Some frameworks now redirect in `create vite` to their starters too (`create-vue` and `Nuxt 3` for Vue, and `SvelteKit` for Svelte).
+Beachten Sie, dass Vite-Starter-Vorlagen als Spielwiese zum Testen von Vite mit verschiedenen Frameworks gedacht sind. Wenn Sie Ihr nächstes Projekt erstellen, empfehlen wir Ihnen, sich an die von den einzelnen Frameworks empfohlenen Starter zu wenden. Einige Frameworks leiten nun in `create vite` ebenfalls zu ihren Startern weiter (`create-vue` und `Nuxt 3` für Vue und `SvelteKit` für Svelte).
 
 ## Node.js Support
 
-Vite no longer supports Node.js 14 / 16 / 17 / 19, which reached its EOL. Node.js 18 / 20+ is now required.
+Vite unterstützt Node.js 14 / 16 / 17 / 19, das das Ende seiner Lebensdauer erreicht hat, nicht mehr. Node.js 18 / 20+ ist nun erforderlich.
 
-## Performance
+## Performanz
 
-On top of Rollup 4's build performance improvements, there is a new guide to help you identify and fix common performance issues at [https://vite.dev/guide/performance](/guide/performance).
+Zusätzlich zu den Verbesserungen der Build-Leistung in Rollup 4 gibt es einen neuen Leitfaden, der Ihnen dabei hilft, häufige Leistungsprobleme zu identifizieren und zu beheben: [https://vite.dev/guide/performance](/guide/performance).
 
-Vite 5 also introduces [server.warmup](/guide/performance.html#warm-up-frequently-used-files), a new feature to improve startup time. It lets you define a list of modules that should be pre-transformed as soon as the server starts. When using [`--open` or `server.open`](/config/server-options.html#server-open), Vite will also automatically warm up the entry point of your app or the provided URL to open.
+Vite 5 führt außerdem [server.warmup](/guide/performance.html#warm-up-frequently-used-files) ein, eine neue Funktion zur Verbesserung der Startzeit. Damit können Sie eine Liste von Modulen definieren, die sofort nach dem Start des Servers vorab transformiert werden sollen. Bei Verwendung von [`--open` oder `server.open`](/config/server-options.html#server-open) wärmt Vite automatisch auch den Einstiegspunkt Ihrer App oder die angegebene URL zum Öffnen auf.
 
-## Main Changes
+## Hauptänderungen
 
-- [Vite is now powered by Rollup 4](/guide/migration#rollup-4)
-- [The CJS Node API has been deprecated](/guide/migration#deprecate-cjs-node-api)
-- [Rework `define` and `import.meta.env.*` replacement strategy](/guide/migration#rework-define-and-import-meta-env-replacement-strategy)
-- [SSR externalized modules value now matches production](/guide/migration#ssr-externalized-modules-value-now-matches-production)
-- [`worker.plugins` is now a function](/guide/migration#worker-plugins-is-now-a-function)
-- [Allow path containing `.` to fallback to index.html](/guide/migration#allow-path-containing-to-fallback-to-index-html)
-- [Align dev and preview HTML serving behavior](/guide/migration#align-dev-and-preview-html-serving-behaviour)
-- [Manifest files are now generated in `.vite` directory by default](/guide/migration#manifest-files-are-now-generated-in-vite-directory-by-default)
-- [CLI shortcuts require an additional `Enter` press](/guide/migration#cli-shortcuts-require-an-additional-enter-press)
-- [Update `experimentalDecorators` and `useDefineForClassFields` TypeScript behavior](/guide/migration#update-experimentaldecorators-and-usedefineforclassfields-typescript-behaviour)
-- [Remove `--https` flag and `https: true`](/guide/migration#remove-https-flag-and-https-true)
-- [Remove `resolvePackageEntry` and `resolvePackageData` APIs](/guide/migration#remove-resolvepackageentry-and-resolvepackagedata-apis)
-- [Removes previously deprecated APIs](/guide/migration#removed-deprecated-apis)
-- [Read more about advanced changes affecting plugin and tool authors](/guide/migration#advanced)
+- [Vite wird jetzt von Rollup 4 unterstützt](/guide/migration#rollup-4)
+- [Die CJS-Node-API wurde als veraltet markiert](/guide/migration#deprecate-cjs-node-api)
+- [Überarbeitung der Ersetzungsstrategie für `define` und `import.meta.env.*`](/guide/migration#rework-define-and-import-meta-env-replacement-strategy)
+- [Der Wert der externalisierten SSR-Module entspricht nun der Produktion](/guide/migration#ssr-externalized-modules-value-now-matches-production)
+- [`worker.plugins` ist nun eine Funktion](/guide/migration#worker-plugins-is-now-a-function)
+- [Pfade mit `.` können nun auf index.html zurückgreifen](/guide/migration#allow-path-containing-to-fallback-to-index-html)
+- [Anpassung des Verhaltens bei der Bereitstellung von HTML-Dateien in der Entwicklungs- und Vorschauumgebung](/guide/migration#align-dev-and-preview-html-serving-behaviour)
+- [Manifestdateien werden nun standardmäßig im Verzeichnis `.vite` generiert](/guide/migration#manifest-files-are-now-generated-in-vite-directory-by-default)
+- [CLI-Shortcuts erfordern einen zusätzlichen Druck auf die Eingabetaste](/guide/migration#cli-shortcuts-require-an-additional-enter-press)
+- [Aktualisierung des TypeScript-Verhaltens von `experimentalDecorators` und `useDefineForClassFields`](/guide/migration#update-experimentaldecorators-and-usedefineforclassfields-typescript-behaviour)
+- [Entfernen des Flags `--https` und von `https: true`](/guide/migration#remove-https-flag-and-https-true)
+- [Entfernen der APIs `resolvePackageEntry` und `resolvePackageData`](/guide/migration#remove-resolvepackageentry-and-resolvepackagedata-apis)
+- [Entfernen zuvor veralteter APIs](/guide/migration#removed-deprecated-apis)
 
-## Migrating to Vite 5
+## Migration zu Vite 5
 
-We have worked with ecosystem partners to ensure a smooth migration to this new major. Once again, [vite-ecosystem-ci](https://www.youtube.com/watch?v=7L4I4lDzO48) has been crucial to help us make bolder changes while avoiding regressions. We're thrilled to see other ecosystems adopt similar schemes to improve the collaboration between their projects and downstream maintainers.
+Wir haben mit Partnern aus dem Ökosystem zusammengearbeitet, um einen reibungslosen Übergang zu dieser neuen Hauptversion zu gewährleisten. Auch diesmal war [vite-ecosystem-ci](https://www.youtube.com/watch?v=7L4I4lDzO48) wieder von entscheidender Bedeutung, um uns dabei zu helfen, mutigere Änderungen vorzunehmen und gleichzeitig Rückschritte zu vermeiden. Wir freuen uns sehr, dass andere Ökosysteme ähnliche Konzepte übernehmen, um die Zusammenarbeit zwischen ihren Projekten und den nachgelagerten Betreuern zu verbessern.
 
-For most projects, the update to Vite 5 should be straight forward. But we advise reviewing the [detailed Migration Guide](/guide/migration) before upgrading.
+Für die meisten Projekte sollte das Update auf Vite 5 unkompliziert sein. Wir empfehlen jedoch, vor dem Upgrade die [ausführliche Migrationsanleitung](/guide/migration) zu lesen.
 
-A low level breakdown with the full list of changes to Vite core can be found at the [Vite 5 Changelog](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#500-2023-11-16).
+Eine detaillierte Aufschlüsselung mit der vollständigen Liste der Änderungen am Vite-Kern finden Sie unter [Vite 5 Changelog](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#500-2023-11-16).
 
-## Acknowledgments
+## Danksagungen
 
-Vite 5 is the result of long hours of work by our community of contributors, downstream maintainers, plugins authors, and the [Vite Team](/team). A big shout out to [Bjorn Lu](https://twitter.com/bluwyoo) for leading the release process for this major.
+Vite 5 ist das Ergebnis langwieriger Arbeit unserer Community aus Mitwirkenden, Downstream-Maintainern, Plugin-Autoren und dem [Vite-Team](/team). Ein großes Dankeschön an [Bjorn Lu](https://twitter.com/bluwyoo) für die Leitung des Release-Prozesses für diese wichtige Version.
 
-We're also thankful to individuals and companies sponsoring Vite development. [StackBlitz](https://stackblitz.com/), [Nuxt Labs](https://nuxtlabs.com/), and [Astro](https://astro.build) continue to invest in Vite by hiring Vite team members. A shout out to sponsors on [Vite's GitHub Sponsors](https://github.com/sponsors/vitejs), [Vite's Open Collective](https://opencollective.com/vite), and [Evan You's GitHub Sponsors](https://github.com/sponsors/yyx990803). A special mention to [Remix](https://remix.run/) for becoming a Gold sponsor and contributing back after switching to Vite.
+Wir sind auch den Personen und Unternehmen dankbar, die die Entwicklung von Vite sponsern. [StackBlitz](https://stackblitz.com/), [Nuxt Labs](https://nuxtlabs.com/) und [Astro](https://astro.build) investieren weiterhin in Vite, indem sie Mitglieder des Vite-Teams einstellen. Ein großes Dankeschön an die Sponsoren auf [Vites GitHub Sponsors](https://github.com/sponsors/vitejs), [Vites Open Collective](https://opencollective.com/vite) und [Evan Yous GitHub Sponsors](https://github.com/sponsors/yyx990803). Besondere Erwähnung verdient [Remix](https://remix.run/) dafür, dass es Gold-Sponsor geworden ist und nach dem Wechsel zu Vite einen Beitrag zurückgibt.

@@ -25,106 +25,106 @@ head:
       content: summary_large_image
 ---
 
-# Vite 5.1 is out!
+# Vite 5.1 ist da!
 
-_February 8, 2024_
+_8. Februar 2024_
 
-![Vite 5.1 Announcement Cover Image](/og-image-announcing-vite5-1.webp)
+![Titelbild zur Ankündigung von Vite 5.1](/og-image-announcing-vite5-1.webp)
 
-Vite 5 [was released](./announcing-vite5.md) last November, and it represented another big leap for Vite and the ecosystem. A few weeks ago we celebrated 10 million weekly npm downloads and 900 contributors to the Vite repo. Today, we're excited to announce the release of Vite 5.1.
+Vite 5 [wurde im November letzten Jahres veröffentlicht](./announcing-vite5.md) und stellte einen weiteren großen Sprung für Vite und das Ökosystem dar. Vor einigen Wochen feierten wir 10 Millionen wöchentliche npm-Downloads und 900 Mitwirkende am Vite-Repo. Heute freuen wir uns, die Veröffentlichung von Vite 5.1 bekannt zu geben.
 
-Quick links: [Docs](/), [Changelog](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#510-2024-02-08)
+Schnellzugriff: [Dokumentation](/), [Änderungsprotokoll](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#510-2024-02-08)
 
-Docs in other languages: [简体中文](https://cn.vite.dev/), [日本語](https://ja.vite.dev/), [Español](https://es.vite.dev/), [Português](https://pt.vite.dev/), [한국어](https://ko.vite.dev/), [Deutsch](https://de.vite.dev/)
+Dokumentation in anderen Sprachen: [简体中文](https://cn.vite.dev/), [日本語](https://ja.vite.dev/), [Español](https://es.vite.dev/), [Português](https://pt.vite.dev/), [한국어](https://ko.vite.dev/), [Deutsch](https://de.vite.dev/)
 
-Try Vite 5.1 online in StackBlitz: [vanilla](https://vite.new/vanilla-ts), [vue](https://vite.new/vue-ts), [react](https://vite.new/react-ts), [preact](https://vite.new/preact-ts), [lit](https://vite.new/lit-ts), [svelte](https://vite.new/svelte-ts), [solid](https://vite.new/solid-ts), [qwik](https://vite.new/qwik-ts).
+Probieren Sie Vite 5.1 online in StackBlitz aus: [vanilla](https://vite.new/vanilla-ts), [vue](https://vite.new/vue-ts), [react](https://vite.new/react-ts), [preact](https://vite.new/preact-ts), [lit](https://vite.new/lit-ts), [svelte](https://vite.new/svelte-ts), [solid](https://vite.new/solid-ts), [qwik](https://vite.new/qwik-ts).
 
-If you're new to Vite, we suggest reading first the [Getting Started](/guide/) and [Features](/guide/features) guides.
+Wenn Sie Vite noch nicht kennen, empfehlen wir Ihnen, zunächst die Anleitungen [Erste Schritte](/guide/) und [Funktionen](/guide/features) zu lesen.
 
-To stay up to date, follow us on [X](https://x.com/vite_js) or [Mastodon](https://webtoo.ls/@vite).
+Um auf dem Laufenden zu bleiben, folgen Sie uns auf [X](https://x.com/vite_js) oder [Mastodon](https://webtoo.ls/@vite).
 
-## Vite Runtime API
+## Vite-Laufzeit-API
 
-Vite 5.1 adds experimental support for a new Vite Runtime API. It allows running any code by processing it with Vite plugins first. It is different from `server.ssrLoadModule` because the runtime implementation is decoupled from the server. This lets library and framework authors implement their own layer of communication between the server and the runtime. This new API is intended to replace Vite's current SSR primitives once it is stable.
+Vite 5.1 bietet experimentelle Unterstützung für eine neue Vite-Laufzeit-API. Damit kann beliebiger Code ausgeführt werden, indem er zunächst mit Vite-Plugins verarbeitet wird. Der Unterschied zu `server.ssrLoadModule` besteht darin, dass die Laufzeitimplementierung vom Server entkoppelt ist. Dadurch können Autoren von Bibliotheken und Frameworks ihre eigene Kommunikationsebene zwischen Server und Laufzeit implementieren. Diese neue API soll die aktuellen SSR-Primitive von Vite ersetzen, sobald sie stabil läuft.
 
-The new API brings many benefits:
+Die neue API bietet viele Vorteile:
 
-- Support for HMR during SSR.
-- It is decoupled from the server, so there is no limit on how many clients can use a single server - every client has its own module cache (you can even communicate with it how you want - using message channel/fetch call/direct function call/websocket).
-- It doesn't depend on any node/bun/deno built-in APIs, so it can run in any environment.
-- It's easy to integrate with tools that have their own mechanism to run code (you can provide a runner to use `eval` instead of `new AsyncFunction` for example).
+- Unterstützung für HMR während SSR.
+- Sie ist vom Server entkoppelt, sodass es keine Begrenzung hinsichtlich der Anzahl der Clients gibt, die einen einzelnen Server nutzen können – jeder Client verfügt über einen eigenen Modul-Cache (Sie können sogar nach Belieben mit ihm kommunizieren – über einen Nachrichtenkanal/Fetch-Aufruf/direkten Funktionsaufruf/Websocket).
+- Sie ist nicht von integrierten APIs von Node/Bun/Deno abhängig, sodass sie in jeder Umgebung ausgeführt werden kann.
+- Sie lässt sich leicht in Tools integrieren, die über einen eigenen Mechanismus zum Ausführen von Code verfügen (Sie können beispielsweise einen Runner bereitstellen, der `eval` anstelle von `new AsyncFunction` verwendet).
 
-The initial idea [was proposed by Pooya Parsa](https://github.com/nuxt/vite/pull/201) and implemented by [Anthony Fu](https://github.com/antfu) as the [vite-node](https://github.com/vitest-dev/vitest/tree/main/packages/vite-node#readme) package to [power Nuxt 3 Dev SSR](https://antfu.me/posts/dev-ssr-on-nuxt) and later also used as the base for [Vitest](https://vitest.dev). So the general idea of vite-node has been battle-tested for quite some time now. This is a new iteration of the API by [Vladimir Sheremet](https://github.com/sheremet-va), who had already re-implemented vite-node in Vitest and took the learnings to make the API even more powerful and flexible when adding it to Vite Core. The PR was one year in the makings, you can see the evolution and discussions with ecosystem maintainers [here](https://github.com/vitejs/vite/issues/12165).
+Die ursprüngliche Idee [wurde von Pooya Parsa vorgeschlagen](https://github.com/nuxt/vite/pull/201) und von [Anthony Fu](https://github.com/antfu) als [vite-node](https://github.com/vitest-dev/vitest/tree/main/packages/vite-node# readme) implementiert, um [Nuxt 3 Dev SSR](https://antfu.me/posts/dev-ssr-on-nuxt) zu unterstützen, und später auch als Grundlage für [Vitest](https://vitest.dev) verwendet. Die Grundidee von vite-node hat sich also bereits seit geraumer Zeit in der Praxis bewährt. Es handelt sich hierbei um eine neue Iteration der API von [Vladimir Sheremet](https://github.com/sheremet-va), der vite-node bereits in Vitest neu implementiert hatte und die gewonnenen Erkenntnisse nutzte, um die API noch leistungsfähiger und flexibler zu gestalten, als er sie zu Vite Core hinzufügte. Die PR war ein Jahr in der Entwicklung. Die Entwicklung und die Diskussionen mit den Betreuern des Ökosystems können Sie [hier](https://github.com/vitejs/vite/issues/12165) nachlesen.
 
-## Features
+## Funktionen
 
-### Improved support for `.css?url`
+### Verbesserte Unterstützung für `.css?url`
 
-Import CSS files as URLs now works reliably and correctly. This was the last remaining hurdle in Remix's move to Vite. See ([#15259](https://github.com/vitejs/vite/issues/15259)).
+Das Importieren von CSS-Dateien als URLs funktioniert nun zuverlässig und korrekt. Dies war die letzte verbleibende Hürde bei der Umstellung von Remix auf Vite. Siehe ([#15259](https://github.com/vitejs/vite/issues/15259)).
 
-### `build.assetsInlineLimit` now supports a callback
+### `build.assetsInlineLimit` unterstützt jetzt einen Callback
 
-Users can now [provide a callback](/config/build-options.html#build-assetsinlinelimit) that returns a boolean to opt-in or opt-out of inlining for specific assets. If `undefined` is returned, the default logic applies. See ([#15366](https://github.com/vitejs/vite/issues/15366)).
+Benutzer können jetzt einen Callback bereitstellen, der einen booleschen Wert zurückgibt, um das Inlining für bestimmte Assets zu aktivieren oder zu deaktivieren. Wenn `undefined` zurückgegeben wird, gilt die Standardlogik. Siehe ([#15366](https://github.com/vitejs/vite/issues/15366)).
 
-### Improved HMR for circular import
+### Verbessertes HMR für zirkuläre Importe
 
-In Vite 5.0, accepted modules within circular imports always triggered a full page reload even if they can be handled fine in the client. This is now relaxed to allow HMR to apply without a full page reload, but if any error happens during HMR, the page will be reloaded. See ([#15118](https://github.com/vitejs/vite/issues/15118)).
+In Vite 5.0 lösten akzeptierte Module innerhalb zirkulärer Importe immer eine vollständige Neuladung der Seite aus, selbst wenn sie im Client problemlos verarbeitet werden konnten. Dies wurde nun gelockert, sodass HMR ohne vollständiges Neuladen der Seite angewendet werden kann. Wenn jedoch während HMR ein Fehler auftritt, wird die Seite neu geladen. Siehe ([#15118](https://github.com/vitejs/vite/issues/15118)).
 
-### Support `ssr.external: true` to externalize all SSR packages
+### Unterstützung von `ssr.external: true` zur Externalisierung aller SSR-Pakete
 
-Historically, Vite externalizes all packages except for linked packages. This new option can be used to force externalize all packages including linked packages too. This is handy in tests within monorepos where we want to emulate the usual case of all packages externalized, or when using `ssrLoadModule` to load an arbitrary file and we want to always external packages as we don't care about HMR. See ([#10939](https://github.com/vitejs/vite/issues/10939)).
+Bisher externalisiert Vite alle Pakete mit Ausnahme von verknüpften Paketen. Mit dieser neuen Option können Sie die Externalisierung aller Pakete, einschließlich verknüpfter Pakete, erzwingen. Dies ist praktisch bei Tests innerhalb von Monorepos, bei denen wir den üblichen Fall aller externalisierten Pakete emulieren möchten, oder wenn wir `ssrLoadModule` zum Laden einer beliebigen Datei verwenden und wir immer externe Pakete verwenden möchten, da uns HMR nicht interessiert. Siehe ([#10939](https://github.com/vitejs/vite/issues/10939)).
 
-### Expose `close` method in the preview server
+### `close`-Methode im Preview-Server verfügbar machen
 
-The preview server now exposes a `close` method, which will properly teardown the server including all opened socket connections. See ([#15630](https://github.com/vitejs/vite/issues/15630)).
+Der Preview-Server stellt nun eine `close`-Methode zur Verfügung, die den Server einschließlich aller geöffneten Socket-Verbindungen ordnungsgemäß herunterfährt. Siehe ([#15630](https://github.com/vitejs/vite/issues/15630)).
 
-## Performance improvements
+## Leistungsverbesserungen
 
-Vite keeps getting faster with each release, and Vite 5.1 is packed with performance improvements. We measured the loading time for 10K modules (25 level deep tree) using [vite-dev-server-perf](https://github.com/yyx990803/vite-dev-server-perf) for all minor versions from Vite 4.0. This is a good benchmark to measure the effect of Vite's bundle-less approach. Each module is a small TypeScript file with a counter and imports to other files in the tree, so this mostly measuring the time it takes to do the requests a separate modules. In Vite 4.0, loading 10K modules took 8 seconds on a M1 MAX. We had a breakthrough in [Vite 4.3 were we focused on performance](./announcing-vite4-3.md), and we were able to load them in 6.35 seconds. In Vite 5.1, we managed to do another performance leap. Vite is now serving the 10K modules in 5.35 seconds.
+Vite wird mit jeder neuen Version schneller, und Vite 5.1 bietet zahlreiche Leistungsverbesserungen. Wir haben die Ladezeit für 10.000 Module (25 Ebenen tiefe Baumstruktur) mit [vite-dev-server-perf](https://github.com/yyx990803/vite-dev-server-perf) für alle Minor-Versionen ab Vite 4.0 gemessen. Dies ist ein guter Maßstab, um die Auswirkungen des bundle-losen Ansatzes von Vite zu messen. Jedes Modul ist eine kleine TypeScript-Datei mit einem Zähler und Importen zu anderen Dateien in der Baumstruktur, sodass hier hauptsächlich die Zeit gemessen wird, die für die Anfragen an separate Module benötigt wird. In Vite 4.0 dauerte das Laden von 10.000 Modulen auf einem M1 MAX 8 Sekunden. In [Vite 4.3, wo wir uns auf die Leistung konzentriert haben](./announcing-vite4-3.md), gelang uns ein Durchbruch, und wir konnten sie in 6,35 Sekunden laden. In Vite 5.1 gelang uns ein weiterer Leistungssprung. Vite bedient die 10.000 Module nun in 5,35 Sekunden.
 
-![Vite 10K Modules Loading time progression](../images/vite5-1-10K-modules-loading-time.webp)
+![Vite 10K-Module – Entwicklung der Ladezeit](../images/vite5-1-10K-modules-loading-time.webp)
 
-The results of this benchmark run on Headless Puppeteer and are a good way to compare versions. They don't represent the time as experienced by users though. When running the same 10K modules in an Incognito window is Chrome, we have:
+Die Ergebnisse dieses Benchmarks wurden mit Headless Puppeteer durchgeführt und eignen sich gut zum Vergleich der Versionen. Sie geben jedoch nicht die Zeit wieder, die Benutzer tatsächlich erleben. Wenn wir dieselben 10K-Module in einem Inkognito-Fenster in Chrome ausführen, erhalten wir:
 
-| 10K Modules           | Vite 5.0 | Vite 5.1 |
-| --------------------- | :------: | :------: |
-| Loading time          |  2892ms  |  2765ms  |
-| Loading time (cached) |  2778ms  |  2477ms  |
-| Full reload           |  2003ms  |  1878ms  |
-| Full reload (cached)  |  1682ms  |  1604ms  |
+| 10K Module                       | Vite 5.0 | Vite 5.1 |
+| -------------------------------- | :------: | :------: |
+| Ladezeit                         |  2892ms  |  2765ms  |
+| Ladezeit (cached)                |  2778ms  |  2477ms  |
+| Vollständiges Neuladen           |  2003ms  |  1878ms  |
+| Vollständiges Neuladen (cached)  |  1682ms  |  1604ms  |
 
-### Run CSS preprocessors in threads
+### CSS-Präprozessoren in Threads ausführen
 
-Vite now has opt-in support for running CSS preprocessors in threads. You can enable it using [`css.preprocessorMaxWorkers: true`](/config/shared-options.html#css-preprocessormaxworkers). For a Vuetify 2 project, dev startup time was reduced by 40% with this feature enabled. There is [performance comparison for others setups in the PR](https://github.com/vitejs/vite/pull/13584#issuecomment-1678827918). See ([#13584](https://github.com/vitejs/vite/issues/13584)). [Give Feedback](https://github.com/vitejs/vite/discussions/15835).
+Vite bietet nun eine optionale Unterstützung für die Ausführung von CSS-Präprozessoren in Threads. Sie können diese Funktion mit [`css.preprocessorMaxWorkers: true`](/config/shared-options.html#css-preprocessormaxworkers) aktivieren. Bei einem Vuetify 2-Projekt konnte die Startzeit für Entwickler mit dieser Funktion um 40 % reduziert werden. Es gibt einen [Leistungsvergleich für andere Setups im PR](https://github.com/vitejs/vite/pull/13584#issuecomment-1678827918). Siehe ([#13584](https://github.com/vitejs/vite/issues/13584)). [Feedback geben](https://github.com/vitejs/vite/discussions/15835).
 
-### New options to improve server cold starts
+### Neue Optionen zur Verbesserung von Server-Kaltstarts
 
-You can set `optimizeDeps.holdUntilCrawlEnd: false` to switch to a new strategy for deps optimization that may help in big projects. We're considering switching to this strategy by default in the future. [Give Feedback](https://github.com/vitejs/vite/discussions/15834). ([#15244](https://github.com/vitejs/vite/issues/15244))
+Sie können `optimizeDeps.holdUntilCrawlEnd: false` einstellen, um zu einer neuen Strategie für die Deps-Optimierung zu wechseln, die bei großen Projekten hilfreich sein kann. Wir erwägen, in Zukunft standardmäßig zu dieser Strategie zu wechseln. [Feedback geben](https://github.com/vitejs/vite/discussions/15834). ([#15244](https://github.com/vitejs/vite/issues/15244))
 
-### Faster resolving with cached checks
+### Schnellere Auflösung mit zwischengespeicherten Prüfungen
 
-The `fs.cachedChecks` optimization is now enabled by default. In Windows, `tryFsResolve` was ~14x faster with it, and resolving ids overall got a ~5x speed up in the triangle benchmark. ([#15704](https://github.com/vitejs/vite/issues/15704))
+Die Optimierung `fs.cachedChecks` ist jetzt standardmäßig aktiviert. Unter Windows war `tryFsResolve` damit etwa 14-mal schneller, und die Auflösung von IDs wurde im Dreiecks-Benchmark insgesamt um etwa das Fünffache beschleunigt. ([#15704](https://github.com/vitejs/vite/issues/15704))
 
-### Internal performance improvements
+### Interne Leistungsverbesserungen
 
-The dev server had several incremental performance gains. A new middleware to short-circuit on 304 ([#15586](https://github.com/vitejs/vite/issues/15586)). We avoided `parseRequest` in hot paths ([#15617](https://github.com/vitejs/vite/issues/15617)). Rollup is now properly lazy loaded ([#15621](https://github.com/vitejs/vite/issues/15621))
+Der Dev-Server hat mehrere inkrementelle Leistungssteigerungen erfahren. Eine neue Middleware für Kurzschlüsse bei 304 ([#15586](https://github.com/vitejs/vite/issues/15586)). Wir haben `parseRequest` in Hot Paths vermieden ([#15617](https://github.com/vitejs/vite/issues/15617)). Rollup wird nun ordnungsgemäß verzögert geladen ([#15621](https://github.com/vitejs/vite/issues/15621)).
 
-## Deprecations
+## Veraltete Funktionen
 
-We continue to reduce Vite's API surface where possible to make the project maintainable long term.
+Wir reduzieren weiterhin die API-Oberfläche von Vite, wo immer dies möglich ist, um das Projekt langfristig wartbar zu halten.
 
-### Deprecated `as` option in `import.meta.glob`
+### Veraltete Option `as` in `import.meta.glob`
 
-The standard moved to [Import Attributes](https://github.com/tc39/proposal-import-attributes), but we don't plan to replace `as` with a new option at this point. Instead, it is recommended that the user switches to `query`. See ([#14420](https://github.com/vitejs/vite/issues/14420)).
+Der Standard wurde zu [Import Attributes](https://github.com/tc39/proposal-import-attributes) verschoben, aber wir planen derzeit nicht, `as` durch eine neue Option zu ersetzen. Stattdessen wird empfohlen, dass der Benutzer zu `query` wechselt. Siehe ([#14420](https://github.com/vitejs/vite/issues/14420)).
 
-### Removed experimental build-time pre-bundling
+### Experimentelles Vorab-Bündeln zur Build-Zeit entfernt
 
-Build-time pre-bundling, an experimental feature added in Vite 3, is removed. With Rollup 4 switching its parser to native, and Rolldown being worked on, both the performance and the dev-vs-build inconsistency story for this feature are no longer valid. We want to continue improving dev/build consistency, and have concluded that using Rolldown for "prebundling during dev" and "production builds" is the better bet moving forward. Rolldown may also implement caching in a way that is a lot more efficient during build than deps prebundling. See ([#15184](https://github.com/vitejs/vite/issues/15184)).
+Das Vorab-Bündeln zur Build-Zeit, eine in Vite 3 hinzugefügte experimentelle Funktion, wurde entfernt. Da Rollup 4 seinen Parser auf nativ umgestellt hat und an Rolldown gearbeitet wird, sind sowohl die Leistung als auch die Inkonsistenz zwischen Entwicklung und Build für diese Funktion nicht mehr gültig. Wir möchten die Konsistenz zwischen Entwicklung und Build weiter verbessern und sind zu dem Schluss gekommen, dass die Verwendung von Rolldown für `Vorab-Bündelung während der Entwicklung` und `Produktions-Builds` die bessere Wahl für die Zukunft ist. Rolldown kann auch Caching auf eine Weise implementieren, die während des Builds viel effizienter ist als das Vorab-Bündeln von Abhängigkeiten. Siehe ([#15184](https://github.com/vitejs/vite/issues/15184)).
 
-## Get Involved
+## Mitmachen
 
-We are grateful to the [900 contributors to Vite Core](https://github.com/vitejs/vite/graphs/contributors), and the maintainers of plugins, integrations, tools, and translations that keeps pushing the ecosystem forward. If you're enjoying Vite, we invite you to participate and help us. Check out our [Contributing Guide](https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md), and jump into [triaging issues](https://github.com/vitejs/vite/issues), [reviewing PRs](https://github.com/vitejs/vite/pulls), answering questions at [GitHub Discussions](https://github.com/vitejs/vite/discussions) and helping others in the community in [Vite Land](https://chat.vite.dev).
+Wir sind den [900 Mitwirkenden an Vite Core](https://github.com/vitejs/vite/graphs/contributors) sowie den Betreuern von Plugins, Integrationen, Tools und Übersetzungen, die das Ökosystem vorantreiben, sehr dankbar. Wenn Ihnen Vite gefällt, laden wir Sie ein, sich zu beteiligen und uns zu helfen. Lesen Sie unseren [Beitragsleitfaden](https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md) und steigen Sie ein, indem Sie [Probleme triagieren](https://github.com/vitejs/vite/issues), [PRs zu überprüfen](https://github.com/vitejs/vite/pulls), Fragen in [GitHub-Diskussionen](https://github.com/vitejs/vite/discussions) zu beantworten und anderen in der Community in [Vite Land](https://chat.vite.dev) zu helfen.
 
-## Acknowledgments
+## Danksagungen
 
-Vite 5.1 is possible thanks to our community of contributors, maintainers in the ecosystem, and the [Vite Team](/team). A shout out to the individuals and companies sponsoring Vite development. [StackBlitz](https://stackblitz.com/), [Nuxt Labs](https://nuxtlabs.com/), and [Astro](https://astro.build) for hiring Vite team members. And also to the sponsors on [Vite's GitHub Sponsors](https://github.com/sponsors/vitejs), [Vite's Open Collective](https://opencollective.com/vite), and [Evan You's GitHub Sponsors](https://github.com/sponsors/yyx990803).
+Vite 5.1 wurde dank unserer Community von Mitwirkenden, Betreuern im Ökosystem und dem [Vite-Team](/team) möglich. Ein großes Dankeschön an die Personen und Unternehmen, die die Entwicklung von Vite sponsern. [StackBlitz](https://stackblitz.com/), [Nuxt Labs](https://nuxtlabs.com/) und [Astro](https://astro.build) für die Einstellung von Vite-Teammitgliedern. Und auch an die Sponsoren auf [Vites GitHub Sponsors](https://github.com/sponsors/vitejs), [Vites Open Collective](https://opencollective.com/vite) und [Evan Yous GitHub Sponsors](https://github.com/sponsors/yyx990803).
