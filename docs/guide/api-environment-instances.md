@@ -43,7 +43,7 @@ class DevEnvironment {
    * Kommunikationskanal zum Senden und Empfangen von Nachrichten 
    * vom zugehörigen Modul-Runner in der Ziel-Laufzeitumgebung.
    */
-  hot: HotChannel | null
+  hot: NormalizedHotChannel
   /**
    * Diagramm der Modulknoten mit der importierten Beziehung zwischen
    * verarbeiteten Modulen und dem zwischengespeicherten Ergebnis des verarbeiteten Codes.
