@@ -183,7 +183,8 @@ const UnoCssPlugin = () => {
       // use global hooks normally
     },
     applyToEnvironment(environment) {
-      // return true if this plugin should be active in this environment
+      // return true if this plugin should be active in this environment,
+      // or return a new plugin to replace it.
       // if the hook is not used, the plugin is active in all environments
     },
     resolveId(id, importer) {
@@ -191,6 +192,37 @@ const UnoCssPlugin = () => {
     },
   }
 }
+```
+
+Wenn ein Plugin nicht umgebungsbewusst ist und einen Status hat, der nicht auf die aktuelle Umgebung abgestimmt ist, ermöglicht der Hook `applyToEnvironment` eine einfache Anpassung an die jeweilige Umgebung.
+
+```js
+import { nonShareablePlugin } from 'non-shareable-plugin'
+
+export default defineConfig({
+  plugins: [
+    {
+      name: 'per-environment-plugin',
+      applyToEnvironment(environment) {
+        return nonShareablePlugin({ outputName: environment.name })
+      },
+    },
+  ],
+})
+```
+
+Vite exportiert einen `perEnvironmentPlugin`-Helfer, um diese Fälle zu vereinfachen, in denen keine anderen Hooks erforderlich sind:
+
+```js
+import { nonShareablePlugin } from 'non-shareable-plugin'
+
+export default defineConfig({
+  plugins: [
+    perEnvironmentPlugin('per-environment-plugin', (environment) =>
+      nonShareablePlugin({ outputName: environment.name }),
+    ),
+  ],
+})
 ```
 
 Die `applyToEnvironment`-Hook wird zur konfigurierten Zeit aufgerufen, aktuell nach `configResolved`, da Projekte im Ökosystem die Plugins in der Hook ändern. Das Auflösen der Umgebungs-Plugins könnte zukünftig vor `configResolved` stattfinden.
