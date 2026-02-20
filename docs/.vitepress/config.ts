@@ -10,6 +10,9 @@ import {
 import { markdownItImageSize } from 'markdown-it-image-size'
 import { buildEnd } from './buildEnd.config'
 
+// NOTE: allow additional options to be passed to rolldown for now
+process.env.ROLLDOWN_OPTIONS_VALIDATION = 'loose'
+
 const ogDescription = 'Frontend-Tooling der nächsten Generation'
 const ogImage = 'https://vite.dev/og-image.jpg'
 const ogTitle = 'Vite'
