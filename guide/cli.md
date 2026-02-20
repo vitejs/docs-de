@@ -1,0 +1,2 @@
+| `--app`                        | Build all environments, same as `builder.entireApp` (`boolean`, experimental)                                       |
+This command starts a server in the build directory (by default `dist`). Run `vite build` beforehand to ensure that the build directory is up-to-date. Depending on the project's configured [`appType`](/config/shared-options.html#apptype), it makes use of certain middleware.
