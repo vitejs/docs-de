@@ -2,6 +2,17 @@
 
 Vite macht bestimmte Konstanten unter dem speziellen Objekt `import.meta.env` verfügbar. Diese Konstanten werden während der Entwicklung als globale Variablen definiert und beim Erstellen statisch ersetzt, um Tree Shaking effektiv zu gestalten.
 
+:::details Example
+
+```js
+if (import.meta.env.DEV) {
+  // code inside here will be tree-shaken in production builds
+  console.log('Dev mode')
+}
+```
+
+:::
+
 ## Eingebaute Konstanten
 
 Einige eingebaute Konstanten sind in allen folgenden Fällen verfügbar:
