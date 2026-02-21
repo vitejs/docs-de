@@ -42,7 +42,7 @@ Die Rolldown-basierte Version von Vite ist derzeit als separates Paket namens `r
 }
 ```
 
-::: tip Bitte fixieren Sie die Version!
+::: tip Bitte legen Sie die Version fest!
 
 Diese Beispiele verwenden zwar `@latest`, allerdings empfehlen wir sich auf eine bestimmte Version festzulegen, um unerwartete Änderungen zu vermeiden, da [`rolldown-vite` als experimentell betrachtet wird](#versioning-policy).
 
