@@ -85,6 +85,8 @@ Wenn Sie Vitepress oder ein Meta-Framework, das Vite als Peer-Abhängigkeit hat,
 
 Nachdem Sie diese Überschreibungen hinzugefügt haben, installieren Sie Ihre Abhängigkeiten neu und starten Sie Ihren Entwicklungsserver oder erstellen Sie Ihr Projekt wie gewohnt. Es sind keine weiteren Konfigurationsänderungen erforderlich.
 
+Wenn Sie ein neues Projekt starten, können Sie auch wie gewohnt `create-vite` für rolldown-vite nutzen. Die aktuellste Version wird Sie fragen, ob Sie `rolldown-vite` verwenden möchten oder nicht.
+
 ## Bekannte Einschränkungen
 
 Rolldown soll zwar ein direkter Ersatz für Rollup sein, es gibt jedoch Funktionen, die noch implementiert werden, sowie geringfügige beabsichtigte Unterschiede im Verhalten. Eine umfassende Liste finden Sie in [diesem GitHub PR](https://github.com/vitejs/rolldown-vite/pull/84#issue-2903144667), der regelmäßig aktualisiert wird.
