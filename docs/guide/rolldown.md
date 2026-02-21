@@ -42,6 +42,12 @@ Die Rolldown-basierte Version von Vite ist derzeit als separates Paket namens `r
 }
 ```
 
+::: tip Bitte legen Sie die Version fest!
+
+Diese Beispiele verwenden zwar `@latest`, allerdings empfehlen wir sich auf eine bestimmte Version festzulegen, um unerwartete Änderungen zu vermeiden, da [`rolldown-vite` als experimentell betrachtet wird](#versioning-policy).
+
+:::
+
 Wenn Sie Vitepress oder ein Meta-Framework, das Vite als Peer-Abhängigkeit hat, müssen Sie die Abhängigkeit `vite` in Ihrer `package.json` überschreiben, welche je nach Paketmanager leicht unterscheidlich funktioniert:
 
 :::code-group
