@@ -48,7 +48,6 @@ Diese Beispiele verwenden zwar `@latest`, allerdings empfehlen wir sich auf eine
 
 :::
 
-
 Wenn Sie Vitepress oder ein Meta-Framework, das Vite als Peer-Abhängigkeit hat, müssen Sie die Abhängigkeit `vite` in Ihrer `package.json` überschreiben, welche je nach Paketmanager leicht unterscheidlich funktioniert:
 
 :::code-group
