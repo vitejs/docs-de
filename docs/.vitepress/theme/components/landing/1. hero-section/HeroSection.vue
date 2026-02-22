@@ -6,14 +6,18 @@ import HeroDiagram from './HeroDiagram.vue'
   <div class="hero">
     <div class="container">
       <!-- ViteConf Replay Button -->
-      <a href="https://viteconf.org/" class="hero__pill" target="_blank">
+      <a 
+        href="https://www.youtube.com/playlist?list=PLqGQbXn_GDmkJaoykvHCUmXUPjhgH2bVr" 
+        class="hero__pill" 
+        target="_blank"
+      >
         <img
           src="../../../../../images/viteconf.svg"
           alt="Viteconf logo"
           width="20"
           height="20"
         />
-        <span>ViteConf 2024 - Oct 3rd & 4th</span>
+        <span>ViteConf 2025 Wiederholung</span>
       </a>
 
       <!-- Heading -->
