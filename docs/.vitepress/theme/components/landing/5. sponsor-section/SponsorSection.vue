@@ -56,7 +56,7 @@ const { data } = useSponsor()
 
     <h4>Gesponsert von</h4>
     <div class="voidzero">
-      <a href="https://voidzero.dev" target="_blank">
+      <a :href="voidZero.url" target="_blank">
         <img :src="voidZero.img" alt="VoidZero logo" loading="lazy" />
       </a>
     </div>
@@ -123,6 +123,7 @@ const { data } = useSponsor()
       position: relative;
       display: inline-block;
       max-width: 260px;
+      filter: grayscale(1) invert(1);
     }
   }
 
