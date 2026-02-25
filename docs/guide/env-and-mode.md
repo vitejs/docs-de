@@ -2,6 +2,17 @@
 
 Vite macht bestimmte Konstanten unter dem speziellen Objekt `import.meta.env` verfügbar. Diese Konstanten werden während der Entwicklung als globale Variablen definiert und beim Erstellen statisch ersetzt, um Tree Shaking effektiv zu gestalten.
 
+:::details Example
+
+```js
+if (import.meta.env.DEV) {
+  // code inside here will be tree-shaken in production builds
+  console.log('Dev mode')
+}
+```
+
+:::
+
 ## Eingebaute Konstanten
 
 Einige eingebaute Konstanten sind in allen folgenden Fällen verfügbar:
@@ -106,8 +117,6 @@ Standardmäßig stellt Vite Typdefinitionen für `import.meta.env` in [`vite/cli
 Um dies zu erreichen, können Sie eine `vite-env.d.ts`-Datei im `src`-Verzeichnis erstellen und `ImportMetaEnv` wie folgt erweitern:
 
 ```typescript [vite-env.d.ts]
-/// <reference types="vite/client" />
-
 interface ViteTypeOptions {
   // Durch das Hinzufügen der Zeile, können Sie den Typ von ImportMetaEnv strikt machen,
   // um unbekannte Typen zu verbieten.

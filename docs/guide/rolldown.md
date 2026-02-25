@@ -42,6 +42,12 @@ Die Rolldown-basierte Version von Vite ist derzeit als separates Paket namens `r
 }
 ```
 
+::: tip Bitte legen Sie die Version fest!
+
+Diese Beispiele verwenden zwar `@latest`, allerdings empfehlen wir sich auf eine bestimmte Version festzulegen, um unerwartete Änderungen zu vermeiden, da [`rolldown-vite` als experimentell betrachtet wird](#versioning-policy).
+
+:::
+
 Wenn Sie Vitepress oder ein Meta-Framework, das Vite als Peer-Abhängigkeit hat, müssen Sie die Abhängigkeit `vite` in Ihrer `package.json` überschreiben, welche je nach Paketmanager leicht unterscheidlich funktioniert:
 
 :::code-group
@@ -84,6 +90,8 @@ Wenn Sie Vitepress oder ein Meta-Framework, das Vite als Peer-Abhängigkeit hat,
 :::
 
 Nachdem Sie diese Überschreibungen hinzugefügt haben, installieren Sie Ihre Abhängigkeiten neu und starten Sie Ihren Entwicklungsserver oder erstellen Sie Ihr Projekt wie gewohnt. Es sind keine weiteren Konfigurationsänderungen erforderlich.
+
+Wenn Sie ein neues Projekt starten, können Sie auch wie gewohnt `create-vite` für rolldown-vite nutzen. Die aktuellste Version wird Sie fragen, ob Sie `rolldown-vite` verwenden möchten oder nicht.
 
 ## Bekannte Einschränkungen
 
@@ -314,15 +322,9 @@ const plugin = {
 
 ### Hook-Filter Funktion
 
-Rolldown hat eine [Hook-Filter](https://rolldown.rs/guide/plugins/hook-filters) Funktion eingeführt, um den Kommunikationsaufwand zwischen Rust und JavaScript Laufzeiten zu verringern. Durch die Verwendung dieser Funktion, können Sie Ihre Plugins performanter gestalten.
+Rolldown hat eine [Hook-Filter](https://rolldown.rs/guide/plugins/hook-filters) Funktion eingeführt, um den Kommunikationsaufwand zwischen Rust und JavaScript Laufzeiten zu verringern. Dieses Feature ermöglicht Plugins ein Muster festzulegen, dass bestimmt wann Hooks aufgerufen werden. Dadurch werden unnötige Hook-Aufrufe vermieden, was die Performanz verbessert.
 
-Dies wird auch von Rollup 4.38.0+ und Vite 6.3.0+ unterstützt. Um eine Rückwärtskompatibilität für ältere Versionen für Ihr Plugin zu gewährleisten, sollten Sie die Filter auch im Hook-Behandler ausführen.
-
-::: tip
-
-[`@rolldown/pluginutils`](https://www.npmjs.com/package/@rolldown/pluginutils) exportiert einige Funktionen für Hook-Filter wie `exactRegex` oder `prefixRegex`.
-
-:::
+Sehen Sie sich den [Hook-Filter-Leitfaden](/guide/api-plugin#hook-filters) an, für mehr Informationen.
 
 ### Inhalt zu JavaScript konvertieren in `load`- oder `transform`-Hooks
 
