@@ -115,16 +115,7 @@ Vite-Start-Vorlagen haben `"skipLibCheck": "true"` gesetzt, um die Überprüfung
 
 ### Client-Typen
 
-Die Standardtypen von Vite sind für die Node.js-API. Um die Umgebung von clientseitigem Code in einer Vite-Anwendung zu optimieren, fügen Sie eine Deklarationsdatei `d.ts` hinzu:
-
-```typescript
-/// <reference types="vite/client" />
-```
-
-::: details Nutzung
-`compilerOptions.types`
-
-Alternativ können Sie `vite/client` zu `compilerOptions.types` in `tsconfig.json` hinzufügen:
+Die Standardtypen von Vite sind für die Node.js-API. Um die Umgebung von clientseitigem Code in einer Vite-Anwendung zu optimieren, fügen Sie `vite/client` to `compilerOptions.types` in der `tsconfig.json`: hinzu:
 
 ```json [tsconfig.json]
 {
@@ -134,8 +125,16 @@ Alternativ können Sie `vite/client` zu `compilerOptions.types` in `tsconfig.jso
 }
 ```
 
-Beachten Sie, dass wenn [`compilerOptions.types`](https://www.typescriptlang.org/tsconfig#types) angegeben ist, werden nur diese Pakete in den globalen Bereich aufgenommen (anstelle aller sichtbaren „@types“-Pakete).
+Beachten Sie, dass wenn [`compilerOptions.types`](https://www.typescriptlang.org/tsconfig#types) angegeben ist, werden nur diese Pakete in den globalen Bereich aufgenommen (anstelle aller sichtbaren „@types“-Pakete). Dies wird seit TS 5.9 empfohlen.
 
+
+::: details Using triple-slash directive
+
+Alternativ können Sie eine `d.ts`-Deklarationsdatei anlegen:
+
+```typescript [vite-env.d.ts]
+/// <reference types="vite/client" />
+```
 :::
 
 `vite/client` stellt die folgenden Arten von Shims bereit:
@@ -156,7 +155,13 @@ Zum Beispiel, um den Standardimport von `*.svg` zu einer React-Komponente zu mac
     export default content
   }
   ```
-- Die Datei, die den Verweis auf `vite/client` enthält (normalerweise `vite-env.d.ts`):
+- Wenn Sie `compilerOptions.types` verwenden, stellen Sie sicher, dass die Datei in der `tsconfig.json` enthalten ist:
+  ```json [tsconfig.json]
+  {
+    "include": ["src", "./vite-env-override.d.ts"]
+  }
+  ```
+- Wenn Sie Triple-Slash-Direktiven verwenden, aktualisieren Sie die Datei, die den Verweis auf `vite/client` enthält (normalerweise `vite-env.d.ts`):
   ```ts
   /// <reference types="./vite-env-override.d.ts" />
   /// <reference types="vite/client" />
