@@ -546,6 +546,42 @@ Vite stellt [`@rollup/pluginutils`'s `createFilter`](https://github.com/rollup/p
 
 zur Verwendung des standardmäßigen Include-/Exclude-Filtermusters zu ermutigen, das auch in Vite selbst verwendet wird.
 
+### Hook-Filter
+
+Rolldown hat eine [Hook-Filter-Funktion](https://rolldown.rs/plugins/hook-filters) eingeführt, um den Kommunikationsoverhead zwischen Rust und JavaScript zu reduzieren. Dieses Feature ermöglicht Plugins ein Muster festzulegen, dass bestimmt wann Hooks aufgerufen werden. Dadurch werden unnötige Hook-Aufrufe vermieden, was die Performanz verbessert.
+
+Das wird auch von Rollup 4.38.0+ und Vite 6.3.0+ unterstützt. Um Ihr Plugin abwärtskompatibel mit älteren Versionen zu machen, müssen Sie sicherstellen, dass der Filter auch in den Hook-Handlern ausgeführt wird.
+
+```js
+export default function myPlugin() {
+  const jsFileRegex = /\.js$/
+
+  return {
+    name: 'my-plugin',
+    // Beispiel: Transform wird nur für .js-Dateien aufgerufen
+    transform: {
+      filter: {
+        id: jsFileRegex,
+      },
+      handler(code, id) {
+        // Zusätzliche Prüfunng für Abwärtskompatibilität
+        if (!jsFileRegex.test(id)) return null
+
+        return {
+          code: transformCode(code),
+          map: null,
+        }
+      },
+    },
+  }
+}
+```
+
+::: tip
+[`@rolldown/pluginutils`](https://www.npmjs.com/package/@rolldown/pluginutils) exportiert einige Funktionen für Hook-Filter wie `exactRegex` und `prefixRegex`.
+:::
+
+
 ## Kommunikation zwischen Client und Server
 
 Seit Vite 2.9 bieten wir einige Hilfsmittel für Plugins, um die Kommunikation mit Clients zu handhaben.
