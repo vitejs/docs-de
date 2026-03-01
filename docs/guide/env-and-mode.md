@@ -80,7 +80,6 @@ Wenn Sie [Bun](https://bun.sh) verwenden, beachten Sie bitte, dass Bun automatis
 
 :::
 
-
 Außerdem verwendet Vite [dotenv-expand](https://github.com/motdotla/dotenv-expand), um in env-Dateien geschriebene Variablen zu erweitern. Um mehr über die Syntax zu erfahren, sehen Sie sich [die Dokumentation](https://github.com/motdotla/dotenv-expand#what-rules-does-the-expansion-engine-follow) dazu an.
 
 Beachten Sie, dass Sie, wenn Sie `$` in Ihrem Umgebungscode verwenden möchten, es mit `\` escapen müssen.
