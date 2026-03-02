@@ -103,7 +103,7 @@ VITE_FOO=foo${VITE_BAR}
 VITE_BAR=bar
 ```
 
-Dies funktioniert nicht in Shell-Skripten oder anderen Werkzeugen wie `docker-compose`.
+Dies funktioniert nicht in Shell-Skripten oder anderen Werkzeugen wie `docker compose`.
 Allerdings unterstützt Vite dieses Verhalten, da es seit langem von `dotenv-expand` unterstützt wird und andere Tools im JavaScript-Ökosystem ältere Versionen verwenden, die dieses Verhalten unterstützen.
 
 Um Interoperabilitätsprobleme zu vermeiden, wird empfohlen, sich nicht auf dieses Verhalten zu verlassen. Vite wird möglicherweise in Zukunft Warnungen für dieses Verhalten ausgeben.
