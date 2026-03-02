@@ -289,3 +289,11 @@ Stellen Sie Ihre statische Website mit [Kinsta](https://kinsta.com/static-site-h
 ## xmit Hosting statischer Websites
 
 Stellen Sie Ihre statische Website mit [xmit](https://xmit.co) bereit, indem Sie diese [Anleitung](https://xmit.dev/posts/vite-quickstart/) befolgen.
+
+## Zephyr Cloud
+
+[Zephyr Cloud](https://zephyr-cloud.io) ist eine Bereitstellungsplattform, die sich direkt in Ihren Build-Prozess integrieren lässt und eine globale Edge-Verteilung für Modulverbünde und andere Arten von Anwendungen bietet.
+
+Zephyr verfolgt einen anderen Ansatz als andere Cloud-Anbieter. Es lässt sich direkt in den Vite-Build-Prozess integrieren, sodass jedes Mal, wenn Sie den Entwicklungsserver für Ihre Anwendung erstellen oder ausführen, dieser automatisch mit Zephyr Cloud bereitgestellt wird.
+
+Befolgen Sie die Schritte im [Leitfaden für die Bereitstellung mit Vite](https://docs.zephyr-cloud.io/recipes/react-vite), um zu starten.
