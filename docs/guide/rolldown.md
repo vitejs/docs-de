@@ -22,7 +22,7 @@ Rolldown konzentriert sich auf drei Grundprinzipien:
 
 3. **Zusätzliche Funktionen**: Rolldown führt Funktionen ein, die nicht in Rollup oder esbuild vorhanden sind, wie beispielsweise die erweiterte Steuerung der Chunk-Aufteilung, eingebautes HMR und Modulverbünde.
 
-Weitere Einblicke in die Beweggründe für Rolldown finden Sie unter [Gründe für die Entwicklung von Rolldown](https://rolldown.rs/guide/#why-rolldown).
+Weitere Einblicke in die Beweggründe für Rolldown finden Sie unter [Gründe für die Entwicklung von Rolldown](https://rolldown.rs/guide/introduction#why-rolldown).
 
 ## Vorteile des Ausprobierens von `rolldown-vite`
 - Profitieren Sie von deutlich schnelleren Build-Zeiten, insbesondere bei größeren Projekten.
@@ -322,7 +322,7 @@ const plugin = {
 
 ### Hook-Filter Funktion
 
-Rolldown hat eine [Hook-Filter](https://rolldown.rs/guide/plugins/hook-filters) Funktion eingeführt, um den Kommunikationsaufwand zwischen Rust und JavaScript Laufzeiten zu verringern. Dieses Feature ermöglicht Plugins ein Muster festzulegen, dass bestimmt wann Hooks aufgerufen werden. Dadurch werden unnötige Hook-Aufrufe vermieden, was die Performanz verbessert.
+Rolldown hat eine [Hook-Filter](https://rolldown.rs/apis/plugin-hook-filters) Funktion eingeführt, um den Kommunikationsaufwand zwischen Rust und JavaScript Laufzeiten zu verringern. Dieses Feature ermöglicht Plugins ein Muster festzulegen, dass bestimmt wann Hooks aufgerufen werden. Dadurch werden unnötige Hook-Aufrufe vermieden, was die Performanz verbessert.
 
 Sehen Sie sich den [Hook-Filter-Leitfaden](/guide/api-plugin#hook-filters) an, für mehr Informationen.
 

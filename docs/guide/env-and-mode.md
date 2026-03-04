@@ -74,6 +74,12 @@ Darüber hinaus haben Umgebungsvariablen, die bereits bei der Ausführung von Vi
 `.env`-Dateien werden zu Beginn von Vite geladen. Starten Sie den Server neu, nachdem Sie Änderungen vorgenommen haben.
 :::
 
+:::warning Bun Nutzer
+
+Wenn Sie [Bun](https://bun.sh) verwenden, beachten Sie bitte, dass Bun automatisch `.env`-Dateien lädt, bevor Ihr Skript ausgeführt wird. Dieses integrierte Verhalten lädt Umgebungsvariablen direkt in `process.env` und kann die Funktion von Vite beeinträchtigen, da es bestehende `process.env`-Werte berücksichtigt. Workarounds finden Sie unter [oven-sh/bun#5515](https://github.com/oven-sh/bun/issues/5515).
+
+:::
+
 Außerdem verwendet Vite [dotenv-expand](https://github.com/motdotla/dotenv-expand), um in env-Dateien geschriebene Variablen zu erweitern. Um mehr über die Syntax zu erfahren, sehen Sie sich [die Dokumentation](https://github.com/motdotla/dotenv-expand#what-rules-does-the-expansion-engine-follow) dazu an.
 
 Beachten Sie, dass Sie, wenn Sie `$` in Ihrem Umgebungscode verwenden möchten, es mit `\` escapen müssen.
@@ -103,7 +109,7 @@ VITE_FOO=foo${VITE_BAR}
 VITE_BAR=bar
 ```
 
-Dies funktioniert nicht in Shell-Skripten oder anderen Werkzeugen wie `docker-compose`.
+Dies funktioniert nicht in Shell-Skripten oder anderen Werkzeugen wie `docker compose`.
 Allerdings unterstützt Vite dieses Verhalten, da es seit langem von `dotenv-expand` unterstützt wird und andere Tools im JavaScript-Ökosystem ältere Versionen verwenden, die dieses Verhalten unterstützen.
 
 Um Interoperabilitätsprobleme zu vermeiden, wird empfohlen, sich nicht auf dieses Verhalten zu verlassen. Vite wird möglicherweise in Zukunft Warnungen für dieses Verhalten ausgeben.
