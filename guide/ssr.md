@@ -14,3 +14,5 @@ Vite provides built-in support for server-side rendering (SSR). [`create-vite-ex
 
 You can also scaffold these projects locally by [running `create-vite`](./index.md#scaffolding-your-first-vite-project) and choose `Others > create-vite-extra` under the framework option.
 Refer to the [example projects](#example-projects) for a working setup.
+The options object in `load` and `transform` is optional, Rollup is not currently using this object but may extend these hooks with additional metadata in the future.
+      path.resolve(import.meta.dirname, 'index.html'),

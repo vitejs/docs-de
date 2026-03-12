@@ -1,4 +1,8 @@
   gold: [
+import type {
+  Sponsor,
+  SponsorTier,
+} from '@voidzero-dev/vitepress-theme/src/types/sponsors'
     // through GitHub -> OpenCollective
     {
       name: 'Remix',
@@ -12,8 +16,8 @@
       img: '/handsontable.svg',
     },
       tier: 'in partnership with',
-export const voidZero = {
-  name: 'VoidZero',
-  url: 'https://voidzero.dev',
-  img: '/voidzero.svg',
-} satisfies Sponsor
+const data = ref<SponsorTier[]>()
+function mapSponsors(sponsors: Sponsors): SponsorTier[] {
+      size: 'big' as const,
+      size: 'big' as const,
+      size: 'medium' as const,

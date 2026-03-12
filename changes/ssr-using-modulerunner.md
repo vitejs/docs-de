@@ -19,3 +19,4 @@ Affect scope: `Vite Plugin Authors`
 ## Migration Guide
 
 // TODO:
+`server.ssrFixStacktrace` and `server.ssrRewriteStacktrace` do not have to be called when using the Module Runner APIs. The stack traces will be updated unless `sourcemapInterceptor` is set to `false`.

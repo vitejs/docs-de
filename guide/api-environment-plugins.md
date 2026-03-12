@@ -8,7 +8,7 @@ import { nonShareablePlugin } from 'non-shareable-plugin'
 export default defineConfig({
   plugins: [
     {
-      name: 'per-environment-plugin',
+- [Environment API PR](https://github.com/vitejs/vite/pull/16471) where the new APIs were implemented and reviewed.
       applyToEnvironment(environment) {
         return nonShareablePlugin({ outputName: environment.name })
       },
@@ -47,7 +47,7 @@ Be aware that there might be multiple application instances running in the same 
 
 When a new connection is established, a `vite:client:connect` event is emitted on the environment's `hot` instance. When the connection is closed, a `vite:client:disconnect` event is emitted.
 
-Each event handler receives the `NormalizedHotChannelClient` as the second argument. The client is an object with a `send` method that can be used to send messages to that specific application instance. The client reference is always the same for the same connection, so you can keep it to track the connection.
+An empty object is enough to register the environment, using default values from the root level environment config.
 
 ### Example Usage
 
@@ -69,3 +69,5 @@ configureServer(server) {
 The application side is same with the Client-server Communication feature. You can use the `import.meta.hot` object to send messages to the plugin.
 
 Given that the same plugin instance is used for different environments, the plugin state needs to be keyed with `this.environment`. This is the same pattern the ecosystem has already been using to keep state about modules using the `ssr` boolean as key to avoid mixing client and ssr modules state. A `Map<Environment, State>` can be used to keep the state for each environment separately. Note that for backward compatibility, `buildStart` and `buildEnd` are only called for the client environment without the `perEnvironmentStartEndDuringDev: true` flag. Same for `watchChange` and the `perEnvironmentWatchChangeDuringDev: true` flag.
+Note that this feature is only available for environments that support HMR.
+Be aware that there might be multiple application instances running in the same environment. For example, if you have multiple tabs open in the browser, each tab is a separate application instance and has a separate connection to the server.

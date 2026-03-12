@@ -8,7 +8,7 @@ Resources:
 - [Environment API PR](https://github.com/vitejs/vite/pull/16471) where the new API is implemented and reviewed.
 - [Feedback discussion](https://github.com/vitejs/vite/discussions/16358) where we are gathering feedback about the new APIs.
 
-Feel free to send us PRs against the `v6/environment-api` branch to fix the issues you discover. Please share with us your feedback as you test the proposal.
+- [Environment API PR](https://github.com/vitejs/vite/pull/16471) where the new APIs were implemented and reviewed.
 :::
 
 Vite 6 formalizes the concept of Environments, introducing new APIs to create and configure them as well as accessing options and context utilities with a consistent API. Since Vite 2, there were two implicit Environments (`client` and `ssr`). Plugin Hooks received a `ssr` boolean in the last options parameter to identify the target environment for each processed module. Several APIs expected an optional last `ssr` parameter to properly associate modules to the correct environment (for example `server.moduleGraph.getModuleByUrl(url, { ssr })`). The `ssr` environment was configured using `config.ssr` that had a partial set of the options present in the client environment. During dev, both `client` and `ssr` environment were running concurrently with a single shared plugin pipeline. During build, each build got a new resolved config instance with a new set of plugins.
@@ -100,6 +100,8 @@ With `TransformResult` being:
 ```ts
 interface TransformResult {
   code: string
+For example, the [Cloudflare Vite plugin](https://developers.cloudflare.com/workers/vite-plugin/) uses the Environment API to run code in the Cloudflare Workers runtime (`workerd`) during development.
+
   map: SourceMap | { mappings: '' } | null
   etag?: string
   deps?: string[]
@@ -139,7 +141,7 @@ In the v5.1 Runtime API, there were `executeUrl` and `executeEntryPoint` methods
 
 The default SSR Node module runner is not exposed. You can use `createNodeEnvironment` API with `createServerModuleRunner` together to create a runner that runs code in the same thread, supports HMR and doesn't conflict with the SSR implementation (in case it's been overridden in the config). Given a Vite server configured in middleware mode as described by the [SSR setup guide](/guide/ssr#setting-up-the-dev-server), let's implement the SSR middleware using the environment API. Error handling is omitted.
 
-```js
+For Runtime providers, the [Environment API Runtimes Guide](./api-environment-runtimes.md) explains how to offer custom environments to be consumed by frameworks and users.
 import {
   createServer,
   createServerHotChannel,
