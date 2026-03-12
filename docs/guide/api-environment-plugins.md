@@ -15,9 +15,9 @@ Bitte teilen Sie uns Ihr Feedback mit.
 
 ## Zugriff auf die aktuelle Umgebung in Hooks
 
-Da es bis Vite 6 nur zwei Umgebungen gab (`client` und `ssr`), reichte ein `ssr`-Boolescher Wert aus, um die aktuelle Umgebung in Vite-APIs zu identifizieren. Plugin-Hooks erhielten einen booleschen Wert „ssr“ im letzten Optionsparameter, und mehrere APIs erwarteten einen optionalen letzten Parameter „ssr“, um Module korrekt der richtigen Umgebung zuzuordnen (z. B. „server.moduleGraph.getModuleByUrl(url, { ssr })“).
+Da es bis Vite 6 nur zwei Umgebungen gab (`client` und `ssr`), reichte ein `ssr`-Boolescher Wert aus, um die aktuelle Umgebung in Vite-APIs zu identifizieren. Plugin-Hooks erhielten einen booleschen Wert `ssr` im letzten Optionsparameter, und mehrere APIs erwarteten einen optionalen letzten Parameter `ssr`, um Module korrekt der richtigen Umgebung zuzuordnen (z. B. `server.moduleGraph.getModuleByUrl(url, { ssr })`).
 
-Mit der Einführung konfigurierbarer Umgebungen haben wir nun eine einheitliche Möglichkeit, auf deren Optionen und Instanzen in Plugins zuzugreifen. Plugin-Hooks legen nun „this.environment“ in ihrem Kontext offen, und APIs, die zuvor einen booleschen Wert „ssr“ erwarteten, sind nun auf die richtige Umgebung beschränkt (z. B. „environment.moduleGraph.getModuleByUrl(url)“).
+Mit der Einführung konfigurierbarer Umgebungen haben wir nun eine einheitliche Möglichkeit, auf deren Optionen und Instanzen in Plugins zuzugreifen. Plugin-Hooks legen nun `this.environment` in ihrem Kontext offen, und APIs, die zuvor einen booleschen Wert `ssr` erwarteten, sind nun auf die richtige Umgebung beschränkt (z. B. `environment.moduleGraph.getModuleByUrl(url)`).
 
 Der Vite-Server verfügt über eine gemeinsame Plugin-Pipeline, aber wenn ein Modul verarbeitet wird, geschieht dies immer im Kontext einer bestimmten Umgebung. Die Instanz `environment` ist im Plugin-Kontext verfügbar.
 
@@ -52,7 +52,7 @@ Ein leeres Objekt reicht aus, um die Umgebung zu registrieren, Standardwerte aus
 ## Konfigurieren der Umgebung mithilfe von Hooks
 
 Während der `config`-Hook ausgeführt wird, ist die vollständige Liste der Umgebungen noch nicht bekannt, und die Umgebungen können sowohl durch die Standardwerte aus der Konfiguration der Umgebung auf Root-Ebene als auch explizit durch den `config.environments`-Eintrag beeinflusst werden.
-Plugins sollten Standardwerte mithilfe des Hooks „config“ festlegen. Um jede Umgebung zu konfigurieren, können sie den neuen Hook „configEnvironment“ verwenden. Dieser Hook wird für jede Umgebung mit ihrer teilweise aufgelösten Konfiguration einschließlich der Auflösung der endgültigen Standardwerte aufgerufen.
+Plugins sollten Standardwerte mithilfe des Hooks `config` festlegen. Um jede Umgebung zu konfigurieren, können sie den neuen Hook `configEnvironment` verwenden. Dieser Hook wird für jede Umgebung mit ihrer teilweise aufgelösten Konfiguration einschließlich der Auflösung der endgültigen Standardwerte aufgerufen.
 
 ```ts
   configEnvironment(name: string, options: EnvironmentOptions) {
@@ -73,7 +73,7 @@ Plugins sollten Standardwerte mithilfe des Hooks „config“ festlegen. Um jede
 - **Art:** `async`, `sequential`
 - **Siehe auch:** [HMR API](./api-hmr)
 
-Der Hook `hotUpdate` ermöglicht es Plugins, benutzerdefinierte HMR-Aktualisierungen für eine bestimmte Umgebung durchzuführen. Wenn sich eine Datei ändert, wird der HMR-Algorithmus für jede Umgebung nacheinander gemäß der Reihenfolge in `server.environments` ausgeführt, sodass der Hook „hotUpdate“ mehrmals aufgerufen wird. Der Hook empfängt ein Kontextobjekt mit der folgenden Signatur:
+Der Hook `hotUpdate` ermöglicht es Plugins, benutzerdefinierte HMR-Aktualisierungen für eine bestimmte Umgebung durchzuführen. Wenn sich eine Datei ändert, wird der HMR-Algorithmus für jede Umgebung nacheinander gemäß der Reihenfolge in `server.environments` ausgeführt, sodass der Hook `hotUpdate` mehrmals aufgerufen wird. Der Hook empfängt ein Kontextobjekt mit der folgenden Signatur:
 
 ```ts
 interface HotUpdateOptions {
@@ -262,7 +262,7 @@ configureServer(server) {
 }
 ```
 
-Die Anwendungsseite entspricht der Client-Server-Kommunikationsfunktion. Sie können das Objekt „import.meta.hot“ verwenden, um Nachrichten an das Plugin zu senden.
+Die Anwendungsseite entspricht der Client-Server-Kommunikationsfunktion. Sie können das Objekt `import.meta.hot` verwenden, um Nachrichten an das Plugin zu senden.
 
 ## Umgebung in Build-Hooks
 
