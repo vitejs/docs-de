@@ -227,6 +227,43 @@ export default defineConfig({
 
 Die `applyToEnvironment`-Hook wird zur konfigurierten Zeit aufgerufen, aktuell nach `configResolved`, da Projekte im Ökosystem die Plugins in der Hook ändern. Das Auflösen der Umgebungs-Plugins könnte zukünftig vor `configResolved` stattfinden.
 
+## Kommunikation zwischen Anwendung und Plugin
+
+Mit `environment.hot` können Plugins mit dem Code auf der Anwendungsseite für eine bestimmte Umgebung kommunizieren. Dies entspricht der Funktion [Client-Server-Kommunikation](/guide/api-plugin#client-server-communication), unterstützt jedoch auch andere Umgebungen als die Client-Umgebung.
+
+:::warning Hinweis
+
+Beachten Sie, dass diese Funktion nur für Umgebungen verfügbar ist, die HMR unterstützen.
+
+:::
+
+### Verwalten der Anwendungsinstanzen
+
+Beachten Sie, dass möglicherweise mehrere Anwendungsinstanzen in derselben Umgebung ausgeführt werden. Wenn Sie beispielsweise mehrere Registerkarten im Browser geöffnet haben, ist jede Registerkarte eine separate Anwendungsinstanz und hat eine separate Verbindung zum Server.
+
+Wenn eine neue Verbindung hergestellt wird, wird ein `vite:client:connect`-Ereignis auf der `hot`-Instanz der Umgebung ausgegeben. Wenn die Verbindung geschlossen wird, wird ein `vite:client:disconnect`-Ereignis ausgelöst.
+
+Jeder Ereignis-Handler erhält den `NormalizedHotChannelClient` als zweites Argument. Der Client ist ein Objekt mit einer `send`-Methode, mit der Nachrichten an diese bestimmte Anwendungsinstanz gesendet werden können. Die Client-Referenz ist für dieselbe Verbindung immer gleich, sodass Sie sie zur Verfolgung der Verbindung beibehalten können.
+
+### Anwendungsbeispiel
+
+Die Plugin-Seite:
+
+```js
+configureServer(server) {
+  server.environments.ssr.hot.on('my:greetings', (data, client) => {
+    // Tue etwas mit den Daten,
+    // und sende optional eine Antwort and die Anwendungsinstanz
+    client.send('my:foo:reply', `Hello from server! You said: ${data}`)
+  })
+
+  // Sende eine Nachricht an alle Anwendungsinstanzen
+  server.environments.ssr.hot.send('my:foo', 'Hello from server!')
+}
+```
+
+Die Anwendungsseite entspricht der Client-Server-Kommunikationsfunktion. Sie können das Objekt „import.meta.hot“ verwenden, um Nachrichten an das Plugin zu senden.
+
 ## Umgebung in Build-Hooks
 
 Genau wie während der Entwicklung erhalten Plugin-Hooks auch während des Builds die Umgebungsinstanz, die den booleschen Wert `ssr` ersetzt.
