@@ -92,8 +92,6 @@ Legen Sie fest, dass der Server bei Verwendung des Ports bereits in Verwendung i
 
 Aktivieren Sie TLS + HTTP/2. Der Wert ist ein [Option-Objekt](https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener), dass an `https.createServer()` weitergegeben wird.
 
-Beachten Sie, dass dies nur dann zu einem Downgrade auf TLS führt, wenn auch die Option [`server.proxy`](#server-proxy) verwendet wird.
-
 Ein gültiges Zertifikat ist erforderlich. Für eine grundlegende Einrichtung können Sie [@vitejs/plugin-basic-ssl](https://github.com/vitejs/vite-plugin-basic-ssl) zu den Projekt-Plugins hinzufügen, das automatisch ein selbstsigniertes Zertifikat erstellt und zwischenspeichert. Wir empfehlen jedoch, eigene Zertifikate zu erstellen.
 
 ## server.open
@@ -232,7 +230,7 @@ Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann igno
 
 Aufwärmen der zu transformierenden Dateien und Zwischenspeichern der Ergebnisse im Voraus. Dies verbessert das anfängliche Laden der Seite bei Serverstarts und verhindert Transformations-Wasserfälle.
 
-`clientFiles` sind Dateien, die nur im Client verwendet werden, während `ssrFiles` Dateien sind, die nur in SSR verwendet werden. Sie akzeptieren ein Array von Dateipfaden oder [`tinyglobby`](https://github.com/SuperchupuDev/tinyglobby) Mustern relativ zum `root`.
+`clientFiles` sind Dateien, die nur im Client verwendet werden, während `ssrFiles` Dateien sind, die nur in SSR verwendet werden. Sie akzeptieren ein Array von Dateipfaden oder [`tinyglobby`-Mustern](https://superchupu.dev/tinyglobby/comparison) Mustern relativ zum `root`.
 
 Stellen Sie sicher, dass Sie nur Dateien hinzufügen, die häufig verwendet werden, um den Vite Dev Server beim Start nicht zu überlasten.
 
