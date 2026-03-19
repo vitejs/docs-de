@@ -38,3 +38,4 @@ If you specify a different root, remember that `import.meta.dirname` will still 
         'my-lib': resolve(import.meta.dirname, 'lib/main.js'),
         secondary: resolve(import.meta.dirname, 'lib/secondary.js'),
 With the `--watch` flag enabled, changes to files to be bundled will trigger a rebuild. Note that changes to the config and its dependencies require restarting the build command.
+    rolldownOptions: {

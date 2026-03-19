@@ -76,3 +76,6 @@ export default extendConfig(config)
             text: 'Plugin Registry',
             link: 'https://registry.vite.dev/plugins',
           },
+      id: 'viteplus-alpha',
+      text: 'Announcing Vite+ Alpha: Open source. Unified. Next-gen.',
+      url: 'https://voidzero.dev/posts/announcing-vite-plus-alpha?utm_source=vite&utm_content=top_banner',
