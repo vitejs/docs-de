@@ -146,7 +146,7 @@ Der Hook kann Folgendes auswählen:
 
 ## Status pro Umgebung in Plugins
 
-Da dieselbe Plugin-Instanz für verschiedene Umgebungen verwendet wird, muss der Plugin-Status mit `this.environment` verschlüsselt werden. Dies entspricht dem Muster, das das Ökosystem bereits verwendet, um den Status von Modulen zu speichern, wobei der boolesche Wert `ssr` als Schlüssel verwendet wird, um eine Vermischung des Status von Client- und SSR-Modulen zu vermeiden. Mit `Map<Environment, State>` kann der Status für jede Umgebung separat gespeichert werden. Beachten Sie, dass aus Gründen der Abwärtskompatibilität `buildStart` und `buildEnd` nur für die Client-Umgebung ohne das Flag `perEnvironmentStartEndDuringDev: true` aufgerufen werden.
+Da dieselbe Plugin-Instanz für verschiedene Umgebungen verwendet wird, muss der Plugin-Status mit `this.environment` verschlüsselt werden. Dies entspricht dem Muster, das das Ökosystem bereits verwendet, um den Status von Modulen zu speichern, wobei der boolesche Wert `ssr` als Schlüssel verwendet wird, um eine Vermischung des Status von Client- und SSR-Modulen zu vermeiden. Mit `Map<Environment, State>` kann der Status für jede Umgebung separat gespeichert werden. Beachten Sie, dass aus Gründen der Abwärtskompatibilität `buildStart` und `buildEnd` nur für die Client-Umgebung ohne das Flag `perEnvironmentStartEndDuringDev: true` aufgerufen werden. Das Gleiche gilt für `watchChange` und die Flag `perEnvironmentWatchChangeDuringDev: true`.
 
 ```js
 function PerEnvironmentCountTransformedModulesPlugin() {
