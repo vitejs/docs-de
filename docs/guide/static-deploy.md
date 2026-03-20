@@ -63,7 +63,7 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
 
 2. Gehen Sie zur GitHub Pages-Konfiguration in den Einstellungen des Repository und wählen Sie die Quelle für die Bereitstellung als "GitHub Actions" aus. Dadurch wird ein Workflow erstellt, der Ihr Projekt erstellt und bereitstellt. Ein Beispielworkflow, der Abhängigkeiten installiert und mit npm erstellt, ist bereitgestellt:
 
-<<< ./static-deploy-github-pages.yaml#content
+   <<< ./static-deploy-github-pages.yaml#content [.github/workflows/deploy.yml]
 
 ## GitLab Pages und GitLab CI
 
