@@ -223,25 +223,6 @@ Wenn `fileName` mit `.json` endet, werden die rohen JSON-Metadaten stattdessen g
 ]
 ```
 
-::: tip
-Falls Sie die Lizenzdatei im gebauten Code referenzieren möchten, können Sie `build.rollupOptions.output.banner` verwenden, um einen Kommentar an den Anfang der Dateien hinzuzufügen. Zum Beispiel:
-
-```js twoslash [vite.config.js]
-import { defineConfig } from 'vite'
-
-export default defineConfig({
-  build: {
-    license: true,
-    rollupOptions: {
-      output: {
-        banner:
-          '/* Schauen Sie sich die Lizenzen der gündelten Abhängigkeiten hier an: https://example.com/license.md */',
-      },
-    },
-  },
-})
-```
-
 :::
 
 ## build.manifest
