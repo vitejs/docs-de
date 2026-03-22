@@ -242,8 +242,6 @@ export default defineConfig({
 })
 ```
 
-:::
-
 ## build.manifest
 
 - **Typ:** `boolean | string`
