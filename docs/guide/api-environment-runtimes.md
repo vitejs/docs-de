@@ -80,7 +80,7 @@ Ein Vite-Entwicklungsserver stellt standardmäßig zwei Umgebungen bereit: eine 
 
 Der transformierte Quellcode wird als Modul bezeichnet, und die Beziehungen zwischen den in jeder Umgebung verarbeiteten Modulen werden in einem Modulgraphen gespeichert. Der transformierte Code für diese Module wird an die mit jeder Umgebung verbundenen Laufzeitumgebungen gesendet, um dort ausgeführt zu werden. Wenn ein Modul in der Laufzeitumgebung ausgewertet wird, werden seine importierten Module angefordert, wodurch die Verarbeitung eines Abschnitts des Modulgraphen ausgelöst wird.
 
-Ein Vite-Modul-Runner ermöglicht die Ausführung beliebiger Codes, indem diese zunächst mit Vite-Plugins verarbeitet werden. Er unterscheidet sich von „server.ssrLoadModule“, da die Runner-Implementierung vom Server entkoppelt ist. Dies ermöglicht es Autoren von Bibliotheken und Frameworks, ihre eigene Kommunikationsebene zwischen dem Vite-Server und dem Runner zu implementieren. Der Browser kommuniziert mit seiner entsprechenden Umgebung über den Server-WebSocket und über HTTP-Anfragen. Der Node-Modul-Runner kann direkt Funktionsaufrufe zur Verarbeitung von Modulen ausführen, da er im selben Prozess läuft. Andere Umgebungen könnten Module ausführen, die mit einer JS-Laufzeitumgebung wie workerd oder einem Worker-Thread verbunden sind, wie es Vitest tut.
+Ein Vite-Modul-Runner ermöglicht die Ausführung beliebiger Codes, indem diese zunächst mit Vite-Plugins verarbeitet werden. Er unterscheidet sich von `server.ssrLoadModule`, da die Runner-Implementierung vom Server entkoppelt ist. Dies ermöglicht es Autoren von Bibliotheken und Frameworks, ihre eigene Kommunikationsebene zwischen dem Vite-Server und dem Runner zu implementieren. Der Browser kommuniziert mit seiner entsprechenden Umgebung über den Server-WebSocket und über HTTP-Anfragen. Der Node-Modul-Runner kann direkt Funktionsaufrufe zur Verarbeitung von Modulen ausführen, da er im selben Prozess läuft. Andere Umgebungen könnten Module ausführen, die mit einer JS-Laufzeitumgebung wie workerd oder einem Worker-Thread verbunden sind, wie es Vitest tut.
 
 Eines der Ziele dieser Funktion ist es, eine anpassbare API zur Verarbeitung und Ausführung von Code bereitzustellen. Benutzer können mit den offengelegten Primitiven neue Umgebungsfabriken erstellen.
 
@@ -305,20 +305,29 @@ import { createServer, RemoteEnvironmentTransport, DevEnvironment } from 'vite'
 
 function createWorkerEnvironment(name, config, context) {
   const worker = new Worker('./worker.js')
-    const handlerToWorkerListener = new WeakMap()
+  const handlerToWorkerListener = new WeakMap()
+  const client = {
+    send(payload: HotPayload) {
+      worker.postMessage(payload)
+    },
+  }
 
   const workerHotChannel = {
     send: (data) => w.postMessage(data),
     on: (event, handler) => {
-      if (event === 'connection') return
+      // Client ist bereits verbunden
+      if (event === 'vite:client:connect') return
+      if (event === 'vite:client:disconnect') {
+        const listener = () => {
+          handler(undefined, client)
+        }
+        handlerToWorkerListener.set(handler, listener)
+        worker.on('exit', listener)
+        return
+      }
 
       const listener = (value) => {
         if (value.type === 'custom' && value.event === event) {
-          const client = {
-            send(payload) {
-              w.postMessage(payload)
-            },
-          }
           handler(value.data, client)
         }
       }
@@ -326,7 +335,16 @@ function createWorkerEnvironment(name, config, context) {
       w.on('message', listener)
     },
     off: (event, handler) => {
-      if (event === 'connection') return
+      if (event === 'vite:client:connect') return
+      if (event === 'vite:client:disconnect') {
+        const listener = handlerToWorkerListener.get(handler)
+        if (listener) {
+          worker.off('exit', listener)
+          handlerToWorkerListener.delete(handler)
+        }
+        return
+      }
+
       const listener = handlerToWorkerListener.get(handler)
       if (listener) {
         w.off('message', listener)
@@ -352,6 +370,8 @@ await createServer({
 ```
 
 :::
+
+Stellen Sie sicher, dass Sie die Ereignisse `vite:client:connect` und `vite:client:disconnect` in den Methoden `on` und `off` implementieren, sofern diese Methoden vorhanden sind. Das Ereignis `vite:client:connect` sollte ausgelöst werden, wenn die Verbindung hergestellt wird, und das Ereignis `vite:client:disconnect` sollte ausgelöst werden, wenn die Verbindung geschlossen wird. Das an den Ereignis-Handler übergebene `HotChannelClient`-Objekt muss für dieselbe Verbindung dieselbe Referenz haben.
 
 Ein anderes Beispiels, bei dem HTTP-Anfragen verwendet werden, um zwischen dem Runner und dem Server zu kommunizieren: 
 
