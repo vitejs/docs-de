@@ -345,4 +345,4 @@ const plugin = {
 }
 ```
 
-Das liegt daran, dass [Rolldown unterstützt JavaScript-fremde Module](https://rolldown.rs/guide/in-depth/module-types) und leitet sich den Modultyp aus der Erweiterung ab, außer es wird spezifiziert.
+Das liegt daran, dass [Rolldown unterstützt JavaScript-fremde Module](https://rolldown.rs/in-depth/module-types) und leitet sich den Modultyp aus der Erweiterung ab, außer es wird spezifiziert.
