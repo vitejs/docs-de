@@ -63,7 +63,7 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
 
 2. Gehen Sie zur GitHub Pages-Konfiguration in den Einstellungen des Repository und wählen Sie die Quelle für die Bereitstellung als "GitHub Actions" aus. Dadurch wird ein Workflow erstellt, der Ihr Projekt erstellt und bereitstellt. Ein Beispielworkflow, der Abhängigkeiten installiert und mit npm erstellt, ist bereitgestellt:
 
-<<< ./static-deploy-github-pages.yaml#content
+   <<< ./static-deploy-github-pages.yaml#content [.github/workflows/deploy.yml]
 
 ## GitLab Pages und GitLab CI
 
@@ -284,7 +284,7 @@ Stellen Sie Ihre statische Website mit [Flightcontrol](https://www.flightcontrol
 
 ## Kinsta Hosting statischer Websites
 
-Stellen Sie Ihre statische Website mit [Kinsta](https://kinsta.com/static-site-hosting/) bereit, indem Sie diese [Anweisungen](https://kinsta.com/docs/react-vite-example/) befolgen.
+Stellen Sie Ihre statische Website mit [Kinsta](https://kinsta.com/static-site-hosting/) bereit, indem Sie diese [Anweisungen](https://kinsta.com/docs/static-site-hosting/static-site-quick-start/react-static-site-examples/#react-with-vite) befolgen.
 
 ## xmit Hosting statischer Websites
 
@@ -296,4 +296,4 @@ Stellen Sie Ihre statische Website mit [xmit](https://xmit.co) bereit, indem Sie
 
 Zephyr verfolgt einen anderen Ansatz als andere Cloud-Anbieter. Es lässt sich direkt in den Vite-Build-Prozess integrieren, sodass jedes Mal, wenn Sie den Entwicklungsserver für Ihre Anwendung erstellen oder ausführen, dieser automatisch mit Zephyr Cloud bereitgestellt wird.
 
-Befolgen Sie die Schritte im [Leitfaden für die Bereitstellung mit Vite](https://docs.zephyr-cloud.io/recipes/react-vite), um zu starten.
+Befolgen Sie die Schritte im [Leitfaden für die Bereitstellung mit Vite](https://docs.zephyr-cloud.io/bundlers/vite), um zu starten.
