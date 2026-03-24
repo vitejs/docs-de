@@ -260,6 +260,8 @@ pnpm link --global # use your preferred package manager for this step
 
 Gehen Sie dann zu Ihrem Vite-basierten Projekt und führen Sie `pnpm link --global vite` aus (oder den Paketmanager, den Sie zum globalen Verlinken von `vite` verwendet haben). Starten Sie nun den Entwicklungsserver neu, um auf dem neuesten Stand zu sein!
 
+Um mehr zu erfahren, wie und wann Vite neue Releases veröffentlicht, können Sie sich die [Release-Dokumentation](../releases.md) ansehen.
+
 ::: tip Abhängigkeiten die Vite benutzen
 
 Um die von Abhängigkeiten transitiv verwendeter Vite-Version zu ersetzen, sollten Sie [npm-Überschreibungen](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) oder [pnpm-Überschreibungen](https://pnpm.io/9.x/package_json#pnpmoverrides) verwenden.
