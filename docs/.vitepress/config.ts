@@ -8,7 +8,7 @@ import {
   groupIconVitePlugin,
 } from 'vitepress-plugin-group-icons'
 import { markdownItImageSize } from 'markdown-it-image-size'
-import packageJson from '../../packages/vite/package.json' with { type: 'json' }
+import packageJson from '../../package.json' with { type: 'json' }
 import { buildEnd } from './buildEnd.config'
 
 // NOTE: allow additional options to be passed to rolldown for now
