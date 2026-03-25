@@ -55,13 +55,25 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
 
 ## GitHub Pages
 
-1. Legen Sie den richtigen `base` in `vite.config.js` fest.
+1. **Vite-Konfiguration aktualisieren**
+
+   Setzen Sie die die korrekte `base` in `vite.config.js`.
 
    Wenn Sie auf `https://<USERNAME>.github.io/` oder auf eine benutzerdefinierte Domain über GitHub Pages (z. B. `www.example.com`) bereitstellen, setzen Sie `base` auf `'/'`. Alternativ können Sie `base` aus der Konfiguration entfernen, da es auch standardmäßig auf `'/'` eingestellt ist.
 
    Wenn Sie auf `https://<USERNAME>.github.io/<REPO>/` deployen (z.B. Ihr Repository befindet sich unter `https://github.com/<USERNAME>/<REPO>`), dann setzen Sie `base` auf `'/<REPO>/'`.
 
-2. Gehen Sie zur GitHub Pages-Konfiguration in den Einstellungen des Repository und wählen Sie die Quelle für die Bereitstellung als "GitHub Actions" aus. Dadurch wird ein Workflow erstellt, der Ihr Projekt erstellt und bereitstellt. Ein Beispielworkflow, der Abhängigkeiten installiert und mit npm erstellt, ist bereitgestellt:
+2. **GitHub Pages aktivieren**
+
+   Gehen Sie in Ihrem Repository zu **Settings → Pages**. Unter **Build and deployment**, öffnen Sie das **Source**-Dropdown and wählen Sie **GitHub Actions**.
+
+   GitHub stellt Ihre Seite nun mit Hilfe eines [Workflows](https://docs.github.com/en/actions/concepts/workflows-and-actions/workflows) von GitHub Actions bereit. Dies ist notwendig, da Vite einen Build-Schritt vor dem Deployment benötigt.
+
+3. **Einen Workflow erstellen**
+
+   Erstellen Sie eine neue Datei in Ihrem Repository unter `.github/workflows/deploy.yml`. Sie können auch auf **“create your own”** aus dem vorherigen Schritt klicken. Dadurch wird ein Einstiegsworkflow für Sie erstellt.
+
+   Hier ist ein Beispielworkflow, welcher Abhängigkeiten mit Hilfe von npm installiert, die Seite baut und bereitstellt, wenn sie Änderungen in den `main`-Branch pushen:
 
    <<< ./static-deploy-github-pages.yaml#content [.github/workflows/deploy.yml]
 
@@ -284,7 +296,7 @@ Stellen Sie Ihre statische Website mit [Flightcontrol](https://www.flightcontrol
 
 ## Kinsta Hosting statischer Websites
 
-Stellen Sie Ihre statische Website mit [Kinsta](https://kinsta.com/static-site-hosting/) bereit, indem Sie diese [Anweisungen](https://kinsta.com/docs/react-vite-example/) befolgen.
+Stellen Sie Ihre statische Website mit [Kinsta](https://kinsta.com/static-site-hosting/) bereit, indem Sie diese [Anweisungen](https://kinsta.com/docs/static-site-hosting/static-site-quick-start/react-static-site-examples/#react-with-vite) befolgen.
 
 ## xmit Hosting statischer Websites
 
@@ -296,4 +308,4 @@ Stellen Sie Ihre statische Website mit [xmit](https://xmit.co) bereit, indem Sie
 
 Zephyr verfolgt einen anderen Ansatz als andere Cloud-Anbieter. Es lässt sich direkt in den Vite-Build-Prozess integrieren, sodass jedes Mal, wenn Sie den Entwicklungsserver für Ihre Anwendung erstellen oder ausführen, dieser automatisch mit Zephyr Cloud bereitgestellt wird.
 
-Befolgen Sie die Schritte im [Leitfaden für die Bereitstellung mit Vite](https://docs.zephyr-cloud.io/recipes/react-vite), um zu starten.
+Befolgen Sie die Schritte im [Leitfaden für die Bereitstellung mit Vite](https://docs.zephyr-cloud.io/bundlers/vite), um zu starten.
