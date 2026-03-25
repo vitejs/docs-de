@@ -55,13 +55,25 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
 
 ## GitHub Pages
 
-1. Legen Sie den richtigen `base` in `vite.config.js` fest.
+1. **Vite-Konfiguration aktualisieren**
+
+   Setzen Sie die die korrekte `base` in `vite.config.js`.
 
    Wenn Sie auf `https://<USERNAME>.github.io/` oder auf eine benutzerdefinierte Domain über GitHub Pages (z. B. `www.example.com`) bereitstellen, setzen Sie `base` auf `'/'`. Alternativ können Sie `base` aus der Konfiguration entfernen, da es auch standardmäßig auf `'/'` eingestellt ist.
 
    Wenn Sie auf `https://<USERNAME>.github.io/<REPO>/` deployen (z.B. Ihr Repository befindet sich unter `https://github.com/<USERNAME>/<REPO>`), dann setzen Sie `base` auf `'/<REPO>/'`.
 
-2. Gehen Sie zur GitHub Pages-Konfiguration in den Einstellungen des Repository und wählen Sie die Quelle für die Bereitstellung als "GitHub Actions" aus. Dadurch wird ein Workflow erstellt, der Ihr Projekt erstellt und bereitstellt. Ein Beispielworkflow, der Abhängigkeiten installiert und mit npm erstellt, ist bereitgestellt:
+2. **GitHub Pages aktivieren**
+
+   Gehen Sie in Ihrem Repository zu **Settings → Pages**. Unter **Build and deployment**, öffnen Sie das **Source**-Dropdown and wählen Sie **GitHub Actions**.
+
+   GitHub stellt Ihre Seite nun mit Hilfe eines [Workflows](https://docs.github.com/en/actions/concepts/workflows-and-actions/workflows) von GitHub Actions bereit. Dies ist notwendig, da Vite einen Build-Schritt vor dem Deployment benötigt.
+
+3. **Einen Workflow erstellen**
+
+   Erstellen Sie eine neue Datei in Ihrem Repository unter `.github/workflows/deploy.yml`. Sie können auch auf **“create your own”** aus dem vorherigen Schritt klicken. Dadurch wird ein Einstiegsworkflow für Sie erstellt.
+
+   Hier ist ein Beispielworkflow, welcher Abhängigkeiten mit Hilfe von npm installiert, die Seite baut und bereitstellt, wenn sie Änderungen in den `main`-Branch pushen:
 
    <<< ./static-deploy-github-pages.yaml#content [.github/workflows/deploy.yml]
 

@@ -183,26 +183,11 @@ export default defineConfig({
 
 - **Typ:** `boolean | { fileName?: string }`
 - **Standard:** `false`
+- **Verwandt:** [Lizenz](/guide/features#license)
 
-Wenn der Wert auf `true` gesetzt ist, wird der Build die Datei `.vite/license.md` erstellen, die alle Lizenzen der gebündelten Abhängigkeiten enthält. Sie kann gehostet werden, um die von der App verwendeten Abhängigkeiten kenntlich zu machen. Wenn `fileName` angegeben ist, wird dieser Wert als relative Dateiname zu `outDir` verwendet. Eine Beispielausgabe könnte wie folgt aussehen:
+Wenn der Wert auf `true` gesetzt ist, wird der Build die Datei `.vite/license.md` erstellen, die alle Lizenzen der gebündelten Abhängigkeiten enthält. 
 
-```md
-# Licenses
-
-The app bundles dependencies which contain the following licenses:
-
-## dep-1 - 1.2.3 (CC0-1.0)
-
-CC0 1.0 Universal
-
-...
-
-## dep-2 - 4.5.6 (MIT)
-
-MIT License
-
-...
-```
+Wenn `fileName` übergeben wird, wird er für den Lizenzdateinamen verwendet, welcher relativ zum `outDir` ist.
 
 Wenn `fileName` mit `.json` endet, werden die rohen JSON-Metadaten stattdessen generiert und können für die  Weiterverarbeitung verwendet werden. Zum Beispiel:
 
@@ -221,25 +206,6 @@ Wenn `fileName` mit `.json` endet, werden die rohen JSON-Metadaten stattdessen g
     "text": "MIT License\n\n..."
   }
 ]
-```
-
-::: tip
-Falls Sie die Lizenzdatei im gebauten Code referenzieren möchten, können Sie `build.rollupOptions.output.banner` verwenden, um einen Kommentar an den Anfang der Dateien hinzuzufügen. Zum Beispiel:
-
-```js twoslash [vite.config.js]
-import { defineConfig } from 'vite'
-
-export default defineConfig({
-  build: {
-    license: true,
-    rollupOptions: {
-      output: {
-        banner:
-          '/* Schauen Sie sich die Lizenzen der gündelten Abhängigkeiten hier an: https://example.com/license.md */',
-      },
-    },
-  },
-})
 ```
 
 :::
