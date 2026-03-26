@@ -47,6 +47,23 @@ export default defineConfig({
 })
 ```
 
+## optimizeDeps.rolldownOptions <NonInheritBadge />
+
+- **Typ:** [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<``RolldownOptions`, `'input' | 'logLevel' | 'output'> & {
+  output?: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<`
+    `RolldownOutputOptions`,
+    `'format' | 'sourcemap' | 'dir' | 'banner'>`
+`}`
+
+<!-- TODO: add link to RolldownOptions -->
+<!-- TODO: add link to RolldownOutputOptions -->
+
+Optionen die an Rolldown übergeben werden, während die Abhängigkeiten gescannt und optimiert werden.
+
+Bestimmte Optionen werden ausgelassen, da eine Änderungen an ihnen nicht kompatibel mit der Abhängigkeitsoptimierung von Vite wäre.
+
+- `plugins` werden mit dem Abhängigkeits-Plugin von Vite zusammengeführt
+
 ## optimizeDeps.esbuildOptions <NonInheritBadge />
 
 - **Typ:** [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<`[`EsbuildBuildOptions`](https://esbuild.github.io/api/#general-options)`,
@@ -60,13 +77,9 @@ export default defineConfig({
 | 'outbase'
 | 'outExtension'
 | 'metafile'>`
+- **Veraltet**
 
-Optionen, die an esbuild während des Abhängigkeits-Scannens und der Optimierung übergeben werden sollen.
-
-Bestimmte Optionen werden ausgelassen, da ihre Änderung nicht mit der Abhängigkeitsoptimierung von Vite kompatibel wäre.
-
-- `external` wird ebenfalls ausgelassen, verwenden Sie Vites `optimizeDeps.exclude`-Option
-- `plugins` werden mit dem Abhängigkeits-Plugin von Vite zusammengeführt
+Diese Option ist intern zu `optimizeDeps.rolldownOptions` konvertiert. Nutzen Sie `optimizeDeps.rolldownOptions` stattdessen.
 
 ## optimizeDeps.force <NonInheritBadge />
 
