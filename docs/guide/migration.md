@@ -1,4 +1,4 @@
-# Migration von Version 7
+# Migration von v7
 
 ## Neue Funktionen
 
@@ -24,7 +24,7 @@ Beachten Sie, dass diese Transformation einige Einschränkungen aufweist, da die
 
 **_TODO: Diese Änderung später implementieren_**
 
-Der Standardwert für `build.target`, `‚baseline-widely-available‘`, wurde auf einen neueren Browser aktualisiert.
+Der Standardwert für `build.target`, `'baseline-widely-available'`, wurde auf einen neueren Browser aktualisiert.
 
 - Chrome 107 → 111
 - Edge 107 → 111
@@ -39,7 +39,7 @@ Vite 8 verwendet Oxc-basierte Tools anstelle von esbuild und Rollup.
 
 ### Schrittweise Migration
 
-Das Paket `rolldown-vite` implementiert Vite 7 mit Rolldown-Integration, jedoch ohne die übrigen Änderungen von Vite 8. Dies kann als Zwischenschritt bei der Migration zu Vite 8 genutzt werden. Siehe [die Anleitung zur Rolldown-Integration](https://v7.vite.dev/guide/rolldown) in der Vite-7-Dokumentation, um von Vite 7 auf `rolldown-vite` umzusteigen.
+Das Paket `rolldown-vite` implementiert Vite 7 mit Rolldown-Integration, jedoch ohne die übrigen Änderungen von Vite 8. Dies kann als Zwischenschritt bei der Migration zu Vite 8 genutzt werden. Siehe [Anleitung zur Rolldown-Integration](https://v7.vite.dev/guide/rolldown) in der Vite-7-Dokumentation, um von Vite 7 auf `rolldown-vite` umzusteigen.
 
 <!-- TODO: Hide the guide from the sidebar as it is irrelevant in Vite 8. Also update the content there -->
 
@@ -78,9 +78,9 @@ Sie können die von der Kompatibilitätsschicht festgelegten Optionen auch über
 
 ```js
 const plugin = {
-  name: ‚log-config‘,
+  name: 'log-config',
   configResolved(config) {
-    console.log(‚options‘, config.optimizeDeps.esbuildOptions)
+    console.log('options', config.optimizeDeps.esbuildOptions)
   },
 },
 ```
@@ -95,10 +95,10 @@ Die folgenden Optionen werden konvertiert:
 - `esbuild.include` -> `oxc.include`
 - `esbuild.exclude` -> `oxc.exclude`
 - [`esbuild.jsx`](https://esbuild.github.io/api/#jsx) -> [`oxc.jsx`](https://oxc.rs/docs/guide/usage/transformer/jsx)
-  - `esbuild.jsx: ‚preserve‘` -> `oxc.jsx: ‚preserve‘`
-  - `esbuild.jsx: ‚automatic‘` -> `oxc.jsx: { runtime: ‚automatic‘ }`
+  - `esbuild.jsx: 'preserve'` -> `oxc.jsx: 'preserve'`
+  - `esbuild.jsx: 'automatic'` -> `oxc.jsx: { runtime: 'automatic' }`
     - [`esbuild.jsxImportSource`](https://esbuild.github.io/api/#jsx-import-source) -> `oxc.jsx.importSource`
-  - `esbuild.jsx: ‚transform‘` -> `oxc.jsx: { runtime: ‚classic‘ }`
+  - `esbuild.jsx: 'transform'` -> `oxc.jsx: { runtime: 'classic' }`
     - [`esbuild.jsxFactory`](https://esbuild.github.io/api/#jsx-factory) -> `oxc.jsx.pragma`
     - [`esbuild.jsxFragment`](https://esbuild.github.io/api/#jsx-fragment) -> `oxc.jsx.pragmaFrag`
   - [`esbuild.jsxDev`](https://esbuild.github.io/api/#jsx-dev) -> `oxc.jsx.development`
@@ -113,9 +113,9 @@ Sie können die von der Kompatibilitätsschicht festgelegten Optionen auch über
 
 ```js
 const plugin = {
-  name: ‚log-config‘,
+  name: 'log-config',
   configResolved(config) {
-    console.log(‚options‘, config.oxc)
+    console.log('options', config.oxc)
   },
 },
 ```
@@ -124,7 +124,7 @@ const plugin = {
 
 Derzeit unterstützt der Oxc-Transformer das Herunterkonvertieren nativer Dekoratoren nicht ([oxc-project/oxc#9170](https://github.com/oxc-project/oxc/issues/9170)).
 
-:::: Details Workaround für das Herunterkonvertieren nativer Dekoratoren
+:::: details Workaround für das Herunterkonvertieren nativer Dekoratoren
 
 Sie können vorerst [Babel](https://babeljs.io/) oder [SWC](https://swc.rs/) verwenden, um native Dekoratoren herunterzukonvertieren. SWC ist zwar schneller als Babel, unterstützt jedoch **nicht die neueste Dekorator-Spezifikation**, die esbuild unterstützt.
 
@@ -236,7 +236,7 @@ Bitte beachten Sie: Wenn Sie ein Plugin verwenden, das die Funktion `transformWi
 
 ### JS-Minifizierung mit Oxc
 
-Für die JS-Minifizierung wird nun standardmäßig Oxc Minifier anstelle von esbuild verwendet. Sie können die Option [`build.minify: ‚esbuild‘`](/config/build-options#minify) verwenden, um wieder zu esbuild zurückzukehren, dies ist jedoch veraltet und wird in Zukunft entfernt. Beachten Sie, dass Sie `esbuild` als Entwicklungsabhängigkeit installieren müssen, da es nun eine optionale Abhängigkeit ist.
+Für die JS-Minifizierung wird nun standardmäßig Oxc Minifier anstelle von esbuild verwendet. Sie können die Option [`build.minify: 'esbuild'`](/config/build-options#minify) verwenden, um wieder zu esbuild zurückzukehren, dies ist jedoch veraltet und wird in Zukunft entfernt. Beachten Sie, dass Sie `esbuild` als Entwicklungsabhängigkeit installieren müssen, da es nun eine optionale Abhängigkeit ist.
 
 Wenn Sie bisher die Optionen `esbuild.minify*` zur Steuerung des Minifizierungsverhaltens verwendet haben, können Sie stattdessen die Option `build.rolldownOptions.output.minify` verwenden. Wenn Sie die Option `esbuild.drop` verwendet haben, können Sie stattdessen die [`build.rolldownOptions.output.minify.compress.drop*`-Optionen](https://oxc.rs/docs/guide/usage/minifier/dead-code-elimination) verwenden.
 
@@ -246,7 +246,7 @@ Beachten Sie, dass esbuild und Oxc Minifier leicht unterschiedliche Annahmen bez
 
 ### CSS-Minifizierung mit Lightning CSS
 
-[Lightning CSS](https://lightningcss.dev/) wird nun standardmäßig für die CSS-Minifizierung verwendet. Mit der Option [`build.cssMinify: ‚esbuild‘`](/config/build-options#cssminify) können Sie wieder zu esbuild zurückwechseln. Beachten Sie, dass Sie `esbuild` als Entwicklungsabhängigkeit installieren müssen, da es nun eine optionale Abhängigkeit ist.
+[Lightning CSS](https://lightningcss.dev/) wird nun standardmäßig für die CSS-Minifizierung verwendet. Mit der Option [`build.cssMinify: 'esbuild'`](/config/build-options#cssminify) können Sie wieder zu esbuild zurückwechseln. Beachten Sie, dass Sie `esbuild` als Entwicklungsabhängigkeit installieren müssen, da es nun eine optionale Abhängigkeit ist.
 
 Lightning CSS unterstützt mehr Syntax-Optimierungen, daher kann die Größe des CSS-Bundles größer ausfallen.
 
@@ -260,24 +260,24 @@ Wenn eine der folgenden Bedingungen zutrifft, entspricht der `default`-Import de
 - Das dem Importeur am nächsten liegende `package.json`-Datei enthält ein `type`-Feld, das auf `module` gesetzt ist
 - Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf `true` gesetzt
 
-::: Details Das bisherige Verhalten
+::: details Das bisherige Verhalten
 
 In der Entwicklungsumgebung ist der `default`-Import der Wert von `module.exports` des importierten CJS-Moduls, wenn eine der folgenden Bedingungen erfüllt ist. Andernfalls ist der `default`-Import der Wert von `module.exports.default` des importierten CJS-Moduls.
 
 - _Der Importer ist in der Abhängigkeitsoptimierung enthalten_ und hat die Endung `.mjs` oder `.mts`
 - _Der Importer ist in der Abhängigkeitsoptimierung enthalten_ und das dem Importer am nächsten liegende `package.json` hat ein `type`-Feld, das auf `module` gesetzt ist
-- Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf „true“ gesetzt
+- Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf `true` gesetzt
 
 Im Build-Modus lauteten die Bedingungen:
 
-- Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf „true“ gesetzt
+- Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf `true` gesetzt
 - _Die Eigenschaft `default` von `module.exports` existiert nicht_
 
-(vorausgesetzt, [`build.commonjsOptions.defaultIsModuleExports`](https://github.com/rollup/plugins/tree/master/packages/commonjs#defaultismoduleexports) wurde nicht vom Standardwert `‚auto‘` geändert)
+(vorausgesetzt, [`build.commonjsOptions.defaultIsModuleExports`](https://github.com/rollup/plugins/tree/master/packages/commonjs#defaultismoduleexports) wurde nicht vom Standardwert `'auto'` geändert)
 
 :::
 
-Weitere Informationen finden Sie in Rolldowns Dokumentation zu diesem Problem: [Mehrdeutiger `default`-Import aus CJS-Modulen – CJS-Bündelung | Rolldown](https://rolldown.rs/in-depth/bundling-cjs#ambiguous-default-import-from-cjs-modules).
+Weitere Informationen finden Sie in Rolldowns Dokumentation zu diesem Problem: [Mehrdeutiger `default`-Import aus CJS-Modulen - CJS-Bündelung | Rolldown](https://rolldown.rs/in-depth/bundling-cjs#ambiguous-default-import-from-cjs-modules).
 
 Diese Änderung kann dazu führen, dass bestehender Code, der CJS-Module importiert, nicht mehr funktioniert. Mit der Option `legacy.inconsistentCjsInterop: true` können Sie das bisherige Verhalten vorübergehend wiederherstellen. Beachten Sie, dass diese Option in Zukunft entfernt wird. Wenn Sie ein Paket finden, das von dieser Änderung betroffen ist, melden Sie dies bitte dem Paketautor. Verweisen Sie dabei unbedingt auf das oben genannte Dokument von Rolldown, damit der Autor den Kontext nachvollziehen kann.
 
@@ -304,11 +304,11 @@ export default defineConfig({
 })
 ```
 
-Weitere Informationen finden Sie in der Dokumentation von Rolldown: [`require` externe Module – CJS bündeln | Rolldown](https://rolldown.rs/in-depth/bundling-cjs#require-external-modules).
+Weitere Informationen finden Sie in der Dokumentation von Rolldown: [`require` externe Module - CJS bündeln | Rolldown](https://rolldown.rs/in-depth/bundling-cjs#require-external-modules).
 
 ### `import.meta.url` in UMD / IIFE
 
-`import.meta.url` wird in den Ausgabeformaten UMD / IIFE nicht polyfilled. Es wird standardmäßig durch `undefined` ersetzt. Wenn Sie das bisherige Verhalten bevorzugen, können Sie die Option `define` zusammen mit der Option `build.rolldownOptions.output.intro` verwenden. Weitere Details finden Sie in der Rolldown-Dokumentation: [Bekannte `import.meta`-Eigenschaften – Nicht-ESM-Ausgabeformate | Rolldown](https://rolldown.rs/in-depth/non-esm-output-formats#well-known-import-meta-properties).
+`import.meta.url` wird in den Ausgabeformaten UMD / IIFE nicht polyfilled. Es wird standardmäßig durch `undefined` ersetzt. Wenn Sie das bisherige Verhalten bevorzugen, können Sie die Option `define` zusammen mit der Option `build.rolldownOptions.output.intro` verwenden. Weitere Details finden Sie in der Rolldown-Dokumentation: [Bekannte `import.meta`-Eigenschaften - Nicht-ESM-Ausgabeformate | Rolldown](https://rolldown.rs/in-depth/non-esm-output-formats#well-known-import-meta-properties).
 
 ### Option `build.rollupOptions.watch.chokidar` entfernt
 
@@ -339,8 +339,8 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 
 Es gibt weitere grundlegende Änderungen, die nur wenige Benutzer betreffen.
 
-- **[TODO: Vor der stabilen Version beheben (besser noch vor der ersten Beta-Version)]** https://github.com/rolldown/rolldown/issues/5867
-- **[TODO: Vor der stabilen Version beheben]** https://github.com/rolldown/rolldown/issues/5726 (betrifft Nuxt, Qwik)
+- **[TODO: vor der stabilen Version beheben (besser noch vor der ersten Beta-Version)]** https://github.com/rolldown/rolldown/issues/5867
+- **[TODO: vor der stabilen Version beheben]** https://github.com/rolldown/rolldown/issues/5726 (betrifft Nuxt, Qwik)
 - **[TODO: vor der stabilen Version beheben]** https://github.com/rolldown/rolldown/issues/3403 (betrifft Sveltekit)
 - **[TODO: vor der stabilen Version beheben]** Legacy-Chunks werden aufgrund der fehlenden Funktion zur Ausgabe vorgefertigter Chunks ([rolldown#4304](https://github.com/rolldown/rolldown/issues/4034)) als Asset-Datei statt als Chunk-Datei ausgegeben. Das bedeutet, dass die Chunk-bezogenen Optionen nicht für Legacy-Chunks gelten und die Manifest-Datei Legacy-Chunks nicht als Chunk-Datei enthält.
 - **[TODO: vor der stabilen Version beheben]** Der Resolver-Cache verursacht in Vitest kleinere Fehler ([rolldown-vite#466](https://github.com/vitejs/rolldown-vite/issues/466), [vitest#8754](https://github.com/vitest-dev/vitest/issues/8754#issuecomment-3441115032))
@@ -353,7 +353,7 @@ Es gibt weitere grundlegende Änderungen, die nur wenige Benutzer betreffen.
 - Änderungen am `bundle`-Objekt (`bundle` ist ein Objekt, das in den Hooks `generateBundle` / `writeBundle` übergeben und von der Funktion `build` zurückgegeben wird):
   - Die Zuweisung an `bundle[foo]` wird nicht unterstützt. Dies wird auch von Rollup nicht empfohlen. Bitte verwenden Sie stattdessen `this.emitFile()`.
   - Die Referenz wird nicht zwischen den Hooks geteilt ([rolldown-vite#410](https://github.com/vitejs/rolldown-vite/issues/410))
-  - `structuredClone(bundle)` führt zu einem Fehler mit `DataCloneError: #<Object> konnte nicht geklont werden`. Dies wird nicht mehr unterstützt. Bitte klonen Sie es mit `structuredClone({ ...bundle })`. ([rolldown-vite#128](https://github.com/vitejs/rolldown-vite/issues/128))
+  - `structuredClone(bundle)` führt zu einem Fehler mit `DataCloneError: #<Object> could not be cloned`. Dies wird nicht mehr unterstützt. Bitte klonen Sie es mit `structuredClone({ ...bundle })`. ([rolldown-vite#128](https://github.com/vitejs/rolldown-vite/issues/128))
 - **[TODO: clarify this in Rolldown's docs and link it from here]** All parallel hooks in Rollup works as sequential hooks.
 - `"use strict";` is not injected sometimes. See [Rolldown's documentation](https://rolldown.rs/in-depth/directives) for more details.
 - Transforming to lower than ES5 with plugin-legacy is not supported ([rolldown-vite#452](https://github.com/vitejs/rolldown-vite/issues/452))
@@ -367,12 +367,12 @@ Es gibt weitere grundlegende Änderungen, die nur wenige Benutzer betreffen.
   - `renderDynamicImport` hook ([rolldown#4532](https://github.com/rolldown/rolldown/issues/4532))
   - `resolveFileUrl` hook
 - `parseAst` / `parseAstAsync` functions are now deprecated in favor of `parse` / `parseAsync` functions which has more features.- **[TODO: Dies in der Rolldown-Dokumentation klarstellen und von hier aus verlinken]** Alle parallelen Hooks in Rollup funktionieren wie sequenzielle Hooks.
-- `„use strict“;` wird manchmal nicht eingefügt. Weitere Details findest du in der [Rolldown-Dokumentation](https://rolldown.rs/in-depth/directives).
+- ``use strict`;` wird manchmal nicht eingefügt. Weitere Details finden Sie in der [Rolldown-Dokumentation](https://rolldown.rs/in-depth/directives).
 - Die Umwandlung auf eine Version unter ES5 mit plugin-legacy wird nicht unterstützt ([rolldown-vite#452](https://github.com/vitejs/rolldown-vite/issues/452))
 - Die Übergabe desselben Browsers mit mehreren Versionen an die Option `build.target` führt nun zu einem Fehler: esbuild wählt die neueste Version aus, was wahrscheinlich nicht beabsichtigt war.
 - Fehlende Unterstützung durch Rolldown: Die folgenden Funktionen werden von Rolldown nicht unterstützt und sind auch in Vite nicht mehr verfügbar.
-  - `build.rollupOptions.output.format: ‚system‘` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2387))
-  - `build.rollupOptions.output.format: ‚amd‘` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2528))
+  - `build.rollupOptions.output.format: 'system'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2387))
+  - `build.rollupOptions.output.format: 'amd'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2528))
   - Vollständige Unterstützung für den alten TypeScript-Namespace ([oxc-project/oxc#14227](https://github.com/oxc-project/oxc/issues/14227))
   - `shouldTransformCachedModule`-Hook ([rolldown#4389](https://github.com/rolldown/rolldown/issues/4389))
   - `resolveImportMeta`-Hook ([rolldown#1010](https://github.com/rolldown/rolldown/issues/1010))
