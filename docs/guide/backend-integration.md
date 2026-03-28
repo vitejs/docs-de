@@ -64,7 +64,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
 
 3. Für die produktive Umgebung wird nach dem Ausführen von `vite build` neben anderen Asset-Dateien eine Datei `.vite/manifest.json` erstellt. Eine Beispiel-Manifestdatei sieht wie folgt aus:
 
-   ```json [.vite/manifest.json]
+   ```json [.vite/manifest.json] style:max-height:400px
    {
      "_shared-B7PI925R.js": {
        "file": "assets/shared-B7PI925R.js",
@@ -110,17 +110,53 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    
    Das Manifest hat eine Struktur `Record<name, chunk>`, bei dem jeder Chunk dem `ManifestChunk`-Interface folgt.
 
-   ```ts
+   ```ts style:max-height:400px
    interface ManifestChunk {
+     /**
+      * Der Name der Input-Datei des Chunks / Assets, sofern bekannt.
+      */
      src?: string
+     /**
+      * Der Name der Output-Datei des Chunks / Assets, sofern bekannt.
+      */
      file: string
+     /**
+      * Die Liste von CSS-Dateien, welche von diesem Chunk importiert werden.
+      *
+      * Dieses Feld ist nur in JS-Chunks präsent.
+      */
      css?: string[]
+     /**
+      * Die Liste von allen Asset-Dateien, welche von diesem Chunk importiert werden, ausgenommen CSS-Dateien.
+      *
+      * Dieses Feld ist nur in JS-Chunks präsent.
+      */
      assets?: string[]
+     /**
+      * Ob dieser Chunk oder dieses Asset ein Eingangspunkt ist oder nicht.
+      */
      isEntry?: boolean
+     /**
+      * Der Name des Chunks / Assets, sofern bekannt.
+      */
      name?: string
-     names?: string[]
+     /**
+      * Ob dieser Chunk ein dynamischer Eingangspunkt ist.
+      *
+      * Dieses Feld ist nur in JS-Chunks präsent.
+      */
      isDynamicEntry?: boolean
+     /**
+      * Die Liste von statisch importierten Chunks durch diesen Chunk.
+      *
+      * Die Werte sind die Schlüssel des Manifests. Dieses Feld ist nur in JS-Chunks präsent.
+      */
      imports?: string[]
+     /**
+      * Die Liste von dynamisch importierten Chunks durch diesen Chunk.
+      *
+      * Die Werte sind die Schlüssel des Manifests. Dieses Feld ist nur in JS-Chunks präsent.
+      */
      dynamicImports?: string[]
    }
    ```
@@ -132,7 +168,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    - **Asset Chunks**: Generiert aus importierten Assets wie Images oder Schriftarten. Ihr Schlüssel ist der relative src-Pfad vom Wurzelverzeichnis.
    - **CSS Dateien**: Wenn [`build.cssCodeSplit`](/config/build-options.md#build-csscodesplit) `false` ist, wird eine einzige CSS Datei generiert mit dem Schlüssel `style.css`. Wenn `build.cssCodeSplit` nicht `false` ist, wird der Schlüssel ähnlich zum JavaScript Chunk generiert (z. B. Entry Chunks werden nicht mit `_` beginnen und Non-Entry Chunks werden mit `_` beginnen).
 
-   Chunks werden Informationen über ihre statischen und dynamischen Importe enthalten (beides sind Schlüssel die den entsprechenden Chunk im Manifest abbilden) und auch ihre entsprechenden CSS und Assets (falls vorhanden).
+   JS-Chunks (Chunks die keine Assets oder CSS sind) werden Informationen über ihre statischen und dynamischen Importe enthalten (beides sind Schlüssel die den entsprechenden Chunk im Manifest abbilden) und auch ihre entsprechenden CSS und Assets (falls vorhanden).
 
 4. Sie können diese Datei zum Rendern von Links oder zum Vorladen von Direktiven mit gehashten Dateinamen verwenden.
 
