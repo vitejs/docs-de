@@ -108,6 +108,8 @@ Sie können `.` für den Projektnamen verwenden, um im aktuellen Verzeichnis ein
 
 ::::
 
+Um ein Projekt ohne interaktive Aufforderungen zu erstellen, können Sie die `--no-interactive`-Flag verwenden.
+
 ## Community Vorlagen
 
 create-vite ist ein Tool, mit dem man schnell ein Projekt aus einer Basisvorlage für gängige Frameworks erstellen kann. Bei Awesome Vite finden Sie [von der Community gepflegte Vorlagen](https://github.com/vitejs/awesome-vite#templates), die andere Tools enthalten oder auf andere Frameworks abzielen.
