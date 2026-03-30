@@ -53,6 +53,10 @@ export type { T }
 
 ### TypeScript Compiler-Optionen
 
+Vite berücksichtigt einige der Optionen in der `tsconfig.json` und setzt die entsprechenden esbuild-Optionen. Für jede Datei verwendet Vite die `tsconfig.json` im nächsten Elternverzeichnis. Falls die `tsconfig.json` ein [`references`](https://www.typescriptlang.org/tsconfig/#references)-Feld enthält, verwendet Vite die referenzierte Konfigurationsdatei, die den Feldern [`include`](https://www.typescriptlang.org/tsconfig/#include) und [`exclude`](https://www.typescriptlang.org/tsconfig/#exclude) entspricht.
+
+Wenn die Optionen sowohl in der Vite-Konfiguration und der `tsconfig.json` gesetzt sind, hat der Wert in der Vite-Konfiguration Vorrang.
+
 Einige Konfigurationsfelder unter `compilerOptions` in `tsconfig.json` erfordern besondere Aufmerksamkeit.
 
 #### `isolatedModules`
