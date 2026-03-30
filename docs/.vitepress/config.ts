@@ -88,6 +88,7 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
 export default defineConfig({
   title: `Vite${additionalTitle}`,
   description: 'Frontend-Tooling der nächsten Generation',
+  cleanUrls: true,
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
