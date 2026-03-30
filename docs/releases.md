@@ -1,3 +1,7 @@
+<script setup>
+import SupportedVersions from './.vitepress/theme/components/SupportedVersions.vue';
+</script>
+
 # Veröffentlichungen
 
 Vite-Veröffentlichungen folgen dem [Semantischen Versionierungsprinzip (Semantic Versioning)](https://semver.org/). Sie können die neueste stabile Version von Vite auf der [Vite npm-Paketseite](https://www.npmjs.com/package/vite) sehen.
@@ -12,19 +16,20 @@ Vite hat keinen festen Veröffentlichungszyklus.
 - **Minor**-Versionen enthalten immer neue Funktionen und werden je nach Bedarf veröffentlicht. Minor-Releases haben immer eine Beta-Phase vor der Veröffentlichung (normalerweise alle zwei Monate).
 - **Hauptversionen** richten sich im Allgemeinen nach dem [Node.js EOL-Zeitplan](https://endoflife.date/nodejs) und werden im Voraus angekündigt. Diese Versionen durchlaufen langfristige Diskussionen mit dem Ökosystem und haben Alpha- und Beta-Vorveröffentlichungsphasen (in der Regel jedes Jahr).
 
-Der Bereich der Vite-Versionen, die vom Vite-Team unterstützt werden, wird automatisch bestimmt durch:
+## Supported Versions
+
+Die aktuell unterstützten Vite-Versionen sind:
+
+<SupportedVersions />
+
+<br>
+
+Die unterstützten Versionsspannen werden automatisch ermittelt durch:
 
 - **Aktuelles Minor** erhält regelmäßige Korrekturen.
 - **Voriges Major** (nur für sein letztes Minor) und **Voriges Minor** erhält wichtige Korrekturen und Sicherheitspatches.
 - **Vorletztes Major** (nur für das letzte Minor) und **Vorletztes Minor** erhält Sicherheitspatches.
 - Alle Versionen davor werden nicht mehr unterstützt.
-
-Ein Beispiel: Die neueste Version von Vite ist 5.3.10:
-
-- Regelmäßige Patches werden für `vite@5.3` veröffentlicht.
-- Wichtige Korrekturen und Sicherheitspatches werden auf `vite@4` und `vite@5.2` zurückportiert.
-- Sicherheitspatches werden auch in `vite@3` und `vite@5.1` zurückportiert.
-- `vite@2` und `vite@5.0` werden nicht mehr unterstützt. Benutzer sollten aktualisieren, um Updates zu erhalten.
 
 Wir empfehlen, Vite regelmäßig zu aktualisieren. Schauen Sie sich die [Migration Guides](https://vite.dev/guide/migration.html) an, wenn Sie auf ein neues Major aktualisieren. Das Vite-Team arbeitet eng mit den wichtigsten Projekten im Ökosystem zusammen, um die Qualität neuer Versionen zu gewährleisten. Wir testen neue Vite-Versionen, bevor wir sie über das [vite-ecosystem-ci project](https://github.com/vitejs/vite-ecosystem-ci) freigeben. Die meisten Projekte, die Vite verwenden, sollten in der Lage sein, schnell Unterstützung anzubieten oder auf neue Versionen zu migrieren, sobald diese veröffentlicht werden.
 
