@@ -208,8 +208,6 @@ Wenn `fileName` mit `.json` endet, werden die rohen JSON-Metadaten stattdessen g
 ]
 ```
 
-:::
-
 ## build.manifest
 
 - **Typ:** `boolean | string`
