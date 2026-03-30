@@ -743,6 +743,42 @@ By default, during build, Vite inlines small assets as data URIs. Allowing `data
 Do not allow `data:` for [`script-src`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src). It will allow injection of arbitrary scripts.
 :::
 
+## Lizenz
+
+Vite kann während des Builds mit Hilfe der [`build.license`](/config/build-options.md#build-license)-Option eine Datei mit den Lizenzen aller Abhängigkeiten generieren. Sie kann zur Kenntlichmachung der, durch die App verwendeten, Abhängigkeiten genutzt werden.
+
+```js twoslash [vite.config.js]
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  build: {
+    license: true,
+  },
+})
+```
+
+Dies generiert eine `.vite/license.md`-Datei mit einer Ausgabe die wie folgt aussehen könnte:
+
+```md
+# Licenses
+
+The app bundles dependencies which contain the following licenses:
+
+## dep-1 - 1.2.3 (CC0-1.0)
+
+CC0 1.0 Universal
+
+...
+
+## dep-2 - 4.5.6 (MIT)
+
+MIT License
+
+...
+```
+
+Um die Datei an einem anderen Pfad bereitzustellen, kann beispielsweise `{ fileName: 'license.md' }` angegeben werden, damit sie durch `https://example.com/license.md` abgerufen werden kann. Für mehr Informationen, schauen Sie sich die [`build.license`](/config/build-options.md#build-license)-Dokumentation an.
+
 ## Build-Optimierungen
 
 > Die unten aufgeführten Funktionen werden automatisch als Teil des Build-Prozesses angewendet und müssen nicht explizit konfiguriert werden, es sei denn, Sie möchten sie deaktivieren.
