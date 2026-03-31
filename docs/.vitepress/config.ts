@@ -88,6 +88,9 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
 export default defineConfig({
   title: `Vite${additionalTitle}`,
   description: 'Frontend-Tooling der nächsten Generation',
+  sitemap: {
+    hostname: 'https://vite.dev',
+  },
   cleanUrls: true,
 
   head: [
@@ -183,6 +186,7 @@ export default defineConfig({
           },
         },
       },
+      insights: true,
     },
 
     carbonAds: {
@@ -514,7 +518,27 @@ export default defineConfig({
   markdown: {
     // languages used for twoslash and jsdocs in twoslash
     languages: ['ts', 'js', 'json'],
-    codeTransformers: [transformerTwoslash()],
+    codeTransformers: [
+      transformerTwoslash(),
+      // add `style:*` support
+      {
+        root(hast) {
+          const meta = this.options.meta?.__raw
+            ?.split(' ')
+            .find((m) => m.startsWith('style:'))
+          if (meta) {
+            const style = meta.slice('style:'.length)
+            const rootPre = hast.children.find(
+              (n): n is typeof n & { type: 'element'; tagName: 'pre' } =>
+                n.type === 'element' && n.tagName === 'pre',
+            )
+            if (rootPre) {
+              rootPre.properties.style += '; ' + style
+            }
+          }
+        },
+      },
+    ],
     config(md) {
       md.use(groupIconMdPlugin, {
         titleBar: {
