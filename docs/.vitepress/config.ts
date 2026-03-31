@@ -8,10 +8,14 @@ import {
   groupIconVitePlugin,
 } from 'vitepress-plugin-group-icons'
 import { markdownItImageSize } from 'markdown-it-image-size'
+import packageJson from '../../package.json' with { type: 'json' }
 import { buildEnd } from './buildEnd.config'
 
 // NOTE: allow additional options to be passed to rolldown for now
 process.env.ROLLDOWN_OPTIONS_VALIDATION = 'loose'
+
+const viteVersion = packageJson.version
+const viteMajorVersion = +viteVersion.split('.')[0]
 
 const ogDescription = 'Frontend-Tooling der nächsten Generation'
 const ogImage = 'https://vite.dev/og-image.jpg'
@@ -43,42 +47,31 @@ const additionalTitle = ((): string => {
   }
 })()
 const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
-  const oldVersions: DefaultTheme.NavItemWithLink[] = [
-    {
-      text: 'Vite 6 Docs',
-      link: 'https://v6.vite.dev',
-    },
-    {
-      text: 'Vite 5 Docs',
-      link: 'https://v5.vite.dev',
-    },
-    {
-      text: 'Vite 4 Docs',
-      link: 'https://v4.vite.dev',
-    },
-    {
-      text: 'Vite 3 Docs',
-      link: 'https://v3.vite.dev',
-    },
-    {
-      text: 'Vite 2 Docs',
-      link: 'https://v2.vite.dev',
-    },
-  ]
+  const links: DefaultTheme.NavItemWithLink[] = []
 
-  switch (deployType) {
-    case 'main':
-    case 'local':
-      return [
-        {
-          text: 'Vite 7 Docs (release)',
-          link: 'https://vite.dev',
-        },
-        ...oldVersions,
-      ]
-    case 'release':
-      return oldVersions
+  if (deployType !== 'main') {
+    links.push({
+      text: 'Unreleased Docs',
+      link: 'https://main.vite.dev',
+    })
   }
+
+  if (deployType === 'main' || deployType === 'local') {
+    links.push({
+      text: `Vite ${viteMajorVersion} Docs (release)`,
+      link: 'https://vite.dev',
+    })
+  }
+
+  // Create version links from v2 onwards
+  for (let i = viteMajorVersion - 1; i >= 2; i--) {
+    links.push({
+      text: `Vite ${i} Docs`,
+      link: `https://v${i}.vite.dev`,
+    })
+  }
+
+  return links
 })()
 
 // function inlineScript(file: string): HeadConfig {
@@ -95,6 +88,7 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
 export default defineConfig({
   title: `Vite${additionalTitle}`,
   description: 'Frontend-Tooling der nächsten Generation',
+  cleanUrls: true,
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
@@ -251,21 +245,25 @@ export default defineConfig({
                 text: 'DEV Community',
                 link: 'https://dev.to/t/vite',
               },
-              {
-                text: 'Changelog',
-                link: 'https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md',
-              },
-              {
-                text: 'Beitragen',
-                link: 'https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md',
-              },
             ],
           },
         ],
       },
       {
-        text: 'Version',
-        items: versionLinks,
+        text: `v${viteVersion}`,
+        items: [
+          {
+            text: 'Changelog',
+            link: 'https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md',
+          },
+          {
+            text: 'Contributing',
+            link: 'https://github.com/vitejs/vite/blob/main/CONTRIBUTING.md',
+          },
+          {
+            items: versionLinks,
+          },
+        ],
       },
     ],
 
@@ -344,7 +342,7 @@ export default defineConfig({
               link: '/guide/rolldown',
             },
             {
-              text: 'Migration von v6',
+              text: `Migration from v${viteMajorVersion - 1}`,
               link: '/guide/migration',
             },
             {
@@ -516,7 +514,27 @@ export default defineConfig({
   markdown: {
     // languages used for twoslash and jsdocs in twoslash
     languages: ['ts', 'js', 'json'],
-    codeTransformers: [transformerTwoslash()],
+    codeTransformers: [
+      transformerTwoslash(),
+      // add `style:*` support
+      {
+        root(hast) {
+          const meta = this.options.meta?.__raw
+            ?.split(' ')
+            .find((m) => m.startsWith('style:'))
+          if (meta) {
+            const style = meta.slice('style:'.length)
+            const rootPre = hast.children.find(
+              (n): n is typeof n & { type: 'element'; tagName: 'pre' } =>
+                n.type === 'element' && n.tagName === 'pre',
+            )
+            if (rootPre) {
+              rootPre.properties.style += '; ' + style
+            }
+          }
+        },
+      },
+    ],
     config(md) {
       md.use(groupIconMdPlugin, {
         titleBar: {
@@ -544,6 +562,9 @@ export default defineConfig({
         'gsap/dist/ScrollTrigger',
         'gsap/dist/MotionPathPlugin',
       ],
+    },
+    define: {
+      __VITE_VERSION__: JSON.stringify(viteVersion),
     },
   },
   buildEnd,
