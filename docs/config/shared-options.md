@@ -354,36 +354,44 @@ Wenn auf `true` gesetzt, wird importiertes JSON in `export default JSON.parse(".
 
 Bei der Einstellung `'auto'` werden die Daten nur dann stringifiziert, wenn [die Daten größer als 10kB sind](https://v8.dev/blog/cost-of-javascript-2019#json:~:text=A%20good%20rule%20of%20thumb%20is%20to%20apply%20this%20technique%20for%20objects%20of%2010%20kB%20or%20larger).
 
-## esbuild
+## oxc
 
-- **Typ:** `ESBuildOptions | false`
+- **Typ:** `OxcOptions | false`
 
-`ESBuildOptions` erweitert [die eigenen Transformationsoptionen von esbuild](https://esbuild.github.io/api/#transform). Der häufigste Anwendungsfall ist die Anpassung von JSX:
+`OxcOptions` erweitert [die Transformationsoptionen von Oxc](https://oxc.rs/docs/guide/usage/transformer). Der häufigste Anwendungsfall ist die Anpassung von JSX:
 
 ```js
 export default defineConfig({
-  esbuild: {
-    jsxFactory: 'h',
-    jsxFragment: 'Fragment',
+  oxc: {
+    jsx: {
+      runtime: 'classic',
+      pragma: 'h',
+      pragmaFrag: 'Fragment',
+    },
   },
 })
 ```
 
-Standardmäßig wird esbuild auf Dateien mit den Erweiterungen `ts`, `jsx` und `tsx` angewendet. Sie können dies mit `esbuild.include` und `esbuild.exclude` anpassen, die eine Regex, ein [picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features) oder ein Array davon sein können.
+Standardmäßig wird die Transformation von Oxc auf Dateien mit den Erweiterungen `ts`, `jsx` und `tsx` angewendet. Sie können dies mit `oxc.include` und `oxc.exclude` anpassen, die eine Regex, ein [picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features) oder ein Array davon sein können.
 
-Darüber hinaus können Sie auch `esbuild.jsxInject` verwenden, um automatisch JSX-Helper-Imports für jede von esbuild transformierte Datei einzufügen:
+Darüber hinaus können Sie auch `oxc.jsxInject` verwenden, um automatisch JSX-Helper-Imports für jede von Oxc transformierte Datei einzufügen:
 
 ```js
 export default defineConfig({
-  esbuild: {
+  oxc: {
     jsxInject: `import React from 'react'`,
   },
 })
 ```
 
-Wenn [`build.minify`](./build-options.md#build-minify) auf `true` gesetzt ist, werden standardmäßig alle Minify-Optimierungen angewendet. Um bestimmte Aspekte davon zu deaktivieren, setzen Sie eine der Optionen `esbuild.minifyIdentifiers`, `esbuild.minifySyntax` oder `esbuild.minifyWhitespace` auf `false`. Beachten Sie, dass die Option `esbuild.minify` nicht verwendet werden kann, um `build.minify` zu überschreiben.
+Auf `false` setzen, um die Oxc-Transformation zu deaktivieren.
 
-Auf `false` setzen, um esbuild-Transformationen zu deaktivieren.
+## esbuild
+
+- **Typ:** `ESBuildOptions | false`
+- **Veraltet**
+
+Diese Option wird intern zu `oxc` konvertiert. Verwenden Sie stattdessen die `oxc`-Option.
 
 ## assetsInclude
 
