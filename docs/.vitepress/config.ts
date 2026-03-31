@@ -88,6 +88,9 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
 export default defineConfig({
   title: `Vite${additionalTitle}`,
   description: 'Frontend-Tooling der nächsten Generation',
+  sitemap: {
+    hostname: 'https://vite.dev',
+  },
   cleanUrls: true,
 
   head: [
@@ -183,6 +186,7 @@ export default defineConfig({
           },
         },
       },
+      insights: true,
     },
 
     carbonAds: {
