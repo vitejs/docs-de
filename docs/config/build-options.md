@@ -123,10 +123,10 @@ Es sollte nur verwendet werden, wenn Sie einen nicht-mainstream Browser anvisier
 
 ## build.cssMinify
 
-- **Typ:** `boolean | 'esbuild' | 'lightningcss'`
-- **Standard:** dasselbe wie [`build.minify`](#build-minify) für Clients, `'esbuild'` für SSR
+- **Typ:** `boolean | 'lightningcss' | 'esbuild'`
+- **Standard:** dasselbe wie [`build.minify`](#build-minify) für Clients, `'lightningcss'` für SSR
 
-Diese Option ermöglicht es Benutzern, die CSS-Minimierung speziell zu überschreiben, anstatt auf die Standardwerte von `build.minify` zurückzugreifen. Vite verwendet standardmäßig `esbuild` zur Minimierung von CSS. Setzen Sie die Option auf `'lightningcss'`, um stattdessen [Lightning CSS](https://lightningcss.dev/minification.html) zu verwenden. Wenn ausgewählt, kann es mit [`css.lightningcss`](./shared-options.md#css-lightningcss) konfiguriert werden.
+Diese Option ermöglicht es Benutzern, die CSS-Minimierung speziell zu überschreiben, anstatt auf die Standardwerte von `build.minify` zurückzugreifen. Dadurch können Sie die Minimierung für JS und CSS unabhängig voneinander konfigurieren. Vite verwendet standardmäßig [Lightning CSS](https://lightningcss.dev/minification.html), um CSS zu minimieren. Es kann mit [`css.lightningcss`](./shared-options.md#css-lightningcss) konfiguriert werden. Setzen sie die Option auf `'esbuild'`, um esbuild stattdessen zu verwenden.
 
 ## build.sourcemap
 
@@ -255,16 +255,19 @@ Während des SSR-Builds werden statische Assets nicht ausgegeben, da davon ausge
 
 ## build.minify
 
-- **Typ:** `boolean | 'terser' | 'esbuild'`
-- **Standard:** 'esbuild' für Client-Build, 'false' für SSR-Build
+- **Typ:** `boolean | 'oxc' | 'terser' | 'esbuild'`
+- **Standard:** 'oxc' für Client-Build, 'false' für SSR-Build
 
-Setzen Sie dies auf `false`, um die Minimierung zu deaktivieren, oder geben Sie den Minimierer an, der verwendet werden soll. Die Standardeinstellung ist [esbuild](https://github.com/evanw/esbuild), das 20 ~ 40x schneller als terser ist und nur eine 1 ~ 2% schlechtere Komprimierung bietet. [Benchmarks](https://github.com/privatenumber/minification-benchmarks)
+Setzen Sie dies auf `false`, um die Minimierung zu deaktivieren, oder geben Sie den Minimierer an, der verwendet werden soll. Die Standardeinstellung ist [Oxc Minimierer](https://oxc.rs/docs/guide/usage/minifier), das 30 ~ 90x schneller als terser ist und nur eine 0,5 ~ 2% schlechtere Komprimierung bietet. [Benchmarks](https://github.com/privatenumber/minification-benchmarks)
+
+`build.minify: 'esbuild'` ist veraltet und wird in der Zukunft entfernt.
 
 Beachten Sie, dass die Option `build.minify` keine Leerzeichen minimiert, wenn das Format `'es'` im Lib-Modus verwendet wird, da es reine Anmerkungen entfernt und Tree-Shaking bricht.
 
-Terser muss installiert sein, wenn es auf `'terser'` eingestellt ist.
+esbuild oder Terser müssen installiert sein, wenn der Wert auf `'esbuild'` oder `'terser'` gesetzt ist.
 
 ```sh
+npm add -D esbuild
 npm add -D terser
 ```
 
