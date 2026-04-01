@@ -379,6 +379,21 @@ function normalizePath(id: string): string
 
 Normalisiert einen Pfad, um zwischen Vite-Plugins zu interoperieren.
 
+## `transformWithOxc`
+
+**Typ Signatur:**
+
+```ts
+async function transformWithOxc(
+  code: string,
+  filename: string,
+  options?: OxcTransformOptions,
+  inMap?: object,
+): Promise<Omit<OxcTransformResult, 'errors'> & { warnings: string[] }>
+```
+
+Transformieren Sie JavaScript oder TypeScript mit [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer). Nützlich für Plugins, die eine Anpassung an die interne Oxc-Transformation von Vite bevorzugen.
+
 ## `transformWithEsbuild`
 
 **Typ Signatur:**
@@ -393,6 +408,8 @@ async function transformWithEsbuild(
 ```
 
 Transformiert JavaScript oder TypeScript mit Esbuild. Nützlich für Plugins, die die interne Esbuild-Transformation von Vite bevorzugen.
+
+**Veraltet:** Nitzen Sie `transformWithOxc` stattdessen.
 
 ## `loadConfigFromFile`
 

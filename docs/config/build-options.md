@@ -11,9 +11,10 @@ Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt nur für 
 Browser-Kompatibilitätsziel für das endgültige Bundle. Der Standardwert ist ein spezieller Vite-Wert, `'baseline-widely-available'`, der auf Browser abzielt, die in der [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available am 01.05.2025 enthalten sind. Konkret sind dies `['chrome107', 'edge107', 'firefox104', 'safari16']`.
 
 Ein weiterer spezieller Wert ist `'esnext'` - der die Unterstützung nativer dynamischer Importe voraussetzt und nur eine minimale Transpilierung durchführt.
-Die Transpilierung erfolgt mit esbuild, und der Wert sollte eine gültige [esbuild-Zieloption](https://esbuild.github.io/api/#target) sein. Benutzerdefinierte Ziele können entweder eine ES-Version sein (z.B. `es2015`), ein Browser mit Version (z.B. `chrome58`) oder ein Array von mehreren Zielzeichenketten.
 
-Beachten Sie, dass der Build fehlschlägt, wenn der Code Funktionen enthält, die von esbuild nicht sicher transpiliert werden können. Weitere Details finden Sie in den [esbuild-Dokumentationen](https://esbuild.github.io/content-types/#javascript).
+Die Transformierung erfolgt mit Oxc Transformer, und der Wert sollte eine gültige [Oxc Transfomer-Zieloption](https://oxc.rs/docs/guide/usage/transformer/lowering#target) sein. Benutzerdefinierte Ziele können entweder eine ES-Version sein (z.B. `es2015`), ein Browser mit Version (z.B. `chrome58`) oder ein Array von mehreren Zielzeichenketten.
+
+Beachten Sie, dass der Build eine Warnung ausgibt, wenn der Code Funktionen enthält, die von Oxc nicht sicher transpiliert werden können. Weitere Details finden Sie in den [Oxc-Dokumentationen](https://oxc.rs/docs/guide/usage/transformer/lowering#warnings).
 
 ## build.modulePreload
 
@@ -128,6 +129,12 @@ Es sollte nur verwendet werden, wenn Sie einen nicht-mainstream Browser anvisier
 
 Diese Option ermöglicht es Benutzern, die CSS-Minimierung speziell zu überschreiben, anstatt auf die Standardwerte von `build.minify` zurückzugreifen. Dadurch können Sie die Minimierung für JS und CSS unabhängig voneinander konfigurieren. Vite verwendet standardmäßig [Lightning CSS](https://lightningcss.dev/minification.html), um CSS zu minimieren. Es kann mit [`css.lightningcss`](./shared-options.md#css-lightningcss) konfiguriert werden. Setzen sie die Option auf `'esbuild'`, um esbuild stattdessen zu verwenden.
 
+esbuild muss installiert sein, wenn der Wert `'esbuild'` entspricht.
+
+```sh
+npm add -D esbuild
+```
+
 ## build.sourcemap
 
 - **Typ:** `boolean | 'inline' | 'hidden'`
@@ -135,17 +142,20 @@ Diese Option ermöglicht es Benutzern, die CSS-Minimierung speziell zu überschr
 
 Erzeugen von Produktionsquellekarten. Wenn `true`, wird eine separate Sourcemap-Datei erstellt. Wenn `'inline'`, wird die Sourcemap als Daten-URI an die resultierende Ausgabedatei angehängt. `'hidden'` funktioniert wie `true`, außer dass die entsprechenden Sourcemap-Kommentare in den gebündelten Dateien unterdrückt werden.
 
+## build.rolldownOptions
+
+- **Typ:** [`RolldownOptions`](https://rollupjs.org/configuration-options/)
+
+<!-- TODO: update the link above and below to Rolldown's documentation -->
+
+Direktes Anpassen des zugrunde liegenden Rolldown-Bündels. Dies entspricht den Optionen, die aus einer Rolldown-Konfigurationsdatei exportiert werden können, und wird mit den internen Rolldown-Optionen von Vite zusammengeführt. Weitere Details finden Sie in den [Rolldown-Optionen-Dokumenten](https://rollupjs.org/configuration-options/).
+
 ## build.rollupOptions
 
-- **Typ:** [`RollupOptions`](https://rollupjs.org/configuration-options/)
+- **Typ:** `RolldownOptions`
+- **Veraltet**
 
-Direktes Anpassen des zugrunde liegenden Rollup-Bündels. Dies entspricht den Optionen, die aus einer Rollup-Konfigurationsdatei exportiert werden können, und wird mit den internen Rollup-Optionen von Vite zusammengeführt. Weitere Details finden Sie in den [Rollup-Optionen-Dokumenten](https://rollupjs.org/configuration-options/).
-
-## build.commonjsOptions
-
-- **Typ:** [`RollupCommonJSOptions`](https://github.com/rollup/plugins/tree/master/packages/commonjs#options)
-
-Optionen, die an [@rollup/plugin-commonjs](https://github.com/rollup/plugins/tree/master/packages/commonjs) übergeben werden sollen.
+Diese Option ist ein Alias von der `build.rolldownOptions`-Option. Nutzen Sie stattdessen `build.rolldownOptions`.
 
 ## build.dynamicImportVarsOptions
 
@@ -153,6 +163,8 @@ Optionen, die an [@rollup/plugin-commonjs](https://github.com/rollup/plugins/tre
 - **Verwandt:** [Dynamisches Importieren](/guide/features#dynamisches-importieren)
 
 Optionen, die an [@rollup/plugin-dynamic-import-vars](https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars) übergeben werden sollen.
+
+<!-- TODO: we need to have a more detailed explanation here as we no longer use @rollup/plugin-dynamic-import-vars. we should say it's compatible with it though -->
 
 ## build.lib
 
@@ -315,6 +327,8 @@ Aktivieren/Deaktivieren der Berichterstellung über die Größe der gzip-komprim
 Begrenzung für die Größe von Chunk-Warnungen (in kB). Sie wird mit der unkomprimierten Chunk-Größe verglichen, da die [JavaScript-Größe selbst mit der Ausführungszeit zusammenhängt](https://v8.dev/blog/cost-of-javascript-2019).
 
 ## build.watch
+
+<!-- TODO: we need to have a more detailed explanation here as we no longer use @rollup/plugin-dynamic-import-vars. we should say it's compatible with it though -->
 
 - **Typ:** [`WatcherOptions`](https://rollupjs.org/configuration-options/#watch)`| null`
 - **Standard:** `null`
