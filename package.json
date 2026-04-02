@@ -44,7 +44,7 @@
     "vite": "8.0.3"
   },
   "devDependencies": {
-    "@algolia/client-search": "5.50.0",
+    "@algolia/client-search": "5.50.1",
     "@eslint/js": "10.0.1",
     "@shikijs/vitepress-twoslash": "4.0.2",
     "@types/express": "5.0.6",
