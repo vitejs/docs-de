@@ -41,8 +41,6 @@ Vite 8 verwendet Oxc-basierte Tools anstelle von esbuild und Rollup.
 
 Das Paket `rolldown-vite` implementiert Vite 7 mit Rolldown-Integration, jedoch ohne die übrigen Änderungen von Vite 8. Dies kann als Zwischenschritt bei der Migration zu Vite 8 genutzt werden. Siehe [Anleitung zur Rolldown-Integration](https://v7.vite.dev/guide/rolldown) in der Vite-7-Dokumentation, um von Vite 7 auf `rolldown-vite` umzusteigen.
 
-<!-- TODO: Hide the guide from the sidebar as it is irrelevant in Vite 8. Also update the content there -->
-
 Benutzer, die von `rolldown-vite` auf Vite 8 migrieren, können die Änderungen an den Abhängigkeiten in `package.json` rückgängig machen und auf Vite 8 aktualisieren.
 
 ```json
