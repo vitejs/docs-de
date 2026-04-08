@@ -10,19 +10,17 @@ Dieser Abschnitt wird vor der Veröffentlichung der stabilen Version in den Rele
 
 ### Integrierte Unterstützung für tsconfig `paths`
 
-Vite 8 bietet nun dank [Oxc Resolver](https://oxc.rs/docs/guide/usage/resolver) integrierte Unterstützung für tsconfig `paths`. Diese Funktion ist standardmäßig nicht aktiviert, da sie mit Leistungseinbußen verbunden ist und [vom TypeScript-Team davon abgeraten wird, diese Option zu verwenden, um das Verhalten externer Tools zu ändern](https://www.typescriptlang.org/tsconfig/#paths:~:text=Note%20that%20this%20feature%20does%20not%20change%20how%20import%20paths%20are%20emitted%20by%20tsc%2C%20so%20paths%20should%20only%20be%20used%20to%20inform%20TypeScript%20that%20another%20tool%20has%20this%20mapping%20and%20will%20use%20it%20at%20runtime%20or%20when%20bundling.). Unter Berücksichtigung dieser Einschränkung können Sie diese Funktion aktivieren, indem Sie `resolve.tsconfigPaths` auf `true` setzen.
+Vite 8 bietet nun eine integrierte Unterstützung für TypeScripts `paths`-Option basierend auf [Oxc Resolver](https://oxc.rs/docs/guide/usage/resolver) . Diese Funktion hat kleine Leistungseinbußen und [vom TypeScript-Team wird davon abgeraten, diese Option zu verwenden, um das Verhalten externer Tools zu ändern](https://www.typescriptlang.org/tsconfig/#paths:~:text=Note%20that%20this%20feature%20does%20not%20change%20how%20import%20paths%20are%20emitted%20by%20tsc%2C%20so%20paths%20should%20only%20be%20used%20to%20inform%20TypeScript%20that%20another%20tool%20has%20this%20mapping%20and%20will%20use%20it%20at%20runtime%20or%20when%20bundling.), wodurch es standardmäßig nicht aktiviert ist. Unter Berücksichtigung dieser Einschränkung können Sie diese Funktion aktivieren, indem Sie `resolve.tsconfigPaths` auf `true` setzen.
 
-Die tsconfig.json in nächsten Elternverzeichnis wird verwendet. Für mehr Informationen darüber, welche tsconfig.json verwendet wird, schauen Sie sich [die Funktionen-Seite](/guide/features#typescript-compiler-options) an.
+Die `tsconfig.json` im nächsten Elternverzeichnis wird verwendet. Für mehr Details über die Auflösung der `tsconfig.json`, schauen Sie sich die [Funktionen-Seite(/guide/features#typescript-compiler-options) an.
 
 ### Unterstützung für `emitDecoratorMetadata`
 
-Vite 8 bietet nun dank [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer) integrierte Unterstützung für die [`emitDecoratorMetadata`-Option](https://www.typescriptlang.org/tsconfig/#emitDecoratorMetadata) von TypeScript. Wenn Sie `emitDecoratorMetadata` in Ihrer tsconfig auf `true` gesetzt haben, wird diese Funktion automatisch aktiviert.
+Vite 8 bietet nun basierend auf [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer) eine integrierte Unterstützung für die [`emitDecoratorMetadata`-Option](https://www.typescriptlang.org/tsconfig/#emitDecoratorMetadata) von TypeScript. Diese Funktion wird autoamtisch aktiviert, wenn Sie `emitDecoratorMetadata` in Ihrer `tsconfig.json` auf `true` gesetzt haben.
 
-Beachten Sie, dass diese Transformation einige Einschränkungen aufweist, da die vollständige Unterstützung die vollständige Typinferenz durch den TypeScript-Compiler erfordert, die nicht unterstützt wird. Weitere Details finden Sie in der [Dokumentation des Oxc-Transformers](https://oxc.rs/docs/guide/usage/transformer/typescript#decorators).
+Diese Transformation hat einige Einschränkungen. Vollständige Unterstützung für Dekorator-Metadaten setzt die Typinferenz durch den TypeScript-Compiler voraus, die nicht unterstützt wird. Weitere Details finden Sie in der [Dokumentation des Oxc-Transformers](https://oxc.rs/docs/guide/usage/transformer/typescript#decorators).
 
 ## Änderung des Standard-Browserziels
-
-**_TODO: Diese Änderung ist noch nicht implementiert, wird aber vor einem stabilen Release implementiert._**
 
 Der Standardwert für `build.target`, `'baseline-widely-available'`, wurde auf einen neueren Browser aktualisiert.
 
@@ -31,19 +29,17 @@ Der Standardwert für `build.target`, `'baseline-widely-available'`, wurde auf e
 - Firefox 104 → 114
 - Safari 16.0 → 16.4
 
-Diese Browserversionen entsprechen den [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available-Funktionsumfängen zum Stand vom 01.01.2026. Mit anderen Worten: Sie wurden alle vor dem 01.01.2026 veröffentlicht.
+Diese Browserversionen entsprechen den [Baseline Widely Available](https://web-platform-dx.github.io/web-features/)-Funktionsumfängen zum Stand vom 01.01.2026. Mit anderen Worten: Sie wurden alle ungefähr vor zweieinhalb Jahren veröffentlicht.
 
-## Rolldown-Integration
+## Rolldown
 
-Vite 8 verwendet Oxc-basierte Tools anstelle von esbuild und Rollup.
+Vite 8 verwendet Rolldown und Oxc-basierte Tools anstelle von esbuild und Rollup.
 
 ### Schrittweise Migration
 
 Das Paket `rolldown-vite` implementiert Vite 7 mit Rolldown-Integration, jedoch ohne die übrigen Änderungen von Vite 8. Dies kann als Zwischenschritt bei der Migration zu Vite 8 genutzt werden. Siehe [Anleitung zur Rolldown-Integration](https://v7.vite.dev/guide/rolldown) in der Vite-7-Dokumentation, um von Vite 7 auf `rolldown-vite` umzusteigen.
 
-<!-- TODO: Hide the guide from the sidebar as it is irrelevant in Vite 8. Also update the content there -->
-
-Benutzer, die von `rolldown-vite` auf Vite 8 migrieren, können die Änderungen an den Abhängigkeiten in `package.json` rückgängig machen und auf Vite 8 aktualisieren.
+Benutzer, die von `rolldown-vite` auf Vite 8 migrieren, kann die Änderung an der Abhängigkeit in der `package.json` rückgängig machen und auf Vite 8 aktualisieren:
 
 ```json
 {
@@ -56,9 +52,9 @@ Benutzer, die von `rolldown-vite` auf Vite 8 migrieren, können die Änderungen 
 
 ### Der Abhängigkeitsoptimierer verwendet nun Rolldown
 
-Rolldown wird nun anstelle von esbuild für die Abhängigkeitsoptimierung verwendet. Vite unterstützt weiterhin die Option [`optimizeDeps.esbuildOptions`](/config/dep-optimization-options#optimizedeps-esbuildoptions) aus Gründen der Abwärtskompatibilität, indem sie intern in [`optimizeDeps.rolldownOptions`](/config/dep-optimization-options#optimizedeps-rolldownoptions) umgewandelt wird. `optimizeDeps.esbuildOptions` ist jedoch veraltet und wird in Zukunft entfernt. Wir empfehlen Ihnen daher, auf `optimizeDeps.rolldownOptions` umzusteigen.
+Rolldown wird nun anstelle von esbuild für die Abhängigkeitsoptimierung verwendet. Vite unterstützt weiterhin die Option [`optimizeDeps.esbuildOptions`](/config/dep-optimization-options#optimizedeps-esbuildoptions) aus Gründen der Abwärtskompatibilität, indem diese automatisch in [`optimizeDeps.rolldownOptions`](/config/dep-optimization-options#optimizedeps-rolldownoptions) umgewandelt wird. `optimizeDeps.esbuildOptions` ist nun veraltet und wird in Zukunft entfernt. Wir empfehlen Ihnen daher, auf `optimizeDeps.rolldownOptions` umzusteigen.
 
-Die folgenden Optionen werden konvertiert:
+Die folgenden Optionen werden automatisch konvertiert:
 
 - [`esbuildOptions.minify`](https://esbuild.github.io/api/#minify) -> `rolldownOptions.output.minify`
 - [`esbuildOptions.treeShaking`](https://esbuild.github.io/api/#tree-shaking) -> `rolldownOptions.treeshake`
@@ -80,16 +76,16 @@ Sie können die von der Kompatibilitätsschicht festgelegten Optionen auch über
 const plugin = {
   name: 'log-config',
   configResolved(config) {
-    console.log('options', config.optimizeDeps.esbuildOptions)
+    console.log('options', config.optimizeDeps.rolldownOptions)
   },
 },
 ```
 
-### JS-Transformation mit Oxc
+### JavaScript-Transformation mit Oxc
 
-Anstelle von esbuild wird nun Oxc für die JS-Transformation verwendet. Vite unterstützt die Option [`esbuild`](/config/shared-options#esbuild) aus Gründen der Abwärtskompatibilität weiterhin, konvertiert sie jedoch intern in [`oxc`](/config/shared-options#oxc). `esbuild` ist jedoch veraltet und wird in Zukunft entfernt. Wir empfehlen Ihnen daher, auf `oxc` umzusteigen.
+Anstelle von esbuild wird nun Oxc für die JavaScript-Transformation verwendet. Vite unterstützt die Option [`esbuild`](/config/shared-options#esbuild) aus Gründen der Abwärtskompatibilität weiterhin, konvertiert sie jedoch automatisch in [`oxc`](/config/shared-options#oxc). `esbuild` ist nun veraltet und wird in Zukunft entfernt. Wir empfehlen Ihnen daher, auf `oxc` umzusteigen.
 
-Die folgenden Optionen werden konvertiert:
+Die folgenden Optionen werden automatisch konvertiert:
 
 - `esbuild.jsxInject` -> `oxc.jsxInject`
 - `esbuild.include` -> `oxc.include`
@@ -107,9 +103,9 @@ Die folgenden Optionen werden konvertiert:
 - [`esbuild.banner`](https://esbuild.github.io/api/#banner) -> benutzerdefiniertes Plugin mit Transform-Hook
 - [`esbuild.footer`](https://esbuild.github.io/api/#footer) -> benutzerdefiniertes Plugin mit Transform-Hook
 
-Die Option [`esbuild.supported`](https://esbuild.github.io/api/#supported) wird von Oxc nicht unterstützt. Wenn Sie diese Optionen benötigen, lesen Sie bitte [oxc-project/oxc#15373](https://github.com/oxc-project/oxc/issues/15373).
+Die Option [`esbuild.supported`](https://esbuild.github.io/api/#supported) wird von Oxc nicht unterstützt. Wenn Sie diese Option benötigen, lesen Sie bitte [oxc-project/oxc#15373](https://github.com/oxc-project/oxc/issues/15373).
 
-Sie können die von der Kompatibilitätsschicht festgelegten Optionen auch über den `configResolved`-Hook abrufen:
+Sie können die von der Kompatibilitätsschicht festgelegten Optionen über den `configResolved`-Hook abrufen:
 
 ```js
 const plugin = {
@@ -122,20 +118,22 @@ const plugin = {
 
 <!-- TODO: add link to rolldownOptions.output.minify -->
 
-Derzeit unterstützt der Oxc-Transformer das Herunterkonvertieren nativer Dekoratoren nicht ([oxc-project/oxc#9170](https://github.com/oxc-project/oxc/issues/9170)).
+Derzeit unterstützt der Oxc-Transformer das Herunterkonvertieren nativer Dekoratoren nicht, da wir auf das Fortschreiten der Spezifikation warten, siehe([oxc-project/oxc#9170](https://github.com/oxc-project/oxc/issues/9170)).
 
 :::: details Workaround für das Herunterkonvertieren nativer Dekoratoren
 
 Sie können vorerst [Babel](https://babeljs.io/) oder [SWC](https://swc.rs/) verwenden, um native Dekoratoren herunterzukonvertieren. SWC ist zwar schneller als Babel, unterstützt jedoch **nicht die neueste Dekorator-Spezifikation**, die esbuild unterstützt.
 
-Die Dekorator-Spezifikation wurde seit Erreichen von Stage 3 mehrfach aktualisiert, und die von den einzelnen Tools unterstützten Versionen lauten wie folgt (die Versionsnamen entsprechen den [Babel-Optionen](https://babeljs.io/docs/babel-plugin-proposal-decorators#version)):
+Die Dekorator-Spezifikation wurde seit Erreichen von Stage 3 mehrfach aktualisiert. Die unterstützen Versionen von jedem Tool sind:
 
-- `"2023-11"` (esbuild und TS5.4+ sowie Babel unterstützen diese Version)
-- `"2023-05"` (TS5.2+ unterstützt diese Version)
-- `"2023-01"` (TS5.0+ unterstützt diese Version)
+- `"2023-11"` (esbuild und TypeScript5.4+ sowie Babel unterstützen diese Version)
+- `"2023-05"` (TypeScript5.2+ unterstützt diese Version)
+- `"2023-01"` (TypeScript5.0+ unterstützt diese Version)
 - `"2022-03"` (SWC unterstützt diese Version)
 
-**Wenn Sie Babel verwenden möchten:**
+Schauen Sie sich den [Babel-Dekoratorversionen-Leitfaden](https://babeljs.io/docs/babel-plugin-proposal-decorators#version) für Unterschiede zwischen den Versionen an.
+
+**Babel verwenden:**
 
 ::: code-group
 
@@ -181,7 +179,7 @@ export default defineConfig({
 })
 ```
 
-**Wenn Sie SWC nutzen wollen:**
+**SWC verwenden:**
 
 ::: code-group
 
@@ -218,12 +216,12 @@ export default defineConfig({
         swc: {
           jsc: {
             parser: { decorators: true, decoratorsBeforeExport: true },
-            // NOTE: SWC unterstützt Version '2023-11' noch nicht
+            // NOTIZ: SWC unterstützt Version '2023-11' noch nicht.
             transform: { decoratorVersion: '2022-03' },
           },
         },
       }),
-      // Führe diese Transformation nur aus, wenn die Datei einen Dekorator enthält
+      // Führe diese Transformation nur aus, wenn die Datei einen Dekorator enthält.
       { transform: { code: '@' } },
     ),
   ],
@@ -232,46 +230,53 @@ export default defineConfig({
 
 ::::
 
-Bitte beachten Sie: Wenn Sie ein Plugin verwenden, das die Funktion `transformWithEsbuild` nutzt, müssen Sie `esbuild` als Entwicklungsabhängigkeit installieren, da es nun eine optionale Abhängigkeit ist. Die Funktion `transformWithEsbuild` ist nun veraltet und wird in Zukunft entfernt. Wir empfehlen, stattdessen die neue Funktion `transformWithOxc` zu verwenden.
+#### esbuild-Fallbacks
 
-### JS-Minifizierung mit Oxc
+`esbuild` wird von Vite nicht mehr direkt verwendet und ist nun eine optionale Abhängigkeit. Wenn Sie ein Plugin verwenden, das die Funktion `transformWithEsbuild` nutzt, müssen Sie `esbuild` als `devDependency` installieren. Die Funktion `transformWithEsbuild` ist veraltet und wird in Zukunft entfernt. Wir empfehlen stattdessen die Umstellung auf die neue Funktion `transformWithOxc`.
 
-Für die JS-Minifizierung wird nun standardmäßig Oxc Minifier anstelle von esbuild verwendet. Sie können die Option [`build.minify: 'esbuild'`](/config/build-options#minify) verwenden, um wieder zu esbuild zurückzukehren, dies ist jedoch veraltet und wird in Zukunft entfernt. Beachten Sie, dass Sie `esbuild` als Entwicklungsabhängigkeit installieren müssen, da es nun eine optionale Abhängigkeit ist.
+### JavaScript-Minifizierung durch Oxc
 
-Wenn Sie bisher die Optionen `esbuild.minify*` zur Steuerung des Minifizierungsverhaltens verwendet haben, können Sie stattdessen die Option `build.rolldownOptions.output.minify` verwenden. Wenn Sie die Option `esbuild.drop` verwendet haben, können Sie stattdessen die [`build.rolldownOptions.output.minify.compress.drop*`-Optionen](https://oxc.rs/docs/guide/usage/minifier/dead-code-elimination) verwenden.
+Für die JavaScript-Minifizierung wird nun der Oxc-Minimierer anstelle von esbuild verwendet. Sie können die veraltete Option [`build.minify: ‚esbuild‘`](/config/build-options#minify) verwenden, um wieder zu esbuild zurückzukehren. Diese Konfigurationsoption wird in Zukunft entfernt, und Sie müssen `esbuild` als `devDependency` installieren, da Vite nicht mehr direkt auf esbuild angewiesen ist.
 
-Die Funktion zur Eigenschaftsveränderung wird von Oxc nicht unterstützt, und die entsprechenden Optionen ([`mangleProps`, `reserveProps`, `mangleQuoted`, `mangleCache`](https://esbuild.github.io/api/#mangle-props)) werden nicht unterstützt. Wenn Sie diese Optionen benötigen, sehen Sie sich bitte [oxc-project/oxc#15375](https://github.com/oxc-project/oxc/issues/15375) an.
+Wenn Sie bisher die `esbuild.minify*`-Optionen zur Steuerung des Minifizierungsverhaltens verwendet haben, können Sie nun stattdessen `build.rolldownOptions.output.minify` verwenden. Wenn Sie die Option `esbuild.drop` verwendet haben, können Sie nun die [`build.rolldownOptions.output.minify.compress.drop*`-Optionen](https://oxc.rs/docs/guide/usage/minifier/dead-code-elimination) verwenden.
 
-Beachten Sie, dass esbuild und Oxc Minifier leicht unterschiedliche Annahmen bezüglich des Eingabecodes haben. Dies hat zwar auf die meisten Projekte keinen Einfluss, Sie können die Annahmen jedoch vergleichen, falls der Minifier Ihren Code beschädigt ([esbuild-Annahmen](https://esbuild.github.io/api/#minify-considerations), [Oxc Minifier-Annahmen](https://oxc.rs/docs/guide/usage/minifier.html#assumptions)).
+Das Verzerrung von Eigenschaften und die damit verbundenen Optionen ([`mangleProps`, `reserveProps`, `mangleQuoted`, `mangleCache`](https://esbuild.github.io/api/#mangle-props)) werden von Oxc nicht unterstützt. Wenn Sie diese Optionen benötigen, lesen Sie bitte [oxc-project/oxc#15375](https://github.com/oxc-project/oxc/issues/15375).
 
-### CSS-Minifizierung mit Lightning CSS
+esbuild und der Oxc-Minimierer gehen von leicht unterschiedlichen Annahmen bezüglich des Quellcodes aus. Falls Sie vermuten, dass der Minimierer Fehler in Ihrem Code verursacht, können Sie diese Annahmen hier vergleichen:
 
-[Lightning CSS](https://lightningcss.dev/) wird nun standardmäßig für die CSS-Minifizierung verwendet. Mit der Option [`build.cssMinify: 'esbuild'`](/config/build-options#cssminify) können Sie wieder zu esbuild zurückwechseln. Beachten Sie, dass Sie `esbuild` als Entwicklungsabhängigkeit installieren müssen, da es nun eine optionale Abhängigkeit ist.
+- [Annahmen von esbuild bei der Minimierung](https://esbuild.github.io/api/#minify-considerations)
+- [Annahmen des Oxc-Minimierers](https://oxc.rs/docs/guide/usage/minifier.html#assumptions)
 
-Lightning CSS unterstützt mehr Syntax-Optimierungen, daher kann die Größe des CSS-Bundles größer ausfallen.
+Bitte melden Sie alle Probleme, die Sie im Zusammenhang mit der Minifizierung in Ihren JavaScript-Apps feststellen.
 
-### Konsistente CJS-Interoperabilität
+### CSS-Minimierung mit Lightning CSS
 
-Der `default`-Import aus einem CJS-Modul wird nun einheitlich behandelt.
+[Lightning CSS](https://lightningcss.dev/) wird nun standardmäßig für die CSS-Minifizierung verwendet. Mit der Option [`build.cssMinify: 'esbuild'`](/config/build-options#cssminify) können Sie wieder zu esbuild zurückwechseln. Beachten Sie, dass Sie `esbuild` als Entwicklungsabhängigkeit installieren müssen.
 
-Wenn eine der folgenden Bedingungen zutrifft, entspricht der `default`-Import dem Wert von `module.exports` des importierten CJS-Moduls. Andernfalls entspricht der `default`-Import dem Wert von `module.exports.default` des importierten CJS-Moduls.
+Lightning CSS unterstützt bessere Syntax-Optimierungen und die Größe Ihres CSS-Bündels kann höher ausfallen.
 
-- Der Importeur hat die Endung `.mjs` oder `.mts`
-- Das dem Importeur am nächsten liegende `package.json`-Datei enthält ein `type`-Feld, das auf `module` gesetzt ist
-- Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf `true` gesetzt
+### Konsistente CommonJS-Interoperabilität
+
+Der `default`-Import aus einem CommonJS-Modul (CJS) wird nun einheitlich behandelt.
+
+Wenn eine der folgenden Bedingungen zutrifft, entspricht der `default`-Import dem Wert von `module.exports` des importierten CJS-Moduls. Andernfalls entspricht der `default`-Import dem Wert von `module.exports.default` des importierten CJS-Moduls:
+
+- Der Importeur hat die Endung `.mjs` oder `.mts`.
+- Das dem Importeur am nächsten liegende `package.json`-Datei enthält ein `type`-Feld, das auf `module` gesetzt ist.
+- Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf `true` gesetzt.
 
 ::: details Das bisherige Verhalten
 
-In der Entwicklungsumgebung ist der `default`-Import der Wert von `module.exports` des importierten CJS-Moduls, wenn eine der folgenden Bedingungen erfüllt ist. Andernfalls ist der `default`-Import der Wert von `module.exports.default` des importierten CJS-Moduls.
+In der Entwicklungsumgebung ist der `default`-Import der Wert von `module.exports` des importierten CJS-Moduls, wenn eine der folgenden Bedingungen erfüllt ist. Andernfalls ist der `default`-Import der Wert von `module.exports.default` des importierten CJS-Moduls:
 
-- _Der Importer ist in der Abhängigkeitsoptimierung enthalten_ und hat die Endung `.mjs` oder `.mts`
-- _Der Importer ist in der Abhängigkeitsoptimierung enthalten_ und das dem Importer am nächsten liegende `package.json` hat ein `type`-Feld, das auf `module` gesetzt ist
-- Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf `true` gesetzt
+- _Der Importer ist in der Abhängigkeitsoptimierung enthalten_ und hat die Endung `.mjs` oder `.mts`.
+- _Der Importer ist in der Abhängigkeitsoptimierung enthalten_ und das dem Importer am nächsten liegende `package.json` hat ein `type`-Feld, das auf `module` gesetzt ist.
+- Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf `true` gesetzt.
 
 Im Build-Modus lauteten die Bedingungen:
 
-- Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf `true` gesetzt
-- _Die Eigenschaft `default` von `module.exports` existiert nicht_
+- Der Wert `module.exports.__esModule` des importierten CJS-Moduls ist nicht auf `true` gesetzt.
+- _Die Eigenschaft `default` von `module.exports` existiert nicht_.
 
 (vorausgesetzt, [`build.commonjsOptions.defaultIsModuleExports`](https://github.com/rollup/plugins/tree/master/packages/commonjs#defaultismoduleexports) wurde nicht vom Standardwert `'auto'` geändert)
 
@@ -281,38 +286,13 @@ Weitere Informationen finden Sie in Rolldowns Dokumentation zu diesem Problem: [
 
 Diese Änderung kann dazu führen, dass bestehender Code, der CJS-Module importiert, nicht mehr funktioniert. Mit der Option `legacy.inconsistentCjsInterop: true` können Sie das bisherige Verhalten vorübergehend wiederherstellen. Beachten Sie, dass diese Option in Zukunft entfernt wird. Wenn Sie ein Paket finden, das von dieser Änderung betroffen ist, melden Sie dies bitte dem Paketautor. Verweisen Sie dabei unbedingt auf das oben genannte Dokument von Rolldown, damit der Autor den Kontext nachvollziehen kann.
 
-### Modultypunterstützung und automatische Erkennung
-
-Die Änderung betrifft nur Plugin-Authoren.
-
-Rolldown hat eine experimentelle [Modultypunterstützung](https://rolldown.rs/guide/notable-features#module-types), welche ähnlich zu [esbuilds `loader`-Option](https://esbuild.github.io/api/#loader) ist. Dadurch setzt Rolldown automatisch einen Modultyp basierend auf der Erweiterung der aufgelösten ID.
-
-Wenn Sie den Inhalt von anderen Typen in `load`- oder `transform`-Hooks zu JavaScript konvertieren, müssen Sie möglicherweise `moduleType: 'js'` zum zurückgegebenen Wert hinzufügen.
-
-```js
-const plugin = {
-  name: 'txt-loader',
-  load(id) {
-    if (id.endsWith('.txt')) {
-      const content = fs.readFile(id, 'utf-8')
-      return {
-        code: `export default ${JSON.stringify(content)}`,
-        moduleType: 'js', // [!code ++]
-      }
-    }
-  },
-}
-```
-
 ### Aufhebung der Modulauflösung mittels Format-Sniffing
 
-Wenn sowohl das Feld `browser` als auch das Feld `module` in `package.json` vorhanden waren, hat Vite das Feld früher anhand des Dateiinhalts aufgelöst und dabei versucht, die ESM-Datei für Browser auszuwählen. Dies wurde eingeführt, weil einige Pakete das Feld `module` verwendeten, um auf ESM-Dateien für Node.js zu verweisen, während andere Pakete das Feld `browser` nutzten, um auf UMD-Dateien für Browser zu verweisen. Da das moderne `exports`-Feld dieses Problem gelöst hat und mittlerweile von vielen Paketen verwendet wird, nutzt Vite diese Heuristik nicht mehr und beachtet stets die Reihenfolge der Option [`resolve.mainFields`](/config/shared-options#resolve-mainfields). Falls Sie sich auf dieses Verhalten verlassen haben, können Sie die Option [`resolve.alias`](/config/shared-options#resolve-alias) verwenden, um das Feld der gewünschten Datei zuzuordnen, oder einen Patch mit Ihrem Paketmanager anwenden (z. B. `patch-package`, `pnpm patch`).
+Wenn sowohl das Feld `browser` als auch das Feld `module` in `package.json` vorhanden waren, hat Vite das Feld früher anhand des Dateiinhalts aufgelöst und es hat versucht die ESM-Datei für Browser auszuwählen. Dies wurde eingeführt, weil einige Pakete das Feld `module` verwendeten, um auf ESM-Dateien für Node.js zu verweisen, während andere Pakete das Feld `browser` nutzten, um auf UMD-Dateien für Browser zu verweisen. Da das moderne `exports`-Feld dieses Problem gelöst hat und mittlerweile von vielen Paketen verwendet wird, nutzt Vite diese Heuristik nicht mehr und beachtet stets die Reihenfolge der Option [`resolve.mainFields`](/config/shared-options#resolve-mainfields). Falls Sie sich auf dieses Verhalten verlassen haben, können Sie die Option [`resolve.alias`](/config/shared-options#resolve-alias) verwenden, um das Feld der gewünschten Datei zuzuordnen, oder einen Patch mit Ihrem Paketmanager anwenden (z. B. `patch-package`, `pnpm patch`).
 
 ### `require`-Aufrufe für externalisierte Module
 
-`require`-Aufrufe für externalisierte Module werden nun als `require`-Aufrufe beibehalten und nicht in `import`-Anweisungen umgewandelt. Dies dient dazu, die Semantik von `require`-Aufrufen zu bewahren.
-
-Wenn Sie diese in `import`-Anweisungen umwandeln möchten, können Sie das in Rolldown integrierte `esmExternalRequirePlugin` verwenden, das aus `vite` reexportiert wird.
+`require`-Aufrufe für externalisierte Module werden nun als `require`-Aufrufe beibehalten und nicht in `import`-Anweisungen umgewandelt. Dies dient dazu, die Semantik von `require`-Aufrufen zu bewahren. Wenn Sie diese in `import`-Anweisungen umwandeln möchten, können Sie das in Rolldown integrierte `esmExternalRequirePlugin` verwenden, das aus `vite` reexportiert wird.
 
 ```js
 import { defineConfig, esmExternalRequirePlugin } from 'vite'
@@ -331,7 +311,7 @@ Weitere Informationen finden Sie in der Dokumentation von Rolldown: [`require` e
 
 ### `import.meta.url` in UMD / IIFE
 
-`import.meta.url` wird in den Ausgabeformaten UMD / IIFE nicht polyfilled. Es wird standardmäßig durch `undefined` ersetzt. Wenn Sie das bisherige Verhalten bevorzugen, können Sie die Option `define` zusammen mit der Option `build.rolldownOptions.output.intro` verwenden. Weitere Details finden Sie in der Rolldown-Dokumentation: [Bekannte `import.meta`-Eigenschaften - Nicht-ESM-Ausgabeformate | Rolldown](https://rolldown.rs/in-depth/non-esm-output-formats#well-known-import-meta-properties).
+`import.meta.url` wird in den Ausgabeformaten UMD / IIFE nicht länger polyfilled. Es wird standardmäßig durch `undefined` ersetzt. Wenn Sie das bisherige Verhalten bevorzugen, können Sie die Option `define` zusammen mit der Option `build.rolldownOptions.output.intro` verwenden. Weitere Details finden Sie in der Rolldown-Dokumentation: [Bekannte `import.meta`-Eigenschaften - Nicht-ESM-Ausgabeformate | Rolldown](https://rolldown.rs/in-depth/non-esm-output-formats#well-known-import-meta-properties).
 
 ### Option `build.rollupOptions.watch.chokidar` entfernt
 
@@ -341,9 +321,30 @@ Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln S
 
 ### Die Option `build.rollupOptions.output.manualChunks` ist veraltet
 
-Die Option `output.manualChunks` ist veraltet. Rolldown verfügt über die Option `advancedChunks`, die flexibler ist. Bitte wechseln Sie zur Option `output.advancedChunks`. Weitere Informationen zu `advancedChunks` finden Sie in der Dokumentation von Rolldown: [Advanced Chunks – Rolldown](https://rolldown.rs/in-depth/advanced-chunks).
+Die Option `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option `advancedChunks`. Weitere Informationen zu `advancedChunks` finden Sie in der Dokumentation von Rolldown: [Advanced Chunks - Rolldown](https://rolldown.rs/in-depth/advanced-chunks).
 
 <!-- TODO: add link to rolldownOptions.output.advancedChunks -->
+
+### Modultypunterstützung und automatische Erkennung
+
+Die Änderung betrifft nur Plugin-Authoren.
+
+Rolldown hat eine experimentelle [Modultypunterstützung](https://rolldown.rs/guide/notable-features#module-types), welche ähnlich zu [esbuilds `loader`-Option](https://esbuild.github.io/api/#loader) ist. Dadurch setzt Rolldown automatisch einen Modultyp basierend auf der Erweiterung der aufgelösten ID. Wenn Sie den Inhalt von anderen Typen in `load`- oder `transform`-Hooks zu JavaScript konvertieren, müssen Sie möglicherweise `moduleType: 'js'` zum zurückgegebenen Wert hinzufügen.
+
+```js
+const plugin = {
+  name: 'txt-loader',
+  load(id) {
+    if (id.endsWith('.txt')) {
+      const content = fs.readFile(id, 'utf-8')
+      return {
+        code: `export default ${JSON.stringify(content)}`,
+        moduleType: 'js', // [!code ++]
+      }
+    }
+  },
+}
+```
 
 ### Weitere veraltete Funktionen
 
@@ -360,7 +361,7 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 
 ## Fortgeschrittenes
 
-Es gibt weitere grundlegende Änderungen, die nur wenige Benutzer betreffen.
+Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl von Anwendungsfällen betreffen.
 
 - **[TODO: Dies wird vor der stabilen Version behoben]** https://github.com/rolldown/rolldown/issues/5726 (betrifft Nuxt, Qwik)
 - **[TODO: Dies wird vor der stabilen Version behoben]** https://github.com/rolldown/rolldown/issues/3403 (betrifft Sveltekit)
