@@ -40,7 +40,7 @@ Siehe [Umgebungsvariablen und Modi](/guide/env-and-mode) für weitere Details.
 
 Definieren von globalen Konstantenersatzwerten. Einträge werden während der Entwicklung als Globals definiert und während des Builds statisch ersetzt.
 
-Vite verwendet [Oxcs Definitionsfunktion]((https://oxc.rs/docs/guide/usage/transformer/global-variable-replacement#define)), um Ersetzungen durchzuführen, daher müssen Wertausdrücke eine Zeichenkette sein, die einen JSON-serialisierbaren Wert (null, boolesch, Zahl, Zeichenkette, Array oder Objekt) oder einen einzelnen Bezeichner enthält. Bei Werten, die keine Strings sind, konvertiert Vite sie automatisch mit `JSON.stringify` in einen String.
+Vite verwendet [Oxcs Definitionsfunktion](https://oxc.rs/docs/guide/usage/transformer/global-variable-replacement#define), um Ersetzungen durchzuführen, daher müssen Wertausdrücke eine Zeichenkette sein, die einen JSON-serialisierbaren Wert (null, boolesch, Zahl, Zeichenkette, Array oder Objekt) oder einen einzelnen Bezeichner enthält. Bei Werten, die keine Strings sind, konvertiert Vite sie automatisch mit `JSON.stringify` in einen String.
 
 **Beispiel:**
 
