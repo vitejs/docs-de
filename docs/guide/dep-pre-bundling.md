@@ -22,12 +22,12 @@ Dies ist Vite, das das ausführt, was wir als "Abhängigkeitsvorverpackung" beze
    Durch die Vorverpackung von `lodash-es` in ein einzelnes Modul benötigen wir jetzt nur noch eine HTTP-Anfrage!
 
 :::tip HINWEIS
-Die Abhängigkeitsvorverpackung gilt nur im Entwicklungsmodus und verwendet `esbuild`, um Abhängigkeiten in ESM umzuwandeln. In Produktions-Builds wird stattdessen `@rollup/plugin-commonjs` verwendet.
+Die Abhängigkeitsvorverpackung gilt nur im Entwicklungsmodus.
 :::
 
 ## Automatische Abhängigkeitsentdeckung
 
-Wenn kein vorhandener Cache gefunden wird, durchsucht Vite Ihren Quellcode und entdeckt automatisch Importe von Abhängigkeiten (d.h. "bare Imports", die aus `node_modules` aufgelöst werden sollen) und verwendet diese gefundenen Imports als Einstiegspunkte für die Vorverpackung. Die Vorverpackung erfolgt mit `esbuild`, daher ist sie in der Regel sehr schnell.
+Wenn kein vorhandener Cache gefunden wird, durchsucht Vite Ihren Quellcode und entdeckt automatisch Importe von Abhängigkeiten (d.h. "bare Imports", die aus `node_modules` aufgelöst werden sollen) und verwendet diese gefundenen Imports als Einstiegspunkte für die Vorverpackung. Die Vorverpackung erfolgt mit [Rolldown](https://rolldown.rs/), daher ist sie in der Regel sehr schnell.
 
 Nachdem der Server bereits gestartet wurde, wenn ein neuer Import einer Abhängigkeit gefunden wird, die noch nicht im Cache ist, führt Vite den Abhängigkeitsvorverpackungsprozess erneut aus und lädt die Seite bei Bedarf neu.
 
@@ -35,7 +35,7 @@ Nachdem der Server bereits gestartet wurde, wenn ein neuer Import einer Abhängi
 
 In einer Monorepo-Konfiguration kann eine Abhängigkeit ein verknüpftes Paket aus demselben Repository sein. Vite erkennt automatisch Abhängigkeiten, die nicht aus `node_modules` aufgelöst werden, und behandelt die verknüpfte Abhängigkeit als Quellcode. Es wird versucht, die verknüpfte Abhängigkeit nicht zu bündeln, und stattdessen wird die Abhängigkeitsliste der verknüpften Abhängigkeit analysiert.
 
-Dies erfordert jedoch, dass die verknüpfte Abhängigkeit als ESM exportiert wird. Andernfalls können Sie die Abhängigkeit zu [`optimizeDeps.include`](/config/dep-optimization-options.md#optimizedeps-include) und [`build.commonjsOptions.include`](/config/build-options.md#build-commonjsoptions) in Ihrer Konfiguration hinzufügen.
+Dies erfordert jedoch, dass die verknüpfte Abhängigkeit als ESM exportiert wird. Andernfalls können Sie die Abhängigkeit zu [`optimizeDeps.include`](/config/dep-optimization-options.md#optimizedeps-include) in Ihrer Konfiguration hinzufügen.
 
 ```js twoslash [vite.config.js]
 import { defineConfig } from 'vite'
@@ -44,11 +44,6 @@ export default defineConfig({
   optimizeDeps: {
     include: ['linked-dep']
   },
-  build: {
-    commonjsOptions: {
-      include: [/linked-dep/, /node_modules/]
-    }
-  }
 })
 ```
 
@@ -62,7 +57,9 @@ Ein typischer Anwendungsfall für `optimizeDeps.include` oder `optimizeDeps.excl
 
 Sowohl `include` als auch `exclude` können verwendet werden, um dieses Problem zu lösen. Wenn die Abhängigkeit groß ist (mit vielen internen Modulen) oder CommonJS ist, dann sollten Sie sie einschließen; wenn die Abhängigkeit klein ist und bereits gültiges ESM ist, können Sie sie ausschließen und den Browser sie direkt laden lassen.
 
-Sie können esbuild auch mit der Option [`optimizeDeps.esbuildOptions`] (/config/dep-optimization-options.md#optimizedeps-esbuildoptions) weiter anpassen. Zum Beispiel durch das Hinzufügen eines esbuild-Plugins zur Behandlung spezieller Dateien in Abhängigkeiten oder durch das Ändern des [build `target`](https://esbuild.github.io/api/#target).
+Sie können esbuild auch mit der Option [`optimizeDeps.esbuildOptions`] (/config/dep-optimization-options.md#optimizedeps-esbuildoptions) weiter anpassen. Zum Beispiel durch das Hinzufügen eines Rolldown-Plugins zur Behandlung spezieller Dateien in Abhängigkeiten oder durch das Ändern des [build `target`](https://esbuild.github.io/api/#target).
+
+<!-- TODO: update the link above to Rolldown's documentation -->
 
 ## Zwischenspeicherung
 

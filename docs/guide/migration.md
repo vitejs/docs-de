@@ -12,7 +12,7 @@ Dieser Abschnitt wird vor der Veröffentlichung der stabilen Version in den Rele
 
 Vite 8 bietet nun dank [Oxc Resolver](https://oxc.rs/docs/guide/usage/resolver) integrierte Unterstützung für tsconfig `paths`. Diese Funktion ist standardmäßig nicht aktiviert, da sie mit Leistungseinbußen verbunden ist und [vom TypeScript-Team davon abgeraten wird, diese Option zu verwenden, um das Verhalten externer Tools zu ändern](https://www.typescriptlang.org/tsconfig/#paths:~:text=Note%20that%20this%20feature%20does%20not%20change%20how%20import%20paths%20are%20emitted%20by%20tsc%2C%20so%20paths%20should%20only%20be%20used%20to%20inform%20TypeScript%20that%20another%20tool%20has%20this%20mapping%20and%20will%20use%20it%20at%20runtime%20or%20when%20bundling.). Unter Berücksichtigung dieser Einschränkung können Sie diese Funktion aktivieren, indem Sie `resolve.tsconfigPaths` auf `true` setzen.
 
-**_[TODO: vor der stabilen Version beheben] Derzeit unterstützt diese Funktion nur einfache Fälle. Wenn in der Datei `tsconfig.json` die Optionen `references`, `include` oder `exclude` verwendet werden, funktioniert sie nicht wie erwartet._**
+Die tsconfig.json in nächsten Elternverzeichnis wird verwendet. Für mehr Informationen darüber, welche tsconfig.json verwendet wird, schauen Sie sich [die Funktionen-Seite](/guide/features#typescript-compiler-options) an.
 
 ### Unterstützung für `emitDecoratorMetadata`
 
@@ -22,7 +22,7 @@ Beachten Sie, dass diese Transformation einige Einschränkungen aufweist, da die
 
 ## Änderung des Standard-Browserziels
 
-**_TODO: Diese Änderung später implementieren_**
+**_TODO: Diese Änderung ist noch nicht implementiert, wird aber vor einem stabilen Release implementiert._**
 
 Der Standardwert für `build.target`, `'baseline-widely-available'`, wurde auf einen neueren Browser aktualisiert.
 
@@ -279,6 +279,29 @@ Weitere Informationen finden Sie in Rolldowns Dokumentation zu diesem Problem: [
 
 Diese Änderung kann dazu führen, dass bestehender Code, der CJS-Module importiert, nicht mehr funktioniert. Mit der Option `legacy.inconsistentCjsInterop: true` können Sie das bisherige Verhalten vorübergehend wiederherstellen. Beachten Sie, dass diese Option in Zukunft entfernt wird. Wenn Sie ein Paket finden, das von dieser Änderung betroffen ist, melden Sie dies bitte dem Paketautor. Verweisen Sie dabei unbedingt auf das oben genannte Dokument von Rolldown, damit der Autor den Kontext nachvollziehen kann.
 
+### Modultypunterstützung und automatische Erkennung
+
+Die Änderung betrifft nur Plugin-Authoren.
+
+Rolldown hat eine experimentelle [Modultypunterstützung](https://rolldown.rs/guide/notable-features#module-types), welche ähnlich zu [esbuilds `loader`-Option](https://esbuild.github.io/api/#loader) ist. Dadurch setzt Rolldown automatisch einen Modultyp basierend auf der Erweiterung der aufgelösten ID.
+
+Wenn Sie den Inhalt von anderen Typen in `load`- oder `transform`-Hooks zu JavaScript konvertieren, müssen Sie möglicherweise `moduleType: 'js'` zum zurückgegebenen Wert hinzufügen.
+
+```js
+const plugin = {
+  name: 'txt-loader',
+  load(id) {
+    if (id.endsWith('.txt')) {
+      const content = fs.readFile(id, 'utf-8')
+      return {
+        code: `export default ${JSON.stringify(content)}`,
+        moduleType: 'js', // [!code ++]
+      }
+    }
+  },
+}
+```
+
 ### Aufhebung der Modulauflösung mittels Format-Sniffing
 
 Wenn sowohl das Feld `browser` als auch das Feld `module` in `package.json` vorhanden waren, hat Vite das Feld früher anhand des Dateiinhalts aufgelöst und dabei versucht, die ESM-Datei für Browser auszuwählen. Dies wurde eingeführt, weil einige Pakete das Feld `module` verwendeten, um auf ESM-Dateien für Node.js zu verweisen, während andere Pakete das Feld `browser` nutzten, um auf UMD-Dateien für Browser zu verweisen. Da das moderne `exports`-Feld dieses Problem gelöst hat und mittlerweile von vielen Paketen verwendet wird, nutzt Vite diese Heuristik nicht mehr und beachtet stets die Reihenfolge der Option [`resolve.mainFields`](/config/shared-options#resolve-mainfields). Falls Sie sich auf dieses Verhalten verlassen haben, können Sie die Option [`resolve.alias`](/config/shared-options#resolve-alias) verwenden, um das Feld der gewünschten Datei zuzuordnen, oder einen Patch mit Ihrem Paketmanager anwenden (z. B. `patch-package`, `pnpm patch`).
@@ -333,20 +356,19 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 
 **_TODO: Diese Änderungen später implementieren_**
 
-## Fortgeschrittene
+## Fortgeschrittenes
 
 Es gibt weitere grundlegende Änderungen, die nur wenige Benutzer betreffen.
 
-- **[TODO: vor der stabilen Version beheben (besser noch vor der ersten Beta-Version)]** https://github.com/rolldown/rolldown/issues/5867
-- **[TODO: vor der stabilen Version beheben]** https://github.com/rolldown/rolldown/issues/5726 (betrifft Nuxt, Qwik)
-- **[TODO: vor der stabilen Version beheben]** https://github.com/rolldown/rolldown/issues/3403 (betrifft Sveltekit)
-- **[TODO: vor der stabilen Version beheben]** Legacy-Chunks werden aufgrund der fehlenden Funktion zur Ausgabe vorgefertigter Chunks ([rolldown#4304](https://github.com/rolldown/rolldown/issues/4034)) als Asset-Datei statt als Chunk-Datei ausgegeben. Das bedeutet, dass die Chunk-bezogenen Optionen nicht für Legacy-Chunks gelten und die Manifest-Datei Legacy-Chunks nicht als Chunk-Datei enthält.
-- **[TODO: vor der stabilen Version beheben]** Der Resolver-Cache verursacht in Vitest kleinere Fehler ([rolldown-vite#466](https://github.com/vitejs/rolldown-vite/issues/466), [vitest#8754](https://github.com/vitest-dev/vitest/issues/8754#issuecomment-3441115032))
-- **[TODO: vor der stabilen Version beheben]** Der Resolver funktioniert nicht mit yarn pnp ([rolldown-vite#324](https://github.com/vitejs/rolldown-vite/issues/324), [rolldown-vite#392](https://github.com/vitejs/rolldown-vite/issues/392))
-- **[TODO: vor der stabilen Version beheben]** Problem mit der Reihenfolge der nativen Plugins ([rolldown-vite#373](https://github.com/vitejs/rolldown-vite/issues/373))
-- **[TODO: vor der stabilen Version beheben]** `@vite-ignore`-Kommentar: Sonderfall ([rolldown-vite#426](https://github.com/vitejs/rolldown-vite/issues/426))
-- **[TODO: vor der stabilen Version beheben]** https://github.com/rolldown/rolldown/issues/3403
-- **[TODO: hier etwas mehr Klarheit schaffen]** Unterstützung für ext glob ([rolldown-vite#365](https://github.com/vitejs/rolldown-vite/issues/365))
+- **[TODO: Dies wird vor der stabilen Version behoben]** https://github.com/rolldown/rolldown/issues/5726 (betrifft Nuxt, Qwik)
+- **[TODO: Dies wird vor der stabilen Version behoben]** https://github.com/rolldown/rolldown/issues/3403 (betrifft Sveltekit)
+- **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** Legacy-Chunks werden aufgrund der fehlenden Funktion zur Ausgabe vorgefertigter Chunks ([rolldown#4304](https://github.com/rolldown/rolldown/issues/4034)) als Asset-Datei statt als Chunk-Datei ausgegeben. Das bedeutet, dass die Chunk-bezogenen Optionen nicht für Legacy-Chunks gelten und die Manifest-Datei Legacy-Chunks nicht als Chunk-Datei enthält.
+- **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** Der Resolver-Cache verursacht in Vitest kleinere Fehler ([rolldown-vite#466](https://github.com/vitejs/rolldown-vite/issues/466), [vitest#8754](https://github.com/vitest-dev/vitest/issues/8754#issuecomment-3441115032))
+- **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** Der Resolver funktioniert nicht mit yarn pnp ([rolldown-vite#324](https://github.com/vitejs/rolldown-vite/issues/324), [rolldown-vite#392](https://github.com/vitejs/rolldown-vite/issues/392))
+- **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** Problem bei der Reihenfolge nativer Plugins ([rolldown-vite#373](https://github.com/vitejs/rolldown-vite/issues/373))
+- **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** `@vite-ignore`-Kommentar-Sonderfall ([rolldown-vite#426](https://github.com/vitejs/rolldown-vite/issues/426))
+- **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** https://github.com/rolldown/rolldown/issues/3403
+- [Extglobs](https://github.com/micromatch/picomatch/blob/master/README.md#extglobs) werden noch nicht unterstützt ([rolldown-vite#365](https://github.com/vitejs/rolldown-vite/issues/365))
 - `define` teilt keine Referenz für Objekte: Wenn Sie ein Objekt als Wert an `define` übergeben, erhält jede Variable eine separate Kopie des Objekts. Weitere Details finden Sie im [Oxc Transformer-Dokument](https://oxc.rs/docs/guide/usage/transformer/global-variable-replacement#define).
 - Änderungen am `bundle`-Objekt (`bundle` ist ein Objekt, das in den Hooks `generateBundle` / `writeBundle` übergeben und von der Funktion `build` zurückgegeben wird):
   - Die Zuweisung an `bundle[foo]` wird nicht unterstützt. Dies wird auch von Rollup nicht empfohlen. Bitte verwenden Sie stattdessen `this.emitFile()`.
@@ -364,7 +386,8 @@ Es gibt weitere grundlegende Änderungen, die nur wenige Benutzer betreffen.
   - `resolveImportMeta` hook ([rolldown#1010](https://github.com/rolldown/rolldown/issues/1010))
   - `renderDynamicImport` hook ([rolldown#4532](https://github.com/rolldown/rolldown/issues/4532))
   - `resolveFileUrl` hook
-- `parseAst` / `parseAstAsync` functions are now deprecated in favor of `parse` / `parseAsync` functions which has more features.- **[TODO: Dies in der Rolldown-Dokumentation klarstellen und von hier aus verlinken]** Alle parallelen Hooks in Rollup funktionieren wie sequenzielle Hooks.
+- `parseAst` / `parseAstAsync` functions are now deprecated in favor of `parse` / `parseAsync` functions which has more features.
+- Alle parallelen Hooks in Rollup funktionieren wie sequenzielle Hooks. Siehe [Rolldown-Dokumentation](https://rolldown.rs/apis/plugin-api#sequential-hook-execution) für mehr Details.
 - ``use strict`;` wird manchmal nicht eingefügt. Weitere Details finden Sie in der [Rolldown-Dokumentation](https://rolldown.rs/in-depth/directives).
 - Die Umwandlung auf eine Version unter ES5 mit plugin-legacy wird nicht unterstützt ([rolldown-vite#452](https://github.com/vitejs/rolldown-vite/issues/452))
 - Die Übergabe desselben Browsers mit mehreren Versionen an die Option `build.target` führt nun zu einem Fehler: esbuild wählt die neueste Version aus, was wahrscheinlich nicht beabsichtigt war.

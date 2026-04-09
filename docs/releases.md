@@ -43,10 +43,6 @@ Zwischen Minor-Versionen können wir inkompatible Änderungen an TypeScript-Defi
 - Gelegentlich müssen wir Funktionen übernehmen, die nur in einer neueren Version von TypeScript verfügbar sind, was die Mindestanforderung an die TypeScript-Version erhöht.
 - Wenn Sie TypeScript verwenden, können Sie einen Semver-Bereich verwenden, der die aktuelle Minor-Version sperrt, und manuell aktualisieren, wenn eine neue Minor-Version von Vite veröffentlicht wird.
 
-### esbuild
-
-[esbuild](https://esbuild.github.io/) hat die Version 1.0.0 noch nicht erreicht, und manchmal gibt es eine breaking change, die wir aufnehmen müssen, um Zugriff auf neuere Funktionen und Leistungsverbesserungen zu haben. Wir können die esbuild-Version in einer Vite-Minor-Version aktualisieren.
-
 ### Node.js nicht-LTS-Versionen
 
 Nicht-LTS-Versionen von Node.js (ungerade Versionen) werden nicht als Teil der CI-Tests von Vite getestet, sollten jedoch vor ihrem [EOL (Ende des Lebenszyklus)](https://endoflife.date/nodejs) immer funktionieren.

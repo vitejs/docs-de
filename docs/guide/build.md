@@ -40,23 +40,25 @@ Für erweiterte Steuerung des Basispfads siehe [Erweiterte Basisoptionen](#erwei
 
 ## Anpassen des Builds
 
-Der Build kann über verschiedene [Build-Konfigurationsoptionen](/config/build-options.md) angepasst werden. Konkret können Sie die zugrunde liegenden [Rollup-Optionen](https://rollupjs.org/configuration-options/) direkt über `build.rollupOptions` anpassen:
+Der Build kann über verschiedene [Build-Konfigurationsoptionen](/config/build-options.md) angepasst werden. Konkret können Sie die zugrunde liegenden [Rolldown-Optionen](https://rollupjs.org/configuration-options/) direkt über `build.rolldownOptions` anpassen:
+
+<!-- TODO: update the link above and below to Rolldown's documentation -->
 
 ```js [vite.config.js]
 export default defineConfig({
   build: {
-    rollupOptions: {
+    rolldownOptions: {
       // https://rollupjs.org/configuration-options/
     },
   },
 })
 ```
 
-Sie können beispielsweise mehrere Rollup-Ausgaben mit Plugins spezifizieren, die nur während des Builds angewendet werden.
+Sie können beispielsweise mehrere Rolldown-Ausgaben mit Plugins spezifizieren, die nur während des Builds angewendet werden.
 
 ## Chunking-Strategie
 
-Sie können konfigurieren, wie Chunks aufgeteilt werden, indem Sie `build.rollupOptions.output.manualChunks` verwenden (siehe [Rollup docs](https://rollupjs.org/configuration-options/#output-manualchunks)). Wenn Sie ein Framework verwenden, lesen Sie dessen Dokumentation, um zu konfigurieren, wie Chunks aufgeteilt werden.
+Sie können konfigurieren, wie Chunks aufgeteilt werden, indem Sie `build.rolldownOptions.output.manualChunks` verwenden (siehe [Rolldown-Dokumentation](https://rollupjs.org/configuration-options/#output-manualchunks)). Wenn Sie ein Framework verwenden, lesen Sie dessen Dokumentation, um zu konfigurieren, wie Chunks aufgeteilt werden.
 
 ## Fehlerbehandlung beim Laden
 
@@ -73,6 +75,8 @@ Bei einer neuen Bereitstellung kann der Hosting-Dienst die Assets aus früheren 
 ## Neuerstellen bei Dateiänderungen
 
 Sie können den Rollup Watcher mit `vite build --watch` aktivieren. Oder Sie können die zugrundeliegenden [`WatcherOptions`](https://rollupjs.org/configuration-options/#watch) direkt über `build.watch` anpassen:
+
+<!-- TODO: update the link above to Rolldown's documentation -->
 
 ```js [vite.config.js]
 export default defineConfig({
@@ -113,7 +117,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   build: {
-    rollupOptions: {
+    rolldownOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
         nested: resolve(__dirname, 'nested/index.html'),
@@ -149,7 +153,7 @@ export default defineConfig({
       // Die richtigen Dateierweiterungen werden hinzugefügt
       fileName: 'my-lib',
     },
-    rollupOptions: {
+    rolldownOptions: {
       // Stellen Sie sicher, dass Abhängigkeiten, die nicht in Ihre Bibliothek gebündelt werden sollen, externisiert werden
       external: ['vue'],
       output: {
@@ -291,7 +295,7 @@ Im Bibliotheksmodus werden alle Verwendungen von [`import.meta.env.*`](./env-and
 :::
 
 ::: warning Erweiterte Verwendung
-Der Bibliotheksmodus enthält eine einfache und vorgegebene Konfiguration für browserorientierte und JS-Framework-Bibliotheken. Wenn Sie nicht browserorientierte Bibliotheken erstellen oder erweiterte Build-Workflows benötigen, können Sie [Rollup](https://rollupjs.org) oder [esbuild](https://esbuild.github.io) direkt verwenden.
+Der Bibliotheksmodus enthält eine einfache und vorgegebene Konfiguration für browserorientierte und JS-Framework-Bibliotheken. Wenn Sie nicht browserorientierte Bibliotheken erstellen oder erweiterte Build-Workflows benötigen, können Sie [tsdown](https://tsdown.dev/) oder [Rolldown](https://rolldown.rs/) direkt verwenden.
 :::
 
 ## Erweiterte Basisoptionen

@@ -188,7 +188,7 @@ Beachten Sie, dass Sie den dynamischen Import aufgrund von Browserbeschränkunge
 
 Der Fehler kann auch auftreten, wenn Browser-Erweiterungen (wie Werbeblocker) diese Anfrage blockieren.
 
-Möglicherweise lässt sich das Problem umgehen, indem Sie einen anderen Chunk-Namen unter [`build.rollupOptions.output.chunkFileNames`](../config/build-options.md#build-rollupoptions) auswählen, da diese Erweiterungen Anfragen häufig anhand von Dateinamen blockieren (z. B. Namen, die „ad“ oder „track“ enthalten).
+Möglicherweise lässt sich das Problem umgehen, indem Sie einen anderen Chunk-Namen unter [`build.rolldownOptions.output.chunkFileNames`](../config/build-options.md#build-rolldownOptions) auswählen, da diese Erweiterungen Anfragen häufig anhand von Dateinamen blockieren (z. B. Namen, die „ad“ oder „track“ enthalten).
 
 ### Veraltete vorbündelte Abhängigkeiten bei Verknüpfung mit einem lokalen Paket
 
