@@ -23,7 +23,7 @@ vite --config my-config.js
 ```
 
 ::: tip Laden der Konfiguration
-Standardmäßig nutzt Vite `esbuild`, um die Konfiguration in einer temporären Datei zu bündeln. Dies kann zu Problemen beim Importieren von TypeScript-Dateien in einem Monorepo führen. Wenn Sie Probleme mit diesem Ansatz haben, können Sie stattdessen `--configLoader runner` angeben, um den [Modul-Runner](/guide/api-environment-runtimes.html#modulerunner) zu verwenden. Dieser erstellt keine temporäre Konfiguration und transformiert alle Dateien sofort. Beachten Sie, dass der Modul-Runner CJS in Konfigurationsdateien nicht unterstützt, externe CJS-Pakete sollten jedoch wie gewohnt funktionieren.
+Standardmäßig nutzt Vite [Rolldown](https://rolldown.rs/), um die Konfiguration in einer temporären Datei zu bündeln. Dies kann zu Problemen beim Importieren von TypeScript-Dateien in einem Monorepo führen. Wenn Sie Probleme mit diesem Ansatz haben, können Sie stattdessen `--configLoader runner` angeben, um den [Modul-Runner](/guide/api-environment-runtimes.html#modulerunner) zu verwenden. Dieser erstellt keine temporäre Konfiguration und transformiert alle Dateien sofort. Beachten Sie, dass der Modul-Runner CJS in Konfigurationsdateien nicht unterstützt, externe CJS-Pakete sollten jedoch wie gewohnt funktionieren.
 
 Wenn Sie eine Umgebung mit TypeScript-Support nutzen (z. B. `node --experimental-strip-types`) oder wenn Sie nur schlichtes JavaScript verwenden, dann können Sie die Option `--configLoader native` angeben, um die native Laufzeitumgebung zum Laden der Konfiguration zu verwenden. Beachten Sie, dass Updates von Modulen, die von der Konfigurationsdatei importiert werden, nicht erkannt werden und daher der Vite-Server nicht automatisch neu gestartet wird.
 :::

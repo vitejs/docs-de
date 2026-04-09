@@ -18,6 +18,15 @@ Die Funktion sollte neue Plugin-Instanzen zurückgeben, wie sie in parallelen Ro
 
 ## worker.rollupOptions
 
-- **Typ:** [`RollupOptions`](https://rollupjs.org/configuration-options/)
+<!-- TODO: update the link below to Rolldown's documentation -->
+
+- **Typ:** [`RolldownOptions`](https://rollupjs.org/configuration-options/)
 
 Rollup-Optionen für die Erstellung des Worker-Bundles.
+
+## worker.rollupOptions
+
+- **Typ:** `RolldownOptions`
+- **Veraltet**
+
+Diese Option ist ein Alias der `worker.rolldownOptions`-Option. Nutzen Sie stattdessen `build.rolldownOptions`.

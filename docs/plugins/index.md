@@ -22,11 +22,11 @@ Bietet Unterstützung für Vue 2 Single File Components.
 
 ### [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react)
 
-Verwendet esbuild und Babel und erreicht so ein schnelles HMR mit geringem Paketplatzbedarf und der Flexibilität, die Babel-Transformationspipeline verwenden zu können. Ohne zusätzliche Babel-Plugins wird nur esbuild während der Builds verwendet.
+Verwendet [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer) und [Babel](https://babeljs.io/) und erreicht so ein schnelles HMR mit geringem Paketplatzbedarf und der Flexibilität, die Babel-Transformationspipeline verwenden zu können. Ohne zusätzliche Babel-Plugins wird nur Oxc Transformer während der Builds verwendet.
 
 ### [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react-swc)
 
-Ersetzt Babel durch SWC während der Entwicklung. Während der produktiven Builds werden SWC+esbuild verwendet, wenn Plugins verwendet werden, und ansonsten nur esbuild. Bei großen Projekten, die keine nicht standardmäßigen React-Erweiterungen erfordern, können der Kaltstart und das Hot Module Replacement (HMR) deutlich schneller sein.
+Ersetzt Babel durch [SWC](https://swc.rs/) während der Entwicklung. Während der produktiven Builds werden SWC+Oxc Transformer verwendet, wenn Plugins verwendet werden, und ansonsten nur Oxc Transformer. Bei großen Projekten, die benutzerdefinierte Plugins benötigen, können der Kaltstart und das Hot Module Replacement (HMR) deutlich schneller sein, falls das Plugin auch für SWC verfügbar ist.
 
 ### [@vitejs/plugin-rsc](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-rsc)
 
@@ -45,6 +45,12 @@ Bietet Unterstützung für Legacy-Browser für den produktiven Build.
 ## Plugins der Community
 
 Schauen Sie sich [awesome-vite](https://github.com/vitejs/awesome-vite#plugins) an - Sie können auch einen Pull Request einreichen, um Ihre Plugins dort aufzulisten.
+
+## Eingebaute Rolldown-Plugins
+
+Vite nutzt intern [Rolldown](https://rolldown.rs/) und es stellt einige eingebaute Plugins für gängige Anwendungsfälle bereit.
+
+Lesen Sie den [Abschnitt für eingebaute Rolldown-Plugins](https://rolldown.rs/builtin-plugins/) für mehr Informationen.
 
 ## Rollup Plugins
 

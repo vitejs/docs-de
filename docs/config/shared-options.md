@@ -40,7 +40,7 @@ Siehe [Umgebungsvariablen und Modi](/guide/env-and-mode) für weitere Details.
 
 Definieren von globalen Konstantenersatzwerten. Einträge werden während der Entwicklung als Globals definiert und während des Builds statisch ersetzt.
 
-Vite verwendet [esbuild defines](https://esbuild.github.io/api/#define), um Ersetzungen durchzuführen, daher müssen Wertausdrücke eine Zeichenkette sein, die einen JSON-serialisierbaren Wert (null, boolesch, Zahl, Zeichenkette, Array oder Objekt) oder einen einzelnen Bezeichner enthält. Bei Werten, die keine Strings sind, konvertiert Vite sie automatisch mit `JSON.stringify` in einen String.
+Vite verwendet [Oxcs Definitionsfunktion](https://oxc.rs/docs/guide/usage/transformer/global-variable-replacement#define), um Ersetzungen durchzuführen, daher müssen Wertausdrücke eine Zeichenkette sein, die einen JSON-serialisierbaren Wert (null, boolesch, Zahl, Zeichenkette, Array oder Objekt) oder einen einzelnen Bezeichner enthält. Bei Werten, die keine Strings sind, konvertiert Vite sie automatisch mit `JSON.stringify` in einen String.
 
 **Beispiel:**
 
@@ -95,6 +95,8 @@ Verzeichnis zur Speicherung von Cache-Dateien. Dateien in diesem Verzeichnis sin
   `Record<string, string> | Array<{ find: string | RegExp, replacement: string, customResolver?: ResolverFunction | ResolverObject }>`
 
 Wird als [Einträge-Option](https://github.com/rollup/plugins/tree/master/packages/alias#entries) an `@rollup/plugin-alias` übergeben. Kann entweder ein Objekt oder ein Array von `{ find, replacement, customResolver }`-Paaren sein.
+
+<!-- TODO: we need to have a more detailed explanation here as we no longer use @rollup/plugin-alias. we should say it's compatible with it though -->
 
 Beim Aliasieren von Dateisystempfaden sollten immer absolute Pfade verwendet werden. Relative Alias-Werte werden wie angegeben verwendet und nicht in Dateisystempfade aufgelöst.
 

@@ -100,6 +100,15 @@ Wenn `target` in `tsconfig.json` nicht `ESNext` oder `ES2022` oder neuer ist, od
 Es wird daher empfohlen, `target` auf `ESNext` oder `ES2022` oder neuer zu setzen, oder `useDefineForClassFields` bei der Konfiguration von `tsconfig.json` explizit auf `true` zu setzen.
 :::
 
+#### `paths`
+
+- [TypeScript-Dokumentation](https://www.typescriptlang.org/tsconfig/#paths)
+
+`resolve.tsconfigPaths: true` kann spezifiziert werden, um Vite anzuweisen die `paths`-Option in der `tsconfig.json` zu nutzen, um Importe aufzulösen.
+
+Beachten Sie, dass diese Funktion Performanzeinbußen mit sich bringt und [das TypeScript-Team davon abrät, die Option zu verwenden, um das Verhalten der externen Tools zu verändern](https://www.typescriptlang.org/tsconfig/#paths:~:text=Note%20that%20this%20feature%20does%20not%20change%20how%20import%20paths%20are%20emitted%20by%20tsc%2C%20so%20paths%20should%20only%20be%20used%20to%20inform%20TypeScript%20that%20another%20tool%20has%20this%20mapping%20and%20will%20use%20it%20at%20runtime%20or%20when%20bundling.).
+
+
 #### Andere Compiler-Optionen, die das Build-Ergebnis beeinflussen
 
 - [`Erweiterungen`](https://www.typescriptlang.org/tsconfig#extends)
