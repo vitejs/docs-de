@@ -39,7 +39,7 @@ Vite 8 verwendet Rolldown und Oxc-basierte Tools anstelle von esbuild und Rollup
 
 Das Paket `rolldown-vite` implementiert Vite 7 mit Rolldown-Integration, jedoch ohne die übrigen Änderungen von Vite 8. Dies kann als Zwischenschritt bei der Migration zu Vite 8 genutzt werden. Siehe [Anleitung zur Rolldown-Integration](https://v7.vite.dev/guide/rolldown) in der Vite-7-Dokumentation, um von Vite 7 auf `rolldown-vite` umzusteigen.
 
-Benutzer, die von `rolldown-vite` auf Vite 8 migrieren, kann die Änderung an der Abhängigkeit in der `package.json` rückgängig machen und auf Vite 8 aktualisieren:
+Benutzer, die von `rolldown-vite` auf Vite 8 migrieren, können die Änderung an der Abhängigkeit in der `package.json` rückgängig machen und auf Vite 8 aktualisieren:
 
 ```json
 {
@@ -285,6 +285,29 @@ Im Build-Modus lauteten die Bedingungen:
 Weitere Informationen finden Sie in Rolldowns Dokumentation zu diesem Problem: [Mehrdeutiger `default`-Import aus CJS-Modulen - CJS-Bündelung | Rolldown](https://rolldown.rs/in-depth/bundling-cjs#ambiguous-default-import-from-cjs-modules).
 
 Diese Änderung kann dazu führen, dass bestehender Code, der CJS-Module importiert, nicht mehr funktioniert. Mit der Option `legacy.inconsistentCjsInterop: true` können Sie das bisherige Verhalten vorübergehend wiederherstellen. Beachten Sie, dass diese Option in Zukunft entfernt wird. Wenn Sie ein Paket finden, das von dieser Änderung betroffen ist, melden Sie dies bitte dem Paketautor. Verweisen Sie dabei unbedingt auf das oben genannte Dokument von Rolldown, damit der Autor den Kontext nachvollziehen kann.
+
+### Modultypunterstützung und automatische Erkennung
+
+Die Änderung betrifft nur Plugin-Authoren.
+
+Rolldown hat eine experimentelle [Modultypunterstützung](https://rolldown.rs/guide/notable-features#module-types), welche ähnlich zu [esbuilds `loader`-Option](https://esbuild.github.io/api/#loader) ist. Dadurch setzt Rolldown automatisch einen Modultyp basierend auf der Erweiterung der aufgelösten ID.
+
+Wenn Sie den Inhalt von anderen Typen in `load`- oder `transform`-Hooks zu JavaScript konvertieren, müssen Sie möglicherweise `moduleType: 'js'` zum zurückgegebenen Wert hinzufügen.
+
+```js
+const plugin = {
+  name: 'txt-loader',
+  load(id) {
+    if (id.endsWith('.txt')) {
+      const content = fs.readFile(id, 'utf-8')
+      return {
+        code: `export default ${JSON.stringify(content)}`,
+        moduleType: 'js', // [!code ++]
+      }
+    }
+  },
+}
+```
 
 ### Aufhebung der Modulauflösung mittels Format-Sniffing
 
