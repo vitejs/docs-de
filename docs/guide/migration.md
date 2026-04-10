@@ -1,25 +1,5 @@
 # Migration von v7
 
-## Neue Funktionen
-
-::: tip Vorläufiger Abschnitt
-
-Dieser Abschnitt wird vor der Veröffentlichung der stabilen Version in den Release-Beitrag verschoben.
-
-:::
-
-### Integrierte Unterstützung für tsconfig `paths`
-
-Vite 8 bietet nun eine integrierte Unterstützung für TypeScripts `paths`-Option basierend auf [Oxc Resolver](https://oxc.rs/docs/guide/usage/resolver) . Diese Funktion hat kleine Leistungseinbußen und [vom TypeScript-Team wird davon abgeraten, diese Option zu verwenden, um das Verhalten externer Tools zu ändern](https://www.typescriptlang.org/tsconfig/#paths:~:text=Note%20that%20this%20feature%20does%20not%20change%20how%20import%20paths%20are%20emitted%20by%20tsc%2C%20so%20paths%20should%20only%20be%20used%20to%20inform%20TypeScript%20that%20another%20tool%20has%20this%20mapping%20and%20will%20use%20it%20at%20runtime%20or%20when%20bundling.), wodurch es standardmäßig nicht aktiviert ist. Unter Berücksichtigung dieser Einschränkung können Sie diese Funktion aktivieren, indem Sie `resolve.tsconfigPaths` auf `true` setzen.
-
-Die `tsconfig.json` im nächsten Elternverzeichnis wird verwendet. Für mehr Details über die Auflösung der `tsconfig.json`, schauen Sie sich die [Funktionen-Seite(/guide/features#typescript-compiler-options) an.
-
-### Unterstützung für `emitDecoratorMetadata`
-
-Vite 8 bietet nun basierend auf [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer) eine integrierte Unterstützung für die [`emitDecoratorMetadata`-Option](https://www.typescriptlang.org/tsconfig/#emitDecoratorMetadata) von TypeScript. Diese Funktion wird autoamtisch aktiviert, wenn Sie `emitDecoratorMetadata` in Ihrer `tsconfig.json` auf `true` gesetzt haben.
-
-Diese Transformation hat einige Einschränkungen. Vollständige Unterstützung für Dekorator-Metadaten setzt die Typinferenz durch den TypeScript-Compiler voraus, die nicht unterstützt wird. Weitere Details finden Sie in der [Dokumentation des Oxc-Transformers](https://oxc.rs/docs/guide/usage/transformer/typescript#decorators).
-
 ## Änderung des Standard-Browserziels
 
 Der Standardwert für `build.target`, `'baseline-widely-available'`, wurde auf einen neueren Browser aktualisiert.
