@@ -43,7 +43,7 @@ Benutzer, die von `rolldown-vite` auf Vite 8 migrieren, können die Änderung an
 
 ```json
 {
-  "dependencies": {
+  "devDependencies": {
     "vite": "npm:rolldown-vite@7.2.2" // [!code --]
     "vite": "^8.0.0" // [!code ++]
   }
