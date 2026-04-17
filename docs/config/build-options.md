@@ -8,7 +8,7 @@ Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt nur für 
 - **Standard:** `'baseline-widely-available'`
 - **Verwandt:** [Browser-Kompatibilität](/guide/build#browser-compatibility)
 
-Browser-Kompatibilitätsziel für das endgültige Bundle. Der Standardwert ist ein spezieller Vite-Wert, `'baseline-widely-available'`, der auf Browser abzielt, die in der [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available am 01.05.2025 enthalten sind. Konkret sind dies `['chrome107', 'edge107', 'firefox104', 'safari16']`.
+Browser-Kompatibilitätsziel für das endgültige Bundle. Der Standardwert ist ein spezieller Vite-Wert, `'baseline-widely-available'`, der auf Browser abzielt, die in der [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available am 01.05.2026 enthalten sind. Konkret sind dies `['chrome111', 'edge111', 'firefox114', 'safari16.4']`.
 
 Ein weiterer spezieller Wert ist `'esnext'` - der die Unterstützung nativer dynamischer Importe voraussetzt und nur eine minimale Transpilierung durchführt.
 
