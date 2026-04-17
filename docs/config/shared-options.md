@@ -165,6 +165,14 @@ Durch Aktivieren dieser Einstellung bestimmt Vite die Dateiidentität anhand des
 
 - **Verwandt:** [esbuild#preserve-symlinks](https://esbuild.github.io/api/#preserve-symlinks), [webpack#resolve.symlinks](https://webpack.js.org/configuration/resolve/#resolvesymlinks)
 
+## resolve.tsconfigPaths
+
+- **Typ:** `boolean`
+- **Standard:** `false`
+
+Aktiviert die Funktion der `tsconfig` zur Pfadauflösung. Die Option `paths` in der `tsconfig.json` wird genutzt, um Importe aufzulösen. Siehe [Funktionen](/guide/features.md#paths) für mehr Details.
+
+
 ## html.cspNonce
 
 - **Typ:** `string`
