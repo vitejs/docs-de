@@ -100,6 +100,12 @@ Wenn `target` in `tsconfig.json` nicht `ESNext` oder `ES2022` oder neuer ist, od
 Es wird daher empfohlen, `target` auf `ESNext` oder `ES2022` oder neuer zu setzen, oder `useDefineForClassFields` bei der Konfiguration von `tsconfig.json` explizit auf `true` zu setzen.
 :::
 
+#### `emitDecoratorMetadata`
+
+- [TypeScript-Dokumentation](https://www.typescriptlang.org/tsconfig#emitDecoratorMetadata)
+
+Diese Option wird nur teilweise unterstützt. Vollständiger Support setzt die Typinferenz durch den TypeScript-Compiler voraus, welche nicht unterstützt wird. Siehe [Oxc-Transformer-Dokumentation](https://oxc.rs/docs/guide/usage/transformer/typescript#decorators) für mehr Details.
+
 #### `paths`
 
 - [TypeScript-Dokumentation](https://www.typescriptlang.org/tsconfig/#paths)
@@ -120,7 +126,6 @@ Beachten Sie, dass diese Funktion Performanzeinbußen mit sich bringt und [das T
 - [`jsxFragmentFactory`](https://www.typescriptlang.org/tsconfig#jsxFragmentFactory)
 - [`jsxImportSource`](https://www.typescriptlang.org/tsconfig#jsxImportSource)
 - [`experimentalDecorators`](https://www.typescriptlang.org/tsconfig#experimentalDecorators)
-- [`alwaysStrict`](https://www.typescriptlang.org/tsconfig#alwaysStrict)
 
 ::: tip `skipLibCheck`
 Vite-Start-Vorlagen haben `"skipLibCheck": "true"` gesetzt, um die Überprüfung von Abhängigkeiten zu vermeiden, da sie möglicherweise nur bestimmte Versionen und Konfigurationen von TypeScript unterstützen. Mehr dazu erfahren Sie unter [vuejs/vue-cli#5688](https://github.com/vuejs/vue-cli/pull/5688).
