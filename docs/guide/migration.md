@@ -1,6 +1,8 @@
 # Migration von v7
 
-## Änderung des Standard-Browserziels
+Wenn Sie von `rolldown-vite` migrieren, der technischen Vorschauversion von Rolldown, die Vite für v6 und v7 integriert, gelten nur die Abschnitte, deren Titel das Element <Badge text="NRV" type="warning" /> enthalten.
+
+## Änderung des Standard-Browserziels [<Badge text="NRV" type="warning" />](#migration-from-v7)
 
 Der Standardwert für `build.target`, `'baseline-widely-available'`, wurde auf einen neueren Browser aktualisiert.
 
@@ -356,9 +358,9 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 - `build.rollupOptions`: umbenannt in `build.rolldownOptions`
 - `worker.rollupOptions`: umbenannt in `worker.rolldownOptions`
 
-## Allgemeine Änderungen
+## Allgemeine Änderungen [<Badge text="NRV" type="warning" />](#migration-from-v7)
 
-## Entfernte veraltete Funktionen
+## Entfernte veraltete Funktionen [<Badge text="NRV" type="warning" />](#migration-from-v7)
 
 **_TODO: Diese Änderungen später implementieren_**
 
