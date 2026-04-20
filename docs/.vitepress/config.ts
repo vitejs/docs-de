@@ -342,7 +342,7 @@ export default defineConfig({
               link: '/guide/performance',
             },
             {
-              text: `Migration from v${viteMajorVersion - 1}`,
+              text: `Migration von v${viteMajorVersion - 1}`,
               link: '/guide/migration',
             },
             {

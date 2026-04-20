@@ -6,7 +6,7 @@
 
 ## Überblick
 
-Vite (französisches Wort für "schnell", ausgesprochen [`/vit/`]<button style="border:none;padding:3px;border-radius:4px;vertical-align:bottom" id="play-vite-audio" aria-label="pronounce" onclick="document.getElementById('vite-audio').play();"><svg style="height:2em;width:2em"><use href="../images/voice.svg?no-inline#voice" /></svg></button>, wie "veet") ist eine neue Art von Frontend-Build-Tool, das die Erfahrung bei der Frontend-Entwicklung erheblich verbessert. Es besteht aus zwei Hauptbestandteilen:
+Vite (französisches Wort für "schnell", ausgesprochen [`/vi:t/`]<button style="border:none;padding:3px;border-radius:4px;vertical-align:bottom" id="play-vite-audio" aria-label="pronounce" onclick="document.getElementById('vite-audio').play();"><svg style="height:2em;width:2em"><use href="../images/voice.svg?no-inline#voice" /></svg></button>, wie "veet") ist eine neue Art von Frontend-Build-Tool, das die Erfahrung bei der Frontend-Entwicklung erheblich verbessert. Es besteht aus zwei Hauptbestandteilen:
 
 - Einem Entwicklungsserver, der Ihre Quelldateien über [native ES-Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), mit [umfangreichen integrierten Funktionen](./features) und erstaunlich schnellem [Hot Module Replacement (HMR)](./features#hot-module-replacement) bereitstellt.
 
@@ -20,7 +20,7 @@ Mehr über die Beweggründe für das Projekt erfahren Sie im Abschnitt [Warum Vi
 
 ## Browser-Unterstützung
 
-Während der Entwicklung geht Vite davon aus, dass ein moderner Browser genutzt wird. Das bedeutet, der Browser unterstützt den Großteil der aktuellen JavaScript und CSS Funktionalitäten. Aus diesem Grund setzt Vite [`esnext` als Transformationsziel](https://esbuild.github.io/api/#target). Dadurch wird eine Syntaxreduktion verhindert, sodass Vite Module so nah wie möglich am ursprünglichen Quellcode bereitstellen kann. Vite fügt etwas Laufzeitcode ein, damit der Entwicklungsserver funktioniert. Diese Codes nutzen Funktionen aus der [Baseline Newly Available](https://web-platform-dx.github.io/web-features/) zum Zeitpunkt der jeweiligen Veröffentlichung der Hauptversion (01.05.2025 für diese Hauptversion).
+Während der Entwicklung geht Vite davon aus, dass ein moderner Browser genutzt wird. Das bedeutet, der Browser unterstützt den Großteil der aktuellen JavaScript und CSS Funktionalitäten. Aus diesem Grund setzt Vite [`esnext` als Transformationsziel](https://esbuild.github.io/api/#target). Dadurch wird eine Syntaxreduktion verhindert, sodass Vite Module so nah wie möglich am ursprünglichen Quellcode bereitstellen kann. Vite fügt etwas Laufzeitcode ein, damit der Entwicklungsserver funktioniert. Diese Codes nutzen Funktionen aus der [Baseline Newly Available](https://web-platform-dx.github.io/web-features/) zum Zeitpunkt der jeweiligen Veröffentlichung der Hauptversion (01.05.2026 für diese Hauptversion).
 
 Für Produktions-Builds zielt Vite standardmäßig auf Browser ab, die in der[Baseline](https://web-platform-dx.github.io/web-features/) Widely Available sind. Das sind Browser, die vor mindestens 2,5 Jahren veröffentlicht wurden. Das Ziel kann in der Konfiguration herabgesetzt werden. Zusätzlich können Legacy-Browser über das offizielle [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) unterstützt werden. Lesen Sie den Abschnitt [Erstellung für die Produktion](./build) für weitere Details.
 
