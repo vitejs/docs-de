@@ -89,6 +89,48 @@ Es stehen zwei Upgrade-Pfade zur Verfügung:
 > Wenn Sie auf bestimmte Rollup- oder esbuild-Optionen angewiesen sind, müssen Sie möglicherweise einige Anpassungen an Ihrer Vite-Konfiguration vornehmen. Detaillierte Anweisungen und Beispiele finden Sie im [Migrationsleitfaden](/guide/migration).
 > Wie bei allen nicht stabilen Hauptversionen wird nach dem Upgrade eine gründliche Testphase empfohlen, um sicherzustellen, dass alles wie erwartet funktioniert. Bitte melden Sie alle [Probleme](https://github.com/vitejs/rolldown-vite/issues).
 
+Falls Sie ein Metaframework oder Vitest nutzen und die Vite 8 Beta nutzen wollen, müssen Sie die Abhängigkeit `vite` in Ihrer `package.json` überschreiben, was je nach Paketmanager unterschiedlich funktioniert:
+
+:::code-group
+
+```json [npm]
+{
+  "overrides": {
+    "vite": "8.0.0-beta.0"
+  }
+}
+```
+
+```json [Yarn]
+{
+  "resolutions": {
+    "vite": "8.0.0-beta.0"
+  }
+}
+```
+
+```json [pnpm]
+{
+  "pnpm": {
+    "overrides": {
+      "vite": "8.0.0-beta.0"
+    }
+  }
+}
+```
+
+```json [Bun]
+{
+  "overrides": {
+    "vite": "8.0.0-beta.0"
+  }
+}
+```
+
+:::
+
+Nachdem diese Überschreibungen hinzugefügt wurden, müssen Sie die Abhängigkeiten erneut installieren und wie gewohnt Ihren Entwicklungsserver starten oder Ihr Projekt bauen.
+
 ## Zusätzliche Funktionen in Vite 8
 
 Neben der Integration von Rolldown bietet Vite 8 folgende Funktionen:
