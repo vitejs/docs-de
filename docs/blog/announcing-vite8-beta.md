@@ -67,6 +67,7 @@ Die Umstellung auf ein Rolldown-basiertes Vite ist eine grundlegende Veränderun
 Zunächst wurde ein separates `rolldown-vite`-Paket [als technische Vorschau veröffentlicht](https://voidzero.dev/posts/announcing-rolldown-vite). Dies ermöglichte es uns, mit entschlossenen Anwendern zusammenzuarbeiten, ohne die stabile Version von Vite zu beeinträchtigen. Diese profitierten von den Leistungssteigerungen durch Rolldown und lieferten gleichzeitig wertvolles Feedback. Highlights:
 
 - Die Produktions-Build-Zeiten von Linear wurden von 46 Sekunden auf 6 Sekunden reduziert
+- Ramp verkürzte seine Build-Zeit um 57 %
 - Mercedes-Benz.io verkürzte seine Build-Zeit um bis zu 38 %
 - Beehiiv reduzierte seine Build-Zeit um 64 %
 
