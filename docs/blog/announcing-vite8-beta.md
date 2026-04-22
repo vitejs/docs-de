@@ -89,7 +89,7 @@ Es stehen zwei Upgrade-Pfade zur Verfügung:
 > Wenn Sie auf bestimmte Rollup- oder esbuild-Optionen angewiesen sind, müssen Sie möglicherweise einige Anpassungen an Ihrer Vite-Konfiguration vornehmen. Detaillierte Anweisungen und Beispiele finden Sie im [Migrationsleitfaden](/guide/migration).
 > Wie bei allen nicht stabilen Hauptversionen wird nach dem Upgrade eine gründliche Testphase empfohlen, um sicherzustellen, dass alles wie erwartet funktioniert. Bitte melden Sie alle [Probleme](https://github.com/vitejs/rolldown-vite/issues).
 
-Falls Sie ein Metaframework oder Vitest nutzen und die Vite 8 Beta nutzen wollen, müssen Sie die Abhängigkeit `vite` in Ihrer `package.json` überschreiben, was je nach Paketmanager unterschiedlich funktioniert:
+Falls Sie ein Framework oder Tool nutzen, dass Vite als Abhängigkeit besitzt, zum Beispiel Astro, Nuxt oder Vitest, müssen Sie die Abhängigkeit `vite` in Ihrer `package.json` überschreiben, was je nach Paketmanager unterschiedlich funktioniert:
 
 :::code-group
 
