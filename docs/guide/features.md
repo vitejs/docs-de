@@ -12,7 +12,7 @@ import { someMethod } from 'my-dep'
 
 Dieser Code führt im Browser zu einem Fehler. Vite erkennt solche "bare module imports" in allen bereitgestellten Quelldateien und führt die folgenden Schritte aus:
 
-1. [Vorab-Bündeln](./dep-pre-bundling), um die Ladezeit der Seite zu verbessern und CommonJS / UMD-Module in ESM umzuwandeln. Der Vorab-Bündelungsschritt wird mit [esbuild](http://esbuild.github.io/) durchgeführt und macht Vites Startzeit deutlich schneller als bei jedem auf JavaScript basierenden Build-Tool.
+1. [Vorab-Bündeln](./dep-pre-bundling), um die Ladezeit der Seite zu verbessern und CommonJS / UMD-Module in ESM umzuwandeln. Der Vorab-Bündelungsschritt wird mit [esbuild](https://esbuild.github.io/) durchgeführt und macht Vites Startzeit deutlich schneller als bei jedem auf JavaScript basierenden Build-Tool.
 
 2. Ändern der Imports in gültige URLs wie `/node_modules/.vite/deps/my-dep.js?v=f3sf2ebd`, damit der Browser sie ordnungsgemäß importieren kann.
 

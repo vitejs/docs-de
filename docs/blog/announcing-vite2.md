@@ -81,4 +81,4 @@ Das war eine Menge an Funktionen, aber der Einstieg in Vite ist einfach! Sie kö
 npm init @vitejs/app
 ```
 
-Schauen Sie sich dann [die Anleitung](https://vite.dev/guide/) an, um zu sehen, was Vite alles bietet. Du kannst dir auch den Quellcode auf [GitHub](https://github.com/vitejs/vite) ansehen, Updates auf [Twitter](https://twitter.com/vite_js) verfolgen oder an Diskussionen mit anderen Vite-Benutzern auf unserem [Discord-Chat-Server](http://chat.vite.dev/) teilnehmen.
+Schauen Sie sich dann [die Anleitung](https://vite.dev/guide/) an, um zu sehen, was Vite alles bietet. Du kannst dir auch den Quellcode auf [GitHub](https://github.com/vitejs/vite) ansehen, Updates auf [Twitter](https://twitter.com/vite_js) verfolgen oder an Diskussionen mit anderen Vite-Benutzern auf unserem [Discord-Chat-Server](https://chat.vite.dev) teilnehmen.

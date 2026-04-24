@@ -41,7 +41,7 @@ Schnellzugriffe:
 - [Migrationsleitfaden](https://v3.vite.dev/guide/migration.html)
 - [Änderungsprotokoll](https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md#300-2022-07-13)
 
-Wenn Sie neu bei Vite sind, empfehlen wir Ihnen, den [Leitfaden "Warum Vite"](https://vite.dev/guide/why.html) zu lesen. Werfen Sie dann einen Blick auf den [Einstieg](https://vite.dev/guide/) und den [Funktionsleitfaden](https://vite.dev/guide/features), um zu sehen, was Vite von Anfang an bietet. Beiträge sind wie immer auf [GitHub](https://github.com/vitejs/vite) willkommen. Bisher haben mehr als [600 Mitwirkende](https://github.com/vitejs/vite/graphs/contributors) dazu beigetragen, Vite zu verbessern. Folgen Sie den Updates auf [Twitter](https://twitter.com/vite_js) oder nehmen Sie an Diskussionen mit anderen Vite-Nutzern auf unserem [Discord-Chat-Server](http://chat.vite.dev/) teil.
+Wenn Sie neu bei Vite sind, empfehlen wir Ihnen, den [Leitfaden "Warum Vite"](https://vite.dev/guide/why.html) zu lesen. Werfen Sie dann einen Blick auf den [Einstieg](https://vite.dev/guide/) und den [Funktionsleitfaden](https://vite.dev/guide/features), um zu sehen, was Vite von Anfang an bietet. Beiträge sind wie immer auf [GitHub](https://github.com/vitejs/vite) willkommen. Bisher haben mehr als [600 Mitwirkende](https://github.com/vitejs/vite/graphs/contributors) dazu beigetragen, Vite zu verbessern. Folgen Sie den Updates auf [Twitter](https://twitter.com/vite_js) oder nehmen Sie an Diskussionen mit anderen Vite-Nutzern auf unserem [Discord-Chat-Server](https://chat.vite.dev) teil.
 
 ## Neue Dokumentation
 

@@ -62,7 +62,7 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
    Wenn Sie auf `https://<USERNAME>.github.io/` oder auf eine benutzerdefinierte Domain über GitHub Pages (z. B. `www.example.com`) bereitstellen, setzen Sie `base` auf `'/'`. Alternativ können Sie `base` aus der Konfiguration entfernen, da es auch standardmäßig auf `'/'` eingestellt ist.
 
    Wenn Sie auf `https://<USERNAME>.github.io/<REPO>/` deployen (z.B. Ihr Repository befindet sich unter `https://github.com/<USERNAME>/<REPO>`), dann setzen Sie `base` auf `'/<REPO>/'`.
-
+2
 2. **GitHub Pages aktivieren**
 
    Gehen Sie in Ihrem Repository zu **Settings → Pages**. Unter **Build and deployment**, öffnen Sie das **Source**-Dropdown and wählen Sie **GitHub Actions**.
@@ -238,7 +238,7 @@ Sie können auch benutzerdefinierte Domänen hinzufügen und benutzerdefinierte 
 
 3. Bereitstellen Sie mit dem Befehl `surge dist`.
 
-Sie können auch auf eine [benutzerdefinierte Domain](http://surge.sh/help/adding-a-custom-domain) bereitstellen, indem Sie `surge dist yourdomain.com` hinzufügen.
+Sie können auch auf eine [benutzerdefinierte Domain](https://surge.sh/help/adding-a-custom-domain) bereitstellen, indem Sie `surge dist yourdomain.com` hinzufügen.
 
 ## Azure Static Web Apps
 
