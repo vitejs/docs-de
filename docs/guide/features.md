@@ -126,7 +126,6 @@ Beachten Sie, dass diese Funktion Performanzeinbußen mit sich bringt und [das T
 - [`jsxFragmentFactory`](https://www.typescriptlang.org/tsconfig#jsxFragmentFactory)
 - [`jsxImportSource`](https://www.typescriptlang.org/tsconfig#jsxImportSource)
 - [`experimentalDecorators`](https://www.typescriptlang.org/tsconfig#experimentalDecorators)
-- [`alwaysStrict`](https://www.typescriptlang.org/tsconfig#alwaysStrict)
 
 ::: tip `skipLibCheck`
 Vite-Start-Vorlagen haben `"skipLibCheck": "true"` gesetzt, um die Überprüfung von Abhängigkeiten zu vermeiden, da sie möglicherweise nur bestimmte Versionen und Konfigurationen von TypeScript unterstützen. Mehr dazu erfahren Sie unter [vuejs/vue-cli#5688](https://github.com/vuejs/vue-cli/pull/5688).

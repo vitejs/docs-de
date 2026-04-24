@@ -1,26 +1,8 @@
 # Migration von v7
 
-## Neue Funktionen
+Wenn Sie von `rolldown-vite` migrieren, der technischen Vorschauversion von Rolldown, die Vite für v6 und v7 integriert, gelten nur die Abschnitte, deren Titel das Element <Badge text="NRV" type="warning" /> enthalten.
 
-::: tip Vorläufiger Abschnitt
-
-Dieser Abschnitt wird vor der Veröffentlichung der stabilen Version in den Release-Beitrag verschoben.
-
-:::
-
-### Integrierte Unterstützung für tsconfig `paths`
-
-Vite 8 bietet nun eine integrierte Unterstützung für TypeScripts `paths`-Option basierend auf [Oxc Resolver](https://oxc.rs/docs/guide/usage/resolver) . Diese Funktion hat kleine Leistungseinbußen und [vom TypeScript-Team wird davon abgeraten, diese Option zu verwenden, um das Verhalten externer Tools zu ändern](https://www.typescriptlang.org/tsconfig/#paths:~:text=Note%20that%20this%20feature%20does%20not%20change%20how%20import%20paths%20are%20emitted%20by%20tsc%2C%20so%20paths%20should%20only%20be%20used%20to%20inform%20TypeScript%20that%20another%20tool%20has%20this%20mapping%20and%20will%20use%20it%20at%20runtime%20or%20when%20bundling.), wodurch es standardmäßig nicht aktiviert ist. Unter Berücksichtigung dieser Einschränkung können Sie diese Funktion aktivieren, indem Sie `resolve.tsconfigPaths` auf `true` setzen.
-
-Die `tsconfig.json` im nächsten Elternverzeichnis wird verwendet. Für mehr Details über die Auflösung der `tsconfig.json`, schauen Sie sich die [Funktionen-Seite(/guide/features#typescript-compiler-options) an.
-
-### Unterstützung für `emitDecoratorMetadata`
-
-Vite 8 bietet nun basierend auf [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer) eine integrierte Unterstützung für die [`emitDecoratorMetadata`-Option](https://www.typescriptlang.org/tsconfig/#emitDecoratorMetadata) von TypeScript. Diese Funktion wird autoamtisch aktiviert, wenn Sie `emitDecoratorMetadata` in Ihrer `tsconfig.json` auf `true` gesetzt haben.
-
-Diese Transformation hat einige Einschränkungen. Vollständige Unterstützung für Dekorator-Metadaten setzt die Typinferenz durch den TypeScript-Compiler voraus, die nicht unterstützt wird. Weitere Details finden Sie in der [Dokumentation des Oxc-Transformers](https://oxc.rs/docs/guide/usage/transformer/typescript#decorators).
-
-## Änderung des Standard-Browserziels
+## Änderung des Standard-Browserziels [<Badge text="NRV" type="warning" />](#migration-from-v7)
 
 Der Standardwert für `build.target`, `'baseline-widely-available'`, wurde auf einen neueren Browser aktualisiert.
 
@@ -43,7 +25,7 @@ Benutzer, die von `rolldown-vite` auf Vite 8 migrieren, können die Änderung an
 
 ```json
 {
-  "dependencies": {
+  "devDependencies": {
     "vite": "npm:rolldown-vite@7.2.2" // [!code --]
     "vite": "^8.0.0" // [!code ++]
   }
@@ -236,7 +218,7 @@ export default defineConfig({
 
 ### JavaScript-Minifizierung durch Oxc
 
-Für die JavaScript-Minifizierung wird nun der Oxc-Minimierer anstelle von esbuild verwendet. Sie können die veraltete Option [`build.minify: ‚esbuild‘`](/config/build-options#minify) verwenden, um wieder zu esbuild zurückzukehren. Diese Konfigurationsoption wird in Zukunft entfernt, und Sie müssen `esbuild` als `devDependency` installieren, da Vite nicht mehr direkt auf esbuild angewiesen ist.
+Für die JavaScript-Minifizierung wird nun der Oxc-Minimierer anstelle von esbuild verwendet. Sie können die veraltete Option [`build.minify: ‚esbuild‘`](/config/build-options#build-minify) verwenden, um wieder zu esbuild zurückzukehren. Diese Konfigurationsoption wird in Zukunft entfernt, und Sie müssen `esbuild` als `devDependency` installieren, da Vite nicht mehr direkt auf esbuild angewiesen ist.
 
 Wenn Sie bisher die `esbuild.minify*`-Optionen zur Steuerung des Minifizierungsverhaltens verwendet haben, können Sie nun stattdessen `build.rolldownOptions.output.minify` verwenden. Wenn Sie die Option `esbuild.drop` verwendet haben, können Sie nun die [`build.rolldownOptions.output.minify.compress.drop*`-Optionen](https://oxc.rs/docs/guide/usage/minifier/dead-code-elimination) verwenden.
 
@@ -251,7 +233,7 @@ Bitte melden Sie alle Probleme, die Sie im Zusammenhang mit der Minifizierung in
 
 ### CSS-Minimierung mit Lightning CSS
 
-[Lightning CSS](https://lightningcss.dev/) wird nun standardmäßig für die CSS-Minifizierung verwendet. Mit der Option [`build.cssMinify: 'esbuild'`](/config/build-options#cssminify) können Sie wieder zu esbuild zurückwechseln. Beachten Sie, dass Sie `esbuild` als Entwicklungsabhängigkeit installieren müssen.
+[Lightning CSS](https://lightningcss.dev/) wird nun standardmäßig für die CSS-Minifizierung verwendet. Mit der Option [`build.cssMinify: 'esbuild'`](/config/build-options#build-cssminify) können Sie wieder zu esbuild zurückwechseln. Beachten Sie, dass Sie `esbuild` als Entwicklungsabhängigkeit installieren müssen.
 
 Lightning CSS unterstützt bessere Syntax-Optimierungen und die Größe Ihres CSS-Bündels kann höher ausfallen.
 
@@ -376,9 +358,9 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 - `build.rollupOptions`: umbenannt in `build.rolldownOptions`
 - `worker.rollupOptions`: umbenannt in `worker.rolldownOptions`
 
-## Allgemeine Änderungen
+## Allgemeine Änderungen [<Badge text="NRV" type="warning" />](#migration-from-v7)
 
-## Entfernte veraltete Funktionen
+## Entfernte veraltete Funktionen [<Badge text="NRV" type="warning" />](#migration-from-v7)
 
 **_TODO: Diese Änderungen später implementieren_**
 
