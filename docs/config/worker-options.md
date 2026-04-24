@@ -16,7 +16,7 @@ Ausgabeformat für Worker-Bundle.
 Vite-Plugins, die für die Worker-Bundles gelten. Beachten Sie, dass [config.plugins](./shared-options#plugins) nur für Worker in dev gilt, es sollte stattdessen hier für build konfiguriert werden.
 Die Funktion sollte neue Plugin-Instanzen zurückgeben, wie sie in parallelen Rollup-Worker-Builds verwendet werden. Daher wird die Änderung der `config.worker`-Optionen im `config`-Hook ignoriert.
 
-## worker.rollupOptions
+## worker.rolldownOptions
 
 <!-- TODO: update the link below to Rolldown's documentation -->
 
@@ -29,4 +29,4 @@ Rollup-Optionen für die Erstellung des Worker-Bundles.
 - **Typ:** `RolldownOptions`
 - **Veraltet**
 
-Diese Option ist ein Alias der `worker.rolldownOptions`-Option. Nutzen Sie stattdessen `build.rolldownOptions`.
+Diese Option ist ein Alias der `worker.rolldownOptions`-Option. Nutzen Sie stattdessen `worker.rolldownOptions`.
