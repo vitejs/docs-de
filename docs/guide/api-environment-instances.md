@@ -7,8 +7,8 @@ Wir planen, diese neueren APIs (mit möglichen grundlegenden Änderungen) in ein
 
 Ressourcen:
 
-- In der [Feedback-Diskussion](https://github.com/vitejs/vite/discussions/16358) sammeln wir Feedback zu neuen APIs.
-- In dem [Environment API PR](https://github.com/vitejs/vite/pull/16471) wird die neue API implementiert und überprüft.
+- [Feedback-Diskussion](https://github.com/vitejs/vite/discussions/16358), wo wir Feedback zu den neuen APIs sammeln.
+- [Environment API PR](https://github.com/vitejs/vite/pull/16471), wo die neuen APIs implementiert und überprüft wurden.
 
 Teilen Sie gerne Ihr Feedback mit uns.
 :::
