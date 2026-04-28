@@ -32,7 +32,7 @@ Für ausschließlich Vite-Plugins
 - Fügen Sie das Schlüsselwort `vite-plugin` in der package.json hinzu.
 - Fügen Sie einen Abschnitt in der Plugin-Dokumentation hinzu, der erläutert, warum es sich um ein Vite-spezifisches Plugin handelt (zum Beispiel verwendet es Vite-spezifische Plugin-Hooks).
 
-Wenn Ihr Plugin nur für ein bestimmtes Framework funktionieren soll, sollte dessen Name als Teil des Präfixes enthalten sein
+Wenn Ihr Plugin nur für ein bestimmtes Framework funktionieren soll, sollte dessen Name als Teil des Präfixes enthalten sein.
 
 - `vite-plugin-vue-` Präfix für Vue-Plugins
 - `vite-plugin-react-` Präfix für React-Plugins
