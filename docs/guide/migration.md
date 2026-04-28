@@ -362,6 +362,8 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 
 ## Entfernte veraltete Funktionen [<Badge text="NRV" type="warning" />](#migration-from-v7)
 
+- Die Übergabe einer URL an `import.meta.hot.accept` wird nicht länger unterstützt. Bitte übergeben Sie stattdessen eine ID. ([#21382](https://github.com/vitejs/vite/pull/21382))
+
 **_TODO: Diese Änderungen später implementieren_**
 
 ## Fortgeschrittenes
