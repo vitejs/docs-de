@@ -116,10 +116,10 @@ create-vite ist ein Tool, mit dem man schnell ein Projekt aus einer Basisvorlage
 
 Für eine Vorlage unter `https://github.com/user/project` können Sie sie online unter `https://github.stackblitz.com/user/project` ausprobieren (indem Sie `.stackblitz` nach `github` zur URL des Projekts hinzufügen).
 
-Sie können auch ein Tool wie [degit](https://github.com/Rich-Harris/degit) verwenden, um Ihr Projekt mit einer der Vorlagen zu unterlegen. Angenommen, das Projekt befindet sich auf GitHub und verwendet `main` als Standardzweig, können Sie eine lokale Kopie erstellen:
+Sie können auch ein Tool wie [tiged](https://github.com/tiged/tiged) verwenden, um Ihr Projekt mit einer der Vorlagen zu unterlegen. Angenommen, das Projekt befindet sich auf GitHub und verwendet `main` als Standardzweig, können Sie eine lokale Kopie erstellen:
 
 ```bash
-npx degit user/project#main my-project
+npx tiged user/project my-project
 cd my-project
 
 npm install
