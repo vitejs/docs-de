@@ -48,7 +48,7 @@
     "@eslint/js": "10.0.1",
     "@shikijs/vitepress-twoslash": "4.0.2",
     "@types/express": "5.0.6",
-    "@voidzero-dev/vitepress-theme": "^4.0.4",
+    "@voidzero-dev/vitepress-theme": "^4.8.4",
     "@types/node": "25.6.0",
     "@types/react": "19.2.14",
     "eslint": "10.2.1",
