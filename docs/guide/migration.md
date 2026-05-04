@@ -409,7 +409,7 @@ Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl v
   - `resolveImportMeta`-Hook ([rolldown#1010](https://github.com/rolldown/rolldown/issues/1010))
   - `renderDynamicImport`-Hook ([rolldown#4532](https://github.com/rolldown/rolldown/issues/4532))
   - `resolveFileUrl`-Hook
-- Die Funktionen `parseAst` / `parseAstAsync` sind nun veraltet und werden durch die Funktionen `parseSync` / `parse` ersetzt, die mehr Funktionen hat
+- Die Funktionen `parseAst` / `parseAstAsync` sind nun veraltet und werden durch die Funktionen `parse` / `parseAsync` ersetzt, die mehr Funktionen haben
 
 ## Migration von Version 6
 
