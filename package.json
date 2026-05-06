@@ -54,7 +54,7 @@
     "eslint-plugin-import-x": "4.16.2",
     "feed": "5.2.1",
     "gsap": "3.15.0",
-    "oxc-minify": "0.128.0",
+    "oxc-minify": "0.129.0",
     "lint-staged": "16.4.0",
     "markdown-it-image-size": "15.0.1",
     "react": "19.2.5",
