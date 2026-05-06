@@ -59,7 +59,7 @@
     "markdown-it-image-size": "15.0.1",
     "react": "19.2.5",
     "react-dom": "19.2.5",
-    "typescript": "5.9.3",
+    "typescript": "6.0.3",
     "typescript-eslint": "8.59.2",
     "vitepress": "2.0.0-alpha.17",
     "vitepress-plugin-group-icons": "1.7.5",
