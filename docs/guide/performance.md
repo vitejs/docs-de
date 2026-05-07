@@ -114,13 +114,12 @@ Um die Geschwindigkeit von Vite mit einer wachsenden Codebasis beizubehalten, mu
 
 Beispiele für weniger Arbeit:
 
-- CSS anstelle von Sass/Less/Stylus verwenden, wenn möglich (Verschachtelung kann von PostCSS gehandhabt werden).
+- CSS anstelle von Sass/Less/Stylus verwenden, wenn möglich (Verschachtelung kann von PostCSS / Lightning CSS gehandhabt werden).
 - Transformieren Sie SVGs nicht in UI-Framework-Komponenten (React, Vue usw.). Importieren Sie sie stattdessen als Strings oder URLs.
-- Wenn Sie `@vitejs/plugin-react` verwenden, vermeiden Sie es, die Babel-Optionen so zu konfigurieren, dass die Transformation während des Builds übersprungen wird (nur esbuild wird verwendet).
+- Wenn Sie `@vitejs/plugin-react` verwenden, vermeiden Sie es, die Babel-Optionen so zu konfigurieren, dass die Transformation während des Builds übersprungen wird (nur Oxc wird verwendet).
 
 Beispiele für die Verwendung von nativen Werkzeugen:
 
-Die Verwendung von nativem Werkzeug bringt oft eine größere Installation mit sich und ist daher nicht der Standard, wenn ein neues Vite-Projekt initialisiert wird. Für größere Anwendungen hingegen kann es sich aber lohnen.
+Während der Kern von Vite auf nativen Tools basiert, nutzen manche Funktionen trotzdem nicht standardmäßig native Tools, um bessere Kompatibilität und einen größeren Funktionsumfang zu gewährleisten. Für größere Anwendungen hingegen kann es sich aber lohnen.
 
 - Probieren Sie die experimentelle Unterstützung für [LightningCSS](https://github.com/vitejs/vite/discussions/13835) aus.
-- Verwenden Sie [`@vitejs/plugin-react-swc`](https://github.com/vitejs/vite-plugin-react-swc) anstelle von `@vitejs/plugin-react`.

@@ -20,7 +20,7 @@ Mehr über die Beweggründe für das Projekt erfahren Sie im Abschnitt [Warum Vi
 
 ## Browser-Unterstützung
 
-Während der Entwicklung geht Vite davon aus, dass ein moderner Browser genutzt wird. Das bedeutet, der Browser unterstützt den Großteil der aktuellen JavaScript und CSS Funktionalitäten. Aus diesem Grund setzt Vite [`esnext` als Transformationsziel](https://esbuild.github.io/api/#target). Dadurch wird eine Syntaxreduktion verhindert, sodass Vite Module so nah wie möglich am ursprünglichen Quellcode bereitstellen kann. Vite fügt etwas Laufzeitcode ein, damit der Entwicklungsserver funktioniert. Diese Codes nutzen Funktionen aus der [Baseline Newly Available](https://web-platform-dx.github.io/web-features/) zum Zeitpunkt der jeweiligen Veröffentlichung der Hauptversion (01.05.2026 für diese Hauptversion).
+Während der Entwicklung geht Vite davon aus, dass ein moderner Browser genutzt wird. Das bedeutet, der Browser unterstützt den Großteil der aktuellen JavaScript und CSS Funktionalitäten. Aus diesem Grund setzt Vite [`esnext` als Transformationsziel](https://esbuild.github.io/api/#target). Dadurch wird eine Syntaxreduktion verhindert, sodass Vite Module so nah wie möglich am ursprünglichen Quellcode bereitstellen kann. Vite fügt etwas Laufzeitcode ein, damit der Entwicklungsserver funktioniert. Dieser Code nutzt Funktionen aus der [Baseline Newly Available](https://web-platform-dx.github.io/web-features/) zum Zeitpunkt der jeweiligen Veröffentlichung der Hauptversion (01.05.2026 für diese Hauptversion).
 
 Für Produktions-Builds zielt Vite standardmäßig auf Browser ab, die in der[Baseline](https://web-platform-dx.github.io/web-features/) Widely Available sind. Das sind Browser, die vor mindestens 2,5 Jahren veröffentlicht wurden. Das Ziel kann in der Konfiguration herabgesetzt werden. Zusätzlich können Legacy-Browser über das offizielle [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) unterstützt werden. Lesen Sie den Abschnitt [Erstellung für die Produktion](./build) für weitere Details.
 
@@ -116,10 +116,10 @@ create-vite ist ein Tool, mit dem man schnell ein Projekt aus einer Basisvorlage
 
 Für eine Vorlage unter `https://github.com/user/project` können Sie sie online unter `https://github.stackblitz.com/user/project` ausprobieren (indem Sie `.stackblitz` nach `github` zur URL des Projekts hinzufügen).
 
-Sie können auch ein Tool wie [degit](https://github.com/Rich-Harris/degit) verwenden, um Ihr Projekt mit einer der Vorlagen zu unterlegen. Angenommen, das Projekt befindet sich auf GitHub und verwendet `main` als Standardzweig, können Sie eine lokale Kopie erstellen:
+Sie können auch ein Tool wie [tiged](https://github.com/tiged/tiged) verwenden, um Ihr Projekt mit einer der Vorlagen zu unterlegen. Angenommen, das Projekt befindet sich auf GitHub und verwendet `main` als Standardzweig, können Sie eine lokale Kopie erstellen:
 
 ```bash
-npx degit user/project#main my-project
+npx tiged user/project my-project
 cd my-project
 
 npm install

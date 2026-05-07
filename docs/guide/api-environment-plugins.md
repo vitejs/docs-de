@@ -7,8 +7,8 @@ Wir planen, diese neueren APIs (mit möglichen grundlegenden Änderungen) in ein
 
 Ressourcen:
 
-- [Feedback-Diskussion](https://github.com/vitejs/vite/discussions/16358), in der wir Feedback zu den neuen APIs sammeln.
-- [Umgebungs-API PR](https://github.com/vitejs/vite/pull/16471), wo die neue API implementiert und überprüft wurde.
+- [Feedback-Diskussion](https://github.com/vitejs/vite/discussions/16358), wo wir Feedback zu den neuen APIs sammeln.
+- [Environment API PR](https://github.com/vitejs/vite/pull/16471), wo die neuen APIs implementiert und überprüft wurden.
 
 Bitte teilen Sie uns Ihr Feedback mit.
 :::
@@ -47,7 +47,7 @@ Plugins können im Hook `config` neue Umgebungen hinzufügen. Zum Beispiel verwe
   }
 ```
 
-Ein leeres Objekt reicht aus, um die Umgebung zu registrieren, Standardwerte aus der Konfiguration der Umgebung auf Root-Ebene.
+Ein leeres Objekt reicht aus, um die Umgebung zu registrieren, durch die Nutzung von Standardwerten aus der Konfiguration der Umgebung auf Root-Ebene.
 
 ## Konfigurieren der Umgebung mithilfe von Hooks
 

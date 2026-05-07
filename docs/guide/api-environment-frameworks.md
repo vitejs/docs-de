@@ -308,10 +308,12 @@ export function createHandler(input) {
 
 In der CLI werden beim Aufruf von `vite build` und `vite build --ssr` aus Gründen der Abwärtskompatibilität weiterhin nur die Client- und nur die ssr-Umgebung gebaut.
 
-Wenn `builder` nicht `undefined` ist (oder wenn `vite build --app` aufgerufen wird), wird `vite build` stattdessen die gesamte Anwendung bauen. Dies würde später in einem zukünftigen Major zum Standard werden. Eine `ViteBuilder`-Instanz wird erstellt (zur Build-Zeit äquivalent zu einem `ViteDevServer`), um alle konfigurierten Umgebungen für die Produktion zu erstellen. Standardmäßig wird die Erstellung der Umgebungen in der Reihenfolge des Eintrags „environments“ durchgeführt. Ein Framework oder Benutzer kann weiter konfigurieren, wie die Umgebungen gebaut werden:
+Wenn die `builder`-Option nicht `undefined` ist (oder wenn `vite build --app` aufgerufen wird), wird `vite build` stattdessen die gesamte Anwendung bauen. Dies würde später in einem zukünftigen Major zum Standard werden. Eine `ViteBuilder`-Instanz wird erstellt (zur Build-Zeit äquivalent zu einem `ViteDevServer`), um alle konfigurierten Umgebungen für die Produktion zu erstellen. Standardmäßig wird die Erstellung der Umgebungen in der Reihenfolge des Eintrags „environments“ durchgeführt. Ein Framework oder Benutzer kann weiter konfigurieren, wie die Umgebungen mit der `builder.buildApp`-Option gebaut werden:
 
-```js
-export default {
+```js [vite.config.js]
+import { defineConfig } from 'vite'
+
+export default defineConfig({
   builder: {
     buildApp: async (builder) => {
       const environments = Object.values(builder.environments)
@@ -320,7 +322,7 @@ export default {
       )
     },
   },
-}
+})
 ```
 
 Plugins können auch eine `buildApp`-Hook definieren. Die Befehle `'pre'` und `null` werden vor der konfigurierten `builder.buildApp` ausgeführt und `'post'`-Befehl-Hooks werden danach ausgeführt. Mit `environment.isBuilt` kann überprüft werden, ob eine Umgebung bereits erstellt wurde.
