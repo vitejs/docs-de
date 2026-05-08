@@ -287,6 +287,10 @@ export default defineConfig({
 })
 ```
 
+::: tip Import von Dateien
+Da derselbe Code vor Dateien in verschiedenen Verzeichnissen eingefügt wird, werden relative Pfade nicht korrekt aufgelöst. Verwenden Sie stattdessen absolute Pfade oder [Aliase](#resolve-alias).
+:::
+
 ## css.preprocessorMaxWorkers
 
 - **Typ:** `number | true`
