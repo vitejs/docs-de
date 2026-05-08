@@ -10,7 +10,7 @@ import viteAnimation from '@assets/vite/animations/563_x_420_rich_features.riv'
     <div class="flex flex-col gap-3 justify-between">
       <div class="p-5 sm:p-10 flex flex-col gap-3">
         <h5 class="text-balance sm:text-pretty text-white">
-          Instant Server Start
+          Sofortiger Serverstart
         </h5>
         <p class="sm:max-w-[28rem] text-pretty">
           Bereitstellung von Quelldateien auf Abruf über natives ESM mit blitzschneller
@@ -39,7 +39,7 @@ import viteAnimation from '@assets/vite/animations/563_x_420_rich_features.riv'
 
     <div class="flex flex-col gap-3 justify-between border-r-0">
       <div class="p-5 sm:p-10 flex flex-col gap-3">
-        <h5 class="text-white">Lightning Fast HMR</h5>
+        <h5 class="text-white">Blitzschnelles HMR</h5>
         <p class="max-w-[26rem] text-pretty">
           Änderungen werden sofort beim Speichern übernommen, ganz gleich, wie groß Ihre App ist.
         </p>
@@ -58,7 +58,7 @@ import viteAnimation from '@assets/vite/animations/563_x_420_rich_features.riv'
     </div>
 
     <div class="p-5 sm:p-10 pb-0 sm:pb-0 flex flex-col gap-3 lg:border-b-0">
-      <h5 class="text-white">Rich Features Out of the Box</h5>
+      <h5 class="text-white">Umfangreiche Funktionen von Anfang an</h5>
       <p class="sm:max-w-[28rem] text-pretty">
         TypeScript, JSX, CSS, Workers, WebAssembly... und vieles mehr - nur ein
         Plugin entfernt.
@@ -76,7 +76,7 @@ import viteAnimation from '@assets/vite/animations/563_x_420_rich_features.riv'
 
     <div class="flex flex-col gap-3 justify-between border-r-0 border-b-0">
       <div class="p-5 sm:p-10 flex flex-col gap-3">
-        <h5 class="text-white">Optimized Build</h5>
+        <h5 class="text-white">Optimierter Build</h5>
         <p class="max-w-[25rem] text-pretty">
           Erweitertes Tree-Shaking, integrierte Minifizierung, fein abgestimmte Steuerung der Chunk-Aufteilung
           - unterstützt durch Rolldown.

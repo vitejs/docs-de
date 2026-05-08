@@ -9,7 +9,7 @@ import flexiblePluginAnimation from '@assets/vite/animations/640_x_300_flexible_
   >
     <div class="p-5 sm:p-10 flex flex-col gap-3">
       <h5 class="text-balance sm:text-pretty text-white">
-        Flexible Plugin System
+        Flexibles Plugin System
       </h5>
       <p class="sm:max-w-[28rem] text-pretty">
         Vite-Plugins erweitern die gut durchdachte Plugin-Schnittstelle von Rollup um einige
