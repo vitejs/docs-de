@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
-          cache: "pnpm"
+          # cache: "pnpm"
 
       # https://github.com/Gumball12/yuki-no/
       - uses: Gumball12/yuki-no@wip
