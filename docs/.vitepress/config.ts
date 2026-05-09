@@ -201,8 +201,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: `Veröffentlicht unter der MIT-Lizenz. (${commitRef})`,
-      copyright: 'Copyright © 2019-present VoidZero Inc. & Vite Contributors',
+      copyright: `© ${new Date().getFullYear()} VoidZero Inc. & Mitwirkende von Vite. (${commitRef})`,
     },
 
     nav: [
