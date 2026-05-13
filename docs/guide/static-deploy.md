@@ -309,3 +309,7 @@ Stellen Sie Ihre statische Website mit [xmit](https://xmit.co) bereit, indem Sie
 Zephyr verfolgt einen anderen Ansatz als andere Cloud-Anbieter. Es lässt sich direkt in den Vite-Build-Prozess integrieren, sodass jedes Mal, wenn Sie den Entwicklungsserver für Ihre Anwendung erstellen oder ausführen, dieser automatisch mit Zephyr Cloud bereitgestellt wird.
 
 Befolgen Sie die Schritte im [Leitfaden für die Bereitstellung mit Vite](https://docs.zephyr-cloud.io/bundlers/vite), um zu starten.
+
+## EdgeOne Pages
+
+Stellen Sie Ihre statische Seite mit Hilfe von [EdgeOne Pages](https://edgeone.ai/products/pages) bereit, in dem Sie diesen [Anweisungen](https://pages.edgeone.ai/document/vite) folgen.
