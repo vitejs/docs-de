@@ -18,9 +18,7 @@ Die Funktion sollte neue Plugin-Instanzen zurückgeben, wie sie in parallelen Ro
 
 ## worker.rolldownOptions
 
-<!-- TODO: update the link below to Rolldown's documentation -->
-
-- **Typ:** [`RolldownOptions`](https://rollupjs.org/configuration-options/)
+- **Typ:** [`RolldownOptions`](https://rolldown.rs/reference/)
 
 Rollup-Optionen für die Erstellung des Worker-Bundles.
 
