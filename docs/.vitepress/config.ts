@@ -1,13 +1,16 @@
 import path from 'node:path'
 import fs from 'node:fs'
-import type { DefaultTheme, HeadConfig } from 'vitepress'
+import type { HeadConfig } from 'vitepress'
 import { defineConfig } from 'vitepress'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import {
   groupIconMdPlugin,
   groupIconVitePlugin,
+  localIconLoader,
 } from 'vitepress-plugin-group-icons'
 import { markdownItImageSize } from 'markdown-it-image-size'
+import { extendConfig } from '@voidzero-dev/vitepress-theme/config'
+import type { FooterLink } from '@voidzero-dev/vitepress-theme'
 import packageJson from '../../package.json' with { type: 'json' }
 import { buildEnd } from './buildEnd.config'
 
@@ -46,8 +49,8 @@ const additionalTitle = ((): string => {
       return ''
   }
 })()
-const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
-  const links: DefaultTheme.NavItemWithLink[] = []
+const versionLinks = (() => {
+  const links: FooterLink[] = []
 
   if (deployType !== 'main') {
     links.push({
@@ -85,7 +88,7 @@ const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
 //   ]
 // }
 
-export default defineConfig({
+const config = defineConfig({
   title: `Vite${additionalTitle}`,
   description: 'Frontend-Tooling der nächsten Generation',
   sitemap: {
@@ -94,10 +97,17 @@ export default defineConfig({
   cleanUrls: true,
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+    [
+      'link',
+      { rel: 'icon', type: 'image/svg+xml', href: '/logo-without-border.svg' },
+    ],
     [
       'link',
       { rel: 'alternate', type: 'application/rss+xml', href: '/blog.rss' },
+    ],
+    [
+      'link',
+      { rel: 'icon', type: 'image/svg+xml', href: '/logo-without-border.svg' },
     ],
     ['link', { rel: 'me', href: 'https://m.webtoo.ls/@vite' }],
     ['meta', { property: 'og:type', content: 'website' }],
@@ -132,7 +142,15 @@ export default defineConfig({
   },
 
   themeConfig: {
+    variant: 'vite',
     logo: '/logo.svg',
+
+    banner: {
+      id: 'vite+',
+      text: 'Vite+ Ankündigung | Die einheitliche Toolchain für das Web',
+      url: 'https://voidzero.dev/posts/announcing-vite-plus?utm_source=vite&utm_content=top_banner',
+    },
+
 
     editLink: {
       pattern: 'https://github.com/vitejs/docs-de/edit/main/docs/:path',
@@ -201,8 +219,38 @@ export default defineConfig({
     },
 
     footer: {
-      message: `Veröffentlicht unter der MIT-Lizenz. (${commitRef})`,
-      copyright: 'Copyright © 2019-present VoidZero Inc. & Vite Contributors',
+      copyright: `© 2025 VoidZero Inc. and Vite contributors. (${commitRef})`,
+      nav: [
+        {
+          title: 'Vite',
+          items: [
+            { text: 'Leitfaden', link: '/guide/' },
+            { text: 'Konfiguration', link: '/config/' },
+            { text: 'Plugins', link: '/plugins/' },
+          ],
+        },
+        {
+          title: 'Ressourcen',
+          items: [
+            { text: 'Team', link: '/team' },
+            { text: 'Blog', link: '/blog' },
+            {
+              text: 'Veröffentlichungen',
+              link: 'https://github.com/vitejs/vite/releases',
+            },
+          ],
+        },
+        {
+          title: 'Versions',
+          items: versionLinks,
+        },
+      ],
+      social: [
+        { icon: 'github', link: 'https://github.com/vitejs/vite' },
+        { icon: 'discord', link: 'https://chat.vite.dev' },
+        { icon: 'bluesky', link: 'https://bsky.app/profile/vite.dev' },
+        { icon: 'x', link: 'https://x.com/vite_js' },
+      ],
     },
 
     nav: [
@@ -552,16 +600,15 @@ export default defineConfig({
         customIcon: {
           firebase: 'vscode-icons:file-type-firebase',
           '.gitlab-ci.yml': 'vscode-icons:file-type-gitlab',
+          'vite.config': localIconLoader(
+            import.meta.url,
+            '../public/logo-without-border.svg',
+          ),
         },
       }),
     ],
     optimizeDeps: {
-      include: [
-        '@shikijs/vitepress-twoslash/client',
-        'gsap',
-        'gsap/dist/ScrollTrigger',
-        'gsap/dist/MotionPathPlugin',
-      ],
+      include: ['@shikijs/vitepress-twoslash/client'],
     },
     define: {
       __VITE_VERSION__: JSON.stringify(viteVersion),
@@ -569,3 +616,5 @@ export default defineConfig({
   },
   buildEnd,
 })
+
+export default extendConfig(config)
