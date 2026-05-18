@@ -144,11 +144,9 @@ Erzeugen von Produktionsquellekarten. Wenn `true`, wird eine separate Sourcemap-
 
 ## build.rolldownOptions
 
-- **Typ:** [`RolldownOptions`](https://rollupjs.org/configuration-options/)
+- **Typ:** [`RolldownOptions`](https://rolldown.rs/reference/)
 
-<!-- TODO: update the link above and below to Rolldown's documentation -->
-
-Direktes Anpassen des zugrunde liegenden Rolldown-Bündels. Dies entspricht den Optionen, die aus einer Rolldown-Konfigurationsdatei exportiert werden können, und wird mit den internen Rolldown-Optionen von Vite zusammengeführt. Weitere Details finden Sie in den [Rolldown-Optionen-Dokumenten](https://rollupjs.org/configuration-options/).
+Direktes Anpassen des zugrunde liegenden Rolldown-Bündels. Dies entspricht den Optionen, die aus einer Rolldown-Konfigurationsdatei exportiert werden können, und wird mit den internen Rolldown-Optionen von Vite zusammengeführt. Weitere Details finden Sie in den [Rolldown-Optionen-Dokumenten](https://rolldown.rs/reference/).
 
 ## build.rollupOptions
 
@@ -352,9 +350,7 @@ Begrenzung für die Größe von Chunk-Warnungen (in kB). Sie wird mit der unkomp
 
 ## build.watch
 
-<!-- TODO: we need to have a more detailed explanation here as we no longer use @rollup/plugin-dynamic-import-vars. we should say it's compatible with it though -->
-
-- **Typ:** [`WatcherOptions`](https://rollupjs.org/configuration-options/#watch)`| null`
+- **Typ:** [`WatcherOptions`](https://rolldown.rs/reference/InputOptions.watch)`| null`
 - **Standard:** `null`
 
 Setzen Sie dies auf `{}`, um den Rollup-Watcher zu aktivieren. Dies wird hauptsächlich in Fällen verwendet, die Build-only-Plugins oder Integrationsprozesse involvieren.

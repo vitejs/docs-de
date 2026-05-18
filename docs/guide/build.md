@@ -40,7 +40,7 @@ Für erweiterte Steuerung des Basispfads siehe [Erweiterte Basisoptionen](#erwei
 
 ## Anpassen des Builds
 
-Der Build kann über verschiedene [Build-Konfigurationsoptionen](/config/build-options.md) angepasst werden. Konkret können Sie die zugrunde liegenden [Rolldown-Optionen](https://rollupjs.org/configuration-options/) direkt über `build.rolldownOptions` anpassen:
+Der Build kann über verschiedene [Build-Konfigurationsoptionen](/config/build-options.md) angepasst werden. Konkret können Sie die zugrunde liegenden [Rolldown-Optionen](https://rolldown.rs/reference/) direkt über `build.rolldownOptions` anpassen:
 
 <!-- TODO: update the link above and below to Rolldown's documentation -->
 
@@ -48,7 +48,7 @@ Der Build kann über verschiedene [Build-Konfigurationsoptionen](/config/build-o
 export default defineConfig({
   build: {
     rolldownOptions: {
-      // https://rollupjs.org/configuration-options/
+      // https://rolldown.rs/reference/
     },
   },
 })
@@ -74,7 +74,7 @@ Bei einer neuen Bereitstellung kann der Hosting-Dienst die Assets aus früheren 
 
 ## Neuerstellen bei Dateiänderungen
 
-Sie können den Rollup Watcher mit `vite build --watch` aktivieren. Oder Sie können die zugrundeliegenden [`WatcherOptions`](https://rollupjs.org/configuration-options/#watch) direkt über `build.watch` anpassen:
+Sie können den Rollup Watcher mit `vite build --watch` aktivieren. Oder Sie können die zugrundeliegenden [`WatcherOptions`](https://rolldown.rs/reference/InputOptions.watch) direkt über `build.watch` anpassen:
 
 <!-- TODO: update the link above to Rolldown's documentation -->
 
@@ -82,7 +82,7 @@ Sie können den Rollup Watcher mit `vite build --watch` aktivieren. Oder Sie kö
 export default defineConfig({
   build: {
     watch: {
-      // https://rollupjs.org/configuration-options/#watch
+      // https://rolldown.rs/reference/InputOptions.watch
     },
   },
 })
