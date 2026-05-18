@@ -1,10 +1,8 @@
 # Plugin API
 
-Vite-Plugins erweitern die gut gestaltete Plugin-Schnittstelle von Rollup um einige zusätzliche Vite-spezifische Optionen. Dadurch können Sie ein Vite-Plugin einmal schreiben und es sowohl für die Entwicklung als auch für die Erstellung verwenden.
+Vite-Plugins erweitern die gut gestaltete Plugin-Schnittstelle von Rolldown um einige zusätzliche Vite-spezifische Optionen. Dadurch können Sie ein Vite-Plugin einmal schreiben und es sowohl für die Entwicklung als auch für die Erstellung verwenden.
 
-**Es wird empfohlen, zuerst die [Plugin-Dokumentation von Rollup](https://rollupjs.org/plugin-development/) durchzugehen, bevor Sie die unten stehenden Abschnitte lesen.**
-
-<!-- TODO: update the link above to Rolldown's documentation -->
+**Es wird empfohlen, zuerst die [Plugin-Dokumentation von Rolldown](https://rolldown.rs/apis/plugin-api) durchzugehen, bevor Sie die unten stehenden Abschnitte lesen.**
 
 ## Erstellen eines Plugins
 
@@ -19,17 +17,17 @@ Wenn Sie lernen, Fehler beheben oder Plugins erstellen, empfehlen wir Ihnen, [vi
 
 ## Konventionen
 
-Wenn das Plugin keine Vite-spezifischen Hooks verwendet und als [kompatibles Rollup-Plugin](#rollup-plugin-kompatibilität) implementiert werden kann, wird empfohlen, die [Rollup-Plugin-Namenskonventionen](https://rollupjs.org/plugin-development/#conventions) zu verwenden.
+Wenn das Plugin keine Vite-spezifischen Hooks verwendet und als [kompatibles Rolldown-Plugin](#rolldown-plugin-kompatibilität) implementiert werden kann, wird empfohlen, die [Rolldown-Plugin-Namenskonventionen](https://rolldown.rs/apis/plugin-api#conventions) zu verwenden.
 
-- Rollup-Plugins sollten einen klaren Namen mit dem Präfix `rollup-plugin-` haben.
-- Fügen Sie die Schlüsselwörter `rollup-plugin` und `vite-plugin` in der package.json hinzu.
+- Rolldown-Plugins sollten einen klaren Namen mit dem Präfix `rolldown-plugin-` haben.
+- Fügen Sie die Schlüsselwörter `rolldown-plugin` und `vite-plugin` im Abschnitt `keywords` in der package.json hinzu.
 
-Dies ermöglicht es, das Plugin auch in reinen Rollup- oder WMR-basierten Projekten zu verwenden.
+Dies ermöglicht es, das Plugin auch in reinen Rolldown- oder Rollup-basierten Projekten zu verwenden.
 
 Für ausschließlich Vite-Plugins
 
 - Vite-Plugins sollten einen klaren Namen mit dem Präfix `vite-plugin-` haben.
-- Fügen Sie das Schlüsselwort `vite-plugin` in der package.json hinzu.
+- Fügen Sie das Schlüsselwort `vite-plugin` im Abschnitt `keywords` in der package.json hinzu.
 - Fügen Sie einen Abschnitt in der Plugin-Dokumentation hinzu, der erläutert, warum es sich um ein Vite-spezifisches Plugin handelt (zum Beispiel verwendet es Vite-spezifische Plugin-Hooks).
 
 Wenn Ihr Plugin nur für ein bestimmtes Framework funktionieren soll, sollte dessen Name als Teil des Präfixes enthalten sein.
@@ -79,7 +77,7 @@ export default defineConfig({
 ## Einfache Beispiele
 
 :::tip
-Es ist eine gängige Konvention, ein Vite/Rollup-Plugin als Factory-Funktion zu erstellen, die das eigentliche Plugin-Objekt zurückgibt. Die Funktion kann Optionen akzeptieren, die es Benutzern ermöglichen, das Verhalten des Plugins anzupassen.
+Es ist eine gängige Konvention, ein Vite/Rolldown-Plugin als Factory-Funktion zu erstellen, die das eigentliche Plugin-Objekt zurückgibt. Die Funktion kann Optionen akzeptieren, die es Benutzern ermöglichen, das Verhalten des Plugins anzupassen.
 :::
 
 ### Transformation von benutzerdefinierten Dateitypen
@@ -140,24 +138,24 @@ import { msg } from 'virtual:my-module'
 console.log(msg)
 ```
 
-In Vite (und Rollup) werden virtuelle Module konventionell mit `virtual:` als benutzerfreundlicher Pfad vorangestellt. Wenn möglich, sollte der Plugin-Name als Namespace verwendet werden, um Kollisionen mit anderen Plugins in der Community zu vermeiden. Beispielsweise könnte ein `vite-plugin-posts` Benutzer auffordern, virtuelle Module `virtual:posts` oder `virtual:posts/helpers` zu importieren, um Build-Zeit-Informationen zu erhalten. Intern sollten Plugins, die virtuelle Module verwenden, die Modul-ID beim Auflösen mit `\0` voranstellen, einer Konvention aus dem Rollup-Ökosystem. Dies verhindert, dass andere Plugins versuchen, die ID zu verarbeiten (wie die Auflösung in Node), und Kernfunktionen wie Sourcemaps können diese Informationen verwenden, um zwischen virtuellen Modulen und regulären Dateien zu unterscheiden. `\0` ist kein erlaubtes Zeichen in Import-URLs, daher müssen wir es während der Analyse des Imports ersetzen. Eine virtuelle ID `\0{id}` wird während der Entwicklung im Browser als `/@id/__x00__{id}` codiert. Die ID wird vor dem Eintritt in den Plugins-Pipeline zurückdekodiert, sodass dies vom Plugin-Hook-Code nicht gesehen wird.
+In Vite (und Rolldown / Rollup) werden virtuelle Module konventionell mit `virtual:` als benutzerfreundlicher Pfad vorangestellt. Wenn möglich, sollte der Plugin-Name als Namespace verwendet werden, um Kollisionen mit anderen Plugins in der Community zu vermeiden. Beispielsweise könnte ein `vite-plugin-posts` Benutzer auffordern, virtuelle Module `virtual:posts` oder `virtual:posts/helpers` zu importieren, um Build-Zeit-Informationen zu erhalten. Intern sollten Plugins, die virtuelle Module verwenden, die Modul-ID beim Auflösen mit `\0` voranstellen, einer Konvention aus dem Rollup-Ökosystem. Dies verhindert, dass andere Plugins versuchen, die ID zu verarbeiten (wie die Auflösung in Node), und Kernfunktionen wie Sourcemaps können diese Informationen verwenden, um zwischen virtuellen Modulen und regulären Dateien zu unterscheiden. `\0` ist kein erlaubtes Zeichen in Import-URLs, daher müssen wir es während der Analyse des Imports ersetzen. Eine virtuelle ID `\0{id}` wird während der Entwicklung im Browser als `/@id/__x00__{id}` codiert. Die ID wird vor dem Eintritt in den Plugins-Pipeline zurückdekodiert, sodass dies vom Plugin-Hook-Code nicht gesehen wird.
 
 Beachten Sie, dass Module, die direkt von einer echten Datei abgeleitet sind, wie bei einem Skriptmodul in einem Single-File-Komponenten (z. B. eine .vue- oder .svelte-SFC-Datei), diese Konvention nicht befolgen müssen. SFCs generieren im Allgemeinen eine Reihe von Untermodulen bei der Verarbeitung, aber der Code in diesen Modulen kann auf das Dateisystem zurückverfolgt werden. Die Verwendung von `\0` für diese Untermodule würde dazu führen, dass Sourcemaps nicht korrekt funktionieren.
 
 ## Universale Hooks
 
-Während der Entwicklung erstellt der Vite-Dev-Server einen Plugin-Container, der die [Rollup Build Hooks](https://rollupjs.org/plugin-development/#build-hooks) auf dieselbe Weise aufruft, wie es Rollup tut.
+Während der Entwicklung erstellt der Vite-Dev-Server einen Plugin-Container, der die [Rolldown Build Hooks](https://rolldown.rs/apis/plugin-api#build-hooks) auf dieselbe Weise aufruft, wie es Rolldown tut.
 
 Die folgenden Hooks werden einmal beim Start des Servers aufgerufen:
 
-- [`options`](https://rollupjs.org/plugin-development/#options)
-- [`buildStart`](https://rollupjs.org/plugin-development/#buildstart)
+- [`options`](https://rolldown.rs/reference/interface.plugin#options)
+- [`buildStart`](https://rolldown.rs/reference/Interface.Plugin#buildstart)
 
 Die folgenden Hooks werden bei jeder eingehenden Modulanforderung aufgerufen:
 
-- [`resolveId`](https://rollupjs.org/plugin-development/#resolveid)
-- [`load`](https://rollupjs.org/plugin-development/#load)
-- [`transform`](https://rollupjs.org/plugin-development/#transform)
+- [`resolveId`](https://rolldown.rs/reference/Interface.Plugin#resolveid)
+- [`load`](https://rolldown.rs/reference/Interface.Plugin#load)
+- [`transform`](https://rolldown.rs/reference/Interface.Plugin#transform)
 
 Diese Hooks haben auch eine erweiterte `options`-Parameter mit zusätzlichen Vite-spezifischen Eigenschaften. Weitere Informationen finden Sie in der [SSR-Dokumentation](/guide/ssr#ssr-specific-plugin-logic).
 
@@ -165,12 +163,12 @@ Einige `resolveId`-Aufrufe können `importer` als absoluten Pfad für eine gener
 
 Die folgenden Hooks werden aufgerufen, wenn der Server geschlossen wird:
 
-- [`buildEnd`](https://rollupjs.org/plugin-development/#buildend)
-- [`closeBundle`](https://rollupjs.org/plugin-development/#closebundle)
+- [`buildEnd`](https://rolldown.rs/reference/Interface.Plugin#buildend)
+- [`closeBundle`](https://rolldown.rs/reference/Interface.Plugin#closebundle)
 
-Beachten Sie, dass der Hook [`moduleParsed`](https://rollupjs.org/plugin-development/#moduleparsed) **nicht** während der Entwicklung aufgerufen wird, da Vite aus Leistungsgründen vollständige AST-Analysen vermeidet.
+Beachten Sie, dass der Hook [`moduleParsed`](https://rolldown.rs/reference/Interface.Plugin#moduleparsed) **nicht** während der Entwicklung aufgerufen wird, da Vite aus Leistungsgründen vollständige AST-Analysen vermeidet.
 
-[Hooks zur Ausgabenerzeugung](https://rollupjs.org/plugin-development/#output-generation-hooks) (außer `closeBundle`) werden **nicht** während der Entwicklung aufgerufen. Sie können sich Vites Dev-Server nur als `rollup.rollup()`-Aufruf vorstellen, ohne dass `bundle.generate()` aufgerufen wird.
+[Hooks zur Ausgabenerzeugung](https://rolldown.rs/apis/plugin-api#output-generation-hooks) (außer `closeBundle`) werden **nicht** während der Entwicklung aufgerufen.
 
 ## Vite-spezifische Hooks
 
@@ -480,7 +478,7 @@ Ein Vite-Plugin kann zusätzlich eine `enforce`-Eigenschaft angeben (ähnlich wi
 - Benutzer-Plugins mit `enforce: 'post'`
 - Vite-Post-Build-Plugins (minify, manifest, reporting)
 
-Beachten Sie, dass dies unabhängig von der Reihenfolge der Hooks ist, denn diese unterliegen immer noch separat dem Attribut "Reihenfolge" [wie es bei Rollup-Hooks üblich ist](https://rollupjs.org/plugin-development/#build-hooks).
+Beachten Sie, dass dies unabhängig von der Reihenfolge der Hooks ist, denn diese unterliegen immer noch separat dem [`order`-Attribut](https://rolldown.rs/reference/TypeAlias.ObjectHook#order), wie es für Rolldown-Hooks üblich ist.
 
 ## Bedingte Anwendung
 
@@ -504,21 +502,22 @@ apply(config, { command }) {
 }
 ```
 
-## Rollup-Plugin-Kompatibilität
+## Rolldown-Plugin-Kompatibilität
 
-Eine beträchtliche Anzahl von Rollup-Plugins funktioniert direkt als Vite-Plugin (z. B. `@rollup/plugin-alias` oder `@rollup/plugin-json`), aber nicht alle, da einige Plugin-Hooks in einem nicht gebündelten Dev-Server-Kontext von Vite keinen Sinn ergeben.
+Eine beträchtliche Anzahl von Rolldwon-/Rollup-Plugins funktioniert direkt als Vite-Plugin (z. B. `@rollup/plugin-alias` oder `@rollup/plugin-json`), aber nicht alle, da einige Plugin-Hooks in einem nicht gebündelten Dev-Server-Kontext von Vite keinen Sinn ergeben.
 
-Im Allgemeinen sollte ein Rollup-Plugin als Vite-Plugin funktionieren, solange es folgende Kriterien erfüllt:
+Im Allgemeinen sollte ein Rolldown-/Rollup-Plugin als Vite-Plugin funktionieren, solange es folgende Kriterien erfüllt:
 
-- Es verwendet nicht das [`moduleParsed`](https://rollupjs.org/plugin-development/#moduleparsed)-Hook.
+- Es verwendet nicht das [`moduleParsed`](https://rolldown.rs/reference/Interface.Plugin#moduleparsed)-Hook.
 - Es hat keine starke Kopplung zwischen Bundle-Phase-Hooks und Output-Phase-Hooks.
+- Es stützt sich nicht auf die spezifischen Optionen von Rolldown wie [`transform.inject`](https://rolldown.rs/reference/InputOptions.transform#inject).
 
-Wenn ein Rollup-Plugin nur für die Build-Phase Sinn macht, kann es unter `build.rollupOptions.plugins` angegeben werden. Es funktioniert genauso wie ein Vite-Plugin mit `enforce: 'post'` und `apply: 'build'`.
+Wenn ein Rolldown-/Rollup-Plugin nur für die Build-Phase Sinn macht, kann es unter `build.rolldownOptions.plugins` angegeben werden. Es funktioniert genauso wie ein Vite-Plugin mit `enforce: 'post'` und `apply: 'build'`.
 
-Sie können auch ein vorhandenes Rollup-Plugin mit Vite-spezifischen Eigenschaften erweitern:
+Sie können auch ein vorhandenes Rolldown-/Rollup-Plugin mit Vite-spezifischen Eigenschaften erweitern:
 
 ```js [vite.config.js]
-import example from 'rollup-plugin-example'
+import example from 'rolldown-plugin-example'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -553,7 +552,7 @@ zur Verwendung des standardmäßigen Include-/Exclude-Filtermusters zu ermutigen
 
 ### Hook-Filter
 
-Rolldown hat eine [Hook-Filter-Funktion](https://rolldown.rs/plugins/hook-filters) eingeführt, um den Kommunikationsoverhead zwischen Rust und JavaScript zu reduzieren. Dieses Feature ermöglicht Plugins ein Muster festzulegen, dass bestimmt wann Hooks aufgerufen werden. Dadurch werden unnötige Hook-Aufrufe vermieden, was die Performanz verbessert.
+Rolldown hat eine [Hook-Filter-Funktion](https://rolldown.rs/apis/plugin-api/hook-filters) eingeführt, um den Kommunikationsoverhead zwischen Rust und JavaScript zu reduzieren. Dieses Feature ermöglicht Plugins ein Muster festzulegen, dass bestimmt wann Hooks aufgerufen werden. Dadurch werden unnötige Hook-Aufrufe vermieden, was die Performanz verbessert.
 
 Das wird auch von Rollup 4.38.0+ und Vite 6.3.0+ unterstützt. Um Ihr Plugin abwärtskompatibel mit älteren Versionen zu machen, müssen Sie sicherstellen, dass der Filter auch in den Hook-Handlern ausgeführt wird.
 
