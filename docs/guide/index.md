@@ -257,10 +257,10 @@ cd vite
 pnpm install
 cd packages/vite
 pnpm run build
-pnpm link --global # use your preferred package manager for this step
+pnpm link # use your preferred package manager for this step
 ```
 
-Gehen Sie dann zu Ihrem Vite-basierten Projekt und führen Sie `pnpm link --global vite` aus (oder den Paketmanager, den Sie zum globalen Verlinken von `vite` verwendet haben). Starten Sie nun den Entwicklungsserver neu, um auf dem neuesten Stand zu sein!
+Gehen Sie dann zu Ihrem Vite-basierten Projekt und führen Sie `pnpm link vite` aus (oder den Paketmanager, den Sie zum globalen Verlinken von `vite` verwendet haben). Starten Sie nun den Entwicklungsserver neu, um auf dem neuesten Stand zu sein!
 
 Um mehr zu erfahren, wie und wann Vite neue Releases veröffentlicht, können Sie sich die [Release-Dokumentation](../releases.md) ansehen.
 
