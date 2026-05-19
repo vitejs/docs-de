@@ -111,43 +111,29 @@ Jetzt startet der `preview`-Befehl den Server unter `http://localhost:8080`.
 
 ## Netlify
 
-1. Installieren Sie die [Netlify CLI](https://cli.netlify.com/).
-2. Erstellen Sie eine neue Website mit `ntl init`.
-3. Bereitstellen Sie mit `ntl deploy`.
+1. Installieren Sie die [Netlify CLI](https://docs.netlify.com/api-and-cli-guides/cli-guides/get-started-with-cli/) mit `npm install -g netlify-cli`.
+2. Erstellen Sie eine neue Website mit `netlify init`.
+3. Bereitstellen Sie mit `netlify deploy`.
 
-```bash
-# Installieren Sie die Netlify CLI
-$ npm install -g netlify-cli
+Die Netlify-CLI wird Ihnen eine URL bereitstellen, um eine Vorschau der Anwendung zu betrachten. Wenn Sie die Anwendung produktiv bereitstellen wollen, können Sie die `prod`-Flag nutzen, in dem Sie `netlify deploy --prod` ausführen.
 
-# Erstellen Sie eine neue Website in Netlify
-$ ntl init
+### Netlify with Git
 
-# Bereitstellen Sie auf eine eindeutige Vorschau-URL
-$ ntl deploy
-```
+1. Pushen Sie Ihren Code in ein Git-Repository (GitHub, GitLab, BitBucket, Azure DevOps).
+2. [Importieren Sie das Projekt](https://app.netlify.com/start) in Netlify.
+3. Wählen Sie den Branch, das Ausgabeverzeichnis und setzen Sie bei Bedarf Umgebungsvariablen.
+4. Klicken Sie auf **Deploy**.
+5. Ihre Vite-App wird bereitgestellt!
 
-Die Netlify CLI gibt Ihnen eine Vorschau-URL zur Überprüfung. Wenn Sie bereit sind, in die Produktion zu gehen, verwenden Sie die `--prod`-Flagge:
-
-```bash
-# Bereitstellen der Website in die Produktion
-$ ntl deploy --prod
-```
+Nachdem Ihr Projekt importiert und bereitgestellt wurde, erzeugen alle nachfolgenden Pushes auf andere Branches als den Produktionsbranch sowie Pull-Requests eine [Vorschau](https://docs.netlify.com/site-deploys/deploy-previews/) und alle Änderungen am Produktionsbranch (üblicherweise `main`), resultieren in einer [produktiven Bereitstellung](https://docs.netlify.com/site-deploys/overview/#definitions).
 
 ## Vercel
 
 ### Vercel CLI
 
-1. Installieren Sie die [Vercel CLI](https://vercel.com/cli) und führen Sie `vercel` aus, um zu bereitstellen.
+1. Installieren Sie die [Vercel CLI](https://vercel.com/cli) mit `npm i -g vercel` und führen Sie `vercel` aus, um bereitzustellen.
 2. Vercel erkennt, dass Sie Vite verwenden, und aktiviert die richtigen Einstellungen für Ihre Bereitstellung.
 3. Ihre Anwendung ist bereitgestellt! (z.B. [vite-vue-template.vercel.app](https://vite-vue-template.vercel.app/))
-
-```bash
-$ npm i -g vercel
-$ vercel init vite
-Vercel CLI
-> Success! Initialized "vite" example in ~/your-folder.
-- To deploy, `cd vite` and run `vercel`.
-```
 
 ### Vercel für Git
 
@@ -201,9 +187,11 @@ Sie können auch benutzerdefinierte Domänen hinzufügen und benutzerdefinierte 
 
 ## Google Firebase
 
-1. Stellen Sie sicher, dass Sie [firebase-tools](https://www.npmjs.com/package/firebase-tools) installiert haben.
+1. Installieren Sie [firebase-tools](https://www.npmjs.com/package/firebase-tools) mit `npm i -g firebase-tools`.
 
-2. Erstellen Sie `firebase.json` und `.firebaserc` im Stammverzeichnis Ihres Projekts mit folgendem Inhalt:
+2. Erstellen Sie die folgenden Dateien im Wurzelverzeichnisses Ihres Projekts:
+
+  ::: code-group
 
    ```json [firebase.json]
    {
@@ -228,15 +216,17 @@ Sie können auch benutzerdefinierte Domänen hinzufügen und benutzerdefinierte 
    }
    ```
 
+   :::
+
 3. Nach dem Ausführen von `npm run build` können Sie mit dem Befehl `firebase deploy` bereitstellen.
 
 ## Surge
 
-1. Installieren Sie zuerst [Surge](https://www.npmjs.com/package/surge), wenn Sie dies noch nicht getan haben.
+1. Installieren Sie [Surge](https://www.npmjs.com/package/surge) mit `npm i -g surge`.
 
 2. Führen Sie `npm run build` aus.
 
-3. Bereitstellen Sie mit dem Befehl `surge dist`.
+3. Stellen Sie die Anwendung mit dem Befehl `surge dist` bereit.
 
 Sie können auch auf eine [benutzerdefinierte Domain](https://surge.sh/help/adding-a-custom-domain) bereitstellen, indem Sie `surge dist yourdomain.com` hinzufügen.
 
@@ -268,9 +258,7 @@ Sie können Ihre Vite-Anwendung als statische Website auf [Render](https://rende
    - **Build Command**: `npm install && npm run build`
    - **Publish Directory**: `dist`
 
-5. Klicken Sie auf **Statische Website erstellen**.
-
-   Ihre App sollte unter `https://<PROJECTNAME>.onrender.com/` bereitgestellt sein.
+5. Klicken Sie auf **Statische Website erstellen**. Ihre App sollte unter `https://<PROJECTNAME>.onrender.com/` bereitgestellt sein.
 
 Standardmäßig löst jede neue Änderung, die auf den angegebenen Zweig hochgeladen wird, automatisch eine neue Bereitstellung aus. [Auto-Deploy](https://render.com/docs/deploys#toggling-auto-deploy-for-a-service) kann in den Projekteinstellungen konfiguriert werden.
 
