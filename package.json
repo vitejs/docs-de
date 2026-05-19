@@ -13,13 +13,6 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
   },
-  "pnpm": {
-    "peerDependencyRules": {
-      "allowedVersions": {
-        "react": "18"
-      }
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vitejs/docs-de.git"
