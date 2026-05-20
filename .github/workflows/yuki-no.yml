@@ -15,15 +15,15 @@ jobs:
   yuki-no:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
       - run: corepack enable
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
         with:
           node-version: "24"
           # cache: "pnpm"
 
       # https://github.com/Gumball12/yuki-no/
-      - uses: Gumball12/yuki-no@wip
+      - uses: Gumball12/yuki-no@c204f917296d089f969a4404521d719fed8d9ca4
         env:
           YUKI_NO_BATCH_PR_ROOT_DIR: docs
           YUKI_NO_BATCH_PR_EXCLUDE: |
