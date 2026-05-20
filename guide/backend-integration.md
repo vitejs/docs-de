@@ -1,0 +1,2 @@
+       rolldownOptions: {
+   - **Entry chunks**: Generated from files specified in [`build.rolldownOptions.input`](https://rollupjs.org/configuration-options/#input). These chunks have `isEntry: true` and their key is the relative src path from project root.
