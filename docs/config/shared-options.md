@@ -94,9 +94,9 @@ Verzeichnis zur Speicherung von Cache-Dateien. Dateien in diesem Verzeichnis sin
 - **Typ:**
   `Record<string, string> | Array<{ find: string | RegExp, replacement: string, customResolver?: ResolverFunction | ResolverObject }>`
 
-Wird als [Einträge-Option](https://github.com/rollup/plugins/tree/master/packages/alias#entries) an `@rollup/plugin-alias` übergeben. Kann entweder ein Objekt oder ein Array von `{ find, replacement, customResolver }`-Paaren sein.
+Definiert Aliasse, welche Werte in `import`- oder `require`-Statements ersetzen. Die Funktionsweise ähnelt [`@rollup/plugin-alias`](https://github.com/rollup/plugins/tree/master/packages/alias).
 
-<!-- TODO: we need to have a more detailed explanation here as we no longer use @rollup/plugin-alias. we should say it's compatible with it though -->
+Die Reihenfolge der Einträge ist wichtig, da zuerst definierte Regeln auch zuerst angewendet werden.
 
 Beim Aliasieren von Dateisystempfaden sollten immer absolute Pfade verwendet werden. Relative Alias-Werte werden wie angegeben verwendet und nicht in Dateisystempfade aufgelöst.
 
@@ -105,6 +105,40 @@ Fortgeschrittene benutzerdefinierte Auflösung kann über [Plugins](/guide/api-p
 ::: warning Verwendung mit SSR
 Wenn Sie Aliase für [SSR-externe Abhängigkeiten](/guide/ssr.md#ssr-externals) konfiguriert haben, möchten Sie möglicherweise die tatsächlichen `node_modules`-Pakete als Alias festlegen. Sowohl [Yarn](https://classic.yarnpkg.com/en/docs/cli/add/#toc-yarn-add-alias) als auch [pnpm](https://pnpm.io/aliases/) unterstützen das Aliasieren über das Präfix `npm:`.
 :::
+
+### Objektformat (`Record<string, string>`)
+
+Das Objektformat ermöglicht die Spezifizierung eines Alias als Schlüssel und den dazugehörigen Wert als tatsächlichen Import-Wert. Zum Beispiel:
+
+```js
+resolve: {
+  alias: {
+    utils: '../../../utils',
+    'batman-1.0.0': './joker-1.5.0'
+  }
+}
+```
+
+### Arrayformat (`Array<{ find: string | RegExp, replacement: string, customResolver?: ResolverFunction | ResolverObject }>`)
+
+Das Arrayformat erlaubt die Spezifizierung eines Alias als Objekt, welches nützlich für komplexe Schlüssel-Wert-Paare sein kann.
+
+```js
+resolve: {
+  alias: [
+    { find: 'utils', replacement: '../../../utils' },
+    { find: 'batman-1.0.0', replacement: './joker-1.5.0' },
+  ]
+}
+```
+
+Wenn `find` ein regulärer Ausdruck ist, kann die `replacement`-Option [Ersetzungsmuster](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_string_as_the_replacement) verwenden, wie `$1`. Um beispielsweise Erweiterungen mit einer anderen zu entfernen, kann folgendes Muster verwendet werden:
+
+```js
+{ find:/^(.*)\.js$/, replacement: '$1.alias' }
+```
+
+Die `customResolver`-Option kann verwendet werden, um eine seperate Modulauflösung für individuelle Aliasse zu gewährleisten.
 
 ## resolve.dedupe
 
