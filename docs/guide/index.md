@@ -18,6 +18,8 @@ Darüber hinaus ist Vite über seine [Plugin-API](./api-plugin) und [JavaScript-
 
 Mehr über die Beweggründe für das Projekt erfahren Sie im Abschnitt [Warum Vite](./why).
 
+<ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq?via=vite" title="Kostenloser Vite-Kurs auf Scrimba">Lernen Sie Vite durch interaktive Tutorials auf Scrimba</ScrimbaLink>
+
 ## Browser-Unterstützung
 
 Während der Entwicklung geht Vite davon aus, dass ein moderner Browser genutzt wird. Das bedeutet, der Browser unterstützt den Großteil der aktuellen JavaScript und CSS Funktionalitäten. Aus diesem Grund setzt Vite [`esnext` als Transformationsziel](https://esbuild.github.io/api/#target). Dadurch wird eine Syntaxreduktion verhindert, sodass Vite Module so nah wie möglich am ursprünglichen Quellcode bereitstellen kann. Vite fügt etwas Laufzeitcode ein, damit der Entwicklungsserver funktioniert. Dieser Code nutzt Funktionen aus der [Baseline Newly Available](https://web-platform-dx.github.io/web-features/) zum Zeitpunkt der jeweiligen Veröffentlichung der Hauptversion (01.05.2026 für diese Hauptversion).
@@ -68,6 +70,8 @@ $ deno init --npm vite
 :::
 
 Folgen Sie dann den Anweisungen.
+
+<ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq/~0yhj?via=vite" title="Aufbau Ihres ersten Vite-Projekts">Sehen Sie sich eine interaktive Lektion auf Scrimba an</ScrimbaLink>
 
 ::: tip Kompatibilitätshinweis
 Vite erfordert [Node.js](https://nodejs.org/en/) Version 20.19+, 22.12+. Einige Vorlagen benötigen jedoch eine höhere Node.js-Version, um zu funktionieren. Bitte aktualisieren Sie diese, wenn Ihr Paketmanager Sie davor warnt.

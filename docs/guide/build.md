@@ -2,6 +2,8 @@
 
 Wenn es Zeit ist, Ihre App für die Produktion bereitzustellen, führen Sie einfach den Befehl `vite build` aus. Standardmäßig verwendet er `<root>/index.html` als den Einstiegspunkt für den Build und erzeugt ein Anwendungsbündel, das sich für die Bereitstellung über einen statischen Hosting-Dienst eignet. Werfen Sie einen Blick auf die [Bereitstellung einer statischen Website](./static-deploy) für Anleitungen zu beliebten Diensten.
 
+<ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq/~037q?via=vite" title="Bauen für die Produktion">Sehen Sie sich eine interaktive Lektion auf Scrimba an</ScrimbaLink>
+
 ## Browserkompatibilität
 
 Standardmäßig setzt das Produktionsbündel einen modernen Browser voraus, der in den Zielen der [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available enthalten ist. Der Standardbereich für unterstützte Browser ist:

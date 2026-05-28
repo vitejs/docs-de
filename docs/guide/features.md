@@ -360,6 +360,8 @@ Standardmäßig verwendet Vite esbuild zum Minifizieren von CSS. Lightning CSS k
 
 ## Statische Assets
 
+<ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq/~05pq?via=vite" title="Statische Ressourcen in Vite">Sehen Sie sich eine interaktive Lektion auf Scrimba an</ScrimbaLink>
+
 Beim Importieren eines statischen Assets wird die aufgelöste öffentliche URL zurückgegeben, wenn es bereitgestellt wird:
 
 ```js
