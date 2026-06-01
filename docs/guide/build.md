@@ -127,7 +127,7 @@ export default defineConfig({
 })
 ```
 
-Wenn Sie einen anderen Root angeben, denken Sie daran, dass `__dirname` immer der Ordner Ihrer vite.config.js-Datei ist, wenn die Eingabepfade aufgelöst werden. Daher müssen Sie Ihren `root`-Eintrag den Argumenten für `resolve` hinzufügen.
+Wenn Sie einen anderen Root angeben, denken Sie daran, dass `__dirname` immer der Ordner Ihrer `vite.config.js`-Datei ist, wenn die Eingabepfade aufgelöst werden. Daher müssen Sie Ihren `root`-Eintrag den Argumenten für `resolve` hinzufügen.
 
 Beachten Sie, dass Vite für HTML-Dateien den Namen des Eintrags im Objekt `rollupOptions.input` ignoriert und stattdessen die aufgelöste ID der Datei respektiert, wenn das HTML-Asset im dist-Ordner generiert wird. Dies stellt eine konsistente Struktur mit der Funktionsweise des Entwicklungsservers sicher.
 
