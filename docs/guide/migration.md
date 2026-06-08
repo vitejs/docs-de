@@ -50,8 +50,6 @@ Die folgenden Optionen werden automatisch konvertiert:
 - [`esbuildOptions.platform`](https://esbuild.github.io/api/#platform) -> `rolldownOptions.platform`
 - [`esbuildOptions.plugins`](https://esbuild.github.io/plugins/) -> `rolldownOptions.plugins` (teilweise Unterstützung)
 
-<!-- TODO: add link to rolldownOptions.* -->
-
 Sie können die von der Kompatibilitätsschicht festgelegten Optionen auch über den `configResolved`-Hook abrufen:
 
 ```js
@@ -97,8 +95,6 @@ const plugin = {
   },
 },
 ```
-
-<!-- TODO: add link to rolldownOptions.output.minify -->
 
 Derzeit unterstützt der Oxc-Transformer das Herunterkonvertieren nativer Dekoratoren nicht, da wir auf das Fortschreiten der Spezifikation warten, siehe([oxc-project/oxc#9170](https://github.com/oxc-project/oxc/issues/9170)).
 
@@ -266,31 +262,6 @@ Im Build-Modus lauteten die Bedingungen:
 
 Weitere Informationen finden Sie in Rolldowns Dokumentation zu diesem Problem: [Mehrdeutiger `default`-Import aus CJS-Modulen - CJS-Bündelung | Rolldown](https://rolldown.rs/in-depth/bundling-cjs#ambiguous-default-import-from-cjs-modules).
 
-Diese Änderung kann dazu führen, dass bestehender Code, der CJS-Module importiert, nicht mehr funktioniert. Mit der Option `legacy.inconsistentCjsInterop: true` können Sie das bisherige Verhalten vorübergehend wiederherstellen. Beachten Sie, dass diese Option in Zukunft entfernt wird. Wenn Sie ein Paket finden, das von dieser Änderung betroffen ist, melden Sie dies bitte dem Paketautor. Verweisen Sie dabei unbedingt auf das oben genannte Dokument von Rolldown, damit der Autor den Kontext nachvollziehen kann.
-
-### Modultypunterstützung und automatische Erkennung
-
-Die Änderung betrifft nur Plugin-Authoren.
-
-Rolldown hat eine experimentelle [Modultypunterstützung](https://rolldown.rs/guide/notable-features#module-types), welche ähnlich zu [esbuilds `loader`-Option](https://esbuild.github.io/api/#loader) ist. Dadurch setzt Rolldown automatisch einen Modultyp basierend auf der Erweiterung der aufgelösten ID.
-
-Wenn Sie den Inhalt von anderen Typen in `load`- oder `transform`-Hooks zu JavaScript konvertieren, müssen Sie möglicherweise `moduleType: 'js'` zum zurückgegebenen Wert hinzufügen.
-
-```js
-const plugin = {
-  name: 'txt-loader',
-  load(id) {
-    if (id.endsWith('.txt')) {
-      const content = fs.readFile(id, 'utf-8')
-      return {
-        code: `export default ${JSON.stringify(content)}`,
-        moduleType: 'js', // [!code ++]
-      }
-    }
-  },
-}
-```
-
 ### Aufhebung der Modulauflösung mittels Format-Sniffing
 
 Wenn sowohl das Feld `browser` als auch das Feld `module` in `package.json` vorhanden waren, hat Vite das Feld früher anhand des Dateiinhalts aufgelöst und es hat versucht die ESM-Datei für Browser auszuwählen. Dies wurde eingeführt, weil einige Pakete das Feld `module` verwendeten, um auf ESM-Dateien für Node.js zu verweisen, während andere Pakete das Feld `browser` nutzten, um auf UMD-Dateien für Browser zu verweisen. Da das moderne `exports`-Feld dieses Problem gelöst hat und mittlerweile von vielen Paketen verwendet wird, nutzt Vite diese Heuristik nicht mehr und beachtet stets die Reihenfolge der Option [`resolve.mainFields`](/config/shared-options#resolve-mainfields). Falls Sie sich auf dieses Verhalten verlassen haben, können Sie die Option [`resolve.alias`](/config/shared-options#resolve-alias) verwenden, um das Feld der gewünschten Datei zuzuordnen, oder einen Patch mit Ihrem Paketmanager anwenden (z. B. `patch-package`, `pnpm patch`).
@@ -322,13 +293,9 @@ Weitere Informationen finden Sie in der Dokumentation von Rolldown: [`require` e
 
 Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option `build.rolldownOptions.watch.notify`.
 
-<!-- TODO: add link to rolldownOptions.watch.notify -->
+### Objektform `build.rollupOptions.output.manualChunks` ist veraltet und die Funktionsform auch
 
-### Die Option `build.rollupOptions.output.manualChunks` ist veraltet
-
-Die Option `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option `advancedChunks`. Weitere Informationen zu `advancedChunks` finden Sie in der Dokumentation von Rolldown: [Advanced Chunks - Rolldown](https://rolldown.rs/in-depth/advanced-chunks).
-
-<!-- TODO: add link to rolldownOptions.output.advancedChunks -->
+Die Objektform `output.manualChunks` wird nicht länger unterstützt. Die Funktionsform `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option `advancedChunks`. Weitere Informationen zu `advancedChunks` finden Sie in der Dokumentation von Rolldown: [Advanced Chunks - Rolldown](https://rolldown.rs/in-depth/advanced-chunks).
 
 ### Modultypunterstützung und automatische Erkennung
 
@@ -364,8 +331,6 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 
 - Die Übergabe einer URL an `import.meta.hot.accept` wird nicht länger unterstützt. Bitte übergeben Sie stattdessen eine ID. ([#21382](https://github.com/vitejs/vite/pull/21382))
 
-**_TODO: Diese Änderungen später implementieren_**
-
 ## Fortgeschrittenes
 
 Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl von Anwendungsfällen betreffen.
@@ -374,7 +339,8 @@ Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl v
 - **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** Legacy-Chunks werden aufgrund der fehlenden Funktion zur Ausgabe vorgefertigter Chunks ([rolldown#4304](https://github.com/rolldown/rolldown/issues/4034)) als Asset-Datei statt als Chunk-Datei ausgegeben. Das bedeutet, dass die Chunk-bezogenen Optionen nicht für Legacy-Chunks gelten und die Manifest-Datei Legacy-Chunks nicht als Chunk-Datei enthält.
 - **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** `@vite-ignore`-Kommentar-Sonderfall ([rolldown-vite#426](https://github.com/vitejs/rolldown-vite/issues/426))
 - [Extglobs](https://github.com/micromatch/picomatch/blob/master/README.md#extglobs) werden noch nicht unterstützt ([rolldown-vite#365](https://github.com/vitejs/rolldown-vite/issues/365))
-- `define` teilt keine Referenz für Objekte: Wenn Sie ein Objekt als Wert an `define` übergeben, erhält jede Variable eine separate Kopie des Objekts. Weitere Details finden Sie im [Oxc Transformer-Dokument](https://oxc.rs/docs/guide/usage/transformer/global-variable-replacement#define).
+- TypeScripts-Legacy-Namespace wird nur teilweise unterstützt. Siehe [Oxc-Transformer-Dokumentation](https://oxc.rs/docs/guide/usage/transformer/typescript.html#partial-namespace-support) für mehr Details.
+- `define` teilt keine Referenz für Objekte: Wenn Sie ein Objekt als Wert an `define` übergeben, erhält jede Variable eine separate Kopie des Objekts. Weitere Details finden Sie in der [Oxc-Transformer-Dokumentation](https://oxc.rs/docs/guide/usage/transformer/global-variable-replacement#define)
 - Änderungen am `bundle`-Objekt (`bundle` ist ein Objekt, das in den Hooks `generateBundle` / `writeBundle` übergeben und von der Funktion `build` zurückgegeben wird):
   - Die Zuweisung an `bundle[foo]` wird nicht unterstützt. Dies wird auch von Rollup nicht empfohlen. Bitte verwenden Sie stattdessen `this.emitFile()`.
   - Die Referenz wird nicht zwischen den Hooks geteilt ([rolldown-vite#410](https://github.com/vitejs/rolldown-vite/issues/410))
@@ -399,7 +365,6 @@ Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl v
 - Fehlende Unterstützung durch Rolldown: Die folgenden Funktionen werden von Rolldown nicht unterstützt und sind auch in Vite nicht mehr verfügbar.
   - `build.rollupOptions.output.format: 'system'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2387))
   - `build.rollupOptions.output.format: 'amd'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2528))
-  - Vollständige Unterstützung für den alten TypeScript-Namespace ([oxc-project/oxc#14227](https://github.com/oxc-project/oxc/issues/14227))
   - `shouldTransformCachedModule`-Hook ([rolldown#4389](https://github.com/rolldown/rolldown/issues/4389))
   - `resolveImportMeta`-Hook ([rolldown#1010](https://github.com/rolldown/rolldown/issues/1010))
   - `renderDynamicImport`-Hook ([rolldown#4532](https://github.com/rolldown/rolldown/issues/4532))
