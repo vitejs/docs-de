@@ -357,6 +357,8 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 
 - `build.rollupOptions`: umbenannt in `build.rolldownOptions`
 - `worker.rollupOptions`: umbenannt in `worker.rolldownOptions`
+- `build.commonjsOptions`: hat nun keine Auswirkung mehr
+- `build.dynamicImportVarsOptions.warnOnError`: hat nun keine Auswirkung mehr
 
 ## Allgemeine Änderungen [<Badge text="NRV" type="warning" />](#migration-from-v7)
 
