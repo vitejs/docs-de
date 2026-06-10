@@ -157,12 +157,10 @@ Diese Option ist ein Alias von der `build.rolldownOptions`-Option. Nutzen Sie st
 
 ## build.dynamicImportVarsOptions
 
-- **Typ:** [`RollupDynamicImportVarsOptions`](https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#options)
-- **Verwandt:** [Dynamisches Importieren](/guide/features#dynamisches-importieren)
+- **Typ:** `{ include?: string | RegExp | (string | RegExp)[], exclude?: string | RegExp | (string | RegExp)[] }`
+- **Verwandt:** [Dynamisches Importieren](/guide/features#dynamic-import)
 
-Optionen, die an [@rollup/plugin-dynamic-import-vars](https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars) übergeben werden sollen.
-
-<!-- TODO: we need to have a more detailed explanation here as we no longer use @rollup/plugin-dynamic-import-vars. we should say it's compatible with it though -->
+Legt fest, ob dynamische Importe mit Variablen transformiert werden sollen.
 
 ## build.lib
 
