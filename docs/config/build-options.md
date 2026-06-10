@@ -218,9 +218,7 @@ Wenn `fileName` mit `.json` endet, werden die rohen JSON-Metadaten stattdessen g
 
 ::: tip
 
-Falls Sie die Lizenzdatei im gebauten Code referenzieren möchten, können Sie `build.rolldownOptions.output.postBanner` nutzen, um einen Kommentar am Beginn der Dateien einzufügen. Zum Beispiel:
-
-<!-- TODO: add a link for output.postBanner above to Rolldown's documentation -->
+Falls Sie die Lizenzdatei im gebauten Code referenzieren möchten, können Sie [`build.rolldownOptions.output.postBanner`](https://rolldown.rs/reference/OutputOptions.postBanner#postbanner) nutzen, um einen Kommentar am Beginn der Dateien einzufügen. Zum Beispiel:
 
 ```js twoslash [vite.config.js]
 import { defineConfig } from 'vite'
