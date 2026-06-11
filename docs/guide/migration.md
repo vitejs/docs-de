@@ -38,19 +38,17 @@ Rolldown wird nun anstelle von esbuild für die Abhängigkeitsoptimierung verwen
 
 Die folgenden Optionen werden automatisch konvertiert:
 
-- [`esbuildOptions.minify`](https://esbuild.github.io/api/#minify) -> `rolldownOptions.output.minify`
-- [`esbuildOptions.treeShaking`](https://esbuild.github.io/api/#tree-shaking) -> `rolldownOptions.treeshake`
-- [`esbuildOptions.define`](https://esbuild.github.io/api/#define) -> `rolldownOptions.transform.define`
-- [`esbuildOptions.loader`](https://esbuild.github.io/api/#loader) -> `rolldownOptions.moduleTypes`
-- [`esbuildOptions.preserveSymlinks`](https://esbuild.github.io/api/#preserve-symlinks) -> `!rolldownOptions.resolve.symlinks`
-- [`esbuildOptions.resolveExtensions`](https://esbuild.github.io/api/#resolve-extensions) -> `rolldownOptions.resolve.extensions`
-- [`esbuildOptions.mainFields`](https://esbuild.github.io/api/#main-fields) -> `rolldownOptions.resolve.mainFields`
-- [`esbuildOptions.conditions`](https://esbuild.github.io/api/#conditions) -> `rolldownOptions.resolve.conditionNames`
-- [`esbuildOptions.keepNames`](https://esbuild.github.io/api/#keep-names) -> `rolldownOptions.output.keepNames`
-- [`esbuildOptions.platform`](https://esbuild.github.io/api/#platform) -> `rolldownOptions.platform`
-- [`esbuildOptions.plugins`](https://esbuild.github.io/plugins/) -> `rolldownOptions.plugins` (teilweise Unterstützung)
-
-<!-- TODO: add link to rolldownOptions.* -->
+- [`esbuildOptions.minify`](https://esbuild.github.io/api/#minify) -> [`rolldownOptions.output.minify`](https://rolldown.rs/reference/OutputOptions.minify)
+- [`esbuildOptions.treeShaking`](https://esbuild.github.io/api/#tree-shaking) -> [`rolldownOptions.treeshake`](https://rolldown.rs/reference/InputOptions.treeshake)
+- [`esbuildOptions.define`](https://esbuild.github.io/api/#define) -> [`rolldownOptions.transform.define`](https://rolldown.rs/reference/InputOptions.transform#define)
+- [`esbuildOptions.loader`](https://esbuild.github.io/api/#loader) -> [`rolldownOptions.moduleTypes`](https://rolldown.rs/reference/InputOptions.moduleTypes)
+- [`esbuildOptions.preserveSymlinks`](https://esbuild.github.io/api/#preserve-symlinks) -> [`!rolldownOptions.resolve.symlinks`](https://rolldown.rs/reference/InputOptions.resolve#symlinks)
+- [`esbuildOptions.resolveExtensions`](https://esbuild.github.io/api/#resolve-extensions) -> [`rolldownOptions.resolve.extensions`](https://rolldown.rs/reference/InputOptions.resolve#extensions)
+- [`esbuildOptions.mainFields`](https://esbuild.github.io/api/#main-fields) -> [`rolldownOptions.resolve.mainFields`](https://rolldown.rs/reference/InputOptions.resolve#mainfields)
+- [`esbuildOptions.conditions`](https://esbuild.github.io/api/#conditions) -> [`rolldownOptions.resolve.conditionNames`](https://rolldown.rs/reference/InputOptions.resolve#conditionnames)
+- [`esbuildOptions.keepNames`](https://esbuild.github.io/api/#keep-names) -> [`rolldownOptions.output.keepNames`](https://rolldown.rs/reference/OutputOptions.keepNames)
+- [`esbuildOptions.platform`](https://esbuild.github.io/api/#platform) -> [`rolldownOptions.platform`](https://rolldown.rs/reference/InputOptions.platform)
+- [`esbuildOptions.plugins`](https://esbuild.github.io/plugins/) -> [`rolldownOptions.plugins`](https://rolldown.rs/reference/InputOptions.plugins) (teilweise unterstützt)
 
 Sie können die von der Kompatibilitätsschicht festgelegten Optionen auch über den `configResolved`-Hook abrufen:
 
@@ -97,8 +95,6 @@ const plugin = {
   },
 },
 ```
-
-<!-- TODO: add link to rolldownOptions.output.minify -->
 
 Derzeit unterstützt der Oxc-Transformer das Herunterkonvertieren nativer Dekoratoren nicht, da wir auf das Fortschreiten der Spezifikation warten, siehe([oxc-project/oxc#9170](https://github.com/oxc-project/oxc/issues/9170)).
 
@@ -316,19 +312,15 @@ Weitere Informationen finden Sie in der Dokumentation von Rolldown: [`require` e
 
 ### `import.meta.url` in UMD / IIFE
 
-`import.meta.url` wird in den Ausgabeformaten UMD / IIFE nicht länger polyfilled. Es wird standardmäßig durch `undefined` ersetzt. Wenn Sie das bisherige Verhalten bevorzugen, können Sie die Option `define` zusammen mit der Option `build.rolldownOptions.output.intro` verwenden. Weitere Details finden Sie in der Rolldown-Dokumentation: [Bekannte `import.meta`-Eigenschaften - Nicht-ESM-Ausgabeformate | Rolldown](https://rolldown.rs/in-depth/non-esm-output-formats#well-known-import-meta-properties).
+`import.meta.url` wird in den Ausgabeformaten UMD / IIFE nicht länger polyfilled. Es wird standardmäßig durch `undefined` ersetzt. Wenn Sie das bisherige Verhalten bevorzugen, können Sie die Option [`define`](/config/shared-options#define) zusammen mit der Option [`build.rolldownOptions.output.intro`](https://rolldown.rs/reference/OutputOptions.intro) verwenden. Weitere Details finden Sie in der Rolldown-Dokumentation: [Bekannte `import.meta`-Eigenschaften - Nicht-ESM-Ausgabeformate | Rolldown](https://rolldown.rs/in-depth/non-esm-output-formats#well-known-import-meta-properties).
 
 ### Option `build.rollupOptions.watch.chokidar` entfernt
 
-Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option `build.rolldownOptions.watch.notify`.
-
-<!-- TODO: add link to rolldownOptions.watch.notify -->
+Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option [`build.rolldownOptions.watch.notify`](https://rolldown.rs/reference/InputOptions.watch#notify).
 
 ### Die Option `build.rollupOptions.output.manualChunks` ist veraltet
 
-Die Option `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option `advancedChunks`. Weitere Informationen zu `advancedChunks` finden Sie in der Dokumentation von Rolldown: [Advanced Chunks - Rolldown](https://rolldown.rs/in-depth/advanced-chunks).
-
-<!-- TODO: add link to rolldownOptions.output.advancedChunks -->
+Die Option `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option [`advancedChunks`](https://rolldown.rs/reference/OutputOptions.advancedChunks). Weitere Informationen zu `advancedChunks` finden Sie in der Dokumentation von Rolldown: [Advanced Chunks - Rolldown](https://rolldown.rs/in-depth/advanced-chunks).
 
 ### Modultypunterstützung und automatische Erkennung
 
@@ -357,6 +349,8 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 
 - `build.rollupOptions`: umbenannt in `build.rolldownOptions`
 - `worker.rollupOptions`: umbenannt in `worker.rolldownOptions`
+- `build.commonjsOptions`: hat nun keine Auswirkung mehr
+- `build.dynamicImportVarsOptions.warnOnError`: hat nun keine Auswirkung mehr
 
 ## Allgemeine Änderungen [<Badge text="NRV" type="warning" />](#migration-from-v7)
 
