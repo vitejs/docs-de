@@ -13,6 +13,8 @@ if (import.meta.env.DEV) {
 
 :::
 
+<ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq/~05an?via=vite" title="Umgebungsvariablen in Vite">Sehen Sie sich eine interaktive Lektion auf Scrimba an</ScrimbaLink>
+
 ## Eingebaute Konstanten
 
 Einige eingebaute Konstanten sind in allen folgenden Fällen verfügbar:
