@@ -108,24 +108,21 @@ Während des Builds müssen Sie nur mehrere `.html`-Dateien als Einstiegspunkte 
 
 ```js twoslash [vite.config.js]
 import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   build: {
     rolldownOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        nested: resolve(__dirname, 'nested/index.html'),
+        main: resolve(import.meta.dirname, 'index.html'),
+        nested: resolve(import.meta.dirname, 'nested/index.html'),
       },
     },
   },
 })
 ```
 
-Wenn Sie einen anderen Root angeben, denken Sie daran, dass `__dirname` immer der Ordner Ihrer vite.config.js-Datei ist, wenn die Eingabepfade aufgelöst werden. Daher müssen Sie Ihren `root`-Eintrag den Argumenten für `resolve` hinzufügen.
+Wenn Sie einen anderen Root angeben, denken Sie daran, dass `import.meta.dirname` immer der Ordner Ihrer vite.config.js-Datei ist, wenn die Eingabepfade aufgelöst werden. Daher müssen Sie Ihren `root`-Eintrag den Argumenten für `resolve` hinzufügen.
 
 Beachten Sie, dass Vite für HTML-Dateien den Namen des Eintrags im Objekt `rollupOptions.input` ignoriert und stattdessen die aufgelöste ID der Datei respektiert, wenn das HTML-Asset im dist-Ordner generiert wird. Dies stellt eine konsistente Struktur mit der Funktionsweise des Entwicklungsservers sicher.
 
@@ -137,16 +134,13 @@ Wenn es Zeit ist, Ihre Bibliothek für die Verteilung zu bündeln, verwenden Sie
 
 ```js twoslash [vite.config.js]
 import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   build: {
     lib: {
       // Kann auch ein Dictionary oder ein Array von mehreren Einstiegspunkten sein
-      entry: resolve(__dirname, 'lib/main.js'),
+      entry: resolve(import.meta.dirname, 'lib/main.js'),
       name: 'MyLib',
       // Die richtigen Dateierweiterungen werden hinzugefügt
       fileName: 'my-lib',
@@ -168,17 +162,14 @@ export default defineConfig({
 
 ```js twoslash [vite.config.js (mehrere Einstiegspunkte)]
 import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   build: {
     lib: {
       entry: {
-        'my-lib': resolve(__dirname, 'lib/main.js'),
-        secondary: resolve(__dirname, 'lib/secondary.js'),
+        'my-lib': resolve(import.meta.dirname, 'lib/main.js'),
+        secondary: resolve(import.meta.dirname, 'lib/secondary.js'),
       },
       name: 'MyLib',
     },
