@@ -365,7 +365,6 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl von Anwendungsfällen betreffen.
 
 - **[TODO: Dies wird vor der stabilen Version behoben]** https://github.com/rolldown/rolldown/issues/5726 (betrifft Nuxt, Qwik)
-- **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** Legacy-Chunks werden aufgrund der fehlenden Funktion zur Ausgabe vorgefertigter Chunks ([rolldown#4304](https://github.com/rolldown/rolldown/issues/4034)) als Asset-Datei statt als Chunk-Datei ausgegeben. Das bedeutet, dass die Chunk-bezogenen Optionen nicht für Legacy-Chunks gelten und die Manifest-Datei Legacy-Chunks nicht als Chunk-Datei enthält.
 - **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** `@vite-ignore`-Kommentar-Sonderfall ([rolldown-vite#426](https://github.com/vitejs/rolldown-vite/issues/426))
 - [Extglobs](https://github.com/micromatch/picomatch/blob/master/README.md#extglobs) werden noch nicht unterstützt ([rolldown-vite#365](https://github.com/vitejs/rolldown-vite/issues/365))
 - `define` teilt keine Referenz für Objekte: Wenn Sie ein Objekt als Wert an `define` übergeben, erhält jede Variable eine separate Kopie des Objekts. Weitere Details finden Sie im [Oxc Transformer-Dokument](https://oxc.rs/docs/guide/usage/transformer/global-variable-replacement#define).
