@@ -22,6 +22,8 @@ Sie können auch explizit eine Konfigurationsdatei angeben, die mit der CLI-Opti
 vite --config my-config.js
 ```
 
+<ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq/~05jg?via=vite" title="Vite konfigurieren">Sehen Sie sich eine interaktive Lektion auf Scrimba an</ScrimbaLink>
+
 ::: tip Laden der Konfiguration
 Standardmäßig nutzt Vite [Rolldown](https://rolldown.rs/), um die Konfiguration in einer temporären Datei zu bündeln. Dies kann zu Problemen beim Importieren von TypeScript-Dateien in einem Monorepo führen. Wenn Sie Probleme mit diesem Ansatz haben, können Sie stattdessen `--configLoader runner` angeben, um den [Modul-Runner](/guide/api-environment-runtimes.html#modulerunner) zu verwenden. Dieser erstellt keine temporäre Konfiguration und transformiert alle Dateien sofort. Beachten Sie, dass der Modul-Runner CJS in Konfigurationsdateien nicht unterstützt, externe CJS-Pakete sollten jedoch wie gewohnt funktionieren.
 
