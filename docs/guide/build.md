@@ -2,6 +2,8 @@
 
 Wenn es Zeit ist, Ihre App für die Produktion bereitzustellen, führen Sie einfach den Befehl `vite build` aus. Standardmäßig verwendet er `<root>/index.html` als den Einstiegspunkt für den Build und erzeugt ein Anwendungsbündel, das sich für die Bereitstellung über einen statischen Hosting-Dienst eignet. Werfen Sie einen Blick auf die [Bereitstellung einer statischen Website](./static-deploy) für Anleitungen zu beliebten Diensten.
 
+<ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq/~037q?via=vite" title="Bauen für die Produktion">Sehen Sie sich eine interaktive Lektion auf Scrimba an</ScrimbaLink>
+
 ## Browserkompatibilität
 
 Standardmäßig setzt das Produktionsbündel einen modernen Browser voraus, der in den Zielen der [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available enthalten ist. Der Standardbereich für unterstützte Browser ist:
@@ -42,8 +44,6 @@ Für erweiterte Steuerung des Basispfads siehe [Erweiterte Basisoptionen](#erwei
 
 Der Build kann über verschiedene [Build-Konfigurationsoptionen](/config/build-options.md) angepasst werden. Konkret können Sie die zugrunde liegenden [Rolldown-Optionen](https://rolldown.rs/reference/) direkt über `build.rolldownOptions` anpassen:
 
-<!-- TODO: update the link above and below to Rolldown's documentation -->
-
 ```js [vite.config.js]
 export default defineConfig({
   build: {
@@ -75,8 +75,6 @@ Bei einer neuen Bereitstellung kann der Hosting-Dienst die Assets aus früheren 
 ## Neuerstellen bei Dateiänderungen
 
 Sie können den Rollup Watcher mit `vite build --watch` aktivieren. Oder Sie können die zugrundeliegenden [`WatcherOptions`](https://rolldown.rs/reference/InputOptions.watch) direkt über `build.watch` anpassen:
-
-<!-- TODO: update the link above to Rolldown's documentation -->
 
 ```js [vite.config.js]
 export default defineConfig({

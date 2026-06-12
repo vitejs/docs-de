@@ -360,6 +360,8 @@ Standardmäßig verwendet Vite esbuild zum Minifizieren von CSS. Lightning CSS k
 
 ## Statische Assets
 
+<ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq/~05pq?via=vite" title="Statische Ressourcen in Vite">Sehen Sie sich eine interaktive Lektion auf Scrimba an</ScrimbaLink>
+
 Beim Importieren eines statischen Assets wird die aufgelöste öffentliche URL zurückgegeben, wenn es bereitgestellt wird:
 
 ```js
@@ -604,6 +606,14 @@ const module = await import(`./dir/${file}.js`)
 ```
 
 Beachten Sie, dass Variablen nur Dateinamen eine Ebene tiefer darstellen. Wenn `file` `'foo/bar'` ist, würde der Import fehlschlagen. Für fortgeschrittene Anwendungen können Sie die Funktion [glob-import](#glob-import) verwenden.
+
+Außerdem ist zu beachten, dass der dynamische Import den folgenden Regeln entsprechen muss, um gebündelt zu werden:
+
+- Importe müssen mit `./` oder `../` starten: ``import(`./dir/${foo}.js`)`` ist gültig, aber ``import(`${foo}.js`)`` nicht.
+- Importe müssen mit einer Dateiendung enden: ``import(`./dir/${foo}.js`)`` ist gültig, aber ``import(`./dir/${foo}`)`` nicht.
+- Importe zum eigenen Verzeichnis müssen ein Muster für Dateinamen spezifizieren: ``import(`./prefix-${foo}.js`)`` ist gültig, aber ``import(`./${foo}.js`)`` nicht.
+
+Diese Regeln werden erzwungen, um versehentliches Importieren von Dateien zu vermeiden, die nicht gebündelt werden sollen. Beispielsweise würde `import(foo)` ohne diese Regeln alles im Dateisystem importieren.
 
 ## WebAssembly
 
