@@ -1,0 +1,1 @@
+By default, Vite will crawl all your `.html` files to detect dependencies that need to be pre-bundled (ignoring `node_modules`, `build.outDir`, `__tests__` and `coverage`). If `build.rolldownOptions.input` is specified, Vite will crawl those entry points instead.
