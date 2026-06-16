@@ -35,9 +35,7 @@ Falsche Plugins werden ignoriert, was dazu verwendet werden kann, Plugins einfac
 Vite zielt darauf ab, Out-of-the-Box-Unterstützung für gängige Webentwicklungsmuster bereitzustellen. Bevor Sie nach einem Vite- oder kompatiblen Rollup-Plugin suchen, werfen Sie einen Blick in den [Feature-Guide](../guide/features.md). Viele der Fälle, in denen ein Plugin in einem Rollup-Projekt benötigt wird, sind bereits in Vite abgedeckt.
 :::
 
-In der [Plugins-Sektion](../plugins/) finden Sie Informationen über offizielle Plugins. Community-Plugins sind in [awesome-vite](https://github.com/vitejs/awesome-vite#plugins) aufgeführt.
-
-Sie können auch Plugins finden, die den [empfohlenen Konventionen](./api-plugin.md#conventions) folgen, indem Sie eine [npm-Suche nach vite-plugin](https://www.npmjs.com/search?q=vite-plugin&ranking=popularity) für Vite-Plugins oder eine [npm-Suche nach rollup-plugin](https://www.npmjs.com/search?q=rollup-plugin&ranking=popularity) für Rollup-Plugins verwenden.
+In der [Plugins-Sektion](../plugins/) finden Sie Informationen über offizielle Plugins. Community-Plugins, welche auf NPM veröffentlich wurden, sind in der [Vite Plugin Registry](https://registry.vite.dev/plugins) aufgeführt.
 
 ## Erzwingen der Plugin-Reihenfolge
 
