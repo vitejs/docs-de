@@ -100,6 +100,8 @@ Beachten Sie, dass die Top-Level-Eigenschaft `ssr` veraltet sein wird, sobald di
 
 Es stehen Low-Level-Konfigurations-APIs zur Verfügung, damit Laufzeitanbieter Umgebungen mit geeigneten Standardeinstellungen für ihre Laufzeiten bereitstellen können. Diese Umgebungen können auch andere Prozesse oder Threads erstellen, um die Module während der Entwicklung in einer Laufzeit auszuführen, die der Produktionsumgebung näher kommt.
 
+Zum Beispiel nutzt das [Cloudflare-Vite-Plugin](https://developers.cloudflare.com/workers/vite-plugin/) die Environment API, um Code während der Entwicklung in der Cloudflare Workers-Laufzeitumgebung (`workerd`) auszuführen.
+
 ```js
 import { customEnvironment } from ‚vite-environment-provider‘
 
