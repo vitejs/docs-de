@@ -66,3 +66,4 @@ export function add(a: number, b: number): number
 :::
 
 [`resolve.tsconfigPaths: true`](/config/shared-options.md#resolve-tsconfigpaths) can be specified to tell Vite to use the `paths` option in `tsconfig.json` to resolve imports.
+The worker detection will only work if the `new URL()` constructor is used directly inside the `new Worker()` declaration. Otherwise it is handled as a [static asset URL](./assets#new-url-url-import-meta-url) instead. Additionally, all options parameters must be static values (i.e. string literals).
