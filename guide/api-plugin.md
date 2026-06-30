@@ -41,3 +41,5 @@ function accessImportMap() {
       bundle?: import('rolldown').OutputBundle
       chunk?: import('rolldown').OutputChunk
       originalUrl?: string
+- [`options`](https://rolldown.rs/reference/Interface.Plugin#options)
+To send events from the client to the server, we can use [`hot.send`](/guide/api-hmr.html#hot-send-event-data):
