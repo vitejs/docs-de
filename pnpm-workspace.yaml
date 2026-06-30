@@ -2,7 +2,3 @@ allowBuilds:
   esbuild: true
   unrs-resolver: true
   vue-demi: true
-onlyBuiltDependencies:
-  - esbuild
-  - unrs-resolver
-  - vue-demi
