@@ -146,38 +146,47 @@ Nachdem Ihr Projekt importiert und bereitgestellt wurde, werden alle nachfolgend
 
 Erfahren Sie mehr über die [Git-Integration von Vercel](https://vercel.com/docs/concepts/git).
 
-## Cloudflare Pages
+## Cloudflare
+### Cloudflare Workers
 
-### Cloudflare Pages über Wrangler
+Das [Cloudflare-Vite-Plugin](https://developers.cloudflare.com/workers/vite-plugin/) stellt eine Integration für Cloudflare Workers bereit und nutzt die Environment API von Vite, um serverseitigen Code während der Entwicklung in der Cloudflare Workers-Laufzeitumgebung auszuführen.
 
-1. Installieren Sie das [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/get-started/).
-2. Authentifizieren Sie Wrangler mit Ihrem Cloudflare-Konto, indem Sie `wrangler login` ausführen.
-3. Führen Sie Ihren Build-Befehl aus.
-4. Stellen Sie es mit `npx wrangler pages deploy dist` bereit.
+Um Cloudflare Workers zu einem bereits existierenden Vite-Projekt hinzuzufügen, müssen Sie das Plugin installieren und es in Ihrer Konfiguration hinzufügen:
 
 ```bash
-# Installieren Sie das Wrangler CLI
-$ npm install -g wrangler
-
-# Melden Sie sich von der Befehlszeile bei Ihrem Cloudflare-Konto an
-$ wrangler login
-
-# Führen Sie Ihren Build-Befehl aus
-$ npm run build
-
-# Erstellen Sie eine neue Bereitstellung
-$ npx wrangler pages deploy dist
+$ npm install --save-dev @cloudflare/vite-plugin
 ```
 
-Nachdem Ihre Dateien hochgeladen wurden, gibt Ihnen Wrangler eine Vorschau-URL zum Überprüfen Ihrer Website. Wenn Sie sich im Cloudflare Pages-Dashboard anmelden, sehen Sie Ihr neues Projekt.
+```js [vite.config.js]
+import { defineConfig } from 'vite'
+import { cloudflare } from '@cloudflare/vite-plugin'
+
+export default defineConfig({
+  plugins: [cloudflare()],
+})
+```
+
+```jsonc [wrangler.jsonc]
+{
+  "name": "my-vite-app",
+}
+```
+
+Nachdem Sie `npm run build` ausgeführt haben, können Sie Ihre Anwendung mit `npx wrangler deploy` bereitstellen.
+
+Sie können auch einfach Backend-APIs zu Ihrer Vite-Anwendung hinzufügen, um sicher mit Cloudflare-Ressourcen zu kommunizieren. Dies läuft in der Workers-Laufzeitumgebung während der Entwicklung und wird neben dem Frontend bereitgestellt. Schauen Sie sich das [Cloudflare-Vite-Plugin-Tutorial](https://developers.cloudflare.com/workers/vite-plugin/tutorial/) an, für eine vollständige Anleitung.
+
+### Cloudflare Pages
 
 ### Cloudflare Pages mit Git
 
+Cloudflare Pages bietet Ihnen eine Weg, Ihre Anwendung direkt bei Cloudflare bereitzustellen, ohne eine Wrangler-Datei pflegen zu müssen.
+
 1. Pushen Sie Ihren Code in Ihr Git-Repository (GitHub, GitLab).
-2. Melden Sie sich im Cloudflare-Dashboard an und wählen Sie Ihr Konto unter **Account-Startseite** > **Pages** aus.
-3. Wählen Sie **Neues Projekt erstellen** und die Option **Git verbinden**.
+2. Melden Sie sich im Cloudflare-Dashboard an und wählen Sie Ihr Konto unter **Account-Startseite** > **Workers & Pages** aus.
+3. Wählen Sie **Neues Projekt erstellen** und die Option **Pages**, wählen Sie dann Git aus.
 4. Wählen Sie das Git-Projekt aus, das Sie bereitstellen möchten, und klicken Sie auf **Einrichtung beginnen**.
-5. Wählen Sie je nach dem von Ihnen ausgewählten Vite-Framework das entsprechende Framework-Preset in den Build-Einstellungen aus.
+5. Wählen Sie je nach dem von Ihnen ausgewählten Vite-Framework das entsprechende Framework-Preset in den Build-Einstellungen aus. Anderenfalls können Sie Ihre Befehle angebene, die für den Build Ihres Projekts benötigt werden und das erwartete Ausgabeverzeichnis.
 6. Dann speichern und bereitstellen!
 7. Ihre Anwendung ist bereitgestellt! (z.B. `https://<PROJECTNAME>.pages.dev/`)
 

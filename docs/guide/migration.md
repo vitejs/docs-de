@@ -287,15 +287,15 @@ Weitere Informationen finden Sie in der Dokumentation von Rolldown: [`require` e
 
 ### `import.meta.url` in UMD / IIFE
 
-`import.meta.url` wird in den Ausgabeformaten UMD / IIFE nicht länger polyfilled. Es wird standardmäßig durch `undefined` ersetzt. Wenn Sie das bisherige Verhalten bevorzugen, können Sie die Option `define` zusammen mit der Option `build.rolldownOptions.output.intro` verwenden. Weitere Details finden Sie in der Rolldown-Dokumentation: [Bekannte `import.meta`-Eigenschaften - Nicht-ESM-Ausgabeformate | Rolldown](https://rolldown.rs/in-depth/non-esm-output-formats#well-known-import-meta-properties).
+`import.meta.url` wird in den Ausgabeformaten UMD / IIFE nicht länger polyfilled. Es wird standardmäßig durch `undefined` ersetzt. Wenn Sie das bisherige Verhalten bevorzugen, können Sie die Option [`define`](/config/shared-options#define) zusammen mit der Option [`build.rolldownOptions.output.intro`](https://rolldown.rs/reference/OutputOptions.intro) verwenden. Weitere Details finden Sie in der Rolldown-Dokumentation: [Bekannte `import.meta`-Eigenschaften - Nicht-ESM-Ausgabeformate | Rolldown](https://rolldown.rs/in-depth/non-esm-output-formats#well-known-import-meta-properties).
 
 ### Option `build.rollupOptions.watch.chokidar` entfernt
 
-Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option `build.rolldownOptions.watch.notify`.
+Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option [`build.rolldownOptions.watch.notify`](https://rolldown.rs/reference/InputOptions.watch#notify).
 
-### Objektform `build.rollupOptions.output.manualChunks` ist veraltet und die Funktionsform auch
+### Die Option `build.rollupOptions.output.manualChunks` ist veraltet
 
-Die Objektform `output.manualChunks` wird nicht länger unterstützt. Die Funktionsform `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option `advancedChunks`. Weitere Informationen zu `advancedChunks` finden Sie in der Dokumentation von Rolldown: [Advanced Chunks - Rolldown](https://rolldown.rs/in-depth/advanced-chunks).
+Die Option `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option [`advancedChunks`](https://rolldown.rs/reference/OutputOptions.advancedChunks). Weitere Informationen zu `advancedChunks` finden Sie in der Dokumentation von Rolldown: [Advanced Chunks - Rolldown](https://rolldown.rs/in-depth/advanced-chunks).
 
 ### Modultypunterstützung und automatische Erkennung
 
@@ -324,6 +324,8 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 
 - `build.rollupOptions`: umbenannt in `build.rolldownOptions`
 - `worker.rollupOptions`: umbenannt in `worker.rolldownOptions`
+- `build.commonjsOptions`: hat nun keine Auswirkung mehr
+- `build.dynamicImportVarsOptions.warnOnError`: hat nun keine Auswirkung mehr
 
 ## Allgemeine Änderungen [<Badge text="NRV" type="warning" />](#migration-from-v7)
 
@@ -336,7 +338,6 @@ Die folgenden Optionen sind veraltet und werden in Zukunft entfernt:
 Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl von Anwendungsfällen betreffen.
 
 - **[TODO: Dies wird vor der stabilen Version behoben]** https://github.com/rolldown/rolldown/issues/5726 (betrifft Nuxt, Qwik)
-- **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** Legacy-Chunks werden aufgrund der fehlenden Funktion zur Ausgabe vorgefertigter Chunks ([rolldown#4304](https://github.com/rolldown/rolldown/issues/4034)) als Asset-Datei statt als Chunk-Datei ausgegeben. Das bedeutet, dass die Chunk-bezogenen Optionen nicht für Legacy-Chunks gelten und die Manifest-Datei Legacy-Chunks nicht als Chunk-Datei enthält.
 - **[TODO: Dies wird vor der stabilen Veröffentlichung behoben]** `@vite-ignore`-Kommentar-Sonderfall ([rolldown-vite#426](https://github.com/vitejs/rolldown-vite/issues/426))
 - [Extglobs](https://github.com/micromatch/picomatch/blob/master/README.md#extglobs) werden noch nicht unterstützt ([rolldown-vite#365](https://github.com/vitejs/rolldown-vite/issues/365))
 - TypeScripts-Legacy-Namespace wird nur teilweise unterstützt. Siehe [Oxc-Transformer-Dokumentation](https://oxc.rs/docs/guide/usage/transformer/typescript.html#partial-namespace-support) für mehr Details.
