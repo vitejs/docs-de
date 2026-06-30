@@ -44,7 +44,7 @@ Bietet Unterstützung für Legacy-Browser für den produktiven Build.
 
 ## Plugins der Community
 
-Schauen Sie sich [awesome-vite](https://github.com/vitejs/awesome-vite#plugins) an - Sie können auch einen Pull Request einreichen, um Ihre Plugins dort aufzulisten.
+Schauen Sie sich die [Vite Plugin Registry](https://registry.vite.dev/plugins) an, um eine Liste von Plugins zu erhalten, die auf NPM veröffentlicht wurden.
 
 ## Eingebaute Rolldown-Plugins
 
@@ -52,6 +52,6 @@ Vite nutzt intern [Rolldown](https://rolldown.rs/) und es stellt einige eingebau
 
 Lesen Sie den [Abschnitt für eingebaute Rolldown-Plugins](https://rolldown.rs/builtin-plugins/) für mehr Informationen.
 
-## Rollup Plugins
+## Rolldown / Rollup Plugins
 
-[Vite-Plugins](../guide/api-plugin) sind eine Erweiterung der Plugin-Schnittstelle von Rollup. Weitere Informationen finden Sie im Abschnitt [Rollup-Plugin-Kompatibilität](../guide/api-plugin#rollup-plugin-compatibility).
+[Vite-Plugins](../guide/api-plugin) sind eine Erweiterung der Plugin-Schnittstelle von Rollup. Weitere Informationen finden Sie im Abschnitt [Rollup-Plugin-Kompatibilität](../guide/api-plugin#rolldown-plugin-compatibility).
