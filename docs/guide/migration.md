@@ -316,11 +316,11 @@ Weitere Informationen finden Sie in der Dokumentation von Rolldown: [`require` e
 
 ### Option `build.rollupOptions.watch.chokidar` entfernt
 
-Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option [`build.rolldownOptions.watch.notify`](https://rolldown.rs/reference/InputOptions.watch#notify).
+Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option `build.rolldownOptions.watch.notify`.
 
 ### Die Option `build.rollupOptions.output.manualChunks` ist veraltet
 
-Die Option `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option [`advancedChunks`](https://rolldown.rs/reference/OutputOptions.advancedChunks). Weitere Informationen zu `advancedChunks` finden Sie in der Dokumentation von Rolldown: [Advanced Chunks - Rolldown](https://rolldown.rs/in-depth/advanced-chunks).
+Die Option `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option [`codeSplitting`](https://rolldown.rs/reference/OutputOptions.codeSplitting). Weitere Informationen zu `codeSplitting` finden Sie in der Dokumentation von Rolldown: [Manual Code Splitting - Rolldown](https://rolldown.rs/in-depth/manual-code-splitting).
 
 ### Modultypunterstützung und automatische Erkennung
 
