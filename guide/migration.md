@@ -1,0 +1,4 @@
+- [Oxc Minifier assumptions](https://github.com/oxc-project/oxc/blob/main/crates/oxc_minifier/docs/ASSUMPTIONS.md)
+- Passing a URL to `import.meta.hot.accept` is no longer supported. Please pass an id instead. ([#21382](https://github.com/vitejs/vite/pull/21382))
+- All parallel hooks in Rollup work as sequential hooks. See [Rolldown's documentation](https://rolldown.rs/apis/plugin-api#sequential-hook-execution) for more details.
+- Missing support by Rolldown: The following features are not supported by Rolldown and are no longer supported by Vite.
