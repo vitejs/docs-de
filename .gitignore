@@ -9,7 +9,6 @@ package-lock.json
 packages
 patches
 playground
-pnpm-workspace.yaml
 !**/glob-import/dir/node_modules
 .DS_Store
 .idea

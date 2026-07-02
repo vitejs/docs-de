@@ -122,14 +122,10 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
      file: string
      /**
       * Die Liste von CSS-Dateien, welche von diesem Chunk importiert werden.
-      *
-      * Dieses Feld ist nur in JS-Chunks präsent.
       */
      css?: string[]
      /**
       * Die Liste von allen Asset-Dateien, welche von diesem Chunk importiert werden, ausgenommen CSS-Dateien.
-      *
-      * Dieses Feld ist nur in JS-Chunks präsent.
       */
      assets?: string[]
      /**
@@ -168,7 +164,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    - **Asset Chunks**: Generiert aus importierten Assets wie Images oder Schriftarten. Ihr Schlüssel ist der relative src-Pfad vom Wurzelverzeichnis.
    - **CSS Dateien**: Wenn [`build.cssCodeSplit`](/config/build-options.md#build-csscodesplit) `false` ist, wird eine einzige CSS Datei generiert mit dem Schlüssel `style.css`. Wenn `build.cssCodeSplit` nicht `false` ist, wird der Schlüssel ähnlich zum JavaScript Chunk generiert (z. B. Entry Chunks werden nicht mit `_` beginnen und Non-Entry Chunks werden mit `_` beginnen).
 
-   JS-Chunks (Chunks die keine Assets oder CSS sind) werden Informationen über ihre statischen und dynamischen Importe enthalten (beides sind Schlüssel die den entsprechenden Chunk im Manifest abbilden) und auch ihre entsprechenden CSS und Assets (falls vorhanden).
+   JS-Chunks (Chunks die keine Assets oder CSS sind) werden Informationen über ihre statischen und dynamischen Importe enthalten (beides sind Schlüssel die den entsprechenden Chunk im Manifest abbilden). Chunks listen zudem ihre entsprechenden CSS und Assets auf, sofern vorhanden.
 
 4. Sie können diese Datei zum Rendern von Links oder zum Vorladen von Direktiven mit gehashten Dateinamen verwenden.
 
