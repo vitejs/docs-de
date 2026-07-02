@@ -1,6 +1,6 @@
 {
   "name": "vite-docs-de",
-  "version": "4.1.0",
+  "version": "4.3.0",
   "description": "Deutsche Übersetzung der Vite Dokumentation.",
   "main": "docs/index.md",
   "directories": {
@@ -34,30 +34,31 @@
   "homepage": "https://github.com/vitejs/docs-de#readme",
   "dependencies": {
     "search-insights": "2.17.3",
-    "vite": "8.0.11"
+    "vite": "8.1.0"
   },
   "devDependencies": {
-    "@algolia/client-search": "5.52.1",
+    "@algolia/client-search": "5.55.1",
     "@eslint/js": "10.0.1",
-    "@shikijs/vitepress-twoslash": "4.0.2",
+    "@shikijs/vitepress-twoslash": "4.3.0",
     "@types/express": "5.0.6",
-    "@voidzero-dev/vitepress-theme": "4.0.4",
-    "@types/node": "25.6.2",
-    "@types/react": "19.2.15",
-    "eslint": "10.3.0",
-    "eslint-plugin-import-x": "4.16.2",
+    "@voidzero-dev/vitepress-theme": "4.7.0",
+    "@types/node": "26.0.1",
+    "@types/react": "19.2.17",
+    "eslint": "10.6.0",
+    "eslint-plugin-import-x": "4.17.1",
     "feed": "5.2.1",
     "gsap": "3.15.0",
-    "oxc-minify": "0.128.0",
-    "lint-staged": "16.4.0",
+    "oxc-minify": "0.137.0",
+    "lint-staged": "17.0.8",
     "markdown-it-image-size": "15.0.1",
-    "react": "19.2.6",
-    "react-dom": "19.2.6",
-    "typescript": "5.9.3",
-    "typescript-eslint": "8.59.4",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.62.0",
     "vitepress": "2.0.0-alpha.17",
     "vitepress-plugin-group-icons": "1.7.5",
-    "vue": "3.5.34",
-    "vue-tsc": "3.2.7"
-  }
+    "vue": "3.5.39",
+    "vue-tsc": "3.3.5"
+  },
+  "packageManager": "pnpm@11.9.0+sha512.bd682d5d03fe525ef7c9fd6780c6884d1e756ac4c9c9fe00c538782824310dcf90e3ddc4f53835f06dfaebd5085e41855e0bcbb3b60de2ac5bbab89e5036f03b"
 }

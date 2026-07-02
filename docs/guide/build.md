@@ -58,7 +58,7 @@ Sie können beispielsweise mehrere Rolldown-Ausgaben mit Plugins spezifizieren, 
 
 ## Chunking-Strategie
 
-Sie können konfigurieren, wie Chunks aufgeteilt werden, indem Sie `build.rolldownOptions.output.manualChunks` verwenden (siehe [Rolldown-Dokumentation](https://rollupjs.org/configuration-options/#output-manualchunks)). Wenn Sie ein Framework verwenden, lesen Sie dessen Dokumentation, um zu konfigurieren, wie Chunks aufgeteilt werden.
+Sie können konfigurieren, wie Chunks aufgeteilt werden, indem Sie [`build.rolldownOptions.output.codeSplitting`](https://rolldown.rs/reference/OutputOptions.codeSplitting) verwenden (siehe [Rolldown-Dokumentation](https://rolldown.rs/in-depth/manual-code-splitting)). Wenn Sie ein Framework verwenden, lesen Sie dessen Dokumentation, um zu konfigurieren, wie Chunks aufgeteilt werden.
 
 ## Fehlerbehandlung beim Laden
 
