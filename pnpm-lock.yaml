@@ -12,8 +12,8 @@ importers:
         specifier: 2.17.3
         version: 2.17.3
       vite:
-        specifier: 8.1.0
-        version: 8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)
+        specifier: 8.1.2
+        version: 8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)
     devDependencies:
       '@algolia/client-search':
         specifier: 5.55.1
@@ -35,7 +35,7 @@ importers:
         version: 19.2.17
       '@voidzero-dev/vitepress-theme':
         specifier: 4.7.0
-        version: 4.7.0(focus-trap@8.2.2)(vite@8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))(vitepress@2.0.0-alpha.17(@types/node@26.0.1)(jiti@2.7.0)(lightningcss@1.32.0)(oxc-minify@0.137.0)(postcss@8.5.16)(typescript@6.0.3)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))
+        version: 4.7.0(focus-trap@8.2.2)(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))(vitepress@2.0.0-alpha.17(@types/node@26.0.1)(jiti@2.7.0)(lightningcss@1.32.0)(oxc-minify@0.137.0)(postcss@8.5.16)(typescript@6.0.3)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))
       eslint:
         specifier: 10.6.0
         version: 10.6.0(jiti@2.7.0)
@@ -74,7 +74,7 @@ importers:
         version: 2.0.0-alpha.17(@types/node@26.0.1)(jiti@2.7.0)(lightningcss@1.32.0)(oxc-minify@0.137.0)(postcss@8.5.16)(typescript@6.0.3)(yaml@2.9.0)
       vitepress-plugin-group-icons:
         specifier: 1.7.5
-        version: 1.7.5(vite@8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
+        version: 1.7.5(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
       vue:
         specifier: 3.5.39
         version: 3.5.39(typescript@6.0.3)
@@ -2336,8 +2336,8 @@ packages:
       yaml:
         optional: true
 
-  vite@8.1.0:
-    resolution: {integrity: sha512-BuJcQK/56NQTWDGn4ABea3q4SSBdNPWwNZKTkkUpcMPnLoquSYH8llRtSUIgoL1KSCpHt5eghLShn50mH36y7Q==}
+  vite@8.1.2:
+    resolution: {integrity: sha512-6YYPbRXTxx6bRXmOn7XdnQAy5DQNHhDgtjhDHI13oe4pY93kkcdGJWxpGwOm++/Wh0QpQhDrpIoVMrmrsI5AGQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -3160,12 +3160,12 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.3.1
 
-  '@tailwindcss/vite@4.3.1(vite@8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))':
+  '@tailwindcss/vite@4.3.1(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))':
     dependencies:
       '@tailwindcss/node': 4.3.1
       '@tailwindcss/oxide': 4.3.1
       tailwindcss: 4.3.1
-      vite: 8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)
+      vite: 8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)
 
   '@tanstack/virtual-core@3.17.2': {}
 
@@ -3433,7 +3433,7 @@ snapshots:
       vite: 7.3.6(@types/node@26.0.1)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.0)
       vue: 3.5.39(typescript@6.0.3)
 
-  '@voidzero-dev/vitepress-theme@4.7.0(focus-trap@8.2.2)(vite@8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))(vitepress@2.0.0-alpha.17(@types/node@26.0.1)(jiti@2.7.0)(lightningcss@1.32.0)(oxc-minify@0.137.0)(postcss@8.5.16)(typescript@6.0.3)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))':
+  '@voidzero-dev/vitepress-theme@4.7.0(focus-trap@8.2.2)(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))(vitepress@2.0.0-alpha.17(@types/node@26.0.1)(jiti@2.7.0)(lightningcss@1.32.0)(oxc-minify@0.137.0)(postcss@8.5.16)(typescript@6.0.3)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))':
     dependencies:
       '@docsearch/css': 4.6.3
       '@docsearch/js': 4.6.3
@@ -3441,7 +3441,7 @@ snapshots:
       '@iconify/vue': 5.0.1(vue@3.5.39(typescript@6.0.3))
       '@rive-app/canvas-lite': 2.38.3
       '@tailwindcss/typography': 0.5.20(tailwindcss@4.3.1)
-      '@tailwindcss/vite': 4.3.1(vite@8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
+      '@tailwindcss/vite': 4.3.1(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
       '@vue/shared': 3.5.39
       '@vueuse/core': 14.3.0(vue@3.5.39(typescript@6.0.3))
       '@vueuse/integrations': 14.3.0(focus-trap@8.2.2)(vue@3.5.39(typescript@6.0.3))
@@ -4746,7 +4746,7 @@ snapshots:
       lightningcss: 1.32.0
       yaml: 2.9.0
 
-  vite@8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0):
+  vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
@@ -4760,13 +4760,13 @@ snapshots:
       jiti: 2.7.0
       yaml: 2.9.0
 
-  vitepress-plugin-group-icons@1.7.5(vite@8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)):
+  vitepress-plugin-group-icons@1.7.5(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)):
     dependencies:
       '@iconify-json/logos': 1.2.11
       '@iconify-json/vscode-icons': 1.2.63
       '@iconify/utils': 3.1.3
     optionalDependencies:
-      vite: 8.1.0(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)
+      vite: 8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)
 
   vitepress@2.0.0-alpha.17(@types/node@26.0.1)(jiti@2.7.0)(lightningcss@1.32.0)(oxc-minify@0.137.0)(postcss@8.5.16)(typescript@6.0.3)(yaml@2.9.0):
     dependencies:
