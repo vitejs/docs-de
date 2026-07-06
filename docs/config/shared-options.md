@@ -92,7 +92,7 @@ Verzeichnis zur Speicherung von Cache-Dateien. Dateien in diesem Verzeichnis sin
 ## resolve.alias
 
 - **Typ:**
-  `Record<string, string> | Array<{ find: string | RegExp, replacement: string, customResolver?: ResolverFunction | ResolverObject }>`
+  `Record<string, string> | Array<{ find: string | RegExp, replacement: string }>`
 
 Definiert Aliasse, welche Werte in `import`- oder `require`-Statements ersetzen. Die Funktionsweise ähnelt [`@rollup/plugin-alias`](https://github.com/rollup/plugins/tree/master/packages/alias).
 
@@ -119,7 +119,7 @@ resolve: {
 }
 ```
 
-### Arrayformat (`Array<{ find: string | RegExp, replacement: string, customResolver?: ResolverFunction | ResolverObject }>`)
+### Arrayformat (`Array<{ find: string | RegExp, replacement: string }>`)
 
 Das Arrayformat erlaubt die Spezifizierung eines Alias als Objekt, welches nützlich für komplexe Schlüssel-Wert-Paare sein kann.
 
@@ -137,8 +137,6 @@ Wenn `find` ein regulärer Ausdruck ist, kann die `replacement`-Option [Ersetzun
 ```js
 { find:/^(.*)\.js$/, replacement: '$1.alias' }
 ```
-
-Die `customResolver`-Option kann verwendet werden, um eine seperate Modulauflösung für individuelle Aliasse zu gewährleisten.
 
 ## resolve.dedupe
 
