@@ -262,6 +262,7 @@ const config = defineConfig({
           { text: 'Team', link: '/team' },
           { text: 'Blog', link: '/blog' },
           { text: 'Veröffentlichungen', link: '/releases' },
+          { text: 'Anerkennungen', link: '/acknowledgements' },
           {
             text: 'Die Dokumentation',
             link: 'https://www.youtube.com/watch?v=bmWQqAKLgT4',
