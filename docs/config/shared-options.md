@@ -174,6 +174,8 @@ Hier sind `import` und `require` "Bedingungen". Bedingungen können verschachtel
 
 Beachten Sie, dass die Bedingungen `import`, `require` und `default` immer angewendet werden, wenn die Anforderungen erfüllt sind.
 
+Außerdem wird die `style`-Bedingung angewendet, wenn Style-Importe aufgelöst werden, z. B. `@import 'my-library'`. Bei CSS-Pre-Prozessoren werden deren Bedingungen ebenfalls angewendet, das heißt `sass` für Sass und `less` für Less.
+
 ## resolve.mainFields <NonInheritBadge />
 
 - **Typ:** `string[]`
