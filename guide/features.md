@@ -67,3 +67,4 @@ export function add(a: number, b: number): number
 
 [`resolve.tsconfigPaths: true`](/config/shared-options.md#resolve-tsconfigpaths) can be specified to tell Vite to use the `paths` option in `tsconfig.json` to resolve imports.
 The worker detection will only work if the `new URL()` constructor is used directly inside the `new Worker()` declaration. Otherwise it is handled as a [static asset URL](./assets#new-url-url-import-meta-url) instead. Additionally, all options parameters must be static values (i.e. string literals).
+Vite improves `@import` resolving for Sass and Less so that Vite aliases are also respected. In addition, relative `url()` references inside imported Sass/Less files that are in different directories from the root file are also automatically rebased to ensure correctness. Rebasing `url()` references that start with a variable or an interpolation is not supported due to its API constraints.

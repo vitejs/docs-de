@@ -5,7 +5,7 @@
     title: 'Web Developer',
     org: 'VoidZero',
     orgLink: 'https://voidzero.dev/',
-    desc: 'Vite core team member. Call me sapphi or midori ;)',
+    desc: 'Creator of Vue.js and Vite.',
     links: [
       { icon: 'github', link: 'https://github.com/sapphi-red' },
       { icon: 'bluesky', link: 'https://bsky.app/profile/sapphi.red' },
@@ -32,3 +32,39 @@
     ],
     sponsor: 'https://github.com/sponsors/dominikg',
   },
+export const advisors = [
+  {
+    avatar: 'https://github.com/serhalp.png',
+    name: 'Philippe Serhal',
+    title: 'Staff Software Engineer',
+    org: 'Netlify',
+    orgLink: 'https://www.netlify.com/',
+    desc: 'Juggling all the frameworks at Netlify',
+    links: [
+      { icon: 'github', link: 'https://github.com/serhalp' },
+      { icon: 'bluesky', link: 'https://bsky.app/profile/philippeserhal.com' },
+    ],
+  },
+  {
+    avatar: 'https://github.com/jamesopstad.png',
+    name: 'James Opstad',
+    title: 'Senior Engineer',
+    org: 'Cloudflare',
+    orgLink: 'https://www.cloudflare.com/',
+    desc: 'Building developer tools at Cloudflare',
+    links: [{ icon: 'github', link: 'https://github.com/jamesopstad' }],
+  },
+  {
+    avatar: 'https://github.com/danielroe.png',
+    name: 'Daniel Roe',
+    title: 'Open Source Maintainer',
+    org: 'Vercel',
+    orgLink: 'https://vercel.com/',
+    desc: 'Leading the Nuxt team',
+    links: [
+      { icon: 'github', link: 'https://github.com/danielroe' },
+      { icon: 'bluesky', link: 'https://bsky.app/profile/danielroe.dev' },
+    ],
+    sponsor: 'https://github.com/sponsors/danielroe',
+  },
+]
