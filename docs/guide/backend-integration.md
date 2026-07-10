@@ -64,49 +64,45 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
 
 3. Für die produktive Umgebung wird nach dem Ausführen von `vite build` neben anderen Asset-Dateien eine Datei `.vite/manifest.json` erstellt. Eine Beispiel-Manifestdatei sieht wie folgt aus:
 
-   ```json [.vite/manifest.json] style:max-height:400px
-   {
-     "_shared-B7PI925R.js": {
-       "file": "assets/shared-B7PI925R.js",
-       "name": "shared",
-       "css": ["assets/shared-ChJ_j-JJ.css"]
-     },
-     "_shared-ChJ_j-JJ.css": {
-       "file": "assets/shared-ChJ_j-JJ.css",
-       "src": "_shared-ChJ_j-JJ.css"
-     },
+  ```json
+  {
+    "_shared-B7PI925R.js": {
+      "file": "assets/shared-B7PI925R.js",
+      "name": "shared",
+      "css": ["assets/shared-ChJ_j-JJ.css"]
+    },
+    "_shared-ChJ_j-JJ.css": {
+      "file": "assets/shared-ChJ_j-JJ.css",
+      "src": "_shared-ChJ_j-JJ.css"
+    },
     "logo.svg": {
-       "file": "assets/logo-BuPIv-2h.svg",
-       "src": "logo.svg"
-     },
-     "baz.js": {
-       "file": "assets/baz-B2H3sXNv.js",
-       "name": "baz",
-       "src": "baz.js",
-       "isDynamicEntry": true
-     },
-     "views/bar.js": {
-       "file": "assets/bar-gkvgaI9m.js",
-       "name": "bar",
-       "src": "views/bar.js",
-       "isEntry": true,
-       "dynamicImports": ["views/foo.js"],
-       "css": ["assets/main.b82dbe22.css"],
-       "assets": ["assets/asset.0ab0f9cd.png"],
-       "imports": ["_shared.83069a53.js"]
-     },
-     "views/foo.js": {
-       "file": "assets/foo.869aea0d.js",
-       "src": "views/foo.js",
-       "isDynamicEntry": true,
-       "imports": ["_shared.83069a53.js"]
-     },
-     "_shared.83069a53.js": {
-       "file": "assets/shared.83069a53.js",
-       "css": ["assets/shared.a834bfc3.css"]
-     }
-   }
-   ```
+      "file": "assets/logo-BuPIv-2h.svg",
+      "src": "logo.svg"
+    },
+    "baz.js": {
+      "file": "assets/baz-B2H3sXNv.js",
+      "name": "baz",
+      "src": "baz.js",
+      "isDynamicEntry": true
+    },
+    "views/bar.js": {
+      "file": "assets/bar-gkvgaI9m.js",
+      "name": "bar",
+      "src": "views/bar.js",
+      "isEntry": true,
+      "imports": ["_shared-B7PI925R.js"],
+      "dynamicImports": ["baz.js"]
+    },
+    "views/foo.js": {
+      "file": "assets/foo-BRBmoGS9.js",
+      "name": "foo",
+      "src": "views/foo.js",
+      "isEntry": true,
+      "imports": ["_shared-B7PI925R.js"],
+      "css": ["assets/foo-5UjPuW-k.css"]
+    }
+  }
+  ```
    
    Das Manifest hat eine Struktur `Record<name, chunk>`, bei dem jeder Chunk dem `ManifestChunk`-Interface folgt.
 
@@ -197,23 +193,23 @@ und ein Einstiegspunkt vorhanden sind. Beachten Sie, dass das Befolgen dieser Re
 4. Optional ein `<link rel="modulepreload">`-Tag für die `file` jedes importierten JavaScript-Chunks,
    wobei erneut rekursiv den Importen ausgehend vom Einstiegspunkt-Chunk gefolgt wird.
 
-Gemäß dem obigen Beispielmanifest sollten für den Einstiegspunkt `main.js` die folgenden Tags in die Produktion aufgenommen werden:
+Gemäß dem obigen Beispielmanifest sollten für den Einstiegspunkt `views/foo.js` die folgenden Tags in die Produktion aufgenommen werden:
 
 ```html
-<link rel="stylesheet" href="assets/main.b82dbe22.css" />
-<link rel="stylesheet" href="assets/shared.a834bfc3.css" />
-<script type="module" src="assets/main.4889e940.js"></script>
+<link rel="stylesheet" href="assets/foo-5UjPuW-k.css" />
+<link rel="stylesheet" href="assets/shared-ChJ_j-JJ.css" />
+<script type="module" src="assets/foo-BRBmoGS9.js"></script>
 <!-- optional -->
-<link rel="modulepreload" href="assets/shared.83069a53.js" />
+<link rel="modulepreload" href="assets/shared-B7PI925R.js" />
 ```
 
-Während für den Einstiegspunkt `views/foo.js` Folgendes enthalten sein sollte:
+Während für den Einstiegspunkt `views/bar.js` Folgendes enthalten sein sollte:
 
 ```html
-<link rel="stylesheet" href="assets/shared.a834bfc3.css" />
-<script type="module" src="assets/foo.869aea0d.js"></script>
+<link rel="stylesheet" href="assets/shared-ChJ_j-JJ.css" />
+<script type="module" src="assets/bar-gkvgaI9m.js"></script>
 <!-- optional -->
-<link rel="modulepreload" href="assets/shared.83069a53.js" />
+<link rel="modulepreload" href="assets/shared-B7PI925R.js" />
 ```
 
 ::: details Pseudo-Implementierung von `importedChunks`
