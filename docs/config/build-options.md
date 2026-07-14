@@ -51,6 +51,7 @@ Die Funktion `resolveDependencies` wird für jeden dynamischen Import mit einer 
 ```js twoslash
 /** @type {import('vite').UserConfig} */
 const config = {
+  // prettier-ignore
   build: {
     modulePreload: {
       resolveDependencies: (filename, deps, { hostId, hostType }) => {
