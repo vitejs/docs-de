@@ -649,6 +649,12 @@ Im Produktions-Build werden `.wasm`-Dateien, die kleiner als `assetInlineLimit` 
 Verwenden Sie [`vite-plugin-wasm`](https://github.com/Menci/vite-plugin-wasm) oder andere Community-Plugins, um dies zu handhaben.
 :::
 
+::: warning Für den SSR-Build werden nur Laufzeitumgebungen unterstützt, die mit Node.js kompatibel sind
+
+Auf Grund einer fehlenden universellen Möglichkeit eine Datei zu laden, ist die interne Implementierung für `.wasm?init` auf das `node:fs`-Modul angewiesen. Das bedeutet, dass dieses Feature nur in Laufzeitumgebungen funktioniert, die mit Node.js kompatibel sind.
+
+:::
+
 ### Zugriff auf das WebAssembly-Modul
 
 Wenn Sie Zugriff auf das "Modul"-Objekt benötigen, z.B. um es mehrfach zu instanziieren, verwenden Sie einen [expliziten URL-Import](./assets#explicit-url-imports), um das Asset aufzulösen, und führen Sie dann die Instanziierung durch:
@@ -661,29 +667,6 @@ const main = async () => {
   const { module, instance } = await WebAssembly.instantiateStreaming(
     responsePromise
   )
-  /* ... */
-}
-
-main()
-```
-
-### Abrufen des Moduls in Node.js
-
-In SSR kann das `fetch()` Ereignis als Teil des `?init` Imports mit `TypeError: Ungültige URL` fehlschlagen.
-Siehe das Problem [Support wasm in SSR](https://github.com/vitejs/vite/issues/8882).
-
-Hier ist eine Alternative, vorausgesetzt, die Projektbasis ist das aktuelle Verzeichnis:
-
-```js
-import wasmUrl from 'foo.wasm?url'
-import { readFile } from 'node:fs/promises'
-
-const main = async () => {
-  const resolvedUrl = (await import('./test/boot.test.wasm?url')).default
-  const buffer = await readFile('.' + resolvedUrl)
-  const { instance } = await WebAssembly.instantiate(buffer, {
-    /* ... */
-  })
   /* ... */
 }
 

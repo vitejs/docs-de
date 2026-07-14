@@ -125,7 +125,7 @@ Die Netlify-CLI wird Ihnen eine URL bereitstellen, um eine Vorschau der Anwendun
 4. Klicken Sie auf **Deploy**.
 5. Ihre Vite-App wird bereitgestellt!
 
-Nachdem Ihr Projekt importiert und bereitgestellt wurde, erzeugen alle nachfolgenden Pushes auf andere Branches als den Produktionsbranch sowie Pull-Requests eine [Vorschau](https://docs.netlify.com/site-deploys/deploy-previews/) und alle Änderungen am Produktionsbranch (üblicherweise `main`), resultieren in einer [produktiven Bereitstellung](https://docs.netlify.com/site-deploys/overview/#definitions).
+Nachdem Ihr Projekt importiert und bereitgestellt wurde, erzeugen alle nachfolgenden Pushes auf andere Branches als den Produktionsbranch sowie Pull-Requests eine [Vorschau](https://docs.netlify.com/deploy/deploy-types/deploy-previews/) und alle Änderungen am Produktionsbranch (üblicherweise `main`), resultieren in einer [produktiven Bereitstellung](https://docs.netlify.com/deploy/deploy-overview/#definitions).
 
 ## Vercel
 
