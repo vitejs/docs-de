@@ -248,6 +248,8 @@ Legt fest, ob eine Manifestdatei erstellt werden soll, die eine Zuordnung von ni
 
 Wenn der Wert eine Zeichenfolge ist, wird er als Manifestdateipfad relativ zu `build.outDir` verwendet. Bei der Einstellung `true` lautet der Pfad `.vite/manifest.json`.
 
+Falls Sie ein Plugin schreiben und jeden Ausgabechunk oder Asset-bezogene CSS und statische Assets während des Builds inspizieren wollen, können Sie auch die [`viteMetadata`-Output-API für Bündelmetadaten](/guide/api-plugin#output-bundle-metadata) verwenden.
+
 ## build.ssrManifest
 
 - **Typ:** `boolean | string`
