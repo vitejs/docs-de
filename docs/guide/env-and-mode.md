@@ -31,16 +31,16 @@ Einige eingebaute Konstanten sind in allen folgenden Fällen verfügbar:
 
 ## Umgebungsvariablen
 
-Geladene Umgebungsvariablen werden auch Ihrem Client-Quellcode über `import.meta.env` als Zeichenfolgen zugänglich gemacht.
+Vite stellt Umgebungsvariablen als Zeichenketten durch das `import.meta.env`-Objekt automatisch bereit.
 
-Um zu verhindern, dass Umgebungsvariablen versehentlich an den Client durchsickern, werden nur Variablen mit dem Präfix `VITE_` in Ihrem von Vite verarbeiteten Code freigegeben. Zum Beispiel werden aus den folgenden Umgebungsvariablen:
+Variablen mit dem Prefix `VITE_` werden in dem clientseitigen Quellcode verfügbar gemacht, nachdem mit Vite gebündelt wurde. Zur Vermeidung, dass Umgebungsvariablen versehentlich für den Client verfügbar gemacht werden, sollten Sie die Nutzung des Präfixes vermeiden.
 
 ```[.env]
 VITE_SOME_KEY=123
 DB_PASSWORD=foobar
 ```
 
-nur `VITE_SOME_KEY` als `import.meta.env.VITE_SOME_KEY` in Ihrem Client-Quellcode freigegeben, aber `DB_PASSWORD` nicht.
+Der eingelesene Wert von `VITE_SOME_KEY` - `"123"` - wird auf dem Client bereitgestellt, aber der Wert von `DB_PASSWORD` nicht. Sie können dieses Verhalten durch folgenden Code testen:
 
 ```js
 console.log(import.meta.env.VITE_SOME_KEY) // "123"
@@ -53,6 +53,13 @@ Wenn Sie das Präfix für die Umgebungsvariablen ändern möchten, sehen Sie sic
 
 Wie bereits oben erwähnt, ist `VITE_SOME_KEY` eine Zahl, gibt aber einen String zurück, wenn sie geparst wird. Das Gleiche gilt auch für boolesche Umgebungsvariablen. Stellen Sie sicher, dass Sie sie in den gewünschten Typ konvertieren, wenn Sie sie in Ihrem Code verwenden.
 :::
+
+:::warning Schützen von Geheimnissen
+
+`VITE_*`-Variablen sollten _keine_ sensiblen Informationen wie API-Schlüssel enthalten. Der Wert dieser Variablen wird zum Build-Zeitpunkt im Quellcode gebündelt. Für produktive Deployments sollten Sie den Einsatz eines Backend-Servers oder die Verwendung von Serverless/Edge-Funktionen in Betracht ziehen, um Ihre Geheimnisse richtig abzusichern.
+
+:::
+
 
 ### `.env` Dateien
 
@@ -93,14 +100,6 @@ NEW_KEY2=test\$foo  # test$foo
 NEW_KEY3=test$KEY   # test123
 ```
 
-:::warning SICHERHEITSHINWEISE
-
-- `.env.*.local`-Dateien sind nur lokal und können sensible Variablen enthalten. Sie sollten `*.local` zu Ihrer `.gitignore` hinzufügen, um zu verhindern, dass sie in Git überprüft werden.
-
-- Da alle an Ihren Vite-Quellcode freigegebenen Variablen in Ihrem Client-Bundle landen, sollten `VITE_*`-Variablen _keine_ sensiblen Informationen enthalten.
-  
-:::
-
 ::: details Variablen in umgekehrter Reihenfolge erweitern
 
 Vite unterstützt das Erweitern von Variablen in umgekehrter Reihenfolge.
@@ -117,6 +116,13 @@ Allerdings unterstützt Vite dieses Verhalten, da es seit langem von `dotenv-exp
 Um Interoperabilitätsprobleme zu vermeiden, wird empfohlen, sich nicht auf dieses Verhalten zu verlassen. Vite wird möglicherweise in Zukunft Warnungen für dieses Verhalten ausgeben.
 
 :::
+
+:::warning Lokale `.env`-Dateien ignorieren
+
+`.env.*.local`-Dateien sind nur lokal und können sensible Variablen enthalten. Sie sollten `*.local` zu Ihrer `.gitignore` hinzufügen, um das Einchecken in Git zu vermeiden.
+
+:::
+
 
 ## IntelliSense für TypeScript
 
