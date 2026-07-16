@@ -39,3 +39,4 @@ Direct websocket connection fallback. Check out https://vite.dev/config/server-o
 - set `server.ws.port` to a different value from [`server.port`](#server-port)
 - **Default:** `['.env', '.env.*', '*.{crt,pem,key,p12,pfx,cer,der}', '.npmrc', '.yarnrc.yml', '**/.git/**']`
 Configure custom proxy rules for the dev server. Expects an object of `{ key: options }` pairs. Any requests whose request path starts with that key will be proxied to the specified target. If the key starts with `^`, it will be interpreted as a `RegExp`. The `configure` option can be used to access the proxy instance. If a request matches any of the configured proxy rules, the request won't be transformed by Vite.
+          // proxy will be an instance of 'http-proxy-3'

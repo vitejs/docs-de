@@ -11,3 +11,5 @@ new DevEnvironment(name, config, {
   transport: createServerHotChannel(),
 })
 ```
+        conditions: [/*...*/],
+    false | 'node' | 'prepareStackTrace' | InterceptorOptions

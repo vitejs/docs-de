@@ -45,3 +45,4 @@ See also [Virtual Modules Convention](https://rolldown.rs/apis/plugin-api#virtua
 To send events from the client to the server, we can use [`hot.send`](/guide/api-hmr.html#hot-send-event-data):
 Virtual modules allow you to pass build time information to the source files using normal ESM import syntax. See [Virtual Modules Convention](https://rolldown.rs/apis/plugin-api#virtual-modules) for the full convention.
 In Vite, since `\0` is not a permitted char in import URLs, a `\0{id}` virtual id ends up encoded as `/@id/__x00__{id}` during dev in the browser. The id is decoded back before entering the plugins pipeline, so this is not seen by plugin hooks code.
+    IndexHtmlTransformResult | void | Promise<IndexHtmlTransformResult | void>

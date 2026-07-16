@@ -52,3 +52,5 @@ export default defineConfig({
 ::: warning Less is not supported
 `resolve.tsconfigPaths` does not apply inside `.less` files. Less only gives Vite the importing file's directory, not the file itself, so Vite cannot find the `tsconfig.json` that matches it. Use a relative path or [`resolve.alias`](#resolve-alias) for `@import` in Less.
 :::
+
+      string | ((name: string, filename: string, css: string) => string)
