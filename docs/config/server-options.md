@@ -223,6 +223,44 @@ Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann igno
 
 :::
 
+## server.forwardConsole
+
+- **Typ:** `boolean | { unhandledErrors?: boolean, logLevels?: ('error' | 'warn' | 'info' | 'log' | 'debug')[] }`
+- **Standard:** automatisch (`true`, wenn ein KI-Entwicklungsagent mit Hilfe von [`@vercel/detect-agent`](https://www.npmjs.com/package/@vercel/detect-agent) erkannt wird, ansonsten `false`)
+
+Weiterleitung von Events in der Browser-Laufzeitumgebung zur Vite-Server-Konsole während der Entwicklung.
+
+- `true` aktiviert die Weiterleitung für unbehandelte Fehler und `console.error` / `console.warn` Logmeldungen.
+- `unhandledErrors` steuert die Weiterleitung von nicht abgefangenen Ausnahmen und nicht behandelten Promise-Ablehnungen.
+- `logLevels` kontrolliert, welche `console.*`-Aufrufe weitergeleitet werden.
+
+Zum Beispiel:
+
+```js
+export default defineConfig({
+  server: {
+    forwardConsole: {
+      unhandledErrors: true,
+      logLevels: ['warn', 'error'],
+    },
+  },
+})
+```
+
+Wenn unbehandelte Fehler weitergeleitet werden, werden diese mit erweiterter Formatierung im Terminal des Servers aufgezeichnet. Zum Beispiel:
+
+```log
+1:18:38 AM [vite] (client) [Unhandled error] Error: this is test error
+ > testError src/main.ts:20:8
+     18|
+     19| function testError() {
+     20|   throw new Error('this is test error')
+       |        ^
+     21| }
+     22|
+ > HTMLButtonElement.<anonymous> src/main.ts:6:2
+```
+
 ## server.warmup
 
 - **Typ:** `{ clientFiles?: string[], ssrFiles?: string[] }`
