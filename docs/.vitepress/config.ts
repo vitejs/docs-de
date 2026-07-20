@@ -7,6 +7,7 @@ import {
   groupIconMdPlugin,
   groupIconVitePlugin,
 } from 'vitepress-plugin-group-icons'
+import { graphvizMarkdownPlugin } from 'vitepress-plugin-graphviz'
 import { markdownItImageSize } from 'markdown-it-image-size'
 import { extendConfig } from '@voidzero-dev/vitepress-theme/config'
 import type { FooterLink } from '@voidzero-dev/vitepress-theme'
@@ -583,7 +584,7 @@ const config = defineConfig({
         },
       },
     ],
-    config(md) {
+    async config(md) {
       md.use(groupIconMdPlugin, {
         titleBar: {
           includeSnippet: true,
@@ -592,6 +593,7 @@ const config = defineConfig({
       md.use(markdownItImageSize, {
         publicDir: path.resolve(import.meta.dirname, '../public'),
       })
+      await graphvizMarkdownPlugin(md)
     },
   },
   vite: {
