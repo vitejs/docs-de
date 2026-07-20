@@ -82,6 +82,52 @@ Der transformierte Quellcode wird als Modul bezeichnet, und die Beziehungen zwis
 
 Ein Vite-Modul-Runner ermöglicht die Ausführung beliebiger Codes, indem diese zunächst mit Vite-Plugins verarbeitet werden. Er unterscheidet sich von `server.ssrLoadModule`, da die Runner-Implementierung vom Server entkoppelt ist. Dies ermöglicht es Autoren von Bibliotheken und Frameworks, ihre eigene Kommunikationsebene zwischen dem Vite-Server und dem Runner zu implementieren. Der Browser kommuniziert mit seiner entsprechenden Umgebung über den Server-WebSocket und über HTTP-Anfragen. Der Node-Modul-Runner kann direkt Funktionsaufrufe zur Verarbeitung von Modulen ausführen, da er im selben Prozess läuft. Andere Umgebungen könnten Module ausführen, die mit einer JS-Laufzeitumgebung wie workerd oder einem Worker-Thread verbunden sind, wie es Vitest tut.
 
+```dot
+digraph module_runner {
+  rankdir=LR
+  node [shape=box style="rounded,filled" fontname="Arial" fontsize=11 margin="0.2,0.1" fontcolor="${#3c3c43|#ffffff}" color="${#c2c2c4|#3c3f44}"]
+  edge [color="${#67676c|#98989f}" fontname="Arial" fontsize=10 fontcolor="${#67676c|#98989f}"]
+  bgcolor="transparent"
+  compound=true
+
+  subgraph cluster_server {
+    label="Vite Dev Server (Node.js)" labeljust=l fontname="Arial" fontsize=12
+    style="rounded,filled" fillcolor="${#f6f6f7|#1a1a1f}" color="${#c2c2c4|#3c3f44}"
+    fontcolor="${#3c3c43|#ffffff}"
+
+    subgraph cluster_env {
+      label="DevEnvironment" labeljust=l fontname="Arial" fontsize=11
+      style="rounded,filled" fillcolor="${#f2ecfc|#2c273e}" color="${#c2c2c4|#3c3f44}"
+      fontcolor="${#3c3c43|#ffffff}"
+
+      plugins [label="Plugin\nPipeline" fillcolor="${#e9eaff|#222541}"]
+      mg [label="Module\nGraph" fillcolor="${#e9eaff|#222541}"]
+      hot [label="HotChannel" fillcolor="${#fcf4dc|#38301a}"]
+
+      plugins -> mg [dir=both]
+      mg -> hot [style=invis]
+    }
+  }
+
+  subgraph cluster_runtime {
+    label="Target Runtime" labeljust=l fontname="Arial" fontsize=12
+    style="rounded,filled" fillcolor="${#f0fdf4|#131b15}" color="${#c2c2c4|#3c3f44}"
+    fontcolor="${#3c3c43|#ffffff}"
+
+    subgraph cluster_runner {
+      label="ModuleRunner" labeljust=l fontname="Arial" fontsize=11
+      style="rounded,filled" fillcolor="${#def5ed|#15312d}" color="${#c2c2c4|#3c3f44}"
+      fontcolor="${#3c3c43|#ffffff}"
+
+      evaluator [label="Module\nEvaluator" fillcolor="${#def5ed|#15312d}"]
+      transport [label="Transport" fillcolor="${#fcf4dc|#38301a}"]
+    }
+  }
+
+  hot -> transport [label="HMR / Module\nfetch & invoke" dir=both style=bold color="${#6f42c1|#c8abfa}"]
+}
+```
+
 Eines der Ziele dieser Funktion ist es, eine anpassbare API zur Verarbeitung und Ausführung von Code bereitzustellen. Benutzer können mit den offengelegten Primitiven neue Umgebungsfabriken erstellen.
 
 ```ts
