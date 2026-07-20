@@ -86,7 +86,7 @@ export default defineConfig({
 })
 ```
 
-Mit der `--watch`-Flag aktiviert, führen Änderungen an der `vite.config.js`, sowie an allen zu bündelnden Dateien, zu einer Neukompilierung.
+Mit der `--watch`-Flag aktiviert, führen Änderungen an der `vite.config.js`, sowie an allen zu bündelnden Dateien, zu einer Neukompilierung. Beachten Sie, dass Änderungen an der Konfiguration and ihren Abhängigkeiten einen Neustart des Build-Commands benötigen.
 
 ## Multi-Page-App
 
