@@ -73,6 +73,31 @@ Beachten Sie, dass diese Einstellungen bestehen bleiben, aber ein **Neustart erf
 
 Wenn der Server in einem VS Code-Entwicklungscontainer ausgeführt wird, kann es vorkommen, dass die Anfrage scheinbar zum Stillstand gekommen ist. Um dieses Problem zu beheben, lesen Sie [Entwicklungscontainer / VS Code-Portweiterleitung](#dev-containers-vs-code-port-forwarding).
 
+### Vite stürzt ab und erzeugt ENOSPC-Fehler
+
+Wenn Sie einen solchen Fehler unter Linux sehen:
+
+> Error: ENOSPC: System limit for number of file watchers reached
+
+Das passiert, wenn Sie zu viele Dateien in Ihrem Projektverzeichnis haben (z. B. viele Bilder oder Assets) und das Limit des Systemprogramms zum Beobachten von Dateiänderungen überschritten wurde. Linux hat ein standardmäßiges Limit von 8.192 bis 10.000 Dateibeobachtern.
+
+Zur Lösung des Problems können Sie folgendes tun:
+
+- Erhöhen des Limits für Dateibeobachter:
+
+  ```shell
+  # Prüfen des aktuellen Limits
+  $ cat /proc/sys/fs/inotify/max_user_watches
+  # Limit erhöhen (temporär)
+  $ sudo sysctl fs.inotify.max_user_watches=524288
+  # Für eine permanente Änderungen den zuvor ausgeführten Befehl in /etc/sysctl.conf hinzufügen (oder bearbeiten, falls ein Eintrag bereits existiert)
+  $ echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
+  $ sudo sysctl -p
+  ```
+
+- Verzeichnisse mit vielen Dateien ignorieren mit Hilfe von [`server.watch.ignored`](/config/server-options#server-watch)
+- Verwenden Sie mit [`server.watch.usePolling`](/config/server-options#server-watch) Polling anstelle von Dateisystemereignissen. Beachten Sie, dass Polling mehr CPU-Ressourcen beansprucht.
+
 ### Netzwerkanfragen werden nicht geladen
 
 Wenn Sie ein selbstsigniertes SSL-Zertifikat verwenden, ignoriert Chrome alle Cache-Anweisungen und lädt den Inhalt neu. Vite ist auf diese Cache-Anweisungen angewiesen.
