@@ -87,6 +87,25 @@ if (import.meta.hot) {
 
 Ein Modul, das Hot-Updates "akzeptiert", wird als **HMR-Grenze** betrachtet.
 
+```dot
+digraph hmr_boundary {
+  rankdir=RL
+  ranksep=0.3
+  node [shape=box style="rounded,filled" fontname="Arial" fontsize=11 margin="0.2,0.1" fontcolor="${#3c3c43|#ffffff}" color="${#c2c2c4|#3c3f44}"]
+  edge [color="${#67676c|#98989f}" fontname="Arial" fontsize=10 fontcolor="${#67676c|#98989f}"]
+  bgcolor="transparent"
+
+  root [label="main.js" fillcolor="${#f6f6f7|#2e2e32}"]
+  parent [label="App.vue" fillcolor="${#f6f6f7|#2e2e32}"]
+  boundary [label="Component.vue\n(HMR boundary)\nhot.accept()" fillcolor="${#def5ed|#15312d}" color="${#18794e|#3dd68c}" penwidth=2]
+  edited [label="utils.js\n(edited)" fillcolor="${#fcf4dc|#38301a}" color="${#915930|#f9b44e}" penwidth=2]
+
+  boundary -> edited [label="imports" color="${#915930|#f9b44e}" style=bold]
+  parent -> boundary [label="imports" style=dashed]
+  root -> parent [label="imports" style=dashed]
+}
+```
+
 Vites HMR tauscht das ursprünglich importierte Modul tatsächlich nicht aus: Wenn ein HMR-Grenzmodul Importe aus einer Abhängigkeit neu exportiert, ist es für die Aktualisierung dieser Neuausgaben verantwortlich (und diese Exporte müssen `let` verwenden). Darüber hinaus werden Importeure über der Kette des Grenzmoduls nicht über die Änderung informiert. Diese vereinfachte HMR-Implementierung ist für die meisten Entwicklungsanforderungen ausreichend und ermöglicht es uns, die aufwändige Arbeit der Generierung von Proxy-Modulen zu überspringen.
 
 Vite erfordert, dass der Aufruf dieser Funktion in der Quellcodeform als `import.meta.hot.accept(` (mit Leerzeichen) erscheint, damit das Modul das Update akzeptieren kann. Dies ist eine Anforderung der statischen Analyse, die Vite durchführt, um die HMR-Unterstützung für ein Modul zu aktivieren.
