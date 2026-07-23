@@ -86,7 +86,7 @@ export default defineConfig({
 })
 ```
 
-Mit der `--watch`-Flag aktiviert, führen Änderungen an der `vite.config.js`, sowie an allen zu bündelnden Dateien, zu einer Neukompilierung.
+Mit der `--watch`-Flag aktiviert, führen Änderungen an der `vite.config.js`, sowie an allen zu bündelnden Dateien, zu einer Neukompilierung. Beachten Sie, dass Änderungen an der Konfiguration and ihren Abhängigkeiten einen Neustart des Build-Commands benötigen.
 
 ## Multi-Page-App
 
@@ -303,6 +303,7 @@ A single static [base](#public-base-path) isn't enough in these scenarios. Vite 
 
 ```ts twoslash
 import type { UserConfig } from 'vite'
+// prettier-ignore
 const config: UserConfig = {
   experimental: {
     renderBuiltUrl(
@@ -324,7 +325,7 @@ Wenn die gehashten Assets und öffentlichen Dateien nicht gemeinsam bereitgestel
 ```ts twoslash
 import type { UserConfig } from 'vite'
 import path from 'node:path'
-
+// prettier-ignore
 const config: UserConfig = {
   // ---cut-before---
   experimental: {

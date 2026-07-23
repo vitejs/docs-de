@@ -20,7 +20,7 @@ Vite hat sich seit seinen [Ursprüngen](./why.md) auf die Leistung konzentriert.
 
 ## Aufbau von Frameworks auf Basis von Vite
 
-Obwohl Vite von Benutzern direkt verwendet werden kann, glänzt es als Werkzeug zur Erstellung von Frameworks. Der Vite-Kern ist framework-agnostisch, aber es gibt ausgereifte Plugins für jede UI-Framework. Seine [JS-API](./api-javascript.md) ermöglicht es Autoren von App-Frameworks, Vite-Funktionen zu verwenden, um maßgeschneiderte Erlebnisse für ihre Benutzer zu erstellen. Vite unterstützt [SSR-Grundlagen](./ssr.md), die normalerweise in höheren Tools vorhanden sind, aber für den Aufbau moderner Web-Frameworks unerlässlich sind. Und Vite-Plugins vervollständigen das Bild, indem sie eine Möglichkeit zum Teilen zwischen Frameworks bieten. Vite passt auch gut zu [Backend-Frameworks](./backend-integration.md) wie [Ruby](https://vite-ruby.netlify.app/) und [Laravel](https://laravel.com/docs/10.x/vite).
+Obwohl Vite von Benutzern direkt verwendet werden kann, glänzt es als Werkzeug zur Erstellung von Frameworks. Der Vite-Kern ist framework-agnostisch, aber es gibt ausgereifte Plugins für jede UI-Framework. Seine [JS-API](./api-javascript.md) ermöglicht es Autoren von App-Frameworks, Vite-Funktionen zu verwenden, um maßgeschneiderte Erlebnisse für ihre Benutzer zu erstellen. Vite unterstützt [SSR-Grundlagen](./ssr.md), die normalerweise in höheren Tools vorhanden sind, aber für den Aufbau moderner Web-Frameworks unerlässlich sind. Und Vite-Plugins vervollständigen das Bild, indem sie eine Möglichkeit zum Teilen zwischen Frameworks bieten. Vite passt auch gut zu [Backend-Frameworks](./backend-integration.md) wie [Ruby](https://vite-ruby.netlify.app/) und [Laravel](https://laravel.com/docs/vite).
 
 ## Eine aktive Community
 

@@ -107,6 +107,12 @@ Das Verzeichnis wird standardmäßig zu `<Projektstamm>/public` festgelegt, kann
 
 Beachten Sie, dass Sie immer den absoluten Rootpfad von `public` Assets verwenden sollten - zum Beispiel sollte `public/icon.png` im Quellcode als `/icon.png` referenziert werden.
 
+::: tip Wahl zwischen Importen und dem `public`-Verzeichnis
+
+Im Allgemeinen sollten Sie bevorzugt Assets importieren, außer Sie brauchen genau die Garantien, die das `public`-Verzeichnis bietet.
+
+:::
+
 ## new URL(url, import.meta.url)
 
 [import.meta.url](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Statements/import.meta) ist ein natives ESM-Feature, das die URL des aktuellen Moduls offenlegt. Indem es mit dem nativen [URL-Konstruktor](https://developer.mozilla.org/de/docs/Web/API/URL) kombiniert wird, können wir die vollständige, aufgelöste URL eines statischen Assets mithilfe eines relativen Pfads aus einem JavaScript-Modul erhalten:
