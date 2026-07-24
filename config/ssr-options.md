@@ -1,0 +1,1 @@
+- **Default:** `['node', 'module-sync']`
