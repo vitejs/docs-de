@@ -1,3 +1,18 @@
+<!--
+  LESEN SIE FOLGENDEN ABSCHNITT, WENN SIE EINE NEUE DEPLOYMENT-PLATFORM HINZUFÜGEN WOLLEN.
+
+  Es steht Ihnen frei, einen PR einzureichen, der einen neuen Abschnitt mit einem Link zu Ihrer Plattform hinzufügt.
+  Ein Deployment-Guide Ihrer Plattform wird hinzufügt, wenn er diese Kriterien erfüllt:
+
+  1. Benutzer sollten ihre Seite kostenlos bereitstellen können.
+  2. Kostenlose Angebote sollten die Website auf unbestimmte Zeit hosten und sind nicht zeitlich begrenzt.
+     Das Angebot einer begrenzten Anzahl von Rechenressourcen oder der Anzahl von Websites im Austausch ist in Ordnung.
+  3. Die verlinkten Anleitungen dürfen keine bösartigen Inhalte enthalten.
+
+  Das Vite-Team kann die Kriterien ändern und die aktuelle Liste von Zeit zu Zeit überprüfen.
+  Wenn ein Abschnitt entfernt wird, werden wir die ursprünglichen PR-Autoren vorher anpingen.
+-->
+
 # Bereitstellen einer statischen Website
 
 Die folgenden Anleitungen basieren auf einigen gemeinsamen Annahmen:
@@ -272,20 +287,6 @@ Sie können Ihre Vite-Anwendung als statische Website auf [Render](https://rende
 Standardmäßig löst jede neue Änderung, die auf den angegebenen Zweig hochgeladen wird, automatisch eine neue Bereitstellung aus. [Auto-Deploy](https://render.com/docs/deploys#toggling-auto-deploy-for-a-service) kann in den Projekteinstellungen konfiguriert werden.
 
 Sie können auch eine [benutzerdefinierte Domäne](https://render.com/docs/custom-domains) zu Ihrem Projekt hinzufügen.
-
-<!--
-  HINWEIS: Die folgenden Abschnitte sind für weitere, oben nicht aufgeführte Einsatzplattformen reserviert.
-  Es steht Ihnen frei, einen PR einzureichen, der einen neuen Abschnitt mit einem Link zu Ihrer Plattform hinzufügt.
-  Ein Deployment-Guide Ihrer Plattform wird hinzufügt, wenn er diese Kriterien erfüllt:
-
-  1. Benutzer sollten ihre Seite kostenlos bereitstellen können.
-  2. Kostenlose Angebote sollten die Website auf unbestimmte Zeit hosten und sind nicht zeitlich begrenzt.
-     Das Angebot einer begrenzten Anzahl von Rechenressourcen oder der Anzahl von Websites im Austausch ist in Ordnung.
-  3. Die verlinkten Anleitungen dürfen keine bösartigen Inhalte enthalten.
-
-  Das Vite-Team kann die Kriterien ändern und die aktuelle Liste von Zeit zu Zeit überprüfen.
-  Wenn ein Abschnitt entfernt wird, werden wir die ursprünglichen PR-Autoren vorher anpingen.
--->
 
 ## Flightcontrol
 
