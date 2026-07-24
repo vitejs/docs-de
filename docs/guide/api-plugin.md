@@ -466,6 +466,44 @@ Dieser Hook wird nicht aufgerufen, wenn Sie ein Framework verwenden, das eine ei
     }
     ```
 
+## Metadaten des Ausgabebündels
+
+Während des Builds ergänzt Vite die Build-Ausgabeobjekte von Rolldown mit einem Vite-spezifischen `viteMetadata`-Feld.
+
+Dieses ist verfügbar durch:
+
+- `RenderedChunk` (z. B. in `renderChunk` und `augmentChunkHash`)
+- `OutputChunk` und `OutputAsset` (z. B. in `generateBundle` und `writeBundle`)
+
+`viteMetadata` stellt Folgendes bereit:
+
+- `viteMetadata.importedCss: Set<string>`
+- `viteMetadata.importedAssets: Set<string>`
+
+Das ist nützlich, wenn Plugins geschrieben werden, die ausgegebene CSS und statische Assets inspizieren müssen ohne von [`build.manifest`](/config/build-options#build-manifest) abhängig zu sein.
+
+Beispiel:
+
+```ts [vite.config.ts]
+function outputMetadataPlugin(): Plugin {
+  return {
+    name: 'output-metadata-plugin',
+    generateBundle(_, bundle) {
+      for (const output of Object.values(bundle)) {
+        const css = output.viteMetadata?.importedCss
+        const assets = output.viteMetadata?.importedAssets
+        if (!css?.size && !assets?.size) continue
+
+        console.log(output.fileName, {
+          css: css ? [...css] : [],
+          assets: assets ? [...assets] : [],
+        })
+      }
+    },
+  }
+}
+```
+
 ## Plugin-Reihenfolge
 
 Ein Vite-Plugin kann zusätzlich eine `enforce`-Eigenschaft angeben (ähnlich wie Webpack-Loader), um seine Anwendungsreihenfolge anzupassen. Der Wert von `enforce` kann entweder `"pre"` oder `"post"` sein. Die aufgelösten Plugins werden in folgender Reihenfolge sein:
