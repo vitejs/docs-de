@@ -12,3 +12,4 @@
         ),
       },
     },
+import { buildEnd } from './buildEnd.config.ts'

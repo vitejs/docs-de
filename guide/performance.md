@@ -1,0 +1,1 @@
+1. Large dependencies that are only used in certain cases should be dynamically imported to reduce the Node.js startup time. Example refactors: [vite-plugin-react#212](https://github.com/vitejs/vite-plugin-react/pull/212) and [vite-plugin-pwa#244](https://github.com/vite-pwa/vite-plugin-pwa/pull/244).

@@ -8,3 +8,5 @@
 
    The import map is output to `importmap.json` in the output directory. Make sure to inject the `<script type="importmap">` tag before any `<script type="module">` tags or `<link rel="modulepreload">` tags.
    :::
+     // overwrite default .html entry
+     input: '/path/to/main.js',
