@@ -18,3 +18,4 @@ Per-environment hooks are called once for each environment, and expose the curre
 - **Kind:** `async`, `sequential`
 - **Scope:** [Per-environment](#per-environment-hooks-and-global-hooks)
 - **During both dev and build:** plugins are shared, with [per-environment filtering](#per-environment-plugins-using-the-applytoenvironment-hook)
+Per-environment hooks are called once for each environment, and expose the current environment through `this.environment` in their context. All [Rolldown hooks](/guide/api-plugin#rolldown-hooks) are per-environment, as are other Vite-specific hooks that handle modules. However, note that `buildStart` and `buildEnd` are only called for the client environment without [the `perEnvironmentStartEndDuringDev: true` flag](#per-environment-state-in-plugins).

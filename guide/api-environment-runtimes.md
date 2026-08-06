@@ -13,3 +13,4 @@ new DevEnvironment(name, config, {
 ```
         conditions: [/*...*/],
     false | 'node' | 'prepareStackTrace' | InterceptorOptions
+import { createServer, DevEnvironment } from 'vite'
