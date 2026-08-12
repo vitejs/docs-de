@@ -39,6 +39,7 @@
   "devDependencies": {
     "@algolia/client-search": "5.55.1",
     "@eslint/js": "10.0.1",
+    "@iconify/vue": "5.0.1",
     "@shikijs/vitepress-twoslash": "4.3.1",
     "@types/express": "5.0.6",
     "@types/node": "26.0.1",
