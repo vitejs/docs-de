@@ -31,3 +31,4 @@ package.json
 pnpm-lock.yaml
 .github/workflows/ci.yml
 patch-*.*
+cache
