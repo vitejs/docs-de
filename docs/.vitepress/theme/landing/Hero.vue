@@ -55,7 +55,7 @@ const installTabs = [
         </p>
         <div class="flex items-center gap-5 mt-8">
           <a href="/guide/" class="button button--primary inline-block w-fit">
-            Get Started
+            Loslegen
           </a>
           <a
             href="https://github.com/vitejs/vite"
