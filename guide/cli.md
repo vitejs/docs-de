@@ -22,6 +22,7 @@
 | `-m, --mode <mode>`            | Set env mode (`string`)                                                                                                                                                               |
 | `-h, --help`                   | Display available CLI options                                                                                                                                                         |
 | `--app`                        | Build all environments, same as `builder: {}` (`boolean`, experimental)                                                                                                               |
+| `--experimentalBundle`    | Use experimental full bundle mode (this is highly experimental) (`boolean`)                                                                                                           |
 | Options                   |                                                                                                                                                                                       |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--force`                 | Force the optimizer to ignore the cache and re-bundle (`boolean`)                                                                                                                     |
@@ -51,3 +52,6 @@
 | `-m, --mode <mode>`       | Set env mode (`string`)                                                                                                                                                               |
 | `-h, --help`              | Display available CLI options                                                                                                                                                         |
 | `--outDir <dir>`          | Output directory (default: `dist`) (`string`)                                                                                                                                         |
+| `-l, --logLevel <level>`       | info \| warn \| error \| silent (`string`)                                                                                                                                            |
+| `-l, --logLevel <level>`  | info \| warn \| error \| silent (`string`)                                                                                                                                            |
+| `-l, --logLevel <level>`  | info \| warn \| error \| silent (`string`)                                                                                                                                            |

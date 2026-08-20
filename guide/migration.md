@@ -7,3 +7,5 @@ The default browser values of `build.target` and `'baseline-widely-available'` a
 - The `module.exports.__esModule` value of the importee CJS module is not set to `true`.
 - The `module.exports.__esModule` value of the importee CJS module is not set to `true`.
   - `build.rollupOptions.output.format: 'amd'` ([rolldown#2528](https://github.com/rolldown/rolldown/issues/2528))
+These browser versions align with [Baseline Widely Available](https://web-platform-dx.github.io/baseline/) feature sets as of 2026-01-01. In other words, they were all released about two and a half years ago.
+import swc from '@rollup/plugin-swc'

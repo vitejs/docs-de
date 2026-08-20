@@ -40,3 +40,13 @@ Direct websocket connection fallback. Check out https://vite.dev/config/server-o
 - **Default:** `['.env', '.env.*', '*.{crt,pem,key,p12,pfx,cer,der}', '.npmrc', '.yarnrc.yml', '**/.git/**']`
 Configure custom proxy rules for the dev server. Expects an object of `{ key: options }` pairs. Any requests whose request path starts with that key will be proxied to the specified target. If the key starts with `^`, it will be interpreted as a `RegExp`. The `configure` option can be used to access the proxy instance. If a request matches any of the configured proxy rules, the request won't be transformed by Vite.
           // proxy will be an instance of 'http-proxy-3'
+- **Type:** `boolean | { server: http.Server }`
+If [proxy](./server-options#server-proxy) is setup for WebSocket, the `server` should be provided to bind the proxy correctly.
+
+`server.sourcemapIgnoreList` is the equivalent of [`build.rolldownOptions.output.sourcemapIgnoreList`](https://rolldown.rs/reference/OutputOptions.sourcemapIgnoreList) for the dev server. A difference between the two config options is that the Rolldown function is called with a relative path for `sourcePath` while `server.sourcemapIgnoreList` is called with an absolute path. During dev, most modules have the map and the source in the same folder, so the relative path for `sourcePath` is the file name itself. In these cases, absolute paths make it convenient to be used instead.
+[`server.sourcemapIgnoreList`](#server-sourcemapignorelist) and [`build.rolldownOptions.output.sourcemapIgnoreList`](https://rolldown.rs/reference/OutputOptions.sourcemapIgnoreList) need to be set independently. `server.sourcemapIgnoreList` is a server only config and doesn't get its default value from the defined Rolldown options.
+::: warning Origin check for WebSockets
+
+Vite does not check the origin of WebSocket requests before proxying. The proxy target is expected to check the `Origin` header or other checks. Note that the `rewriteWsOrigin` option will rewrite the origin to the target origin and will cause the origin check to be bypassed.
+
+:::

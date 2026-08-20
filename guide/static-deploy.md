@@ -2,3 +2,5 @@ Deploy your static site using [xmit](https://xmit.co) by following this [guide](
 After your project has been imported and deployed, all subsequent pushes to branches will generate [Preview Deployments](https://vercel.com/docs/deployments/environments#preview-environment-pre-production), and all changes made to the Production Branch (commonly “main”) will result in a [Production Deployment](https://vercel.com/docs/deployments/environments#production-environment).
 You can also add custom domains and handle custom build settings on Pages. Learn more about [Cloudflare Pages Git Integration](https://developers.cloudflare.com/pages/configuration/git-integration/).
 By default, any new commit pushed to the specified branch will automatically trigger a new deployment. [Auto-Deploy](https://render.com/docs/deploys#configuring-auto-deploys) can be configured in the project settings.
+  4. The platform must be in operation for at least 1 year. Please show some evidence of
+     this in your PR description.
