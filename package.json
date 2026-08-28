@@ -34,18 +34,18 @@
   "homepage": "https://github.com/vitejs/docs-de#readme",
   "dependencies": {
     "search-insights": "2.17.3",
-    "vite": "8.2.1"
+    "vite": "8.2.2"
   },
   "devDependencies": {
-    "@algolia/client-search": "5.56.0",
+    "@algolia/client-search": "5.57.0",
     "@eslint/js": "10.0.1",
     "@iconify/vue": "5.0.1",
     "@shikijs/vitepress-twoslash": "4.4.3",
     "@types/express": "5.0.6",
-    "@types/node": "26.2.0",
+    "@types/node": "26.3.0",
     "@types/react": "19.2.18",
     "@voidzero-dev/vitepress-theme": "4.7.0",
-    "eslint": "10.8.1",
+    "eslint": "10.9.1",
     "eslint-plugin-import-x": "4.17.1",
     "feed": "5.2.1",
     "gsap": "3.15.0",
@@ -55,12 +55,12 @@
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.67.0",
+    "typescript-eslint": "8.68.0",
     "vitepress": "2.0.0-alpha.17",
     "vitepress-plugin-graphviz": "0.1.0",
     "vitepress-plugin-group-icons": "1.7.6",
     "vue": "3.5.41",
-    "vue-tsc": "3.3.10"
+    "vue-tsc": "3.3.11"
   },
-  "packageManager": "pnpm@11.22.0+sha512.1ff870c4c6133dfd88fb2afc46dd13d47f09c9794b438c6fdb47ca98caf3bc16381ee0be93a091b8e3824cf01f889f46d7d9e20910fb0be1ab0fb5baa80dd621"
+  "packageManager": "pnpm@11.24.0+sha512.bd27e345e976dcb0be0b7a1228217b049a817e21b1f355c90dbe7dc46671895a8bc1e6d06c24554505ea93ea0b45f489a27ec1bfbc8de6a9659fca0f16fa0000"
 }
