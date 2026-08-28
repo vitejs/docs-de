@@ -1,0 +1,3 @@
+Vite creates one `import.meta.hot.data` object for each module path. The object is persisted across successive instances of the same module during HMR. Mutations made during module execution or through the `data` argument passed to `hot.dispose` are visible to the next instance of the module.
+
+When a module is pruned, its `hot.dispose` and `hot.prune` callbacks receive the current data object. Vite clears the data after those callbacks complete. If the module is imported again later, it receives a new empty data object.
