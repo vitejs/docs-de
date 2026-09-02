@@ -55,7 +55,7 @@
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.68.0",
+    "typescript-eslint": "8.69.0",
     "vitepress": "2.0.0-alpha.17",
     "vitepress-plugin-graphviz": "0.1.0",
     "vitepress-plugin-group-icons": "1.7.6",
