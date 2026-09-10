@@ -50,3 +50,5 @@ If [proxy](./server-options#server-proxy) is setup for WebSocket, the `server` s
 Vite does not check the origin of WebSocket requests before proxying. The proxy target is expected to check the `Origin` header or other checks. Note that the `rewriteWsOrigin` option will rewrite the origin to the target origin and will cause the origin check to be bypassed.
 
 :::
+
+When bundled-dev mode is enabled, [Rolldown watch options](https://rolldown.rs/reference/InputOptions.watch) (for example, `usePolling`, `pollInterval`, `useDebounce`, `debounceDuration`, `include`, `exclude`) are also accepted. The chokidar-only options are still used by the chokidar watcher, which keeps watching files outside the module graph, such as config file dependencies and env files.

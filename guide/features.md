@@ -53,7 +53,7 @@ By utilizing the import maps feature, this issue can be avoided. When this optim
 Note that this optimization currently does not apply to CSS and assets. If you update an asset, the chunks that reference it will be invalidated. That said, the invalidation would not cascade and the chunk importing the invalidated chunk would not be invalidated.
 
 To enable this feature, set [`build.chunkImportMap`](/config/build-options.md#build-chunkimportmap) to `true`.
-Vite respects some of the options in `tsconfig.json` and sets the corresponding Oxc Transformer options. For each file, Vite uses the closest parent `tsconfig.json` that matches the file, or a config referenced by its [`references`](https://www.typescriptlang.org/tsconfig/#references) field that matches the file. Vite treats a config as matching the file when the file satisfies the config's [`files`](https://www.typescriptlang.org/tsconfig/#files), [`include`](https://www.typescriptlang.org/tsconfig/#include), and [`exclude`](https://www.typescriptlang.org/tsconfig/#exclude) fields.
+Vite respects some of the options in `tsconfig.json` and sets the corresponding Oxc Transformer options. By default, Vite uses the closest parent `tsconfig.json` that matches each file. A config referenced by that config's [`references`](https://www.typescriptlang.org/tsconfig/#references) field is used when it matches the file. Vite treats a config as matching the file when the file satisfies the config's [`files`](https://www.typescriptlang.org/tsconfig/#files), [`include`](https://www.typescriptlang.org/tsconfig/#include), and [`exclude`](https://www.typescriptlang.org/tsconfig/#exclude) fields.
 Vite starter templates have `"skipLibCheck": true` by default to avoid typechecking dependencies, as they may choose to only support specific versions and configurations of TypeScript. You can learn more at [vuejs/vue-cli#5688](https://github.com/vuejs/vue-cli/pull/5688).
 ::: tip TypeScript support
 
@@ -72,3 +72,4 @@ Assets referenced by HTML elements such as `<script type="module" src>` and `<li
 In the production build, `.wasm` files smaller than `assetsInlineLimit` will be inlined as base64 strings. Otherwise, they will be treated as a [static asset](./assets) and fetched on-demand.
 > Features listed below are automatically applied (except for the experimental chunk import map feature) as part of the build process and there is no need for explicit configuration unless you want to disable them.
 Note that CSS minification will run after PostCSS and will use the [`build.cssTarget`](/config/build-options.md#build-csstarget) option.
+- Imports must start with `./` or `../` or `#`: ``import(`./dir/${foo}.js`)`` is valid, but ``import(`${foo}.js`)`` is not.

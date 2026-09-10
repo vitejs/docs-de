@@ -19,3 +19,6 @@ Build as a library. `entry` defaults to the top-level [`input`](/config/shared-o
 Produce SSR-oriented build. The value can be a string to directly specify the SSR entry, or `true`, which requires specifying the SSR entry via [`input`](/config/shared-options#input) or `build.rolldownOptions.input`.
 Set to `{}` to enable Rolldown watcher. This is mostly used in cases that involve build-only plugins or integrations processes.
 When `build.cssMinify` is `'lightningcss'` (the default), this option takes precedence over [`css.lightningcss.targets`](./shared-options.md#css-lightningcss) for the minification step.
+
+Specify the directory to nest generated assets under (relative to `build.outDir`). This is not used in [Library Mode](/guide/build#library-mode).
+In this case, you need to set `build.cssTarget` to `chrome61` to prevent Vite from transforming `rgba()` colors into `#RGBA` hexadecimal notations.

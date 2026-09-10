@@ -30,7 +30,8 @@ This setting only applies to the JavaScript Debug Terminal, it does not affect l
         "!**/node_modules/**",
         "**/node_modules/.vite-temp/**"
       ]
-    }
+Since Vite ships with TypeScript typings, you can leverage your IDE's intellisense with JSDoc type hints:
   ]
 }
 ```
+Alternatively, you can use the `defineConfig` helper which should provide intellisense without the need for JSDoc annotations:
