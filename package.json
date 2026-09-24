@@ -51,7 +51,7 @@
     "gsap": "3.15.0",
     "lint-staged": "17.5.1",
     "markdown-it-image-size": "15.2.0",
-    "oxc-minify": "0.148.0",
+    "oxc-minify": "0.151.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "typescript": "6.0.3",
