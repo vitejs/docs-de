@@ -1,4 +1,3 @@
-          {
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import type { FooterLink } from '@voidzero-dev/vitepress-theme'
 import { extendConfig } from '@voidzero-dev/vitepress-theme/config'
@@ -12,3 +11,6 @@ import { graphvizMarkdownPlugin } from 'vitepress-plugin-graphviz'
           import.meta.dirname,
     },
 import { buildEnd } from './buildEnd.config.ts'
+      id: 'viteconf-2026',
+      text: 'ViteConf 2026 - October 15, Online',
+      url: 'https://viteconf.org/',

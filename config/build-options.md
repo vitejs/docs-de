@@ -22,3 +22,4 @@ When `build.cssMinify` is `'lightningcss'` (the default), this option takes prec
 
 Specify the directory to nest generated assets under (relative to `build.outDir`). This is not used in [Library Mode](/guide/build#library-mode).
 In this case, you need to set `build.cssTarget` to `chrome61` to prevent Vite from transforming `rgba()` colors into `#RGBA` hexadecimal notations.
+Vite overrides Rolldown's default for `preserveEntrySignatures`. When this option is not set, Vite uses `false` for regular client builds, `'strict'` for library builds, and `'allow-extension'` for SSR builds.

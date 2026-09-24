@@ -52,3 +52,9 @@ Vite does not check the origin of WebSocket requests before proxying. The proxy 
 :::
 
 When bundled-dev mode is enabled, [Rolldown watch options](https://rolldown.rs/reference/InputOptions.watch) (for example, `usePolling`, `pollInterval`, `useDebounce`, `debounceDuration`, `include`, `exclude`) are also accepted. The chokidar-only options are still used by the chokidar watcher, which keeps watching files outside the module graph, such as config file dependencies and env files.
+
+- **Default:** `(sourcePath) => /(?:^|[\\/])node_modules(?:[\\/]|$)/.test(sourcePath)`
+By default, it excludes all paths that contain `node_modules` as a path segment. You can pass `false` to disable this behavior, or, for full control, a function that takes the source path and sourcemap path and returns whether to ignore the source path.
+    // This is the default value, and will add all files that have
+    // node_modules as a path segment to the ignore list.
+      return /(?:^|[\\/])node_modules(?:[\\/]|$)/.test(sourcePath)
