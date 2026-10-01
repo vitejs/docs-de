@@ -31,3 +31,11 @@ await builder.buildApp()
 - **Type:** `(this: MinimalPluginContextWithoutEnvironment, builder: ViteBuilder) => Promise<void>`
 - **Kind:** `async`, `sequential`
 - **Scope:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
+
+const server = await createServer({
+const ssrEnvironment = server.environments.ssr
+const server = await createServer({
+const ssrEnvironment = server.environments.ssr
+  await ssrEnvironment.runner.import('virtual:entrypoint')
+ssrEnvironment.hot.send('request', serialize({ req, uniqueId }))
+  ssrEnvironment.hot.on('response', (data) => {
