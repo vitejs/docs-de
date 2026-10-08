@@ -4,3 +4,4 @@ You can also add custom domains and handle custom build settings on Pages. Learn
 By default, any new commit pushed to the specified branch will automatically trigger a new deployment. [Auto-Deploy](https://render.com/docs/deploys#configuring-auto-deploys) can be configured in the project settings.
   4. The platform must be in operation for at least 1 year. Please show some evidence of
      this in your PR description.
+import { defineConfig } from 'vite'

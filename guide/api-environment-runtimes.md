@@ -14,3 +14,10 @@ new DevEnvironment(name, config, {
         conditions: [/*...*/],
     false | 'node' | 'prepareStackTrace' | InterceptorOptions
 import { createServer, DevEnvironment } from 'vite'
+import type { Debug } from '@type-challenges/utils'
+    | false
+    | 'node'
+    | 'prepareStackTrace'
+    | InterceptorOptions
+import type { ModuleRunnerContext as ModuleRunnerContextRaw } from 'vite/module-runner'
+import { parentPort } from 'node:worker_threads'

@@ -43,8 +43,8 @@ See also [Virtual Modules Convention](https://rolldown.rs/apis/plugin-api#virtua
       originalUrl?: string
 - [`options`](https://rolldown.rs/reference/Interface.Plugin#options)
 To send events from the client to the server, we can use [`hot.send`](/guide/api-hmr.html#hot-send-event-data):
-Virtual modules allow you to pass build time information to the source files using normal ESM import syntax. See [Virtual Modules Convention](https://rolldown.rs/apis/plugin-api#virtual-modules) for the full convention.
 In Vite, since `\0` is not a permitted char in import URLs, a `\0{id}` virtual id ends up encoded as `/@id/__x00__{id}` during dev in the browser. The id is decoded back before entering the plugins pipeline, so this is not seen by plugin hooks code.
+import vitePlugin from 'vite-plugin-feature'
     IndexHtmlTransformResult | void | Promise<IndexHtmlTransformResult | void>
 ## Rolldown Hooks
 All rolldown hooks are [per-environment hooks](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks).
@@ -56,9 +56,9 @@ All rolldown hooks are [per-environment hooks](/guide/api-environment-plugins#pe
 - **Scope:** [Per-environment](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 - **Scope:** [Per-environment](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 ### `closeServer`
+import frameworkDevtools from 'vite-plugin-framework-devtools'
 
 - **Type:** `(context: { reason: 'restart' | 'close' }) => void | Promise<void>`
-- **Kind:** `async`, `parallel`
 - **Scope:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 
   Called when the dev server is restarted or closed, after the server has been torn down. Typically used to dispose resources created in [`configureServer`](/guide/api-plugin.html#configureserver).
@@ -136,3 +136,6 @@ background: url(__VITE_ASSET__<referenceId>__#frag);
 
 For plugin hooks that have access to the plugin context, Vite exposes additional properties on `this.meta`:
 Make sure to include the `.d.ts` extension when specifying TypeScript declaration files. Otherwise, TypeScript may not know which file the module is trying to extend.
+    | IndexHtmlTransformResult
+    | void
+    | Promise<IndexHtmlTransformResult | void>

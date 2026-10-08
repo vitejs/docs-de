@@ -100,3 +100,5 @@ export default defineConfig({
   },
 })
 ```
+      | string
+      | ((name: string, filename: string, css: string) => string)

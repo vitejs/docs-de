@@ -2,3 +2,4 @@ Vite creates one `import.meta.hot.data` object for each module path. The object 
 
 When a module is pruned, its `hot.dispose` and `hot.prune` callbacks receive the current data object. Vite clears the data after those callbacks complete. If the module is imported again later, it receives a new empty data object.
 Register a callback that will be called when the module is no longer imported on the page. Compared to `hot.dispose`, this can be used if the source code cleans up side-effects by itself on updates and you only need to clean-up when it's removed from the page. Vite currently uses this for `.css` imports.
+import type { ModuleNamespace } from 'vite/types/hot.d.ts'
