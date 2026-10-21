@@ -58,3 +58,4 @@ By default, it excludes all paths that contain `node_modules` as a path segment.
     // This is the default value, and will add all files that have
     // node_modules as a path segment to the ignore list.
       return /(?:^|[\\/])node_modules(?:[\\/]|$)/.test(sourcePath)
+- **Default:** auto (`true` when an AI coding agent is detected based on [`std-env`](https://www.npmjs.com/package/std-env), otherwise `false`)

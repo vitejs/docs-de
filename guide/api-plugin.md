@@ -56,8 +56,7 @@ All rolldown hooks are [per-environment hooks](/guide/api-environment-plugins#pe
 - **Scope:** [Per-environment](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 - **Scope:** [Per-environment](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 ### `closeServer`
-import frameworkDevtools from 'vite-plugin-framework-devtools'
-
+import frameworkDevTools from 'vite-plugin-framework-devtools'
 - **Type:** `(context: { reason: 'restart' | 'close' }) => void | Promise<void>`
 - **Scope:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 

@@ -14,3 +14,7 @@ Error: EISDIR: illegal operation on a directory, watch 'C:/Users/me/project/vite
 For example, this can happen with a VirtualBox shared folder.
 
 To solve this, you can enable [`server.watch.usePolling`](/config/server-options#server-watch). Note that [`usePolling` leads to high CPU utilization](https://github.com/paulmillr/chokidar/tree/3.6.0#performance).
+
+Browsers that support [retriable module loading](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import#browser_compatibility) do not cache network and HTTP errors in the module map. In these browsers, your application or framework can retry the original dynamic import. Older browsers cache the failure, so reloading the page remains the fallback.
+
+Retrying also does not fix [version skew](#version-skew) when a chunk has been permanently removed by a deployment.

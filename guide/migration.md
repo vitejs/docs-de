@@ -11,3 +11,12 @@ These browser versions align with [Baseline Widely Available](https://web-platfo
 import swc from '@rollup/plugin-swc'
 import { defineConfig } from 'vite'
 import { defineConfig, withFilter } from 'vite'
+}
+}
+import fs from 'node:fs'
+
+  load: {
+    filter: { id: /\.txt$/ },
+    handler(id) {
+      const content = fs.readFileSync(id, 'utf-8')
+    },
