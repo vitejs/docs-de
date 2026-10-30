@@ -1,0 +1,8 @@
+import Footer from '@components/oss/Footer.vue'
+import TrustedBy from '@components/oss/TrustedBy.vue'
+import { computed } from 'vue'
+import ViteCommunity from './Community.vue'
+import ViteFeatureGrid1 from './FeatureGrid1.vue'
+import ViteFeatureGrid2 from './FeatureGrid2.vue'
+import ViteFrameworks from './Frameworks.vue'
+import Hero from './Hero.vue'

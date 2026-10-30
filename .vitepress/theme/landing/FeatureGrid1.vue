@@ -1,0 +1,1 @@
+import RiveAnimation from '@components/shared/RiveAnimation.vue'
