@@ -1,0 +1,1 @@
+[Baseline](https://web-platform-dx.github.io/baseline/) gives us clear information about which web platform features work across their core browser set today. Baseline Widely Available indicates the feature is well-established and works across many devices and browser versions, being available across browsers for at least 30 months.
