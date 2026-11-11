@@ -73,3 +73,5 @@ In the production build, `.wasm` files smaller than `assetsInlineLimit` will be 
 > Features listed below are automatically applied (except for the experimental chunk import map feature) as part of the build process and there is no need for explicit configuration unless you want to disable them.
 Note that CSS minification will run after PostCSS and will use the [`build.cssTarget`](/config/build-options.md#build-csstarget) option.
 - Imports must start with `./` or `../` or `#`: ``import(`./dir/${foo}.js`)`` is valid, but ``import(`${foo}.js`)`` is not.
+npm add -D sass-embedded # recommended for performance
+npm add -D sass # if the platform is not supported
