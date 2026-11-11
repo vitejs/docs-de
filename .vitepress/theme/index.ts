@@ -1,0 +1,5 @@
+import Theme from '@voidzero-dev/vitepress-theme/src/vite'
+import { h } from 'vue'
+import NonInheritBadge from './components/NonInheritBadge.vue'
+import SvgImage from './components/SvgImage.vue'
+import YouTubeVideo from './components/YouTubeVideo.vue'
