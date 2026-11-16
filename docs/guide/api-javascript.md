@@ -312,6 +312,9 @@ function mergeConfig(
 
 Vereinigt tief zwei Vite-Konfigurationen. `isRoot` repräsentiert die Ebene innerhalb der Vite-Konfiguration, die zusammengeführt wird. Legen Sie es beispielsweise auf `false`, wenn Sie zwei `build`-Optionen zusammenführen.
 
+Beachten Sie, dass `null`- und `undefined`-Werte in `overrides` übersprungen und nicht zusammengeführt werden. Wenn Sie einen Wert aus `defaults` explizit entfernen müssen, ändern Sie das Ergebnis von `mergeConfig` direkt.
+
+
 :::tip HINWEIS
 `mergeConfig` akzeptiert nur Konfigurationen in Objektform. Wenn Sie eine Konfiguration in Rückrufform haben, sollten Sie sie aufrufen, bevor Sie sie an `mergeConfig` übergeben.
 
