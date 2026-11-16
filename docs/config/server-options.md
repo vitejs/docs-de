@@ -420,7 +420,7 @@ export default defineConfig({
 ## server.fs.deny
 
 - **Typ:** `string[]`
-- **Standard:** `['.env', '.env.*', '*.{crt,pem}', '**/.git/**']`
+- **Standard:** `['.env', '.env.*', '*.{crt,pem,key,p12,pfx,cer,der}', '.npmrc', '.yarnrc.yml', '**/.git/**']`
 
 Blockier-Liste für sensible Dateien, deren Bereitstellung durch den Vite-Entwicklungsserver eingeschränkt ist. Diese hat eine höhere Priorität als [`server.fs.allow`](#server-fs-allow). [Picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features) werden unterstützt.
 
