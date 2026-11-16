@@ -142,7 +142,7 @@ export default defineConfig({
         target: 'http://jsonplaceholder.typicode.com',
         changeOrigin: true,
         configure: (proxy, options) => {
-          // proxy wird eine Instanz von 'http-proxy' sein
+          // proxy wird eine Instanz von 'http-proxy-3' sein
         },
       },
       // Proxying websockets or socket.io:
