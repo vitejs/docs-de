@@ -8,7 +8,7 @@ Vite kann mithilfe von Plugins erweitert werden, die auf der gut durchdachten Pl
 
 Um ein Plugin zu verwenden, muss es zu den `devDependencies` des Projekts hinzugefügt und im `plugins`-Array in der `vite.config.js`-Konfigurationsdatei aufgenommen werden. Zum Beispiel kann das offizielle [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) verwendet werden, um Unterstützung für veraltete Browser bereitzustellen:
 
-```
+```bash
 $ npm add -D @vitejs/plugin-legacy
 ```
 

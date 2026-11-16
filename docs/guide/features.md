@@ -685,7 +685,7 @@ init({
 })
 ```
 
-Im Produktions-Build werden `.wasm`-Dateien, die kleiner als `assetInlineLimit` sind, als base64-Strings inlined. Andernfalls werden sie wie ein [statisches Asset](./assets) behandelt und bei Bedarf abgerufen.
+Im Produktions-Build werden `.wasm`-Dateien, die kleiner als `assetsInlineLimit` sind, als base64-Strings inlined. Andernfalls werden sie wie ein [statisches Asset](./assets) behandelt und bei Bedarf abgerufen.
 
 ::: warning Für den SSR-Build werden nur Laufzeitumgebungen unterstützt, die mit Node.js kompatibel sind
 
