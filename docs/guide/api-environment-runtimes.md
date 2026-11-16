@@ -351,7 +351,7 @@ const transport = {
 
 ```js [server.js]
 import { BroadcastChannel } from 'node:worker_threads'
-import { createServer, RemoteEnvironmentTransport, DevEnvironment } from 'vite'
+import { createServer, DevEnvironment } from 'vite'
 
 function createWorkerEnvironment(name, config, context) {
   const worker = new Worker('./worker.js')
