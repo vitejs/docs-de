@@ -104,7 +104,7 @@ Wenn Sie ein selbstsigniertes SSL-Zertifikat verwenden, ignoriert Chrome alle Ca
 
 Um das Problem zu lösen, verwenden Sie ein vertrauenswürdiges SSL-Zertifikat.
 
-Siehe: [Cache-Probleme](https://helpx.adobe.com/mt/experience-manager/kb/cache-problems-on-chrome-with-SSL-certificate-errors.html), [Chrome-Fehler](https://bugs.chromium.org/p/chromium/issues/detail?id=110649#c8)
+Siehe: [Chrome-Fehler](https://bugs.chromium.org/p/chromium/issues/detail?id=110649#c8)
 
 #### macOS
 

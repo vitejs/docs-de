@@ -155,7 +155,7 @@ Während der Entwicklung erstellt der Vite-Dev-Server einen Plugin-Container, de
 
 Die folgenden Hooks werden einmal beim Start des Servers aufgerufen:
 
-- [`options`](https://rolldown.rs/reference/interface.plugin#options)
+- [`options`](https://rolldown.rs/reference/Interface.Plugin#options)
 - [`buildStart`](https://rolldown.rs/reference/Interface.Plugin#buildstart)
 
 Die folgenden Hooks werden bei jeder eingehenden Modulanforderung aufgerufen:
