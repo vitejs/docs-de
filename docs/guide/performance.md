@@ -18,7 +18,7 @@ Die internen und offiziellen Plugins von Vite sind optimiert, um so wenig wie m�
 
 Die Leistung von Community-Plugins liegt jedoch außerhalb der Kontrolle von Vite und kann sich auf das Entwicklererlebnis auswirken. Hier sind einige Dinge, auf die Sie achten sollten, wenn Sie zusätzliche Vite-Plugins verwenden:
 
-1. Große Abhängigkeiten, die nur in bestimmten Fällen verwendet werden, sollten dynamisch importiert werden, um die Startzeit von Node.js zu reduzieren. Beispiel-Refactors: [vite-plugin-react#212](https://github.com/vitejs/vite-plugin-react/pull/212) und [vite-plugin-pwa#224](https://github.com/vite-pwa/vite-plugin-pwa/pull/244).
+1. Große Abhängigkeiten, die nur in bestimmten Fällen verwendet werden, sollten dynamisch importiert werden, um die Startzeit von Node.js zu reduzieren. Beispiel-Refactors: [vite-plugin-react#212](https://github.com/vitejs/vite-plugin-react/pull/212) und [vite-plugin-pwa#244](https://github.com/vite-pwa/vite-plugin-pwa/pull/244).
 
 2. Die `buildStart`, `config`, und `configResolved` Hooks sollten keine langen und umfangreichen Operationen ausführen. Diese Hooks werden während des Starts des Dev-Servers erwartet, was den Zugriff auf die Site im Browser verzögert.
 

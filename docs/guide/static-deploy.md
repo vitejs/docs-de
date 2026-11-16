@@ -207,7 +207,7 @@ Cloudflare Pages bietet Ihnen eine Weg, Ihre Anwendung direkt bei Cloudflare ber
 
 Nachdem Ihr Projekt importiert und bereitgestellt wurde, generieren alle nachfolgenden Pushes auf Branches [Preview-Bereitstellungen](https://developers.cloudflare.com/pages/platform/preview-deployments/), es sei denn, sie wurden in Ihren [Branch-Build-Steuerungen](https://developers.cloudflare.com/pages/platform/branch-build-controls/) ausgeschlossen. Alle Änderungen am Produktionszweig (üblicherweise "main") führen zu einer Produktionsbereitstellung.
 
-Sie können auch benutzerdefinierte Domänen hinzufügen und benutzerdefinierte Build-Einstellungen auf Pages verwalten. Erfahren Sie mehr über [Cloudflare Pages Git-Integration](https://developers.cloudflare.com/pages/get-started/#manage-your-site).
+Sie können auch benutzerdefinierte Domänen hinzufügen und benutzerdefinierte Build-Einstellungen auf Pages verwalten. Erfahren Sie mehr über [Cloudflare Pages Git-Integration](https://developers.cloudflare.com/pages/configuration/git-integration/).
 
 ## Google Firebase
 
@@ -284,7 +284,7 @@ Sie können Ihre Vite-Anwendung als statische Website auf [Render](https://rende
 
 5. Klicken Sie auf **Statische Website erstellen**. Ihre App sollte unter `https://<PROJECTNAME>.onrender.com/` bereitgestellt sein.
 
-Standardmäßig löst jede neue Änderung, die auf den angegebenen Zweig hochgeladen wird, automatisch eine neue Bereitstellung aus. [Auto-Deploy](https://render.com/docs/deploys#toggling-auto-deploy-for-a-service) kann in den Projekteinstellungen konfiguriert werden.
+Standardmäßig löst jede neue Änderung, die auf den angegebenen Zweig hochgeladen wird, automatisch eine neue Bereitstellung aus. [Auto-Deploy](https://render.com/docs/deploys#configuring-auto-deploys) kann in den Projekteinstellungen konfiguriert werden.
 
 Sie können auch eine [benutzerdefinierte Domäne](https://render.com/docs/custom-domains) zu Ihrem Projekt hinzufügen.
 
