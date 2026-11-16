@@ -335,6 +335,58 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
   })
   ```
 
+### `closeServer`
+
+- **Typ:** `(context: { reason: 'restart' | 'close' }) => void | Promise<void>`
+- **Art:** `async`, `parallel`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
+
+  Wird aufgerufen, wenn der Entwicklungsserver neu gestartet oder geschlossen wird, nachdem der Server heruntergefahren wurde. Wird typischerweise verwendet, um Ressourcen freizugeben, die in [`configureServer`](/guide/api-plugin.html#configureserver) erstellt wurden.
+
+  `context.reason` unterscheidet die beiden Fälle:
+  - `'restart'`: Der Server wird neu gestartet (z. B. durch eine Änderung der Konfigurationsdatei oder einen Aufruf von `server.restart()`).
+  - `'close'`: Der Server wird beendet (z. B. über das Tastenkürzel `q` oder einen Aufruf von `server.close()`).
+
+  ```js
+  const myPlugin = () => {
+    let resource
+    return {
+      name: 'close-server',
+      configureServer(server) {
+        resource = createResource()
+      },
+      async closeServer({ reason }) {
+        if (reason === 'close') {
+          await resource.dispose()
+        }
+      },
+    }
+  }
+  ```
+
+### `closePreviewServer`
+
+- **Typ:** `() => void | Promise<void>`
+- **Art:** `async`, `parallel`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
+
+  Wie [`closeServer`](/guide/api-plugin.html#closeserver), aber für den Vorschauserver. Der Vorschauserver wird nie neu gestartet, daher gibt es keinen `reason`.
+
+  ```js
+  const myPlugin = () => {
+    let resource
+    return {
+      name: 'close-preview-server',
+      configurePreviewServer(server) {
+        resource = createResource()
+      },
+      async closePreviewServer() {
+        await resource.dispose()
+      },
+    }
+  }
+  ```
+
 ### `transformIndexHtml`
 
 - **Typ:** `IndexHtmlTransformHook | { order?: 'pre' | 'post', handler: IndexHtmlTransformHook }`
