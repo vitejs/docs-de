@@ -292,10 +292,6 @@ Sie können auch eine [benutzerdefinierte Domäne](https://render.com/docs/custo
 
 Stellen Sie Ihre statische Website mit [Flightcontrol](https://www.flightcontrol.dev/?ref=docs-vite) bereit, indem Sie diese [Anweisungen](https://www.flightcontrol.dev/docs/reference/examples/vite?ref=docs-vite) befolgen.
 
-## Kinsta Hosting statischer Websites
-
-Stellen Sie Ihre statische Website mit [Kinsta](https://kinsta.com/static-site-hosting/) bereit, indem Sie diese [Anweisungen](https://kinsta.com/docs/static-site-hosting/static-site-quick-start/react-static-site-examples/#react-with-vite) befolgen.
-
 ## xmit Hosting statischer Websites
 
 Stellen Sie Ihre statische Website mit [xmit](https://xmit.co) bereit, indem Sie diese [Anleitung](https://xmit.dev/guides/vite-quickstart/) befolgen.
