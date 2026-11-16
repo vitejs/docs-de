@@ -173,7 +173,7 @@ export default defineConfig({
       },
       name: 'MyLib',
     },
-    rollupOptions: {
+    rolldownOptions: {
       // Stellen Sie sicher, dass Abhängigkeiten, die nicht in Ihre Bibliothek gebündelt werden sollen, externisiert werden
       external: ['vue'],
       output: {
