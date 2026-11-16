@@ -65,7 +65,7 @@ vite build [root]
 | `--base <path>`                | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                              |
 | `-l, --logLevel <level>`       | Info \| warn \| error \| silent (`string`)                                                                                                                     |
 | `--clearScreen`                | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                                |
-| `--configLoader <loader>`      | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten (Standard: `bundle`)          |
+| `--configLoader <loader>`      | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten oder `native` (experimentell), um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`)          |
 | `--profile`                    | Startet den integrierten Node.js-Inspector (siehe [Performance Engpässe](/guide/troubleshooting#performance-bottlenecks))                                      |
 | `-d, --debug [feat]`           | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                                |
 | `-f, --filter <filter>`        | Filtert Debug-Protokolle (`string`)                                                                                                                            |
@@ -96,7 +96,7 @@ vite optimize [root]
 | `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                     |
 | `-l, --logLevel <level>`  | Info \| warn \| error \| silent (`string`)                                                                                                            |
 | `--clearScreen`           | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                       |
-| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten (Standard: `bundle`) |
+| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten oder `native` (experimentell), um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`) |
 | `-d, --debug [feat]`      | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                       |
 | `-f, --filter <filter>`   | Filtert Debug-Protokolle (`string`)                                                                                                                   |
 | `-m, --mode <mode>`       | Setzt den Umgebungsmodus (`string`)                                                                                                                   |
@@ -127,7 +127,7 @@ vite preview [root]
 | `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                     |
 | `-l, --logLevel <level>`  | Info \| warn \| error \| silent (`string`)                                                                                                            |
 | `--clearScreen`           | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                       |
-| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten (Standard: `bundle`) |
+| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten oder `native` (experimentell), um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`) |
 | `-d, --debug [feat]`      | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                       |
 | `-f, --filter <filter>`   | Filtert Debug-Protokolle (`string`)                                                                                                                   |
 | `-m, --mode <mode>`       | Setzt den Umgebungsmodus (`string`)                                                                                                                   |
