@@ -360,7 +360,7 @@ Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl v
 - Die Übergabe desselben Browsers mit mehreren Versionen an die Option `build.target` führt nun zu einem Fehler: esbuild wählt die neueste Version aus, was wahrscheinlich nicht beabsichtigt war.
 - Fehlende Unterstützung durch Rolldown: Die folgenden Funktionen werden von Rolldown nicht unterstützt und sind auch in Vite nicht mehr verfügbar.
   - `build.rollupOptions.output.format: 'system'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2387))
-  - `build.rollupOptions.output.format: 'amd'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2528))
+  - `build.rollupOptions.output.format: 'amd'` ([rolldown#2528](https://github.com/rolldown/rolldown/issues/2528))
   - `shouldTransformCachedModule`-Hook ([rolldown#4389](https://github.com/rolldown/rolldown/issues/4389))
   - `resolveImportMeta`-Hook ([rolldown#1010](https://github.com/rolldown/rolldown/issues/1010))
   - `renderDynamicImport`-Hook ([rolldown#4532](https://github.com/rolldown/rolldown/issues/4532))
