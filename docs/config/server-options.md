@@ -57,7 +57,7 @@ Das Setzen des Wertes `server.allowedHosts` auf `true` erlaubt jeder Webseite An
 :::
 
 ::: details Konfiguration via Umgebungsvariable
-Sie können die Umgebungsvariable `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` setzen, um einen zusätzlichen berechtigten Host hinzuzufügen.
+Sie können die Umgebungsvariable `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` setzen, um zusätzliche berechtigte Hosts hinzuzufügen. Trennen Sie mehrere Hosts durch Kommas (z. B. `host1.example.com,host2.example.com`).
 :::
 
 ## server.port
