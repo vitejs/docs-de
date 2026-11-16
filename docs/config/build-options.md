@@ -123,6 +123,8 @@ Diese Option ermöglicht es Benutzern, ein anderes Browserziel für die CSS-Mini
 
 Es sollte nur verwendet werden, wenn Sie einen nicht-mainstream Browser anvisieren. Ein Beispiel ist der Android WeChat WebView, der die meisten modernen JavaScript-Funktionen unterstützt, aber nicht die [`#RGBA` hexadezimale Farbnotation in CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb_colors). In diesem Fall müssen Sie `build.cssTarget` auf `chrome61` setzen, um zu verhindern, dass Vite `rgba()`-Farben in `#RGBA`-hexadezimale Notationen umwandelt.
 
+Wenn `build.cssMinify` auf `'lightningcss'` steht (Standard), hat diese Option beim Minifizieren Vorrang vor [`css.lightningcss.targets`](./shared-options.md#css-lightningcss).
+
 ## build.cssMinify
 
 - **Typ:** `boolean | 'lightningcss' | 'esbuild'`
