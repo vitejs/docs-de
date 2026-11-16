@@ -183,7 +183,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
 
 ### `config`
 
-- **Typ:** `(config: UserConfig, env: { mode: string, command: string }) => UserConfig | null | void`
+- **Typ:** `(config: UserConfig, env: { mode: 'build' | 'serve', command: string, isSsrBuild?: boolean, isPreview?: boolean }) => UserConfig | null | void`
 - **Art:** `async`, `sequential`
 
   Ändert die Vite-Konfiguration, bevor sie aufgelöst wird. Der Hook empfängt die Rohkonfiguration des Benutzers (CLI-Optionen zusammengeführt mit der Konfigurationsdatei) und die aktuelle Konfigurationsumgebung, die den verwendeten `mode` und `command` angibt. Er kann ein teilweises Konfigurationsobjekt zurückgeben, das tief in die vorhandene Konfiguration eingefügt wird, oder die Konfiguration direkt ändern (wenn das Standardzusammenführen das gewünschte Ergebnis nicht erreichen kann).
@@ -376,8 +376,9 @@ type IndexHtmlTransformHook = (
     path: string
     filename: string
     server?: ViteDevServer
-    bundle?: import('rollup').OutputBundle
-    chunk?: import('rollup').OutputChunk
+    bundle?: import('rolldown').OutputBundle
+    chunk?: import('rolldown').OutputChunk
+    originalUrl?: string
   }
 ) => IndexHtmlTransformResult | void | Promise<IndexHtmlTransformResult | void>
 
