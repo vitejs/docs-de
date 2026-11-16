@@ -57,7 +57,7 @@ Dies wird während des Builds statisch ersetzt und ermöglicht das Entfernen von
 
 Wenn Sie eine SSR-Anwendung erstellen, möchten Sie wahrscheinlich die volle Kontrolle über Ihren Hauptserver haben und Vite von der Produktionsumgebung entkoppeln. Es wird daher empfohlen, Vite im Middleware-Modus zu verwenden. Hier ist ein Beispiel mit [Express](https://expressjs.com/):
 
-```js{15-18} twoslash [server.js]
+```js{12-15} twoslash [server.js]
 import fs from 'node:fs'
 import path from 'node:path'
 import express from 'express'
