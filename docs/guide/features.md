@@ -729,7 +729,7 @@ const worker = new Worker(new URL('./worker.js', import.meta.url), {
 })
 ```
 
-Die Erkennung von Workern funktioniert nur, wenn der Konstruktor `new URL()` direkt innerhalb der Deklaration `new Worker()` verwendet wird. Außerdem müssen alle Optionsparameter statische Werte sein (d.h. String-Literale).
+Die Erkennung von Workern funktioniert nur, wenn der Konstruktor `new URL()` direkt innerhalb der Deklaration `new Worker()` verwendet wird. Andernfalls wird er stattdessen als [statische Asset-URL](./assets#new-url-url-import-meta-url) behandelt. Außerdem müssen alle Optionsparameter statische Werte sein (d.h. String-Literale).
 
 ### Import mit Abfrage-Suffixen
 
