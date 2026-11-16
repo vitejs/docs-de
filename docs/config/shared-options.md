@@ -206,6 +206,18 @@ Durch Aktivieren dieser Einstellung bestimmt Vite die Dateiidentität anhand des
 
 Aktiviert die Funktion der `tsconfig` zur Pfadauflösung. Die Option `paths` in der `tsconfig.json` wird genutzt, um Importe aufzulösen. Siehe [Funktionen](/guide/features.md#paths) für mehr Details.
 
+`paths` gilt nur für Dateien, die eine `tsconfig.json` über ihre Felder `files` oder `include` erfasst. Dateien mit Nicht-JS-Endungen sollten dort explizit aufgeführt werden, da ein einfaches `"src"`- oder `"**/*"`-`include` – in Übereinstimmung mit dem Verhalten von TypeScript – nur TS-/JS-Endungen erfasst. Um zum Beispiel einen `paths`-Alias in einer CSS-Datei zu verwenden (etwa `@import '@/foo.css'`), führen Sie diese Dateien in `files` auf oder ergänzen `include` um eine explizite Endung:
+
+```json [tsconfig.json]
+{
+  "include": ["src", "src/**/*.css", "src/**/*.scss"]
+}
+```
+
+::: warning Less wird nicht unterstützt
+`resolve.tsconfigPaths` greift nicht innerhalb von `.less`-Dateien. Less übergibt Vite nur das Verzeichnis der importierenden Datei, nicht die Datei selbst, sodass Vite die passende `tsconfig.json` nicht finden kann. Verwenden Sie für `@import` in Less einen relativen Pfad oder [`resolve.alias`](#resolve-alias).
+:::
+
 
 ## html.cspNonce
 
