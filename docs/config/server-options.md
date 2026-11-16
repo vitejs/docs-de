@@ -402,6 +402,13 @@ Diese Blockliste wird nicht auf [das `public`-Verzeichnis](/guide/assets.md#the-
 
 :::
 
+::: tip HINWEIS
+
+Der Deny-Filter wird auf die Modul-ID sowie auf die ID ohne Query-Parameter angewendet. Da ein Plugin in seinem `load`-Hook beliebige Dateien lesen kann (einschließlich der Auflösung von Symlinks auf gesperrte Pfade), kann Vite nicht garantieren, dass eine gesperrte Datei nicht über einen alternativen Pfad erreichbar ist. Falls es einen alternativen Pfad gibt, nehmen Sie ihn ebenfalls in die Deny-Liste auf.
+
+:::
+
+
 ## server.origin
 
 - **Typ:** `string`
