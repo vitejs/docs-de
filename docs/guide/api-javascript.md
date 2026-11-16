@@ -451,3 +451,27 @@ Verarbeitet `.css`, `.scss`, `.sass`, `.less`, `.styl` und `.stylus` Dateien zu 
 Der verwendete Präprozessor wird aus der Erweiterung „Dateiname“ abgeleitet. Wenn der `Dateiname` mit `.module.{ext}` endet, wird er als [CSS-Modul](https://github.com/css-modules/css-modules) abgeleitet und das zurückgegebene Ergebnis enthält ein `modules`-Objekt, das die ursprünglichen Klassennamen auf die transformierten abbildet.
 
 Beachten Sie, dass die Vorverarbeitung keine URLs in `url()` oder `image-set()` auflöst.
+
+## `version`
+
+**Typ:** `string`
+
+Die aktuelle Version von Vite als String (z. B. `"8.0.0"`).
+
+## `rolldownVersion`
+
+**Typ:** `string`
+
+Die von Vite verwendete Version von Rolldown als String (z. B. `"1.0.0"`). Ein Re-Export von [`VERSION`](https://rolldown.rs/reference/Variable.VERSION) aus `rolldown`.
+
+## `esbuildVersion`
+
+**Typ:** `string`
+
+Nur aus Gründen der Abwärtskompatibilität vorhanden.
+
+## `rollupVersion`
+
+**Typ:** `string`
+
+Nur aus Gründen der Abwärtskompatibilität vorhanden.
