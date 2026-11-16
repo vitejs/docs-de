@@ -298,7 +298,7 @@ Stellen Sie Ihre statische Website mit [Kinsta](https://kinsta.com/static-site-h
 
 ## xmit Hosting statischer Websites
 
-Stellen Sie Ihre statische Website mit [xmit](https://xmit.co) bereit, indem Sie diese [Anleitung](https://xmit.dev/posts/vite-quickstart/) befolgen.
+Stellen Sie Ihre statische Website mit [xmit](https://xmit.co) bereit, indem Sie diese [Anleitung](https://xmit.dev/guides/vite-quickstart/) befolgen.
 
 ## Zephyr Cloud
 
