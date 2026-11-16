@@ -116,7 +116,6 @@ Beispiele für weniger Arbeit:
 
 - CSS anstelle von Sass/Less/Stylus verwenden, wenn möglich (Verschachtelung kann von PostCSS / Lightning CSS gehandhabt werden).
 - Transformieren Sie SVGs nicht in UI-Framework-Komponenten (React, Vue usw.). Importieren Sie sie stattdessen als Strings oder URLs.
-- Wenn Sie `@vitejs/plugin-react` verwenden, vermeiden Sie es, die Babel-Optionen so zu konfigurieren, dass die Transformation während des Builds übersprungen wird (nur Oxc wird verwendet).
 
 Beispiele für die Verwendung von nativen Werkzeugen:
 
