@@ -16,20 +16,7 @@ Dies kann über die CLI mit `--host 0.0.0.0` oder `--host` festgelegt werden.
 
 Es gibt Fälle, in denen andere Server möglicherweise anstelle von Vite antworten.
 
-Der erste Fall tritt auf, wenn `localhost` verwendet wird. Node.js unter v17 ordnet die Ergebnisse der DNS-aufgelösten Adressen standardmäßig neu an. Beim Zugriff auf `localhost` verwenden Browser DNS, um die Adresse aufzulösen, und diese Adresse kann von der Adresse abweichen, auf die Vite hört. Vite gibt die aufgelöste Adresse aus, wenn sie sich unterscheidet.
-
-Sie können [`dns.setDefaultResultOrder('verbatim')`](https://nodejs.org/api/dns.html#dns_dns_setdefaultresultorder_order) festlegen, um das Neuanordnungsverhalten zu deaktivieren. Vite gibt die Adresse dann als `localhost` aus.
-
-```js twoslash [vite.config.js]
-import { defineConfig } from 'vite'
-import dns from 'dns'
-
-dns.setDefaultResultOrder('verbatim')
-
-export default defineConfig({
-  // ausgelassen
-})
-```
+Der erste Fall tritt auf, wenn `localhost` verwendet wird. Node.js' [`dns.setDefaultResultOrder`](https://nodejs.org/docs/latest-v24.x/api/dns.html#dnssetdefaultresultorderorder) beeinflusst, in welcher Reihenfolge DNS-aufgelöste Adressen sortiert werden, und Browser verwenden möglicherweise eine andere aufgelöste Adresse als die, auf die Vite hört. Vite gibt die aufgelöste Adresse aus, wenn sie sich unterscheidet.
 
 Der zweite Fall tritt auf, wenn Platzhalterhosts (z. B. `0.0.0.0`) verwendet werden. Dies liegt daran, dass Server, die auf Nicht-Platzhalterhosts lauschen, Vorrang vor denen haben, die auf Platzhalterhosts lauschen.
 
