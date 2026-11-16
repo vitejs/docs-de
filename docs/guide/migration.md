@@ -366,6 +366,8 @@ Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl v
   - `renderDynamicImport`-Hook ([rolldown#4532](https://github.com/rolldown/rolldown/issues/4532))
   - `resolveFileUrl`-Hook
 - Die Funktionen `parseAst` / `parseAstAsync` sind nun veraltet und werden durch die Funktionen `parse` / `parseAsync` ersetzt, die mehr Funktionen haben
+- Kommentare werden vor dem `renderChunk`-Hook entfernt statt danach
+- Kommentare, die nicht [hier](https://rolldown.rs/reference/OutputOptions.comments) aufgeführt sind, werden verschoben, während Rollup Kommentare nur entfernt, wenn der angrenzende Code entfernt wird
 
 ## Migration von Version 6
 
