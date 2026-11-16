@@ -649,6 +649,16 @@ Deklariert das WebAssembly-Modul eigene Importe, löst Vite diese aus JavaScript
 
 Dies folgt dem [WebAssembly/ES Module Integration Proposal](https://github.com/WebAssembly/esm-integration). Da ein WebAssembly-Modul asynchron instanziiert wird, verhält sich eine direkt importierte `.wasm`-Datei wie ein asynchrones Modul und erfordert Unterstützung für Top-Level-`await`.
 
+::: tip TypeScript-Unterstützung
+
+Da die Typen von `.wasm`-Dateien unbekannt sind, meldet TypeScript Fehler wie `Module '"*.wasm"' has no exported member 'add'`. Um das zu beheben, aktivieren Sie [`allowArbitraryExtensions`](https://www.typescriptlang.org/tsconfig/#allowArbitraryExtensions) in Ihrer `tsconfig.json` und legen neben Ihrer `.wasm`-Datei eine Deklarationsdatei an. Mit aktiviertem `allowArbitraryExtensions` sucht TypeScript beim Auflösen eines `.wasm`-Imports nach einer Deklarationsdatei mit dem Namen `{filename}.d.wasm.ts`. Für `add.wasm` legen Sie zum Beispiel `add.d.wasm.ts` an:
+
+```ts [add.d.wasm.ts]
+export function add(a: number, b: number): number
+```
+
+:::
+
 ### Manuelle Initialisierung
 
 Wenn Sie steuern möchten, wann und wie das Modul instanziiert wird, importieren Sie es mit `?init`. Der Standardexport wird eine Initialisierungsfunktion sein, die ein Promise der [`WebAssembly.Instance`](https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/Instance) zurückgibt:
