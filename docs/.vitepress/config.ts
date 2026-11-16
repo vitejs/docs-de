@@ -146,9 +146,9 @@ const config = defineConfig({
     logo: '/logo.svg',
 
     banner: {
-      id: 'vite+',
-      text: 'Vite+ Ankündigung | Die einheitliche Toolchain für das Web',
-      url: 'https://voidzero.dev/posts/announcing-vite-plus?utm_source=vite&utm_content=top_banner',
+      id: 'viteplus-alpha',
+      text: 'Vite+ Alpha angekündigt: Open Source. Vereinheitlicht. Next-Gen.',
+      url: 'https://voidzero.dev/posts/announcing-vite-plus-alpha?utm_source=vite&utm_content=top_banner',
     },
 
 
