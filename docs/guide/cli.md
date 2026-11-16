@@ -50,13 +50,13 @@ vite build [root]
 
 | Optionen                       |                                                                                                                                                                |
 |--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `--target <target>`            | Transpile-Ziel (Standard: `"modules"`) (`string`)                                                                                                              |
+| `--target <target>`            | Transpile-Ziel (Standard: `"baseline-widely-available"`) (`string`)                                                                                                              |
 | `--outDir <dir>`               | Ausgabe Verzeichnis (Standard: `dist`) (`string`)                                                                                                              |
 | `--assetsDir <dir>`            | Verzeichnis unter outDir, um Assets abzulegen (Standard: `"assets"`) (`string`)                                                                                |
 | `--assetsInlineLimit <number>` | Schwellenwert für statische Asset-Base64-Inlines in Byte (Standard: `4096`) (`number`)                                                                         |
 | `--ssr [entry]`                | Erstellt angegebenen Eintrag für das Server-seitige Rendern (`string`)                                                                                         |
 | `--sourcemap [output]`         | Erzeugt Sourcemap-Dateien für das Build (Standard: `false`) (`boolean \| "inline" \| "hidden"`)                                                                |
-| `--minify [minifier]`          | Aktiviert/deaktiviert die Minifizierung oder gibt den Minifizierer an, der verwendet werden soll (Standard: `"esbuild"`) (`boolean \| "terser" \| "esbuild"`)  |
+| `--minify [minifier]`          | Aktiviert/deaktiviert die Minifizierung oder gibt den Minifizierer an, der verwendet werden soll (Standard: `"oxc"`) (`boolean \| "oxc" \| "terser" \| "esbuild"`)  |
 | `--manifest [name]`            | Erzeugt Build-Manifest JSON (`boolean \| string`)                                                                                                              |
 | `--ssrManifest [name]`         | Erzeugt SSR-Manifest JSON (`boolean \| string`)                                                                                                                |
 | `--emptyOutDir`                | Leert das Ausgabeverzeichnis, wenn es außerhalb des Stammverzeichnisses liegt (`boolean`)                                                                      |
