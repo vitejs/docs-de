@@ -737,7 +737,7 @@ if (import.meta.hot) {
 
 ### Client zu Server
 
-Um Ereignisse vom Client an den Server zu senden, können wir [`hot.send`](/guide/api-hmr.html#hot-send-event-payload) verwenden:
+Um Ereignisse vom Client an den Server zu senden, können wir [`hot.send`](/guide/api-hmr.html#hot-send-event-data) verwenden:
 
 ```ts
 // Client-Seite
