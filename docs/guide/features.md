@@ -625,7 +625,7 @@ Beachten Sie, dass Variablen nur Dateinamen eine Ebene tiefer darstellen. Wenn `
 
 Außerdem ist zu beachten, dass der dynamische Import den folgenden Regeln entsprechen muss, um gebündelt zu werden:
 
-- Importe müssen mit `./` oder `../` starten: ``import(`./dir/${foo}.js`)`` ist gültig, aber ``import(`${foo}.js`)`` nicht.
+- Importe müssen mit `./`, `../` oder `#` starten: ``import(`./dir/${foo}.js`)`` ist gültig, aber ``import(`${foo}.js`)`` nicht.
 - Importe müssen mit einer Dateiendung enden: ``import(`./dir/${foo}.js`)`` ist gültig, aber ``import(`./dir/${foo}`)`` nicht.
 - Importe zum eigenen Verzeichnis müssen ein Muster für Dateinamen spezifizieren: ``import(`./prefix-${foo}.js`)`` ist gültig, aber ``import(`./${foo}.js`)`` nicht.
 
