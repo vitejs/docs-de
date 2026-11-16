@@ -36,7 +36,7 @@ Wenn Ihr Plugin nur für ein bestimmtes Framework funktionieren soll, sollte des
 - `vite-plugin-react-` Präfix für React-Plugins
 - `vite-plugin-svelte-` Präfix für Svelte-Plugins
 
-Siehe auch [Konvention für virtuelle Module](#virtuelle-module-konvention).
+Siehe auch [Konvention für virtuelle Module](https://rolldown.rs/apis/plugin-api#virtual-modules).
 
 ## Konfiguration der Plugins
 
@@ -106,11 +106,7 @@ export default function myPlugin() {
 
 ### Importieren einer virtuellen Datei
 
-Siehe das Beispiel im [nächsten Abschnitt](#virtuelle-module-konvention).
-
-## Konvention für virtuelle Module
-
-Virtuelle Module sind ein nützliches Schema, das es ermöglicht, Build-Zeit-Informationen mit normaler ESM-Importsyntax an die Quelldateien zu übergeben.
+Virtuelle Module ermöglichen es, Build-Zeit-Informationen mit normaler ESM-Importsyntax an die Quelldateien zu übergeben. Die vollständige Konvention finden Sie unter [Konvention für virtuelle Module](https://rolldown.rs/apis/plugin-api#virtual-modules).
 
 ```js
 import { exactRegex } from '@rolldown/pluginutils'
@@ -145,9 +141,7 @@ import { msg } from 'virtual:my-module'
 console.log(msg)
 ```
 
-In Vite (und Rolldown / Rollup) werden virtuelle Module konventionell mit `virtual:` als benutzerfreundlicher Pfad vorangestellt. Wenn möglich, sollte der Plugin-Name als Namespace verwendet werden, um Kollisionen mit anderen Plugins in der Community zu vermeiden. Beispielsweise könnte ein `vite-plugin-posts` Benutzer auffordern, virtuelle Module `virtual:posts` oder `virtual:posts/helpers` zu importieren, um Build-Zeit-Informationen zu erhalten. Intern sollten Plugins, die virtuelle Module verwenden, die Modul-ID beim Auflösen mit `\0` voranstellen, einer Konvention aus dem Rollup-Ökosystem. Dies verhindert, dass andere Plugins versuchen, die ID zu verarbeiten (wie die Auflösung in Node), und Kernfunktionen wie Sourcemaps können diese Informationen verwenden, um zwischen virtuellen Modulen und regulären Dateien zu unterscheiden. `\0` ist kein erlaubtes Zeichen in Import-URLs, daher müssen wir es während der Analyse des Imports ersetzen. Eine virtuelle ID `\0{id}` wird während der Entwicklung im Browser als `/@id/__x00__{id}` codiert. Die ID wird vor dem Eintritt in den Plugins-Pipeline zurückdekodiert, sodass dies vom Plugin-Hook-Code nicht gesehen wird.
-
-Beachten Sie, dass Module, die direkt von einer echten Datei abgeleitet sind, wie bei einem Skriptmodul in einem Single-File-Komponenten (z. B. eine .vue- oder .svelte-SFC-Datei), diese Konvention nicht befolgen müssen. SFCs generieren im Allgemeinen eine Reihe von Untermodulen bei der Verarbeitung, aber der Code in diesen Modulen kann auf das Dateisystem zurückverfolgt werden. Die Verwendung von `\0` für diese Untermodule würde dazu führen, dass Sourcemaps nicht korrekt funktionieren.
+Da `\0` in Vite kein erlaubtes Zeichen in Import-URLs ist, wird eine virtuelle ID `\0{id}` während der Entwicklung im Browser als `/@id/__x00__{id}` codiert. Die ID wird vor dem Eintritt in die Plugin-Pipeline zurückdekodiert, sodass dies vom Plugin-Hook-Code nicht gesehen wird.
 
 ## Universale Hooks
 
