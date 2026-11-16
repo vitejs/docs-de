@@ -326,10 +326,12 @@ Um das Problem zu beheben, können Sie Folgendes tun:
 
 ## server.middlewareMode
 
-- **Typ:** `boolean`
+- **Typ:** `boolean | { server: http.Server }`
 - **Standard:** `false`
 
 Erstellen Sie den Vite-Server im Middleware-Modus.
+
+Wenn ein [Proxy](./server-options#server-proxy) für WebSocket eingerichtet ist, sollte `server` angegeben werden, damit der Proxy korrekt gebunden wird.
 
 - **Verwandte Themen:** [appType](./shared-options#apptype), [SSR - Einrichten des Entwicklungsservers](/guide/ssr#setting-up-the-dev-server)
 
