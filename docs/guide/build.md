@@ -107,7 +107,7 @@ Während der Entwicklung navigieren oder verlinken Sie einfach zu `/nested/` - e
 Während des Builds müssen Sie nur mehrere `.html`-Dateien als Einstiegspunkte angeben:
 
 ```js twoslash [vite.config.js]
-import { dirname, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -129,7 +129,7 @@ Wenn Sie eine auf den Browser ausgerichtete Bibliothek entwickeln, verbringen Si
 Wenn es Zeit ist, Ihre Bibliothek für die Verteilung zu bündeln, verwenden Sie die [`build.lib`-Konfigurationsoption](/config/build-options.md#build-lib). Stellen Sie sicher, dass Sie auch Abhängigkeiten externisieren, die Sie nicht in Ihre Bibliothek bündeln möchten, z. B. `vue` oder `react`:
 
 ```js twoslash [vite.config.js]
-import { dirname, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -157,7 +157,7 @@ export default defineConfig({
 ```
 
 ```js twoslash [vite.config.js (mehrere Einstiegspunkte)]
-import { dirname, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
