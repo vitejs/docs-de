@@ -14,7 +14,7 @@ Ausgabeformat für Worker-Bundle.
 - **Typ:** [`() => (Plugin | Plugin[])[]`](./shared-options#plugins)
 
 Vite-Plugins, die für die Worker-Bundles gelten. Beachten Sie, dass [config.plugins](./shared-options#plugins) nur für Worker in dev gilt, es sollte stattdessen hier für build konfiguriert werden.
-Die Funktion sollte neue Plugin-Instanzen zurückgeben, wie sie in parallelen Rollup-Worker-Builds verwendet werden. Daher wird die Änderung der `config.worker`-Optionen im `config`-Hook ignoriert.
+Die Funktion sollte neue Plugin-Instanzen zurückgeben, wie sie in parallelen Rolldown-Worker-Builds verwendet werden. Daher wird die Änderung der `config.worker`-Optionen im `config`-Hook ignoriert.
 
 ## worker.rolldownOptions
 
