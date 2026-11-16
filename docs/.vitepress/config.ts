@@ -12,7 +12,7 @@ import { markdownItImageSize } from 'markdown-it-image-size'
 import { extendConfig } from '@voidzero-dev/vitepress-theme/config'
 import type { FooterLink } from '@voidzero-dev/vitepress-theme'
 import packageJson from '../../package.json' with { type: 'json' }
-import { buildEnd } from './buildEnd.config'
+import { buildEnd } from './buildEnd.config.ts'
 
 // NOTE: allow additional options to be passed to rolldown for now
 process.env.ROLLDOWN_OPTIONS_VALIDATION = 'loose'
