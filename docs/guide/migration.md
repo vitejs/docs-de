@@ -294,7 +294,7 @@ Weitere Informationen finden Sie in der Dokumentation von Rolldown: [`require` e
 
 ### Option `build.rollupOptions.watch.chokidar` entfernt
 
-Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option `build.rolldownOptions.watch.notify`.
+Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option [`build.rolldownOptions.watch.watcher`](https://rolldown.rs/reference/InputOptions.watch#watcher).
 
 ### Die Option `build.rollupOptions.output.manualChunks` ist veraltet
 
@@ -361,7 +361,7 @@ Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl v
 - `parseAst` / `parseAstAsync` functions are now deprecated in favor of `parse` / `parseAsync` functions which has more features.
 - Alle parallelen Hooks in Rollup funktionieren wie sequenzielle Hooks. Siehe [Rolldown-Dokumentation](https://rolldown.rs/apis/plugin-api#sequential-hook-execution) für mehr Details.
 - ``use strict`;` wird manchmal nicht eingefügt. Weitere Details finden Sie in der [Rolldown-Dokumentation](https://rolldown.rs/in-depth/directives).
-- Die Umwandlung auf eine Version unter ES5 mit plugin-legacy wird nicht unterstützt ([rolldown-vite#452](https://github.com/vitejs/rolldown-vite/issues/452))
+- Die Umwandlung auf ES5 und darunter mit plugin-legacy wird nicht unterstützt ([rolldown-vite#452](https://github.com/vitejs/rolldown-vite/issues/452))
 - Die Übergabe desselben Browsers mit mehreren Versionen an die Option `build.target` führt nun zu einem Fehler: esbuild wählt die neueste Version aus, was wahrscheinlich nicht beabsichtigt war.
 - Fehlende Unterstützung durch Rolldown: Die folgenden Funktionen werden von Rolldown nicht unterstützt und sind auch in Vite nicht mehr verfügbar.
   - `build.rollupOptions.output.format: 'system'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2387))
@@ -371,7 +371,6 @@ Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl v
   - `renderDynamicImport`-Hook ([rolldown#4532](https://github.com/rolldown/rolldown/issues/4532))
   - `resolveFileUrl`-Hook
 - Die Funktionen `parseAst` / `parseAstAsync` sind nun veraltet und werden durch die Funktionen `parse` / `parseAsync` ersetzt, die mehr Funktionen haben
-- (Bug) Edge-Case für `@vite-ignore`-Kommentare ([rolldown-vite#426](https://github.com/vitejs/rolldown-vite/issues/426))
 
 ## Migration von Version 6
 
