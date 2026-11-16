@@ -658,6 +658,43 @@ export default function myPlugin() {
 [`@rolldown/pluginutils`](https://www.npmjs.com/package/@rolldown/pluginutils) exportiert einige Funktionen für Hook-Filter wie `exactRegex` und `prefixRegex`. Diese werden der Einfachheit halber ebenfalls aus `rolldown/filter` erneut exportiert.
 :::
 
+## Informationen zur Chunk-Import-Map
+
+:::info Experimentell
+
+Diese Funktion ist experimentell und kann sich in Zukunft ändern.
+
+:::
+
+Wenn die Option [`build.chunkImportMap`](/config/build-options#build-chunkimportmap) aktiviert ist, verwenden die Import-Anweisungen in den generierten Chunks für jeden Chunk eine eindeutige ID statt des Dateipfads.
+
+Um die Zuordnung von Chunk-ID zu Dateipfad zu erhalten, können Sie in den Hooks `generateBundle` oder `writeBundle` auf die Import Map zugreifen, die in das Bundle ausgegeben wird. Die Import Map trägt den in [`build.rolldownOptions.experimental.chunkImportMap.fileName`](https://rolldown.rs/reference/InputOptions.experimental#chunkimportmap) angegebenen Namen (Standard: `importmap.json`).
+
+```ts
+function accessImportMap() {
+  let config: ResolvedConfig
+  return {
+    name: 'access-import-map',
+    configResolved(resolvedConfig) {
+      config = resolvedConfig
+    },
+    generateBundle(options, bundle) {
+      const chunkImportMap =
+        config.build.rolldownOptions.experimental?.chunkImportMap
+      if (chunkImportMap) {
+        const importMapFilename =
+          typeof chunkImportMap === 'object' && chunkImportMap.fileName
+            ? chunkImportMap.fileName
+            : 'importmap.json'
+        const importMap = bundle[importMapFilename]! as OutputAsset
+        const mapping = JSON.parse(importMap.source).imports
+        console.log(mapping)
+        // { "./entry.hash1.js": "./entry.hash2.js" }
+      }
+    },
+  }
+}
+```
 
 ## Kommunikation zwischen Client und Server
 

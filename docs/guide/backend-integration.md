@@ -272,3 +272,10 @@ export default function importedChunks(
 ```
 
 :::
+
+   :::info Unterstützung für Chunk-Import-Maps (experimentell)
+
+   Wenn Sie die experimentelle Option [`build.chunkImportMap`](/config/build-options#build-chunkimportmap) verwenden, müssen Sie außerdem die Import Map in das HTML einfügen.
+
+   Die Import Map wird als `importmap.json` im Ausgabeverzeichnis ausgegeben. Stellen Sie sicher, dass das Tag `<script type="importmap">` vor allen `<script type="module">`-Tags oder `<link rel="modulepreload">`-Tags eingefügt wird.
+   :::

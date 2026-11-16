@@ -807,7 +807,7 @@ Um die Datei an einem anderen Pfad bereitzustellen, kann beispielsweise `{ fileN
 
 ## Build-Optimierungen
 
-> Die unten aufgeführten Funktionen werden automatisch als Teil des Build-Prozesses angewendet und müssen nicht explizit konfiguriert werden, es sei denn, Sie möchten sie deaktivieren.
+> Die unten aufgeführten Funktionen werden (mit Ausnahme der experimentellen Chunk-Import-Map-Funktion) automatisch als Teil des Build-Prozesses angewendet und müssen nicht explizit konfiguriert werden, es sei denn, Sie möchten sie deaktivieren.
 
 ### CSS-Code-Aufteilung
 
@@ -841,3 +841,21 @@ Entry ---> (A + C)
 ```
 
 Es ist möglich, dass "C" weitere Importe hat, was im nicht optimierten Szenario zu noch mehr Roundtrips führen würde. Die Optimierung von Vite verfolgt alle direkten Importe, um die Roundtrips unabhängig von der Importtiefe vollständig zu eliminieren.
+
+### Optimierung per Chunk-Import-Map {#chunk-import-map-optimization}
+
+Um die Cache-Trefferquote von Chunks zu verbessern, kann Vite eine Import Map für Chunks erstellen. Dadurch wird das Problem der kaskadierenden Cache-Invalidierung vermieden, das bei ES-Modulen auftritt.
+
+Betrachten Sie zum Beispiel folgendes Szenario:
+
+```
+Entry --> A ---> C
+```
+
+Wird `C` aktualisiert, muss eigentlich nur `C` invalidiert werden. Verweist `A` jedoch über eine normale URL in einem statischen Import auf `C` (d. h. der Hash von `C` ist in der URL enthalten), ändert sich der Inhalt von `A`, sodass auch `A` invalidiert werden müsste. Dasselbe gilt für `Entry`.
+
+Mithilfe von Import Maps lässt sich dieses Problem vermeiden. Ist diese Optimierung aktiviert, erstellt Vite eine Import Map, die die ID jedes Chunks auf seine URL abbildet, und verwendet in den Import-Anweisungen die Chunk-ID statt der URL. So muss bei einer Aktualisierung nur der aktualisierte Chunk invalidiert werden, während die Chunks, die darauf verweisen, unverändert bleiben.
+
+Beachten Sie, dass diese Optimierung derzeit nicht für CSS und Assets gilt. Wenn Sie ein Asset aktualisieren, werden die Chunks, die darauf verweisen, invalidiert. Die Invalidierung kaskadiert dabei jedoch nicht weiter, und der Chunk, der den invalidierten Chunk importiert, wird nicht invalidiert.
+
+Um diese Funktion zu aktivieren, setzen Sie [`build.chunkImportMap`](/config/build-options.md#build-chunkimportmap) auf `true`.

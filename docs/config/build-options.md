@@ -143,6 +143,17 @@ npm add -D esbuild
 
 Erzeugen von Produktionsquellekarten. Wenn `true`, wird eine separate Sourcemap-Datei erstellt. Wenn `'inline'`, wird die Sourcemap als Daten-URI an die resultierende Ausgabedatei angehängt. `'hidden'` funktioniert wie `true`, außer dass die entsprechenden Sourcemap-Kommentare in den gebündelten Dateien unterdrückt werden.
 
+## build.chunkImportMap
+
+- **Typ:** `boolean`
+- **Standard:** `false`
+- **Experimentell**
+- **Verwandt:** [Optimierung per Chunk-Import-Map](/guide/features#chunk-import-map-optimization)
+
+Legt fest, ob Import Maps verwendet werden, um die Caching-Effizienz von Chunks zu verbessern.
+
+Beachten Sie, dass diese Option [Unterstützung für `import.meta.resolve`](https://caniuse.com/mdn-javascript_operators_import_meta_resolve) erfordert. Wenn Sie ältere Browser unterstützen müssen, sehen Sie sich [`@vitejs/plugin-legacy`](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) an.
+
 ## build.rolldownOptions
 
 - **Typ:** [`RolldownOptions`](https://rolldown.rs/reference/)
