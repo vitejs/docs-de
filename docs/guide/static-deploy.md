@@ -157,7 +157,7 @@ Nachdem Ihr Projekt importiert und bereitgestellt wurde, erzeugen alle nachfolge
 3. Vercel erkennt, dass Sie Vite verwenden, und aktiviert die richtigen Einstellungen für Ihre Bereitstellung.
 4. Ihre Anwendung ist bereitgestellt! (z.B. `https://<PROJECTNAME>.vercel.app/`)
 
-Nachdem Ihr Projekt importiert und bereitgestellt wurde, werden alle nachfolgenden Pushes auf Zweige [Preview-Bereitstellungen generieren](https://vercel.com/docs/concepts/deployments/environments#preview), und alle Änderungen am Produktionszweig (üblicherweise "main") führen zu einer [Produktionsbereitstellung](https://vercel.com/docs/concepts/deployments/environments#production).
+Nachdem Ihr Projekt importiert und bereitgestellt wurde, werden alle nachfolgenden Pushes auf Zweige [Preview-Bereitstellungen generieren](https://vercel.com/docs/deployments/environments#preview-environment-pre-production), und alle Änderungen am Produktionszweig (üblicherweise "main") führen zu einer [Produktionsbereitstellung](https://vercel.com/docs/deployments/environments#production-environment).
 
 Erfahren Sie mehr über die [Git-Integration von Vercel](https://vercel.com/docs/concepts/git).
 
