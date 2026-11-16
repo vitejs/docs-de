@@ -20,7 +20,7 @@ Die Funktion sollte neue Plugin-Instanzen zurückgeben, wie sie in parallelen Ro
 
 - **Typ:** [`RolldownOptions`](https://rolldown.rs/reference/)
 
-Rollup-Optionen für die Erstellung des Worker-Bundles.
+Rolldown-Optionen für die Erstellung des Worker-Bundles.
 
 ## worker.rollupOptions
 
