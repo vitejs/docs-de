@@ -6,7 +6,7 @@ Wenn es Zeit ist, Ihre App für die Produktion bereitzustellen, führen Sie einf
 
 ## Browserkompatibilität
 
-Standardmäßig setzt das Produktionsbündel einen modernen Browser voraus, der in den Zielen der [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available enthalten ist. Der Standardbereich für unterstützte Browser ist:
+Standardmäßig zielt das Produktionsbündel auf die minimalen Browserversionen ab, die mit [Baseline](https://web-platform-dx.github.io/baseline/) Widely Available zu einem für jede Major-Version festgelegten Datum kompatibel sind. Der Standardbereich für unterstützte Browser in dieser Major-Version ist:
 
 <!-- Suche nach der `ESBUILD_BASELINE_WIDELY_AVAILABLE_TARGET` Konstante für mehr Informationen -->
 

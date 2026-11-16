@@ -11,7 +11,7 @@ Der Standardwert für `build.target`, `'baseline-widely-available'`, wurde auf e
 - Firefox 104 → 114
 - Safari 16.0 → 16.4
 
-Diese Browserversionen entsprechen den [Baseline Widely Available](https://web-platform-dx.github.io/web-features/)-Funktionsumfängen zum Stand vom 01.01.2026. Mit anderen Worten: Sie wurden alle ungefähr vor zweieinhalb Jahren veröffentlicht.
+Diese Browserversionen entsprechen den [Baseline Widely Available](https://web-platform-dx.github.io/baseline/)-Funktionsumfängen zum Stand vom 01.01.2026. Mit anderen Worten: Sie wurden alle ungefähr vor zweieinhalb Jahren veröffentlicht.
 
 ## Rolldown
 
