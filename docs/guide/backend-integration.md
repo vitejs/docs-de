@@ -12,6 +12,8 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    import { defineConfig } from 'vite'
    // ---cut---
    export default defineConfig({
+      // Überschreibe den Standard-.html-Einstieg
+      input: '/path/to/main.js',
       server: {
         cors: {
           // der Ursprung, auf welchen Sie mit dem Browser zugreifen
@@ -21,10 +23,6 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
       build: {
         // generiert .vite/manifest.json in outDir
         manifest: true,
-        rolldownOptions: {
-          // Überschreibe den Standard-.html-Einstieg
-          input: '/path/to/main.js'
-        }
       }
    })
    ```

@@ -160,6 +160,8 @@ Beachten Sie, dass diese Option [Unterstützung für `import.meta.resolve`](http
 
 Direktes Anpassen des zugrunde liegenden Rolldown-Bündels. Dies entspricht den Optionen, die aus einer Rolldown-Konfigurationsdatei exportiert werden können, und wird mit den internen Rolldown-Optionen von Vite zusammengeführt. Weitere Details finden Sie in den [Rolldown-Optionen-Dokumenten](https://rolldown.rs/reference/).
 
+Statt `build.rolldownOptions.input` wird empfohlen, die Top-Level-Option [`input`](/config/shared-options#input) zu setzen, da sie auch in der Entwicklung verwendet wird. Ist `build.rolldownOptions.input` gesetzt, überschreibt es die Top-Level-Option `input` nur für den Build.
+
 ## build.rollupOptions
 
 - **Typ:** `RolldownOptions`
@@ -176,10 +178,10 @@ Legt fest, ob dynamische Importe mit Variablen transformiert werden sollen.
 
 ## build.lib
 
-- **Typ:** `{ entry: string | string[] | { [entryAlias: string]: string }, name?: string, formats?: ('es' | 'cjs' | 'umd' | 'iife')[], fileName?: string | ((format: ModuleFormat, entryName: string) => string), cssFileName?: string }`
+- **Typ:** `{ entry?: string | string[] | { [entryAlias: string]: string }, name?: string, formats?: ('es' | 'cjs' | 'umd' | 'iife')[], fileName?: string | ((format: ModuleFormat, entryName: string) => string), cssFileName?: string }`
 - **Verwandt:** [Library-Modus](/guide/build#library-mode)
 
-Als Bibliothek erstellen. `entry` ist erforderlich, da die Bibliothek HTML nicht als Eintrag verwenden kann. `name` ist die exponierte globale Variable und erforderlich, wenn `formats` `'umd'` oder `'iife'` enthält. Die Standardformate sind `['es', 'umd']` oder `['es', 'cjs']`, wenn mehrere Einträge verwendet werden.
+Als Bibliothek erstellen. `entry` verwendet standardmäßig die Top-Level-Option [`input`](/config/shared-options#input); eine der beiden ist erforderlich, da die Bibliothek HTML nicht als Eintrag verwenden kann. `name` ist die exponierte globale Variable und erforderlich, wenn `formats` `'umd'` oder `'iife'` enthält. Die Standardformate sind `['es', 'umd']` oder `['es', 'cjs']`, wenn mehrere Einträge verwendet werden.
 
 `fileName` ist der Name der ausgegebenen Paketdatei, der standardmäßig dem `"name"` in `package.json` entspricht. Er kann auch als Funktion definiert werden, die `format` und `entryName` als Argumente übernimmt und den Dateinamen zurückgibt.
 
@@ -280,7 +282,7 @@ Wenn der Wert eine Zeichenfolge ist, wird er als Manifestdateipfad relativ zu `b
 
 Erzeugen Sie einen build, der für serverseitiges Rendern (SSR) geeignet ist. Der Wert kann eine Zeichenkette sein, um das SSR-Eingabeziel direkt anzugeben, oder `true`,
 
-was erfordert, dass das SSR-Eingabeziel über `rolldownOptions.input` festgelegt wird.
+was erfordert, dass das SSR-Eingabeziel über [`input`](/config/shared-options#input) oder `build.rolldownOptions.input` festgelegt wird.
 
 ## build.emitAssets
 

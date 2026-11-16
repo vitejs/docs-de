@@ -34,6 +34,22 @@ Die Angabe in der Konfiguration überschreibt den Standardmodus für **Ausführu
 
 Siehe [Umgebungsvariablen und Modi](/guide/env-and-mode) für weitere Details.
 
+## input <NonInheritBadge />
+
+- **Typ:** `string | string[] | { [entryAlias: string]: string }`
+
+Einstiegspunkte Ihrer Anwendung, aufgelöst relativ zum Projekt-Root. Dient als Standardwert für [`build.rolldownOptions.input`](/config/build-options#build-rolldownoptions), [`build.lib.entry`](/config/build-options#build-lib), [`build.ssr`](/config/build-options#build-ssr) (falls `true`) und [`optimizeDeps.entries`](/config/dep-optimization-options#optimizedeps-entries), sofern diese nicht explizit gesetzt sind.
+
+Das ist nützlich, wenn Ihre Anwendung keinen `index.html`-Einstieg verwendet: So müssen Sie den Einstieg nur einmal angeben, statt ihn in den oben genannten Optionen zu wiederholen.
+
+```js twoslash [vite.config.js]
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  input: 'src/main.ts',
+})
+```
+
 ## definieren
 
 - **Typ:** `Record<string, string>`
