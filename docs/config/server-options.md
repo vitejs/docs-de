@@ -159,6 +159,12 @@ export default defineConfig({
 })
 ```
 
+::: warning Origin-Prüfung für WebSockets
+
+Vite prüft den Origin von WebSocket-Anfragen vor dem Weiterleiten nicht. Es wird erwartet, dass das Proxy-Ziel den `Origin`-Header prüft oder andere Prüfungen vornimmt. Beachten Sie, dass die Option `rewriteWsOrigin` den Origin auf den Ziel-Origin umschreibt, wodurch die Origin-Prüfung umgangen wird.
+
+:::
+
 ## server.cors
 
 - **Typ:** `boolean | CorsOptions`
