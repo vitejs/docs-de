@@ -270,7 +270,7 @@ Um mehr zu erfahren, wie und wann Vite neue Releases veröffentlicht, können Si
 
 ::: tip Abhängigkeiten die Vite benutzen
 
-Um die von Abhängigkeiten transitiv verwendeter Vite-Version zu ersetzen, sollten Sie [npm-Überschreibungen](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) oder [pnpm-Überschreibungen](https://pnpm.io/9.x/package_json#pnpmoverrides) verwenden.
+Um die von Abhängigkeiten transitiv verwendeter Vite-Version zu ersetzen, sollten Sie [npm-Überschreibungen](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) oder [pnpm-Überschreibungen](https://pnpm.io/settings#overrides) verwenden.
 
 :::
 
