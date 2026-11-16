@@ -10,7 +10,7 @@ Vite (französisches Wort für "schnell", ausgesprochen [`/vi:t/`]<button style=
 
 - Einem Entwicklungsserver, der Ihre Quelldateien über [native ES-Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), mit [umfangreichen integrierten Funktionen](./features) und erstaunlich schnellem [Hot Module Replacement (HMR)](./features#hot-module-replacement) bereitstellt.
 
-- Einem [Build-Befehl](./build), der Ihren Code mit [Rollup](https://rollupjs.org) bündelt und so vorkonfiguriert ist, dass er hochoptimierte statische Assets für die Produktion ausgibt.
+- Einem [Build-Befehl](./build), der Ihren Code mit [Rolldown](https://rolldown.rs) bündelt und so vorkonfiguriert ist, dass er hochoptimierte statische Assets für die Produktion ausgibt.
 
 Vite ist meinungsfreudig und wird mit vernünftigen Standardeinstellungen ausgeliefert. Lesen Sie im [Features Guide](./features) nach, was alles möglich ist. Unterstützung für Frameworks oder Integration mit anderen Tools ist über [Plugins](./using-plugins) möglich. Die [Config Section](../config/) erklärt, wie Sie Vite bei Bedarf an Ihr Projekt anpassen können.
 
