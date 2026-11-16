@@ -49,11 +49,7 @@ export default defineConfig({
 
 ## optimizeDeps.rolldownOptions <NonInheritBadge />
 
-- **Typ:** [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<`[`RolldownOptions`](https://rolldown.rs/reference/), `'input' | 'logLevel' | 'output'> & {
-  output?: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<`
-    [`RolldownOutputOptions`](https://rolldown.rs/reference/),
-    `'format' | 'sourcemap' | 'dir' | 'banner'>`
-`}`
+- **Typ:** <code>Omit<<a href="https://rolldown.rs/reference/Interface.RolldownOptions">RolldownOptions</a>, 'input' | 'logLevel' | 'output'> & { output?: Omit<<a href="https://rolldown.rs/reference/#:~:text=Output%20Options">RolldownOutputOptions</a>, 'format' | 'sourcemap' | 'dir' | 'banner'> }</code>
 
 Optionen die an Rolldown übergeben werden, während die Abhängigkeiten gescannt und optimiert werden.
 
@@ -63,17 +59,7 @@ Bestimmte Optionen werden ausgelassen, da eine Änderungen an ihnen nicht kompat
 
 ## optimizeDeps.esbuildOptions <NonInheritBadge />
 
-- **Typ:** [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<`[`EsbuildBuildOptions`](https://esbuild.github.io/api/#general-options)`,
-| 'bundle'
-| 'entryPoints'
-| 'external'
-| 'write'
-| 'watch'
-| 'outdir'
-| 'outfile'
-| 'outbase'
-| 'outExtension'
-| 'metafile'>`
+- **Typ:** <code>Omit<<a href="https://esbuild.github.io/api/#general-options">EsbuildBuildOptions</a>, 'bundle' | 'entryPoints' | 'external' | 'write' | 'watch' | 'outdir' | 'outfile' | 'outbase' | 'outExtension' | 'metafile'></code>
 - **Veraltet**
 
 Diese Option ist intern zu `optimizeDeps.rolldownOptions` konvertiert. Nutzen Sie `optimizeDeps.rolldownOptions` stattdessen.
