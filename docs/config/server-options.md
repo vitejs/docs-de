@@ -180,17 +180,45 @@ Legen Sie die Serverantwortheader fest.
 
 ## server.hmr
 
-- **Typ:** `boolean | { protocol?: string, host?: string, port?: number, path?: string, timeout?: number, overlay?: boolean, clientPort?: number, server?: Server }`
+- **Typ:** `boolean | { overlay?: boolean }`
 
-Deaktivieren oder konfigurieren Sie die HMR-Verbindung (in Fällen, in denen das HMR-WebSocket eine andere Adresse als der HTTP-Server verwenden muss).
+Deaktivieren oder konfigurieren Sie das HMR-Verhalten.
 
 Setzen Sie `server.hmr.overlay` auf `false`, um das Serverfehler-Overlay zu deaktivieren.
 
-Mit `protocol` wird das für die HMR-Verbindung verwendete WebSocket-Protokoll festgelegt - zur Auswahl stehen `ws` (WebSocket) und `wss` (WebSocket Secure).
+::: warning Veraltete Optionen
 
-`clientPort` ist eine erweiterte Option, die den Port nur auf der Clientseite überschreibt und es Ihnen ermöglicht, das WebSocket auf einem anderen Port als der Clientcode danach suchen lässt.
+Die WebSocket-bezogenen Optionen (`protocol`, `host`, `port`, `path`, `clientPort`, `timeout`, `server`) sind veraltet. Verwenden Sie stattdessen [`server.ws`](#server-ws). Diese Optionen werden automatisch synchronisiert, sodass bestehende Konfigurationen weiterhin funktionieren.
 
-Wenn `server.hmr.server` definiert ist, wird Vite die HMR-Verbindungsanfragen über den bereitgestellten Server verarbeiten. Wenn sich Vite nicht im Middleware-Modus befindet, wird Vite versuchen, HMR-Verbindungsanfragen über den vorhandenen Server zu verarbeiten. Dies kann hilfreich sein, wenn Sie selbstsignierte Zertifikate verwenden oder Vite über ein Netzwerk auf einem einzelnen Port verfügbar machen möchten.
+:::
+
+## server.ws
+
+- **Typ:** `false | { protocol?: string, host?: string, port?: number, path?: string, timeout?: number, clientPort?: number, server?: Server }`
+
+Konfiguriert die Optionen der WebSocket-Verbindung. Setzen Sie den Wert auf `false`, um die WebSocket-Verbindung vollständig zu deaktivieren.
+
+- `protocol` – WebSocket-Protokoll (`ws` oder `wss`)
+- `host` – Host des WebSocket-Servers
+- `port` – Port des WebSocket-Servers
+- `path` – WebSocket-Pfad
+- `clientPort` – Überschreibt den Port nur auf der Clientseite, sodass Sie das WebSocket auf einem anderen Port bereitstellen können als dem, auf dem der Clientcode danach sucht
+- `timeout` – Verbindungs-Timeout in Millisekunden (Standard: 30000)
+- `server` – Verwendet einen eigenen HTTP-Server für WebSocket-Verbindungen
+
+Wenn `server.ws.server` definiert ist, verarbeitet Vite die WebSocket-Verbindungsanfragen über den bereitgestellten Server. Wenn sich Vite nicht im Middleware-Modus befindet, versucht Vite, WebSocket-Verbindungsanfragen über den vorhandenen Server zu verarbeiten. Dies kann hilfreich sein, wenn Sie selbstsignierte Zertifikate verwenden oder Vite über ein Netzwerk auf einem einzelnen Port verfügbar machen möchten.
+
+```js
+export default defineConfig({
+  server: {
+    ws: {
+      protocol: 'wss',
+      host: 'localhost',
+      port: 3001,
+    },
+  },
+})
+```
 
 Schauen Sie sich [`vite-setup-catalogue`](https://github.com/sapphi-red/vite-setup-catalogue) für einige Beispiele an.
 
@@ -199,14 +227,14 @@ Schauen Sie sich [`vite-setup-catalogue`](https://github.com/sapphi-red/vite-set
 Mit der Standardkonfiguration wird erwartet, dass Reverse-Proxys vor Vite WebSocket-Proxying unterstützen. Wenn der Vite HMR-Client keine Verbindung zum WebSocket herstellen kann, fällt der Client auf die direkte Verbindung zum Vite HMR-Server zurück und umgeht die Reverse-Proxys:
 
 ```
-Direkter WebSocket-Verbindungsrückfall. Weitere Informationen finden Sie unter https://vite.dev/config/server-options.html#server-hmr, um den vorherigen Verbindungsfehler zu entfernen.
+Direkter WebSocket-Verbindungsrückfall. Weitere Informationen finden Sie unter https://vite.dev/config/server-options.html#server-ws, um den vorherigen Verbindungsfehler zu entfernen.
 ```
 
 Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann ignoriert werden. Um den Fehler zu vermeiden, indem Sie die Reverse-Proxys direkt umgehen, können Sie entweder:
 
 - Konfigurieren Sie den Reverse-Proxy so, dass er auch WebSocket proxyt
-- Setzen Sie [`server.strictPort = true`](#server-strictport) und legen Sie `server.hmr.clientPort` auf denselben Wert wie `server.port`
-- Legen Sie `server.hmr.port` auf einen anderen Wert als [`server.port`](#server-port)
+- Setzen Sie [`server.strictPort = true`](#server-strictport) und legen Sie `server.ws.clientPort` auf denselben Wert wie `server.port`
+- Legen Sie `server.ws.port` auf einen anderen Wert als [`server.port`](#server-port)
 
 :::
 
