@@ -106,7 +106,7 @@ vite optimize [root]
 
 Lokale Vorschau der Produktionsversion. Verwenden Sie dies nicht als Produktions-Server, da es nicht dafür ausgelegt ist.
 
-Dieser Befehlt startet einen Server im Build-Verzeichnis (standardmäßig `dist`). Führen Sie `vite build` zuvor aus, um sicherzustellen, dass das Build-Verzeichnis aktuell ist. Abhängig von der Projektkonfiguration für [`appType`](/config/shared-options.html#apptype), wird bestimmte Middleware verwendet.
+Dieser Befehlt startet einen Server im Build-Verzeichnis (standardmäßig `dist`). Führen Sie `vite build` zuvor aus, um sicherzustellen, dass das Build-Verzeichnis aktuell ist. Abhängig von der Projektkonfiguration für [`appType`](/config/shared-options#apptype), wird bestimmte Middleware verwendet.
 
 #### Verwendung
 
