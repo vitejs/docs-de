@@ -126,7 +126,7 @@ Es sollte nur verwendet werden, wenn Sie einen nicht-mainstream Browser anvisier
 ## build.cssMinify
 
 - **Typ:** `boolean | 'lightningcss' | 'esbuild'`
-- **Standard:** dasselbe wie [`build.minify`](#build-minify) für Clients, `'lightningcss'` für SSR
+- **Standard:** `'lightningcss'`, aber `false`, wenn [`build.minify`](#build-minify) für den Client-Build deaktiviert ist
 
 Diese Option ermöglicht es Benutzern, die CSS-Minimierung speziell zu überschreiben, anstatt auf die Standardwerte von `build.minify` zurückzugreifen. Dadurch können Sie die Minimierung für JS und CSS unabhängig voneinander konfigurieren. Vite verwendet standardmäßig [Lightning CSS](https://lightningcss.dev/minification.html), um CSS zu minimieren. Es kann mit [`css.lightningcss`](./shared-options.md#css-lightningcss) konfiguriert werden. Setzen sie die Option auf `'esbuild'`, um esbuild stattdessen zu verwenden.
 

@@ -346,17 +346,11 @@ Standard- und benannte Importe aus CSS-Dateien (z.B. `import style from './foo.c
 
 ### Lightning CSS
 
-Ab Vite 4.4 gibt es eine experimentelle Unterstützung für [Lightning CSS](https://lightningcss.dev/). Sie können sich dafür entscheiden, indem Sie [`css.transformer: 'lightningcss'`](../config/shared-options.md#css-transformer) zu Ihrer Konfigurationsdatei hinzufügen und die optionale Abhängigkeit von [`lightningcss`](https://www.npmjs.com/package/lightningcss) installieren:
+Vite verwendet standardmäßig [Lightning CSS](https://lightningcss.dev/), um CSS in Produktions-Builds zu minifizieren. Für die übrige CSS-Verarbeitung wird jedoch weiterhin PostCSS verwendet.
 
-```bash
-npm add -D lightningcss
-```
+Es gibt eine experimentelle Unterstützung, um die CSS-Verarbeitung vollständig mit Lightning CSS durchzuführen. Sie können sich dafür entscheiden, indem Sie [`css.transformer: 'lightningcss'`](../config/shared-options.md#css-transformer) hinzufügen.
 
-Wenn diese Option aktiviert ist, werden CSS-Dateien von Lightning CSS anstelle von PostCSS verarbeitet. Um dies zu konfigurieren, können Sie Lightning CSS-Optionen an die Konfigurationsoption [`css.lightningcss`](../config/shared-options.md#css-lightningcss) übergeben.
-
-Um CSS-Module zu konfigurieren, verwenden Sie [`css.lightningcss.cssModules`](https://lightningcss.dev/css-modules.html) anstelle von [`css.modules`](../config/shared-options.md#css-modules) (die die Art und Weise konfiguriert, wie PostCSS CSS-Module behandelt).
-
-Standardmäßig verwendet Vite esbuild zum Minifizieren von CSS. Lightning CSS kann auch als CSS-Minifizierer mit [`build.cssMinify: 'lightningcss'`](../config/build-options.md#build-cssminify) verwendet werden.
+Um dies zu konfigurieren, können Sie Lightning CSS-Optionen an die Konfigurationsoption [`css.lightningcss`](../config/shared-options.md#css-lightningcss) übergeben. Um CSS-Module zu konfigurieren, verwenden Sie [`css.lightningcss.cssModules`](https://lightningcss.dev/css-modules.html) anstelle von [`css.modules`](../config/shared-options.md#css-modules) (die die Art und Weise konfiguriert, wie PostCSS CSS-Module behandelt).
 
 ## Statische Assets
 
