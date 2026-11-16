@@ -4,7 +4,7 @@
 Geben Sie uns Rückmeldungen in der ["Environment API Feedback"-Diskussion](https://github.com/vitejs/vite/discussions/16358)
 :::
 
-Wir planen, den Plugin-Hook `handleHotUpdate` zugunsten des Hooks `hotUpdate` zu verwerfen, um Environment API-kompatibel zu sein und zusätzliche Überwachungsereignisse mit `create` und `delete` zu verarbeiten.
+Wir planen, den Plugin-Hook `handleHotUpdate` zugunsten des [Hooks `hotUpdate`](/guide/api-environment-plugins#the-hotupdate-hook) zu verwerfen, um [Environment API](/guide/api-environment.md)-kompatibel zu sein und zusätzliche Überwachungsereignisse mit `create` und `delete` zu verarbeiten.
 
 Betroffener Bereich: `Vite Plugin-Authoren`
 

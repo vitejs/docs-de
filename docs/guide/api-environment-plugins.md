@@ -79,7 +79,7 @@ Plugins sollten Standardwerte mithilfe des Hooks `config` festlegen. Um jede Umg
   }
 ```
 
-## Der `hotUpdate`-Hook
+## Der `hotUpdate`-Hook {#the-hotupdate-hook}
 
 - **Typ:** `(this: { environment: DevEnvironment }, options: HotUpdateOptions) => Array<EnvironmentModuleNode> | void | Promise<Array<EnvironmentModuleNode> | void>`
 - **Art:** `async`, `sequential`
