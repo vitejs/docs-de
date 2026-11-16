@@ -64,7 +64,7 @@ vite build [root]
 | `-w, --watch`                  | Erstellt erneut, wenn Module auf der Festplatte geändert wurden (`boolean`)                                                                                    |
 | `-c, --config <file>`          | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                                        |
 | `--base <path>`                | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                              |
-| `-l, --logLevel <level>`       | Info \| warn \| error \| silent (`string`)                                                                                                                     |
+| `-l, --logLevel <level>`       | info \| warn \| error \| silent (`string`)                                                                                                                     |
 | `--clearScreen`                | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                                |
 | `--configLoader <loader>`      | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten oder `native` (experimentell), um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`)          |
 | `--profile`                    | Startet den integrierten Node.js-Inspector (siehe [Performance Engpässe](/guide/troubleshooting#performance-bottlenecks))                                      |
@@ -95,7 +95,7 @@ vite optimize [root]
 | `--force`                 | Zwingt den Optimierer, den Cache zu ignorieren und neu zu bündeln (`boolean`)                                                                         |
 | `-c, --config <file>`     | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                               |
 | `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                     |
-| `-l, --logLevel <level>`  | Info \| warn \| error \| silent (`string`)                                                                                                            |
+| `-l, --logLevel <level>`  | info \| warn \| error \| silent (`string`)                                                                                                            |
 | `--clearScreen`           | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                       |
 | `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten oder `native` (experimentell), um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`) |
 | `-d, --debug [feat]`      | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                       |
@@ -126,7 +126,7 @@ vite preview [root]
 | `--outDir <dir>`          | Ausgabe Verzeichnis (Standard: `dist`) (`string`)                                                                                                      |
 | `-c, --config <file>`     | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                               |
 | `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                     |
-| `-l, --logLevel <level>`  | Info \| warn \| error \| silent (`string`)                                                                                                            |
+| `-l, --logLevel <level>`  | info \| warn \| error \| silent (`string`)                                                                                                            |
 | `--clearScreen`           | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                       |
 | `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten oder `native` (experimentell), um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`) |
 | `-d, --debug [feat]`      | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                       |
