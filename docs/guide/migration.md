@@ -300,6 +300,24 @@ Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln S
 
 Die Option `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option [`codeSplitting`](https://rolldown.rs/reference/OutputOptions.codeSplitting). Weitere Informationen zu `codeSplitting` finden Sie in der Dokumentation von Rolldown: [Manual Code Splitting - Rolldown](https://rolldown.rs/in-depth/manual-code-splitting).
 
+### `build()` wirft `BundleError`
+
+_Diese Änderung betrifft nur Nutzer:innen der JS-API._
+
+`build()` wirft jetzt einen [`BundleError`](https://rolldown.rs/reference/TypeAlias.BundleError) statt des rohen Fehlers, der im Plugin geworfen wurde. `BundleError` ist als `Error & { errors?: RolldownError[] }` typisiert und fasst die einzelnen Fehler in einem `errors`-Array zusammen. Wenn Sie die einzelnen Fehler benötigen, greifen Sie auf `.errors` zu:
+
+```js
+try {
+  await build()
+} catch (e) {
+  if (e.errors) {
+    for (const error of e.errors) {
+      console.log(error.code) // Fehlercode
+    }
+  }
+}
+```
+
 ### Modultypunterstützung und automatische Erkennung
 
 Die Änderung betrifft nur Plugin-Authoren.
