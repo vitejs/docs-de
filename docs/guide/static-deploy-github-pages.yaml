@@ -1,19 +1,19 @@
 # Importiert in static-deploy.md
-# Diese Datei wird als seperate Datei extrahiert, damit Renovate die Aktionsversionen aktualisieren kann
+# Diese Datei wird als separate Datei extrahiert, damit Renovate die Action-Versionen aktualisieren kann
 #
-#Region Inhalt
-# Einfacher Arbeitsablauf zur Bereitstellung von statischem Inhalt auf GitHub Pages
+#region content
+# Einfacher Workflow zur Bereitstellung von statischem Inhalt auf GitHub Pages
 name: Deploy static content to Pages
 
 on:
-  # Läuft bei Pushes, die auf den Standardzweig abzielen  
+  # Läuft bei Pushes auf den Standard-Branch
   push:
     branches: ['main']
 
-  # Ermöglicht Ihnen diesen Workflow manuell vom Aktionstab auszuführen    
+  # Ermöglicht es Ihnen, diesen Workflow manuell über den Actions-Tab auszuführen
   workflow_dispatch:
 
-# Setzt die GITHUB_TOKEN Berechtigung, um die Bereitstellung auf GitHub Pages zu ermöglichen
+# Setzt die GITHUB_TOKEN-Berechtigungen, um die Bereitstellung auf GitHub Pages zu ermöglichen
 permissions:
   contents: read
   pages: write
@@ -25,7 +25,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Einzelner Bereitstellungsauftrag, da wir nur bereitstellen
+  # Einzelner Bereitstellungs-Job, da wir nur bereitstellen
   deploy:
     environment:
       name: github-pages
@@ -33,9 +33,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Set up Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: lts/*
           cache: 'npm'
@@ -44,13 +44,13 @@ jobs:
       - name: Build
         run: npm run build
       - name: Setup Pages
-        uses: actions/configure-pages@v6
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
           # Ordner "dist" hochladen
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
-#Endregion Inhalt
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
+#endregion content
