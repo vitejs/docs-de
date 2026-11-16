@@ -522,6 +522,7 @@ Beispiel:
 function outputMetadataPlugin(): Plugin {
   return {
     name: 'output-metadata-plugin',
+    enforce: 'post',
     generateBundle(_, bundle) {
       for (const output of Object.values(bundle)) {
         const css = output.viteMetadata?.importedCss
