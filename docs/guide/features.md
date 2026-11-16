@@ -93,6 +93,12 @@ Vite ignoriert den `target`-Wert in der `tsconfig.json` und folgt damit dem glei
 
 Um das Ziel in dev anzugeben, kann die Option [`oxc.target`](/config/shared-options.html#oxc) verwendet werden, die für eine minimale Transpilierung auf `esnext` voreingestellt ist. In Builds hat die Option [`build.target`](/config/build-options.html#build-target) höhere Priorität als `oxc.target` und kann bei Bedarf ebenfalls gesetzt werden.
 
+#### `emitDecoratorMetadata`
+
+- [TypeScript-Dokumentation](https://www.typescriptlang.org/tsconfig#emitDecoratorMetadata)
+
+Diese Option wird nur teilweise unterstützt. Eine vollständige Unterstützung erfordert Typinferenz durch den TypeScript-Compiler, die nicht unterstützt wird. Details finden Sie in der [Dokumentation von Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer/typescript.html#decorators).
+
 #### `paths`
 
 - [TypeScript-Dokumentation](https://www.typescriptlang.org/tsconfig/#paths)
@@ -234,7 +240,7 @@ Siehe [Plugins Guide](/plugins/) für mehr Informationen.
 
 ## JSX
 
-.jsx"- und "tsx"-Dateien werden ebenfalls von Haus aus unterstützt. JSX Transpilierung wird auch über [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer/) gehandhabt.
+.jsx"- und "tsx"-Dateien werden ebenfalls von Haus aus unterstützt. JSX Transpilierung wird auch über [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer.html) gehandhabt.
 
 Das Framework Ihrer Wahl konfiguriert JSX standardmäßig (z. B. Vue-Benutzer sollten das offizielle [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx) Plugin verwenden, das Vue 3-spezifische Funktionen wie HMR, globale Komponentenauflösung, Direktiven und Slots bietet).
 
