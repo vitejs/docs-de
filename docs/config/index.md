@@ -14,7 +14,7 @@ export default {
 }
 ```
 
-Anmerkung: Vite unterstützt die Verwendung der ES-Module-Syntax in der Konfigurationsdatei, auch wenn das Projekt keinen nativen Node ESM verwendet, z.B. `"type": "module"` in `package.json`. In diesem Fall wird die Konfigurationsdatei vor dem Laden automatisch vorverarbeitet.
+Anmerkung: Um die ES-Module-Syntax in der Konfigurationsdatei zu verwenden, muss sie sich in einer Datei befinden, die Node.js als ESM erkennt, z. B. `.mjs` oder `.js` mit `"type": "module"` in der nächstgelegenen `package.json`.
 
 Sie können auch explizit eine Konfigurationsdatei angeben, die mit der CLI-Option `--config` verwendet wird (aufgelöst relativ zu `cwd`):
 
@@ -25,9 +25,7 @@ vite --config my-config.js
 <ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq/~05jg?via=vite" title="Vite konfigurieren">Sehen Sie sich eine interaktive Lektion auf Scrimba an</ScrimbaLink>
 
 ::: tip Laden der Konfiguration
-Standardmäßig nutzt Vite [Rolldown](https://rolldown.rs/), um die Konfiguration in einer temporären Datei zu bündeln. Dies kann zu Problemen beim Importieren von TypeScript-Dateien in einem Monorepo führen. Wenn Sie Probleme mit diesem Ansatz haben, können Sie stattdessen `--configLoader runner` angeben, um den [Modul-Runner](/guide/api-environment-runtimes.html#modulerunner) zu verwenden. Dieser erstellt keine temporäre Konfiguration und transformiert alle Dateien sofort. Beachten Sie, dass der Modul-Runner CJS in Konfigurationsdateien nicht unterstützt, externe CJS-Pakete sollten jedoch wie gewohnt funktionieren.
-
-Wenn Sie eine Umgebung mit TypeScript-Support nutzen (z. B. `node --experimental-strip-types`) oder wenn Sie nur schlichtes JavaScript verwenden, dann können Sie die Option `--configLoader native` angeben, um die native Laufzeitumgebung zum Laden der Konfiguration zu verwenden. Beachten Sie, dass Updates von Modulen, die von der Konfigurationsdatei importiert werden, nicht erkannt werden und daher der Vite-Server nicht automatisch neu gestartet wird.
+Standardmäßig nutzt Vite [Rolldown](https://rolldown.rs/), um die Konfiguration in einer temporären Datei zu bündeln und zu laden. Wenn Sie eine Umgebung mit TypeScript-Support nutzen (z. B. Node 22.18+) oder nur schlichtes JavaScript verwenden, können Sie die Option `--configLoader native` angeben, um die native Laufzeitumgebung zum Laden der Konfiguration zu verwenden. `configLoader: 'native'` soll in einer zukünftigen Major-Version zum Standard werden.
 :::
 
 ## Intellisense-Konfiguration
