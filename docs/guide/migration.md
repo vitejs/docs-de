@@ -100,16 +100,7 @@ Derzeit unterstützt der Oxc-Transformer das Herunterkonvertieren nativer Dekora
 
 :::: details Workaround für das Herunterkonvertieren nativer Dekoratoren
 
-Sie können vorerst [Babel](https://babeljs.io/) oder [SWC](https://swc.rs/) verwenden, um native Dekoratoren herunterzukonvertieren. SWC ist zwar schneller als Babel, unterstützt jedoch **nicht die neueste Dekorator-Spezifikation**, die esbuild unterstützt.
-
-Die Dekorator-Spezifikation wurde seit Erreichen von Stage 3 mehrfach aktualisiert. Die unterstützen Versionen von jedem Tool sind:
-
-- `"2023-11"` (esbuild und TypeScript5.4+ sowie Babel unterstützen diese Version)
-- `"2023-05"` (TypeScript5.2+ unterstützt diese Version)
-- `"2023-01"` (TypeScript5.0+ unterstützt diese Version)
-- `"2022-03"` (SWC unterstützt diese Version)
-
-Schauen Sie sich den [Babel-Dekoratorversionen-Leitfaden](https://babeljs.io/docs/babel-plugin-proposal-decorators#version) für Unterschiede zwischen den Versionen an.
+Sie können vorerst [Babel](https://babeljs.io/) oder [SWC](https://swc.rs/) verwenden, um native Dekoratoren herunterzukonvertieren.
 
 **Babel verwenden:**
 
@@ -197,8 +188,7 @@ export default defineConfig({
         swc: {
           jsc: {
             parser: { decorators: true, decoratorsBeforeExport: true },
-            // NOTIZ: SWC unterstützt Version '2023-11' noch nicht.
-            transform: { decoratorVersion: '2022-03' },
+            transform: { decoratorVersion: '2023-11' },
           },
         },
       }),
