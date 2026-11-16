@@ -239,7 +239,7 @@ vite build --profile
 Sobald Ihre Anwendung im Browser geöffnet ist, warten Sie, bis sie fertig geladen ist, und kehren Sie dann zum Terminal zurück und drücken Sie die Taste `p` (um den Node.js-Inspektor zu stoppen), drücken Sie dann die Taste `q`, um den Entwicklungsserver zu stoppen.
 :::
 
-Der Node.js-Inspektor erstellt ein CPU-Profil mit dem Namen `vite-profile-0.cpuprofile` im Stammverzeichnis. Gehen Sie zu https://www.speedscope.app/ und laden Sie das CPU-Profil mit der Schaltfläche `BROWSE` hoch, um das Ergebnis zu überprüfen.
+Der Node.js-Inspektor erstellt ein CPU-Profil mit dem Namen `vite-profile-0.cpuprofile` im Stammverzeichnis. Mit `--profile <name>` (oder `--profile=<name>`) wird stattdessen `<name>.cpuprofile` geschrieben. Gehen Sie zu https://www.speedscope.app/ und laden Sie das CPU-Profil mit der Schaltfläche `BROWSE` hoch, um das Ergebnis zu überprüfen.
 
 Sie können [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) installieren, mit dem Sie den Zwischenzustand von Vite-Plugins inspizieren und identifizieren können, welche Plugins oder Middleware in Ihren Anwendungen Engpässe darstellen. Das Plugin kann sowohl im Entwicklungs- als auch im Build-Modus verwendet werden. Weitere Details finden Sie in der Readme-Datei.
 
