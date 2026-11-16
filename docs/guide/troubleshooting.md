@@ -288,6 +288,19 @@ Beispiele für Verknüpfungen zwischen verschiedenen Laufwerken sind:
 
 Verwandtes Problem: [#10802](https://github.com/vitejs/vite/issues/10802)
 
+### Default-Import liefert unerwartet ein Objekt
+
+Bei CJS-Modulen liefert der Default-Import das Objekt `module.exports`, während Sie möglicherweise den Wert `module.exports.default` erwarten.
+
+Das kann zu Fehlern wie diesen führen:
+
+> Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object.
+
+> foo is not a function
+
+Weitere Details zu diesem Problem finden Sie in der Rolldown-Dokumentation: [Ambiguous `default` import from CJS modules - Bundling CJS | Rolldown](https://rolldown.rs/in-depth/bundling-cjs#ambiguous-default-import-from-cjs-modules).
+
+
 <script setup lang="ts">
 // Weiterleitung von alten Links mit Hash zu alten Dokumentations-Versionen
 if (typeof window !== "undefined") {
