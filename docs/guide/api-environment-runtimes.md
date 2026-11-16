@@ -156,6 +156,8 @@ function createWorkerdDevEnvironment(
 }
 ```
 
+Standardmäßig gelten für `HotChannel`-Transporte die Einschränkungen von `server.fs`, d. h. es können nur Dateien aus den erlaubten Verzeichnissen ausgeliefert werden. Wenn Ihr Transport nicht über das Netzwerk erreichbar ist (z. B. weil er über Worker-Threads oder prozessinterne Aufrufe kommuniziert), können Sie `skipFsCheck: true` für den `HotChannel` setzen, um diese Einschränkungen zu umgehen.
+
 Es gibt [mehrere Kommunikationsebenen für das `DevEnvironment`](/guide/api-environment-frameworks#devenvironment-communication-levels). Um Frameworks das Schreiben von laufzeitunabhängigem Code zu erleichtern, empfehlen wir, die flexibelste Kommunikationsebene zu implementieren.
 
 ## `ModuleRunner`
@@ -359,6 +361,8 @@ function createWorkerEnvironment(name, config, context) {
   }
 
   const workerHotChannel = {
+    // Nachrichten von Worker-Threads sind nicht über das Netzwerk erreichbar, daher server.fs-Prüfungen überspringen
+    skipFsCheck: true,
     send: (data) => w.postMessage(data),
     on: (event, handler) => {
       // Client ist bereits verbunden
