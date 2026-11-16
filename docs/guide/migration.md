@@ -216,7 +216,7 @@ Das Verzerrung von Eigenschaften und die damit verbundenen Optionen ([`manglePro
 esbuild und der Oxc-Minimierer gehen von leicht unterschiedlichen Annahmen bezüglich des Quellcodes aus. Falls Sie vermuten, dass der Minimierer Fehler in Ihrem Code verursacht, können Sie diese Annahmen hier vergleichen:
 
 - [Annahmen von esbuild bei der Minimierung](https://esbuild.github.io/api/#minify-considerations)
-- [Annahmen des Oxc-Minimierers](https://oxc.rs/docs/guide/usage/minifier.html#assumptions)
+- [Annahmen des Oxc-Minimierers](https://github.com/oxc-project/oxc/blob/main/crates/oxc_minifier/docs/ASSUMPTIONS.md)
 
 Bitte melden Sie alle Probleme, die Sie im Zusammenhang mit der Minifizierung in Ihren JavaScript-Apps feststellen.
 
