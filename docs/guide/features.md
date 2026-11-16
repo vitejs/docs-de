@@ -633,8 +633,25 @@ Diese Regeln werden erzwungen, um versehentliches Importieren von Dateien zu ver
 
 ## WebAssembly
 
-Vorkompilierte `.wasm` Dateien können mit `?init` importiert werden.
-Der Standardexport wird eine Initialisierungsfunktion sein, die ein Promise der [`WebAssembly.Instance`](https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/Instance) zurückgibt:
+Vite unterstützt den Import vorkompilierter `.wasm`-Dateien auf zwei Arten: direkt als [ES-Modul](#esm-integration), wenn Sie nur die Exporte des Moduls benötigen, oder mit [`?init`](#manuelle-initialisierung), wenn Sie die Instanziierung explizit steuern möchten.
+
+### ESM-Integration {#esm-integration}
+
+Eine `.wasm`-Datei kann direkt importiert werden. Vite liest die Importe und Exporte des Moduls aus der Binärdatei, instanziiert es und stellt seine Exporte als benannte ES-Modul-Exporte bereit:
+
+```js
+import { add } from './add.wasm'
+
+console.log(add(1, 2)) // 3
+```
+
+Deklariert das WebAssembly-Modul eigene Importe, löst Vite diese aus JavaScript-Modulen auf. Der Modulname jedes Imports wird als Import-Specifier behandelt (relativ zur `.wasm`-Datei aufgelöst), und die angeforderten Member werden automatisch mit der Instanz verbunden.
+
+Dies folgt dem [WebAssembly/ES Module Integration Proposal](https://github.com/WebAssembly/esm-integration). Da ein WebAssembly-Modul asynchron instanziiert wird, verhält sich eine direkt importierte `.wasm`-Datei wie ein asynchrones Modul und erfordert Unterstützung für Top-Level-`await`.
+
+### Manuelle Initialisierung
+
+Wenn Sie steuern möchten, wann und wie das Modul instanziiert wird, importieren Sie es mit `?init`. Der Standardexport wird eine Initialisierungsfunktion sein, die ein Promise der [`WebAssembly.Instance`](https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/Instance) zurückgibt:
 
 ```js
 import init from './example.wasm?init'
@@ -660,14 +677,9 @@ init({
 
 Im Produktions-Build werden `.wasm`-Dateien, die kleiner als `assetInlineLimit` sind, als base64-Strings inlined. Andernfalls werden sie wie ein [statisches Asset](./assets) behandelt und bei Bedarf abgerufen.
 
-:::tip HINWEIS
-[ES Module Integration Proposal for WebAssembly](https://github.com/WebAssembly/esm-integration) wird derzeit nicht unterstützt.
-Verwenden Sie [`vite-plugin-wasm`](https://github.com/Menci/vite-plugin-wasm) oder andere Community-Plugins, um dies zu handhaben.
-:::
-
 ::: warning Für den SSR-Build werden nur Laufzeitumgebungen unterstützt, die mit Node.js kompatibel sind
 
-Auf Grund einer fehlenden universellen Möglichkeit eine Datei zu laden, ist die interne Implementierung für `.wasm?init` auf das `node:fs`-Modul angewiesen. Das bedeutet, dass dieses Feature nur in Laufzeitumgebungen funktioniert, die mit Node.js kompatibel sind.
+Auf Grund einer fehlenden universellen Möglichkeit eine Datei zu laden, ist die interne Implementierung sowohl für direkte `.wasm`-Importe als auch für `.wasm?init` auf das `node:fs`-Modul angewiesen. Das bedeutet, dass diese Features bei SSR-Builds nur in Laufzeitumgebungen funktioniert, die mit Node.js kompatibel sind.
 
 :::
 
