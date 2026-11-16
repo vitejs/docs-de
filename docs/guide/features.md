@@ -589,6 +589,21 @@ Nur die Globs, welche relative Pfade sind, werden als relativ zur aufgelösten B
 
 Alle resultierenden Modulschlüssel werden so geändert, dass sie relativ zur Basis sind, sofern diese angegeben ist.
 
+#### Groß-/Kleinschreibung beim Abgleich
+
+Standardmäßig wird beim Glob-Abgleich zwischen Groß- und Kleinschreibung unterschieden. Mit der Option `caseSensitive` können Sie dieses Verhalten ändern:
+
+```ts twoslash
+import 'vite/client'
+// ---cut---
+const modules = import.meta.glob('./dir/module*.js', {
+  caseSensitive: false,
+})
+```
+
+Mit `caseSensitive: false` findet der Glob Dateien unabhängig von der Groß-/Kleinschreibung (z. B. werden `Module.js`, `module.js` und `MODULE.js` alle von `module*.js` erfasst).
+
+
 ### Glob Import Caveats
 
 Beachten Sie dies:
