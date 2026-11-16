@@ -42,7 +42,7 @@ Diese Bedingungen werden in der Plugin-Pipeline verwendet und betreffen nur nich
 ## ssr.resolve.externalConditions
 
 - **Typ:** `string[]`
-- **Standard:** `['node']`
+- **Standard:** `['node', 'module-sync']`
 
 Bedingungen, die beim Importieren von externalisierten direkten Abhängigkeiten (von Vite importierte externe Abhängigkeiten) mit ssr (einschließlich `ssrLoadModule`) verwendet werden.
 
