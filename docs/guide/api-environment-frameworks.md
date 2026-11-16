@@ -336,6 +336,10 @@ export default defineConfig({
 
 ### Der Plugin-Hook `buildApp`
 
+- **Typ:** `(this: MinimalPluginContextWithoutEnvironment, builder: ViteBuilder) => Promise<void>`
+- **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
+
 Neben der Konfigurationsoption `builder.buildApp` können Plugins einen `buildApp`-Hook definieren, um sich am App-Build zu beteiligen. Die Konfigurationsoption und die Plugin-Hooks laufen in einer festgelegten Reihenfolge: zuerst Hooks mit der Reihenfolge `'pre'` oder `null`, dann das konfigurierte `builder.buildApp` und anschließend Hooks mit der Reihenfolge `'post'`. Innerhalb eines Hooks gibt `environment.isBuilt` an, ob eine Umgebung bereits gebaut wurde, sodass ein Plugin vermeiden kann, sie doppelt zu bauen.
 
 ### Programmatisch bauen mit `createBuilder`

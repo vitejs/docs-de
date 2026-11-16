@@ -143,7 +143,9 @@ console.log(msg)
 
 Da `\0` in Vite kein erlaubtes Zeichen in Import-URLs ist, wird eine virtuelle ID `\0{id}` während der Entwicklung im Browser als `/@id/__x00__{id}` codiert. Die ID wird vor dem Eintritt in die Plugin-Pipeline zurückdekodiert, sodass dies vom Plugin-Hook-Code nicht gesehen wird.
 
-## Universale Hooks
+## Rolldown-Hooks {#rolldown-hooks}
+
+Alle Rolldown-Hooks sind [Hooks pro Umgebung](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks).
 
 Während der Entwicklung erstellt der Vite-Dev-Server einen Plugin-Container, der die [Rolldown Build Hooks](https://rolldown.rs/apis/plugin-api#build-hooks) auf dieselbe Weise aufruft, wie es Rolldown tut.
 
@@ -179,6 +181,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
 
 - **Typ:** `(config: UserConfig, env: { mode: 'build' | 'serve', command: string, isSsrBuild?: boolean, isPreview?: boolean }) => UserConfig | null | void`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 
   Ändert die Vite-Konfiguration, bevor sie aufgelöst wird. Der Hook empfängt die Rohkonfiguration des Benutzers (CLI-Optionen zusammengeführt mit der Konfigurationsdatei) und die aktuelle Konfigurationsumgebung, die den verwendeten `mode` und `command` angibt. Er kann ein teilweises Konfigurationsobjekt zurückgeben, das tief in die vorhandene Konfiguration eingefügt wird, oder die Konfiguration direkt ändern (wenn das Standardzusammenführen das gewünschte Ergebnis nicht erreichen kann).
 
@@ -216,6 +219,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
 
 - **Typ:** `(config: ResolvedConfig) => void | Promise<void>`
 - **Art:** `async`, `parallel`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 
   Wird aufgerufen, nachdem die Vite-Konfiguration aufgelöst wurde. Verwenden Sie diesen Hook, um die endgültige aufgelöste Konfiguration zu lesen und zu speichern. Er ist auch nützlich, wenn das Plugin basierend auf dem ausgeführten Befehl etwas anderes tun muss.
 
@@ -251,6 +255,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
 
 - **Typ:** `(server: ViteDevServer) => (() => void) | void | Promise<(() => void) | void>`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 - **Siehe auch:** [ViteDevServer](./api-javascript#vitedevserver)
 
   Hook zur Konfiguration des Dev-Servers. Der häufigste Anwendungsfall besteht darin, benutzerdefinierte Middleware zur internen [connect](https://github.com/senchalabs/connect)-App hinzuzufügen:
@@ -311,6 +316,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
 
 - **Typ:** `(server: PreviewServer) => (() => void) | void | Promise<(() => void) | void>`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 - **Siehe auch:** [PreviewServer](./api-javascript#previewserver)
 
   Ähnlich wie [`configureServer`](/guide/api-plugin.html#configureserver), aber für den Vorschau-Server. Ähnlich wie `configureServer` wird der `configurePreviewServer`-Hook vor der Installation anderer Middlewares aufgerufen. Wenn Sie eine Middleware **nach** anderen Middlewares einfügen möchten, können Sie eine Funktion aus `configurePreviewServer` zurückgeben, die nach der Installation der internen Middlewares aufgerufen wird:
@@ -333,6 +339,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
 
 - **Typ:** `IndexHtmlTransformHook | { order?: 'pre' | 'post', handler: IndexHtmlTransformHook }`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Pro Umgebung](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 
   Dedizierter Hook zur Transformation von HTML-Einstiegspunktdateien wie `index.html`. Der Hook empfängt den aktuellen HTML-String und einen Transformationskontext. Der Kontext gibt während der Entwicklung die [`ViteDevServer`](./api-javascript#vitedevserver)-Instanz und während des Builds das Rollup-Ausgabe-Bundle aus.
 
@@ -406,6 +413,7 @@ Dieser Hook wird nicht aufgerufen, wenn Sie ein Framework verwenden, das eine ei
 
 - **Typ:** `(ctx: HmrContext) => Array<ModuleNode> | void | Promise<Array<ModuleNode> | void>`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Pro Umgebung](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 - **Siehe auch:** [HMR API](./api-hmr)
 
   Führen Sie die benutzerdefinierte HMR-Updateverarbeitung durch. Der Hook erhält ein Kontextobjekt mit folgender Signatur:
