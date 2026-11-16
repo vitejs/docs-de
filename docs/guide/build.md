@@ -74,7 +74,7 @@ Bei einer neuen Bereitstellung kann der Hosting-Dienst die Assets aus früheren 
 
 ## Neuerstellen bei Dateiänderungen
 
-Sie können den Rollup Watcher mit `vite build --watch` aktivieren. Oder Sie können die zugrundeliegenden [`WatcherOptions`](https://rolldown.rs/reference/InputOptions.watch) direkt über `build.watch` anpassen:
+Sie können den Rolldown-Watcher mit `vite build --watch` aktivieren. Oder Sie können die zugrundeliegenden [`WatcherOptions`](https://rolldown.rs/reference/InputOptions.watch) direkt über `build.watch` anpassen:
 
 ```js [vite.config.js]
 export default defineConfig({

@@ -365,7 +365,7 @@ Begrenzung für die Größe von Chunk-Warnungen (in kB). Sie wird mit der unkomp
 - **Typ:** [`WatcherOptions`](https://rolldown.rs/reference/InputOptions.watch)`| null`
 - **Standard:** `null`
 
-Setzen Sie dies auf `{}`, um den Rollup-Watcher zu aktivieren. Dies wird hauptsächlich in Fällen verwendet, die Build-only-Plugins oder Integrationsprozesse involvieren.
+Setzen Sie dies auf `{}`, um den Rolldown-Watcher zu aktivieren. Dies wird hauptsächlich in Fällen verwendet, die Build-only-Plugins oder Integrationsprozesse involvieren.
 
 ::: warning Verwendung von Vite unter WSL2
 
