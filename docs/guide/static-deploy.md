@@ -8,6 +8,8 @@
   2. Kostenlose Angebote sollten die Website auf unbestimmte Zeit hosten und sind nicht zeitlich begrenzt.
      Das Angebot einer begrenzten Anzahl von Rechenressourcen oder der Anzahl von Websites im Austausch ist in Ordnung.
   3. Die verlinkten Anleitungen dürfen keine bösartigen Inhalte enthalten.
+  4. Die Plattform muss seit mindestens einem Jahr in Betrieb sein. Bitte belegen Sie dies
+     in Ihrer PR-Beschreibung.
 
   Das Vite-Team kann die Kriterien ändern und die aktuelle Liste von Zeit zu Zeit überprüfen.
   Wenn ein Abschnitt entfernt wird, werden wir die ursprünglichen PR-Autoren vorher anpingen.
