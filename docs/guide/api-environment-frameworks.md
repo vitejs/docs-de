@@ -19,7 +19,13 @@ Da Umgebungen in verschiedenen Laufzeiten ausgeführt werden können, kann die K
 
 ### `RunnableDevEnvironment`
 
-`RunnableDevEnvironment` ist eine Umgebung, die beliebige Werte kommunizieren kann. Die implizite `ssr`-Umgebung und andere Nicht-Client-Umgebungen verwenden während der Entwicklung standardmäßig ein `RunnableDevEnvironment`. Während dies voraussetzt, dass die Laufzeit mit der des Vite-Servers übereinstimmt, funktioniert dies ähnlich mit `ssrLoadModule` und erlaubt es Frameworks zu migrieren und HMR für ihre SSR-Entwicklungsgeschichte zu aktivieren. Man kann jede lauffähige Umgebung mit einer `isRunnableDevEnvironment` Funktion überwachen.
+`RunnableDevEnvironment` ist eine Umgebung, die beliebige JavaScript-Werte mit Ihrem Anwendungscode austauschen kann. Beim Importieren eines Moduls erhalten Sie dessen echte, lebendige Exporte (Funktionen, Klasseninstanzen und alle anderen Werte), sodass Frameworks ihre Server-Einstiegspunkte direkt ausführen können. Die implizite `ssr`-Umgebung und andere Nicht-Client-Umgebungen verwenden während der Entwicklung standardmäßig ein `RunnableDevEnvironment`. Den Zugriff auf den Runner können Sie mit der Funktion `isRunnableDevEnvironment` absichern.
+
+Sein `runner` ist ein `ModuleRunner`. Über `runner.import(url)` importieren Sie Module: Damit wird ein Modul aus dem Vite-Modulgraphen abgerufen, transformiert und ausgewertet (die `url` akzeptiert einen Dateipfad, einen Serverpfad oder eine ID relativ zum Root), und Sie erhalten das instanziierte Modul mit voller HMR-Unterstützung zurück. Es ist der moderne Ersatz für `server.ssrLoadModule`, sodass Frameworks darauf migrieren können, um HMR für ihre SSR-Entwicklung zu aktivieren.
+
+:::info Warum beliebige Werte ausgetauscht werden können
+Ein `RunnableDevEnvironment` wertet Module in derselben Laufzeitumgebung wie der Vite-Server aus, sodass Werte prozessintern übergeben werden, statt serialisiert zu werden. Das unterscheidet es vom [`FetchableDevEnvironment`](#fetchabledevenvironment), das nur über serialisierte `Request`-/`Response`-Objekte per Fetch API kommunizieren kann. Daher setzt die Verwendung eines `RunnableDevEnvironment` voraus, dass die Laufzeitumgebung des Runners dieselbe ist wie die des Vite-Servers.
+:::
 
 ```ts
 export class RunnableDevEnvironment extends DevEnvironment {
@@ -120,6 +126,8 @@ Im Moment suchen wir nach Feedback zu [dem Vorschlag `FetchableDevEnvironment`] 
 :::
 
 `FetchableDevEnvironment` ist eine Umgebung, die über die Schnittstelle [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch) mit ihrer Laufzeitumgebung kommunizieren kann. Da die `RunnableDevEnvironment` nur in einer begrenzten Anzahl von Laufzeiten implementiert werden kann, empfehlen wir, anstelle der `RunnableDevEnvironment` die `FetchableDevEnvironment` zu verwenden.
+
+Ein häufiger Grund dafür ist ein Framework, das eine Laufzeitumgebung unterstützen möchte, in der Vite nicht direkt laufen kann (z. B. Cloudflare Workers). Ein `RunnableDevEnvironment` lässt sich dort nicht verwenden, da der Runner die Laufzeitumgebung des Vite-Servers teilen muss, damit Werte prozessintern übergeben werden können. Durch die Standardisierung auf die Fetch API kann das Framework einen einzigen Weg zur Verarbeitung von Anfragen für alle Ziel-Laufzeitumgebungen beibehalten: Seine Entwicklungs-Middleware leitet jede eingehende Browser-Anfrage als `Request` weiter und sendet die zurückgegebene `Response` an den Browser zurück – genau so, wie die App Anfragen in der Produktion verarbeitet.
 
 Diese Umgebung stellt einen standardisierten Weg bereit, Anfragen mit Hilfe der `handleRequest`-Methode zu bearbeiten:
 
@@ -305,7 +313,11 @@ export function createHandler(input) {
 
 In der CLI werden beim Aufruf von `vite build` und `vite build --ssr` aus Gründen der Abwärtskompatibilität weiterhin nur die Client- und nur die ssr-Umgebung gebaut.
 
-Wenn die `builder`-Option nicht `undefined` ist (oder wenn `vite build --app` aufgerufen wird), wird `vite build` stattdessen die gesamte Anwendung bauen. Dies würde später in einem zukünftigen Major zum Standard werden. Eine `ViteBuilder`-Instanz wird erstellt (zur Build-Zeit äquivalent zu einem `ViteDevServer`), um alle konfigurierten Umgebungen für die Produktion zu erstellen. Standardmäßig wird die Erstellung der Umgebungen in der Reihenfolge des Eintrags „environments“ durchgeführt. Ein Framework oder Benutzer kann weiter konfigurieren, wie die Umgebungen mit der `builder.buildApp`-Option gebaut werden:
+Wenn die Option `builder` gesetzt ist (auch auf ein leeres Objekt `{}`, was `vite build --app` tut), baut `vite build` stattdessen die gesamte Anwendung. In einer zukünftigen Major-Version wird dies zum Standard. In diesem Modus erstellt Vite eine `ViteBuilder`-Instanz (das Build-Zeit-Gegenstück zu einem `ViteDevServer`) und verwendet sie, um alle konfigurierten Umgebungen für die Produktion zu bauen. Standardmäßig werden die Umgebungen nacheinander in der Reihenfolge des `environments`-Eintrags gebaut.
+
+### Den App-Build mit `builder.buildApp` konfigurieren
+
+Ein Framework oder Benutzer kann über die Option `builder.buildApp` steuern, wie die Umgebungen gebaut werden. Sie erhält die `ViteBuilder`-Instanz (im folgenden Beispiel `builder` genannt) und ist dafür verantwortlich, jede Umgebung zu bauen, zum Beispiel einige davon parallel:
 
 ```js [vite.config.js]
 import { defineConfig } from 'vite'
@@ -322,7 +334,22 @@ export default defineConfig({
 })
 ```
 
-Plugins können auch eine `buildApp`-Hook definieren. Die Befehle `'pre'` und `null` werden vor der konfigurierten `builder.buildApp` ausgeführt und `'post'`-Befehl-Hooks werden danach ausgeführt. Mit `environment.isBuilt` kann überprüft werden, ob eine Umgebung bereits erstellt wurde.
+### Der Plugin-Hook `buildApp`
+
+Neben der Konfigurationsoption `builder.buildApp` können Plugins einen `buildApp`-Hook definieren, um sich am App-Build zu beteiligen. Die Konfigurationsoption und die Plugin-Hooks laufen in einer festgelegten Reihenfolge: zuerst Hooks mit der Reihenfolge `'pre'` oder `null`, dann das konfigurierte `builder.buildApp` und anschließend Hooks mit der Reihenfolge `'post'`. Innerhalb eines Hooks gibt `environment.isBuilt` an, ob eine Umgebung bereits gebaut wurde, sodass ein Plugin vermeiden kann, sie doppelt zu bauen.
+
+### Programmatisch bauen mit `createBuilder`
+
+Um einen App-Build aus Ihrem eigenen Code auszulösen, verwenden Sie `createBuilder` statt der eigenständigen Funktion `build`. `createBuilder` ist das Build-Zeit-Gegenstück zu `createServer`: Es löst die Konfiguration auf und gibt einen `ViteBuilder` zurück, dessen Methode `buildApp` jede konfigurierte Umgebung baut. Mit `builder.build(environment)` können Sie auch eine einzelne Umgebung bauen.
+
+```js [build.js]
+import { createBuilder } from 'vite'
+
+const builder = await createBuilder()
+await builder.buildApp()
+```
+
+`createBuilder` löst die eigenständige Funktion `build` für umgebungsbewusste Builds ab. `build` funktioniert weiterhin als einfacher Einstiegspunkt für die oben beschriebenen klassischen Builds nur für den Client bzw. nur für SSR, kann aber keine beliebigen Umgebungen bauen. `builder.buildApp()` auszuführen ist das programmatische Gegenstück zu `vite build --app`.
 
 ## Umgebungsunabhängiger Code
 

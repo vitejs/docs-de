@@ -13,9 +13,11 @@ Ressourcen:
 Bitte teilen Sie uns Ihr Feedback mit.
 :::
 
+Diese Seite richtet sich an Runtime-Anbieter, also an Autor:innen, die eine JavaScript-Laufzeitumgebung in Vite integrieren. Eine Laufzeitumgebung ist hier die JavaScript-Engine, in der der transformierte Code ausgeführt wird, etwa Node.js, der Browser, Cloudflares workerd oder ein Worker-Thread. Ein Runtime-Anbieter stellt die Integration für eine dieser Laufzeitumgebungen bereit, damit Framework-Autor:innen und Endnutzer:innen (die Entwickler:innen, die eine App bauen) sie nicht selbst einrichten müssen.
+
 ## Umgebungs-"Fabriken"
 
-Umgebungsfabriken sind für die Implementierung durch Umgebungsanbieter wie Cloudflare vorgesehen und nicht für Endbenutzer. Umgebungsfabriken geben eine `EnvironmentOptions` für den häufigsten Fall zurück, bei dem die Ziel-Laufzeitumgebung sowohl für Entwicklungs- als auch für Build-Umgebungen verwendet wird. Die Standardumgebungsoptionen können auch so eingestellt werden, dass der Benutzer dies nicht tun muss.
+Umgebungsfabriken sind für die Implementierung durch Runtime-Anbieter vorgesehen und nicht für Endbenutzer. Umgebungsfabriken geben eine `EnvironmentOptions` für den häufigsten Fall zurück, bei dem die Ziel-Laufzeitumgebung sowohl für Entwicklungs- als auch für Build-Umgebungen verwendet wird. Die Standardumgebungsoptionen können auch so eingestellt werden, dass der Benutzer dies nicht tun muss.
 
 ```ts
 function createWorkerdEnvironment(
@@ -466,4 +468,13 @@ server.onRequest((request: Request) => {
 
 Beachten Sie allerdings, dass für die HMR-Unterstützung `send`- und `connect`-Methoden notwendig sind. Die `send`-Methode wird üblicherweise aufgerufen, wenn das benutzerdefinierte Event ausgelöst wird (wie beispielsweise `import.meta.hot.send("my-event")`).
 
-Vite exportiert `createServerHotChannel` aus dem Haupteinstiegspunkt, um HMR während Vite SSR zu unterstützen.
+Für eine SSR-Umgebung, die im selben Node.js-Prozess wie der Vite-Server läuft, exportiert Vite `createServerHotChannel` als fertigen `HotChannel`:
+
+```js
+import { createServerHotChannel, DevEnvironment } from 'vite'
+
+new DevEnvironment(name, config, {
+  hot: true,
+  transport: createServerHotChannel(),
+})
+```
