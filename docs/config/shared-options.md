@@ -214,6 +214,48 @@ Aktiviert die Funktion der `tsconfig` zur Pfadauflösung. Die Option `paths` in 
 
 Ein Platzhalter für einen Nonce-Wert, der bei der Generierung von Skript-/Style-Tags verwendet wird. Durch Festlegen dieses Werts wird auch ein Meta-Tag mit Nonce-Wert generiert.
 
+## html.additionalAssetSources
+
+- **Typ:** `Record<string, HtmlAssetSource>`
+
+```ts
+interface HtmlAssetSource {
+  srcAttributes?: string[]
+  srcsetAttributes?: string[]
+  filter?: (data: {
+    key: string
+    value: string
+    attributes: Record<string, string>
+  }) => boolean
+}
+```
+
+Legt zusätzliche HTML-Elemente und -Attribute fest, die als Asset-Quellen behandelt werden sollen. Dies erweitert die integrierte Liste, die Standardelemente wie `<img src>`, `<video src>`, `<link href>` usw. enthält.
+
+Das ist nützlich, wenn Sie eigene Web Components oder nicht standardisierte Attribute (wie `data-*`) verwenden, die auf Assets verweisen.
+
+**Beispiel:**
+
+```js
+export default defineConfig({
+  html: {
+    additionalAssetSources: {
+      // Eigene Web Component
+      'html-import': { srcAttributes: ['src'] },
+      // data-*-Attribute zu einem bestehenden Element hinzufügen
+      img: { srcAttributes: ['data-src-dark', 'data-src-light'] },
+      // Im srcset-Format
+      'my-picture': { srcsetAttributes: ['data-srcset'] },
+      // Mit Filterfunktion
+      'my-component': {
+        srcAttributes: ['asset'],
+        filter: ({ attributes }) => attributes.type === 'image',
+      },
+    },
+  },
+})
+```
+
 ## css.modules
 
 - **Typ:**
