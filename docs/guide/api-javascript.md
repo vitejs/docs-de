@@ -212,7 +212,7 @@ import { build } from 'vite'
     root: path.resolve(import.meta.dirname, './project'),
     base: '/foo/',
     build: {
-      rollupOptions: {
+      rolldownOptions: {
         // ...
       },
     },

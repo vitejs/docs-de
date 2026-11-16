@@ -21,7 +21,7 @@ Beachten Sie, dass der Build eine Warnung ausgibt, wenn der Code Funktionen enth
 - **Typ:** `boolean | { polyfill?: boolean, resolveDependencies?: ResolveModulePreloadDependenciesFn }`
 - **Standard:** `{ polyfill: true }`
 
-Standardmäßig wird ein [Modul-Preload-Polyfill](https://guybedford.com/es-module-preloading-integrity#modulepreload-polyfill) automatisch eingefügt. Das Polyfill wird automatisch in das Proxy-Modul jeder `index.html`-Eingabe eingefügt. Wenn der Build so konfiguriert ist, dass eine benutzerdefinierte Eingabe verwendet wird, die nicht HTML ist, über `build.rollupOptions.input`, ist es notwendig, das Polyfill in Ihrer benutzerdefinierten Eingabe manuell zu importieren:
+Standardmäßig wird ein [Modul-Preload-Polyfill](https://guybedford.com/es-module-preloading-integrity#modulepreload-polyfill) automatisch eingefügt. Das Polyfill wird automatisch in das Proxy-Modul jeder `index.html`-Eingabe eingefügt. Wenn der Build so konfiguriert ist, dass eine benutzerdefinierte Eingabe verwendet wird, die nicht HTML ist, über `build.rolldownOptions.input`, ist es notwendig, das Polyfill in Ihrer benutzerdefinierten Eingabe manuell zu importieren:
 
 ```js
 import 'vite/modulepreload-polyfill'
@@ -269,7 +269,7 @@ Wenn der Wert eine Zeichenfolge ist, wird er als Manifestdateipfad relativ zu `b
 
 Erzeugen Sie einen build, der für serverseitiges Rendern (SSR) geeignet ist. Der Wert kann eine Zeichenkette sein, um das SSR-Eingabeziel direkt anzugeben, oder `true`,
 
-was erfordert, dass das SSR-Eingabeziel über `rollupOptions.input` festgelegt wird.
+was erfordert, dass das SSR-Eingabeziel über `rolldownOptions.input` festgelegt wird.
 
 ## build.emitAssets
 

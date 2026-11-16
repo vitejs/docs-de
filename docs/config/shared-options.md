@@ -145,7 +145,7 @@ Wenn `find` ein regulärer Ausdruck ist, kann die `replacement`-Option [Ersetzun
 Wenn Sie kopierte Kopien derselben Abhängigkeit in Ihrer App haben (wahrscheinlich aufgrund des Hoistings oder verknüpfter Pakete in Monorepos), verwenden Sie diese Option, um Vite dazu zu zwingen, aufgelistete Abhängigkeiten immer auf dieselbe Kopie (aus dem Projektstamm) zu lösen.
 
 :::warning SSR + ESM
-Für SSR-Builds funktioniert die Deduplizierung für ESM-Build-Ausgaben, die von `build.rollupOptions.output` konfiguriert sind, nicht. Ein Workaround besteht darin, CJS-Build-Ausgaben zu verwenden, bis ESM eine bessere Plugin-Unterstützung für die Modulladung hat.
+Für SSR-Builds funktioniert die Deduplizierung für ESM-Build-Ausgaben, die von `build.rolldownOptions.output` konfiguriert sind, nicht. Ein Workaround besteht darin, CJS-Build-Ausgaben zu verwenden, bis ESM eine bessere Plugin-Unterstützung für die Modulladung hat.
 :::
 
 ## resolve.conditions <NonInheritBadge />

@@ -21,7 +21,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
       build: {
         // generiert .vite/manifest.json in outDir
         manifest: true,
-        rollupOptions: {
+        rolldownOptions: {
           // Überschreibe den Standard-.html-Einstieg
           input: '/path/to/main.js'
         }
@@ -180,7 +180,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    ```
 
    Jeder Eintrag im Manifest repräsentiert eines der folgenden:
-   - **Entry Chunks**: Generiert aus Dateien spezifiziert unter [`build.rollupOptions.input`](https://rollupjs.org/configuration-options/#input). Diese Chunks haben `isEntry: true` und ihr Schlüssel ist der relative Pfad vom Wurzelverzeichnis des Projekts.
+   - **Entry Chunks**: Generiert aus Dateien spezifiziert unter [`build.rolldownOptions.input`](https://rollupjs.org/configuration-options/#input). Diese Chunks haben `isEntry: true` und ihr Schlüssel ist der relative Pfad vom Wurzelverzeichnis des Projekts.
    - **Dynamische Entry Chunks**: Generiert aus dynamischen Importen. Diese Chunks haben `isDynamicEntry: true` und ihr Schlüssel ist der relative Pfad vom Wurzelverzeichnis des Projekts.
    - **Non-entry Chunks**: Ihr Schlüssel ist der Basisname der generierten Dateien beginnend mit `_`.
    - **Asset Chunks**: Generiert aus importierten Assets wie Images oder Schriftarten. Ihr Schlüssel ist der relative src-Pfad vom Wurzelverzeichnis.
