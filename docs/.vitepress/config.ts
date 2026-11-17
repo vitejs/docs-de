@@ -156,46 +156,41 @@ const config = defineConfig({
       { icon: 'github', link: 'https://github.com/vitejs/vite' },
     ],
 
-    algolia: {
-      appId: '7H67QR5P0A',
-      apiKey: '208bb9c14574939326032b937431014b',
-      indexName: 'vitejs',
-      searchParameters: {
-        facetFilters: ['tags:de'],
-      },
-      placeholder: 'Suche',
-      translations: {
-        button: {
-          buttonText: 'Suche',
+    search: {
+      provider: 'local',
+      options: {
+        miniSearch: {
+          searchOptions: {
+            boostDocument(page) {
+              if (page.startsWith('/guide/')) return 2 // Prefer guide pages
+              if (page.startsWith('/config/')) return 1.5 // Then config pages
+              if (page.startsWith('/blog/')) return 0 // Do not index blog posts
+              return 1
+            },
+          },
         },
-        modal: {
-          searchBox: {
-            resetButtonTitle: 'Suche zurücksetzen.',
-            resetButtonAriaLabel: 'Suche zurücksetzen.',
-            cancelButtonText: 'Zurücksetzen',
-            cancelButtonAriaLabel: 'Zurücksetzen',
+        translations: {
+          button: {
+            buttonText: 'Suche',
+            buttonAriaLabel: 'Suche',
           },
-          startScreen: {
-            recentSearchesTitle: 'Letzte Suchanfragen',
-            noRecentSearchesText: 'Keine letzten Suchanfragen.',
-          },
-          errorScreen: {
-            titleText: 'Fehler beim Abrufen von Suchergebnissen.',
-            helpText:
-              'Möglicherweise müssen Sie Ihre Netzwerkverbindung überprüfen.',
-          },
-          footer: {
-            selectText: 'Auswählen',
-            navigateText: 'Navigieren',
-            closeText: 'Schließen',
-          },
-          noResultsScreen: {
-            noResultsText: 'Keine Ergebnisse gefunden.',
-            suggestedQueryText: 'Alternative Vorschläge',
+          modal: {
+            displayDetails: 'Detaillierte Liste anzeigen',
+            resetButtonTitle: 'Suche zurücksetzen',
+            backButtonTitle: 'Suche schließen',
+            noResultsText: 'Keine Ergebnisse gefunden für',
+            footer: {
+              selectText: 'Auswählen',
+              selectKeyAriaLabel: 'Eingabetaste',
+              navigateText: 'Navigieren',
+              navigateUpKeyAriaLabel: 'Pfeil nach oben',
+              navigateDownKeyAriaLabel: 'Pfeil nach unten',
+              closeText: 'Schließen',
+              closeKeyAriaLabel: 'Escape',
+            },
           },
         },
       },
-      insights: true,
     },
 
     carbonAds: {
