@@ -1,5 +1,9 @@
 # Befehlszeilen-Schnittstelle (CLI)
 
+## Prozess-Locks {#process-locks}
+
+Die Befehle `vite`, `vite build` und `vite preview` erstellen Lock-Dateien im Unterverzeichnis `lock` des [`cacheDir`](/config/shared-options#cachedir). Gehört ein Lock zu einem anderen laufenden Prozess mit demselben Befehl, demselben Projektstammverzeichnis, derselben Konfigurationsdatei und demselben Modus, beendet sich Vite. Um eine weitere Instanz auszuführen, übergeben Sie `--bypass-lock`.
+
 ## Entwicklungs-Server
 
 ### `vite`
@@ -23,6 +27,7 @@ vite [root]
 | `--strictPort`            | Beendet den Vorgang, wenn der angegebene Port bereits verwendet wird (`boolean`)                                                                                                                                                      |
 | `--force`                 | Zwingt den Optimierer, den Cache zu ignorieren und neu zu bündeln (`boolean`)                                                                                                                                                         |
 | `--experimentalBundle`    | Verwendet den experimentellen Full-Bundle-Modus (hochgradig experimentell) (`boolean`) |
+| `--bypass-lock`           | Erlaubt die Ausführung parallel zu einem anderen Vite-Prozess für dieses Projekt (`boolean`) |
 | `-c, --config <file>`     | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                                                                                                               |
 | `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                                                                                                     |
 | `-l, --logLevel <level>`  | info \| warn \| error \| silent (`string`)                                                                                                                                                                                            |
@@ -62,6 +67,7 @@ vite build [root]
 | `--ssrManifest [name]`         | Erzeugt SSR-Manifest JSON (`boolean \| string`)                                                                                                                |
 | `--emptyOutDir`                | Leert das Ausgabeverzeichnis, wenn es außerhalb des Stammverzeichnisses liegt (`boolean`)                                                                      |
 | `-w, --watch`                  | Erstellt erneut, wenn Module auf der Festplatte geändert wurden (`boolean`)                                                                                    |
+| `--bypass-lock`                | Erlaubt die Ausführung parallel zu einem anderen Vite-Prozess für dieses Projekt (`boolean`) |
 | `-c, --config <file>`          | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                                        |
 | `--base <path>`                | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                              |
 | `-l, --logLevel <level>`       | info \| warn \| error \| silent (`string`)                                                                                                                     |
@@ -124,6 +130,7 @@ vite preview [root]
 | `--strictPort`            | Beendet den Vorgang, wenn der angegebene Port bereits verwendet wird (`boolean`)                                                                      |
 | `--open [path]`           | Öffnet den Browser beim Starten (`boolean \| string`)                                                                                                 |
 | `--outDir <dir>`          | Ausgabe Verzeichnis (Standard: `dist`) (`string`)                                                                                                      |
+| `--bypass-lock`           | Erlaubt die Ausführung parallel zu einem anderen Vite-Prozess für dieses Projekt (`boolean`) |
 | `-c, --config <file>`     | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                               |
 | `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                     |
 | `-l, --logLevel <level>`  | info \| warn \| error \| silent (`string`)                                                                                                            |
