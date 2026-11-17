@@ -464,21 +464,21 @@ export default defineConfig({
 ## server.sourcemapIgnoreList
 
 - **Typ:** `false | (sourcePath: string, sourcemapPath: string) => boolean`
-- **Standard:** `(sourcePath) => sourcePath.includes('node_modules')`
+- **Standard:** `(sourcePath) => /(?:^|[\\/])node_modules(?:[\\/]|$)/.test(sourcePath)`
 
 Gibt an, ob Quelldateien in der Server-Sourcemap ignoriert werden sollen, die verwendet wird, um die [`x_google_ignoreList`-Source-Map-Erweiterung](https://developer.chrome.com/blog/devtools-better-angular-debugging/#the-x_google_ignorelist-source-map-extension) zu füllen.
 
 `server.sourcemapIgnoreList` entspricht [`build.rolldownOptions.output.sourcemapIgnoreList`](https://rolldown.rs/reference/OutputOptions.sourcemapIgnoreList) für den Entwicklungsserver. Ein Unterschied zwischen den beiden Konfigurationsoptionen besteht darin, dass die Rolldown-Funktion für `sourcePath` einen relativen Pfad aufruft, während `server.sourcemapIgnoreList` mit einem absoluten Pfad aufgerufen wird. Während der Entwicklung haben die meisten Module die Karte und die Quelle im selben Verzeichnis, sodass der relative Pfad für `sourcePath` der Dateiname selbst ist. In diesen Fällen erleichtern absolute Pfade ihre Verwendung.
 
-Standardmäßig werden alle Pfade, die `node_modules` enthalten, ausgeschlossen. Sie können `false` übergeben, um dieses Verhalten zu deaktivieren, oder, um die volle Kontrolle zu haben, eine Funktion, die den Quellpfad und den Sourcemap-Pfad akzeptiert und zurückgibt, ob der Quellpfad ignoriert werden soll.
+Standardmäßig werden alle Pfade ausgeschlossen, die `node_modules` als Pfadsegment enthalten. Sie können `false` übergeben, um dieses Verhalten zu deaktivieren, oder, um die volle Kontrolle zu haben, eine Funktion, die den Quellpfad und den Sourcemap-Pfad akzeptiert und zurückgibt, ob der Quellpfad ignoriert werden soll.
 
 ```js
 export default defineConfig({
   server: {
-    // Dies ist der Standardwert und wird alle Dateien mit 'node_modules'
-    // in ihrem Pfad zur Ignorierungsliste hinzufügen.
+    // Dies ist der Standardwert und fügt alle Dateien, die node_modules
+    // als Pfadsegment enthalten, zur Ignorierungsliste hinzu.
     sourcemapIgnoreList(sourcePath, sourcemapPath) {
-      return sourcePath.includes('node_modules')
+      return /(?:^|[\\/])node_modules(?:[\\/]|$)/.test(sourcePath)
     }
   }
 };
