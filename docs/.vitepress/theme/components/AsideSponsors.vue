@@ -57,7 +57,7 @@ const sponsors = computed(() => {
 }
 
 .viteconf:hover {
-  border: 2px solid var(--vp-c-brand-light);
+  border-color: var(--vp-c-brand-1);
 }
 
 .viteconf img {
@@ -81,7 +81,7 @@ const sponsors = computed(() => {
 }
 
 .viteconf .heading {
-  color: var(--vp-c-brand-lighter);
+  color: var(--vp-c-brand-1);
 }
 
 .viteconf .extra-info {
