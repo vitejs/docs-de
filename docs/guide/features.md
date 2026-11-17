@@ -51,9 +51,9 @@ import type { T } from 'only/types'
 export type { T }
 ```
 
-### TypeScript Compiler-Optionen
+### TypeScript Compiler-Optionen {#typescript-compiler-options}
 
-Vite berücksichtigt einige der Optionen in der `tsconfig.json` und setzt die entsprechenden Oxc-Transformer-Optionen. Für jede Datei verwendet Vite die nächstgelegene übergeordnete `tsconfig.json`, die zur Datei passt, oder eine über deren [`references`](https://www.typescriptlang.org/tsconfig/#references)-Feld referenzierte Konfiguration, die zur Datei passt. Eine Konfiguration passt zur Datei, wenn die Datei die Felder [`files`](https://www.typescriptlang.org/tsconfig/#files), [`include`](https://www.typescriptlang.org/tsconfig/#include) und [`exclude`](https://www.typescriptlang.org/tsconfig/#exclude) der Konfiguration erfüllt.
+Vite berücksichtigt einige der Optionen in der `tsconfig.json` und setzt die entsprechenden Oxc-Transformer-Optionen. Standardmäßig verwendet Vite für jede Datei die nächstgelegene übergeordnete `tsconfig.json`, die zur Datei passt. Eine über das [`references`](https://www.typescriptlang.org/tsconfig/#references)-Feld dieser Konfiguration referenzierte Konfiguration wird verwendet, wenn sie zur Datei passt. Eine Konfiguration passt zur Datei, wenn die Datei die Felder [`files`](https://www.typescriptlang.org/tsconfig/#files), [`include`](https://www.typescriptlang.org/tsconfig/#include) und [`exclude`](https://www.typescriptlang.org/tsconfig/#exclude) der Konfiguration erfüllt.
 
 Wenn die Optionen in der Vite-Konfiguration und der `tsconfig.json` gesetzt sind, hat der Wert in der Vite-Konfiguration Vorrang.
 

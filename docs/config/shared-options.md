@@ -633,6 +633,20 @@ Stellen Sie sicher, dass `@vitejs/devtools` als Abhängigkeit installiert ist. D
 
 Schauen Sie sich [Vite DevTools](https://github.com/vitejs/devtools) an, für mehr Details.
 
+## tsconfig
+
+- **Typ:** `string`
+
+Pfad zur TypeScript-Konfigurationsdatei, die von Vite verwendet wird. Relative Pfade werden ausgehend vom Projekt-[`root`](#root) aufgelöst.
+
+Wenn diese Option nicht gesetzt ist, ermittelt Vite für jede Datei die nächstgelegene passende `tsconfig.json`. Siehe [TypeScript Compiler-Optionen](/guide/features#typescript-compiler-options) für weitere Details.
+
+::: warning Automatische Ermittlung bevorzugen
+Von dieser Option wird abgeraten, da sie Vites dateibezogene tsconfig-Ermittlung überschreibt, die auf den TypeScript-Language-Server abgestimmt ist. Platzieren Sie stattdessen eine `tsconfig.json` in der Nähe der Dateien, die sie konfiguriert, und verwenden Sie für Multi-Projekt-Setups TypeScript-[`references`](https://www.typescriptlang.org/tsconfig/#references).
+
+Wenn Sie Importe umleiten möchten, verwenden Sie lieber [`resolve.alias`](#resolve-alias) oder die Felder `imports` und `exports` in der `package.json`, anstatt eine tsconfig allein wegen [`compilerOptions.paths`](https://www.typescriptlang.org/tsconfig/#paths) auszuwählen. Verwenden Sie diese Option nur, wenn die automatische Ermittlung die beabsichtigte Konfiguration nicht erkennen kann.
+:::
+
 ## future
 
 - **Typ:** `Record<string, 'warn' | undefined>`
