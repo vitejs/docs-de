@@ -594,6 +594,33 @@ function outputMetadataPlugin(): Plugin {
 }
 ```
 
+## Auf ausgegebene Assets verweisen {#referencing-emitted-assets}
+
+Um ein Asset aus einem Plugin auszugeben, rufen Sie [`this.emitFile({ type: 'asset', ... })`](https://rolldown.rs/reference/Interface.PluginContext#in-depth-type-asset) auf. Dies gibt eine `referenceId` zurück, mit der Sie die URL des Assets erzeugen können, da dessen endgültiger Dateiname erst bekannt ist, wenn das Bundle generiert wird.
+
+### In JavaScript {#in-javascript}
+
+Verwenden Sie `import.meta.ROLLDOWN_FILE_URL_<referenceId>`:
+
+```js
+const referenceId = this.emitFile({
+  type: 'asset',
+  name: 'icon.png',
+  source: fileContent,
+})
+
+// es ist ein JavaScript-Ausdruck, hängen Sie Query oder Hash also per String-Verkettung an
+return `export default import.meta.ROLLDOWN_FILE_URL_${referenceId} + '#frag'`
+```
+
+### In CSS oder HTML {#in-css-or-html}
+
+`import.meta.ROLLDOWN_FILE_URL_<referenceId>` funktioniert nur an der Position eines JavaScript-Ausdrucks. Verwenden Sie in CSS oder HTML stattdessen das Token `__VITE_ASSET__<referenceId>__` und hängen Sie Query oder Hash direkt dahinter an:
+
+```css
+background: url(__VITE_ASSET__<referenceId>__#frag);
+```
+
 ## Plugin-Reihenfolge
 
 Ein Vite-Plugin kann zusätzlich eine `enforce`-Eigenschaft angeben (ähnlich wie Webpack-Loader), um seine Anwendungsreihenfolge anzupassen. Der Wert von `enforce` kann entweder `"pre"` oder `"post"` sein. Die aufgelösten Plugins werden in folgender Reihenfolge sein:
