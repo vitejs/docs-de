@@ -147,7 +147,7 @@ interface ImportMeta {
 }
 ```
 
-Wenn Ihr Code auf Typen aus Browserumgebungen wie [DOM](https://github.com/microsoft/TypeScript/blob/main/src/lib/dom.generated.d.ts) und [WebWorker](https://github.com/microsoft/TypeScript/blob/main/src/lib/webworker.generated.d.ts) angewiesen ist, können Sie das Feld [lib](https://www.typescriptlang.org/tsconfig#lib) in `tsconfig.json` aktualisieren.
+Wenn Ihr Code auf Typen aus Browserumgebungen wie [DOM](https://github.com/microsoft/TypeScript/blob/main/tsc/internal/bundled/libs/lib.dom.d.ts) und [WebWorker](https://github.com/microsoft/TypeScript/blob/main/tsc/internal/bundled/libs/lib.webworker.d.ts) angewiesen ist, können Sie das Feld [lib](https://www.typescriptlang.org/tsconfig#lib) in `tsconfig.json` aktualisieren.
 
 ```json [tsconfig.json]
 {
