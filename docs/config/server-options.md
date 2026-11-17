@@ -434,6 +434,8 @@ export default defineConfig({
 
 Blockier-Liste für sensible Dateien, deren Bereitstellung durch den Vite-Entwicklungsserver eingeschränkt ist. Diese hat eine höhere Priorität als [`server.fs.allow`](#server-fs-allow). [Picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features) werden unterstützt.
 
+Das Setzen dieser Option ersetzt die Standardliste vollständig. Nehmen Sie alle Standardmuster, die Sie beibehalten möchten, in Ihre eigene Liste auf.
+
 ::: tip HINWEIS
 
 Diese Blockliste wird nicht auf [das `public`-Verzeichnis](/guide/assets.md#the-public-directory) angewendet. Alle Dateien in dem `public`-Verzeichnis werden ohne Filterung bereitgestellt, da sie beim Build direkt in das Ausgabeverzeichnis kopiert werden.
