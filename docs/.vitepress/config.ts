@@ -180,7 +180,6 @@ const config = defineConfig({
       placement: 'vitejsdev',
     },
 
-    outlineTitle: 'Auf dieser Seite',
     docFooter: {
       prev: 'Vorherige Seite',
       next: 'Nächste Seite',
@@ -504,6 +503,7 @@ const config = defineConfig({
     },
 
     outline: {
+      label: 'Auf dieser Seite',
       level: [2, 3],
     },
   },
