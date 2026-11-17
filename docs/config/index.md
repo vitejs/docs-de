@@ -14,7 +14,7 @@ export default {
 }
 ```
 
-Anmerkung: Vite unterstützt die Verwendung der ES-Module-Syntax in der Konfigurationsdatei, auch wenn das Projekt keinen nativen Node ESM verwendet, z.B. `"type": "module"` in `package.json`. In diesem Fall wird die Konfigurationsdatei vor dem Laden automatisch vorverarbeitet.
+Anmerkung: Um die ES-Module-Syntax in der Konfigurationsdatei zu verwenden, muss sie sich in einer Datei befinden, die Node.js als ESM erkennt, z. B. `.mjs` oder `.js` mit `"type": "module"` in der nächstgelegenen `package.json`.
 
 Sie können auch explizit eine Konfigurationsdatei angeben, die mit der CLI-Option `--config` verwendet wird (aufgelöst relativ zu `cwd`):
 
@@ -25,14 +25,12 @@ vite --config my-config.js
 <ScrimbaLink href="https://scrimba.com/intro-to-vite-c03p6pbbdq/~05jg?via=vite" title="Vite konfigurieren">Sehen Sie sich eine interaktive Lektion auf Scrimba an</ScrimbaLink>
 
 ::: tip Laden der Konfiguration
-Standardmäßig nutzt Vite [Rolldown](https://rolldown.rs/), um die Konfiguration in einer temporären Datei zu bündeln. Dies kann zu Problemen beim Importieren von TypeScript-Dateien in einem Monorepo führen. Wenn Sie Probleme mit diesem Ansatz haben, können Sie stattdessen `--configLoader runner` angeben, um den [Modul-Runner](/guide/api-environment-runtimes.html#modulerunner) zu verwenden. Dieser erstellt keine temporäre Konfiguration und transformiert alle Dateien sofort. Beachten Sie, dass der Modul-Runner CJS in Konfigurationsdateien nicht unterstützt, externe CJS-Pakete sollten jedoch wie gewohnt funktionieren.
-
-Wenn Sie eine Umgebung mit TypeScript-Support nutzen (z. B. `node --experimental-strip-types`) oder wenn Sie nur schlichtes JavaScript verwenden, dann können Sie die Option `--configLoader native` angeben, um die native Laufzeitumgebung zum Laden der Konfiguration zu verwenden. Beachten Sie, dass Updates von Modulen, die von der Konfigurationsdatei importiert werden, nicht erkannt werden und daher der Vite-Server nicht automatisch neu gestartet wird.
+Standardmäßig nutzt Vite [Rolldown](https://rolldown.rs/), um die Konfiguration in einer temporären Datei zu bündeln und zu laden. Wenn Sie eine Umgebung mit TypeScript-Support nutzen (z. B. Node 22.18+) oder nur schlichtes JavaScript verwenden, können Sie die Option `--configLoader native` angeben, um die native Laufzeitumgebung zum Laden der Konfiguration zu verwenden. `configLoader: 'native'` soll in einer zukünftigen Major-Version zum Standard werden.
 :::
 
 ## Intellisense-Konfiguration
 
-Da Vite mit TypeScript-Typisierungen ausgeliefert wird, können Sie die Intellisense Ihrer IDE mit jsdoc-Typ-Hinweisen nutzen:
+Da Vite mit TypeScript-Typisierungen ausgeliefert wird, können Sie die Intellisense Ihrer IDE mit JSDoc-Typ-Hinweisen nutzen:
 
 ```js
 /** @type {import('vite').UserConfig} */
@@ -41,7 +39,7 @@ export default {
 }
 ```
 
-Alternativ können Sie die Hilfe `defineConfig` verwenden, die Intellisense ohne die Notwendigkeit von jsdoc-Annotationen bieten sollte:
+Alternativ können Sie die Hilfe `defineConfig` verwenden, die Intellisense ohne die Notwendigkeit von JSDoc-Annotationen bieten sollte:
 
 ```js
 import { defineConfig } from 'vite'
@@ -123,9 +121,17 @@ export default defineConfig(({ mode }) => {
 })
 ```
 
-## Debugging der Konfigurationsdatei im VS-Code
+## Debugging der Konfigurationsdatei in VS Code
 
-Mit dem standardmäßigen `--configLoader bundle`-Verhalten schreibt Vite die generierte, temporäre Konfigurationsdatei in den Ordner `node_modules/.vite-temp` und ein Fehler „Datei nicht gefunden“ tritt auf, wenn das Debuggen von Haltepunkten in der Vite-Konfigurationsdatei eingestellt wird. Um das Problem zu beheben, fügen Sie die folgende Konfiguration zu `.vscode/settings.json` hinzu:
+Die zuverlässigste Debugging-Erfahrung erhalten Sie, wenn Sie Vite mit dem nativen Config-Loader starten:
+
+```bash
+vite --configLoader native
+```
+
+Der native Loader führt die ursprüngliche Konfigurationsdatei direkt aus, sodass Haltepunkte in der Konfigurationsdatei und in Plugin-Hooks wie `transform` auf den ursprünglichen Quellcode abgebildet werden. Er erfordert eine Laufzeitumgebung, die die in Ihrer Konfigurationsdatei verwendete Syntax unterstützt, etwa Node.js 22.18+ für TypeScript-Dateien.
+
+Bei Verwendung von `--configLoader bundle` (derzeit der Standard, wobei `native` in einer zukünftigen Major-Version zum Standard werden soll) erzeugt Vite eine Inline-Sourcemap und schreibt die gebündelte Konfiguration vor dem Laden nach `node_modules/.vite-temp`. Wenn Sie den Bundle-Loader verwenden müssen, fügen Sie das temporäre Verzeichnis für das JavaScript Debug Terminal in `.vscode/settings.json` hinzu:
 
 ```json
 {
@@ -136,5 +142,29 @@ Mit dem standardmäßigen `--configLoader bundle`-Verhalten schreibt Vite die ge
       "**/node_modules/.vite-temp/**"
     ]
   }
+}
+```
+
+Diese Einstellung gilt nur für das JavaScript Debug Terminal und wirkt sich nicht auf Startkonfigurationen aus, die über die Ansicht „Ausführen und Debuggen“ gestartet werden. Um dies auch für die Ansicht „Ausführen und Debuggen“ zu unterstützen, fügen Sie das temporäre Verzeichnis in `.vscode/launch.json` hinzu:
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Vite",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["exec", "vite", "--configLoader", "bundle"],
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**",
+        "**/node_modules/.vite-temp/**"
+      ]
+    }
+  ]
 }
 ```

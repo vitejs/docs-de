@@ -36,7 +36,7 @@ Wenn Ihr Plugin nur für ein bestimmtes Framework funktionieren soll, sollte des
 - `vite-plugin-react-` Präfix für React-Plugins
 - `vite-plugin-svelte-` Präfix für Svelte-Plugins
 
-Siehe auch [Konvention für virtuelle Module](#virtuelle-module-konvention).
+Siehe auch [Konvention für virtuelle Module](https://rolldown.rs/apis/plugin-api#virtual-modules).
 
 ## Konfiguration der Plugins
 
@@ -56,9 +56,8 @@ Falsche Plugins werden ignoriert, was verwendet werden kann, um Plugins leicht z
 `plugins` akzeptiert auch Voreinstellungen, die mehrere Plugins als einzelnes Element enthalten. Dies ist nützlich für komplexe Funktionen (wie Framework-Integrationen), die mit mehreren Plugins implementiert werden. Das Array wird intern abgeflacht.
 
 ```js
-// framework-plugin
+import frameworkDevTools from 'vite-plugin-framework-devtools'
 import frameworkRefresh from 'vite-plugin-framework-refresh'
-import frameworkDevtools from 'vite-plugin-framework-devtools'
 
 export default function framework(config) {
   return [frameworkRefresh(config), frameworkDevTools(config)]
@@ -106,11 +105,7 @@ export default function myPlugin() {
 
 ### Importieren einer virtuellen Datei
 
-Siehe das Beispiel im [nächsten Abschnitt](#virtuelle-module-konvention).
-
-## Konvention für virtuelle Module
-
-Virtuelle Module sind ein nützliches Schema, das es ermöglicht, Build-Zeit-Informationen mit normaler ESM-Importsyntax an die Quelldateien zu übergeben.
+Virtuelle Module ermöglichen es, Build-Zeit-Informationen mit normaler ESM-Importsyntax an die Quelldateien zu übergeben. Die vollständige Konvention finden Sie unter [Konvention für virtuelle Module](https://rolldown.rs/apis/plugin-api#virtual-modules).
 
 ```js
 import { exactRegex } from '@rolldown/pluginutils'
@@ -145,17 +140,17 @@ import { msg } from 'virtual:my-module'
 console.log(msg)
 ```
 
-In Vite (und Rolldown / Rollup) werden virtuelle Module konventionell mit `virtual:` als benutzerfreundlicher Pfad vorangestellt. Wenn möglich, sollte der Plugin-Name als Namespace verwendet werden, um Kollisionen mit anderen Plugins in der Community zu vermeiden. Beispielsweise könnte ein `vite-plugin-posts` Benutzer auffordern, virtuelle Module `virtual:posts` oder `virtual:posts/helpers` zu importieren, um Build-Zeit-Informationen zu erhalten. Intern sollten Plugins, die virtuelle Module verwenden, die Modul-ID beim Auflösen mit `\0` voranstellen, einer Konvention aus dem Rollup-Ökosystem. Dies verhindert, dass andere Plugins versuchen, die ID zu verarbeiten (wie die Auflösung in Node), und Kernfunktionen wie Sourcemaps können diese Informationen verwenden, um zwischen virtuellen Modulen und regulären Dateien zu unterscheiden. `\0` ist kein erlaubtes Zeichen in Import-URLs, daher müssen wir es während der Analyse des Imports ersetzen. Eine virtuelle ID `\0{id}` wird während der Entwicklung im Browser als `/@id/__x00__{id}` codiert. Die ID wird vor dem Eintritt in den Plugins-Pipeline zurückdekodiert, sodass dies vom Plugin-Hook-Code nicht gesehen wird.
+Da `\0` in Vite kein erlaubtes Zeichen in Import-URLs ist, wird eine virtuelle ID `\0{id}` während der Entwicklung im Browser als `/@id/__x00__{id}` codiert. Die ID wird vor dem Eintritt in die Plugin-Pipeline zurückdekodiert, sodass dies vom Plugin-Hook-Code nicht gesehen wird.
 
-Beachten Sie, dass Module, die direkt von einer echten Datei abgeleitet sind, wie bei einem Skriptmodul in einem Single-File-Komponenten (z. B. eine .vue- oder .svelte-SFC-Datei), diese Konvention nicht befolgen müssen. SFCs generieren im Allgemeinen eine Reihe von Untermodulen bei der Verarbeitung, aber der Code in diesen Modulen kann auf das Dateisystem zurückverfolgt werden. Die Verwendung von `\0` für diese Untermodule würde dazu führen, dass Sourcemaps nicht korrekt funktionieren.
+## Rolldown-Hooks {#rolldown-hooks}
 
-## Universale Hooks
+Alle Rolldown-Hooks sind [Hooks pro Umgebung](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks).
 
 Während der Entwicklung erstellt der Vite-Dev-Server einen Plugin-Container, der die [Rolldown Build Hooks](https://rolldown.rs/apis/plugin-api#build-hooks) auf dieselbe Weise aufruft, wie es Rolldown tut.
 
 Die folgenden Hooks werden einmal beim Start des Servers aufgerufen:
 
-- [`options`](https://rolldown.rs/reference/interface.plugin#options)
+- [`options`](https://rolldown.rs/reference/Interface.Plugin#options)
 - [`buildStart`](https://rolldown.rs/reference/Interface.Plugin#buildstart)
 
 Die folgenden Hooks werden bei jeder eingehenden Modulanforderung aufgerufen:
@@ -183,8 +178,9 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
 
 ### `config`
 
-- **Typ:** `(config: UserConfig, env: { mode: string, command: string }) => UserConfig | null | void`
+- **Typ:** `(config: UserConfig, env: { mode: 'build' | 'serve', command: string, isSsrBuild?: boolean, isPreview?: boolean }) => UserConfig | null | void`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 
   Ändert die Vite-Konfiguration, bevor sie aufgelöst wird. Der Hook empfängt die Rohkonfiguration des Benutzers (CLI-Optionen zusammengeführt mit der Konfigurationsdatei) und die aktuelle Konfigurationsumgebung, die den verwendeten `mode` und `command` angibt. Er kann ein teilweises Konfigurationsobjekt zurückgeben, das tief in die vorhandene Konfiguration eingefügt wird, oder die Konfiguration direkt ändern (wenn das Standardzusammenführen das gewünschte Ergebnis nicht erreichen kann).
 
@@ -222,6 +218,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
 
 - **Typ:** `(config: ResolvedConfig) => void | Promise<void>`
 - **Art:** `async`, `parallel`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 
   Wird aufgerufen, nachdem die Vite-Konfiguration aufgelöst wurde. Verwenden Sie diesen Hook, um die endgültige aufgelöste Konfiguration zu lesen und zu speichern. Er ist auch nützlich, wenn das Plugin basierend auf dem ausgeführten Befehl etwas anderes tun muss.
 
@@ -257,6 +254,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
 
 - **Typ:** `(server: ViteDevServer) => (() => void) | void | Promise<(() => void) | void>`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 - **Siehe auch:** [ViteDevServer](./api-javascript#vitedevserver)
 
   Hook zur Konfiguration des Dev-Servers. Der häufigste Anwendungsfall besteht darin, benutzerdefinierte Middleware zur internen [connect](https://github.com/senchalabs/connect)-App hinzuzufügen:
@@ -317,6 +315,7 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
 
 - **Typ:** `(server: PreviewServer) => (() => void) | void | Promise<(() => void) | void>`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 - **Siehe auch:** [PreviewServer](./api-javascript#previewserver)
 
   Ähnlich wie [`configureServer`](/guide/api-plugin.html#configureserver), aber für den Vorschau-Server. Ähnlich wie `configureServer` wird der `configurePreviewServer`-Hook vor der Installation anderer Middlewares aufgerufen. Wenn Sie eine Middleware **nach** anderen Middlewares einfügen möchten, können Sie eine Funktion aus `configurePreviewServer` zurückgeben, die nach der Installation der internen Middlewares aufgerufen wird:
@@ -335,10 +334,63 @@ Vite-Plugins können auch Hooks bereitstellen, die speziell für Vite-Zwecke die
   })
   ```
 
+### `closeServer`
+
+- **Typ:** `(context: { reason: 'restart' | 'close' }) => void | Promise<void>`
+- **Art:** `async`, `parallel`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
+
+  Wird aufgerufen, wenn der Entwicklungsserver neu gestartet oder geschlossen wird, nachdem der Server heruntergefahren wurde. Wird typischerweise verwendet, um Ressourcen freizugeben, die in [`configureServer`](/guide/api-plugin.html#configureserver) erstellt wurden.
+
+  `context.reason` unterscheidet die beiden Fälle:
+  - `'restart'`: Der Server wird neu gestartet (z. B. durch eine Änderung der Konfigurationsdatei oder einen Aufruf von `server.restart()`).
+  - `'close'`: Der Server wird beendet (z. B. über das Tastenkürzel `q` oder einen Aufruf von `server.close()`).
+
+  ```js
+  const myPlugin = () => {
+    let resource
+    return {
+      name: 'close-server',
+      configureServer(server) {
+        resource = createResource()
+      },
+      async closeServer({ reason }) {
+        if (reason === 'close') {
+          await resource.dispose()
+        }
+      },
+    }
+  }
+  ```
+
+### `closePreviewServer`
+
+- **Typ:** `() => void | Promise<void>`
+- **Art:** `async`, `parallel`
+- **Geltungsbereich:** [Global](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
+
+  Wie [`closeServer`](/guide/api-plugin.html#closeserver), aber für den Vorschauserver. Der Vorschauserver wird nie neu gestartet, daher gibt es keinen `reason`.
+
+  ```js
+  const myPlugin = () => {
+    let resource
+    return {
+      name: 'close-preview-server',
+      configurePreviewServer(server) {
+        resource = createResource()
+      },
+      async closePreviewServer() {
+        await resource.dispose()
+      },
+    }
+  }
+  ```
+
 ### `transformIndexHtml`
 
 - **Typ:** `IndexHtmlTransformHook | { order?: 'pre' | 'post', handler: IndexHtmlTransformHook }`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Pro Umgebung](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 
   Dedizierter Hook zur Transformation von HTML-Einstiegspunktdateien wie `index.html`. Der Hook empfängt den aktuellen HTML-String und einen Transformationskontext. Der Kontext gibt während der Entwicklung die [`ViteDevServer`](./api-javascript#vitedevserver)-Instanz und während des Builds das Rollup-Ausgabe-Bundle aus.
 
@@ -376,8 +428,9 @@ type IndexHtmlTransformHook = (
     path: string
     filename: string
     server?: ViteDevServer
-    bundle?: import('rollup').OutputBundle
-    chunk?: import('rollup').OutputChunk
+    bundle?: import('rolldown').OutputBundle
+    chunk?: import('rolldown').OutputChunk
+    originalUrl?: string
   }
 ) => IndexHtmlTransformResult | void | Promise<IndexHtmlTransformResult | void>
 
@@ -411,6 +464,7 @@ Dieser Hook wird nicht aufgerufen, wenn Sie ein Framework verwenden, das eine ei
 
 - **Typ:** `(ctx: HmrContext) => Array<ModuleNode> | void | Promise<Array<ModuleNode> | void>`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Pro Umgebung](/guide/api-environment-plugins#per-environment-hooks-and-global-hooks)
 - **Siehe auch:** [HMR API](./api-hmr)
 
   Führen Sie die benutzerdefinierte HMR-Updateverarbeitung durch. Der Hook erhält ein Kontextobjekt mit folgender Signatur:
@@ -473,6 +527,33 @@ Dieser Hook wird nicht aufgerufen, wenn Sie ein Framework verwenden, das eine ei
     }
     ```
 
+## Metadaten im Plugin-Kontext
+
+Für Plugin-Hooks mit Zugriff auf den Plugin-Kontext stellt Vite zusätzliche Eigenschaften unter `this.meta` bereit:
+
+- `this.meta.viteVersion`: Die aktuelle Vite-Version als String (z. B. `"8.0.0"`).
+
+::: tip Rolldown-basiertes Vite erkennen
+
+[`this.meta.rolldownVersion`](https://rolldown.rs/reference/Interface.PluginContextMeta#rolldownversion) ist nur in Rolldown-basiertem Vite (d. h. Vite 8+) verfügbar. Damit können Sie erkennen, ob die aktuelle Vite-Instanz auf Rolldown basiert:
+
+```ts
+function versionCheckPlugin(): Plugin {
+  return {
+    name: 'version-check',
+    buildStart() {
+      if (this.meta.rolldownVersion) {
+        // nur ausführen, wenn Vite auf Rolldown basiert
+      } else {
+        // andernfalls ausführen, wenn Vite auf Rollup basiert
+      }
+    },
+  }
+}
+```
+
+:::
+
 ## Metadaten des Ausgabebündels
 
 Während des Builds ergänzt Vite die Build-Ausgabeobjekte von Rolldown mit einem Vite-spezifischen `viteMetadata`-Feld.
@@ -495,6 +576,7 @@ Beispiel:
 function outputMetadataPlugin(): Plugin {
   return {
     name: 'output-metadata-plugin',
+    enforce: 'post',
     generateBundle(_, bundle) {
       for (const output of Object.values(bundle)) {
         const css = output.viteMetadata?.importedCss
@@ -509,6 +591,33 @@ function outputMetadataPlugin(): Plugin {
     },
   }
 }
+```
+
+## Auf ausgegebene Assets verweisen {#referencing-emitted-assets}
+
+Um ein Asset aus einem Plugin auszugeben, rufen Sie [`this.emitFile({ type: 'asset', ... })`](https://rolldown.rs/reference/Interface.PluginContext#in-depth-type-asset) auf. Dies gibt eine `referenceId` zurück, mit der Sie die URL des Assets erzeugen können, da dessen endgültiger Dateiname erst bekannt ist, wenn das Bundle generiert wird.
+
+### In JavaScript {#in-javascript}
+
+Verwenden Sie `import.meta.ROLLDOWN_FILE_URL_<referenceId>`:
+
+```js
+const referenceId = this.emitFile({
+  type: 'asset',
+  name: 'icon.png',
+  source: fileContent,
+})
+
+// es ist ein JavaScript-Ausdruck, hängen Sie Query oder Hash also per String-Verkettung an
+return `export default import.meta.ROLLDOWN_FILE_URL_${referenceId} + '#frag'`
+```
+
+### In CSS oder HTML {#in-css-or-html}
+
+`import.meta.ROLLDOWN_FILE_URL_<referenceId>` funktioniert nur an der Position eines JavaScript-Ausdrucks. Verwenden Sie in CSS oder HTML stattdessen das Token `__VITE_ASSET__<referenceId>__` und hängen Sie Query oder Hash direkt dahinter an:
+
+```css
+background: url(__VITE_ASSET__<referenceId>__#frag);
 ```
 
 ## Plugin-Reihenfolge
@@ -630,6 +739,43 @@ export default function myPlugin() {
 [`@rolldown/pluginutils`](https://www.npmjs.com/package/@rolldown/pluginutils) exportiert einige Funktionen für Hook-Filter wie `exactRegex` und `prefixRegex`. Diese werden der Einfachheit halber ebenfalls aus `rolldown/filter` erneut exportiert.
 :::
 
+## Informationen zur Chunk-Import-Map
+
+:::info Experimentell
+
+Diese Funktion ist experimentell und kann sich in Zukunft ändern.
+
+:::
+
+Wenn die Option [`build.chunkImportMap`](/config/build-options#build-chunkimportmap) aktiviert ist, verwenden die Import-Anweisungen in den generierten Chunks für jeden Chunk eine eindeutige ID statt des Dateipfads.
+
+Um die Zuordnung von Chunk-ID zu Dateipfad zu erhalten, können Sie in den Hooks `generateBundle` oder `writeBundle` auf die Import Map zugreifen, die in das Bundle ausgegeben wird. Die Import Map trägt den in [`build.rolldownOptions.experimental.chunkImportMap.fileName`](https://rolldown.rs/reference/InputOptions.experimental#chunkimportmap) angegebenen Namen (Standard: `importmap.json`).
+
+```ts
+function accessImportMap() {
+  let config: ResolvedConfig
+  return {
+    name: 'access-import-map',
+    configResolved(resolvedConfig) {
+      config = resolvedConfig
+    },
+    generateBundle(options, bundle) {
+      const chunkImportMap =
+        config.build.rolldownOptions.experimental?.chunkImportMap
+      if (chunkImportMap) {
+        const importMapFilename =
+          typeof chunkImportMap === 'object' && chunkImportMap.fileName
+            ? chunkImportMap.fileName
+            : 'importmap.json'
+        const importMap = bundle[importMapFilename]! as OutputAsset
+        const mapping = JSON.parse(importMap.source).imports
+        console.log(mapping)
+        // { "./entry.hash1.js": "./entry.hash2.js" }
+      }
+    },
+  }
+}
+```
 
 ## Kommunikation zwischen Client und Server
 
@@ -671,7 +817,7 @@ if (import.meta.hot) {
 
 ### Client zu Server
 
-Um Ereignisse vom Client an den Server zu senden, können wir [`hot.send`](/guide/api-hmr.html#hot-send-event-payload) verwenden:
+Um Ereignisse vom Client an den Server zu senden, können wir [`hot.send`](/guide/api-hmr.html#hot-send-event-data) verwenden:
 
 ```ts
 // Client-Seite
@@ -704,7 +850,7 @@ export default defineConfig({
 Intern leitet Vite den Typ einer Payload vom `CustomEventMap`-Interface ab. Es ist möglich benutzerdefinierte Events durch eine Erweiterung des Interfaces zu typisieren:
 
 :::tip Anmerkung
-Stellen Sie sicher, dass Sie bei der Angabe von TypeScript-Deklarationsdateien die Erweiterung `.d.ts` einbeziehen. Andernfalls weiß Typescript möglicherweise nicht, welche Datei das Modul versucht zu erweitern.
+Stellen Sie sicher, dass Sie bei der Angabe von TypeScript-Deklarationsdateien die Erweiterung `.d.ts` einbeziehen. Andernfalls weiß TypeScript möglicherweise nicht, welche Datei das Modul versucht zu erweitern.
 :::
 
 ```ts [events.d.ts]

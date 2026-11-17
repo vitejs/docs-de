@@ -8,6 +8,8 @@
   2. Kostenlose Angebote sollten die Website auf unbestimmte Zeit hosten und sind nicht zeitlich begrenzt.
      Das Angebot einer begrenzten Anzahl von Rechenressourcen oder der Anzahl von Websites im Austausch ist in Ordnung.
   3. Die verlinkten Anleitungen dürfen keine bösartigen Inhalte enthalten.
+  4. Die Plattform muss seit mindestens einem Jahr in Betrieb sein. Bitte belegen Sie dies
+     in Ihrer PR-Beschreibung.
 
   Das Vite-Team kann die Kriterien ändern und die aktuelle Liste von Zeit zu Zeit überprüfen.
   Wenn ein Abschnitt entfernt wird, werden wir die ursprünglichen PR-Autoren vorher anpingen.
@@ -157,7 +159,7 @@ Nachdem Ihr Projekt importiert und bereitgestellt wurde, erzeugen alle nachfolge
 3. Vercel erkennt, dass Sie Vite verwenden, und aktiviert die richtigen Einstellungen für Ihre Bereitstellung.
 4. Ihre Anwendung ist bereitgestellt! (z.B. `https://<PROJECTNAME>.vercel.app/`)
 
-Nachdem Ihr Projekt importiert und bereitgestellt wurde, werden alle nachfolgenden Pushes auf Zweige [Preview-Bereitstellungen generieren](https://vercel.com/docs/concepts/deployments/environments#preview), und alle Änderungen am Produktionszweig (üblicherweise "main") führen zu einer [Produktionsbereitstellung](https://vercel.com/docs/concepts/deployments/environments#production).
+Nachdem Ihr Projekt importiert und bereitgestellt wurde, werden alle nachfolgenden Pushes auf Zweige [Preview-Bereitstellungen generieren](https://vercel.com/docs/deployments/environments#preview-environment-pre-production), und alle Änderungen am Produktionszweig (üblicherweise "main") führen zu einer [Produktionsbereitstellung](https://vercel.com/docs/deployments/environments#production-environment).
 
 Erfahren Sie mehr über die [Git-Integration von Vercel](https://vercel.com/docs/concepts/git).
 
@@ -207,7 +209,7 @@ Cloudflare Pages bietet Ihnen eine Weg, Ihre Anwendung direkt bei Cloudflare ber
 
 Nachdem Ihr Projekt importiert und bereitgestellt wurde, generieren alle nachfolgenden Pushes auf Branches [Preview-Bereitstellungen](https://developers.cloudflare.com/pages/platform/preview-deployments/), es sei denn, sie wurden in Ihren [Branch-Build-Steuerungen](https://developers.cloudflare.com/pages/platform/branch-build-controls/) ausgeschlossen. Alle Änderungen am Produktionszweig (üblicherweise "main") führen zu einer Produktionsbereitstellung.
 
-Sie können auch benutzerdefinierte Domänen hinzufügen und benutzerdefinierte Build-Einstellungen auf Pages verwalten. Erfahren Sie mehr über [Cloudflare Pages Git-Integration](https://developers.cloudflare.com/pages/get-started/#manage-your-site).
+Sie können auch benutzerdefinierte Domänen hinzufügen und benutzerdefinierte Build-Einstellungen auf Pages verwalten. Erfahren Sie mehr über [Cloudflare Pages Git-Integration](https://developers.cloudflare.com/pages/configuration/git-integration/).
 
 ## Google Firebase
 
@@ -284,7 +286,7 @@ Sie können Ihre Vite-Anwendung als statische Website auf [Render](https://rende
 
 5. Klicken Sie auf **Statische Website erstellen**. Ihre App sollte unter `https://<PROJECTNAME>.onrender.com/` bereitgestellt sein.
 
-Standardmäßig löst jede neue Änderung, die auf den angegebenen Zweig hochgeladen wird, automatisch eine neue Bereitstellung aus. [Auto-Deploy](https://render.com/docs/deploys#toggling-auto-deploy-for-a-service) kann in den Projekteinstellungen konfiguriert werden.
+Standardmäßig löst jede neue Änderung, die auf den angegebenen Zweig hochgeladen wird, automatisch eine neue Bereitstellung aus. [Auto-Deploy](https://render.com/docs/deploys#configuring-auto-deploys) kann in den Projekteinstellungen konfiguriert werden.
 
 Sie können auch eine [benutzerdefinierte Domäne](https://render.com/docs/custom-domains) zu Ihrem Projekt hinzufügen.
 
@@ -292,13 +294,9 @@ Sie können auch eine [benutzerdefinierte Domäne](https://render.com/docs/custo
 
 Stellen Sie Ihre statische Website mit [Flightcontrol](https://www.flightcontrol.dev/?ref=docs-vite) bereit, indem Sie diese [Anweisungen](https://www.flightcontrol.dev/docs/reference/examples/vite?ref=docs-vite) befolgen.
 
-## Kinsta Hosting statischer Websites
-
-Stellen Sie Ihre statische Website mit [Kinsta](https://kinsta.com/static-site-hosting/) bereit, indem Sie diese [Anweisungen](https://kinsta.com/docs/static-site-hosting/static-site-quick-start/react-static-site-examples/#react-with-vite) befolgen.
-
 ## xmit Hosting statischer Websites
 
-Stellen Sie Ihre statische Website mit [xmit](https://xmit.co) bereit, indem Sie diese [Anleitung](https://xmit.dev/posts/vite-quickstart/) befolgen.
+Stellen Sie Ihre statische Website mit [xmit](https://xmit.co) bereit, indem Sie diese [Anleitung](https://xmit.dev/guides/vite-quickstart/) befolgen.
 
 ## Zephyr Cloud
 

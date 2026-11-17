@@ -34,6 +34,22 @@ Die Angabe in der Konfiguration überschreibt den Standardmodus für **Ausführu
 
 Siehe [Umgebungsvariablen und Modi](/guide/env-and-mode) für weitere Details.
 
+## input <NonInheritBadge />
+
+- **Typ:** `string | string[] | { [entryAlias: string]: string }`
+
+Einstiegspunkte Ihrer Anwendung, aufgelöst relativ zum Projekt-Root. Dient als Standardwert für [`build.rolldownOptions.input`](/config/build-options#build-rolldownoptions), [`build.lib.entry`](/config/build-options#build-lib), [`build.ssr`](/config/build-options#build-ssr) (falls `true`) und [`optimizeDeps.entries`](/config/dep-optimization-options#optimizedeps-entries), sofern diese nicht explizit gesetzt sind.
+
+Das ist nützlich, wenn Ihre Anwendung keinen `index.html`-Einstieg verwendet: So müssen Sie den Einstieg nur einmal angeben, statt ihn in den oben genannten Optionen zu wiederholen.
+
+```js twoslash [vite.config.js]
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  input: 'src/main.ts',
+})
+```
+
 ## definieren
 
 - **Typ:** `Record<string, string>`
@@ -145,7 +161,7 @@ Wenn `find` ein regulärer Ausdruck ist, kann die `replacement`-Option [Ersetzun
 Wenn Sie kopierte Kopien derselben Abhängigkeit in Ihrer App haben (wahrscheinlich aufgrund des Hoistings oder verknüpfter Pakete in Monorepos), verwenden Sie diese Option, um Vite dazu zu zwingen, aufgelistete Abhängigkeiten immer auf dieselbe Kopie (aus dem Projektstamm) zu lösen.
 
 :::warning SSR + ESM
-Für SSR-Builds funktioniert die Deduplizierung für ESM-Build-Ausgaben, die von `build.rollupOptions.output` konfiguriert sind, nicht. Ein Workaround besteht darin, CJS-Build-Ausgaben zu verwenden, bis ESM eine bessere Plugin-Unterstützung für die Modulladung hat.
+Für SSR-Builds funktioniert die Deduplizierung für ESM-Build-Ausgaben, die von `build.rolldownOptions.output` konfiguriert sind, nicht. Ein Workaround besteht darin, CJS-Build-Ausgaben zu verwenden, bis ESM eine bessere Plugin-Unterstützung für die Modulladung hat.
 :::
 
 ## resolve.conditions <NonInheritBadge />
@@ -206,6 +222,18 @@ Durch Aktivieren dieser Einstellung bestimmt Vite die Dateiidentität anhand des
 
 Aktiviert die Funktion der `tsconfig` zur Pfadauflösung. Die Option `paths` in der `tsconfig.json` wird genutzt, um Importe aufzulösen. Siehe [Funktionen](/guide/features.md#paths) für mehr Details.
 
+`paths` gilt nur für Dateien, die eine `tsconfig.json` über ihre Felder `files` oder `include` erfasst. Dateien mit Nicht-JS-Endungen sollten dort explizit aufgeführt werden, da ein einfaches `"src"`- oder `"**/*"`-`include` – in Übereinstimmung mit dem Verhalten von TypeScript – nur TS-/JS-Endungen erfasst. Um zum Beispiel einen `paths`-Alias in einer CSS-Datei zu verwenden (etwa `@import '@/foo.css'`), führen Sie diese Dateien in `files` auf oder ergänzen `include` um eine explizite Endung:
+
+```json [tsconfig.json]
+{
+  "include": ["src", "src/**/*.css", "src/**/*.scss"]
+}
+```
+
+::: warning Less wird nicht unterstützt
+`resolve.tsconfigPaths` greift nicht innerhalb von `.less`-Dateien. Less übergibt Vite nur das Verzeichnis der importierenden Datei, nicht die Datei selbst, sodass Vite die passende `tsconfig.json` nicht finden kann. Verwenden Sie für `@import` in Less einen relativen Pfad oder [`resolve.alias`](#resolve-alias).
+:::
+
 
 ## html.cspNonce
 
@@ -213,6 +241,48 @@ Aktiviert die Funktion der `tsconfig` zur Pfadauflösung. Die Option `paths` in 
 - **Verwandt:** [Content Security Policy (CSP)](/guide/features#content-security-policy-csp)
 
 Ein Platzhalter für einen Nonce-Wert, der bei der Generierung von Skript-/Style-Tags verwendet wird. Durch Festlegen dieses Werts wird auch ein Meta-Tag mit Nonce-Wert generiert.
+
+## html.additionalAssetSources
+
+- **Typ:** `Record<string, HtmlAssetSource>`
+
+```ts
+interface HtmlAssetSource {
+  srcAttributes?: string[]
+  srcsetAttributes?: string[]
+  filter?: (data: {
+    key: string
+    value: string
+    attributes: Record<string, string>
+  }) => boolean
+}
+```
+
+Legt zusätzliche HTML-Elemente und -Attribute fest, die als Asset-Quellen behandelt werden sollen. Dies erweitert die integrierte Liste, die Standardelemente wie `<img src>`, `<video src>`, `<link href>` usw. enthält.
+
+Das ist nützlich, wenn Sie eigene Web Components oder nicht standardisierte Attribute (wie `data-*`) verwenden, die auf Assets verweisen.
+
+**Beispiel:**
+
+```js
+export default defineConfig({
+  html: {
+    additionalAssetSources: {
+      // Eigene Web Component
+      'html-import': { srcAttributes: ['src'] },
+      // data-*-Attribute zu einem bestehenden Element hinzufügen
+      img: { srcAttributes: ['data-src-dark', 'data-src-light'] },
+      // Im srcset-Format
+      'my-picture': { srcsetAttributes: ['data-srcset'] },
+      // Mit Filterfunktion
+      'my-component': {
+        srcAttributes: ['asset'],
+        filter: ({ attributes }) => attributes.type === 'image',
+      },
+    },
+  },
+})
+```
 
 ## css.modules
 
@@ -558,10 +628,38 @@ Weitere Informationen finden Sie im [SSR-Handbuch von Vite](/guide/ssr#vite-cli)
 - **Typ:** `boolean` | `DevToolsConfig`
 - **Standard:** `false`
 
-Aktivieren Sie die Ingration für devtools, um eine Visualisierung des internen Zustands und einer Build-Analyse zu erhalten.
-Stellen Sie sicher, dass `@vitejs/devtools` als Abhängigkeit installiert ist. Diese Funktion wird aktuell nur im Build-Modus unterstützt.
+Aktivieren Sie die DevTools-Integration, um den Dev-Server zu untersuchen und Builds zu analysieren.
+Stellen Sie sicher, dass `@vitejs/devtools` als Abhängigkeit installiert ist. Installieren Sie `@vitejs/devtools-vite`, um den Vite-Dev-Server zu untersuchen, und `@vitejs/devtools-rolldown`, um die Build-Analyse zu aktivieren. DevTools läuft standardmäßig sowohl für `serve` als auch für `build`; verwenden Sie `apply`, um es auf einen der beiden Befehle zu beschränken.
 
-Schauen Sie sich [Vite DevTools](https://github.com/vitejs/devtools) an, für mehr Details.
+Die `config`-Hooks von Plugins können die Option `devtools` nicht ändern. Setzen Sie sie stattdessen in der Benutzerkonfiguration.
+
+Sofern installiert, stellt `@vitejs/devtools` die Typdefinitionen für diese Option bereit:
+
+```ts
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  devtools: {
+    apply: 'serve',
+  },
+})
+```
+
+Weitere Details finden Sie unter [Vite DevTools](https://github.com/vitejs/devtools).
+
+## tsconfig
+
+- **Typ:** `string`
+
+Pfad zur TypeScript-Konfigurationsdatei, die von Vite verwendet wird. Relative Pfade werden ausgehend vom Projekt-[`root`](#root) aufgelöst.
+
+Wenn diese Option nicht gesetzt ist, ermittelt Vite für jede Datei die nächstgelegene passende `tsconfig.json`. Siehe [TypeScript Compiler-Optionen](/guide/features#typescript-compiler-options) für weitere Details.
+
+::: warning Automatische Ermittlung bevorzugen
+Von dieser Option wird abgeraten, da sie Vites dateibezogene tsconfig-Ermittlung überschreibt, die auf den TypeScript-Language-Server abgestimmt ist. Platzieren Sie stattdessen eine `tsconfig.json` in der Nähe der Dateien, die sie konfiguriert, und verwenden Sie für Multi-Projekt-Setups TypeScript-[`references`](https://www.typescriptlang.org/tsconfig/#references).
+
+Wenn Sie Importe umleiten möchten, verwenden Sie lieber [`resolve.alias`](#resolve-alias) oder die Felder `imports` und `exports` in der `package.json`, anstatt eine tsconfig allein wegen [`compilerOptions.paths`](https://www.typescriptlang.org/tsconfig/#paths) auszuwählen. Verwenden Sie diese Option nur, wenn die automatische Ermittlung die beabsichtigte Konfiguration nicht erkennen kann.
+:::
 
 ## future
 

@@ -6,7 +6,7 @@ Wenn es Zeit ist, Ihre App für die Produktion bereitzustellen, führen Sie einf
 
 ## Browserkompatibilität
 
-Standardmäßig setzt das Produktionsbündel einen modernen Browser voraus, der in den Zielen der [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available enthalten ist. Der Standardbereich für unterstützte Browser ist:
+Standardmäßig zielt das Produktionsbündel auf die minimalen Browserversionen ab, die mit [Baseline](https://web-platform-dx.github.io/baseline/) Widely Available zu einem für jede Major-Version festgelegten Datum kompatibel sind. Der Standardbereich für unterstützte Browser in dieser Major-Version ist:
 
 <!-- Suche nach der `ESBUILD_BASELINE_WIDELY_AVAILABLE_TARGET` Konstante für mehr Informationen -->
 
@@ -70,11 +70,13 @@ window.addEventListener('vite:preloadError', (event) => {
 })
 ```
 
+Browser, die [wiederholbares Laden von Modulen](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import#browser_compatibility) unterstützen, erlauben es einer Anwendung oder einem Framework, den ursprünglichen dynamischen Import nach einem vorübergehenden Netzwerk- oder HTTP-Fehler erneut zu versuchen. Ältere Browser erfordern ein Neuladen der Seite, da sie den Fehler in der Modul-Map zwischenspeichern.
+
 Bei einer neuen Bereitstellung kann der Hosting-Dienst die Assets aus früheren Bereitstellungen löschen. Infolgedessen kann es bei einem Benutzer, der Ihre Website vor der neuen Bereitstellung besucht hat, zu einem Importfehler kommen. Dieser Fehler tritt auf, weil die auf dem Gerät dieses Benutzers ausgeführten Assets veraltet sind und er versucht, den entsprechenden alten Chunk zu importieren, der gelöscht wurde. Dieses Ereignis ist nützlich, um diese Situation zu beheben. Stellen Sie in diesem Fall sicher, dass Sie „Cache-Control: no-cache“ in der HTML-Datei festlegen, da sonst weiterhin auf die alten Assets verwiesen wird.
 
 ## Neuerstellen bei Dateiänderungen
 
-Sie können den Rollup Watcher mit `vite build --watch` aktivieren. Oder Sie können die zugrundeliegenden [`WatcherOptions`](https://rolldown.rs/reference/InputOptions.watch) direkt über `build.watch` anpassen:
+Sie können den Rolldown-Watcher mit `vite build --watch` aktivieren. Oder Sie können die zugrundeliegenden [`WatcherOptions`](https://rolldown.rs/reference/InputOptions.watch) direkt über `build.watch` anpassen:
 
 ```js [vite.config.js]
 export default defineConfig({
@@ -107,17 +109,13 @@ Während der Entwicklung navigieren oder verlinken Sie einfach zu `/nested/` - e
 Während des Builds müssen Sie nur mehrere `.html`-Dateien als Einstiegspunkte angeben:
 
 ```js twoslash [vite.config.js]
-import { dirname, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  build: {
-    rolldownOptions: {
-      input: {
-        main: resolve(import.meta.dirname, 'index.html'),
-        nested: resolve(import.meta.dirname, 'nested/index.html'),
-      },
-    },
+  input: {
+    main: resolve(import.meta.dirname, 'index.html'),
+    nested: resolve(import.meta.dirname, 'nested/index.html'),
   },
 })
 ```
@@ -133,7 +131,7 @@ Wenn Sie eine auf den Browser ausgerichtete Bibliothek entwickeln, verbringen Si
 Wenn es Zeit ist, Ihre Bibliothek für die Verteilung zu bündeln, verwenden Sie die [`build.lib`-Konfigurationsoption](/config/build-options.md#build-lib). Stellen Sie sicher, dass Sie auch Abhängigkeiten externisieren, die Sie nicht in Ihre Bibliothek bündeln möchten, z. B. `vue` oder `react`:
 
 ```js twoslash [vite.config.js]
-import { dirname, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -161,7 +159,7 @@ export default defineConfig({
 ```
 
 ```js twoslash [vite.config.js (mehrere Einstiegspunkte)]
-import { dirname, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -173,7 +171,7 @@ export default defineConfig({
       },
       name: 'MyLib',
     },
-    rollupOptions: {
+    rolldownOptions: {
       // Stellen Sie sicher, dass Abhängigkeiten, die nicht in Ihre Bibliothek gebündelt werden sollen, externisiert werden
       external: ['vue'],
       output: {

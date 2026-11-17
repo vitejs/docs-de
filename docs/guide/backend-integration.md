@@ -12,6 +12,8 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    import { defineConfig } from 'vite'
    // ---cut---
    export default defineConfig({
+      // Überschreibe den Standard-.html-Einstieg
+      input: '/path/to/main.js',
       server: {
         cors: {
           // der Ursprung, auf welchen Sie mit dem Browser zugreifen
@@ -21,10 +23,6 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
       build: {
         // generiert .vite/manifest.json in outDir
         manifest: true,
-        rollupOptions: {
-          // Überschreibe den Standard-.html-Einstieg
-          input: '/path/to/main.js'
-        }
       }
    })
    ```
@@ -180,7 +178,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    ```
 
    Jeder Eintrag im Manifest repräsentiert eines der folgenden:
-   - **Entry Chunks**: Generiert aus Dateien spezifiziert unter [`build.rollupOptions.input`](https://rollupjs.org/configuration-options/#input). Diese Chunks haben `isEntry: true` und ihr Schlüssel ist der relative Pfad vom Wurzelverzeichnis des Projekts.
+   - **Entry Chunks**: Generiert aus Dateien spezifiziert unter [`build.rolldownOptions.input`](https://rolldown.rs/reference/InputOptions.input#input). Diese Chunks haben `isEntry: true` und ihr Schlüssel ist der relative Pfad vom Wurzelverzeichnis des Projekts.
    - **Dynamische Entry Chunks**: Generiert aus dynamischen Importen. Diese Chunks haben `isDynamicEntry: true` und ihr Schlüssel ist der relative Pfad vom Wurzelverzeichnis des Projekts.
    - **Non-entry Chunks**: Ihr Schlüssel ist der Basisname der generierten Dateien beginnend mit `_`.
    - **Asset Chunks**: Generiert aus importierten Assets wie Images oder Schriftarten. Ihr Schlüssel ist der relative src-Pfad vom Wurzelverzeichnis.
@@ -272,3 +270,10 @@ export default function importedChunks(
 ```
 
 :::
+
+   :::info Unterstützung für Chunk-Import-Maps (experimentell)
+
+   Wenn Sie die experimentelle Option [`build.chunkImportMap`](/config/build-options#build-chunkimportmap) verwenden, müssen Sie außerdem die Import Map in das HTML einfügen.
+
+   Die Import Map wird als `importmap.json` im Ausgabeverzeichnis ausgegeben. Stellen Sie sicher, dass das Tag `<script type="importmap">` vor allen `<script type="module">`-Tags oder `<link rel="modulepreload">`-Tags eingefügt wird.
+   :::

@@ -198,12 +198,12 @@ interface ViteDevServer {
 ```ts
 async function build(
   inlineConfig?: InlineConfig
-): Promise<RollupOutput | RollupOutput[]>
+): Promise<RolldownOutput | RolldownOutput[] | RolldownWatcher>
 ```
 
 **Beispielverwendung:**
 
-```ts twoslash [vite.config.js]
+```ts twoslash
 import path from 'node:path'
 import { build } from 'vite'
 
@@ -212,7 +212,7 @@ import { build } from 'vite'
     root: path.resolve(import.meta.dirname, './project'),
     base: '/foo/',
     build: {
-      rollupOptions: {
+      rolldownOptions: {
         // ...
       },
     },
@@ -312,6 +312,9 @@ function mergeConfig(
 
 Vereinigt tief zwei Vite-Konfigurationen. `isRoot` repräsentiert die Ebene innerhalb der Vite-Konfiguration, die zusammengeführt wird. Legen Sie es beispielsweise auf `false`, wenn Sie zwei `build`-Optionen zusammenführen.
 
+Beachten Sie, dass `null`- und `undefined`-Werte in `overrides` übersprungen und nicht zusammengeführt werden. Wenn Sie einen Wert aus `defaults` explizit entfernen müssen, ändern Sie das Ergebnis von `mergeConfig` direkt.
+
+
 :::tip HINWEIS
 `mergeConfig` akzeptiert nur Konfigurationen in Objektform. Wenn Sie eine Konfiguration in Rückrufform haben, sollten Sie sie aufrufen, bevor Sie sie an `mergeConfig` übergeben.
 
@@ -359,7 +362,7 @@ function loadEnv(
 
 **Verwandt:** [`.env`-Dateien](./env-and-mode.md#env-files)
 
-Lädt `.env`-Dateien im `envDir`. Standardmäßig werden nur Umgebungsvariablen mit dem Präfix `VITE_` geladen, sofern `prefixes` nicht geändert wird.
+Lädt `.env`-Dateien im `envDir` und führt sie mit den passenden Variablen zusammen, die bereits in `process.env` vorhanden sind. Standardmäßig werden nur Umgebungsvariablen mit dem Präfix `VITE_` geladen, sofern `prefixes` nicht geändert wird.
 
 ## `normalizePath`
 
@@ -423,7 +426,7 @@ async function loadConfigFromFile(
 } | null>
 ```
 
-Lädt eine Vite-Konfigurationsdatei manuell mit Esbuild.
+Lädt eine Vite-Konfigurationsdatei manuell mit Rolldown.
 
 ## `preprocessCSS`
 
@@ -451,3 +454,27 @@ Verarbeitet `.css`, `.scss`, `.sass`, `.less`, `.styl` und `.stylus` Dateien zu 
 Der verwendete Präprozessor wird aus der Erweiterung „Dateiname“ abgeleitet. Wenn der `Dateiname` mit `.module.{ext}` endet, wird er als [CSS-Modul](https://github.com/css-modules/css-modules) abgeleitet und das zurückgegebene Ergebnis enthält ein `modules`-Objekt, das die ursprünglichen Klassennamen auf die transformierten abbildet.
 
 Beachten Sie, dass die Vorverarbeitung keine URLs in `url()` oder `image-set()` auflöst.
+
+## `version`
+
+**Typ:** `string`
+
+Die aktuelle Version von Vite als String (z. B. `"8.0.0"`).
+
+## `rolldownVersion`
+
+**Typ:** `string`
+
+Die von Vite verwendete Version von Rolldown als String (z. B. `"1.0.0"`). Ein Re-Export von [`VERSION`](https://rolldown.rs/reference/Variable.VERSION) aus `rolldown`.
+
+## `esbuildVersion`
+
+**Typ:** `string`
+
+Nur aus Gründen der Abwärtskompatibilität vorhanden.
+
+## `rollupVersion`
+
+**Typ:** `string`
+
+Nur aus Gründen der Abwärtskompatibilität vorhanden.

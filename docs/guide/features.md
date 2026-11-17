@@ -12,7 +12,7 @@ import { someMethod } from 'my-dep'
 
 Dieser Import führt im Browser zu einem Fehler. Vite erkennt solche "bare module imports" in allen bereitgestellten Quelldateien und führt die folgenden Schritte aus:
 
-1. [Vorab-Bündeln](./dep-pre-bundling), um die Ladezeit der Seite zu verbessern und CommonJS / UMD-Module in ESM umzuwandeln. Der Vorab-Bündelungsschritt wird mit [esbuild](https://esbuild.github.io/) durchgeführt und macht Vites Startzeit deutlich schneller als bei jedem auf JavaScript basierenden Build-Tool.
+1. [Vorab-Bündeln](./dep-pre-bundling), um die Ladezeit der Seite zu verbessern und CommonJS / UMD-Module in ESM umzuwandeln. Der Vorab-Bündelungsschritt wird mit [Rolldown](https://rolldown.rs/) durchgeführt und macht Vites Startzeit deutlich schneller als bei jedem auf JavaScript basierenden Build-Tool.
 
 2. Ändern der Imports in gültige URLs wie `/node_modules/.vite/deps/my-dep.js?v=f3sf2ebd`, damit der Browser sie ordnungsgemäß importieren kann.
 
@@ -42,7 +42,7 @@ Vites Aufgabe ist es, Ihre Quellmodule so schnell wie möglich in eine Form zu b
 
 - Während der Entwicklung, wenn Sie mehr als nur IDE-Hinweise benötigen, empfehlen wir das Ausführen von `tsc --noEmit --watch` in einem separaten Prozess oder die Verwendung von [vite-plugin-checker](https://github.com/fi3ework/vite-plugin-checker), wenn Sie Typfehler direkt im Browser gemeldet haben möchten.
 
-Vite verwendet [esbuild](https://github.com/evanw/esbuild), um TypeScript in JavaScript zu transpilieren, was etwa 20-30-mal schneller ist als das native `tsc`, und HMR-Updates können in weniger als 50 ms im Browser reflektiert werden.
+Vite verwendet [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer.html), um TypeScript in JavaScript zu transpilieren, was schneller ist als das native `tsc`, und HMR-Updates können in weniger als 50 ms im Browser reflektiert werden.
 
 Verwenden Sie die [Type-Only Imports and Export](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#type-only-imports-and-export)-Syntax, um potenzielle Probleme wie falsche Bündelung von nur-Typ-Imports zu vermeiden, zum Beispiel:
 
@@ -51,9 +51,9 @@ import type { T } from 'only/types'
 export type { T }
 ```
 
-### TypeScript Compiler-Optionen
+### TypeScript Compiler-Optionen {#typescript-compiler-options}
 
-Vite berücksichtigt einige der Optionen in der `tsconfig.json` und setzt die entsprechenden esbuild-Optionen. Für jede Datei verwendet Vite die `tsconfig.json` im nächsten Elternverzeichnis. Falls die `tsconfig.json` ein [`references`](https://www.typescriptlang.org/tsconfig/#references)-Feld enthält, verwendet Vite die referenzierte Konfigurationsdatei, die den Feldern [`include`](https://www.typescriptlang.org/tsconfig/#include) und [`exclude`](https://www.typescriptlang.org/tsconfig/#exclude) entspricht.
+Vite berücksichtigt einige der Optionen in der `tsconfig.json` und setzt die entsprechenden Oxc-Transformer-Optionen. Standardmäßig verwendet Vite für jede Datei die nächstgelegene übergeordnete `tsconfig.json`, die zur Datei passt. Eine über das [`references`](https://www.typescriptlang.org/tsconfig/#references)-Feld dieser Konfiguration referenzierte Konfiguration wird verwendet, wenn sie zur Datei passt. Eine Konfiguration passt zur Datei, wenn die Datei die Felder [`files`](https://www.typescriptlang.org/tsconfig/#files), [`include`](https://www.typescriptlang.org/tsconfig/#include) und [`exclude`](https://www.typescriptlang.org/tsconfig/#exclude) der Konfiguration erfüllt.
 
 Wenn die Optionen in der Vite-Konfiguration und der `tsconfig.json` gesetzt sind, hat der Wert in der Vite-Konfiguration Vorrang.
 
@@ -65,7 +65,7 @@ Einige Konfigurationsfelder unter `compilerOptions` in `tsconfig.json` erfordern
 
 Sollte auf `true` gesetzt werden.
 
-Der Grund dafür ist, dass `esbuild` nur die Transpilierung ohne Typinformationen durchführt und bestimmte Funktionen wie `const enum` und implizite nur-Typen-Imports nicht unterstützt.
+Der Grund dafür ist, dass Oxc Transformer nur die Transpilierung ohne Typinformationen durchführt und bestimmte Funktionen wie `const enum` und implizite nur-Typen-Imports nicht unterstützt.
 
 Sie müssen `"isolatedModules": true` in Ihrer `tsconfig.json` unter `compilerOptions` festlegen, damit TypeScript Sie vor den Funktionen warnt, die nicht mit isolierter Transpilierung funktionieren.
 
@@ -89,15 +89,21 @@ Während die meisten Bibliotheken `"useDefineForClassFields": true"` erwarten, k
 
 - [TypeScript Dokumentation](https://www.typescriptlang.org/tsconfig#target)
 
-Vite ignoriert den `target`-Wert in der `tsconfig.json` und folgt damit dem gleichen Verhalten wie `esbuild`.
+Vite ignoriert den `target`-Wert in der `tsconfig.json` und folgt damit dem gleichen Verhalten wie [esbuild](https://esbuild.github.io/).
 
-Um das Ziel in dev anzugeben, kann die Option [`esbuild.target`](/config/shared-options.html#esbuild) verwendet werden, die für eine minimale Transpilierung auf `esnext` voreingestellt ist. In Builds hat die Option [`build.target`](/config/build-options.html#build-target) höhere Priorität als `esbuild.target` und kann bei Bedarf ebenfalls gesetzt werden.
+Um das Ziel in dev anzugeben, kann die Option [`oxc.target`](/config/shared-options.html#oxc) verwendet werden, die für eine minimale Transpilierung auf `esnext` voreingestellt ist. In Builds hat die Option [`build.target`](/config/build-options.html#build-target) höhere Priorität als `oxc.target` und kann bei Bedarf ebenfalls gesetzt werden.
+
+#### `emitDecoratorMetadata`
+
+- [TypeScript-Dokumentation](https://www.typescriptlang.org/tsconfig#emitDecoratorMetadata)
+
+Diese Option wird nur teilweise unterstützt. Eine vollständige Unterstützung erfordert Typinferenz durch den TypeScript-Compiler, die nicht unterstützt wird. Details finden Sie in der [Dokumentation von Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer/typescript.html#decorators).
 
 #### `paths`
 
 - [TypeScript-Dokumentation](https://www.typescriptlang.org/tsconfig/#paths)
 
-`resolve.tsconfigPaths: true` kann spezifiziert werden, um Vite anzuweisen die `paths`-Option in der `tsconfig.json` zu nutzen, um Importe aufzulösen.
+[`resolve.tsconfigPaths: true`](/config/shared-options.md#resolve-tsconfigpaths) kann spezifiziert werden, um Vite anzuweisen die `paths`-Option in der `tsconfig.json` zu nutzen, um Importe aufzulösen.
 
 Beachten Sie, dass diese Funktion Performanzeinbußen mit sich bringt und [das TypeScript-Team davon abrät, die Option zu verwenden, um das Verhalten der externen Tools zu verändern](https://www.typescriptlang.org/tsconfig/#paths:~:text=Note%20that%20this%20feature%20does%20not%20change%20how%20import%20paths%20are%20emitted%20by%20tsc%2C%20so%20paths%20should%20only%20be%20used%20to%20inform%20TypeScript%20that%20another%20tool%20has%20this%20mapping%20and%20will%20use%20it%20at%20runtime%20or%20when%20bundling.).
 
@@ -115,7 +121,7 @@ Beachten Sie, dass diese Funktion Performanzeinbußen mit sich bringt und [das T
 - [`experimentalDecorators`](https://www.typescriptlang.org/tsconfig#experimentalDecorators)
 
 ::: tip `skipLibCheck`
-Vite-Start-Vorlagen haben `"skipLibCheck": "true"` gesetzt, um die Überprüfung von Abhängigkeiten zu vermeiden, da sie möglicherweise nur bestimmte Versionen und Konfigurationen von TypeScript unterstützen. Mehr dazu erfahren Sie unter [vuejs/vue-cli#5688](https://github.com/vuejs/vue-cli/pull/5688).
+Vite-Start-Vorlagen haben `"skipLibCheck": true` gesetzt, um die Überprüfung von Abhängigkeiten zu vermeiden, da sie möglicherweise nur bestimmte Versionen und Konfigurationen von TypeScript unterstützen. Mehr dazu erfahren Sie unter [vuejs/vue-cli#5688](https://github.com/vuejs/vue-cli/pull/5688).
 :::
 
 ### Client-Typen
@@ -234,24 +240,25 @@ Siehe [Plugins Guide](/plugins/) für mehr Informationen.
 
 ## JSX
 
-.jsx"- und "tsx"-Dateien werden ebenfalls von Haus aus unterstützt. JSX Transpilierung wird auch über [esbuild](https://esbuild.github.io) gehandhabt.
+.jsx"- und "tsx"-Dateien werden ebenfalls von Haus aus unterstützt. JSX Transpilierung wird auch über [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer.html) gehandhabt.
 
 Das Framework Ihrer Wahl konfiguriert JSX standardmäßig (z. B. Vue-Benutzer sollten das offizielle [@vitejs/plugin-vue-jsx](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx) Plugin verwenden, das Vue 3-spezifische Funktionen wie HMR, globale Komponentenauflösung, Direktiven und Slots bietet).
 
-Wenn JSX mit einem eigenen Framework verwendet wird, können benutzerdefinierte `jsxFactory` und `jsxFragment` mit der [`esbuild` Option](/config/shared-options.md#esbuild) konfiguriert werden. Zum Beispiel das Preact-Plugin würde Folgendes nutzen:
+Wenn JSX mit einem eigenen Framework verwendet wird, können benutzerdefinierte `jsxFactory` und `jsxFragment` mit der [`oxc` Option](/config/shared-options.md#oxc) konfiguriert werden. Zum Beispiel das Preact-Plugin würde Folgendes nutzen:
 
 ```js twoslash [vite.config.js]
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  esbuild: {
-    jsxFactory: 'h',
-    jsxFragment: 'Fragment',
+  oxc: {
+    jsx: {
+      importSource: 'preact',
+    },
   },
 })
 ```
 
-Mehr Details in [esbuild docs](https://esbuild.github.io/content-types/#jsx).
+Mehr Details in der [Oxc-Transformer-Dokumentation](https://oxc.rs/docs/guide/usage/transformer/jsx.html).
 
 Sie können die JSX-Helfer mit `jsxInject` injizieren (eine Option, die nur für Vite verfügbar ist), um manuelle Importe zu vermeiden:
 
@@ -259,7 +266,7 @@ Sie können die JSX-Helfer mit `jsxInject` injizieren (eine Option, die nur für
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  esbuild: {
+  oxc: {
     jsxInject: `import React from 'react'`,
   },
 })
@@ -314,7 +321,8 @@ Abgesehen davon bietet Vite integrierte Unterstützung für `.scss`, `.sass`, `.
 
 ```bash
 # .scss and .sass
-npm add -D sass-embedded # or sass
+npm add -D sass-embedded # empfohlen für bessere Performance
+npm add -D sass # falls die Plattform nicht unterstützt wird
 
 # .less
 npm add -D less
@@ -346,17 +354,11 @@ Standard- und benannte Importe aus CSS-Dateien (z.B. `import style from './foo.c
 
 ### Lightning CSS
 
-Ab Vite 4.4 gibt es eine experimentelle Unterstützung für [Lightning CSS](https://lightningcss.dev/). Sie können sich dafür entscheiden, indem Sie [`css.transformer: 'lightningcss'`](../config/shared-options.md#css-transformer) zu Ihrer Konfigurationsdatei hinzufügen und die optionale Abhängigkeit von [`lightningcss`](https://www.npmjs.com/package/lightningcss) installieren:
+Vite verwendet standardmäßig [Lightning CSS](https://lightningcss.dev/), um CSS in Produktions-Builds zu minifizieren. Für die übrige CSS-Verarbeitung wird jedoch weiterhin PostCSS verwendet.
 
-```bash
-npm add -D lightningcss
-```
+Es gibt eine experimentelle Unterstützung, um die CSS-Verarbeitung vollständig mit Lightning CSS durchzuführen. Sie können sich dafür entscheiden, indem Sie [`css.transformer: 'lightningcss'`](../config/shared-options.md#css-transformer) hinzufügen.
 
-Wenn diese Option aktiviert ist, werden CSS-Dateien von Lightning CSS anstelle von PostCSS verarbeitet. Um dies zu konfigurieren, können Sie Lightning CSS-Optionen an die Konfigurationsoption [`css.lightningcss`](../config/shared-options.md#css-lightningcss) übergeben.
-
-Um CSS-Module zu konfigurieren, verwenden Sie [`css.lightningcss.cssModules`](https://lightningcss.dev/css-modules.html) anstelle von [`css.modules`](../config/shared-options.md#css-modules) (die die Art und Weise konfiguriert, wie PostCSS CSS-Module behandelt).
-
-Standardmäßig verwendet Vite esbuild zum Minifizieren von CSS. Lightning CSS kann auch als CSS-Minifizierer mit [`build.cssMinify: 'lightningcss'`](../config/build-options.md#build-cssminify) verwendet werden.
+Um dies zu konfigurieren, können Sie Lightning CSS-Optionen an die Konfigurationsoption [`css.lightningcss`](../config/shared-options.md#css-lightningcss) übergeben. Um CSS-Module zu konfigurieren, verwenden Sie [`css.lightningcss.cssModules`](https://lightningcss.dev/css-modules.html) anstelle von [`css.modules`](../config/shared-options.md#css-modules) (die die Art und Weise konfiguriert, wie PostCSS CSS-Module behandelt).
 
 ## Statische Assets
 
@@ -588,6 +590,21 @@ Nur die Globs, welche relative Pfade sind, werden als relativ zur aufgelösten B
 
 Alle resultierenden Modulschlüssel werden so geändert, dass sie relativ zur Basis sind, sofern diese angegeben ist.
 
+#### Groß-/Kleinschreibung beim Abgleich
+
+Standardmäßig wird beim Glob-Abgleich zwischen Groß- und Kleinschreibung unterschieden. Mit der Option `caseSensitive` können Sie dieses Verhalten ändern:
+
+```ts twoslash
+import 'vite/client'
+// ---cut---
+const modules = import.meta.glob('./dir/module*.js', {
+  caseSensitive: false,
+})
+```
+
+Mit `caseSensitive: false` findet der Glob Dateien unabhängig von der Groß-/Kleinschreibung (z. B. werden `Module.js`, `module.js` und `MODULE.js` alle von `module*.js` erfasst).
+
+
 ### Glob Import Caveats
 
 Beachten Sie dies:
@@ -609,7 +626,7 @@ Beachten Sie, dass Variablen nur Dateinamen eine Ebene tiefer darstellen. Wenn `
 
 Außerdem ist zu beachten, dass der dynamische Import den folgenden Regeln entsprechen muss, um gebündelt zu werden:
 
-- Importe müssen mit `./` oder `../` starten: ``import(`./dir/${foo}.js`)`` ist gültig, aber ``import(`${foo}.js`)`` nicht.
+- Importe müssen mit `./`, `../` oder `#` starten: ``import(`./dir/${foo}.js`)`` ist gültig, aber ``import(`${foo}.js`)`` nicht.
 - Importe müssen mit einer Dateiendung enden: ``import(`./dir/${foo}.js`)`` ist gültig, aber ``import(`./dir/${foo}`)`` nicht.
 - Importe zum eigenen Verzeichnis müssen ein Muster für Dateinamen spezifizieren: ``import(`./prefix-${foo}.js`)`` ist gültig, aber ``import(`./${foo}.js`)`` nicht.
 
@@ -617,8 +634,73 @@ Diese Regeln werden erzwungen, um versehentliches Importieren von Dateien zu ver
 
 ## WebAssembly
 
-Vorkompilierte `.wasm` Dateien können mit `?init` importiert werden.
-Der Standardexport wird eine Initialisierungsfunktion sein, die ein Promise der [`WebAssembly.Instance`](https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/Instance) zurückgibt:
+Vite unterstützt den Import vorkompilierter `.wasm`-Dateien auf zwei Arten: direkt als [ES-Modul](#esm-integration), wenn Sie nur die Exporte des Moduls benötigen, oder mit [`?init`](#manuelle-initialisierung), wenn Sie die Instanziierung explizit steuern möchten.
+
+### ESM-Integration {#esm-integration}
+
+Eine `.wasm`-Datei kann direkt importiert werden. Vite liest die Importe und Exporte des Moduls aus der Binärdatei, instanziiert es und stellt seine Exporte als benannte ES-Modul-Exporte bereit:
+
+```js
+import { add } from './add.wasm'
+
+console.log(add(1, 2)) // 3
+```
+
+Deklariert das WebAssembly-Modul eigene Importe, löst Vite diese aus JavaScript-Modulen auf. Der Modulname jedes Imports wird als Import-Specifier behandelt (relativ zur `.wasm`-Datei aufgelöst), und die angeforderten Member werden automatisch mit der Instanz verbunden.
+
+Dies folgt dem [WebAssembly/ES Module Integration Proposal](https://github.com/WebAssembly/esm-integration). Da ein WebAssembly-Modul asynchron instanziiert wird, verhält sich eine direkt importierte `.wasm`-Datei wie ein asynchrones Modul und erfordert Unterstützung für Top-Level-`await`.
+
+Module werden mit aktivierten Proposals für [JS String Builtins](https://github.com/WebAssembly/js-string-builtins) und [Imported String Constants](https://github.com/WebAssembly/js-string-builtins) kompiliert, entsprechend dem Loader der WebAssembly/ES Module Integration.
+
+::: tip TypeScript-Unterstützung
+
+Da die Typen von `.wasm`-Dateien unbekannt sind, meldet TypeScript Fehler wie `Module '"*.wasm"' has no exported member 'add'`. Um das zu beheben, aktivieren Sie [`allowArbitraryExtensions`](https://www.typescriptlang.org/tsconfig/#allowArbitraryExtensions) in Ihrer `tsconfig.json` und legen neben Ihrer `.wasm`-Datei eine Deklarationsdatei an. Mit aktiviertem `allowArbitraryExtensions` sucht TypeScript beim Auflösen eines `.wasm`-Imports nach einer Deklarationsdatei mit dem Namen `{filename}.d.wasm.ts`. Für `add.wasm` legen Sie zum Beispiel `add.d.wasm.ts` an:
+
+```ts [add.d.wasm.ts]
+export function add(a: number, b: number): number
+```
+
+:::
+
+::: details Unterstützung für Source Phase Imports
+
+#### Source Phase Imports {#source-phase-imports}
+
+Das ESM-Integration-Proposal definiert außerdem [Source Phase Imports](https://github.com/tc39/proposal-source-phase-imports) für `.wasm`-Dateien. Diese liefern Ihnen das kompilierte [`WebAssembly.Module`](https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/Module), ohne es zu instanziieren, und überlassen die Instanziierung vollständig Ihnen. Dies ist der Standardweg, um die Kontrolle über die Instanziierung zu übernehmen, und wird die empfohlene Alternative zu [`?init`](#manual-initialization) sein, sobald [TypeScript 7.1](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/#source-phase-imports) als stabile Version veröffentlicht ist:
+
+```js
+import source mod from './example.wasm'
+
+// `mod` ist ein `WebAssembly.Module`; instanziieren Sie es, wann (und wie) Sie möchten
+const instance = await WebAssembly.instantiate(mod)
+instance.exports.test()
+```
+
+Da Ihnen die `WebAssembly.Instance` gehört, können Sie die eigenen Importe des Moduls bedienen und es so oft wie nötig instanziieren:
+
+```js
+import source mod from './example.wasm'
+
+const instance = await WebAssembly.instantiate(mod, {
+  './imports.js': {
+    someFunc: () => {
+      /* ... */
+    },
+  },
+})
+```
+
+Auch die dynamische Form wird zum `WebAssembly.Module` aufgelöst:
+
+```js
+const mod = await import.source('./example.wasm')
+```
+
+:::
+
+### Manuelle Initialisierung {#manual-initialization}
+
+Wenn Sie steuern möchten, wann und wie das Modul instanziiert wird, importieren Sie es mit `?init`. Der Standardexport wird eine Initialisierungsfunktion sein, die ein Promise der [`WebAssembly.Instance`](https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/Instance) zurückgibt:
 
 ```js
 import init from './example.wasm?init'
@@ -642,16 +724,11 @@ init({
 })
 ```
 
-Im Produktions-Build werden `.wasm`-Dateien, die kleiner als `assetInlineLimit` sind, als base64-Strings inlined. Andernfalls werden sie wie ein [statisches Asset](./assets) behandelt und bei Bedarf abgerufen.
-
-:::tip HINWEIS
-[ES Module Integration Proposal for WebAssembly](https://github.com/WebAssembly/esm-integration) wird derzeit nicht unterstützt.
-Verwenden Sie [`vite-plugin-wasm`](https://github.com/Menci/vite-plugin-wasm) oder andere Community-Plugins, um dies zu handhaben.
-:::
+Im Produktions-Build werden `.wasm`-Dateien, die kleiner als `assetsInlineLimit` sind, als base64-Strings inlined. Andernfalls werden sie wie ein [statisches Asset](./assets) behandelt und bei Bedarf abgerufen.
 
 ::: warning Für den SSR-Build werden nur Laufzeitumgebungen unterstützt, die mit Node.js kompatibel sind
 
-Auf Grund einer fehlenden universellen Möglichkeit eine Datei zu laden, ist die interne Implementierung für `.wasm?init` auf das `node:fs`-Modul angewiesen. Das bedeutet, dass dieses Feature nur in Laufzeitumgebungen funktioniert, die mit Node.js kompatibel sind.
+Auf Grund einer fehlenden universellen Möglichkeit eine Datei zu laden, ist die interne Implementierung für direkte `.wasm`-Importe, Source Phase Imports und `.wasm?init` auf das `node:fs`-Modul angewiesen. Das bedeutet, dass diese Features bei SSR-Builds nur in Laufzeitumgebungen funktioniert, die mit Node.js kompatibel sind.
 
 :::
 
@@ -691,7 +768,7 @@ const worker = new Worker(new URL('./worker.js', import.meta.url), {
 })
 ```
 
-Die Erkennung von Workern funktioniert nur, wenn der Konstruktor `new URL()` direkt innerhalb der Deklaration `new Worker()` verwendet wird. Außerdem müssen alle Optionsparameter statische Werte sein (d.h. String-Literale).
+Die Erkennung von Workern funktioniert nur, wenn der Konstruktor `new URL()` direkt innerhalb der Deklaration `new Worker()` verwendet wird. Andernfalls wird er stattdessen als [statische Asset-URL](./assets#new-url-url-import-meta-url) behandelt. Außerdem müssen alle Optionsparameter statische Werte sein (d.h. String-Literale).
 
 ### Import mit Abfrage-Suffixen
 
@@ -779,7 +856,7 @@ Um die Datei an einem anderen Pfad bereitzustellen, kann beispielsweise `{ fileN
 
 ## Build-Optimierungen
 
-> Die unten aufgeführten Funktionen werden automatisch als Teil des Build-Prozesses angewendet und müssen nicht explizit konfiguriert werden, es sei denn, Sie möchten sie deaktivieren.
+> Die unten aufgeführten Funktionen werden (mit Ausnahme der experimentellen Chunk-Import-Map-Funktion) automatisch als Teil des Build-Prozesses angewendet und müssen nicht explizit konfiguriert werden, es sei denn, Sie möchten sie deaktivieren.
 
 ### CSS-Code-Aufteilung
 
@@ -813,3 +890,21 @@ Entry ---> (A + C)
 ```
 
 Es ist möglich, dass "C" weitere Importe hat, was im nicht optimierten Szenario zu noch mehr Roundtrips führen würde. Die Optimierung von Vite verfolgt alle direkten Importe, um die Roundtrips unabhängig von der Importtiefe vollständig zu eliminieren.
+
+### Optimierung per Chunk-Import-Map {#chunk-import-map-optimization}
+
+Um die Cache-Trefferquote von Chunks zu verbessern, kann Vite eine Import Map für Chunks erstellen. Dadurch wird das Problem der kaskadierenden Cache-Invalidierung vermieden, das bei ES-Modulen auftritt.
+
+Betrachten Sie zum Beispiel folgendes Szenario:
+
+```
+Entry --> A ---> C
+```
+
+Wird `C` aktualisiert, muss eigentlich nur `C` invalidiert werden. Verweist `A` jedoch über eine normale URL in einem statischen Import auf `C` (d. h. der Hash von `C` ist in der URL enthalten), ändert sich der Inhalt von `A`, sodass auch `A` invalidiert werden müsste. Dasselbe gilt für `Entry`.
+
+Mithilfe von Import Maps lässt sich dieses Problem vermeiden. Ist diese Optimierung aktiviert, erstellt Vite eine Import Map, die die ID jedes Chunks auf seine URL abbildet, und verwendet in den Import-Anweisungen die Chunk-ID statt der URL. So muss bei einer Aktualisierung nur der aktualisierte Chunk invalidiert werden, während die Chunks, die darauf verweisen, unverändert bleiben.
+
+Beachten Sie, dass diese Optimierung derzeit nicht für CSS und Assets gilt. Wenn Sie ein Asset aktualisieren, werden die Chunks, die darauf verweisen, invalidiert. Die Invalidierung kaskadiert dabei jedoch nicht weiter, und der Chunk, der den invalidierten Chunk importiert, wird nicht invalidiert.
+
+Um diese Funktion zu aktivieren, setzen Sie [`build.chunkImportMap`](/config/build-options.md#build-chunkimportmap) auf `true`.

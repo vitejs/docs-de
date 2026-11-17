@@ -8,7 +8,7 @@ Sofern nicht anders angegeben, werden die Optionen in diesem Abschnitt nur auf d
 
 - **Typ:** `string | string[]`
 
-Standardmäßig durchsucht Vite alle Ihre `.html`-Dateien, um Abhängigkeiten zu erkennen, die vorab gebündelt werden müssen (ignoriert `node_modules`, `build.outDir`, `__tests__` und `coverage`). Wenn `build.rollupOptions.input` angegeben ist, durchsucht Vite stattdessen diese Einstiegspunkte.
+Standardmäßig durchsucht Vite alle Ihre `.html`-Dateien, um Abhängigkeiten zu erkennen, die vorab gebündelt werden müssen (ignoriert `node_modules`, `build.outDir`, `__tests__` und `coverage`). Wenn die Top-Level-Option [`input`](/config/shared-options#input) oder `build.rolldownOptions.input` angegeben ist, durchsucht Vite stattdessen diese Einstiegspunkte.
 
 Wenn keine der beiden Optionen Ihren Anforderungen entspricht, können Sie mit dieser Option benutzerdefinierte Einträge angeben - der Wert sollte ein [`tinyglobby`-Muster](https://superchupu.dev/tinyglobby/comparison) oder ein Array von Mustern sein, die relativ zum Vite-Projektroot sind. Dies überschreibt die Inferenz der Standardeinträge. Nur die Ordner `node_modules` und `build.outDir` werden standardmäßig ignoriert, wenn `optimizeDeps.entries` explizit definiert ist. Wenn andere Ordner ignoriert werden sollen, können Sie ein Ignoriermuster als Teil der Eintragsliste verwenden, das mit einem anfänglichen `!` gekennzeichnet ist. `node_modules` werden nicht von Mustern ignoriert, die explizit die Zeichenkette `node_modules` enthalten.
 
@@ -49,11 +49,7 @@ export default defineConfig({
 
 ## optimizeDeps.rolldownOptions <NonInheritBadge />
 
-- **Typ:** [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<`[`RolldownOptions`](https://rolldown.rs/reference/), `'input' | 'logLevel' | 'output'> & {
-  output?: [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<`
-    [`RolldownOutputOptions`](https://rolldown.rs/reference/),
-    `'format' | 'sourcemap' | 'dir' | 'banner'>`
-`}`
+- **Typ:** <code>Omit<<a href="https://rolldown.rs/reference/Interface.RolldownOptions">RolldownOptions</a>, 'input' | 'logLevel' | 'output'> & { output?: Omit<<a href="https://rolldown.rs/reference/#:~:text=Output%20Options">RolldownOutputOptions</a>, 'format' | 'sourcemap' | 'dir' | 'banner'> }</code>
 
 Optionen die an Rolldown übergeben werden, während die Abhängigkeiten gescannt und optimiert werden.
 
@@ -63,17 +59,7 @@ Bestimmte Optionen werden ausgelassen, da eine Änderungen an ihnen nicht kompat
 
 ## optimizeDeps.esbuildOptions <NonInheritBadge />
 
-- **Typ:** [`Omit`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)`<`[`EsbuildBuildOptions`](https://esbuild.github.io/api/#general-options)`,
-| 'bundle'
-| 'entryPoints'
-| 'external'
-| 'write'
-| 'watch'
-| 'outdir'
-| 'outfile'
-| 'outbase'
-| 'outExtension'
-| 'metafile'>`
+- **Typ:** <code>Omit<<a href="https://esbuild.github.io/api/#general-options">EsbuildBuildOptions</a>, 'bundle' | 'entryPoints' | 'external' | 'write' | 'watch' | 'outdir' | 'outfile' | 'outbase' | 'outExtension' | 'metafile'></code>
 - **Veraltet**
 
 Diese Option ist intern zu `optimizeDeps.rolldownOptions` konvertiert. Nutzen Sie `optimizeDeps.rolldownOptions` stattdessen.

@@ -16,20 +16,7 @@ Dies kann über die CLI mit `--host 0.0.0.0` oder `--host` festgelegt werden.
 
 Es gibt Fälle, in denen andere Server möglicherweise anstelle von Vite antworten.
 
-Der erste Fall tritt auf, wenn `localhost` verwendet wird. Node.js unter v17 ordnet die Ergebnisse der DNS-aufgelösten Adressen standardmäßig neu an. Beim Zugriff auf `localhost` verwenden Browser DNS, um die Adresse aufzulösen, und diese Adresse kann von der Adresse abweichen, auf die Vite hört. Vite gibt die aufgelöste Adresse aus, wenn sie sich unterscheidet.
-
-Sie können [`dns.setDefaultResultOrder('verbatim')`](https://nodejs.org/api/dns.html#dns_dns_setdefaultresultorder_order) festlegen, um das Neuanordnungsverhalten zu deaktivieren. Vite gibt die Adresse dann als `localhost` aus.
-
-```js twoslash [vite.config.js]
-import { defineConfig } from 'vite'
-import dns from 'dns'
-
-dns.setDefaultResultOrder('verbatim')
-
-export default defineConfig({
-  // ausgelassen
-})
-```
+Der erste Fall tritt auf, wenn `localhost` verwendet wird. Node.js' [`dns.setDefaultResultOrder`](https://nodejs.org/docs/latest-v24.x/api/dns.html#dnssetdefaultresultorderorder) beeinflusst, in welcher Reihenfolge DNS-aufgelöste Adressen sortiert werden, und Browser verwenden möglicherweise eine andere aufgelöste Adresse als die, auf die Vite hört. Vite gibt die aufgelöste Adresse aus, wenn sie sich unterscheidet.
 
 Der zweite Fall tritt auf, wenn Platzhalterhosts (z. B. `0.0.0.0`) verwendet werden. Dies liegt daran, dass Server, die auf Nicht-Platzhalterhosts lauschen, Vorrang vor denen haben, die auf Platzhalterhosts lauschen.
 
@@ -70,7 +57,7 @@ Das Setzen des Wertes `server.allowedHosts` auf `true` erlaubt jeder Webseite An
 :::
 
 ::: details Konfiguration via Umgebungsvariable
-Sie können die Umgebungsvariable `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` setzen, um einen zusätzlichen berechtigten Host hinzuzufügen.
+Sie können die Umgebungsvariable `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` setzen, um zusätzliche berechtigte Hosts hinzuzufügen. Trennen Sie mehrere Hosts durch Kommas (z. B. `host1.example.com,host2.example.com`).
 :::
 
 ## server.port
@@ -155,7 +142,7 @@ export default defineConfig({
         target: 'http://jsonplaceholder.typicode.com',
         changeOrigin: true,
         configure: (proxy, options) => {
-          // proxy wird eine Instanz von 'http-proxy' sein
+          // proxy wird eine Instanz von 'http-proxy-3' sein
         },
       },
       // Proxying websockets or socket.io:
@@ -171,6 +158,12 @@ export default defineConfig({
   },
 })
 ```
+
+::: warning Origin-Prüfung für WebSockets
+
+Vite prüft den Origin von WebSocket-Anfragen vor dem Weiterleiten nicht. Es wird erwartet, dass das Proxy-Ziel den `Origin`-Header prüft oder andere Prüfungen vornimmt. Beachten Sie, dass die Option `rewriteWsOrigin` den Origin auf den Ziel-Origin umschreibt, wodurch die Origin-Prüfung umgangen wird.
+
+:::
 
 ## server.cors
 
@@ -193,17 +186,45 @@ Legen Sie die Serverantwortheader fest.
 
 ## server.hmr
 
-- **Typ:** `boolean | { protocol?: string, host?: string, port?: number, path?: string, timeout?: number, overlay?: boolean, clientPort?: number, server?: Server }`
+- **Typ:** `boolean | { overlay?: boolean }`
 
-Deaktivieren oder konfigurieren Sie die HMR-Verbindung (in Fällen, in denen das HMR-WebSocket eine andere Adresse als der HTTP-Server verwenden muss).
+Deaktivieren oder konfigurieren Sie das HMR-Verhalten.
 
 Setzen Sie `server.hmr.overlay` auf `false`, um das Serverfehler-Overlay zu deaktivieren.
 
-Mit `protocol` wird das für die HMR-Verbindung verwendete WebSocket-Protokoll festgelegt - zur Auswahl stehen `ws` (WebSocket) und `wss` (WebSocket Secure).
+::: warning Veraltete Optionen
 
-`clientPort` ist eine erweiterte Option, die den Port nur auf der Clientseite überschreibt und es Ihnen ermöglicht, das WebSocket auf einem anderen Port als der Clientcode danach suchen lässt.
+Die WebSocket-bezogenen Optionen (`protocol`, `host`, `port`, `path`, `clientPort`, `timeout`, `server`) sind veraltet. Verwenden Sie stattdessen [`server.ws`](#server-ws). Diese Optionen werden automatisch synchronisiert, sodass bestehende Konfigurationen weiterhin funktionieren.
 
-Wenn `server.hmr.server` definiert ist, wird Vite die HMR-Verbindungsanfragen über den bereitgestellten Server verarbeiten. Wenn sich Vite nicht im Middleware-Modus befindet, wird Vite versuchen, HMR-Verbindungsanfragen über den vorhandenen Server zu verarbeiten. Dies kann hilfreich sein, wenn Sie selbstsignierte Zertifikate verwenden oder Vite über ein Netzwerk auf einem einzelnen Port verfügbar machen möchten.
+:::
+
+## server.ws
+
+- **Typ:** `false | { protocol?: string, host?: string, port?: number, path?: string, timeout?: number, clientPort?: number, server?: Server }`
+
+Konfiguriert die Optionen der WebSocket-Verbindung. Setzen Sie den Wert auf `false`, um die WebSocket-Verbindung vollständig zu deaktivieren.
+
+- `protocol` – WebSocket-Protokoll (`ws` oder `wss`)
+- `host` – Host des WebSocket-Servers
+- `port` – Port des WebSocket-Servers
+- `path` – WebSocket-Pfad
+- `clientPort` – Überschreibt den Port nur auf der Clientseite, sodass Sie das WebSocket auf einem anderen Port bereitstellen können als dem, auf dem der Clientcode danach sucht
+- `timeout` – Verbindungs-Timeout in Millisekunden (Standard: 30000)
+- `server` – Verwendet einen eigenen HTTP-Server für WebSocket-Verbindungen
+
+Wenn `server.ws.server` definiert ist, verarbeitet Vite die WebSocket-Verbindungsanfragen über den bereitgestellten Server. Wenn sich Vite nicht im Middleware-Modus befindet, versucht Vite, WebSocket-Verbindungsanfragen über den vorhandenen Server zu verarbeiten. Dies kann hilfreich sein, wenn Sie selbstsignierte Zertifikate verwenden oder Vite über ein Netzwerk auf einem einzelnen Port verfügbar machen möchten.
+
+```js
+export default defineConfig({
+  server: {
+    ws: {
+      protocol: 'wss',
+      host: 'localhost',
+      port: 3001,
+    },
+  },
+})
+```
 
 Schauen Sie sich [`vite-setup-catalogue`](https://github.com/sapphi-red/vite-setup-catalogue) für einige Beispiele an.
 
@@ -212,21 +233,21 @@ Schauen Sie sich [`vite-setup-catalogue`](https://github.com/sapphi-red/vite-set
 Mit der Standardkonfiguration wird erwartet, dass Reverse-Proxys vor Vite WebSocket-Proxying unterstützen. Wenn der Vite HMR-Client keine Verbindung zum WebSocket herstellen kann, fällt der Client auf die direkte Verbindung zum Vite HMR-Server zurück und umgeht die Reverse-Proxys:
 
 ```
-Direkter WebSocket-Verbindungsrückfall. Weitere Informationen finden Sie unter https://vite.dev/config/server-options.html#server-hmr, um den vorherigen Verbindungsfehler zu entfernen.
+Direkter WebSocket-Verbindungsrückfall. Weitere Informationen finden Sie unter https://vite.dev/config/server-options.html#server-ws, um den vorherigen Verbindungsfehler zu entfernen.
 ```
 
 Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann ignoriert werden. Um den Fehler zu vermeiden, indem Sie die Reverse-Proxys direkt umgehen, können Sie entweder:
 
 - Konfigurieren Sie den Reverse-Proxy so, dass er auch WebSocket proxyt
-- Setzen Sie [`server.strictPort = true`](#server-strictport) und legen Sie `server.hmr.clientPort` auf denselben Wert wie `server.port`
-- Legen Sie `server.hmr.port` auf einen anderen Wert als [`server.port`](#server-port)
+- Setzen Sie [`server.strictPort = true`](#server-strictport) und legen Sie `server.ws.clientPort` auf denselben Wert wie `server.port`
+- Legen Sie `server.ws.port` auf einen anderen Wert als [`server.port`](#server-port)
 
 :::
 
 ## server.forwardConsole
 
 - **Typ:** `boolean | { unhandledErrors?: boolean, logLevels?: ('error' | 'warn' | 'info' | 'log' | 'debug')[] }`
-- **Standard:** automatisch (`true`, wenn ein KI-Entwicklungsagent mit Hilfe von [`@vercel/detect-agent`](https://www.npmjs.com/package/@vercel/detect-agent) erkannt wird, ansonsten `false`)
+- **Standard:** automatisch (`true`, wenn ein KI-Entwicklungsagent mit Hilfe von [`std-env`](https://www.npmjs.com/package/std-env) erkannt wird, ansonsten `false`)
 
 Weiterleitung von Events in der Browser-Laufzeitumgebung zur Vite-Server-Konsole während der Entwicklung.
 
@@ -289,6 +310,8 @@ export default defineConfig({
 
 Dateisystem-Überwachungsoptionen, die an [chokidar](https://github.com/paulmillr/chokidar/tree/3.6.0#api) weitergegeben werden sollen.
 
+Wenn der Bundled-Dev-Modus aktiviert ist, werden zusätzlich [Rolldown-Watch-Optionen](https://rolldown.rs/reference/InputOptions.watch) (zum Beispiel `watcher.usePolling`, `watcher.pollInterval`, `watcher.useDebounce`, `watcher.debounceDuration`, `include`, `exclude`) akzeptiert. Die reinen chokidar-Optionen werden weiterhin vom chokidar-Watcher verwendet, der nach wie vor Dateien außerhalb des Modulgraphen überwacht, etwa Abhängigkeiten der Konfigurationsdatei und Env-Dateien.
+
 Der Vite Server Watcher überwacht das `root` und überspringt standardmäßig die Verzeichnisse `.git/`, `node_modules/`, `test-results/`, Vites `cacheDir` und Vites `build.outDir`. Wenn eine überwachte Datei aktualisiert wird, wendet Vite HMR an und aktualisiert nur bei Bedarf die Seite.
 
 Wenn auf `null` gesetzt, werden keine Dateien überwacht. [`server.watcher`](/guide/api-javascript.html#vitedevserver) stellt einen kompatiblen Ereignis-Emitter bereit, aber der Aufruf von `add` oder `unwatch` hat keine Wirkung.
@@ -311,10 +334,12 @@ Um das Problem zu beheben, können Sie Folgendes tun:
 
 ## server.middlewareMode
 
-- **Typ:** `boolean`
+- **Typ:** `boolean | { server: http.Server }`
 - **Standard:** `false`
 
 Erstellen Sie den Vite-Server im Middleware-Modus.
+
+Wenn ein [Proxy](./server-options#server-proxy) für WebSocket eingerichtet ist, sollte `server` angegeben werden, damit der Proxy korrekt gebunden wird.
 
 - **Verwandte Themen:** [appType](./shared-options#apptype), [SSR - Einrichten des Entwicklungsservers](/guide/ssr#setting-up-the-dev-server)
 
@@ -405,15 +430,24 @@ export default defineConfig({
 ## server.fs.deny
 
 - **Typ:** `string[]`
-- **Standard:** `['.env', '.env.*', '*.{crt,pem}', '**/.git/**']`
+- **Standard:** `['.env', '.env.*', '*.{crt,pem,key,p12,pfx,cer,der}', '.npmrc', '.yarnrc.yml', '**/.git/**']`
 
 Blockier-Liste für sensible Dateien, deren Bereitstellung durch den Vite-Entwicklungsserver eingeschränkt ist. Diese hat eine höhere Priorität als [`server.fs.allow`](#server-fs-allow). [Picomatch-Muster](https://github.com/micromatch/picomatch#globbing-features) werden unterstützt.
+
+Das Setzen dieser Option ersetzt die Standardliste vollständig. Nehmen Sie alle Standardmuster, die Sie beibehalten möchten, in Ihre eigene Liste auf.
 
 ::: tip HINWEIS
 
 Diese Blockliste wird nicht auf [das `public`-Verzeichnis](/guide/assets.md#the-public-directory) angewendet. Alle Dateien in dem `public`-Verzeichnis werden ohne Filterung bereitgestellt, da sie beim Build direkt in das Ausgabeverzeichnis kopiert werden.
 
 :::
+
+::: tip HINWEIS
+
+Der Deny-Filter wird auf die Modul-ID sowie auf die ID ohne Query-Parameter angewendet. Da ein Plugin in seinem `load`-Hook beliebige Dateien lesen kann (einschließlich der Auflösung von Symlinks auf gesperrte Pfade), kann Vite nicht garantieren, dass eine gesperrte Datei nicht über einen alternativen Pfad erreichbar ist. Falls es einen alternativen Pfad gibt, nehmen Sie ihn ebenfalls in die Deny-Liste auf.
+
+:::
+
 
 ## server.origin
 
@@ -432,26 +466,26 @@ export default defineConfig({
 ## server.sourcemapIgnoreList
 
 - **Typ:** `false | (sourcePath: string, sourcemapPath: string) => boolean`
-- **Standard:** `(sourcePath) => sourcePath.includes('node_modules')`
+- **Standard:** `(sourcePath) => /(?:^|[\\/])node_modules(?:[\\/]|$)/.test(sourcePath)`
 
 Gibt an, ob Quelldateien in der Server-Sourcemap ignoriert werden sollen, die verwendet wird, um die [`x_google_ignoreList`-Source-Map-Erweiterung](https://developer.chrome.com/blog/devtools-better-angular-debugging/#the-x_google_ignorelist-source-map-extension) zu füllen.
 
-`server.sourcemapIgnoreList` entspricht [`build.rollupOptions.output.sourcemapIgnoreList`](https://rollupjs.org/configuration-options/#output-sourcemapignorelist) für den Entwicklungsserver. Ein Unterschied zwischen den beiden Konfigurationsoptionen besteht darin, dass die Rollup-Funktion für `sourcePath` einen relativen Pfad aufruft, während `server.sourcemapIgnoreList` mit einem absoluten Pfad aufgerufen wird. Während der Entwicklung haben die meisten Module die Karte und die Quelle im selben Verzeichnis, sodass der relative Pfad für `sourcePath` der Dateiname selbst ist. In diesen Fällen erleichtern absolute Pfade ihre Verwendung.
+`server.sourcemapIgnoreList` entspricht [`build.rolldownOptions.output.sourcemapIgnoreList`](https://rolldown.rs/reference/OutputOptions.sourcemapIgnoreList) für den Entwicklungsserver. Ein Unterschied zwischen den beiden Konfigurationsoptionen besteht darin, dass die Rolldown-Funktion für `sourcePath` einen relativen Pfad aufruft, während `server.sourcemapIgnoreList` mit einem absoluten Pfad aufgerufen wird. Während der Entwicklung haben die meisten Module die Karte und die Quelle im selben Verzeichnis, sodass der relative Pfad für `sourcePath` der Dateiname selbst ist. In diesen Fällen erleichtern absolute Pfade ihre Verwendung.
 
-Standardmäßig werden alle Pfade, die `node_modules` enthalten, ausgeschlossen. Sie können `false` übergeben, um dieses Verhalten zu deaktivieren, oder, um die volle Kontrolle zu haben, eine Funktion, die den Quellpfad und den Sourcemap-Pfad akzeptiert und zurückgibt, ob der Quellpfad ignoriert werden soll.
+Standardmäßig werden alle Pfade ausgeschlossen, die `node_modules` als Pfadsegment enthalten. Sie können `false` übergeben, um dieses Verhalten zu deaktivieren, oder, um die volle Kontrolle zu haben, eine Funktion, die den Quellpfad und den Sourcemap-Pfad akzeptiert und zurückgibt, ob der Quellpfad ignoriert werden soll.
 
 ```js
 export default defineConfig({
   server: {
-    // Dies ist der Standardwert und wird alle Dateien mit 'node_modules'
-    // in ihrem Pfad zur Ignorierungsliste hinzufügen.
+    // Dies ist der Standardwert und fügt alle Dateien, die node_modules
+    // als Pfadsegment enthalten, zur Ignorierungsliste hinzu.
     sourcemapIgnoreList(sourcePath, sourcemapPath) {
-      return sourcePath.includes('node_modules')
+      return /(?:^|[\\/])node_modules(?:[\\/]|$)/.test(sourcePath)
     }
   }
 };
 ```
 
 :::tip HINWEIS
-[`server.sourcemapIgnoreList`](#server-sourcemapignorelist) und [`build.rollupOptions.output.sourcemapIgnoreList`](https://rollupjs.org/configuration-options/#output-sourcemapignorelist) müssen unabhängig voneinander festgelegt werden. `server.sourcemapIgnoreList` ist eine serverseitige Konfiguration und erhält ihren Standardwert nicht aus den definierten Rollup-Optionen.
+[`server.sourcemapIgnoreList`](#server-sourcemapignorelist) und [`build.rolldownOptions.output.sourcemapIgnoreList`](https://rolldown.rs/reference/OutputOptions.sourcemapIgnoreList) müssen unabhängig voneinander festgelegt werden. `server.sourcemapIgnoreList` ist eine serverseitige Konfiguration und erhält ihren Standardwert nicht aus den definierten Rolldown-Optionen.
 :::

@@ -22,11 +22,11 @@ Bietet Unterstützung für Vue 2 Single File Components.
 
 ### [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react)
 
-Verwendet [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer) und [Babel](https://babeljs.io/) und erreicht so ein schnelles HMR mit geringem Paketplatzbedarf und der Flexibilität, die Babel-Transformationspipeline verwenden zu können. Ohne zusätzliche Babel-Plugins wird nur Oxc Transformer während der Builds verwendet.
+Bietet Unterstützung für React Fast Refresh über [Oxc Transformer](https://oxc.rs/docs/guide/usage/transformer).
 
 ### [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react-swc)
 
-Ersetzt Babel durch [SWC](https://swc.rs/) während der Entwicklung. Während der produktiven Builds werden SWC+Oxc Transformer verwendet, wenn Plugins verwendet werden, und ansonsten nur Oxc Transformer. Bei großen Projekten, die benutzerdefinierte Plugins benötigen, können der Kaltstart und das Hot Module Replacement (HMR) deutlich schneller sein, falls das Plugin auch für SWC verfügbar ist.
+Ersetzt Oxc während der Entwicklung durch [SWC](https://swc.rs/), um SWC-Plugins nutzen zu können. Während der produktiven Builds werden SWC+Oxc Transformer verwendet, wenn Plugins verwendet werden. Bei großen Projekten, die benutzerdefinierte Plugins benötigen, können der Kaltstart und das Hot Module Replacement (HMR) deutlich schneller sein, falls das Plugin auch für SWC verfügbar ist.
 
 ### [@vitejs/plugin-rsc](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-rsc)
 

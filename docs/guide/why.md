@@ -1,68 +1,60 @@
 # Wieso Vite?
 
-## Die Problematiken
+Mit der wachsenden Größe und Komplexität von Webanwendungen konnten die Tools, mit denen sie gebaut werden, kaum Schritt halten. Entwickler:innen großer Projekte kennen quälend langsame Starts des Entwicklungsservers, träge Hot Updates und lange Build-Zeiten für die Produktion. Jede Generation von Build-Tools hat die vorherige verbessert, doch diese Probleme blieben bestehen.
 
-Bevor ES-Module in Browsern verfügbar waren, hatten Entwickler:innen keinen nativen Mechanismus für die Erstellung von JavaScript in einer modularisierten Weise. Aus diesem Grund sind wir alle mit dem Konzept der "Bündelung" vertraut: Wir verwenden Tools, die unsere Quellmodule crawlen, verarbeiten und zu Dateien zusammenfügen, die im Browser ausgeführt werden können.
+Vite wurde geschaffen, um genau das zu lösen. Statt bestehende Ansätze schrittweise zu verbessern, hat Vite neu gedacht, wie Code während der Entwicklung ausgeliefert werden sollte. Seitdem hat sich Vite über mehrere Major-Versionen weiterentwickelt und sich jedes Mal an neue Möglichkeiten im Ökosystem angepasst: von der Nutzung nativer ES-Module im Browser bis hin zu einer vollständig in Rust geschriebenen Toolchain.
 
-Im Laufe der Zeit haben wir Tools wie [webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org) und [Parcel](https://parceljs.org/) gesehen, die die Entwicklungserfahrung für Frontend-Entwickler erheblich verbessert haben.
+Heute bildet Vite die Grundlage vieler Frameworks und Tools. Die Architektur ist darauf ausgelegt, sich mit der Webplattform weiterzuentwickeln, statt sich auf einen einzelnen Ansatz festzulegen. So ist Vite ein Fundament, auf das Sie langfristig bauen können.
 
-Da wir jedoch immer anspruchsvollere Anwendungen entwickeln, nimmt auch die Menge an JavaScript, mit der wir zu tun haben, drastisch zu. Es ist nicht ungewöhnlich, dass große Projekte Tausende von Modulen enthalten. Wir stoßen allmählich auf einen Leistungsengpass für JavaScript-basierte Tools: Es kann oft unangemessen lange dauern (manchmal sogar bis zu einigen Minuten!), bis ein Entwicklungsserver hochgefahren ist, und selbst mit Hot Module Replacement (HMR) kann es einige Sekunden dauern, bis Dateibearbeitungen im Browser angezeigt werden. Diese langsame Feedbackschleife kann die Produktivität und Zufriedenheit der Entwickler stark beeinträchtigen.
+## Die Ursprünge
 
-Vite zielt darauf ab, diese Probleme zu lösen, indem es neue Fortschritte im Ökosystem nutzt: die Verfügbarkeit von nativen ES-Modulen im Browser und das Aufkommen von JavaScript-Tools, die in Compile-to-Native-Sprachen geschrieben sind.
+Als Vite entstand, hatten Browser gerade breite Unterstützung für [ES-Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) (ESM) erhalten – eine Möglichkeit, JavaScript-Dateien direkt zu laden, ohne sie vorher mit einem Tool zu einer einzigen Datei zu bündeln. Klassische Build-Tools (oft _Bundler_ genannt) verarbeiteten die gesamte Anwendung im Voraus, bevor überhaupt etwas im Browser angezeigt werden konnte. Je größer die App, desto länger die Wartezeit.
 
-### Langsamer Start des Servers
+Vite wählte einen anderen Ansatz und teilte die Arbeit in zwei Teile:
 
-Beim "Kaltstart" des Entwicklungsservers muss ein Bundler-basiertes Build-Setup Ihre gesamte Anwendung eifrig crawlen und bauen, bevor sie bereitgestellt werden kann.
+- **Abhängigkeiten** (Bibliotheken, die sich selten ändern) werden einmalig mit schnellen nativen Tools [vorgebündelt](./dep-pre-bundling.md) und stehen so sofort bereit.
+- **Quellcode** (Ihr Anwendungscode, der sich häufig ändert) wird bei Bedarf über natives ESM ausgeliefert. Der Browser lädt nur, was er für die aktuelle Seite braucht, und Vite transformiert jede Datei erst, wenn sie angefordert wird.
 
-Vite verbessert die Startzeit des Entwicklungsservers, indem es zunächst die Module einer Anwendung in zwei Kategorien unterteilt: **Abhängigkeiten** und **Quellcode**.
-
-- **Abhängigkeiten** sind meist einfaches JavaScript, das sich während der Entwicklung nicht oft ändert. Einige große Abhängigkeiten (z. B. Komponentenbibliotheken mit Hunderten von Modulen) sind auch recht teuer in der Verarbeitung. Abhängigkeiten können auch in verschiedenen Modulformaten ausgeliefert werden (z. B. ESM oder CommonJS).
-
-  Vite [bündelt Abhängigkeiten](./dep-pre-bundling.md) mit [esbuild](https://esbuild.github.io/). Esbuild ist in Go geschrieben und bündelt Abhängigkeiten 10-100x schneller als JavaScript-basierte Bundler.
-
-- Der **Quellcode** enthält oft Nicht-Plain-JavaScript, das umgewandelt werden muss (z. B. JSX, CSS oder Vue/Svelte-Komponenten), und wird sehr oft bearbeitet werden. Außerdem muss nicht der gesamte Quellcode gleichzeitig geladen werden (z. B. bei routenbasiertem Code-Splitting).
-
-  Vite liefert den Quellcode über [native ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules). Dies bedeutet im Wesentlichen, dass der Browser einen Teil der Arbeit eines Bundlers übernehmen kann: Vite muss den Quellcode nur bei Bedarf transformieren und bereitstellen, wenn der Browser ihn anfordert. Code hinter bedingten dynamischen Importen wird nur verarbeitet, wenn er tatsächlich auf dem aktuellen Bildschirm verwendet wird.
+Dadurch startete der Entwicklungsserver nahezu sofort – unabhängig von der Größe der Anwendung. Wurde eine Datei bearbeitet, aktualisierte Vite per [Hot Module Replacement](./features.md#hot-module-replacement) (HMR) über natives ESM genau dieses Modul im Browser, ohne die Seite komplett neu zu laden oder auf einen Rebuild zu warten.
 
 <script setup>
 import bundlerSvg from '../images/bundler.svg?raw'
 import esmSvg from '../images/esm.svg?raw'
 </script>
 <svg-image :svg="bundlerSvg" />
+
+_Bei einem Bundle-basierten Entwicklungsserver wird die gesamte Anwendung gebündelt, bevor sie ausgeliefert werden kann._
+
 <svg-image :svg="esmSvg" />
 
-### Langsame Aktualisierung
+_Bei einem ESM-basierten Entwicklungsserver werden Module bei Bedarf ausgeliefert, sobald der Browser sie anfordert._
 
-Wenn eine Datei in einem Bundler-basierten Build-Setup bearbeitet wird, ist es aus einem offensichtlichen Grund ineffizient, das gesamte Bundle neu zu erstellen: Die Aktualisierungsgeschwindigkeit nimmt linear mit der Größe der Anwendung ab.
+Vite war nicht das erste Tool, das diesen Ansatz verfolgte. [Snowpack](https://www.snowpack.dev/) war Vorreiter der ungebündelten Entwicklung und inspirierte Vites Vorab-Bündelung von Abhängigkeiten. [WMR](https://github.com/preactjs/wmr) vom Preact-Team inspirierte die universelle Plugin-API, die sowohl in der Entwicklung als auch beim Build funktioniert. [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) beeinflusste die Serverarchitektur von Vite 1.0. Vite hat auf diesen Ideen aufgebaut und sie weitergeführt.
 
-Bei einigen Bundlern führt der Entwicklungsserver die Bündelung im Speicher aus, so dass er nur einen Teil seines Modulgraphen ungültig machen muss, wenn sich eine Datei ändert, aber er muss trotzdem das gesamte Bundle neu aufbauen und die Webseite neu laden. Die Rekonstruktion des Bundles kann teuer sein, und das Neuladen der Seite macht den aktuellen Zustand der Anwendung zunichte. Aus diesem Grund unterstützen einige Bundler Hot Module Replacement (HMR), d. h. ein Modul kann im laufenden Betrieb ersetzt werden, ohne dass der Rest der Seite beeinträchtigt wird. Dies verbessert die DX (Developer-Experience, zu deutsch "Entwickler-Erfahrung") erheblich - in der Praxis haben wir jedoch festgestellt, dass selbst die HMR-Aktualisierungsgeschwindigkeit mit zunehmender Größe der Anwendung erheblich abnimmt.
+Auch wenn ungebündeltes ESM in der Entwicklung gut funktioniert, ist seine Auslieferung in der Produktion durch zusätzliche Netzwerk-Roundtrips bei verschachtelten Importen weiterhin ineffizient. Deshalb ist [Bündeln für optimierte Produktions-Builds nach wie vor notwendig](https://rolldown.rs/in-depth/why-bundlers).
 
-In Vite wird die HMR über das native ESM durchgeführt. Wenn eine Datei bearbeitet wird, muss Vite nur die Kette zwischen dem bearbeiteten Modul und der nächstgelegenen HMR-Grenze (meistens nur das Modul selbst) genau ungültig machen, wodurch HMR-Aktualisierungen unabhängig von der Größe Ihrer Anwendung gleichbleibend schnell sind.
+## Wachsen mit dem Ökosystem
 
-Vite nutzt auch HTTP-Header, um das Neuladen ganzer Seiten zu beschleunigen (auch hier soll der Browser mehr Arbeit für uns erledigen): Quellcode-Modulanfragen werden über `304 Not Modified` an Bedingungen geknüpft, und Abhängigkeitsmodulanfragen werden über `Cache-Control: max-age=31536000,immutable` zwischengespeichert, so dass sie nach dem Zwischenspeichern nicht erneut auf den Server zugreifen.
+Mit zunehmender Reife von Vite begannen Frameworks, es als Build-Schicht einzusetzen. Die [Plugin-API](./api-plugin.md), die auf den Konventionen von Rollup basiert, machte die Integration naheliegend, ohne dass Frameworks Vites Interna umgehen mussten. [Nuxt](https://nuxt.com/), [SvelteKit](https://svelte.dev/docs/kit), [Astro](https://astro.build/), [React Router](https://reactrouter.com/), [Analog](https://analogjs.org/), [SolidStart](https://start.solidjs.com/) und andere haben Vite als Fundament gewählt. Tools wie [Vitest](https://vitest.dev/) und [Storybook](https://storybook.js.org/) bauen ebenfalls darauf auf und erweitern Vites Reichweite über das Bündeln von Apps hinaus. Backend-Frameworks wie [Laravel](https://laravel.com/docs/vite) und [Ruby on Rails](https://vite-ruby.netlify.app/) haben Vite in ihre Frontend-Asset-Pipelines integriert.
 
-Wenn Sie einmal erlebt haben, wie schnell Vite ist, werden Sie sich wohl kaum noch mit gebündelter Entwicklung abfinden wollen.
+Dieses Wachstum verlief nicht nur in eine Richtung. Das Ökosystem hat Vite ebenso geprägt wie Vite das Ökosystem. Das Vite-Team betreibt [vite-ecosystem-ci](https://github.com/vitejs/vite-ecosystem-ci), das wichtige Projekte des Ökosystems gegen jede Änderung an Vite testet. Die Gesundheit des Ökosystems ist kein nachträglicher Gedanke, sondern Teil des Release-Prozesses.
 
-## Warum für die produktive Umgebung bündeln
+## Eine einheitliche Toolchain
 
-Auch wenn natives ESM inzwischen weitgehend unterstützt wird, ist die Auslieferung von ungebündeltem ESM in der produktive Umgebung immer noch ineffizient (selbst mit HTTP/2), da durch verschachtelte Importe zusätzliche Netzwerkumläufe verursacht werden. Um eine optimale Ladeleistung in der produktiven Umgebung zu erreichen, ist es immer noch besser, Ihren Code mit Tree-Shaking, Lazy-Loading und Common Chunk Splitting (für besseres Caching) zu bündeln.
+Ursprünglich setzte Vite unter der Haube auf zwei getrennte Tools: [esbuild](https://esbuild.github.io/) für schnelles Kompilieren während der Entwicklung und [Rollup](https://rollupjs.org/) für gründliche Optimierung bei Produktions-Builds. Das funktionierte, doch die Pflege zweier Pipelines brachte Inkonsistenzen mit sich: unterschiedliches Transformationsverhalten, getrennte Plugin-Systeme und wachsender Glue-Code, um beides in Einklang zu halten.
 
-Es ist nicht einfach, eine optimale Ausgabe und Verhaltenskonsistenz zwischen dem Entwicklungsserver und dem produktiven Build zu gewährleisten. Aus diesem Grund wird Vite mit einem vorkonfigurierten [Build-Befehl](./build.md) ausgeliefert, der viele [Leistungsoptimierungen](./features.md#build-optimizations) von Haus aus einbaut.
+[Rolldown](https://rolldown.rs/) wurde entwickelt, um beides in einem einzigen Bundler zu vereinen: in Rust geschrieben für native Geschwindigkeit und kompatibel mit derselben Plugin-API, auf die sich das Ökosystem bereits verließ. Für Parsen, Transformieren und Minifizieren nutzt es [Oxc](https://oxc.rs/). Damit verfügt Vite über eine durchgängige Toolchain, bei der Build-Tool, Bundler und Compiler gemeinsam gepflegt werden und sich als Einheit weiterentwickeln.
 
-## Warum nicht mit esbuild bundlen?
+Das Ergebnis ist eine konsistente Pipeline von der Entwicklung bis zur [Produktion](./build.md). Die Migration erfolgte mit Bedacht: Zuerst wurde eine [Technical Preview](https://voidzero.dev/posts/announcing-rolldown-vite) veröffentlicht, damit Early Adopters die Änderung prüfen konnten, das Ecosystem-CI deckte Kompatibilitätsprobleme frühzeitig auf, und eine Kompatibilitätsschicht erhielt bestehende Konfigurationen.
 
-Während Vite esbuild nutzt, um [einige Abhängigkeiten in dev vorzu-bundlen](./dep-pre-bundling.md), verwendet Vite esbuild nicht als Bundler für Produktions-Builds.
+## Wohin sich Vite entwickelt
 
-Die aktuelle Plugin-API von Vite ist nicht mit der Verwendung von `esbuild` als Bundler kompatibel. Obwohl `esbuild` schneller ist, hat die Übernahme der flexiblen Plugin-API und -Infrastruktur von Rollup wesentlich zum Erfolg von Vite im Ökosystem beigetragen. Im Moment glauben wir, dass Rollup einen besseren Kompromiss zwischen Leistung und Flexibilität bietet.
+Die Architektur von Vite entwickelt sich stetig weiter. Mehrere Vorhaben prägen die Zukunft:
 
-Rollup hat auch an Leistungsverbesserungen gearbeitet, [Umstellung des Parsers auf SWC in v4](https://github.com/rollup/rollup/pull/5073); währenddessen gibt es auch ein ständiges Bestreben, eine Rust-Portierung von Rollup namens Rolldown zu entwickeln. Sobald Rolldown fertig ist, könnte es sowohl Rollup als auch esbuild in Vite ersetzen, die Build-Leistung erheblich verbessern und Inkonsistenzen zwischen Entwicklung und Build beseitigen. Sie können sich [Evan You's ViteConf 2023 Keynote für weitere Details](https://youtu.be/hrdwQHoAp0M) ansehen.
+- **Full-Bundle-Modus**: Ungebündeltes ESM war der richtige Kompromiss, als Vite entstand, denn kein Tool war schnell genug und bot zugleich die HMR- und Plugin-Fähigkeiten, um während der Entwicklung zu bündeln. Rolldown ändert das. Da außergewöhnlich große Codebasen durch die vielen ungebündelten Netzwerkanfragen langsam laden können, erforscht das Team einen Modus, in dem der Entwicklungsserver Code ähnlich wie in der Produktion bündelt und so den Netzwerk-Overhead reduziert.
 
-## Wie steht Vite im Verhältnis zu anderen ungebündelten Build-Tools?
+- **Environment API**: Statt „Client“ und „SSR“ als einzige Build-Ziele zu behandeln, ermöglicht die [Environment API](./api-environment-instances.md) Frameworks, eigene Umgebungen zu definieren (Edge-Runtimes, Service Worker und andere Deployment-Ziele), jeweils mit eigenen Regeln für Modulauflösung und Ausführung. Je vielfältiger wird, wo und wie Code läuft, desto mehr wächst Vites Modell mit.
 
-[WMR](https://github.com/preactjs/wmr) vom Preact-Team bietet einen ähnlichen Funktionsumfang. Vites universelle Rollup Plugin-Schnittstelle für dev und build wurden dadurch inspiriert. WMR wird nicht mehr weiterentwickelt. Das Preact-Team empfiehlt nun Vite mit [@preactjs/preset-vite](https://github.com/preactjs/preset-vite).
+- **Weiterentwicklung mit JavaScript**: Da Oxc und Rolldown eng mit Vite zusammenarbeiten, können neue Sprachfeatures und Standards schnell in der gesamten Toolchain übernommen werden, ohne auf Upstream-Abhängigkeiten warten zu müssen.
 
-[Snowpack](https://www.snowpack.dev/) war ebenfalls ein nativer ESM-Entwicklungsserver ohne Bündel, der Vite sehr ähnlich ist. Die Vorab-Bündelung von Abhängigkeiten durch Vite ist ebenfalls von Snowpack v1 (jetzt [`esinstall`](https://github.com/snowpackjs/snowpack/tree/main/esinstall)) inspiriert. Das Projekt wird nicht mehr gepflegt. Das Snowpack-Team arbeitet jetzt an [Astro](https://astro.build/), einem Static Site Builder, der auf Vite basiert.
-
-## @web/dev-server
-
-[@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) (vorher `es-dev-server`) ist ein großartiges Projekt und die Koa-basierte Servereinrichtung von Vite 1.0 wurde davon inspiriert. Das Dachprojekt „@web“ wird aktiv gepflegt und enthält viele weitere hervorragende Tools, von denen auch Vite-Nutzer profitieren können.
+Vites Ziel ist nicht, das letzte Tool zu sein, sondern eines, das sich mit der Webplattform und mit den Entwickler:innen, die darauf bauen, stetig weiterentwickelt.

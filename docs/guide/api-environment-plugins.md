@@ -13,6 +13,14 @@ Ressourcen:
 Bitte teilen Sie uns Ihr Feedback mit.
 :::
 
+## Hooks pro Umgebung und globale Hooks {#per-environment-hooks-and-global-hooks}
+
+Plugins laufen in einer gemeinsamen Pipeline, ihre Hooks fallen jedoch in zwei Kategorien – je nachdem, ob sie einmal für den gesamten Server oder einmal pro Umgebung ausgeführt werden.
+
+Globale Hooks werden genau einmal aufgerufen, unabhängig von den konfigurierten Umgebungen. Sie kümmern sich um anwendungsweite Belange wie das Auflösen der Konfiguration oder das Einrichten des Entwicklungs- und Vorschauservers, daher ist `this.environment` für sie nicht relevant. Hooks rund um die Konfigurationsauflösung und den Server sind globale Hooks.
+
+Hooks pro Umgebung werden einmal für jede Umgebung aufgerufen und stellen die aktuelle Umgebung über `this.environment` in ihrem Kontext bereit. Alle [Rolldown-Hooks](/guide/api-plugin#rolldown-hooks) sind Hooks pro Umgebung, ebenso andere Vite-spezifische Hooks, die Module verarbeiten. Beachten Sie jedoch, dass `buildStart` und `buildEnd` ohne [das Flag `perEnvironmentStartEndDuringDev: true`](#status-pro-umgebung-in-plugins) nur für die Client-Umgebung aufgerufen werden.
+
 ## Zugriff auf die aktuelle Umgebung in Hooks
 
 Da es bis Vite 6 nur zwei Umgebungen gab (`client` und `ssr`), reichte ein `ssr`-Boolescher Wert aus, um die aktuelle Umgebung in Vite-APIs zu identifizieren. Plugin-Hooks erhielten einen booleschen Wert `ssr` im letzten Optionsparameter, und mehrere APIs erwarteten einen optionalen letzten Parameter `ssr`, um Module korrekt der richtigen Umgebung zuzuordnen (z. B. `server.moduleGraph.getModuleByUrl(url, { ssr })`).
@@ -49,7 +57,11 @@ Plugins können im Hook `config` neue Umgebungen hinzufügen. Zum Beispiel verwe
 
 Ein leeres Objekt reicht aus, um die Umgebung zu registrieren, durch die Nutzung von Standardwerten aus der Konfiguration der Umgebung auf Root-Ebene.
 
-## Konfigurieren der Umgebung mithilfe von Hooks
+## Konfigurieren der Umgebung mit dem Hook `configEnvironment`
+
+- **Typ:** `(name: string, config: EnvironmentOptions, env: { mode: string, command: 'build' | 'serve', isSsrBuild?: boolean, isPreview?: boolean, isSsrTargetWebworker?: boolean }) => EnvironmentOptions | null | void`
+- **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Pro Umgebung](#per-environment-hooks-and-global-hooks)
 
 Während der `config`-Hook ausgeführt wird, ist die vollständige Liste der Umgebungen noch nicht bekannt, und die Umgebungen können sowohl durch die Standardwerte aus der Konfiguration der Umgebung auf Root-Ebene als auch explizit durch den `config.environments`-Eintrag beeinflusst werden.
 Plugins sollten Standardwerte mithilfe des Hooks `config` festlegen. Um jede Umgebung zu konfigurieren, können sie den neuen Hook `configEnvironment` verwenden. Dieser Hook wird für jede Umgebung mit ihrer teilweise aufgelösten Konfiguration einschließlich der Auflösung der endgültigen Standardwerte aufgerufen.
@@ -67,10 +79,11 @@ Plugins sollten Standardwerte mithilfe des Hooks `config` festlegen. Um jede Umg
   }
 ```
 
-## Der `hotUpdate`-Hook
+## Der `hotUpdate`-Hook {#the-hotupdate-hook}
 
 - **Typ:** `(this: { environment: DevEnvironment }, options: HotUpdateOptions) => Array<EnvironmentModuleNode> | void | Promise<Array<EnvironmentModuleNode> | void>`
 - **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Pro Umgebung](#per-environment-hooks-and-global-hooks)
 - **Siehe auch:** [HMR API](./api-hmr)
 
 Der Hook `hotUpdate` ermöglicht es Plugins, benutzerdefinierte HMR-Aktualisierungen für eine bestimmte Umgebung durchzuführen. Wenn sich eine Datei ändert, wird der HMR-Algorithmus für jede Umgebung nacheinander gemäß der Reihenfolge in `server.environments` ausgeführt, sodass der Hook `hotUpdate` mehrmals aufgerufen wird. Der Hook empfängt ein Kontextobjekt mit der folgenden Signatur:
@@ -167,7 +180,11 @@ function PerEnvironmentCountTransformedModulesPlugin() {
 }
 ```
 
-## Plugins pro Umgebung
+## Plugins pro Umgebung mit dem Hook `applyToEnvironment` {#per-environment-plugins-using-the-applytoenvironment-hook}
+
+- **Typ:** `(environment: PartialEnvironment) => boolean | PluginOption | Promise<boolean>`
+- **Art:** `async`, `sequential`
+- **Geltungsbereich:** [Pro Umgebung](#per-environment-hooks-and-global-hooks)
 
 Ein Plugin kann mit der Funktion `applyToEnvironment` festlegen, auf welche Umgebungen es angewendet werden soll.
 
@@ -225,7 +242,9 @@ export default defineConfig({
 })
 ```
 
-Die `applyToEnvironment`-Hook wird zur konfigurierten Zeit aufgerufen, aktuell nach `configResolved`, da Projekte im Ökosystem die Plugins in der Hook ändern. Das Auflösen der Umgebungs-Plugins könnte zukünftig vor `configResolved` stattfinden.
+Beachten Sie, dass das von `applyToEnvironment` oder `perEnvironmentPlugin` zurückgegebene Plugin keine Vite-spezifischen Hooks verwenden sollte.
+
+Die `applyToEnvironment`-Hook wird zur Konfigurationszeit aufgerufen, aktuell nach `configResolved`, da Projekte im Ökosystem die Plugins in der Hook ändern. Das Auflösen der Umgebungs-Plugins könnte zukünftig vor `configResolved` stattfinden.
 
 ## Kommunikation zwischen Anwendung und Plugin
 
@@ -280,7 +299,7 @@ Dadurch waren Frameworks gezwungen, den Status zwischen dem `client`-Build und d
 
 In einer zukünftigen Hauptversion könnten wir eine vollständige Angleichung haben:
 
-- **Sowohl während der Entwicklung als auch beim Build:** Plugins werden gemeinsam genutzt, mit [Umgebungsfilterung](#per-environment-plugins)
+- **Sowohl während der Entwicklung als auch beim Build:** Plugins werden gemeinsam genutzt, mit [Umgebungsfilterung](#per-environment-plugins-using-the-applytoenvironment-hook)
 
 Außerdem wird es eine einzige `ResolvedConfig`-Instanz geben, die während des Builds gemeinsam genutzt wird und die Caching auf der Ebene des gesamten App-Build-Prozesses ermöglicht, so wie wir es bisher mit `WeakMap<ResolvedConfig, CachedData>` während der Entwicklung gemacht haben.
 

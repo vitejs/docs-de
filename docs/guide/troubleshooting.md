@@ -104,7 +104,7 @@ Wenn Sie ein selbstsigniertes SSL-Zertifikat verwenden, ignoriert Chrome alle Ca
 
 Um das Problem zu lösen, verwenden Sie ein vertrauenswürdiges SSL-Zertifikat.
 
-Siehe: [Cache-Probleme](https://helpx.adobe.com/mt/experience-manager/kb/cache-problems-on-chrome-with-SSL-certificate-errors.html), [Chrome-Fehler](https://bugs.chromium.org/p/chromium/issues/detail?id=110649#c8)
+Siehe: [Chrome-Fehler](https://bugs.chromium.org/p/chromium/issues/detail?id=110649#c8)
 
 #### macOS
 
@@ -133,6 +133,20 @@ Wenn Sie einen Dev-Container oder die Portweiterleitung in VS Code benutzen, kan
 Der Grund dafür ist, dass [die Portweiterleitung in VS Code kein IPv6 unterstützt](https://github.com/microsoft/vscode-remote-release/issues/7029).
 
 Siehe [#16522](https://github.com/vitejs/vite/issues/16522) für mehr Details.
+
+### Fehler „illegal operation“ beim Überwachen von Dateien {#illegal-operation-error-when-watching-files}
+
+Wenn sich die Datei oder das Verzeichnis auf einem Dateisystem befindet, das keine Dateisystem-Events unterstützt, kann Vite sie möglicherweise nicht überwachen.
+
+Ein Beispiel für einen Fehler, der auftreten kann, ist:
+
+```
+Error: EISDIR: illegal operation on a directory, watch 'C:/Users/me/project/vite.config.js'
+```
+
+Dies kann zum Beispiel bei einem freigegebenen Ordner in VirtualBox passieren.
+
+Um dies zu beheben, können Sie [`server.watch.usePolling`](/config/server-options#server-watch) aktivieren. Beachten Sie, dass [`usePolling` zu einer hohen CPU-Auslastung führt](https://github.com/paulmillr/chokidar/tree/3.6.0#performance).
 
 ## HMR (Hot Module Replacement)
 
@@ -186,7 +200,7 @@ Dieser Fehler tritt in mehreren Fällen auf:
 - Schlechte Netzwerkbedingungen
 - Browser-Erweiterungen, die Anfragen blockieren
 
-#### Versionsunterschiede
+#### Versionsunterschiede {#version-skew}
 
 Wenn Sie eine neue Version Ihrer Anwendung bereitstellen, verweisen die HTML-Datei und die JS-Dateien weiterhin auf alte Chunk-Namen, die in der neuen Bereitstellung gelöscht wurden. Dies geschieht, wenn:
 
@@ -207,7 +221,9 @@ Um dieses Problem zu beheben, haben Sie folgende Möglichkeiten:
 
 Dieser Fehler kann in instabilen Netzwerkumgebungen auftreten. Beispielsweise wenn die Anfrage aufgrund von Netzwerkfehlern oder Serverausfällen fehlschlägt.
 
-Beachten Sie, dass Sie den dynamischen Import aufgrund von Browserbeschränkungen ([whatwg/html#6768](https://github.com/whatwg/html/issues/6768)) nicht wiederholen können.
+Browser, die [wiederholbares Laden von Modulen](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import#browser_compatibility) unterstützen, speichern Netzwerk- und HTTP-Fehler nicht in der Modul-Map zwischen. In diesen Browsern kann Ihre Anwendung oder Ihr Framework den ursprünglichen dynamischen Import erneut versuchen. Ältere Browser speichern den Fehler zwischen, sodass das Neuladen der Seite weiterhin der Fallback ist.
+
+Ein erneuter Versuch behebt außerdem keine [Versionsunterschiede](#version-skew), wenn ein Chunk durch eine Bereitstellung dauerhaft entfernt wurde.
 
 #### Browser-Erweiterungen, die Anfragen blockieren
 
@@ -217,9 +233,7 @@ Möglicherweise lässt sich das Problem umgehen, indem Sie einen anderen Chunk-N
 
 ### Veraltete vorbündelte Abhängigkeiten bei Verknüpfung mit einem lokalen Paket
 
-Der Hash-Wert, der zum Ungültigmachen optimierter Abhängigkeiten verwendet wird, hängt von den Inhalten des Paketsperrverzeichnisses, den auf Abhängigkeiten angewendeten Patches und den Optionen in der Vite-Konfigurationsdatei ab, die sich auf das Bündeln von Node-Modulen auswirken. Dies bedeutet, dass Vite erkennt, wenn eine Abhängigkeit mit einer Funktion wie [npm overrides](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides) überschrieben wird, und Ihre Abhängigkeiten beim nächsten Serverstart erneut bündelt. Vite wird die Abhängigkeiten nicht ungültig machen, wenn Sie eine Funktion wie [npm link](https://docs.npmjs.com/cli/v9/commands/npm-link) verwenden. Wenn Sie eine Abhängigkeit verknüpfen oder entknüpfen, müssen Sie beim nächsten Serverstart eine erneute Optimierung erzwingen, indem Sie `vite --force` verwenden. Wir empfehlen stattdessen die Verwendung von Überschreibungen, die jetzt von jedem Paketmanager unterstützt werden (siehe auch [pnpm overrides](https://pnpm.io/9.x/package_json#pnpmoverrides) und [yarn resolutions](https://yarnpkg.com/configuration/manifest/#resolutions)).
-
-Der Hash-Schlüssel, der zum Ungültigmachen optimierter Abhängigkeiten verwendet wird, hängt vom Inhalt der Paketsperre, den auf die Abhängigkeiten angewendeten Patches und den Optionen in der Vite-Konfigurationsdatei ab, die sich auf die Bündelung von Node-Modulen auswirken. Das bedeutet, dass Vite erkennt, wenn eine Abhängigkeit mit einer Funktion wie [npm overrides](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides) überschrieben wird, und Ihre Abhängigkeiten beim nächsten Serverstart neu bündelt. Vite wird die Abhängigkeiten nicht ungültig machen, wenn Sie eine Funktion wie [npm link](https://docs.npmjs.com/cli/v9/commands/npm-link) verwenden. Falls Sie eine Abhängigkeit verlinken oder aufheben, müssen Sie beim nächsten Serverstart eine erneute Optimierung erzwingen, indem Sie `vite --force` verwenden. Wir empfehlen stattdessen die Verwendung von Overrides, die mittlerweile von jedem Paketmanager unterstützt werden (siehe auch [pnpm overrides](https://pnpm.io/package_json#pnpmoverrides) und [yarn resolutions](https://yarnpkg.com/configuration/manifest/#resolutions)).
+Der Hash-Schlüssel, der zum Ungültigmachen optimierter Abhängigkeiten verwendet wird, hängt vom Inhalt der Paketsperre, den auf die Abhängigkeiten angewendeten Patches und den Optionen in der Vite-Konfigurationsdatei ab, die sich auf die Bündelung von Node-Modulen auswirken. Das bedeutet, dass Vite erkennt, wenn eine Abhängigkeit mit einer Funktion wie [npm overrides](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides) überschrieben wird, und Ihre Abhängigkeiten beim nächsten Serverstart neu bündelt. Vite wird die Abhängigkeiten nicht ungültig machen, wenn Sie eine Funktion wie [npm link](https://docs.npmjs.com/cli/v9/commands/npm-link) verwenden. Falls Sie eine Abhängigkeit verlinken oder aufheben, müssen Sie beim nächsten Serverstart eine erneute Optimierung erzwingen, indem Sie `vite --force` verwenden. Wir empfehlen stattdessen die Verwendung von Overrides, die mittlerweile von jedem Paketmanager unterstützt werden (siehe auch [pnpm overrides](https://pnpm.io/settings#overrides) und [yarn resolutions](https://yarnpkg.com/configuration/manifest/#resolutions)).
 
 ## Leistungsengpässe
 
@@ -241,7 +255,7 @@ vite build --profile
 Sobald Ihre Anwendung im Browser geöffnet ist, warten Sie, bis sie fertig geladen ist, und kehren Sie dann zum Terminal zurück und drücken Sie die Taste `p` (um den Node.js-Inspektor zu stoppen), drücken Sie dann die Taste `q`, um den Entwicklungsserver zu stoppen.
 :::
 
-Der Node.js-Inspektor erstellt ein CPU-Profil mit dem Namen `vite-profile-0.cpuprofile` im Stammverzeichnis. Gehen Sie zu https://www.speedscope.app/ und laden Sie das CPU-Profil mit der Schaltfläche `BROWSE` hoch, um das Ergebnis zu überprüfen.
+Der Node.js-Inspektor erstellt ein CPU-Profil mit dem Namen `vite-profile.cpuprofile` im Stammverzeichnis. Mit `--profile <name>` (oder `--profile=<name>`) wird stattdessen `<name>.cpuprofile` geschrieben. Gehen Sie zu https://www.speedscope.app/ und laden Sie das CPU-Profil mit der Schaltfläche `BROWSE` hoch, um das Ergebnis zu überprüfen.
 
 Sie können [vite-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) installieren, mit dem Sie den Zwischenzustand von Vite-Plugins inspizieren und identifizieren können, welche Plugins oder Middleware in Ihren Anwendungen Engpässe darstellen. Das Plugin kann sowohl im Entwicklungs- als auch im Build-Modus verwendet werden. Weitere Details finden Sie in der Readme-Datei.
 
@@ -287,6 +301,19 @@ Beispiele für Verknüpfungen zwischen verschiedenen Laufwerken sind:
 - Ein Symlink/Junction zu einem anderen Laufwerk über den `mklink`-Befehl (z.B. Yarn Global Cache)
 
 Verwandtes Problem: [#10802](https://github.com/vitejs/vite/issues/10802)
+
+### Default-Import liefert unerwartet ein Objekt
+
+Bei CJS-Modulen liefert der Default-Import das Objekt `module.exports`, während Sie möglicherweise den Wert `module.exports.default` erwarten.
+
+Das kann zu Fehlern wie diesen führen:
+
+> Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object.
+
+> foo is not a function
+
+Weitere Details zu diesem Problem finden Sie in der Rolldown-Dokumentation: [Ambiguous `default` import from CJS modules - Bundling CJS | Rolldown](https://rolldown.rs/in-depth/bundling-cjs#ambiguous-default-import-from-cjs-modules).
+
 
 <script setup lang="ts">
 // Weiterleitung von alten Links mit Hash zu alten Dokumentations-Versionen

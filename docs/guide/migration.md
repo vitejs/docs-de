@@ -11,7 +11,7 @@ Der Standardwert für `build.target`, `'baseline-widely-available'`, wurde auf e
 - Firefox 104 → 114
 - Safari 16.0 → 16.4
 
-Diese Browserversionen entsprechen den [Baseline Widely Available](https://web-platform-dx.github.io/web-features/)-Funktionsumfängen zum Stand vom 01.01.2026. Mit anderen Worten: Sie wurden alle ungefähr vor zweieinhalb Jahren veröffentlicht.
+Diese Browserversionen entsprechen den [Baseline Widely Available](https://web-platform-dx.github.io/baseline/)-Funktionsumfängen zum Stand vom 01.01.2026. Mit anderen Worten: Sie wurden alle ungefähr vor zweieinhalb Jahren veröffentlicht.
 
 ## Rolldown
 
@@ -58,7 +58,7 @@ const plugin = {
   configResolved(config) {
     console.log('options', config.optimizeDeps.rolldownOptions)
   },
-},
+}
 ```
 
 ### JavaScript-Transformation mit Oxc
@@ -93,23 +93,14 @@ const plugin = {
   configResolved(config) {
     console.log('options', config.oxc)
   },
-},
+}
 ```
 
 Derzeit unterstützt der Oxc-Transformer das Herunterkonvertieren nativer Dekoratoren nicht, da wir auf das Fortschreiten der Spezifikation warten, siehe([oxc-project/oxc#9170](https://github.com/oxc-project/oxc/issues/9170)).
 
 :::: details Workaround für das Herunterkonvertieren nativer Dekoratoren
 
-Sie können vorerst [Babel](https://babeljs.io/) oder [SWC](https://swc.rs/) verwenden, um native Dekoratoren herunterzukonvertieren. SWC ist zwar schneller als Babel, unterstützt jedoch **nicht die neueste Dekorator-Spezifikation**, die esbuild unterstützt.
-
-Die Dekorator-Spezifikation wurde seit Erreichen von Stage 3 mehrfach aktualisiert. Die unterstützen Versionen von jedem Tool sind:
-
-- `"2023-11"` (esbuild und TypeScript5.4+ sowie Babel unterstützen diese Version)
-- `"2023-05"` (TypeScript5.2+ unterstützt diese Version)
-- `"2023-01"` (TypeScript5.0+ unterstützt diese Version)
-- `"2022-03"` (SWC unterstützt diese Version)
-
-Schauen Sie sich den [Babel-Dekoratorversionen-Leitfaden](https://babeljs.io/docs/babel-plugin-proposal-decorators#version) für Unterschiede zwischen den Versionen an.
+Sie können vorerst [Babel](https://babeljs.io/) oder [SWC](https://swc.rs/) verwenden, um native Dekoratoren herunterzukonvertieren.
 
 **Babel verwenden:**
 
@@ -188,6 +179,7 @@ $ deno add -D npm:@rollup/plugin-swc npm:@swc/core
 
 ```js
 import { defineConfig, withFilter } from 'vite'
+import swc from '@rollup/plugin-swc'
 
 export default defineConfig({
   // ...
@@ -197,8 +189,7 @@ export default defineConfig({
         swc: {
           jsc: {
             parser: { decorators: true, decoratorsBeforeExport: true },
-            // NOTIZ: SWC unterstützt Version '2023-11' noch nicht.
-            transform: { decoratorVersion: '2022-03' },
+            transform: { decoratorVersion: '2023-11' },
           },
         },
       }),
@@ -226,7 +217,7 @@ Das Verzerrung von Eigenschaften und die damit verbundenen Optionen ([`manglePro
 esbuild und der Oxc-Minimierer gehen von leicht unterschiedlichen Annahmen bezüglich des Quellcodes aus. Falls Sie vermuten, dass der Minimierer Fehler in Ihrem Code verursacht, können Sie diese Annahmen hier vergleichen:
 
 - [Annahmen von esbuild bei der Minimierung](https://esbuild.github.io/api/#minify-considerations)
-- [Annahmen des Oxc-Minimierers](https://oxc.rs/docs/guide/usage/minifier.html#assumptions)
+- [Annahmen des Oxc-Minimierers](https://github.com/oxc-project/oxc/blob/main/crates/oxc_minifier/docs/ASSUMPTIONS.md)
 
 Bitte melden Sie alle Probleme, die Sie im Zusammenhang mit der Minifizierung in Ihren JavaScript-Apps feststellen.
 
@@ -294,11 +285,29 @@ Weitere Informationen finden Sie in der Dokumentation von Rolldown: [`require` e
 
 ### Option `build.rollupOptions.watch.chokidar` entfernt
 
-Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option `build.rolldownOptions.watch.notify`.
+Die Option `build.rollupOptions.watch.chokidar` wurde entfernt. Bitte wechseln Sie zur Option [`build.rolldownOptions.watch.watcher`](https://rolldown.rs/reference/InputOptions.watch#watcher).
 
 ### Die Option `build.rollupOptions.output.manualChunks` ist veraltet
 
 Die Option `output.manualChunks` ist veraltet. Rolldown verfügt über die flexiblere Option [`codeSplitting`](https://rolldown.rs/reference/OutputOptions.codeSplitting). Weitere Informationen zu `codeSplitting` finden Sie in der Dokumentation von Rolldown: [Manual Code Splitting - Rolldown](https://rolldown.rs/in-depth/manual-code-splitting).
+
+### `build()` wirft `BundleError`
+
+_Diese Änderung betrifft nur Nutzer:innen der JS-API._
+
+`build()` wirft jetzt einen [`BundleError`](https://rolldown.rs/reference/TypeAlias.BundleError) statt des rohen Fehlers, der im Plugin geworfen wurde. `BundleError` ist als `Error & { errors?: RolldownError[] }` typisiert und fasst die einzelnen Fehler in einem `errors`-Array zusammen. Wenn Sie die einzelnen Fehler benötigen, greifen Sie auf `.errors` zu:
+
+```js
+try {
+  await build()
+} catch (e) {
+  if (e.errors) {
+    for (const error of e.errors) {
+      console.log(error.code) // Fehlercode
+    }
+  }
+}
+```
 
 ### Modultypunterstützung und automatische Erkennung
 
@@ -307,16 +316,19 @@ Die Änderung betrifft nur Plugin-Authoren.
 Rolldown hat eine experimentelle [Modultypunterstützung](https://rolldown.rs/guide/notable-features#module-types), welche ähnlich zu [esbuilds `loader`-Option](https://esbuild.github.io/api/#loader) ist. Dadurch setzt Rolldown automatisch einen Modultyp basierend auf der Erweiterung der aufgelösten ID. Wenn Sie den Inhalt von anderen Typen in `load`- oder `transform`-Hooks zu JavaScript konvertieren, müssen Sie möglicherweise `moduleType: 'js'` zum zurückgegebenen Wert hinzufügen.
 
 ```js
+import fs from 'node:fs'
+
 const plugin = {
   name: 'txt-loader',
-  load(id) {
-    if (id.endsWith('.txt')) {
-      const content = fs.readFile(id, 'utf-8')
+  load: {
+    filter: { id: /\.txt$/ },
+    handler(id) {
+      const content = fs.readFileSync(id, 'utf-8')
       return {
         code: `export default ${JSON.stringify(content)}`,
         moduleType: 'js', // [!code ++]
       }
-    }
+    },
   },
 }
 ```
@@ -346,32 +358,20 @@ Diese grundlegenden Änderungen werden voraussichtlich nur einen kleine Anzahl v
   - Die Zuweisung an `bundle[foo]` wird nicht unterstützt. Dies wird auch von Rollup nicht empfohlen. Bitte verwenden Sie stattdessen `this.emitFile()`.
   - Die Referenz wird nicht zwischen den Hooks geteilt ([rolldown-vite#410](https://github.com/vitejs/rolldown-vite/issues/410))
   - `structuredClone(bundle)` führt zu einem Fehler mit `DataCloneError: #<Object> could not be cloned`. Dies wird nicht mehr unterstützt. Bitte klonen Sie es mit `structuredClone({ ...bundle })`. ([rolldown-vite#128](https://github.com/vitejs/rolldown-vite/issues/128))
-- **[TODO: clarify this in Rolldown's docs and link it from here]** All parallel hooks in Rollup works as sequential hooks.
-- `"use strict";` is not injected sometimes. See [Rolldown's documentation](https://rolldown.rs/in-depth/directives) for more details.
-- Transforming to lower than ES5 with plugin-legacy is not supported ([rolldown-vite#452](https://github.com/vitejs/rolldown-vite/issues/452))
-- Passing the same browser with multiple versions of it to `build.target` option now errors: esbuild selects the latest version of it, which was probably not what you intended.
-- Missing support by Rolldown: The following features are not supported by Rolldown and is no longer supported by Vite.
-  - `build.rollupOptions.output.format: 'system'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2387))
-  - `build.rollupOptions.output.format: 'amd'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2528))
-  - Complete support for TypeScript legacy namespace ([oxc-project/oxc#14227](https://github.com/oxc-project/oxc/issues/14227))
-  - `shouldTransformCachedModule` hook ([rolldown#4389](https://github.com/rolldown/rolldown/issues/4389))
-  - `resolveImportMeta` hook ([rolldown#1010](https://github.com/rolldown/rolldown/issues/1010))
-  - `renderDynamicImport` hook ([rolldown#4532](https://github.com/rolldown/rolldown/issues/4532))
-  - `resolveFileUrl` hook
-- `parseAst` / `parseAstAsync` functions are now deprecated in favor of `parse` / `parseAsync` functions which has more features.
 - Alle parallelen Hooks in Rollup funktionieren wie sequenzielle Hooks. Siehe [Rolldown-Dokumentation](https://rolldown.rs/apis/plugin-api#sequential-hook-execution) für mehr Details.
 - ``use strict`;` wird manchmal nicht eingefügt. Weitere Details finden Sie in der [Rolldown-Dokumentation](https://rolldown.rs/in-depth/directives).
-- Die Umwandlung auf eine Version unter ES5 mit plugin-legacy wird nicht unterstützt ([rolldown-vite#452](https://github.com/vitejs/rolldown-vite/issues/452))
+- Die Umwandlung auf ES5 und darunter mit plugin-legacy wird nicht unterstützt ([rolldown-vite#452](https://github.com/vitejs/rolldown-vite/issues/452))
 - Die Übergabe desselben Browsers mit mehreren Versionen an die Option `build.target` führt nun zu einem Fehler: esbuild wählt die neueste Version aus, was wahrscheinlich nicht beabsichtigt war.
 - Fehlende Unterstützung durch Rolldown: Die folgenden Funktionen werden von Rolldown nicht unterstützt und sind auch in Vite nicht mehr verfügbar.
   - `build.rollupOptions.output.format: 'system'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2387))
-  - `build.rollupOptions.output.format: 'amd'` ([rolldown#2387](https://github.com/rolldown/rolldown/issues/2528))
+  - `build.rollupOptions.output.format: 'amd'` ([rolldown#2528](https://github.com/rolldown/rolldown/issues/2528))
   - `shouldTransformCachedModule`-Hook ([rolldown#4389](https://github.com/rolldown/rolldown/issues/4389))
   - `resolveImportMeta`-Hook ([rolldown#1010](https://github.com/rolldown/rolldown/issues/1010))
   - `renderDynamicImport`-Hook ([rolldown#4532](https://github.com/rolldown/rolldown/issues/4532))
   - `resolveFileUrl`-Hook
 - Die Funktionen `parseAst` / `parseAstAsync` sind nun veraltet und werden durch die Funktionen `parse` / `parseAsync` ersetzt, die mehr Funktionen haben
-- (Bug) Edge-Case für `@vite-ignore`-Kommentare ([rolldown-vite#426](https://github.com/vitejs/rolldown-vite/issues/426))
+- Kommentare werden vor dem `renderChunk`-Hook entfernt statt danach
+- Kommentare, die nicht [hier](https://rolldown.rs/reference/OutputOptions.comments) aufgeführt sind, werden verschoben, während Rollup Kommentare nur entfernt, wenn der angrenzende Code entfernt wird
 
 ## Migration von Version 6
 

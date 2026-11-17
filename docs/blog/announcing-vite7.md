@@ -61,7 +61,7 @@ Wir benötigen diese neuen Versionen, damit Node.js `require(esm)` ohne Flag unt
 
 ## Standard-Browserziel auf `Baseline Widely Available` geändert
 
-[Baseline](https://web-platform-dx.github.io/web-features/) liefert uns klare Informationen darüber, welche Funktionen der Webplattform heute in den gängigen Browsern funktionieren. `Baseline Widely Available` bedeutet, dass die Funktion gut etabliert ist, auf vielen Geräten und in vielen Browserversionen funktioniert und seit mindestens 30 Monaten in allen Browsern verfügbar ist.
+[Baseline](https://web-platform-dx.github.io/baseline/) liefert uns klare Informationen darüber, welche Funktionen der Webplattform heute in den gängigen Browsern funktionieren. `Baseline Widely Available` bedeutet, dass die Funktion gut etabliert ist, auf vielen Geräten und in vielen Browserversionen funktioniert und seit mindestens 30 Monaten in allen Browsern verfügbar ist.
 
 In Vite 7 ändert sich das Standard-Browserziel von `modules` zu einem neuen Standard: `baseline-widely-available`. Die Browserauswahl wird bei jeder größeren Version aktualisiert, um der Liste der Mindestbrowser-Versionen zu entsprechen, die mit den Funktionen von Baseline Widely Available kompatibel sind. Der Standard-Browserwert von `build.target` ändert sich in Vite 7.0:
 

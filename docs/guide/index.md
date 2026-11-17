@@ -10,7 +10,7 @@ Vite (französisches Wort für "schnell", ausgesprochen [`/vi:t/`]<button style=
 
 - Einem Entwicklungsserver, der Ihre Quelldateien über [native ES-Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), mit [umfangreichen integrierten Funktionen](./features) und erstaunlich schnellem [Hot Module Replacement (HMR)](./features#hot-module-replacement) bereitstellt.
 
-- Einem [Build-Befehl](./build), der Ihren Code mit [Rollup](https://rollupjs.org) bündelt und so vorkonfiguriert ist, dass er hochoptimierte statische Assets für die Produktion ausgibt.
+- Einem [Build-Befehl](./build), der Ihren Code mit [Rolldown](https://rolldown.rs) bündelt und so vorkonfiguriert ist, dass er hochoptimierte statische Assets für die Produktion ausgibt.
 
 Vite ist meinungsfreudig und wird mit vernünftigen Standardeinstellungen ausgeliefert. Lesen Sie im [Features Guide](./features) nach, was alles möglich ist. Unterstützung für Frameworks oder Integration mit anderen Tools ist über [Plugins](./using-plugins) möglich. Die [Config Section](../config/) erklärt, wie Sie Vite bei Bedarf an Ihr Projekt anpassen können.
 
@@ -22,9 +22,9 @@ Mehr über die Beweggründe für das Projekt erfahren Sie im Abschnitt [Warum Vi
 
 ## Browser-Unterstützung
 
-Während der Entwicklung geht Vite davon aus, dass ein moderner Browser genutzt wird. Das bedeutet, der Browser unterstützt den Großteil der aktuellen JavaScript und CSS Funktionalitäten. Aus diesem Grund setzt Vite [`esnext` als Transformationsziel](https://esbuild.github.io/api/#target). Dadurch wird eine Syntaxreduktion verhindert, sodass Vite Module so nah wie möglich am ursprünglichen Quellcode bereitstellen kann. Vite fügt etwas Laufzeitcode ein, damit der Entwicklungsserver funktioniert. Dieser Code nutzt Funktionen aus der [Baseline Newly Available](https://web-platform-dx.github.io/web-features/) zum Zeitpunkt der jeweiligen Veröffentlichung der Hauptversion (01.05.2026 für diese Hauptversion).
+Während der Entwicklung geht Vite davon aus, dass ein moderner Browser genutzt wird. Das bedeutet, der Browser unterstützt den Großteil der aktuellen JavaScript und CSS Funktionalitäten. Aus diesem Grund setzt Vite [`esnext` als Transformationsziel](https://oxc.rs/docs/guide/usage/transformer/lowering.html#target). Dadurch wird eine Syntaxreduktion verhindert, sodass Vite Module so nah wie möglich am ursprünglichen Quellcode bereitstellen kann. Vite fügt etwas Laufzeitcode ein, damit der Entwicklungsserver funktioniert. Dieser Code nutzt Funktionen aus der [Baseline Newly Available](https://web-platform-dx.github.io/baseline/) zum Zeitpunkt der jeweiligen Veröffentlichung der Hauptversion (01.01.2026 für diese Hauptversion).
 
-Für Produktions-Builds zielt Vite standardmäßig auf Browser ab, die in der[Baseline](https://web-platform-dx.github.io/web-features/) Widely Available sind. Das sind Browser, die vor mindestens 2,5 Jahren veröffentlicht wurden. Das Ziel kann in der Konfiguration herabgesetzt werden. Zusätzlich können Legacy-Browser über das offizielle [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) unterstützt werden. Lesen Sie den Abschnitt [Erstellung für die Produktion](./build) für weitere Details.
+Für Produktions-Builds zielt Vite standardmäßig auf Browserversionen ab, die [Baseline](https://web-platform-dx.github.io/baseline/) Widely Available zu einem für jede Major-Version festgelegten Datum entsprechen. Für diese Major-Version sind das [Browserversionen, die etwa Mitte 2023 veröffentlicht wurden](https://web-platform-dx.github.io/supported-browsers/?widelyAvailableOnDate=2026-01-01). Das Ziel kann in der Konfiguration herabgesetzt werden. Zusätzlich können Legacy-Browser über das offizielle [@vitejs/plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) unterstützt werden. Lesen Sie den Abschnitt [Erstellung für die Produktion](./build) für weitere Details.
 
 ## Vite online ausprobieren
 
@@ -106,7 +106,7 @@ $ deno init --npm vite my-vue-app --template vue
 
 :::
 
-Siehe [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) für weitere Details zu jeder unterstützten Vorlage: `vanilla`, `vanilla-ts`, `vue`, `vue-ts`, `react`, `react-ts`, `react-swc`, `react-swc-ts`, `preact`, `preact-ts`, `lit`, `lit-ts`, `svelte`, `svelte-ts`, `solid`, `solid-ts`, `qwik`, `qwik-ts`.
+Siehe [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) für weitere Details zu jeder unterstützten Vorlage: `vanilla`, `vanilla-ts`, `vue`, `vue-ts`, `react`, `react-compiler`, `react-ts`, `react-compiler-ts`, `preact`, `preact-ts`, `lit`, `lit-ts`, `svelte`, `svelte-ts`, `solid`, `solid-ts`, `qwik`, `qwik-ts`.
 
 Sie können `.` für den Projektnamen verwenden, um im aktuellen Verzeichnis ein Gerüst zu erstellen.
 
@@ -225,7 +225,7 @@ In einem Projekt, in dem Vite installiert ist, können Sie das `vite`-Binary in 
 
 Sie können zusätzliche CLI-Optionen wie `--port` oder `--open` angeben. Eine vollständige Liste der CLI-Optionen erhalten Sie, wenn Sie `npx vite --help` in Ihrem Projekt ausführen.
 
-Erfahren Sie mehr über die [Befehlszeilenschnittstelle](./cli.md)
+Erfahren Sie mehr über die [Befehlszeilenschnittstelle](./cli.md).
 
 ## Unveröffentlichte Commits verwenden
 
@@ -270,7 +270,7 @@ Um mehr zu erfahren, wie und wann Vite neue Releases veröffentlicht, können Si
 
 ::: tip Abhängigkeiten die Vite benutzen
 
-Um die von Abhängigkeiten transitiv verwendeter Vite-Version zu ersetzen, sollten Sie [npm-Überschreibungen](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) oder [pnpm-Überschreibungen](https://pnpm.io/9.x/package_json#pnpmoverrides) verwenden.
+Um die von Abhängigkeiten transitiv verwendeter Vite-Version zu ersetzen, sollten Sie [npm-Überschreibungen](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#overrides) oder [pnpm-Überschreibungen](https://pnpm.io/settings#overrides) verwenden.
 
 :::
 

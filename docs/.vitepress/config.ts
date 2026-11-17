@@ -12,7 +12,7 @@ import { markdownItImageSize } from 'markdown-it-image-size'
 import { extendConfig } from '@voidzero-dev/vitepress-theme/config'
 import type { FooterLink } from '@voidzero-dev/vitepress-theme'
 import packageJson from '../../package.json' with { type: 'json' }
-import { buildEnd } from './buildEnd.config'
+import { buildEnd } from './buildEnd.config.ts'
 
 // NOTE: allow additional options to be passed to rolldown for now
 process.env.ROLLDOWN_OPTIONS_VALIDATION = 'loose'
@@ -119,15 +119,6 @@ const config = defineConfig({
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:site', content: '@vite_js' }],
     ['meta', { name: 'theme-color', content: '#646cff' }],
-    [
-      'script',
-      {
-        src: 'https://cdn.usefathom.com/script.js',
-        'data-site': 'CBDFBSLI',
-        'data-spa': 'auto',
-        defer: '',
-      },
-    ],
   ],
 
   locales: {
@@ -146,9 +137,9 @@ const config = defineConfig({
     logo: '/logo.svg',
 
     banner: {
-      id: 'vite+',
-      text: 'Vite+ Ankündigung | Die einheitliche Toolchain für das Web',
-      url: 'https://voidzero.dev/posts/announcing-vite-plus?utm_source=vite&utm_content=top_banner',
+      id: 'viteplus-alpha',
+      text: 'Vite+ Alpha angekündigt: Open Source. Vereinheitlicht. Next-Gen.',
+      url: 'https://voidzero.dev/posts/announcing-vite-plus-alpha?utm_source=vite&utm_content=top_banner',
     },
 
 
@@ -264,6 +255,10 @@ const config = defineConfig({
           { text: 'Blog', link: '/blog' },
           { text: 'Veröffentlichungen', link: '/releases' },
           { text: 'Anerkennungen', link: '/acknowledgements' },
+          {
+            text: 'Verhaltenskodex',
+            link: 'https://github.com/vitejs/.github/blob/main/CODE_OF_CONDUCT.md',
+          },
           {
             text: 'Plugin Registry',
             link: 'https://registry.vite.dev/plugins',
@@ -568,7 +563,14 @@ const config = defineConfig({
     // languages used for twoslash and jsdocs in twoslash
     languages: ['ts', 'js', 'json'],
     codeTransformers: [
-      transformerTwoslash(),
+      transformerTwoslash({
+        twoslashOptions: {
+          compilerOptions: {
+            moduleResolution: 100, // bundler
+            ignoreDeprecations: '6.0', // remove the options entirely when twoslash doesn't set `baseUrl`
+          },
+        },
+      }),
       // add `style:*` support
       {
         root(hast) {

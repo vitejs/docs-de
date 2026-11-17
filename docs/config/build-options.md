@@ -8,7 +8,7 @@ Sofern nicht anders angegeben, gelten die Optionen in diesem Abschnitt nur für 
 - **Standard:** `'baseline-widely-available'`
 - **Verwandt:** [Browser-Kompatibilität](/guide/build#browser-compatibility)
 
-Browser-Kompatibilitätsziel für das endgültige Bundle. Der Standardwert ist ein spezieller Vite-Wert, `'baseline-widely-available'`, der auf Browser abzielt, die in der [Baseline](https://web-platform-dx.github.io/web-features/) Widely Available am 01.05.2026 enthalten sind. Konkret sind dies `['chrome111', 'edge111', 'firefox114', 'safari16.4']`.
+Browser-Kompatibilitätsziel für das endgültige Bundle. Der Standardwert ist ein spezieller Vite-Wert, `'baseline-widely-available'`, der auf die minimalen Browserversionen abzielt, die mit [Baseline](https://web-platform-dx.github.io/baseline/) Widely Available zu einem für jede Major-Version festgelegten Datum kompatibel sind ([01.01.2026 für diese Major-Version](https://web-platform-dx.github.io/supported-browsers/?widelyAvailableOnDate=2026-01-01)). Konkret sind dies `['chrome111', 'edge111', 'firefox114', 'safari16.4', 'ios16.4']`.
 
 Ein weiterer spezieller Wert ist `'esnext'` - der die Unterstützung nativer dynamischer Importe voraussetzt und nur eine minimale Transpilierung durchführt.
 
@@ -21,7 +21,7 @@ Beachten Sie, dass der Build eine Warnung ausgibt, wenn der Code Funktionen enth
 - **Typ:** `boolean | { polyfill?: boolean, resolveDependencies?: ResolveModulePreloadDependenciesFn }`
 - **Standard:** `{ polyfill: true }`
 
-Standardmäßig wird ein [Modul-Preload-Polyfill](https://guybedford.com/es-module-preloading-integrity#modulepreload-polyfill) automatisch eingefügt. Das Polyfill wird automatisch in das Proxy-Modul jeder `index.html`-Eingabe eingefügt. Wenn der Build so konfiguriert ist, dass eine benutzerdefinierte Eingabe verwendet wird, die nicht HTML ist, über `build.rollupOptions.input`, ist es notwendig, das Polyfill in Ihrer benutzerdefinierten Eingabe manuell zu importieren:
+Standardmäßig wird ein [Modul-Preload-Polyfill](https://guybedford.com/es-module-preloading-integrity#modulepreload-polyfill) automatisch eingefügt. Das Polyfill wird automatisch in das Proxy-Modul jeder `index.html`-Eingabe eingefügt. Wenn der Build so konfiguriert ist, dass eine benutzerdefinierte Eingabe verwendet wird, die nicht HTML ist, über `build.rolldownOptions.input`, ist es notwendig, das Polyfill in Ihrer benutzerdefinierten Eingabe manuell zu importieren:
 
 ```js
 import 'vite/modulepreload-polyfill'
@@ -123,10 +123,12 @@ Diese Option ermöglicht es Benutzern, ein anderes Browserziel für die CSS-Mini
 
 Es sollte nur verwendet werden, wenn Sie einen nicht-mainstream Browser anvisieren. Ein Beispiel ist der Android WeChat WebView, der die meisten modernen JavaScript-Funktionen unterstützt, aber nicht die [`#RGBA` hexadezimale Farbnotation in CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb_colors). In diesem Fall müssen Sie `build.cssTarget` auf `chrome61` setzen, um zu verhindern, dass Vite `rgba()`-Farben in `#RGBA`-hexadezimale Notationen umwandelt.
 
+Wenn `build.cssMinify` auf `'lightningcss'` steht (Standard), hat diese Option beim Minifizieren Vorrang vor [`css.lightningcss.targets`](./shared-options.md#css-lightningcss).
+
 ## build.cssMinify
 
 - **Typ:** `boolean | 'lightningcss' | 'esbuild'`
-- **Standard:** dasselbe wie [`build.minify`](#build-minify) für Clients, `'lightningcss'` für SSR
+- **Standard:** `'lightningcss'`, aber `false`, wenn [`build.minify`](#build-minify) für den Client-Build deaktiviert ist
 
 Diese Option ermöglicht es Benutzern, die CSS-Minimierung speziell zu überschreiben, anstatt auf die Standardwerte von `build.minify` zurückzugreifen. Dadurch können Sie die Minimierung für JS und CSS unabhängig voneinander konfigurieren. Vite verwendet standardmäßig [Lightning CSS](https://lightningcss.dev/minification.html), um CSS zu minimieren. Es kann mit [`css.lightningcss`](./shared-options.md#css-lightningcss) konfiguriert werden. Setzen sie die Option auf `'esbuild'`, um esbuild stattdessen zu verwenden.
 
@@ -143,11 +145,26 @@ npm add -D esbuild
 
 Erzeugen von Produktionsquellekarten. Wenn `true`, wird eine separate Sourcemap-Datei erstellt. Wenn `'inline'`, wird die Sourcemap als Daten-URI an die resultierende Ausgabedatei angehängt. `'hidden'` funktioniert wie `true`, außer dass die entsprechenden Sourcemap-Kommentare in den gebündelten Dateien unterdrückt werden.
 
+## build.chunkImportMap
+
+- **Typ:** `boolean`
+- **Standard:** `false`
+- **Experimentell**
+- **Verwandt:** [Optimierung per Chunk-Import-Map](/guide/features#chunk-import-map-optimization)
+
+Legt fest, ob Import Maps verwendet werden, um die Caching-Effizienz von Chunks zu verbessern.
+
+Beachten Sie, dass diese Option [Unterstützung für `import.meta.resolve`](https://caniuse.com/mdn-javascript_operators_import_meta_resolve) erfordert. Wenn Sie ältere Browser unterstützen müssen, sehen Sie sich [`@vitejs/plugin-legacy`](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) an.
+
 ## build.rolldownOptions
 
 - **Typ:** [`RolldownOptions`](https://rolldown.rs/reference/)
 
 Direktes Anpassen des zugrunde liegenden Rolldown-Bündels. Dies entspricht den Optionen, die aus einer Rolldown-Konfigurationsdatei exportiert werden können, und wird mit den internen Rolldown-Optionen von Vite zusammengeführt. Weitere Details finden Sie in den [Rolldown-Optionen-Dokumenten](https://rolldown.rs/reference/).
+
+Vite überschreibt den Rolldown-Standardwert für `preserveEntrySignatures`. Wenn diese Option nicht gesetzt ist, verwendet Vite `false` für reguläre Client-Builds, `'strict'` für Library-Builds und `'allow-extension'` für SSR-Builds.
+
+Statt `build.rolldownOptions.input` wird empfohlen, die Top-Level-Option [`input`](/config/shared-options#input) zu setzen, da sie auch in der Entwicklung verwendet wird. Ist `build.rolldownOptions.input` gesetzt, überschreibt es die Top-Level-Option `input` nur für den Build.
 
 ## build.rollupOptions
 
@@ -165,10 +182,10 @@ Legt fest, ob dynamische Importe mit Variablen transformiert werden sollen.
 
 ## build.lib
 
-- **Typ:** `{ entry: string | string[] | { [entryAlias: string]: string }, name?: string, formats?: ('es' | 'cjs' | 'umd' | 'iife')[], fileName?: string | ((format: ModuleFormat, entryName: string) => string), cssFileName?: string }`
+- **Typ:** `{ entry?: string | string[] | { [entryAlias: string]: string }, name?: string, formats?: ('es' | 'cjs' | 'umd' | 'iife')[], fileName?: string | ((format: ModuleFormat, entryName: string) => string), cssFileName?: string }`
 - **Verwandt:** [Library-Modus](/guide/build#library-mode)
 
-Als Bibliothek erstellen. `entry` ist erforderlich, da die Bibliothek HTML nicht als Eintrag verwenden kann. `name` ist die exponierte globale Variable und erforderlich, wenn `formats` `'umd'` oder `'iife'` enthält. Die Standardformate sind `['es', 'umd']` oder `['es', 'cjs']`, wenn mehrere Einträge verwendet werden.
+Als Bibliothek erstellen. `entry` verwendet standardmäßig die Top-Level-Option [`input`](/config/shared-options#input); eine der beiden ist erforderlich, da die Bibliothek HTML nicht als Eintrag verwenden kann. `name` ist die exponierte globale Variable und erforderlich, wenn `formats` `'umd'` oder `'iife'` enthält. Die Standardformate sind `['es', 'umd']` oder `['es', 'cjs']`, wenn mehrere Einträge verwendet werden.
 
 `fileName` ist der Name der ausgegebenen Paketdatei, der standardmäßig dem `"name"` in `package.json` entspricht. Er kann auch als Funktion definiert werden, die `format` und `entryName` als Argumente übernimmt und den Dateinamen zurückgibt.
 
@@ -269,7 +286,7 @@ Wenn der Wert eine Zeichenfolge ist, wird er als Manifestdateipfad relativ zu `b
 
 Erzeugen Sie einen build, der für serverseitiges Rendern (SSR) geeignet ist. Der Wert kann eine Zeichenkette sein, um das SSR-Eingabeziel direkt anzugeben, oder `true`,
 
-was erfordert, dass das SSR-Eingabeziel über `rollupOptions.input` festgelegt wird.
+was erfordert, dass das SSR-Eingabeziel über [`input`](/config/shared-options#input) oder `build.rolldownOptions.input` festgelegt wird.
 
 ## build.emitAssets
 
@@ -352,7 +369,7 @@ Begrenzung für die Größe von Chunk-Warnungen (in kB). Sie wird mit der unkomp
 - **Typ:** [`WatcherOptions`](https://rolldown.rs/reference/InputOptions.watch)`| null`
 - **Standard:** `null`
 
-Setzen Sie dies auf `{}`, um den Rollup-Watcher zu aktivieren. Dies wird hauptsächlich in Fällen verwendet, die Build-only-Plugins oder Integrationsprozesse involvieren.
+Setzen Sie dies auf `{}`, um den Rolldown-Watcher zu aktivieren. Dies wird hauptsächlich in Fällen verwendet, die Build-only-Plugins oder Integrationsprozesse involvieren.
 
 ::: warning Verwendung von Vite unter WSL2
 

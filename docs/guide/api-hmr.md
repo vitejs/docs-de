@@ -169,7 +169,9 @@ if (import.meta.hot) {
 
 ## `hot.data`
 
-Das `import.meta.hot.data` Objekt bleibt über verschiedene Instanzen des gleichen aktualisierten Moduls erhalten. Es kann verwendet werden, um Informationen von einer vorherigen Version des Moduls an die nächste weiterzugeben.
+Vite erstellt für jeden Modulpfad ein eigenes `import.meta.hot.data`-Objekt. Das Objekt bleibt während HMR über aufeinanderfolgende Instanzen desselben Moduls erhalten. Änderungen, die während der Modulausführung oder über das an `hot.dispose` übergebene Argument `data` vorgenommen werden, sind für die nächste Instanz des Moduls sichtbar.
+
+Wird ein Modul entfernt (pruned), erhalten seine `hot.dispose`- und `hot.prune`-Callbacks das aktuelle Datenobjekt. Vite leert die Daten, nachdem diese Callbacks abgeschlossen sind. Wird das Modul später erneut importiert, erhält es ein neues, leeres Datenobjekt.
 
 Note that re-assignment of `data` itself is not supported. Instead, you should mutate properties of the `data` object so information added from other handlers are preserved.
 

@@ -22,12 +22,13 @@ vite [root]
 | `--cors`                  | Aktiviert CORS (`boolean`)                                                                                                                                                                                                            |
 | `--strictPort`            | Beendet den Vorgang, wenn der angegebene Port bereits verwendet wird (`boolean`)                                                                                                                                                      |
 | `--force`                 | Zwingt den Optimierer, den Cache zu ignorieren und neu zu bündeln (`boolean`)                                                                                                                                                         |
+| `--experimentalBundle`    | Verwendet den experimentellen Full-Bundle-Modus (hochgradig experimentell) (`boolean`) |
 | `-c, --config <file>`     | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                                                                                                               |
 | `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                                                                                                     |
 | `-l, --logLevel <level>`  | info \| warn \| error \| silent (`string`)                                                                                                                                                                                            |
 | `--clearScreen`           | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                                                                                                       |
-| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten oder `native` (experimentell), um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`) |
-| `--profile`               | Startet den integrierten Node.js-Inspector (siehe [Performance Engpässe](/guide/troubleshooting#performance-bottlenecks))                                                                                                             |
+| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln, oder `native`, um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`) |
+| `--profile [name]`        | Startet den integrierten Node.js-Inspector und schreibt das Profil nach `<name>.cpuprofile` (siehe [Performance Engpässe](/guide/troubleshooting#performance-bottlenecks)) (`boolean \| string`)                                                                                                             |
 | `-d, --debug [feat]`      | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                                                                                                       |
 | `-f, --filter <filter>`   | Filtert Debug-Protokolle (`string`)                                                                                                                                                                                                   |
 | `-m, --mode <mode>`       | Setzt den Umgebungsmodus (`string`)                                                                                                                                                                                                   |
@@ -50,23 +51,23 @@ vite build [root]
 
 | Optionen                       |                                                                                                                                                                |
 |--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `--target <target>`            | Transpile-Ziel (Standard: `"modules"`) (`string`)                                                                                                              |
+| `--target <target>`            | Transpile-Ziel (Standard: `"baseline-widely-available"`) (`string`)                                                                                                              |
 | `--outDir <dir>`               | Ausgabe Verzeichnis (Standard: `dist`) (`string`)                                                                                                              |
 | `--assetsDir <dir>`            | Verzeichnis unter outDir, um Assets abzulegen (Standard: `"assets"`) (`string`)                                                                                |
 | `--assetsInlineLimit <number>` | Schwellenwert für statische Asset-Base64-Inlines in Byte (Standard: `4096`) (`number`)                                                                         |
 | `--ssr [entry]`                | Erstellt angegebenen Eintrag für das Server-seitige Rendern (`string`)                                                                                         |
 | `--sourcemap [output]`         | Erzeugt Sourcemap-Dateien für das Build (Standard: `false`) (`boolean \| "inline" \| "hidden"`)                                                                |
-| `--minify [minifier]`          | Aktiviert/deaktiviert die Minifizierung oder gibt den Minifizierer an, der verwendet werden soll (Standard: `"esbuild"`) (`boolean \| "terser" \| "esbuild"`)  |
+| `--minify [minifier]`          | Aktiviert/deaktiviert die Minifizierung oder gibt den Minifizierer an, der verwendet werden soll (Standard: `"oxc"`) (`boolean \| "oxc" \| "terser" \| "esbuild"`)  |
 | `--manifest [name]`            | Erzeugt Build-Manifest JSON (`boolean \| string`)                                                                                                              |
 | `--ssrManifest [name]`         | Erzeugt SSR-Manifest JSON (`boolean \| string`)                                                                                                                |
 | `--emptyOutDir`                | Leert das Ausgabeverzeichnis, wenn es außerhalb des Stammverzeichnisses liegt (`boolean`)                                                                      |
 | `-w, --watch`                  | Erstellt erneut, wenn Module auf der Festplatte geändert wurden (`boolean`)                                                                                    |
 | `-c, --config <file>`          | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                                        |
 | `--base <path>`                | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                              |
-| `-l, --logLevel <level>`       | Info \| warn \| error \| silent (`string`)                                                                                                                     |
+| `-l, --logLevel <level>`       | info \| warn \| error \| silent (`string`)                                                                                                                     |
 | `--clearScreen`                | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                                |
-| `--configLoader <loader>`      | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten (Standard: `bundle`)          |
-| `--profile`                    | Startet den integrierten Node.js-Inspector (siehe [Performance Engpässe](/guide/troubleshooting#performance-bottlenecks))                                      |
+| `--configLoader <loader>`      | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln, oder `native`, um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`)          |
+| `--profile [name]`             | Startet den integrierten Node.js-Inspector und schreibt das Profil nach `<name>.cpuprofile` (siehe [Performance Engpässe](/guide/troubleshooting#performance-bottlenecks)) (`boolean \| string`)                                      |
 | `-d, --debug [feat]`           | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                                |
 | `-f, --filter <filter>`        | Filtert Debug-Protokolle (`string`)                                                                                                                            |
 | `-m, --mode <mode>`            | Setzt den Umgebungsmodus (`string`)                                                                                                                            |
@@ -94,9 +95,9 @@ vite optimize [root]
 | `--force`                 | Zwingt den Optimierer, den Cache zu ignorieren und neu zu bündeln (`boolean`)                                                                         |
 | `-c, --config <file>`     | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                               |
 | `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                     |
-| `-l, --logLevel <level>`  | Info \| warn \| error \| silent (`string`)                                                                                                            |
+| `-l, --logLevel <level>`  | info \| warn \| error \| silent (`string`)                                                                                                            |
 | `--clearScreen`           | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                       |
-| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten (Standard: `bundle`) |
+| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln, oder `native`, um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`) |
 | `-d, --debug [feat]`      | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                       |
 | `-f, --filter <filter>`   | Filtert Debug-Protokolle (`string`)                                                                                                                   |
 | `-m, --mode <mode>`       | Setzt den Umgebungsmodus (`string`)                                                                                                                   |
@@ -106,7 +107,7 @@ vite optimize [root]
 
 Lokale Vorschau der Produktionsversion. Verwenden Sie dies nicht als Produktions-Server, da es nicht dafür ausgelegt ist.
 
-Dieser Befehlt startet einen Server im Build-Verzeichnis (standardmäßig `dist`). Führen Sie `vite build` zuvor aus, um sicherzustellen, dass das Build-Verzeichnis aktuell ist. Abhängig von der Projektkonfiguration für [`appType`](/config/shared-options.html#apptype), wird bestimmte Middleware verwendet.
+Dieser Befehlt startet einen Server im Build-Verzeichnis (standardmäßig `dist`). Führen Sie `vite build` zuvor aus, um sicherzustellen, dass das Build-Verzeichnis aktuell ist. Abhängig von der Projektkonfiguration für [`appType`](/config/shared-options#apptype), wird bestimmte Middleware verwendet.
 
 #### Verwendung
 
@@ -122,12 +123,12 @@ vite preview [root]
 | `--port <port>`           | Gibt den Port an (`number`)                                                                                                                           |
 | `--strictPort`            | Beendet den Vorgang, wenn der angegebene Port bereits verwendet wird (`boolean`)                                                                      |
 | `--open [path]`           | Öffnet den Browser beim Starten (`boolean \| string`)                                                                                                 |
-| `--outDir <dir>`          | Ausgabe Verzeichnis (Standard: `dist`)(`string`)                                                                                                      |
+| `--outDir <dir>`          | Ausgabe Verzeichnis (Standard: `dist`) (`string`)                                                                                                      |
 | `-c, --config <file>`     | Verwendet die angegebene Konfigurationsdatei (`string`)                                                                                               |
 | `--base <path>`           | Öffentlicher Basispfad (Standard: `/`) (`string`)                                                                                                     |
-| `-l, --logLevel <level>`  | Info \| warn \| error \| silent (`string`)                                                                                                            |
+| `-l, --logLevel <level>`  | info \| warn \| error \| silent (`string`)                                                                                                            |
 | `--clearScreen`           | Erlaubt/deaktiviert das Löschen des Bildschirms beim Protokollieren (`boolean`)                                                                       |
-| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln oder `runner` (experimentell), um sie direkt zu verarbeiten (Standard: `bundle`) |
+| `--configLoader <loader>` | Verwenden Sie `bundle`, um die Konfiguration mit Rolldown zu bündeln, oder `native`, um sie mit der nativen Laufzeitumgebung zu laden (Standard: `bundle`) |
 | `-d, --debug [feat]`      | Zeigt Debug-Protokolle an (`string \| boolean`)                                                                                                       |
 | `-f, --filter <filter>`   | Filtert Debug-Protokolle (`string`)                                                                                                                   |
 | `-m, --mode <mode>`       | Setzt den Umgebungsmodus (`string`)                                                                                                                   |
