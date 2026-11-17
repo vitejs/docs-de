@@ -92,9 +92,55 @@ async function createServer() {
 createServer()
 ```
 
-Here `vite` is an instance of [ViteDevServer](./api-javascript#vitedevserver). `vite.middlewares` is a [Connect](https://github.com/senchalabs/connect) instance which can be used as a middleware in any connect-compatible Node.js framework.
+Hier ist `vite` eine Instanz von [ViteDevServer](./api-javascript#vitedevserver). `vite.middlewares` ist eine [Connect](https://github.com/senchalabs/connect)-Instanz, die in jedem Connect-kompatiblen Node.js-Framework als Middleware verwendet werden kann.
 
-The next step is implementing the `*` handler to serve server-rendered HTML:
+::: tip Updates von reinen SSR-Modulen
+Standardmäßig führt das Aktualisieren eines Moduls, das nur von der SSR-Umgebung importiert wird, nicht zu einem Neuladen der Seite im Browser. Framework-Integrationen übernehmen dies in der Regel für Sie. Für ein eigenes Low-Level-SSR-Setup können Sie ein Plugin hinzufügen, das den Browser neu lädt, wenn sich ein reines SSR-Modul ändert:
+
+```ts twoslash
+import type { EnvironmentModuleNode, Plugin } from 'vite'
+
+export function ssrReload(): Plugin {
+  return {
+    name: 'ssr-reload',
+    enforce: 'post',
+    hotUpdate: {
+      order: 'post',
+      handler({ modules, server, timestamp }) {
+        if (this.environment.name !== 'ssr') return
+
+        const invalidatedModules = new Set<EnvironmentModuleNode>()
+        let hasSsrOnlyModules = false
+
+        for (const mod of modules) {
+          if (mod.file == null) continue
+          const clientModules =
+            server.environments.client.moduleGraph.getModulesByFile(mod.file)
+          if (clientModules != null) continue
+
+          this.environment.moduleGraph.invalidateModule(
+            mod,
+            invalidatedModules,
+            timestamp,
+            true,
+          )
+          hasSsrOnlyModules = true
+        }
+
+        if (hasSsrOnlyModules) {
+          server.environments.client.hot.send({ type: 'full-reload' })
+          return []
+        }
+      },
+    },
+  }
+}
+```
+
+Fügen Sie `ssrReload()` im obigen Beispiel zum `plugins`-Array hinzu, das an `createViteServer` übergeben wird. Details finden Sie beim [`hotUpdate`-Hook](./api-environment-plugins#the-hotupdate-hook).
+:::
+
+Der nächste Schritt ist die Implementierung des `*`-Handlers, um serverseitig gerendertes HTML auszuliefern:
 
 ```js twoslash [server.js]
 // @noErrors
