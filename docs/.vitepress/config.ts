@@ -1,6 +1,7 @@
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import type { FooterLink } from '@voidzero-dev/vitepress-theme'
 import { extendConfig } from '@voidzero-dev/vitepress-theme/config'
+import packageJson from 'vite/package.json' with { type: 'json' }
 import type { HeadConfig } from 'vitepress'
 import { defineConfig } from 'vitepress'
 import { graphvizMarkdownPlugin } from 'vitepress-plugin-graphviz'
@@ -8,7 +9,6 @@ import {
   groupIconMdPlugin,
   groupIconVitePlugin,
 } from 'vitepress-plugin-group-icons'
-import packageJson from '../../package.json' with { type: 'json' }
 import { buildEnd } from './buildEnd.config.ts'
 
 // NOTE: allow additional options to be passed to rolldown for now
