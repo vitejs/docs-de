@@ -5,7 +5,7 @@
   "prCreation": "not-pending",
   "packageRules": [
     {
-      "matchManagers": ["npm", "pnpm"],
+      "matchManagers": ["npm"],
       "minimumReleaseAge": "2 days"
     }
   ]
