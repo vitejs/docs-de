@@ -340,6 +340,31 @@ export default defineConfig({
 
 Neben der Konfigurationsoption `builder.buildApp` können Plugins einen `buildApp`-Hook definieren, um sich am App-Build zu beteiligen. Die Konfigurationsoption und die Plugin-Hooks laufen in einer festgelegten Reihenfolge: zuerst Hooks mit der Reihenfolge `'pre'` oder `null`, dann das konfigurierte `builder.buildApp` und anschließend Hooks mit der Reihenfolge `'post'`. Innerhalb eines Hooks gibt `environment.isBuilt` an, ob eine Umgebung bereits gebaut wurde, sodass ein Plugin vermeiden kann, sie doppelt zu bauen.
 
+### Zugriff auf das Build-Manifest mit `environment.manifest` {#accessing-the-build-manifest-with-environment-manifest}
+
+Sobald eine Umgebung gebaut wurde, ist ihr [Build-Manifest](/config/build-options#build-manifest) über `environment.manifest` verfügbar. So kann ein Plugin das Manifest einer bereits gebauten Umgebung direkt im `buildApp`-Hook lesen, ohne es ins Dateisystem schreiben und von dort lesen zu müssen. Ein gängiges Muster ist es zum Beispiel, mithilfe des Manifests Assets, die in einer Server-Umgebung ausgegeben wurden, in das Client-Bundle zu verschieben.
+
+Das Manifest wird unabhängig von der Option [`build.manifest`](/config/build-options#build-manifest) befüllt; diese steuert nur, ob die Manifest-Datei auf die Festplatte geschrieben wird. Jede Umgebung hat ihr eigenes Manifest.
+
+```js [vite.config.js]
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    {
+      name: 'read-manifest',
+      async buildApp(builder) {
+        const client = builder.environments.client
+        if (!client.isBuilt) {
+          await builder.build(client)
+        }
+        console.log('client manifest', client.manifest)
+      },
+    },
+  ],
+})
+```
+
 ### Programmatisch bauen mit `createBuilder`
 
 Um einen App-Build aus Ihrem eigenen Code auszulösen, verwenden Sie `createBuilder` statt der eigenständigen Funktion `build`. `createBuilder` ist das Build-Zeit-Gegenstück zu `createServer`: Es löst die Konfiguration auf und gibt einen `ViteBuilder` zurück, dessen Methode `buildApp` jede konfigurierte Umgebung baut. Mit `builder.build(environment)` können Sie auch eine einzelne Umgebung bauen.
