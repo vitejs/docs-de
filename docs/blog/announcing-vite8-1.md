@@ -24,6 +24,7 @@ head:
   - - meta
     - name: twitter:card
       content: summary_large_image
+---
 
 # Vite 8.1 ist da!
 
