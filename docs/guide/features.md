@@ -650,6 +650,8 @@ Deklariert das WebAssembly-Modul eigene Importe, löst Vite diese aus JavaScript
 
 Dies folgt dem [WebAssembly/ES Module Integration Proposal](https://github.com/WebAssembly/esm-integration). Da ein WebAssembly-Modul asynchron instanziiert wird, verhält sich eine direkt importierte `.wasm`-Datei wie ein asynchrones Modul und erfordert Unterstützung für Top-Level-`await`.
 
+Module werden mit aktivierten Proposals für [JS String Builtins](https://github.com/WebAssembly/js-string-builtins) und [Imported String Constants](https://github.com/WebAssembly/js-string-builtins) kompiliert, entsprechend dem Loader der WebAssembly/ES Module Integration.
+
 ::: tip TypeScript-Unterstützung
 
 Da die Typen von `.wasm`-Dateien unbekannt sind, meldet TypeScript Fehler wie `Module '"*.wasm"' has no exported member 'add'`. Um das zu beheben, aktivieren Sie [`allowArbitraryExtensions`](https://www.typescriptlang.org/tsconfig/#allowArbitraryExtensions) in Ihrer `tsconfig.json` und legen neben Ihrer `.wasm`-Datei eine Deklarationsdatei an. Mit aktiviertem `allowArbitraryExtensions` sucht TypeScript beim Auflösen eines `.wasm`-Imports nach einer Deklarationsdatei mit dem Namen `{filename}.d.wasm.ts`. Für `add.wasm` legen Sie zum Beispiel `add.d.wasm.ts` an:
@@ -660,7 +662,43 @@ export function add(a: number, b: number): number
 
 :::
 
-### Manuelle Initialisierung
+::: details Unterstützung für Source Phase Imports
+
+#### Source Phase Imports {#source-phase-imports}
+
+Das ESM-Integration-Proposal definiert außerdem [Source Phase Imports](https://github.com/tc39/proposal-source-phase-imports) für `.wasm`-Dateien. Diese liefern Ihnen das kompilierte [`WebAssembly.Module`](https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/Module), ohne es zu instanziieren, und überlassen die Instanziierung vollständig Ihnen. Dies ist der Standardweg, um die Kontrolle über die Instanziierung zu übernehmen, und wird die empfohlene Alternative zu [`?init`](#manual-initialization) sein, sobald [TypeScript 7.1](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/#source-phase-imports) als stabile Version veröffentlicht ist:
+
+```js
+import source mod from './example.wasm'
+
+// `mod` ist ein `WebAssembly.Module`; instanziieren Sie es, wann (und wie) Sie möchten
+const instance = await WebAssembly.instantiate(mod)
+instance.exports.test()
+```
+
+Da Ihnen die `WebAssembly.Instance` gehört, können Sie die eigenen Importe des Moduls bedienen und es so oft wie nötig instanziieren:
+
+```js
+import source mod from './example.wasm'
+
+const instance = await WebAssembly.instantiate(mod, {
+  './imports.js': {
+    someFunc: () => {
+      /* ... */
+    },
+  },
+})
+```
+
+Auch die dynamische Form wird zum `WebAssembly.Module` aufgelöst:
+
+```js
+const mod = await import.source('./example.wasm')
+```
+
+:::
+
+### Manuelle Initialisierung {#manual-initialization}
 
 Wenn Sie steuern möchten, wann und wie das Modul instanziiert wird, importieren Sie es mit `?init`. Der Standardexport wird eine Initialisierungsfunktion sein, die ein Promise der [`WebAssembly.Instance`](https://developer.mozilla.org/en-US/docs/WebAssembly/JavaScript_interface/Instance) zurückgibt:
 
@@ -690,7 +728,7 @@ Im Produktions-Build werden `.wasm`-Dateien, die kleiner als `assetsInlineLimit`
 
 ::: warning Für den SSR-Build werden nur Laufzeitumgebungen unterstützt, die mit Node.js kompatibel sind
 
-Auf Grund einer fehlenden universellen Möglichkeit eine Datei zu laden, ist die interne Implementierung sowohl für direkte `.wasm`-Importe als auch für `.wasm?init` auf das `node:fs`-Modul angewiesen. Das bedeutet, dass diese Features bei SSR-Builds nur in Laufzeitumgebungen funktioniert, die mit Node.js kompatibel sind.
+Auf Grund einer fehlenden universellen Möglichkeit eine Datei zu laden, ist die interne Implementierung für direkte `.wasm`-Importe, Source Phase Imports und `.wasm?init` auf das `node:fs`-Modul angewiesen. Das bedeutet, dass diese Features bei SSR-Builds nur in Laufzeitumgebungen funktioniert, die mit Node.js kompatibel sind.
 
 :::
 
