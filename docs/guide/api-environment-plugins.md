@@ -242,7 +242,9 @@ export default defineConfig({
 })
 ```
 
-Die `applyToEnvironment`-Hook wird zur konfigurierten Zeit aufgerufen, aktuell nach `configResolved`, da Projekte im Ökosystem die Plugins in der Hook ändern. Das Auflösen der Umgebungs-Plugins könnte zukünftig vor `configResolved` stattfinden.
+Beachten Sie, dass das von `applyToEnvironment` oder `perEnvironmentPlugin` zurückgegebene Plugin keine Vite-spezifischen Hooks verwenden sollte.
+
+Die `applyToEnvironment`-Hook wird zur Konfigurationszeit aufgerufen, aktuell nach `configResolved`, da Projekte im Ökosystem die Plugins in der Hook ändern. Das Auflösen der Umgebungs-Plugins könnte zukünftig vor `configResolved` stattfinden.
 
 ## Kommunikation zwischen Anwendung und Plugin
 
