@@ -58,7 +58,7 @@ const plugin = {
   configResolved(config) {
     console.log('options', config.optimizeDeps.rolldownOptions)
   },
-},
+}
 ```
 
 ### JavaScript-Transformation mit Oxc
@@ -93,7 +93,7 @@ const plugin = {
   configResolved(config) {
     console.log('options', config.oxc)
   },
-},
+}
 ```
 
 Derzeit unterstützt der Oxc-Transformer das Herunterkonvertieren nativer Dekoratoren nicht, da wir auf das Fortschreiten der Spezifikation warten, siehe([oxc-project/oxc#9170](https://github.com/oxc-project/oxc/issues/9170)).
@@ -316,16 +316,19 @@ Die Änderung betrifft nur Plugin-Authoren.
 Rolldown hat eine experimentelle [Modultypunterstützung](https://rolldown.rs/guide/notable-features#module-types), welche ähnlich zu [esbuilds `loader`-Option](https://esbuild.github.io/api/#loader) ist. Dadurch setzt Rolldown automatisch einen Modultyp basierend auf der Erweiterung der aufgelösten ID. Wenn Sie den Inhalt von anderen Typen in `load`- oder `transform`-Hooks zu JavaScript konvertieren, müssen Sie möglicherweise `moduleType: 'js'` zum zurückgegebenen Wert hinzufügen.
 
 ```js
+import fs from 'node:fs'
+
 const plugin = {
   name: 'txt-loader',
-  load(id) {
-    if (id.endsWith('.txt')) {
-      const content = fs.readFile(id, 'utf-8')
+  load: {
+    filter: { id: /\.txt$/ },
+    handler(id) {
+      const content = fs.readFileSync(id, 'utf-8')
       return {
         code: `export default ${JSON.stringify(content)}`,
         moduleType: 'js', // [!code ++]
       }
-    }
+    },
   },
 }
 ```

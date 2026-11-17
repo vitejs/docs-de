@@ -56,9 +56,8 @@ Falsche Plugins werden ignoriert, was verwendet werden kann, um Plugins leicht z
 `plugins` akzeptiert auch Voreinstellungen, die mehrere Plugins als einzelnes Element enthalten. Dies ist nützlich für komplexe Funktionen (wie Framework-Integrationen), die mit mehreren Plugins implementiert werden. Das Array wird intern abgeflacht.
 
 ```js
-// framework-plugin
+import frameworkDevTools from 'vite-plugin-framework-devtools'
 import frameworkRefresh from 'vite-plugin-framework-refresh'
-import frameworkDevtools from 'vite-plugin-framework-devtools'
 
 export default function framework(config) {
   return [frameworkRefresh(config), frameworkDevTools(config)]
