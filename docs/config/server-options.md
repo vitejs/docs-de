@@ -247,7 +247,7 @@ Der Fehler, der im Browser angezeigt wird, wenn der Rückfall erfolgt, kann igno
 ## server.forwardConsole
 
 - **Typ:** `boolean | { unhandledErrors?: boolean, logLevels?: ('error' | 'warn' | 'info' | 'log' | 'debug')[] }`
-- **Standard:** automatisch (`true`, wenn ein KI-Entwicklungsagent mit Hilfe von [`@vercel/detect-agent`](https://www.npmjs.com/package/@vercel/detect-agent) erkannt wird, ansonsten `false`)
+- **Standard:** automatisch (`true`, wenn ein KI-Entwicklungsagent mit Hilfe von [`std-env`](https://www.npmjs.com/package/std-env) erkannt wird, ansonsten `false`)
 
 Weiterleitung von Events in der Browser-Laufzeitumgebung zur Vite-Server-Konsole während der Entwicklung.
 
