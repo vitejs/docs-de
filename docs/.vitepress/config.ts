@@ -1,4 +1,3 @@
-import path from 'node:path'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import type { FooterLink } from '@voidzero-dev/vitepress-theme'
 import { extendConfig } from '@voidzero-dev/vitepress-theme/config'
@@ -120,9 +119,9 @@ const config = defineConfig({
   themeConfig: {
     variant: 'vite',
     banner: {
-      id: 'cloudflare-supports-vite',
-      text: 'Cloudflare unterstützt die Mission von Vite',
-      url: '/blog/cloudflare-supports-vite',
+      id: 'viteconf-2026',
+      text: 'ViteConf 2026 – 15. Oktober, online',
+      url: 'https://viteconf.org/',
     },
 
 
@@ -578,14 +577,6 @@ const config = defineConfig({
     },
   },
   vite: {
-    resolve: {
-      alias: {
-        '@components/oss/TopBanner.vue': path.resolve(
-          import.meta.dirname,
-          'theme/components/TopBanner.vue',
-        ),
-      },
-    },
     plugins: [
       groupIconVitePlugin({
         customIcon: {

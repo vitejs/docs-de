@@ -19,12 +19,17 @@ const sponsors = computed(() => {
 </script>
 
 <template>
-  <a class="viteconf" href="https://www.youtube.com/playlist?list=PLqGQbXn_GDmkJaoykvHCUmXUPjhgH2bVr" target="_blank">
-    <img width="22" height="22" src="../../../images/viteconf.svg" alt="ViteConf Logo" />
+  <a class="viteconf" href="https://viteconf.org/" target="_blank">
+    <img
+      width="22"
+      height="22"
+      src="../../../images/viteconf.svg"
+      alt="ViteConf Logo"
+    />
     <span>
       <p class="extra-info">Gemeinsam bauen</p>
-      <p class="heading">ViteConf 2025</p>
-      <p class="extra-info">Aufzeichnungen ansehen</p>
+      <p class="heading">ViteConf 2026</p>
+      <p class="extra-info">15. Oktober, online</p>
     </span>
   </a>
   <VPDocAsideSponsors v-if="data" :data="sponsors" />
