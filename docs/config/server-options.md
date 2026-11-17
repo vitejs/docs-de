@@ -310,7 +310,7 @@ export default defineConfig({
 
 Dateisystem-Überwachungsoptionen, die an [chokidar](https://github.com/paulmillr/chokidar/tree/3.6.0#api) weitergegeben werden sollen.
 
-Wenn der Bundled-Dev-Modus aktiviert ist, werden zusätzlich [Rolldown-Watch-Optionen](https://rolldown.rs/reference/InputOptions.watch) (zum Beispiel `usePolling`, `pollInterval`, `useDebounce`, `debounceDuration`, `include`, `exclude`) akzeptiert. Die reinen chokidar-Optionen werden weiterhin vom chokidar-Watcher verwendet, der nach wie vor Dateien außerhalb des Modulgraphen überwacht, etwa Abhängigkeiten der Konfigurationsdatei und Env-Dateien.
+Wenn der Bundled-Dev-Modus aktiviert ist, werden zusätzlich [Rolldown-Watch-Optionen](https://rolldown.rs/reference/InputOptions.watch) (zum Beispiel `watcher.usePolling`, `watcher.pollInterval`, `watcher.useDebounce`, `watcher.debounceDuration`, `include`, `exclude`) akzeptiert. Die reinen chokidar-Optionen werden weiterhin vom chokidar-Watcher verwendet, der nach wie vor Dateien außerhalb des Modulgraphen überwacht, etwa Abhängigkeiten der Konfigurationsdatei und Env-Dateien.
 
 Der Vite Server Watcher überwacht das `root` und überspringt standardmäßig die Verzeichnisse `.git/`, `node_modules/`, `test-results/`, Vites `cacheDir` und Vites `build.outDir`. Wenn eine überwachte Datei aktualisiert wird, wendet Vite HMR an und aktualisiert nur bei Bedarf die Seite.
 
