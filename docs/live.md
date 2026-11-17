@@ -1,18 +1,18 @@
 ---
-title: 5th anniversary of the Vite Team Creation
+title: 5. Jahrestag der Gründung des Vite-Teams
 layout: home
 theme: dark
-description: "Vite: The Documentary re-premiere. Join the ecosystem this March 19th at 3 PM UTC to remember the story we wrote together. And participate in the live stage to discuss our past, present, and future. We'll be waiting for you!"
+description: "Vite: The Documentary – erneute Premiere. Feiern Sie am 19. März um 15 Uhr UTC mit dem Ökosystem und erinnern Sie sich an die Geschichte, die wir gemeinsam geschrieben haben. Und diskutieren Sie auf der Live-Bühne über unsere Vergangenheit, Gegenwart und Zukunft. Wir freuen uns auf Sie!"
 head:
   - - meta
     - property: og:type
       content: website
   - - meta
     - property: og:title
-      content: 5th anniversary of the Vite Team Creation
+      content: 5. Jahrestag der Gründung des Vite-Teams
   - - meta
     - property: og:description
-      content: "Vite: The Documentary re-premiere. Join the ecosystem this March 19th at 3 PM UTC to remember the story we wrote together. And participate in the live stage to discuss our past, present, and future. We'll be waiting for you!"
+      content: "Vite: The Documentary – erneute Premiere. Feiern Sie am 19. März um 15 Uhr UTC mit dem Ökosystem und erinnern Sie sich an die Geschichte, die wir gemeinsam geschrieben haben. Und diskutieren Sie auf der Live-Bühne über unsere Vergangenheit, Gegenwart und Zukunft. Wir freuen uns auf Sie!"
   - - meta
     - property: og:type
       content: website

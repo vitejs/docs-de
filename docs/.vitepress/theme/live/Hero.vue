@@ -6,15 +6,16 @@
       class="flex flex-col items-center text-center md:text-left md:items-start p-10 gap-5 justify-center"
     >
       <h1 class="text-white text-pretty max-w-[35rem]">
-        5th anniversary of the Vite Team Creation
+        5. Jahrestag der Gründung des Vite-Teams
       </h1>
       <p class="text-white text-3xl text-pretty max-w-[35rem]">
-        Vite: The Documentary re-premiere
+        Vite: The Documentary – erneute Premiere
       </p>
       <p class="text-white/70 md:text-lg max-w-[35rem] text-pretty">
-        Join the ecosystem this March 19th at 3 PM UTC to remember the story we
-        wrote together. And participate in the live stage to discuss our past,
-        present, and future. We'll be waiting for you!
+        Feiern Sie am 19. März um 15 Uhr UTC mit dem Ökosystem und erinnern Sie
+        sich an die Geschichte, die wir gemeinsam geschrieben haben. Und
+        diskutieren Sie auf der Live-Bühne über unsere Vergangenheit, Gegenwart
+        und Zukunft. Wir freuen uns auf Sie!
       </p>
       <div class="flex items-start justify-between w-full gap-5 mt-8">
         <div class="flex items-center gap-5">
@@ -24,7 +25,7 @@
             rel="noopener noreferrer"
             class="button button--primary inline-block w-fit"
           >
-            Add to Calendar
+            Zum Kalender hinzufügen
           </a>
           <a
             href="https://chat.vite.dev"
@@ -32,7 +33,7 @@
             rel="noopener noreferrer"
             class="button inline-block w-fit"
           >
-            Join Community
+            Community beitreten
           </a>
         </div>
         <a
@@ -61,7 +62,7 @@
         class="block sm:max-w-[80%] lg:max-w-[70%]"
         inert
         loading="lazy"
-        alt="Vite community: Evan You, Matias Capeletto, Bjorn Lu, Anthony Fu, Sapphi Red, Dominik Göpel, Vladimir Sheremet, Ryan Carniato, Pedro Cattori, Mark Dalgleish, Rich Harris, Fred Schott, Eric Simons, Theo Browne, David Cramer, Misko Hevery"
+        alt="Vite-Community: Evan You, Matias Capeletto, Bjorn Lu, Anthony Fu, Sapphi Red, Dominik Göpel, Vladimir Sheremet, Ryan Carniato, Pedro Cattori, Mark Dalgleish, Rich Harris, Fred Schott, Eric Simons, Theo Browne, David Cramer, Misko Hevery"
       />
     </div>
   </div>

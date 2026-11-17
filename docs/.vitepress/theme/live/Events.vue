@@ -38,7 +38,7 @@ const EVENTS = [
     <h2
       class="text-white text-2xl px-10 py-5 text-pretty border-nickel border-y"
     >
-      Previous events
+      Vergangene Events
     </h2>
     <div class="relative grid md:grid-cols-2 xl:grid-cols-4 wrapper--ticks">
       <a

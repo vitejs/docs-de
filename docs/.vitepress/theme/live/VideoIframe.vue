@@ -164,13 +164,13 @@ onBeforeUnmount(() => {
           "
           @focus="showActions"
         >
-          Chat with us
+          Mit uns chatten
         </a>
         <button
           type="button"
           class="button block py-1.5 px-2.25 backdrop-blur transition-opacity"
           @click="toggleFullscreen"
-          :aria-label="isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'"
+          :aria-label="isFullscreen ? 'Vollbild beenden' : 'Vollbild aktivieren'"
           :class="
             actionsVisible || player.state !== 'play'
               ? 'opacity-100'
@@ -210,7 +210,7 @@ onBeforeUnmount(() => {
         type="button"
         class="absolute button block left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 p-4 backdrop-blur transition"
         @click="togglePlayback"
-        :aria-label="player.state === 'play' ? 'Pause video' : 'Play video'"
+        :aria-label="player.state === 'play' ? 'Video pausieren' : 'Video abspielen'"
         :class="
           actionsVisible || player.state !== 'play'
             ? 'opacity-100'
@@ -248,7 +248,7 @@ onBeforeUnmount(() => {
         height="315"
         class="w-full h-auto max-h-[calc(100vh-5rem-var(--vp-banner-height,0px))] aspect-video pointer-events-none"
         :src="iframeSrc"
-        title="YouTube video player"
+        title="YouTube-Videoplayer"
         frameborder="0"
         allow="
           accelerometer;
