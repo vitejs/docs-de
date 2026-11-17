@@ -37,6 +37,35 @@ Ein Plugin könnte die Instanz `environment` verwenden, um die Verarbeitung eine
   }
 ```
 
+## Sichere Module registrieren {#registering-safe-modules}
+
+Während der Entwicklung können Plugins `this.environment.addSafeModule(id)` aufrufen, um zu erlauben, dass eine aufgelöste Modul-ID außerhalb von [`server.fs.allow`](/config/server-options#server-fs-allow) geladen wird.
+
+Übergeben Sie für Dateisystem-Module einen normalisierten absoluten Pfad, optional mit Query. Verwenden Sie Vites Hilfsfunktion `normalizePath`, um Dateisystempfade zu normalisieren. Die Methode registriert sowohl die vollständige ID als auch den Pfad ohne Query und Hash. Andere Query-Varianten müssen separat registriert werden.
+
+Wenn ein Plugin eine Referenz hinzufügt, die Vite nicht über die Importanalyse erkennen kann, registrieren Sie die referenzierte ID im selben `transform`-Hook. So besteht das referenzierte Modul die Zugriffsprüfung, wenn es später angefordert wird.
+
+```ts
+import type { Plugin } from 'vite'
+
+// runtimeId ist ein normalisierter absoluter Pfad, optional mit Query.
+// runtimeUrl ist die URL, die in den transformierten Code eingefügt wird.
+function runtimePlugin(runtimeId: string, runtimeUrl: string): Plugin {
+  return {
+    name: 'plugin-runtime',
+    transform: {
+      filter: { code: '__RUNTIME_URL__' },
+      handler(code) {
+        if (this.environment.mode === 'dev') {
+          this.environment.addSafeModule(runtimeId)
+        }
+        return code.replaceAll('__RUNTIME_URL__', JSON.stringify(runtimeUrl))
+      },
+    },
+  }
+}
+```
+
 ## Registrieren neuer Umgebungen mithilfe von Hooks
 
 Plugins können im Hook `config` neue Umgebungen hinzufügen. Zum Beispiel verwendet die [RSC-Unterstützung](/plugins/#vitejs-plugin-rsc) eine zusätzliche Umgebung, um einen separaten Modulgraphen mit der `react-server`-Bedingung zu haben:

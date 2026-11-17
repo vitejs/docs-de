@@ -163,6 +163,14 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
       */
      isDynamicEntry?: boolean
      /**
+      * Ob dieser Chunk zu einem Web-Worker-Bundle gehört.
+      */
+     isWorker?: boolean
+     /**
+      * Ob dieser Chunk der Einstiegspunkt eines Web-Worker-Bundles ist.
+      */
+     isWorkerEntry?: boolean
+     /**
       * Die Liste von statisch importierten Chunks durch diesen Chunk.
       *
       * Die Werte sind die Schlüssel des Manifests. Dieses Feld ist nur in JS-Chunks präsent.
@@ -181,6 +189,7 @@ Wenn Sie eine benutzerdefinierte Integration benötigen, können Sie den Schritt
    - **Entry Chunks**: Generiert aus Dateien spezifiziert unter [`build.rolldownOptions.input`](https://rolldown.rs/reference/InputOptions.input#input). Diese Chunks haben `isEntry: true` und ihr Schlüssel ist der relative Pfad vom Wurzelverzeichnis des Projekts.
    - **Dynamische Entry Chunks**: Generiert aus dynamischen Importen. Diese Chunks haben `isDynamicEntry: true` und ihr Schlüssel ist der relative Pfad vom Wurzelverzeichnis des Projekts.
    - **Non-entry Chunks**: Ihr Schlüssel ist der Basisname der generierten Dateien beginnend mit `_`.
+   - **Worker Chunks**: Generiert aus importierten Web Workern. Diese Chunks haben `isWorker: true`. Worker-Einstiegspunkte haben zusätzlich `isWorkerEntry: true`. Ihr Schlüssel ist der generierte Dateiname beginnend mit `_worker_`.
    - **Asset Chunks**: Generiert aus importierten Assets wie Images oder Schriftarten. Ihr Schlüssel ist der relative src-Pfad vom Wurzelverzeichnis.
    - **CSS Dateien**: Wenn [`build.cssCodeSplit`](/config/build-options.md#build-csscodesplit) `false` ist, wird eine einzige CSS Datei generiert mit dem Schlüssel `style.css`. Wenn `build.cssCodeSplit` nicht `false` ist, wird der Schlüssel ähnlich zum JavaScript Chunk generiert (z. B. Entry Chunks werden nicht mit `_` beginnen und Non-Entry Chunks werden mit `_` beginnen).
 

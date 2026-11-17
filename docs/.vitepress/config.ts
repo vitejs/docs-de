@@ -1,16 +1,13 @@
-import path from 'node:path'
-import fs from 'node:fs'
+import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
+import type { FooterLink } from '@voidzero-dev/vitepress-theme'
+import { extendConfig } from '@voidzero-dev/vitepress-theme/config'
 import type { HeadConfig } from 'vitepress'
 import { defineConfig } from 'vitepress'
-import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
+import { graphvizMarkdownPlugin } from 'vitepress-plugin-graphviz'
 import {
   groupIconMdPlugin,
   groupIconVitePlugin,
 } from 'vitepress-plugin-group-icons'
-import { graphvizMarkdownPlugin } from 'vitepress-plugin-graphviz'
-import { markdownItImageSize } from 'markdown-it-image-size'
-import { extendConfig } from '@voidzero-dev/vitepress-theme/config'
-import type { FooterLink } from '@voidzero-dev/vitepress-theme'
 import packageJson from '../../package.json' with { type: 'json' }
 import { buildEnd } from './buildEnd.config.ts'
 
@@ -77,17 +74,6 @@ const versionLinks = (() => {
   return links
 })()
 
-// function inlineScript(file: string): HeadConfig {
-//   return [
-//     'script',
-//     {},
-//     fs.readFileSync(
-//       path.resolve(import.meta.dirname, `./inlined-scripts/${file}`),
-//       'utf-8',
-//     ),
-//   ]
-// }
-
 const config = defineConfig({
   title: `Vite${additionalTitle}`,
   description: 'Frontend-Tooling der nächsten Generation',
@@ -127,19 +113,15 @@ const config = defineConfig({
     zh: { label: '简体中文', link: 'https://cn.vite.dev' },
     ja: { label: '日本語', link: 'https://ja.vite.dev' },
     es: { label: 'Español', link: 'https://es.vite.dev' },
-    pt: { label: 'Português', link: 'https://pt.vite.dev' },
     ko: { label: '한국어', link: 'https://ko.vite.dev' },
-    fa: { label: 'فارسی', link: 'https://fa.vite.dev' },
   },
 
   themeConfig: {
     variant: 'vite',
-    logo: '/logo.svg',
-
     banner: {
-      id: 'viteplus-alpha',
-      text: 'Vite+ Alpha angekündigt: Open Source. Vereinheitlicht. Next-Gen.',
-      url: 'https://voidzero.dev/posts/announcing-vite-plus-alpha?utm_source=vite&utm_content=top_banner',
+      id: 'viteconf-2026',
+      text: 'ViteConf 2026 – 15. Oktober, online',
+      url: 'https://viteconf.org/',
     },
 
 
@@ -156,46 +138,41 @@ const config = defineConfig({
       { icon: 'github', link: 'https://github.com/vitejs/vite' },
     ],
 
-    algolia: {
-      appId: '7H67QR5P0A',
-      apiKey: '208bb9c14574939326032b937431014b',
-      indexName: 'vitejs',
-      searchParameters: {
-        facetFilters: ['tags:de'],
-      },
-      placeholder: 'Suche',
-      translations: {
-        button: {
-          buttonText: 'Suche',
+    search: {
+      provider: 'local',
+      options: {
+        miniSearch: {
+          searchOptions: {
+            boostDocument(page) {
+              if (page.startsWith('/guide/')) return 2 // Prefer guide pages
+              if (page.startsWith('/config/')) return 1.5 // Then config pages
+              if (page.startsWith('/blog/')) return 0 // Do not index blog posts
+              return 1
+            },
+          },
         },
-        modal: {
-          searchBox: {
-            resetButtonTitle: 'Suche zurücksetzen.',
-            resetButtonAriaLabel: 'Suche zurücksetzen.',
-            cancelButtonText: 'Zurücksetzen',
-            cancelButtonAriaLabel: 'Zurücksetzen',
+        translations: {
+          button: {
+            buttonText: 'Suche',
+            buttonAriaLabel: 'Suche',
           },
-          startScreen: {
-            recentSearchesTitle: 'Letzte Suchanfragen',
-            noRecentSearchesText: 'Keine letzten Suchanfragen.',
-          },
-          errorScreen: {
-            titleText: 'Fehler beim Abrufen von Suchergebnissen.',
-            helpText:
-              'Möglicherweise müssen Sie Ihre Netzwerkverbindung überprüfen.',
-          },
-          footer: {
-            selectText: 'Auswählen',
-            navigateText: 'Navigieren',
-            closeText: 'Schließen',
-          },
-          noResultsScreen: {
-            noResultsText: 'Keine Ergebnisse gefunden.',
-            suggestedQueryText: 'Alternative Vorschläge',
+          modal: {
+            displayDetails: 'Detaillierte Liste anzeigen',
+            resetButtonTitle: 'Suche zurücksetzen',
+            backButtonTitle: 'Suche schließen',
+            noResultsText: 'Keine Ergebnisse gefunden für',
+            footer: {
+              selectText: 'Auswählen',
+              selectKeyAriaLabel: 'Eingabetaste',
+              navigateText: 'Navigieren',
+              navigateUpKeyAriaLabel: 'Pfeil nach oben',
+              navigateDownKeyAriaLabel: 'Pfeil nach unten',
+              closeText: 'Schließen',
+              closeKeyAriaLabel: 'Escape',
+            },
           },
         },
       },
-      insights: true,
     },
 
     carbonAds: {
@@ -595,9 +572,6 @@ const config = defineConfig({
         titleBar: {
           includeSnippet: true,
         },
-      })
-      md.use(markdownItImageSize, {
-        publicDir: path.resolve(import.meta.dirname, '../public'),
       })
       await graphvizMarkdownPlugin(md)
     },

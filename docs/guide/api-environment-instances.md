@@ -87,6 +87,13 @@ class DevEnvironment {
   async warmupRequest(url: string): Promise<void>
 
   /**
+   * Registriert eine aufgelöste Modul-ID als sicher ladbar in dieser Umgebung,
+   * auch außerhalb von server.fs.allow. server.fs.deny gilt weiterhin.
+   * Aus dem transform-Hook des Plugins aufrufen, wenn es eine Referenz auf das Modul hinzufügt.
+   */
+  addSafeModule(id: string): void
+
+  /**
    * Wird vom Module Runner aufgerufen, um Informationen über das angegebene
    * Modul abzurufen. Ruft intern `transformRequest` auf und verpackt das Ergebnis
    * in das Format, das der Module Runner versteht.

@@ -1,5 +1,5 @@
-import path from 'path'
-import { writeFileSync } from 'fs'
+import { writeFileSync } from 'node:fs'
+import path from 'node:path'
 import { Feed } from 'feed'
 import { createContentLoader, type SiteConfig } from 'vitepress'
 
