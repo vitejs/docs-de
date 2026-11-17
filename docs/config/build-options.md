@@ -162,6 +162,8 @@ Beachten Sie, dass diese Option [Unterstützung für `import.meta.resolve`](http
 
 Direktes Anpassen des zugrunde liegenden Rolldown-Bündels. Dies entspricht den Optionen, die aus einer Rolldown-Konfigurationsdatei exportiert werden können, und wird mit den internen Rolldown-Optionen von Vite zusammengeführt. Weitere Details finden Sie in den [Rolldown-Optionen-Dokumenten](https://rolldown.rs/reference/).
 
+Vite überschreibt den Rolldown-Standardwert für `preserveEntrySignatures`. Wenn diese Option nicht gesetzt ist, verwendet Vite `false` für reguläre Client-Builds, `'strict'` für Library-Builds und `'allow-extension'` für SSR-Builds.
+
 Statt `build.rolldownOptions.input` wird empfohlen, die Top-Level-Option [`input`](/config/shared-options#input) zu setzen, da sie auch in der Entwicklung verwendet wird. Ist `build.rolldownOptions.input` gesetzt, überschreibt es die Top-Level-Option `input` nur für den Build.
 
 ## build.rollupOptions
