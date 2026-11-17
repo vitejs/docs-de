@@ -70,6 +70,8 @@ window.addEventListener('vite:preloadError', (event) => {
 })
 ```
 
+Browser, die [wiederholbares Laden von Modulen](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import#browser_compatibility) unterstützen, erlauben es einer Anwendung oder einem Framework, den ursprünglichen dynamischen Import nach einem vorübergehenden Netzwerk- oder HTTP-Fehler erneut zu versuchen. Ältere Browser erfordern ein Neuladen der Seite, da sie den Fehler in der Modul-Map zwischenspeichern.
+
 Bei einer neuen Bereitstellung kann der Hosting-Dienst die Assets aus früheren Bereitstellungen löschen. Infolgedessen kann es bei einem Benutzer, der Ihre Website vor der neuen Bereitstellung besucht hat, zu einem Importfehler kommen. Dieser Fehler tritt auf, weil die auf dem Gerät dieses Benutzers ausgeführten Assets veraltet sind und er versucht, den entsprechenden alten Chunk zu importieren, der gelöscht wurde. Dieses Ereignis ist nützlich, um diese Situation zu beheben. Stellen Sie in diesem Fall sicher, dass Sie „Cache-Control: no-cache“ in der HTML-Datei festlegen, da sonst weiterhin auf die alten Assets verwiesen wird.
 
 ## Neuerstellen bei Dateiänderungen

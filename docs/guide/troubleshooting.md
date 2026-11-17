@@ -200,7 +200,7 @@ Dieser Fehler tritt in mehreren Fällen auf:
 - Schlechte Netzwerkbedingungen
 - Browser-Erweiterungen, die Anfragen blockieren
 
-#### Versionsunterschiede
+#### Versionsunterschiede {#version-skew}
 
 Wenn Sie eine neue Version Ihrer Anwendung bereitstellen, verweisen die HTML-Datei und die JS-Dateien weiterhin auf alte Chunk-Namen, die in der neuen Bereitstellung gelöscht wurden. Dies geschieht, wenn:
 
@@ -221,7 +221,9 @@ Um dieses Problem zu beheben, haben Sie folgende Möglichkeiten:
 
 Dieser Fehler kann in instabilen Netzwerkumgebungen auftreten. Beispielsweise wenn die Anfrage aufgrund von Netzwerkfehlern oder Serverausfällen fehlschlägt.
 
-Beachten Sie, dass Sie den dynamischen Import aufgrund von Browserbeschränkungen ([whatwg/html#6768](https://github.com/whatwg/html/issues/6768)) nicht wiederholen können.
+Browser, die [wiederholbares Laden von Modulen](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import#browser_compatibility) unterstützen, speichern Netzwerk- und HTTP-Fehler nicht in der Modul-Map zwischen. In diesen Browsern kann Ihre Anwendung oder Ihr Framework den ursprünglichen dynamischen Import erneut versuchen. Ältere Browser speichern den Fehler zwischen, sodass das Neuladen der Seite weiterhin der Fallback ist.
+
+Ein erneuter Versuch behebt außerdem keine [Versionsunterschiede](#version-skew), wenn ein Chunk durch eine Bereitstellung dauerhaft entfernt wurde.
 
 #### Browser-Erweiterungen, die Anfragen blockieren
 
