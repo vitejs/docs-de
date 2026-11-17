@@ -134,6 +134,20 @@ Der Grund dafür ist, dass [die Portweiterleitung in VS Code kein IPv6 unterstü
 
 Siehe [#16522](https://github.com/vitejs/vite/issues/16522) für mehr Details.
 
+### Fehler „illegal operation“ beim Überwachen von Dateien {#illegal-operation-error-when-watching-files}
+
+Wenn sich die Datei oder das Verzeichnis auf einem Dateisystem befindet, das keine Dateisystem-Events unterstützt, kann Vite sie möglicherweise nicht überwachen.
+
+Ein Beispiel für einen Fehler, der auftreten kann, ist:
+
+```
+Error: EISDIR: illegal operation on a directory, watch 'C:/Users/me/project/vite.config.js'
+```
+
+Dies kann zum Beispiel bei einem freigegebenen Ordner in VirtualBox passieren.
+
+Um dies zu beheben, können Sie [`server.watch.usePolling`](/config/server-options#server-watch) aktivieren. Beachten Sie, dass [`usePolling` zu einer hohen CPU-Auslastung führt](https://github.com/paulmillr/chokidar/tree/3.6.0#performance).
+
 ## HMR (Hot Module Replacement)
 
 ### Vite erkennt eine Dateiänderung, aber das HMR funktioniert nicht
