@@ -374,16 +374,18 @@ createServer()
 
 ## server.fs.strict
 
-- **Typ:** `boolean`
+- **Typ:** `boolean | 'extended'`
 - **Standard:** `true` (standardmäßig aktiviert seit Vite 2.7)
 
 Beschränken Sie das Servieren von Dateien außerhalb des Arbeitsbereichs.
+
+Setzen Sie den Wert auf `'extended'`, um die Zugriffsprüfungen auch auf Module anzuwenden, die von Plugins per `load` geladen werden – ausgenommen IDs, die mit `\0` beginnen.
 
 ## server.fs.allow
 
 - **Typ:** `string[]`
 
-Beschränken Sie Dateien, die über `/@fs/` serviert werden können. Wenn `server.fs.strict` auf `true` gesetzt ist, führt der Zugriff auf Dateien außerhalb dieser Verzeichnisliste, die nicht von einer erlaubten Datei importiert werden, zu einem 403-Fehler.
+Beschränken Sie Dateien, die über `/@fs/` serviert werden können. Wenn `server.fs.strict` auf `true` oder `'extended'` gesetzt ist, führt der Zugriff auf Dateien außerhalb dieser Verzeichnisliste, die nicht von einer erlaubten Datei importiert werden, zu einem 403-Fehler.
 
 Sowohl Verzeichnisse als auch Dateien können angegeben werden.
 
