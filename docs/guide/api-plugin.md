@@ -851,7 +851,7 @@ export default defineConfig({
 Intern leitet Vite den Typ einer Payload vom `CustomEventMap`-Interface ab. Es ist möglich benutzerdefinierte Events durch eine Erweiterung des Interfaces zu typisieren:
 
 :::tip Anmerkung
-Stellen Sie sicher, dass Sie bei der Angabe von TypeScript-Deklarationsdateien die Erweiterung `.d.ts` einbeziehen. Andernfalls weiß Typescript möglicherweise nicht, welche Datei das Modul versucht zu erweitern.
+Stellen Sie sicher, dass Sie bei der Angabe von TypeScript-Deklarationsdateien die Erweiterung `.d.ts` einbeziehen. Andernfalls weiß TypeScript möglicherweise nicht, welche Datei das Modul versucht zu erweitern.
 :::
 
 ```ts [events.d.ts]
