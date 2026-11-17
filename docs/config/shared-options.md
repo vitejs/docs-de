@@ -628,10 +628,24 @@ Weitere Informationen finden Sie im [SSR-Handbuch von Vite](/guide/ssr#vite-cli)
 - **Typ:** `boolean` | `DevToolsConfig`
 - **Standard:** `false`
 
-Aktivieren Sie die Ingration für devtools, um eine Visualisierung des internen Zustands und einer Build-Analyse zu erhalten.
-Stellen Sie sicher, dass `@vitejs/devtools` als Abhängigkeit installiert ist. Diese Funktion wird aktuell nur im Build-Modus unterstützt.
+Aktivieren Sie die DevTools-Integration, um den Dev-Server zu untersuchen und Builds zu analysieren.
+Stellen Sie sicher, dass `@vitejs/devtools` als Abhängigkeit installiert ist. Installieren Sie `@vitejs/devtools-vite`, um den Vite-Dev-Server zu untersuchen, und `@vitejs/devtools-rolldown`, um die Build-Analyse zu aktivieren. DevTools läuft standardmäßig sowohl für `serve` als auch für `build`; verwenden Sie `apply`, um es auf einen der beiden Befehle zu beschränken.
 
-Schauen Sie sich [Vite DevTools](https://github.com/vitejs/devtools) an, für mehr Details.
+Die `config`-Hooks von Plugins können die Option `devtools` nicht ändern. Setzen Sie sie stattdessen in der Benutzerkonfiguration.
+
+Sofern installiert, stellt `@vitejs/devtools` die Typdefinitionen für diese Option bereit:
+
+```ts
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  devtools: {
+    apply: 'serve',
+  },
+})
+```
+
+Weitere Details finden Sie unter [Vite DevTools](https://github.com/vitejs/devtools).
 
 ## tsconfig
 
