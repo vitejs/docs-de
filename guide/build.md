@@ -1,0 +1,1 @@
+In browser builds using formats such as IIFE or UMD, Vite can use `document.baseURI` as a fallback base when resolving relative asset URLs. An HTML `<base href>` can therefore affect where those URLs resolve. Make sure to keep the document base under your application's control.
