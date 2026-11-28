@@ -42,7 +42,7 @@
     "@iconify/vue": "5.0.5",
     "@shikijs/vitepress-twoslash": "4.6.0",
     "@types/express": "5.0.6",
-    "@types/node": "26.6.6",
+    "@types/node": "26.6.11",
     "@types/react": "19.3.0",
     "@voidzero-dev/vitepress-theme": "5.0.7",
     "eslint": "10.15.0",
